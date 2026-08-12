@@ -15,102 +15,8 @@
   </header>
 
   <main class="wrap">
-    <div class="crumb"><span class="pill" id="status">Fundação Procafé monthly bulletins · updated monthly</span></div>
-    <section class="grid" id="regions">
-
-      <!-- Regional production map (moved to the end of the grid by the script) -->
-      <div class="card map-card" id="region-map-card">
-        <h2>Brazil Arabica — regional production map</h2>
-        <p class="map-sub">Where the regions sit, their main towns, and their approximate share of Brazilian Arabica production.</p>
-        <svg viewBox="0 0 560 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Brazil arabica regions map">
-          <!-- land background -->
-          <rect x="0" y="0" width="560" height="520" fill="#f4ecdc"/>
-          <path d="M40 30 Q200 5 380 25 Q540 45 545 200 Q550 380 480 480 Q300 515 120 500 Q20 480 15 320 Q10 120 40 30 Z" fill="#efe4cd"/>
-          <path d="M320 40 Q470 55 510 150 Q530 260 470 300 Q400 330 360 260 Q330 150 320 40 Z" fill="#eadfc4" opacity=".7"/>
-
-          <!-- state labels -->
-          <text x="300" y="112" font-size="15" font-weight="700" fill="#8a7f6d" letter-spacing="1">MINAS GERAIS</text>
-          <text x="250" y="478" font-size="14" font-weight="700" fill="#8a7f6d" letter-spacing="1">SÃO PAULO</text>
-          <text x="150" y="62" font-size="12" font-weight="700" fill="#a89c88">GO</text>
-          <text x="510" y="55" font-size="12" font-weight="700" fill="#a89c88">BA</text>
-          <text x="512" y="300" font-size="12" font-weight="700" fill="#a89c88">ES</text>
-          <text x="452" y="468" font-size="12" font-weight="700" fill="#a89c88">RJ</text>
-          <text x="24" y="300" font-size="12" font-weight="700" fill="#a89c88">MS</text>
-          <text x="60" y="505" font-size="12" font-weight="700" fill="#a89c88">PR</text>
-
-          <!-- Brazil inset -->
-          <g>
-            <rect x="16" y="14" width="106" height="88" rx="4" fill="#faf6ec" stroke="#d8cdb8"/>
-            <path d="M45 24 Q80 18 98 32 Q112 48 106 66 Q98 88 78 92 Q60 94 50 80 Q36 62 38 44 Q40 30 45 24 Z" fill="#e2d7be" stroke="#c9bda3"/>
-            <rect x="72" y="58" width="26" height="24" fill="none" stroke="#d33" stroke-width="1.6" stroke-dasharray="3 2"/>
-            <text x="42" y="52" font-size="9" font-weight="700" fill="#8a7f6d">BRAZIL</text>
-          </g>
-
-          <!-- CERRADO (blue, NW) -->
-          <path d="M150 118 Q205 100 240 130 Q268 160 258 205 Q252 245 220 272 Q190 300 158 290 Q118 278 106 240 Q94 195 112 158 Q126 128 150 118 Z"
-                fill="#3f7cb8" opacity=".88" stroke="#2f6296" stroke-width="1.5"/>
-          <g font-size="10.5" fill="#11314f" font-weight="600">
-            <circle cx="196" cy="152" r="3" fill="#11314f"/><text x="203" y="156">Coromandel</text>
-            <circle cx="150" cy="192" r="3" fill="#11314f"/><text x="157" y="196">Patrocínio</text>
-            <circle cx="172" cy="222" r="3" fill="#11314f"/><text x="179" y="226">Monte Carmelo</text>
-            <circle cx="152" cy="255" r="3" fill="#11314f"/><text x="159" y="259">Araguari</text>
-          </g>
-          <g>
-            <rect x="20" y="130" width="132" height="46" rx="4" fill="#2f6296"/>
-            <text x="27" y="147" font-size="10.5" font-weight="700" fill="#fff">CERRADO MINEIRO /</text>
-            <text x="27" y="160" font-size="10.5" font-weight="700" fill="#fff">TRIÂNGULO MINEIRO</text>
-            <text x="27" y="172" font-size="11" font-weight="800" fill="#fff">20%</text>
-          </g>
-
-          <!-- MATAS DE MINAS (orange, NE) -->
-          <path d="M408 150 Q440 140 456 170 Q470 205 462 250 Q456 300 438 335 Q420 365 398 358 Q376 348 372 310 Q368 260 378 210 Q388 165 408 150 Z"
-                fill="#f0932a" opacity=".9" stroke="#c9741a" stroke-width="1.5"/>
-          <g font-size="10.5" fill="#5c3608" font-weight="600">
-            <circle cx="428" cy="185" r="3" fill="#5c3608"/><text x="435" y="189">Caratinga</text>
-            <circle cx="418" cy="225" r="3" fill="#5c3608"/><text x="425" y="229">Manhuaçu</text>
-            <circle cx="410" cy="262" r="3" fill="#5c3608"/><text x="417" y="266">Manhumirim</text>
-            <circle cx="402" cy="298" r="3" fill="#5c3608"/><text x="409" y="302">Simonésia</text>
-          </g>
-          <g>
-            <rect x="428" y="112" width="118" height="32" rx="4" fill="#c9741a"/>
-            <text x="435" y="126" font-size="10.5" font-weight="700" fill="#fff">MATAS DE MINAS</text>
-            <text x="435" y="139" font-size="11" font-weight="800" fill="#fff">15%</text>
-          </g>
-
-          <!-- SUL DE MINAS (green, center-south) -->
-          <path d="M255 288 Q300 268 340 285 Q372 302 368 340 Q362 378 330 398 Q295 418 262 408 Q228 396 222 360 Q218 318 255 288 Z"
-                fill="#6f9e50" opacity=".9" stroke="#557d3b" stroke-width="1.5"/>
-          <g font-size="10.5" fill="#243d13" font-weight="600">
-            <circle cx="292" cy="312" r="3" fill="#243d13"/><text x="285" y="304">Varginha</text>
-            <circle cx="258" cy="338" r="3" fill="#243d13"/><text x="235" y="352">Guapé</text>
-            <circle cx="315" cy="342" r="3" fill="#243d13"/><text x="322" y="346">Boa Esperança</text>
-            <circle cx="288" cy="372" r="3" fill="#243d13"/><text x="295" y="380">Carmo de Minas</text>
-          </g>
-          <g>
-            <rect x="352" y="418" width="110" height="32" rx="4" fill="#3f6b2a"/>
-            <text x="359" y="432" font-size="10.5" font-weight="700" fill="#fff">SUL DE MINAS</text>
-            <text x="359" y="445" font-size="11" font-weight="800" fill="#fff">30%</text>
-          </g>
-
-          <!-- ALTA MOGIANA (purple, SW) -->
-          <path d="M142 328 Q172 316 192 336 Q210 358 202 392 Q194 425 168 438 Q142 448 124 428 Q108 405 114 372 Q120 342 142 328 Z"
-                fill="#8f5fbf" opacity=".9" stroke="#6f4499" stroke-width="1.5"/>
-          <g font-size="10.5" fill="#2f1a45" font-weight="600">
-            <circle cx="152" cy="348" r="3" fill="#2f1a45"/><text x="159" y="352">Franca</text>
-            <circle cx="158" cy="372" r="3" fill="#2f1a45"/><text x="165" y="376">Pedregulho</text>
-            <circle cx="160" cy="396" r="3" fill="#2f1a45"/><text x="167" y="400">Cristais Paulista</text>
-            <circle cx="156" cy="420" r="3" fill="#2f1a45"/><text x="163" y="424">Patrocínio Paulista</text>
-          </g>
-          <g>
-            <rect x="34" y="448" width="104" height="32" rx="4" fill="#6f4499"/>
-            <text x="41" y="462" font-size="10.5" font-weight="700" fill="#fff">ALTA MOGIANA</text>
-            <text x="41" y="475" font-size="11" font-weight="800" fill="#fff">8%</text>
-          </g>
-        </svg>
-        <p class="map-note"><b>Estimates</b> — approximate shares of Brazilian Arabica production, aggregated from industry sources (CONAB, COOXUPÉ, trade reports); coffee-region boundaries are approximations. Sul de Minas + Cerrado ≈ 50% of Brazilian Arabica supply.</p>
-      </div>
-
-    </section>
+    <div class="crumb"><span class="pill" id="status">Structure — data to be connected</span></div>
+    <section class="grid" id="regions"></section>
   </main>
 
   <footer class="site">
@@ -133,8 +39,6 @@
         <div class="cities"><b>${r.cities.length} towns:</b> ${r.cities.map(c => c.name).join(' · ')}</div>`;
       grid.appendChild(a);
     });
-    // keep the regional map at the end of the grid, filling the leftover space
-    grid.appendChild(document.getElementById('region-map-card'));
     if (SITE_CONFIG.updated) {
       document.getElementById('updated').textContent = 'Updated ' + SITE_CONFIG.updated;
     }
