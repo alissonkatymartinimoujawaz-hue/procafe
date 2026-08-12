@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather & Coffee — Brazil Regions</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <h1>☕ Weather & Coffee — Brazil</h1>
+      <p>Weather tracking by coffee region and its impact on the coffee trees. Each region groups its main producing towns; click a region to see the town-by-town detail.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="crumb"><span class="pill" id="status">Structure — data to be connected</span></div>
+    <section class="grid" id="regions"></section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      Weather source (coming): NASA POWER · Verifiable data only · <span id="updated">not generated</span>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    const grid = document.getElementById('regions');
+    SITE_CONFIG.regions.forEach(r => {
+      const a = document.createElement('a');
+      a.className = 'card';
+      a.href = `regions/${r.id}.html`;
+      a.innerHTML = `
+        <span class="tag">${r.type}</span>
+        <h2>${r.name}</h2>
+        <p>${r.blurb}</p>
+        <div class="cities"><b>${r.cities.length} towns:</b> ${r.cities.map(c => c.name).join(' · ')}</div>`;
+      grid.appendChild(a);
+    });
+    if (SITE_CONFIG.updated) {
+      document.getElementById('updated').textContent = 'Updated ' + SITE_CONFIG.updated;
+    }
+  </script>
+</body>
+</html>

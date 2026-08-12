@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cerrado — Weather & Coffee</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">← Brazil regions</a></div>
+      <h1 id="region-name">Sul de Minas</h1>
+      <p id="region-blurb"></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tabs" id="tabs" role="tablist"></div>
+
+    <!-- Tab: Climate data table -->
+    <section class="tabpanel" id="panel-climate" role="tabpanel">
+      <div class="controls">
+        <label>Year <select id="sel-year"></select></label>
+        <label>Month <select id="sel-month"></select></label>
+      </div>
+      <div id="report-host"></div>
+    </section>
+
+    <!-- City tabs built dynamically -->
+  </main>
+
+  <footer class="site">
+    <div class="wrap">Cerrado · Charts redrawn from the monthly report graphs</div>
+  </footer>
+
+  <script src="../config.js"></script>
+  <script src="../data/cerrado.js?v=15"></script>
+  <script src="../data/cerrado_charts.js?v=18"></script>
+  <script src="../assets/chart.js?v=10"></script>
+  <script>
+  (function () {
+    const REGION_ID = "cerrado";
+    const MONTHS_EN = ["January","February","March","April","May","June",
+                       "July","August","September","October","November","December"];
+    const shortDMS = d => d.replace(/'\d+(?:\.\d+)?"/, "'");
+    // Biennial bearing cycle: even calendar years = ON crop year (2024→2024/25 ON), odd = OFF
+    const cropCycle = y => (+String(y).slice(0, 4) % 2 === 0 ? "ON" : "OFF");
+    const yLab = y => `${y} (${cropCycle(y)})`;
+
+    const D = window.CERRADO_DATA;
+    const region = SITE_CONFIG.regions.find(r => r.id === REGION_ID);
+    const cityById = Object.fromEntries(region.cities.map(c => [c.id, c]));
+    document.getElementById("region-name").textContent = region.name;
+    document.getElementById("region-blurb").textContent = region.blurb;
+    const main = document.querySelector("main.wrap");
+
+    /* ---------- Tabs: table + one per city ---------- */
+    const TABS = [{ label: "Climate Data", panel: "panel-climate" }];
+    region.cities.forEach(c => {
+      const id = "panel-city-" + c.id;
+      const sec = document.createElement("section");
+      sec.className = "tabpanel"; sec.id = id; sec.hidden = true;
+      sec.setAttribute("role", "tabpanel");
+      main.appendChild(sec);
+      TABS.push({ label: c.name, panel: id, city: c.id });
+    });
+    // Last tab: Trees Affected (rust / pests)
+    const treesSec = document.createElement("section");
+    treesSec.className = "tabpanel"; treesSec.id = "panel-trees"; treesSec.hidden = true;
+    treesSec.setAttribute("role", "tabpanel");
+    main.appendChild(treesSec);
+    TABS.push({ label: "Trees Affected", panel: "panel-trees" });
+
+    const tabsEl = document.getElementById("tabs");
+    const panels = TABS.map(t => document.getElementById(t.panel));
+    TABS.forEach((t, i) => {
+      const b = document.createElement("button");
+      b.textContent = t.label;
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+      b.addEventListener("click", () => {
+        [...tabsEl.children].forEach((x, j) => x.setAttribute("aria-selected", j === i ? "true" : "false"));
+        panels.forEach((p, j) => p.hidden = j !== i);
+      });
+      tabsEl.appendChild(b);
+    });
+
+    /* ---------- Tab 1: climate table ---------- */
+    const CM = D.climate_monthly;
+    const selYear = document.getElementById("sel-year");
+    const selMonth = document.getElementById("sel-month");
+    const host = document.getElementById("report-host");
+    const byYear = {};
+    Object.keys(CM.periods).forEach(k => { const [y, m] = k.split("-"); (byYear[y] = byYear[y] || []).push(m); });
+    const tyears = Object.keys(byYear).sort().reverse();
+    tyears.forEach(y => selYear.add(new Option(y, y)));
+    function fillMonths(y) {
+      selMonth.innerHTML = "";
+      byYear[y].sort().reverse().forEach(m => selMonth.add(new Option(MONTHS_EN[+m - 1], m)));
+    }
+    selYear.value = tyears[0]; fillMonths(tyears[0]);
+    selYear.addEventListener("change", () => { fillMonths(selYear.value); renderTable(); });
+    selMonth.addEventListener("change", renderTable);
+    const f1 = x => (Math.round(x * 10) / 10).toFixed(1);
+    const avg = a => a.reduce((s, v) => s + v, 0) / a.length;
+
+    function renderTable() {
+      const y = selYear.value, m = selMonth.value;
+      const period = CM.periods[`${y}-${m}`];
+      if (!period) { host.innerHTML = ""; return; }
+      const rows = period.rows;
+      const cols = ["temp_hist","temp_cur","prec_hist","prec_cur","etp","arm","exc","def"];
+      const mean = {}; cols.forEach(c => mean[c] = avg(rows.map(r => r[c])));
+      const locBoxes = region.cities.map(c => `
+        <div class="loc-box"><b>${c.name}</b>
+          <span>${shortDMS(c.latDMS)} · ${shortDMS(c.lonDMS)} · ${c.alt} m</span></div>`).join("");
+      const bodyRows = rows.map(r => {
+        const c = cityById[r.city], sup = r.sup ? `<sup>${r.sup}</sup>` : "";
+        return `<tr><td class="local">${c.name}${sup}</td>
+          <td class="sep-l">${f1(r.temp_hist)}</td><td>${f1(r.temp_cur)}</td>
+          <td class="sep-l">${f1(r.prec_hist)}</td><td>${f1(r.prec_cur)}</td>
+          <td class="sep-l">${f1(r.etp)}</td><td>${f1(r.arm)}</td><td>${f1(r.exc)}</td><td>${f1(r.def)}</td></tr>`;
+      }).join("");
+      const mediaRow = `<tr class="media"><td class="local">Average</td>
+        <td class="sep-l">${f1(mean.temp_hist)}</td><td>${f1(mean.temp_cur)}</td>
+        <td class="sep-l">${f1(mean.prec_hist)}</td><td>${f1(mean.prec_cur)}</td>
+        <td class="sep-l">${f1(mean.etp)}</td><td>${f1(mean.arm)}</td><td>${f1(mean.exc)}</td><td>${f1(mean.def)}</td></tr>`;
+      const foot = CM.footnotes.map((t, i) => `<li><b>${i + 1}</b> ${t}</li>`).join("");
+      const hl = period.hist_label || CM.hist_label;   // older reports use a different baseline (e.g. 74/12 in Dec-2013)
+      const glossary = `<div class="glossary"><h4>What the columns mean</h4><div class="terms">
+        <div class="term"><span class="abbr">ETP</span> — <span class="full">Potential Evapotranspiration</span><div class="desc">Water the atmosphere could evaporate — the crop's water demand.</div></div>
+        <div class="term"><span class="abbr">ARM</span> — <span class="full">Soil Water Storage</span><div class="desc">Plant-available water currently held in the soil.</div></div>
+        <div class="term"><span class="abbr">EXC</span> — <span class="full">Water Surplus</span><div class="desc">Rain beyond what the soil can hold — drains away.</div></div>
+        <div class="term stress"><span class="abbr">DEF</span> — <span class="full">Water Deficit</span><div class="desc">Demand the soil can't meet → water stress on the coffee trees.</div></div>
+        </div><p class="note"><b>74/25</b> = historical baseline average (note 1). Water balance: Thornthwaite &amp; Mather (note 2).</p></div>`;
+      host.innerHTML = `<div class="report">
+        <div class="rtitle">${MONTHS_EN[+m - 1].toUpperCase()} ${y}</div>
+        <div class="rsection">${CM.section_title}</div>
+        <div class="report-layout">
+          <div class="loc-boxes">${locBoxes}</div>
+          <div><div class="ctable-wrap"><table class="ctable">
+            <thead>
+              <tr><th class="local" rowspan="2">Location</th>
+                <th class="sep-l" colspan="2">Mean Temperature (°C)</th>
+                <th class="sep-l" colspan="2">Rainfall (mm)</th>
+                <th class="sep-l" colspan="4">Water Balance (mm) T&amp;M<sup>2</sup></th></tr>
+              <tr><th class="sep-l">${hl}<sup>1</sup></th><th>${y}</th>
+                <th class="sep-l">${hl}<sup>1</sup></th><th>${y}</th>
+                <th class="sep-l">ETP</th><th>ARM</th><th>EXC</th><th>DEF</th></tr>
+            </thead>
+            <tbody>${bodyRows}${mediaRow}</tbody>
+          </table></div><ul class="footnotes">${foot}</ul></div>
+        </div>${glossary}</div>`;
+    }
+    renderTable();
+
+    /* ---------- City tabs: redrawn report charts (no median line) ----------
+       Line charts (water/temp/rainfall/accumulated) show ALL years together —
+       one fixed color per year. Year selector applies ONLY to the Net Balance
+       (SALDO) bar chart. Everything in English. */
+    const CH = window.CERRADO_CHARTS;
+    const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    // Max-separation palette: within each hue family only strongly contrasting
+    // variants (bright yellow / bright orange / near-black brown; violet / royal
+    // blue / light cyan; light-mid-dark greens; fuchsia / bright red / maroon).
+    const YEAR_COLORS = {
+      "2011": "#808000", "2012": "#00668c",
+      "2013": "#999999", "2014": "#111111", "2015": "#ffd000", "2016": "#7b3f00",
+      "2017": "#a8e000", "2018": "#00610b", "2019": "#ff8c00", "2020": "#9500ff",
+      "2021": "#00cdee", "2022": "#ff1493", "2023": "#7a0000", "2024": "#ff1414",
+      "2025": "#00d92e", "2026": "#0044ff"
+    };
+    const FALLBACK_COLORS = ["#00d92e", "#0040ff", "#ff9500", "#8f00ff", "#00c5d4", "#ff17a9"];
+    const yearColor = (yr, i) => YEAR_COLORS[yr] || FALLBACK_COLORS[i % FALLBACK_COLORS.length];
+    const CUMD = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+    const cumsum = a => { let s = 0; return a.map(v => v == null ? null : (s = +(s + v).toFixed(1))); };
+    // Spread 3-per-month decadal values onto a 365-day axis (days 5/15/25 of each month)
+    function decadalToDaily(vals) {
+      const out = new Array(365).fill(null);
+      vals.forEach((v, i) => {
+        if (v == null) return;
+        const m = Math.floor(i / 3), d = [5, 15, 25][i % 3];
+        out[CUMD[m] + d] = v;
+      });
+      return out;
+    }
+    // All years of a metric as series, oldest first, fixed color per year
+    function allYearSeries(metric, labelFn) {
+      return Object.keys(metric || {}).sort().map((yr, i) => ({
+        label: labelFn(yr), color: yearColor(yr, i), values: metric[yr]
+      }));
+    }
+
+    region.cities.forEach(c => {
+      const sec = document.getElementById("panel-city-" + c.id);
+      const head = `<div class="city-head"><h3>${c.name}</h3>
+        <div class="meta">Lat ${c.latDMS} · Lon ${c.lonDMS} · Alt ${c.alt} m</div></div>`;
+      const cd = CH.cities[c.id];
+      if (!cd) {
+        sec.innerHTML = head + `<div class="placeholder">Charts pending — send ${c.name}'s graphs and I'll add them identically.</div>`;
+        return;
+      }
+
+      const waterS = allYearSeries(cd.water, yLab).map(s => ({ ...s, values: decadalToDaily(s.values) }));
+      const tempS = allYearSeries(cd.temp, yLab);
+      const precS = allYearSeries(cd.precip, yLab);
+      const accM = {};
+      Object.keys(cd.precip || {}).forEach(y => accM[y] = cumsum(cd.precip[y]));
+      const accS = allYearSeries(accM, yLab);
+
+      const ax = cd.axes || {};
+      // Auto-fit: widen the report's axis range so every year's curve stays inside the frame
+      const fit = (series, min0, max0, step) => {
+        let mn = min0, mx = max0;
+        series.forEach(s => s.values.forEach(v => {
+          if (v == null) return;
+          if (v < mn) mn = Math.floor(v / step) * step;
+          if (v > mx) mx = Math.ceil(v / step) * step;
+        }));
+        return { mn, mx };
+      };
+      const fw = fit(waterS, (ax.water || {}).min ?? -350, (ax.water || {}).max ?? 250, 50);
+      const ft = fit(tempS, (ax.temp || {}).min ?? 15, (ax.temp || {}).max ?? 25, 1);
+      const fp = fit(precS, 0, (ax.precip || {}).max ?? 500, 50);
+      const fa = fit(accS, 0, (ax.accum || {}).max ?? 1600, 200);
+      const lineSpecs = [
+        { mode: "daily", title: "SOIL WATER AVAILABILITY (mm)",
+          subtitle: "THORNTHWAITE & MATHER METHOD - " + c.name.toUpperCase() + " - MG",
+          yLabel: "mm", yMin: fw.mn, yMax: fw.mx, yStep: 50, xLabels: MON, series: waterS },
+        { mode: "monthly", title: "Monthly Temperatures - " + c.name + ", MG",
+          yLabel: "Temperature °C", yMin: ft.mn, yMax: ft.mx, yStep: 1, yDecimals: 1, xLabels: MON, series: tempS },
+        { mode: "monthly", title: "Monthly Rainfall - " + c.name + ", MG",
+          yLabel: "Rainfall mm", yMin: 0, yMax: fp.mx, yStep: 50, xLabels: MON, series: precS },
+        { mode: "monthly", title: "Accumulated Rainfall - " + c.name + ", MG",
+          yLabel: "Rainfall mm", yMin: 0, yMax: fa.mx, yStep: 200, xLabels: MON, series: accS }
+      ];
+
+      const saldoYears = Object.keys(cd.saldo || {}).sort().reverse();
+      sec.innerHTML = head +
+        `<div class="est-banner">✏️ ${CH.note}</div>` +
+        `<div class="charts-grid">` +
+          lineSpecs.map(s => `<div class="chart-card">${renderLineChart(s)}</div>`).join("") +
+        `</div>` +
+        (saldoYears.length ? `
+        <div class="controls" style="margin-top:20px">
+          <label>Net Balance — Year <select id="saldo-yr-${c.id}"></select></label>
+        </div>
+        <div id="saldo-${c.id}"></div>` : "");
+
+      if (saldoYears.length) {
+        const sel = document.getElementById("saldo-yr-" + c.id);
+        saldoYears.forEach(y => sel.add(new Option(y, y)));
+        const shost = document.getElementById("saldo-" + c.id);
+        const renderSaldo = () => {
+          const vals = cd.saldo[sel.value].filter(v => v != null);
+          const yMax = Math.max(200, Math.ceil(Math.max(...vals) / 50) * 50);
+          const yMin = Math.min(-100, Math.floor(Math.min(...vals) / 50) * 50);
+          shost.innerHTML = `<div class="chart-card">` + renderBarChart({
+            title: "NET BALANCE (mm) = RAINFALL - EVAPOTRANSPIRATION",
+            subtitle: "EVERY 10 DAYS · THORNTHWAITE & MATHER METHOD - " + c.name.toUpperCase() + " - MG · " + sel.value,
+            yLabel: "Balance (mm)",
+            yMin, yMax, yStep: 50, yDecimals: 1, xLabels: MON,
+            values: cd.saldo[sel.value],
+            posLabel: "rainfall greater than evapotranspiration (mm)",
+            negLabel: "evapotranspiration greater than rainfall (mm)"
+          }) + `</div>`;
+        };
+        sel.addEventListener("change", renderSaldo);
+        renderSaldo();
+      }
+    });
+
+    /* ---------- Trees Affected tab ----------
+       Month + Year selectors show each city's FULL pest table for that report
+       month (Rust/Cercospora/Leaf Miner/Phoma/Borer/Mite × High/Low/Average/
+       Skeletonized; Average computed as (High+Low)/2). Season rust charts below. */
+    const TREES = CH.trees;
+    const SEASON_LABELS = ["Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug"];
+
+    treesSec.innerHTML = `
+      <div class="est-banner">✏️ ${CH.note} · <b>Rust</b> = Ferrugem (coffee leaf rust), % of leaves/fruits attacked. "—" = not reported.</div>
+      <div class="controls">
+        <label>Year <select id="trees-year"></select></label>
+        <label>Month <select id="trees-month"></select></label>
+      </div>
+      <div id="trees-tables"></div>
+      <h3 style="margin:34px 0 4px">Rust &amp; Cercospora — infection index by month</h3>
+      <div id="trees-charts"></div>`;
+
+    const selTY = document.getElementById("trees-year");
+    const selTM = document.getElementById("trees-month");
+    const tablesHost = document.getElementById("trees-tables");
+    const tByYear = {};
+    Object.keys(TREES.monthly).forEach(k => { const [y, m] = k.split("-"); (tByYear[y] = tByYear[y] || []).push(m); });
+    const tYears = Object.keys(tByYear).sort().reverse();
+    tYears.forEach(y => selTY.add(new Option(y, y)));
+    function fillTreeMonths(y) {
+      selTM.innerHTML = "";
+      tByYear[y].sort().reverse().forEach(m => selTM.add(new Option(MONTHS_EN[+m - 1], m)));
+    }
+    selTY.value = tYears[0]; fillTreeMonths(tYears[0]);
+    selTY.addEventListener("change", () => { fillTreeMonths(selTY.value); renderTreesMonth(); });
+    selTM.addEventListener("change", renderTreesMonth);
+
+    function renderTreesMonth() {
+      const key = `${selTY.value}-${selTM.value}`;
+      const data = TREES.monthly[key] || {};
+      const fmt = v => v == null ? "—" : v.toFixed(1);
+      tablesHost.innerHTML = region.cities.map(c => {
+        const cd = data[c.id];
+        const head = `<div class="city-head" style="margin-top:22px"><h3>${c.name}</h3></div>`;
+        if (!cd) return head + `<div class="placeholder">No report for ${c.name} in ${MONTHS_EN[+selTM.value - 1]} ${selTY.value}.</div>`;
+        const row = (label, arr) => `<tr><td class="local">${label}</td>` +
+          TREES.pests.map((_, i) => `<td${i === 0 ? ' class="sep-l"' : ""}>${arr ? fmt(arr[i]) : "—"}</td>`).join("") + `</tr>`;
+        const avg = TREES.pests.map((_, i) =>
+          (cd.alta && cd.baixa && cd.alta[i] != null && cd.baixa[i] != null)
+            ? Math.round((cd.alta[i] + cd.baixa[i]) * 5) / 10 : null);
+        return head + `<div class="ctable-wrap"><table class="ctable">
+          <thead>
+            <tr><th class="local" rowspan="2">Planting type<br>&amp; productivity</th>
+              <th class="sep-l" colspan="${TREES.pests.length}">LEAVES/FRUITS ATTACKED (%)</th></tr>
+            <tr>${TREES.pests.map((p, i) => `<th${i === 0 ? ' class="sep-l"' : ""}>${p}</th>`).join("")}</tr>
+          </thead>
+          <tbody>
+            ${row("High Load", cd.alta)}
+            ${row("Low Load", cd.baixa)}
+            <tr class="media"><td class="local">Average</td>${TREES.pests.map((_, i) => `<td${i === 0 ? ' class="sep-l"' : ""}>${fmt(avg[i])}</td>`).join("")}</tr>
+            ${row("Skeletonized", cd.esq)}
+          </tbody>
+        </table></div>`;
+      }).join("");
+    }
+    renderTreesMonth();
+
+    // Derived pest charts: built automatically from the monthly tables.
+    // Per city, TWO grouped-bar charts (Rust, Cercospora): x = Jan..Dec,
+    // one series per year, value = (High Load + Low Load) / 2 — the report's
+    // "Médias (carga alta e baixa)" convention.
+    const chartsHost = document.getElementById("trees-charts");
+    const CAL_MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const PEST_CHARTS = [{ idx: 0, name: "RUST" }, { idx: 1, name: "CERCOSPORA" }];
+    region.cities.forEach(c => {
+      // collect per-pest, per-year monthly averages from trees.monthly
+      const perPest = {};
+      Object.entries(TREES.monthly).forEach(([key, data]) => {
+        const cd = data[c.id];
+        if (!cd || !cd.alta || !cd.baixa) return;
+        const [y, m] = key.split("-");
+        PEST_CHARTS.forEach(p => {
+          if (cd.alta[p.idx] == null || cd.baixa[p.idx] == null) return;
+          const store = (perPest[p.idx] = perPest[p.idx] || {});
+          (store[y] = store[y] || new Array(12).fill(null))[+m - 1] =
+            Math.round((cd.alta[p.idx] + cd.baixa[p.idx]) * 5) / 10;
+        });
+      });
+      const wrap = document.createElement("div");
+      wrap.style.margin = "16px 0 26px";
+      const head = `<div class="city-head"><h3>${c.name}</h3></div>`;
+      if (!perPest[0] && !perPest[1]) {
+        wrap.innerHTML = head + `<div class="placeholder">No pest data reported for ${c.name}.</div>`;
+        chartsHost.appendChild(wrap);
+        return;
+      }
+      let html = head;
+      PEST_CHARTS.forEach(p => {
+        const store = perPest[p.idx];
+        if (!store) return;
+        const series = Object.keys(store).sort()
+          .map((y, i) => ({ label: yLab(y), color: yearColor(y, i), values: store[y] }));
+        html += `<div class="chart-card" style="margin-bottom:14px">` + renderGroupedBarChart({
+          title: p.name + " — INFECTION INDEX (%) — " + c.name.toUpperCase() + " / MG",
+          subtitle: "monthly mean of high & low canopy load",
+          yLabel: "% leaves attacked", yMin: 0, yMax: 100, yStep: 10,
+          xLabels: CAL_MONTHS, series
+        }) + `</div>`;
+      });
+      wrap.innerHTML = html;
+      chartsHost.appendChild(wrap);
+    });
+  })();
+  </script>
+</body>
+</html>
