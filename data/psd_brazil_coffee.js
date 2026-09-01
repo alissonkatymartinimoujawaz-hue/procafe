@@ -70,8 +70,11 @@ window.PSD_BRAZIL_COFFEE = {
     ["2022/23", "Historical", "ON",  2495, 2020, 30.99, 6100, 1510, 7610, 39800, 22800],
     ["2023/24", "Historical", "OFF", 2510, 2030, 32.66, 6150, 1324, 7474, 44900, 21400],
     ["2024/25", "Historical", "ON",  2235, 1881, 34.56, 6577, 1306, 7883, 44000, 21000],
-    ["2025/26", "Estimate",   "OFF", 2255, 1859, 33.89, 6482, 1440, 7922, 38000, 25000],
-    ["2026/27", "Forecast",   "ON",  2342, 1941, 37.04, 6876, 1461, 8337, 47500, 24400]
+    ["2025/26", "Historical", "OFF", 2255, 1859, 33.89, 6482, 1440, 7922, 38000, 25000],
+    ["2026/27", "Estimate",   "ON",  2342, 1941, 37.04, 6876, 1461, 8337, 47500, 24400],
+    // 2027/28 opens as a placeholder: no USDA release covers it yet, so every
+    // attribute stays null and the row renders as "—" until one is loaded.
+    ["2027/28", "Forecast",   "OFF", null, null, null, null, null, null, null, null]
   ],
 
   // ---------------------------------------------------------------------------
