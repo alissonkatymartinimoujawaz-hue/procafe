@@ -35,17 +35,12 @@ window.PSD_BRAZIL_COFFEE = {
     { key: "yieldBags",     label: "Yield",                 unit: "(BAGS/HA)",           type: "dec2" },
     { key: "bearing",       label: "Bearing Trees",         unit: "(MILLION TREES)",     type: "int" },
     { key: "nonBearing",    label: "Non-Bearing Trees",     unit: "(MILLION TREES)",     type: "int" },
-    { key: "totalTrees",    label: "Total Tree Population", unit: "(MILLION TREES)",     type: "int" },
     { key: "begStocks",     label: "Beginning Stocks",      unit: "(1,000 60 KG BAGS)",  type: "int" },
     { key: "arabica",       label: "Arabica Production",    unit: "(1,000 60 KG BAGS)",  type: "int" },
     { key: "robusta",       label: "Robusta Production",    unit: "(1,000 60 KG BAGS)",  type: "int" },
-    { key: "production",    label: "Total Production",      unit: "(1,000 60 KG BAGS)",  type: "calc" },
-    { key: "totalImp",      label: "Total Imports",         unit: "(1,000 60 KG BAGS)",  type: "int" },
-    { key: "totalSupply",   label: "Total Supply",          unit: "(1,000 60 KG BAGS)",  type: "calc" },
     { key: "totalExp",      label: "Total Exports",         unit: "(1,000 60 KG BAGS)",  type: "int" },
     { key: "domCons",       label: "Domestic Consumption",  unit: "(1,000 60 KG BAGS)",  type: "int" },
     { key: "endStocks",     label: "Ending Stocks",         unit: "(1,000 60 KG BAGS)",  type: "int" },
-    { key: "totalDist",     label: "Total Distribution",    unit: "(1,000 60 KG BAGS)",  type: "calc" },
     { key: "balance",       label: "Balance Check",         unit: "(1,000 60 KG BAGS)",  type: "calc" }
   ],
 
