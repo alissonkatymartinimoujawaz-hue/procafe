@@ -10,27 +10,21 @@
     --paper:#f4f6f9; --surface:#ffffff; --ink:#16212e; --muted:#5d6f82;
     --line:#ccd8e4; --line-soft:#e2eaf2; --psd:#2f6ba3; --psd-deep:#245680;
     --psd-head-text:#ffffff; --row-alt:#eaf1f8; --row-hover:#dae8f6;
-    --na:#7f97ad; --chip:#f0f4f9; --focus:#1c4f7c;
-    --head:#5b9bd5; --head-text:#ffffff; --cell:#deebf7; --cell-text:#1f3864;
-    --cell-hover:#cfe1f4; --grid:#ffffff; --grid-edge:#9dc3e6;
+    --na:#a6b5c4; --chip:#f0f4f9; --focus:#1c4f7c;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
       --paper:#0e151d; --surface:#141e29; --ink:#e4ecf4; --muted:#93a5b8;
       --line:#2a3a4b; --line-soft:#202d3b; --psd:#2b5d8c; --psd-deep:#1d4468;
       --psd-head-text:#f2f7fc; --row-alt:#182533; --row-hover:#1f2f40;
-      --na:#6f8296; --chip:#1a2735; --focus:#7fb6e6;
-      --head:#2f6499; --head-text:#f2f8ff; --cell:#1a2a3b; --cell-text:#cfe0f0;
-      --cell-hover:#22364b; --grid:#0e151d; --grid-edge:#2f4a63;
+      --na:#5b6c7d; --chip:#1a2735; --focus:#7fb6e6;
     }
   }
   :root[data-theme="dark"]{
     --paper:#0e151d; --surface:#141e29; --ink:#e4ecf4; --muted:#93a5b8;
     --line:#2a3a4b; --line-soft:#202d3b; --psd:#2b5d8c; --psd-deep:#1d4468;
     --psd-head-text:#f2f7fc; --row-alt:#182533; --row-hover:#1f2f40;
-    --na:#6f8296; --chip:#1a2735; --focus:#7fb6e6;
-    --head:#2f6499; --head-text:#f2f8ff; --cell:#1a2a3b; --cell-text:#cfe0f0;
-    --cell-hover:#22364b; --grid:#0e151d; --grid-edge:#2f4a63;
+    --na:#5b6c7d; --chip:#1a2735; --focus:#7fb6e6;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.5;
@@ -50,24 +44,29 @@
         border-radius:3px;padding:3px 9px}
   .chip b{color:var(--ink);font-weight:600}
 
-  .sheet{margin:20px 0 0;background:var(--surface);border:1px solid var(--grid-edge);overflow-x:auto}
-  table{border-collapse:separate;border-spacing:0;font-size:11.5px;white-space:nowrap;min-width:100%;
-        font-family:Calibri,"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
-  th,td{padding:3px 9px;font-variant-numeric:tabular-nums;
-        border-right:1px solid var(--grid);border-bottom:1px solid var(--grid)}
-  thead th{background:var(--head);color:var(--head-text);font-weight:700;text-align:right;
-           vertical-align:bottom;position:sticky;top:0;z-index:3;line-height:1.2;padding:5px 9px 4px}
-  thead th .u{display:block;font-weight:400;font-size:10px;opacity:.92}
+  .sheet{margin:20px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:3px;overflow-x:auto}
+  table{border-collapse:separate;border-spacing:0;font-size:12px;white-space:nowrap;min-width:100%}
+  th,td{padding:5px 11px;border-bottom:1px solid var(--line-soft);font-variant-numeric:tabular-nums}
+  thead th{background:var(--psd);color:var(--psd-head-text);font-weight:600;text-align:right;
+           vertical-align:bottom;position:sticky;top:0;z-index:3;line-height:1.25;
+           border-right:1px solid rgba(255,255,255,.22);border-bottom:2px solid var(--psd-deep)}
+  thead th .u{display:block;font-weight:400;font-size:10px;opacity:.85;letter-spacing:.03em}
   thead th.txt,tbody td.txt{text-align:left}
-  tbody td{text-align:right;background:var(--cell);color:var(--cell-text)}
-  tbody tr:hover td{background:var(--cell-hover)}
+  tbody td{text-align:right;border-right:1px solid var(--line-soft)}
+  tbody tr:nth-child(even) td{background:var(--row-alt)}
+  tbody tr:nth-child(odd) td{background:var(--surface)}
+  tbody tr:hover td{background:var(--row-hover)}
   th.f1,td.f1{position:sticky;left:0;z-index:2}
-  th.f2,td.f2{position:sticky;left:92px;z-index:2}
+  th.f2,td.f2{position:sticky;left:98px;z-index:2}
   thead th.f1,thead th.f2{z-index:4}
+  td.f1,td.f2{border-right:1px solid var(--line)}
   td.na{color:var(--na)}
-  td.src{cursor:help}
+  td.calc{font-weight:600}
+  td.src{text-decoration:underline dotted var(--psd);text-underline-offset:3px;cursor:help}
   td.alt{font-style:italic}
   td.off{color:#b4451f;font-weight:700}
+  tr.estimate td.f1,tr.forecast td.f1{font-weight:600}
+  tr.estimate td.f2,tr.forecast td.f2{color:var(--psd)}
 
   .below{display:grid;grid-template-columns:minmax(300px,1fr) minmax(320px,1.05fr);gap:22px;margin:20px 0 44px}
   @media (max-width:860px){.below{grid-template-columns:1fr}}
@@ -121,9 +120,9 @@
           hover any filled cell for the release it came from.</span></div>
         <div><b>Italic cell</b><span>the selected column was not published for that year, so the other
           column of the same release is shown instead.</span></div>
-        <div><b>Balance Check</b><span>the one derived column: supply minus distribution, computed from the
-          full PSD detail (imports and the export / consumption splits stay in the data). Zero on every
-          loaded year; a non-zero value in red would mean the row mixes vintages.</span></div>
+        <div><b>Balance Check</b><span>the only derived column left: supply minus distribution, computed
+          from the full PSD detail (imports and the export / consumption splits stay in the data). Zero on
+          every loaded year; a non-zero value in red would mean the row mixes vintages.</span></div>
         <div><b>Em dash</b><span>no USDA release loaded yet for that year.</span></div>
         <div><b>Area &amp; trees</b><span>from the release where it publishes them, otherwise the USDA
           series carried in the base sheet; yield is recomputed as production ÷ area harvested.</span></div>
