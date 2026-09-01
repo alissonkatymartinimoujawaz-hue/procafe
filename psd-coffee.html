@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USDA PSD — Brazil Coffee Balance Sheet</title>
+<style>
+  :root{
+    --psd-blue:#2f6ba3;
+    --psd-blue-dark:#255984;
+    --psd-row-alt:#eaf1f8;
+    --psd-line:#c9d6e4;
+    --ink:#1d2733;
+    --muted:#5b6b7c;
+    --page:#f6f8fa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);
+       font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}
+  .wrap{max-width:1600px;margin:0 auto;padding:0 18px}
+  header.site{padding:26px 0 16px;border-bottom:1px solid var(--psd-line);background:#fff}
+  header.site h1{margin:0 0 4px;font-size:24px;letter-spacing:-.3px}
+  header.site p{margin:0;color:var(--muted);font-size:14px;max-width:900px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+  .pill{font-size:12px;color:var(--muted);border:1px solid var(--psd-line);
+        border-radius:999px;padding:2px 10px;background:#fff}
+  .pill b{color:var(--ink);font-weight:600}
+
+  /* ---------- the PSD table ---------- */
+  .psd-scroll{margin:20px 0 0;overflow-x:auto;border:1px solid var(--psd-line);
+              border-radius:4px;background:#fff;-webkit-overflow-scrolling:touch}
+  table.psd{border-collapse:separate;border-spacing:0;font-size:12px;white-space:nowrap;min-width:100%}
+  table.psd th,table.psd td{padding:5px 10px;border-right:1px solid rgba(255,255,255,.55);
+                            border-bottom:1px solid var(--psd-line)}
+  table.psd thead th{
+    background:var(--psd-blue);color:#fff;font-weight:700;text-align:right;
+    vertical-align:bottom;position:sticky;top:0;z-index:3;
+    border-bottom:1px solid var(--psd-blue-dark);line-height:1.25}
+  table.psd thead th .u{display:block;font-weight:400;font-size:10px;opacity:.85;letter-spacing:.2px}
+  table.psd thead th.txt{text-align:left}
+  table.psd tbody td{text-align:right;font-variant-numeric:tabular-nums}
+  table.psd tbody td.txt{text-align:left}
+  table.psd tbody tr:nth-child(even) td{background:var(--psd-row-alt)}
+  table.psd tbody tr:nth-child(odd) td{background:#fff}
+  table.psd tbody tr:hover td{background:#dbe8f6}
+  /* frozen Market Year + Status */
+  table.psd th.f1,table.psd td.f1{position:sticky;left:0;z-index:2}
+  table.psd th.f2,table.psd td.f2{position:sticky;left:96px;z-index:2}
+  table.psd thead th.f1,table.psd thead th.f2{z-index:4}
+  table.psd td.f1,table.psd td.f2{border-right:1px solid var(--psd-line)}
+  table.psd td.na{color:#a9b6c4}
+  table.psd td.calc{font-weight:600}
+  table.psd td.src{position:relative}
+  table.psd td.src::after{content:"";position:absolute;left:4px;right:4px;bottom:2px;
+                          border-bottom:1px dotted #2f6ba3}
+  table.psd tr.forecast td.f1,table.psd tr.estimate td.f1{font-weight:700}
+
+  .note{margin:14px 0 0;font-size:13px;color:var(--muted);max-width:900px}
+  .note code{background:#fff;border:1px solid var(--psd-line);border-radius:3px;padding:1px 5px;font-size:12px}
+  .tools{margin:18px 0 40px;border:1px solid var(--psd-line);border-radius:6px;background:#fff;padding:14px 16px}
+  .tools h2{margin:0 0 6px;font-size:15px}
+  .tools p{margin:0 0 10px;font-size:13px;color:var(--muted)}
+  .tools textarea{width:100%;min-height:120px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+                  font-size:12px;border:1px solid var(--psd-line);border-radius:4px;padding:8px;resize:vertical}
+  .tools .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center}
+  button{font:inherit;font-size:13px;padding:6px 12px;border-radius:4px;border:1px solid var(--psd-blue);
+         background:var(--psd-blue);color:#fff;cursor:pointer}
+  button.ghost{background:#fff;color:var(--psd-blue)}
+  button:hover{filter:brightness(1.06)}
+  .msg{font-size:12px;color:var(--muted)}
+  footer.site{border-top:1px solid var(--psd-line);padding:16px 0 30px;font-size:12px;color:var(--muted);background:#fff}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <h1>Brazil — Coffee, Green · USDA PSD balance sheet</h1>
+    <p>Official USDA layout (Production, Supply &amp; Distribution country table), market year July–June.
+       Area, tree population, yield and arabica/robusta production are the USDA series (cross-checked with CONAB);
+       trade, stocks and consumption come from PSD Online.</p>
+    <div class="meta">
+      <span class="pill"><b>Commodity</b> Coffee, Green (0711100)</span>
+      <span class="pill"><b>Country</b> Brazil</span>
+      <span class="pill"><b>Market year</b> July – June</span>
+      <span class="pill"><b>Bags</b> 1,000 × 60 kg, green bean equivalent</span>
+      <span class="pill" id="fillState">—</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="psd-scroll">
+    <table class="psd" id="psd">
+      <thead><tr id="hrow"></tr></thead>
+      <tbody id="brow"></tbody>
+    </table>
+  </div>
+
+  <p class="note" id="gap"></p>
+
+  <section class="tools">
+    <h2>Fill the trade / stocks / consumption columns</h2>
+    <p>Paste the PSD Online export for Brazil coffee (<code>psd_coffee.csv</code>, or the CSV from
+       PSD Online → Advanced Query). Recognised header names:
+       <code>Market_Year</code>, <code>Attribute_Description</code>, <code>Value</code> — extra columns are ignored.
+       The sheet recomputes Total Supply, Total Distribution and Balance Check from what you paste.</p>
+    <textarea id="csv" spellcheck="false" placeholder="Commodity_Description,Country_Name,Market_Year,Attribute_Description,Unit_Description,Value
+Coffee, Green,Brazil,2024,Beginning Stocks,(1000 60 KG BAGS),2200
+..."></textarea>
+    <div class="btns">
+      <button id="load">Load CSV</button>
+      <button class="ghost" id="clear">Clear pasted data</button>
+      <button class="ghost" id="copy">Copy table (TSV)</button>
+      <span class="msg" id="msg"></span>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    Source: USDA Foreign Agricultural Service — PSD Online and Brazil Coffee Annual (GAIN).
+    Dotted cells are single figures taken from a published USDA release rather than the PSD file.
+  </div>
+</footer>
+
+<script src="data/psd_brazil_coffee.js"></script>
+<script>
+(function () {
+  const D = window.PSD_BRAZIL_COFFEE;
+  const COLS = D.columns;
+  const RAW_KEYS = ["my","status","cycle","areaPlanted","areaHarvested","yieldBags",
+                    "bearing","nonBearing","totalTrees","arabica","robusta"];
+  const STORE = "psd_brazil_coffee_user_csv";
+
+  // ---- assemble one record per market year -------------------------------
+  function buildRows(extra) {
+    return D.rows.map(r => {
+      const o = {};
+      RAW_KEYS.forEach((k, i) => o[k] = r[i]);
+      const bs = Object.assign({}, D.balanceSheet[o.my] || {}, (extra && extra[o.my]) || {});
+      o._src = {};
+      Object.keys(bs).forEach(k => {
+        if (k === "_src") return;
+        o[k] = bs[k];
+        if (D.balanceSheet[o.my] && k in D.balanceSheet[o.my] && !(extra && extra[o.my] && k in extra[o.my])) {
+          o._src[k] = D.balanceSheet[o.my]._src || "USDA";
+        }
+      });
+      compute(o);
+      return o;
+    });
+  }
+
+  const sum = (...v) => v.some(x => x == null || x === "") ? null
+                        : v.reduce((a, b) => a + Number(b), 0);
+
+  function compute(o) {
+    if (o.production == null)  o.production  = sum(o.arabica, o.robusta, o.otherProd == null ? 0 : o.otherProd);
+    if (o.totalImp == null)    o.totalImp    = sum(o.beanImp, o.rgImp, o.solImp);
+    if (o.totalExp == null)    o.totalExp    = sum(o.beanExp, o.rgExp, o.solExp);
+    if (o.domCons == null)     o.domCons     = sum(o.rgDom, o.solDom);
+    if (o.totalSupply == null) o.totalSupply = sum(o.begStocks, o.production, o.totalImp);
+    if (o.totalDist == null)   o.totalDist   = sum(o.totalExp, o.domCons, o.endStocks);
+    o.balance = (o.totalSupply == null || o.totalDist == null) ? null : o.totalSupply - o.totalDist;
+  }
+
+  // ---- rendering ---------------------------------------------------------
+  const nf0 = new Intl.NumberFormat("en-US");
+  const nf2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  function fmt(v, type) {
+    if (v == null || v === "") return null;
+    if (type === "dec2") return nf2.format(v);
+    if (type === "text") return String(v);
+    return nf0.format(v);
+  }
+
+  function render(rows) {
+    const hrow = document.getElementById("hrow");
+    hrow.innerHTML = "";
+    COLS.forEach((c, i) => {
+      const th = document.createElement("th");
+      if (c.type === "text") th.className = "txt";
+      if (i === 0) th.className += " f1";
+      if (i === 1) th.className += " f2";
+      th.innerHTML = c.label + (c.unit ? '<span class="u">' + c.unit + "</span>" : "");
+      hrow.appendChild(th);
+    });
+
+    const body = document.getElementById("brow");
+    body.innerHTML = "";
+    rows.forEach(o => {
+      const tr = document.createElement("tr");
+      tr.className = o.status.toLowerCase();
+      COLS.forEach((c, i) => {
+        const td = document.createElement("td");
+        const cls = [];
+        if (c.type === "text") cls.push("txt");
+        if (c.type === "calc") cls.push("calc");
+        if (i === 0) cls.push("f1");
+        if (i === 1) cls.push("f2");
+        const s = fmt(o[c.key], c.type);
+        if (s == null) { cls.push("na"); td.textContent = "—"; }
+        else {
+          td.textContent = s;
+          if (o._src && o._src[c.key]) { cls.push("src"); td.title = o._src[c.key]; }
+        }
+        td.className = cls.join(" ");
+        body.appendChild(tr).appendChild(td);
+      });
+    });
+
+    // coverage indicator
+    const tradeKeys = ["begStocks","totalImp","totalExp","domCons","endStocks"];
+    const filled = rows.filter(o => tradeKeys.every(k => o[k] != null)).length;
+    document.getElementById("fillState").innerHTML =
+      "<b>Balance sheet</b> " + filled + " / " + rows.length + " years complete";
+    document.getElementById("gap").innerHTML = filled === rows.length
+      ? "All years balanced from the loaded PSD data."
+      : "Stocks, imports, exports and consumption are shown as “—” for the years not yet loaded from "
+        + "PSD Online. They are deliberately left empty rather than estimated; paste the official CSV below "
+        + "and every derived column (Total Supply, Total Distribution, Balance Check) fills in.";
+  }
+
+  // ---- PSD CSV parsing ---------------------------------------------------
+  const ATTR = {
+    "area planted":"areaPlanted", "area harvested":"areaHarvested",
+    "bearing trees":"bearing", "non-bearing trees":"nonBearing",
+    "total tree population":"totalTrees",
+    "beginning stocks":"begStocks",
+    "arabica production":"arabica", "robusta production":"robusta",
+    "other production":"otherProd", "production":"production", "total production":"production",
+    "bean imports":"beanImp", "roast & ground imports":"rgImp", "rst-ground imports":"rgImp",
+    "soluble imports":"solImp", "total imports":"totalImp", "imports":"totalImp",
+    "total supply":"totalSupply", "domestic consumption":"domCons",
+    "bean exports":"beanExp", "rst-ground exports":"rgExp", "rst,ground exports":"rgExp",
+    "roast & ground exports":"rgExp", "soluble exports":"solExp",
+    "total exports":"totalExp", "exports":"totalExp",
+    "rst,ground dom. consum":"rgDom", "rst-ground dom. consum":"rgDom",
+    "soluble dom. cons.":"solDom", "soluble dom. consum":"solDom",
+    "ending stocks":"endStocks", "total distribution":"totalDist", "yield":"yieldBags"
+  };
+
+  function splitCsvLine(line) {
+    const out = []; let cur = "", q = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') { if (q && line[i + 1] === '"') { cur += '"'; i++; } else q = !q; }
+      else if (ch === "," && !q) { out.push(cur); cur = ""; }
+      else cur += ch;
+    }
+    out.push(cur);
+    return out.map(s => s.trim());
+  }
+
+  function myLabel(year) {
+    const y = parseInt(String(year).slice(0, 4), 10);
+    if (!y) return null;
+    return y + "/" + String((y + 1) % 100).padStart(2, "0");
+  }
+
+  function parseCsv(text) {
+    const lines = text.split(/\r?\n/).filter(l => l.trim());
+    if (!lines.length) return { data: {}, n: 0, err: "Nothing pasted." };
+    const head = splitCsvLine(lines[0]).map(h => h.toLowerCase().replace(/[^a-z]/g, ""));
+    const iYear = head.findIndex(h => h.indexOf("marketyear") === 0 || h === "year");
+    const iAttr = head.findIndex(h => h.indexOf("attribute") === 0);
+    const iVal  = head.findIndex(h => h.indexOf("value") === 0 || h === "amount");
+    const iCtry = head.findIndex(h => h.indexOf("country") === 0);
+    if (iYear < 0 || iAttr < 0 || iVal < 0)
+      return { data: {}, n: 0, err: "Header must contain Market_Year, Attribute_Description and Value." };
+
+    const data = {}; let n = 0;
+    for (let i = 1; i < lines.length; i++) {
+      const f = splitCsvLine(lines[i]);
+      if (iCtry >= 0 && f[iCtry] && !/brazil/i.test(f[iCtry])) continue;
+      const key = ATTR[(f[iAttr] || "").toLowerCase().replace(/\s+/g, " ").trim()];
+      const my = myLabel(f[iYear]);
+      const val = parseFloat(String(f[iVal]).replace(/,/g, ""));
+      if (!key || !my || isNaN(val)) continue;
+      (data[my] = data[my] || {})[key] = val;
+      n++;
+    }
+    return { data: data, n: n, err: n ? null : "No recognised PSD attribute rows found." };
+  }
+
+  // ---- wiring ------------------------------------------------------------
+  let userData = {};
+  try { userData = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { userData = {}; }
+  render(buildRows(userData));
+
+  const msg = document.getElementById("msg");
+  document.getElementById("load").addEventListener("click", function () {
+    const r = parseCsv(document.getElementById("csv").value);
+    if (r.err) { msg.textContent = r.err; return; }
+    userData = r.data;
+    try { localStorage.setItem(STORE, JSON.stringify(userData)); } catch (e) {}
+    render(buildRows(userData));
+    msg.textContent = r.n + " values loaded across " + Object.keys(userData).length + " market years.";
+  });
+
+  document.getElementById("clear").addEventListener("click", function () {
+    userData = {};
+    try { localStorage.removeItem(STORE); } catch (e) {}
+    document.getElementById("csv").value = "";
+    render(buildRows(userData));
+    msg.textContent = "Pasted data cleared.";
+  });
+
+  document.getElementById("copy").addEventListener("click", function () {
+    const rows = buildRows(userData);
+    const lines = [COLS.map(c => c.label + (c.unit ? " " + c.unit : "")).join("\t")];
+    rows.forEach(o => lines.push(COLS.map(c => o[c.key] == null ? "" : o[c.key]).join("\t")));
+    const tsv = lines.join("\n");
+    if (navigator.clipboard) navigator.clipboard.writeText(tsv).then(
+      function () { msg.textContent = "Table copied as TSV — paste straight into Excel."; },
+      function () { msg.textContent = "Clipboard blocked by the browser."; });
+    else msg.textContent = "Clipboard not available in this browser.";
+  });
+})();
+</script>
+</body>
+</html>
