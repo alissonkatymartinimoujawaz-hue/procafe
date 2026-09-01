@@ -88,6 +88,17 @@ window.PSD_BRAZIL_COFFEE = {
   // fills in immediately. Only cells confirmed against an official USDA release
   // are present today.
   balanceSheet: {
-    "2026/27": { totalExp: 49070, domCons: 22390, _src: "USDA FAS, Brazil Coffee Annual BR2026-0025 (June 2026)" }
+    // Every value below comes from the SAME USDA vintage (June 2026 release:
+    // Brazil Coffee Annual BR2026-0025 + Coffee: World Markets and Trade), so the
+    // rows stay internally coherent. Attributes from other release vintages are
+    // deliberately not mixed in.
+    "2025/26": {
+      endStocks: 3895,
+      _src: "USDA FAS, June 2026 release (Coffee Annual BR2026-0025 / Coffee: World Markets & Trade)"
+    },
+    "2026/27": {
+      begStocks: 3895, totalExp: 49070, domCons: 22390, endStocks: 4425,
+      _src: "USDA FAS, June 2026 release (Coffee Annual BR2026-0025 / Coffee: World Markets & Trade)"
+    }
   }
 };
