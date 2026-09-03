@@ -178,3 +178,68 @@ table.ctable sup { color: var(--accent-soft); font-size: 10px; }
 .img-host { margin-top: 4px; }
 .img-host .placeholder code { background: color-mix(in srgb, var(--accent) 12%, transparent);
   padding: 2px 6px; border-radius: 5px; font-size: 12px; color: var(--ink); }
+
+/* ---------- Water Availability Index page ---------- */
+.btn {
+  background: var(--accent); color: #fff; border: 0; border-radius: 8px;
+  padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.btn:hover { background: var(--accent-soft); }
+.btn:disabled { opacity: .55; cursor: progress; }
+.pill.busy { border-style: dashed; }
+
+.kpi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px; margin: 22px 0 10px;
+}
+.kpi {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 14px 16px;
+}
+.kpi-wide { grid-column: span 2; text-align: center; }
+@media (max-width: 640px) { .kpi-wide { grid-column: span 1; } }
+.kpi-head { font-size: 12px; font-weight: 700; letter-spacing: .3px; text-transform: uppercase;
+  color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+.kpi-head i { font-style: italic; font-weight: 500; text-transform: none; }
+.kpi-date { font-weight: 500; text-transform: none; letter-spacing: 0; }
+.kpi-val { font-size: 30px; font-weight: 700; line-height: 1.15; margin: 6px 0 2px; }
+.kpi-val small { font-size: 13px; font-weight: 600; color: var(--muted); }
+.kpi-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.kpi-sub b.up { color: #2f8f5b; } .kpi-sub b.down { color: #c0392b; }
+.kpi-cat { font-size: 15px; font-weight: 700; margin-top: 2px; }
+.gauge-host { max-width: 260px; margin: 2px auto 0; }
+.gauge-host .gauge { display: block; width: 100%; height: auto; border-radius: 8px; }
+.cat-severe { color: #c0392b; } .cat-deficit { color: #d17f2c; }
+.cat-normal { color: #8a7a2c; } .cat-comfort { color: #4d8b3f; } .cat-surplus { color: #2f8f7a; }
+.badge { display: inline-block; font-size: 17px; padding: 4px 12px; border-radius: 999px; }
+.badge.bad { background: #fbe0dc; color: #a5281b; }
+.badge.warn { background: #fbeacf; color: #9a5f10; }
+.badge.mid { background: #f0eee6; color: #6a5f45; }
+.badge.good { background: #dcecd0; color: #33682a; }
+
+.chart-stack { display: grid; gap: 16px; margin: 18px 0 8px; }
+.chart-card.wide { padding: 8px; }
+.wai-chart { position: relative; }
+.wai-tip {
+  position: absolute; top: 8px; pointer-events: none; background: rgba(255,255,255,.97);
+  border: 1px solid #ddd; border-radius: 8px; padding: 7px 9px; font-size: 12px; color: #222;
+  box-shadow: 0 4px 14px rgba(0,0,0,.12); max-width: 230px;
+}
+.wai-tip b { display: block; margin-bottom: 3px; }
+.wai-tip span { display: block; white-space: nowrap; }
+.wai-tip span b { display: inline; }
+.wai-tip i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; }
+
+.sec-title { margin: 26px 0 10px; font-size: 16px; }
+.wai-table td { vertical-align: top; }
+.wai-table td span { display: block; font-size: 11px; color: var(--muted); }
+.wai-table td span.up { color: #2f8f5b; } .wai-table td span.down { color: #c0392b; }
+.wai-table td.local span { font-weight: 400; }
+.wai-table tr.on { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.wai-chip { display: inline-block; min-width: 34px; text-align: center; font-weight: 700;
+  border-radius: 6px; padding: 2px 6px; background: #f1ede6; }
+.wai-chip.cat-severe { background: #fbe0dc; } .wai-chip.cat-deficit { background: #fbeacf; }
+.wai-chip.cat-normal { background: #f1efe4; } .wai-chip.cat-comfort { background: #dcecd0; }
+.wai-chip.cat-surplus { background: #d3ebe3; }
+.term code { background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 1px 5px; border-radius: 4px; font-size: 11.5px; }

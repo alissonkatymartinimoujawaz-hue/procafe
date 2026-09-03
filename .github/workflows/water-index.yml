@@ -1,0 +1,40 @@
+# Refresh the Central Highlands water-index snapshot from NASA POWER.
+# POWER publishes with 2-4 days of latency, so a daily run is enough; the page
+# itself can always pull the last 120 days live in the browser ("Update now").
+name: Water index — daily refresh
+
+on:
+  schedule:
+    - cron: "20 2 * * *"      # 02:20 UTC ≈ 09:20 Vietnam time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: water-index
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch NASA POWER series
+        run: python build_water_index.py
+
+      - name: Commit the snapshot if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/water
+          if git diff --cached --quiet; then
+            echo "no change"
+          else
+            git commit -m "Water index: refresh Central Highlands snapshot ($(date -u +%Y-%m-%d))"
+            git push
+          fi

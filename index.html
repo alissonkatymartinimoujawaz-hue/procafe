@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Weather & Coffee — Brazil Regions</title>
+  <title>Weather & Coffee — Coffee Regions</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <header class="site">
     <div class="wrap">
-      <h1>☕ Weather & Coffee — Brazil</h1>
+      <h1>☕ Weather & Coffee</h1>
       <p>Weather tracking by coffee region and its impact on the coffee trees. Each region groups its main producing towns; click a region to see the town-by-town detail.</p>
     </div>
   </header>
 
   <main class="wrap">
     <div class="crumb"><span class="pill" id="status">Structure — data to be connected</span></div>
+    <h2 class="sec-title">Brazil — arabica regions</h2>
     <section class="grid" id="regions"></section>
+    <h2 class="sec-title">Vietnam — robusta</h2>
+    <section class="grid" id="vietnam"></section>
   </main>
 
   <footer class="site">
@@ -39,6 +42,18 @@
         <div class="cities"><b>${r.cities.length} towns:</b> ${r.cities.map(c => c.name).join(' · ')}</div>`;
       grid.appendChild(a);
     });
+    const vn = document.getElementById('vietnam');
+    const a = document.createElement('a');
+    a.className = 'card';
+    a.href = 'regions/central_highlands.html';
+    a.innerHTML = `
+      <span class="tag">Robusta · water</span>
+      <h2>Central Highlands — Water Availability Index</h2>
+      <p>Rainfall quantity and anomaly, soil moisture and a groundwater-reservoir proxy for
+         Tây Nguyên, combined into a 0–100 index, daily and monthly on one page.</p>
+      <div class="cities"><b>${CH_STATIONS.length} points:</b> ${CH_STATIONS.map(c => c.name).join(' · ')}</div>`;
+    vn.appendChild(a);
+
     if (SITE_CONFIG.updated) {
       document.getElementById('updated').textContent = 'Updated ' + SITE_CONFIG.updated;
     }

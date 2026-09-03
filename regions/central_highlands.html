@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Central Highlands — Irrigation / Water Availability Index</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">← Coffee regions</a></div>
+      <h1>💧 Water Availability Index — Central Highlands (Tây Nguyên)</h1>
+      <p>Rainfall, soil moisture and groundwater storage for the Vietnamese robusta belt,
+         on one page: <b>daily</b> for the irrigation decision, <b>monthly</b> for the season.
+         10 points across Đắk Lắk, Đắk Nông, Gia Lai, Kon Tum and Lâm Đồng.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="controls">
+      <label>Area
+        <select id="sel-station"></select>
+      </label>
+      <label>View
+        <select id="sel-mode">
+          <option value="daily">Daily</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </label>
+      <label>Window
+        <select id="sel-window"></select>
+      </label>
+      <label>&nbsp;
+        <button id="btn-refresh" class="btn">Update now</button>
+      </label>
+      <span class="pill" id="status">loading…</span>
+    </div>
+
+    <section id="kpis" class="kpi-grid"></section>
+    <section id="charts" class="chart-stack"></section>
+    <section id="table-host"></section>
+    <section id="method"></section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      Sources: NASA POWER daily point (MERRA-2 / GEOS land surface) ·
+      baseline 1991–2020 · groundwater is a modelled proxy, see method.
+    </div>
+  </footer>
+
+  <script src="../config.js"></script>
+  <script src="../data/central_highlands_wells.js?v=1"></script>
+  <script src="../assets/wai.js?v=1"></script>
+  <script src="../assets/wai-charts.js?v=1"></script>
+  <script>
+  (function () {
+    "use strict";
+    var S = window.CH_STATIONS, states = {}, region = null, snapshotDate = null;
+    var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    var COL = { rain: "#2f6fb0", rainNorm: "#9dbfdd", top: "#d19c5b", root: "#4d8b3f",
+                prof: "#2f8f7a", res: "#3f5fa8", wai: "#6f4e37", norm: "#999" };
+    var BANDS = [
+      { y0: 0,  y1: 20,  fill: "#f6d7d1" }, { y0: 20, y1: 40, fill: "#fbe7cf" },
+      { y0: 40, y1: 60,  fill: "#eef1e7" }, { y0: 60, y1: 80, fill: "#dcecd0" },
+      { y0: 80, y1: 100, fill: "#cfe6de" }
+    ];
+    var elStation = document.getElementById("sel-station"),
+        elMode = document.getElementById("sel-mode"),
+        elWindow = document.getElementById("sel-window"),
+        elStatus = document.getElementById("status"),
+        elKpi = document.getElementById("kpis"),
+        elCharts = document.getElementById("charts"),
+        elTable = document.getElementById("table-host");
+
+    var WINDOWS = {
+      daily: [ { v: 90, label: "Last 90 days" }, { v: 365, label: "Last 12 months" },
+               { v: 1095, label: "Last 3 years" }, { v: 1825, label: "Last 5 years" } ],
+      monthly: [ { v: 36, label: "Last 3 years" }, { v: 60, label: "Last 5 years" },
+                 { v: 120, label: "Last 10 years" }, { v: 9999, label: "Full record (1991→)" } ]
+    };
+
+    /* ---------------- loading ---------------- */
+    function loadScript(src) {
+      return new Promise(function (res) {
+        var s = document.createElement("script");
+        s.src = src; s.onload = function () { res(true); }; s.onerror = function () { res(false); };
+        document.head.appendChild(s);
+      });
+    }
+    function loadSnapshot() {
+      return loadScript("../data/water/manifest.js?t=" + Date.now()).then(function (ok) {
+        if (!ok || !window.CH_WATER_MANIFEST) return null;
+        var man = window.CH_WATER_MANIFEST;
+        return Promise.all(man.stations.map(function (s) {
+          return loadScript("../data/water/" + s.id + ".js?t=" + encodeURIComponent(man.generated));
+        })).then(function () { return man; });
+      });
+    }
+    function bootstrapLive(onProgress) {
+      var start = "19910101", end = window.WAI.todayMinus(4), i = 0;
+      return S.reduce(function (chain, st) {
+        return chain.then(function () {
+          onProgress(++i, S.length, st.name);
+          return window.WAI.fetchPower(st.lat, st.lon, start, end).then(function (raw) {
+            window.CH_WATER = window.CH_WATER || {};
+            window.CH_WATER[st.id] = raw;
+          });
+        });
+      }, Promise.resolve());
+    }
+    function refreshTail() {
+      var start = window.WAI.todayMinus(120), end = window.WAI.todayMinus(2), i = 0;
+      return S.reduce(function (chain, st) {
+        return chain.then(function () {
+          setStatus("updating " + (++i) + "/" + S.length + " — " + st.name + " …", true);
+          return window.WAI.fetchPower(st.lat, st.lon, start, end).then(function (tail) {
+            var base = window.CH_WATER && window.CH_WATER[st.id];
+            window.CH_WATER[st.id] = base ? window.WAI.mergeTail(base, tail) : tail;
+          }).catch(function () { /* keep the snapshot for this station */ });
+        });
+      }, Promise.resolve());
+    }
+    function computeAll() {
+      states = {};
+      S.forEach(function (st) {
+        var raw = window.CH_WATER && window.CH_WATER[st.id];
+        if (raw) states[st.id] = window.WAI.computeStation(raw, st);
+      });
+      var list = S.map(function (s) { return states[s.id]; }).filter(Boolean);
+      region = list.length ? window.WAI.aggregate(list, { id: "region", name: "Central Highlands (weighted)" }) : null;
+      return list.length;
+    }
+    function setStatus(txt, busy) {
+      elStatus.textContent = txt;
+      elStatus.classList.toggle("busy", !!busy);
+    }
+
+    /* ---------------- formatting helpers ---------------- */
+    function pretty(ymd) {
+      return ymd.slice(6, 8) + " " + MON[+ymd.slice(4, 6) - 1] + " " + ymd.slice(0, 4);
+    }
+    function sgn(v, unit, dec) {
+      if (v == null) return "—";
+      var s = (Math.round(v * Math.pow(10, dec || 0)) / Math.pow(10, dec || 0)).toFixed(dec || 0);
+      return (v > 0 ? "+" : "") + s + (unit || "");
+    }
+    function num(v, dec) {
+      return v == null ? "—" : (Math.round(v * Math.pow(10, dec || 0)) / Math.pow(10, dec || 0)).toFixed(dec || 0);
+    }
+    function pctTxt(v) {
+      if (v == null) return "—";
+      var k = Math.round(v), t = k % 100;
+      var suf = (t >= 11 && t <= 13) ? "th" : ["th","st","nd","rd"][k % 10] || "th";
+      return k + suf + " pct";
+    }
+    function current() { return elStation.value === "region" ? region : states[elStation.value]; }
+
+    /* ---------------- KPIs ---------------- */
+    function renderKpis(s) {
+      var n = s.now;
+      if (!n) { elKpi.innerHTML = '<div class="placeholder">No data.</div>'; return; }
+      var ir = n.irrigation || {}, urg = {
+        critical: ["Irrigate now", "bad"], due: ["Round due", "warn"],
+        watch: ["Watch", "mid"], ok: ["Soil holding", "good"], na: ["—", "mid"]
+      }[ir.urgency || "na"];
+      // In the wet season a comfortable root zone simply means no programme is running;
+      // a dry root zone still shows as dry, monsoon or not.
+      if (ir.wetSeason && (ir.urgency === "ok" || ir.urgency === "watch"))
+        urg = ["Wet season", "good"];
+      elKpi.innerHTML =
+        '<div class="kpi kpi-wide"><div class="kpi-head">Water Availability Index' +
+          '<span class="kpi-date">' + pretty(n.date) + '</span></div>' +
+          '<div class="gauge-host" id="gauge"></div>' +
+          '<div class="kpi-cat cat-' + n.cat.key + '">' + n.cat.label + '</div>' +
+          '<div class="kpi-sub">0.35 rainfall · 0.35 root-zone soil · 0.30 groundwater store,' +
+          ' each as a percentile of 1991–2020 for the same time of year</div></div>' +
+
+        '<div class="kpi"><div class="kpi-head">Rainfall — last 30 days</div>' +
+          '<div class="kpi-val">' + num(n.rain30) + ' <small>mm</small></div>' +
+          '<div class="kpi-sub">normal ' + num(n.rain30Norm) + ' mm · ' +
+            '<b class="' + (n.rain30AnomPct >= 0 ? "up" : "down") + '">' +
+            sgn(n.rain30AnomPct, "%") + '</b> · ' + pctTxt(n.rain30Pct) + '</div>' +
+          '<div class="kpi-sub">90 days: ' + num(n.rain90) + ' mm (normal ' + num(n.rain90Norm) +
+            ', <b class="' + (n.rain90AnomPct >= 0 ? "up" : "down") + '">' +
+            sgn(n.rain90AnomPct, "%") + '</b>)</div></div>' +
+
+        '<div class="kpi"><div class="kpi-head">Soil moisture — root zone</div>' +
+          '<div class="kpi-val">' + num(n.gr * 100) + ' <small>% wetness</small></div>' +
+          '<div class="kpi-sub">' + pctTxt(n.grPct) + ' of 1991–2020 for this time of year</div>' +
+          '<div class="kpi-sub">surface ' + num(n.gt * 100) + '% (' + pctTxt(n.gtPct) +
+            ') · profile ' + num(n.gp * 100) + '% (' + pctTxt(n.gpPct) + ')</div></div>' +
+
+        '<div class="kpi"><div class="kpi-head">Groundwater store <i>(modelled)</i></div>' +
+          '<div class="kpi-val">' + num(n.resPct) + ' <small>ᵗʰ pct</small></div>' +
+          '<div class="kpi-sub">' + num(n.res) + ' mm equivalent in the slow store</div>' +
+          '<div class="kpi-sub">30-day trend <b class="' + (n.resTrend >= 0 ? "up" : "down") +
+            '">' + sgn(n.resTrend, " pts", 1) + '</b></div></div>' +
+
+        '<div class="kpi"><div class="kpi-head">Irrigation signal</div>' +
+          '<div class="kpi-val badge ' + urg[1] + '">' + urg[0] + '</div>' +
+          '<div class="kpi-sub">' + (ir.seasonClosed ? "Last dry season" : "Dry season so far") +
+            ' (' + (ir.seasonStart ? pretty(ir.seasonStart) : "—") + ' → ' +
+            (ir.seasonEnd ? pretty(ir.seasonEnd) : "—") + '): deficit <b>' + num(ir.deficit) +
+            ' mm</b> ≈ <b>' + num(ir.rounds, 1) + '</b> rounds @ 44 mm (400 L/tree)</div>' +
+          '<div class="kpi-sub">' + num(ir.daysSinceRain) + ' days since ≥10 mm rain · ' +
+            'rain ' + num(ir.rain) + ' mm vs crop demand ' + num(ir.etc) + ' mm</div></div>';
+      window.WAICharts.gauge(document.getElementById("gauge"), { value: n.wai });
+    }
+
+    /* ---------------- daily charts ---------------- */
+    function dailyTicks(ax, i0, n) {
+      var ticks = [], step = Math.max(1, Math.ceil(n / 365));
+      for (var k = 0; k < n; k++) {
+        var i = i0 + k;
+        if (ax.d[i] !== 1) continue;
+        if (n > 400 && ((ax.m[i] - 1) % (n > 1200 ? 6 : 3))) continue;
+        if (n <= 120 && (ax.d[i] !== 1)) continue;
+        ticks.push({ i: k, label: MON[ax.m[i] - 1] + (ax.m[i] === 1 || n > 400 ? " " + String(ax.y[i]).slice(2) : "") });
+      }
+      if (n <= 120) {                       // short window: add mid-month ticks
+        ticks = [];
+        for (var j = 0; j < n; j++) {
+          var g = i0 + j;
+          if (ax.d[g] === 1 || ax.d[g] === 15)
+            ticks.push({ i: j, label: ax.d[g] + " " + MON[ax.m[g] - 1] });
+        }
+      }
+      return ticks;
+    }
+    function slice(a, i0, n) { return a.slice(i0, i0 + n); }
+    function climBand(clim, ax, i0, n, qlo, qhi) {
+      var lo = [], hi = [];
+      for (var k = 0; k < n; k++) {
+        var q = window.WAI.climQAt(clim, ax, i0 + k);
+        lo.push(q ? q[qlo] : null); hi.push(q ? q[qhi] : null);
+      }
+      return { lo: lo, hi: hi };
+    }
+    function card(title) {
+      var d = document.createElement("div");
+      d.className = "chart-card wide";
+      elCharts.appendChild(d);
+      return d;
+    }
+
+    function renderDaily(s) {
+      var ax = s.ax, want = +elWindow.value, last = s.now ? s.now.idx : s.n - 1,
+          n = Math.min(want, last + 1), i0 = last - n + 1, ticks = dailyTicks(ax, i0, n);
+      var ymd = slice(ax.ymd, i0, n);
+      elCharts.innerHTML = "";
+
+      /* 1 — index timeline */
+      var wai = slice(s.series.wai, i0, n);
+      window.WAICharts.render(card(), {
+        title: "Water Availability Index — daily",
+        subtitle: s.meta.name + " · 0 = driest, 100 = wettest vs 1991–2020",
+        yLabel: "index (0–100)", yMin: 0, yMax: 100, yStep: 20, n: n, xTicks: ticks,
+        bands: BANDS,
+        series: [{ label: "WAI", values: wai, color: COL.wai, width: 2.2 }],
+        legend: [{ label: "WAI", color: COL.wai },
+                 { label: "severe / deficit / normal / comfortable / surplus bands", color: "#cfe6de", box: true }],
+        hover: function (i) {
+          return { title: pretty(ymd[i]), rows: [
+            { label: "WAI", value: num(wai[i], 1), color: COL.wai },
+            { label: "rain 30 d", value: num(s.series.rain30[i0 + i]) + " mm", color: COL.rain },
+            { label: "root zone", value: num(s.series.gr[i0 + i] * 100) + " %", color: COL.root },
+            { label: "store", value: pctTxt(s.pct.res[i0 + i]), color: COL.res }
+          ] };
+        }
+      });
+
+      /* 2 — rainfall: daily bars + 30-day total vs normal */
+      var p = slice(s.series.p, i0, n), r30 = slice(s.series.rain30, i0, n),
+          nrm = window.WAI.normalSeries(s.clim.rain30.mean, ax, i0, n);
+      var maxAll = Math.max.apply(null, r30.concat(nrm).filter(function (v) { return v != null; }).concat([1])),
+          pmax = Math.max.apply(null, p.filter(function (v) { return v != null; }).concat([1])),
+          yMax = Math.ceil(maxAll / 50) * 50,
+          yStep = Math.max(25, Math.ceil(maxAll / 5 / 25) * 25),
+          scale = niceScale(yStep, yMax / Math.max(pmax, 1) * 0.55),
+          pScaled = p.map(function (v) { return v == null ? null : v * scale; });
+      window.WAICharts.render(card(), {
+        title: "Rainfall — daily total and 30-day accumulation vs normal",
+        subtitle: s.meta.name + " · blue bars = daily rain (right axis) · lines = 30-day running total (left axis)",
+        yLabel: "30-day total (mm)", y2Label: "daily rain (mm)",
+        yMin: 0, yMax: yMax, yStep: yStep, y2: { scale: scale, dec: 0 }, n: n, xTicks: ticks,
+        bars: { values: pScaled, pos: "#bcd6ec", width: 0.9 },
+        series: [{ label: "30-day total", values: r30, color: COL.rain, width: 2.2 },
+                 { label: "1991–2020 normal", values: nrm, color: COL.rainNorm, width: 2, dash: "5 4" }],
+        legend: [{ label: "30-day total", color: COL.rain },
+                 { label: "1991–2020 normal", color: COL.rainNorm, dash: "5 4" },
+                 { label: "daily rain (scaled)", color: "#bcd6ec", box: true }],
+        hover: function (i) {
+          return { title: pretty(ymd[i]), rows: [
+            { label: "daily", value: num(p[i], 1) + " mm", color: "#bcd6ec" },
+            { label: "30 d", value: num(r30[i]) + " mm", color: COL.rain },
+            { label: "normal", value: num(nrm[i]) + " mm", color: COL.rainNorm },
+            { label: "anomaly", value: (nrm[i] ? sgn(r30[i] / nrm[i] * 100 - 100, "%") : "—"), color: "#666" },
+            { label: "percentile", value: pctTxt(s.pct.rain30[i0 + i]), color: "#666" }
+          ] };
+        }
+      });
+
+      /* 3 — soil moisture */
+      var gt = slice(s.series.gt, i0, n).map(x100), gr = slice(s.series.gr, i0, n).map(x100),
+          gp = slice(s.series.gp, i0, n).map(x100), band = null;
+      if (s.clim.gr && s.clim.gr.q) {
+        var b = climBand(s.clim.gr, ax, i0, n, 5, 15);
+        band = { lo: b.lo.map(x100), hi: b.hi.map(x100) };
+      }
+      var sm = [];
+      if (band) sm.push({ label: "band", values: band.hi, lo: band.lo, color: COL.root, area: true, opacity: 0.22 });
+      sm.push({ label: "root zone", values: gr, color: COL.root, width: 2.2 },
+              { label: "profile", values: gp, color: COL.prof, width: 1.8 },
+              { label: "surface", values: gt, color: COL.top, width: 1.3 });
+      window.WAICharts.render(card(), {
+        title: "Soil moisture — is the soil actually soaked?",
+        subtitle: s.meta.name + " · wetness 0 % = wilting point, 100 % = saturation · shaded = normal range (25–75 % of 1991–2020 for the same time of year)",
+        yLabel: "soil wetness (%)", yMin: 0, yMax: 100, yStep: 20, n: n, xTicks: ticks,
+        series: sm,
+        legend: [{ label: "root zone (0–100 cm)", color: COL.root },
+                 { label: "profile (whole column)", color: COL.prof },
+                 { label: "surface (0–5 cm)", color: COL.top },
+                 { label: "normal range", color: COL.root, box: true }],
+        hover: function (i) {
+          return { title: pretty(ymd[i]), rows: [
+            { label: "root", value: num(gr[i]) + " % (" + pctTxt(s.pct.gr[i0 + i]) + ")", color: COL.root },
+            { label: "profile", value: num(gp[i]) + " %", color: COL.prof },
+            { label: "surface", value: num(gt[i]) + " %", color: COL.top },
+            { label: "normal", value: band ? num(band.lo[i]) + "–" + num(band.hi[i]) + " %" : "—", color: "#666" }
+          ] };
+        }
+      });
+
+      /* 4 — groundwater store */
+      var resPct = slice(s.pct.res, i0, n), resMm = slice(s.series.res, i0, n),
+          wells = wellSeries(s, ymd);
+      var gwSeries = [{ label: "store", values: resPct, color: COL.res, width: 2.2 },
+                      { label: "median", values: resPct.map(function () { return 50; }),
+                        color: COL.norm, width: 1.4, dash: "5 4" }];
+      if (wells) gwSeries.push({ label: "observed wells", values: wells, color: "#8e44ad", width: 2 });
+      window.WAICharts.render(card(), {
+        title: "Groundwater store — how full is the reservoir?",
+        subtitle: s.meta.name + " · modelled slow store, as a percentile of the same time of year in 1991–2020" +
+          (wells ? " · purple = observed well level supplied in data/central_highlands_wells.js" : ""),
+        yLabel: "percentile of 1991–2020", yMin: 0, yMax: 100, yStep: 20, n: n, xTicks: ticks,
+        bands: BANDS, series: gwSeries,
+        legend: [{ label: "modelled store", color: COL.res }, { label: "median (50th)", color: COL.norm, dash: "5 4" }]
+          .concat(wells ? [{ label: "observed wells", color: "#8e44ad" }] : []),
+        hover: function (i) {
+          return { title: pretty(ymd[i]), rows: [
+            { label: "store", value: pctTxt(resPct[i]), color: COL.res },
+            { label: "volume", value: num(resMm[i]) + " mm eq.", color: COL.res },
+            { label: "profile wetness", value: num(s.series.gp[i0 + i] * 100) + " %", color: COL.prof }
+          ] };
+        }
+      });
+    }
+    function x100(v) { return v == null ? null : v * 100; }
+    /* Pick the bar scale so the right-hand axis lands on round numbers. */
+    function niceScale(yStep, scale0) {
+      var raw = yStep / scale0, mag = Math.pow(10, Math.floor(Math.log10(raw))),
+          steps = [1, 2, 2.5, 5, 10], i;
+      for (i = 0; i < steps.length; i++)
+        if (steps[i] * mag >= raw) return yStep / (steps[i] * mag);
+      return scale0;
+    }
+
+    /* Optional observed groundwater (NAWAPI or a company's own wells):
+       window.CH_WELLS = { "<station id>|region": { "YYYY-MM": <percentile 0-100> } } */
+    function wellSeries(s, ymd) {
+      var W = window.CH_WELLS && (window.CH_WELLS[s.meta.id] || window.CH_WELLS.region);
+      if (!W) return null;
+      var out = ymd.map(function (d) {
+        var v = W[d.slice(0, 4) + "-" + d.slice(4, 6)];
+        return v == null ? null : v;
+      });
+      return out.some(function (v) { return v != null; }) ? out : null;
+    }
+
+    function monthlyWells(s, rows) {
+      var W = window.CH_WELLS && (window.CH_WELLS[s.meta.id] || window.CH_WELLS.region);
+      if (!W) return null;
+      var out = rows.map(function (r) { return W[r.ym] == null ? null : W[r.ym]; });
+      return out.some(function (v) { return v != null; }) ? out : null;
+    }
+
+    /* ---------------- monthly charts ---------------- */
+    function renderMonthly(s) {
+      var rows = s.monthly.filter(function (r) { return r.rain != null; }),
+          want = +elWindow.value;
+      rows = rows.slice(Math.max(0, rows.length - want));
+      var n = rows.length;
+      var ticks = [], steps = [1, 2, 3, 6, 12, 24, 60], every = steps[steps.length - 1], q;
+      for (q = 0; q < steps.length; q++) {           // keep the axis under ~16 labels
+        if (n / steps[q] <= 16) { every = steps[q]; break; }
+      }
+      rows.forEach(function (r, i) {
+        if ((r.month - 1) % Math.min(every, 12)) return;
+        if (every >= 12 && r.year % (every / 12)) return;
+        ticks.push({ i: i, label: every >= 12 ? String(r.year)
+          : MON[r.month - 1] + (r.month === 1 || n <= 14 ? " " + String(r.year).slice(2) : "") });
+      });
+      elCharts.innerHTML = "";
+      var lbl = function (r) {
+        return MON[r.month - 1] + " " + r.year +
+          (r.complete ? "" : " (partial, " + r.days + "/" + r.dim + " days)");
+      };
+      var mWells = monthlyWells(s, rows);
+      var partial = rows.length && !rows[rows.length - 1].complete
+        ? " · last month still running (" + rows[rows.length - 1].days + " of " +
+          rows[rows.length - 1].dim + " days)" : "";
+
+      /* 1 — monthly rainfall vs normal */
+      window.WAICharts.render(card(), {
+        title: "Monthly rainfall vs 1991–2020 normal",
+        subtitle: s.meta.name + " · bars = observed total · line = normal" + partial,
+        yLabel: "mm / month", n: n, xTicks: ticks, yMin: 0,
+        yMax: Math.ceil(Math.max.apply(null, rows.map(function (r) { return r.rain; })) / 100) * 100,
+        yStep: 100,
+        bars: { values: rows.map(function (r) { return r.rain; }), pos: "#5b93c6", width: 0.75 },
+        series: [{ label: "normal", values: rows.map(function (r) { return r.rainNorm; }),
+                   color: "#c0392b", width: 2, dash: "5 4" }],
+        legend: [{ label: "monthly rainfall", color: "#5b93c6", box: true },
+                 { label: "1991–2020 normal", color: "#c0392b", dash: "5 4" }],
+        hover: function (i) {
+          var r = rows[i];
+          return { title: lbl(r), rows: [
+            { label: "rain", value: num(r.rain) + " mm", color: "#5b93c6" },
+            { label: "normal", value: num(r.rainNorm) + " mm", color: "#c0392b" },
+            { label: "anomaly", value: sgn(r.rainAnom) + " mm (" + sgn(r.rainAnomPct, "%") + ")", color: "#666" },
+            { label: "SPI-like", value: num(r.spi, 2), color: "#666" }
+          ] };
+        }
+      });
+
+      /* 2 — rainfall anomaly */
+      window.WAICharts.render(card(), {
+        title: "Rainfall anomaly — % of the 1991–2020 normal",
+        subtitle: s.meta.name + " · above zero = wetter than normal" + partial,
+        yLabel: "% vs normal", n: n, xTicks: ticks,
+        bars: { values: rows.map(function (r) { return r.rainAnomPct; }),
+                pos: "#3f7fbf", neg: "#c0603c", width: 0.75 },
+        legend: [{ label: "wetter than normal", color: "#3f7fbf", box: true },
+                 { label: "drier than normal", color: "#c0603c", box: true }],
+        hover: function (i) {
+          var r = rows[i];
+          return { title: lbl(r), rows: [
+            { label: "anomaly", value: sgn(r.rainAnomPct, "%"), color: r.rainAnomPct >= 0 ? "#3f7fbf" : "#c0603c" },
+            { label: "rain", value: num(r.rain) + " mm vs " + num(r.rainNorm) + " mm", color: "#666" },
+            { label: "percentile", value: pctTxt(r.rainPct), color: "#666" },
+            { label: "SPI-like", value: num(r.spi, 2), color: "#666" }
+          ] };
+        }
+      });
+
+      /* 3 — monthly index */
+      window.WAICharts.render(card(), {
+        title: "Water Availability Index — monthly mean",
+        subtitle: s.meta.name + partial,
+        yLabel: "index (0–100)", yMin: 0, yMax: 100, yStep: 20, n: n, xTicks: ticks, bands: BANDS,
+        series: [{ label: "WAI", values: rows.map(function (r) { return r.wai; }), color: COL.wai, width: 2.4 }],
+        legend: [{ label: "monthly WAI", color: COL.wai }],
+        hover: function (i) {
+          var r = rows[i];
+          return { title: lbl(r), rows: [
+            { label: "WAI", value: num(r.wai, 1), color: COL.wai },
+            { label: "class", value: window.WAI.category(r.wai).label, color: "#666" }
+          ] };
+        }
+      });
+
+      /* 4 — soil & store */
+      window.WAICharts.render(card(), {
+        title: "Soil moisture and groundwater store — monthly means",
+        subtitle: s.meta.name + " · soil wetness in %, store as mm equivalent (right-hand meaning)",
+        yLabel: "soil wetness (%)", yMin: 0, yMax: 100, yStep: 20, n: n, xTicks: ticks,
+        series: [
+          { label: "root zone", values: rows.map(function (r) { return x100(r.gr); }), color: COL.root, width: 2.2 },
+          { label: "profile", values: rows.map(function (r) { return x100(r.gp); }), color: COL.prof, width: 1.8 },
+          { label: "store (scaled)", values: scaleTo100(rows.map(function (r) { return r.res; })),
+            color: COL.res, width: 2, dash: "4 3" }
+        ].concat(mWells ? [{ label: "observed wells", values: mWells, color: "#8e44ad", width: 2.2 }] : []),
+        legend: [{ label: "root zone", color: COL.root }, { label: "profile", color: COL.prof },
+                 { label: "groundwater store (scaled to its own record)", color: COL.res, dash: "4 3" }]
+          .concat(mWells ? [{ label: "observed wells (supplied)", color: "#8e44ad" }] : []),
+        hover: function (i) {
+          var r = rows[i];
+          return { title: lbl(r), rows: [
+            { label: "root", value: num(x100(r.gr)) + " %", color: COL.root },
+            { label: "profile", value: num(x100(r.gp)) + " %", color: COL.prof },
+            { label: "store", value: num(r.res) + " mm eq.", color: COL.res }
+          ].concat(mWells && mWells[i] != null
+            ? [{ label: "observed wells", value: pctTxt(mWells[i]), color: "#8e44ad" }] : []) };
+        }
+      });
+    }
+    function scaleTo100(a) {
+      var v = a.filter(function (x) { return x != null; });
+      if (!v.length) return a;
+      var lo = Math.min.apply(null, v), hi = Math.max.apply(null, v);
+      return a.map(function (x) { return x == null ? null : (hi > lo ? (x - lo) / (hi - lo) * 100 : 50); });
+    }
+
+    /* ---------------- station table ---------------- */
+    function renderTable() {
+      var rows = S.map(function (st) { return states[st.id]; }).filter(Boolean);
+      if (!rows.length) { elTable.innerHTML = ""; return; }
+      var body = rows.map(function (s) {
+        var n = s.now, ir = n.irrigation || {};
+        return '<tr' + (elStation.value === s.meta.id ? ' class="on"' : '') + '>' +
+          '<td class="local"><b>' + s.meta.name + '</b><span>' + s.meta.province + ' · ' +
+            s.meta.alt + ' m</span></td>' +
+          '<td><span class="wai-chip cat-' + n.cat.key + '">' + num(n.wai) + '</span></td>' +
+          '<td>' + n.cat.label + '</td>' +
+          '<td>' + num(n.rain30) + ' <small>mm</small><span class="' +
+            (n.rain30AnomPct >= 0 ? "up" : "down") + '">' + sgn(n.rain30AnomPct, "%") + '</span></td>' +
+          '<td>' + num(n.rain90) + ' <small>mm</small><span class="' +
+            (n.rain90AnomPct >= 0 ? "up" : "down") + '">' + sgn(n.rain90AnomPct, "%") + '</span></td>' +
+          '<td>' + num(n.gr * 100) + ' <small>%</small><span>' + pctTxt(n.grPct) + '</span></td>' +
+          '<td>' + pctTxt(n.resPct).replace(" pct", "") + '<span class="' +
+            (n.resTrend >= 0 ? "up" : "down") + '">' + sgn(n.resTrend, "", 1) + ' / 30 d</span></td>' +
+          '<td>' + num(ir.deficit) + ' <small>mm</small><span>' + num(ir.rounds, 1) + ' rounds</span></td>' +
+          '</tr>';
+      }).join("");
+      var r = region && region.now;
+      elTable.innerHTML =
+        '<h3 class="sec-title">Station board — ' + (r ? pretty(r.date) : "") + '</h3>' +
+        '<div class="ctable-wrap"><table class="ctable wai-table"><thead><tr>' +
+        '<th>Station</th><th>WAI</th><th>Status</th><th>Rain 30 d</th><th>Rain 90 d</th>' +
+        '<th>Root zone</th><th>Store</th><th>Dry-season deficit</th></tr></thead><tbody>' +
+        body + '</tbody></table></div>';
+    }
+
+    /* ---------------- method block ---------------- */
+    function renderMethod(man) {
+      document.getElementById("method").innerHTML =
+        '<div class="glossary"><h4>How the index is built</h4><div class="terms">' +
+        '<div class="term"><span class="abbr">Rainfall</span> <span class="full">quantity + anomaly</span>' +
+          '<div class="desc">NASA POWER <code>PRECTOTCORR</code>. The page shows the daily total, the 30- and ' +
+          '90-day accumulations, and the gap to the 1991–2020 normal in mm, % and percentile. ' +
+          'Monthly view adds a rank-based SPI equivalent.</div></div>' +
+        '<div class="term"><span class="abbr">Soil moisture</span> <span class="full">is the soil soaked?</span>' +
+          '<div class="desc"><code>GWETTOP</code> (0–5 cm), <code>GWETROOT</code> (root zone, ~1 m) and ' +
+          '<code>GWETPROF</code> (whole column), 0 = wilting point, 1 = saturation, with the 25–75 % normal ' +
+          'range for the same time of year.</div></div>' +
+        '<div class="term"><span class="abbr">Groundwater</span> <span class="full">reservoir proxy</span>' +
+          '<div class="desc">A linear store fed only by rain that falls on an already-wet profile ' +
+          '(gate on <code>GWETPROF</code> 0.55→0.90, rain above 5 mm/day, 150-day recession) — how the ' +
+          'basalt aquifers actually refill. <b>Modelled, not measured.</b> Drop observed NAWAPI or farm-well ' +
+          'levels into <code>data/central_highlands_wells.js</code> and they are plotted on top.</div></div>' +
+        '<div class="term stress"><span class="abbr">WAI</span> <span class="full">composite 0–100</span>' +
+          '<div class="desc">0.35 × rainfall percentile (half 30-day, half 90-day) + 0.35 × root-zone ' +
+          'percentile + 0.30 × store percentile. Below 20 = severe deficit, above 80 = surplus.</div></div>' +
+        '<div class="term"><span class="abbr">Irrigation</span> <span class="full">demand signal</span>' +
+          '<div class="desc">Deficit accumulated since 15 November as Σ max(0, 0.9 × ET₀ − rain), with ET₀ by ' +
+          'Hargreaves. One round = 44 mm ≈ 400 L/tree at 1,100 trees/ha. The badge turns to “round due” when ' +
+          'root-zone wetness drops below 0.40.</div></div>' +
+        '<div class="term"><span class="abbr">Update</span> <span class="full">daily &amp; monthly</span>' +
+          '<div class="desc">' + (man
+            ? 'Snapshot generated <b>' + man.generated + '</b> by <code>build_water_index.py</code>. '
+            : 'No snapshot found — the page pulled the series live from NASA POWER. ') +
+          '“Update now” re-pulls the last 120 days straight from NASA POWER in your browser. POWER runs ' +
+          '2–4 days behind real time.</div></div>' +
+        '</div><p class="note">Baseline 1991–2020. Station coordinates are approximate town centroids; ' +
+        'the regional line is a weighted mean (Đắk Lắk 30 %, Lâm Đồng 25 %, Đắk Nông 24 %, Gia Lai 12 %, ' +
+        'Kon Tum 3 % — rough robusta-area shares). Copernicus ERA5-Land can replace POWER as the input ' +
+        'without touching the index: only <code>build_water_index.py</code> would change.</p></div>';
+    }
+
+    /* ---------------- wiring ---------------- */
+    function fillWindows() {
+      var opts = WINDOWS[elMode.value], keep = elWindow.value;
+      elWindow.innerHTML = "";
+      opts.forEach(function (o) { elWindow.add(new Option(o.label, o.v)); });
+      elWindow.value = opts.some(function (o) { return String(o.v) === keep; }) ? keep : opts[1].v;
+    }
+    function draw() {
+      var s = current();
+      if (!s) { elCharts.innerHTML = '<div class="placeholder">No data loaded.</div>'; return; }
+      renderKpis(s);
+      if (elMode.value === "daily") renderDaily(s); else renderMonthly(s);
+      renderTable();
+    }
+    elStation.addEventListener("change", draw);
+    elMode.addEventListener("change", function () { fillWindows(); draw(); });
+    elWindow.addEventListener("change", draw);
+    document.getElementById("btn-refresh").addEventListener("click", function () {
+      var b = this; b.disabled = true;
+      refreshTail().then(function () {
+        computeAll(); draw();
+        setStatus("live from NASA POWER · " + (region && region.now ? pretty(region.now.date) : ""), false);
+      }).catch(function (e) {
+        setStatus("update failed: " + e.message, false);
+      }).then(function () { b.disabled = false; });
+    });
+
+    elStation.add(new Option("Central Highlands (all, weighted)", "region"));
+    S.forEach(function (st) { elStation.add(new Option(st.name + " — " + st.province, st.id)); });
+    fillWindows();
+
+    setStatus("loading snapshot…", true);
+    loadSnapshot().then(function (man) {
+      if (man) { snapshotDate = man.generated; return man; }
+      setStatus("no snapshot — fetching NASA POWER…", true);
+      return bootstrapLive(function (i, tot, name) {
+        setStatus("fetching " + i + "/" + tot + " — " + name + " …", true);
+      }).then(function () { return null; });
+    }).then(function (man) {
+      if (!computeAll()) throw new Error("no station data");
+      draw();
+      renderMethod(man);
+      setStatus((man ? "snapshot " + man.generated : "live") + " · data to " +
+                (region.now ? pretty(region.now.date) : "—"), false);
+    }).catch(function (e) {
+      setStatus("could not load data: " + e.message, false);
+      elCharts.innerHTML = '<div class="placeholder">Data unavailable. Run ' +
+        '<code>python build_water_index.py</code> to generate <code>data/water/</code>, ' +
+        'or allow the page to reach <code>power.larc.nasa.gov</code>.</div>';
+      renderMethod(null);
+    });
+  })();
+  </script>
+</body>
+</html>

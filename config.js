@@ -56,3 +56,21 @@ window.SITE_CONFIG = {
     }
   ]
 };
+
+// ---------------------------------------------------------------------------
+// Vietnam — Central Highlands (Tây Nguyên) robusta belt.
+// Feeds regions/central_highlands.html (Irrigation / Water Availability Index).
+// Same list as STATIONS in build_water_index.py — keep the two in step.
+// weight = rough share of national robusta area carried by that point.
+window.CH_STATIONS = [
+  { id: "buon_ma_thuot", name: "Buôn Ma Thuột", province: "Đắk Lắk",  lat: 12.6667, lon: 108.0500, alt: 536, weight: 0.10 },
+  { id: "cu_mgar",       name: "Cư M'gar",      province: "Đắk Lắk",  lat: 12.9000, lon: 108.0333, alt: 500, weight: 0.10 },
+  { id: "ea_hleo",       name: "Ea H'leo",      province: "Đắk Lắk",  lat: 13.2333, lon: 108.2167, alt: 600, weight: 0.10 },
+  { id: "dak_mil",       name: "Đắk Mil",       province: "Đắk Nông", lat: 12.4500, lon: 107.6167, alt: 700, weight: 0.12 },
+  { id: "gia_nghia",     name: "Gia Nghĩa",     province: "Đắk Nông", lat: 11.9833, lon: 107.6917, alt: 600, weight: 0.12 },
+  { id: "pleiku",        name: "Pleiku",        province: "Gia Lai",  lat: 13.9833, lon: 108.0000, alt: 750, weight: 0.06 },
+  { id: "chu_se",        name: "Chư Sê",        province: "Gia Lai",  lat: 13.6833, lon: 108.0833, alt: 700, weight: 0.06 },
+  { id: "dak_ha",        name: "Đắk Hà",        province: "Kon Tum",  lat: 14.5333, lon: 107.9500, alt: 570, weight: 0.03 },
+  { id: "di_linh",       name: "Di Linh",       province: "Lâm Đồng", lat: 11.5833, lon: 108.0667, alt: 950, weight: 0.125 },
+  { id: "bao_loc",       name: "Bảo Lộc",       province: "Lâm Đồng", lat: 11.5500, lon: 107.8083, alt: 850, weight: 0.125 }
+];
