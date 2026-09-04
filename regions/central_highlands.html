@@ -12,7 +12,8 @@
       <div class="crumb"><a href="../index.html">← Coffee regions</a></div>
       <h1>💧 Water Availability Index — Central Highlands (Tây Nguyên)</h1>
       <p>Rainfall, soil moisture and groundwater storage for the Vietnamese robusta belt,
-         on one page: <b>daily</b> for the irrigation decision, <b>monthly</b> for the season.
+         on one page: <b>daily</b> for the irrigation decision, <b>monthly</b> for the season,
+         and any calendar year back to <b>1991</b> for the history.
          10 points across Đắk Lắk, Đắk Nông, Gia Lai, Kon Tum and Lâm Đồng.</p>
     </div>
   </header>
@@ -30,6 +31,9 @@
       </label>
       <label>Window
         <select id="sel-window"></select>
+      </label>
+      <label id="lab-year" hidden>Year
+        <select id="sel-year"></select>
       </label>
       <label>&nbsp;
         <button id="btn-refresh" class="btn">Update now</button>
@@ -69,6 +73,8 @@
     var elStation = document.getElementById("sel-station"),
         elMode = document.getElementById("sel-mode"),
         elWindow = document.getElementById("sel-window"),
+        elYear = document.getElementById("sel-year"),
+        elYearLab = document.getElementById("lab-year"),
         elStatus = document.getElementById("status"),
         elKpi = document.getElementById("kpis"),
         elCharts = document.getElementById("charts"),
@@ -76,9 +82,11 @@
 
     var WINDOWS = {
       daily: [ { v: 90, label: "Last 90 days" }, { v: 365, label: "Last 12 months" },
-               { v: 1095, label: "Last 3 years" }, { v: 1825, label: "Last 5 years" } ],
+               { v: 1095, label: "Last 3 years" }, { v: 1825, label: "Last 5 years" },
+               { v: "year", label: "One calendar year…" } ],
       monthly: [ { v: 36, label: "Last 3 years" }, { v: 60, label: "Last 5 years" },
-                 { v: 120, label: "Last 10 years" }, { v: 9999, label: "Full record (1991→)" } ]
+                 { v: 120, label: "Last 10 years" }, { v: 9999, label: "Full record (1991→)" },
+                 { v: "year", label: "One calendar year…" } ]
     };
 
     /* ---------------- loading ---------------- */
@@ -156,10 +164,24 @@
       return k + suf + " pct";
     }
     function current() { return elStation.value === "region" ? region : states[elStation.value]; }
+    function pickedYear() { return elWindow.value === "year" ? +elYear.value : null; }
+    /* Which slice of the record is on screen, and which day the KPI cards describe. */
+    function windowRange(s) {
+      var last = s.now ? s.now.idx : s.n - 1, y = pickedYear(), i0, end;
+      if (y != null) {
+        i0 = s.ax.ymd.indexOf(y + "0101");
+        if (i0 < 0) i0 = 0;
+        end = s.ax.ymd.indexOf(y + "1231");
+        end = end < 0 ? last : Math.min(end, last);
+        if (end < i0) end = Math.min(last, s.n - 1);
+        return { i0: i0, n: end - i0 + 1, end: end, year: y };
+      }
+      var n = Math.min(+elWindow.value, last + 1);
+      return { i0: last - n + 1, n: n, end: last, year: null };
+    }
 
     /* ---------------- KPIs ---------------- */
-    function renderKpis(s) {
-      var n = s.now;
+    function renderKpis(s, n, yr) {
       if (!n) { elKpi.innerHTML = '<div class="placeholder">No data.</div>'; return; }
       var ir = n.irrigation || {}, urg = {
         critical: ["Irrigate now", "bad"], due: ["Round due", "warn"],
@@ -170,8 +192,9 @@
       if (ir.wetSeason && (ir.urgency === "ok" || ir.urgency === "watch"))
         urg = ["Wet season", "good"];
       elKpi.innerHTML =
-        '<div class="kpi kpi-wide"><div class="kpi-head">Water Availability Index' +
-          '<span class="kpi-date">' + pretty(n.date) + '</span></div>' +
+        '<div class="kpi kpi-wide"><div class="kpi-head">' +
+          (yr ? "Water Availability Index — " + yr : "Water Availability Index") +
+          '<span class="kpi-date">' + (yr ? "on " : "") + pretty(n.date) + '</span></div>' +
           '<div class="gauge-host" id="gauge"></div>' +
           '<div class="kpi-cat cat-' + n.cat.key + '">' + n.cat.label + '</div>' +
           '<div class="kpi-sub">0.35 rainfall · 0.35 root-zone soil · 0.30 groundwater store,' +
@@ -197,6 +220,13 @@
           '<div class="kpi-sub">' + num(n.res) + ' mm equivalent in the slow store</div>' +
           '<div class="kpi-sub">30-day trend <b class="' + (n.resTrend >= 0 ? "up" : "down") +
             '">' + sgn(n.resTrend, " pts", 1) + '</b></div></div>' +
+
+        '<div class="kpi"><div class="kpi-head">Water stress <i>(evapotranspiration)</i></div>' +
+          '<div class="kpi-val">' + num(n.stress) + ' <small>% of demand unmet</small></div>' +
+          '<div class="kpi-sub">ET₀ ' + num(n.et0, 1) + ' mm/d · crop demand ETc ' +
+            num(n.etc, 1) + ' mm/d · actual ETa ' + num(n.eta, 1) + ' mm/d</div>' +
+          '<div class="kpi-sub"><b>' + num(n.stressDays30) + '</b> of the last 30 days under ' +
+            'stress · <b>' + num(n.gap30) + ' mm</b> of transpiration lost</div></div>' +
 
         '<div class="kpi"><div class="kpi-head">Irrigation signal</div>' +
           '<div class="kpi-val badge ' + urg[1] + '">' + urg[0] + '</div>' +
@@ -245,9 +275,8 @@
       return d;
     }
 
-    function renderDaily(s) {
-      var ax = s.ax, want = +elWindow.value, last = s.now ? s.now.idx : s.n - 1,
-          n = Math.min(want, last + 1), i0 = last - n + 1, ticks = dailyTicks(ax, i0, n);
+    function renderDaily(s, range) {
+      var ax = s.ax, n = range.n, i0 = range.i0, ticks = dailyTicks(ax, i0, n);
       var ymd = slice(ax.ymd, i0, n);
       elCharts.innerHTML = "";
 
@@ -356,6 +385,38 @@
           ] };
         }
       });
+
+      /* 5 — evapotranspiration and water stress */
+      var etc30 = window.WAI.rolling(s.series.etc, 30), eta30 = window.WAI.rolling(s.series.eta, 30),
+          e1 = slice(etc30, i0, n), e2 = slice(eta30, i0, n), rr = slice(s.series.rain30, i0, n),
+          ks = slice(s.series.ks, i0, n);
+      window.WAICharts.render(card(), {
+        title: "Evapotranspiration and water stress — 30-day totals",
+        subtitle: s.meta.name + " · red area = transpiration the crop could not take up " +
+          "(the soil was too dry) · " + Math.round(window.WAI.C.KC * 100) + " % crop coefficient",
+        yLabel: "mm per 30 days", yMin: 0, n: n, xTicks: ticks,
+        series: [
+          { label: "gap", values: e1, lo: e2, color: "#c0392b", area: true, opacity: 0.28 },
+          { label: "ETc", values: e1, color: "#b06a2c", width: 2 },
+          { label: "ETa", values: e2, color: "#4d8b3f", width: 2 },
+          { label: "rain", values: rr, color: COL.rain, width: 1.8, dash: "5 4" }
+        ],
+        legend: [{ label: "crop demand ETc", color: "#b06a2c" },
+                 { label: "actual uptake ETa", color: "#4d8b3f" },
+                 { label: "rainfall", color: COL.rain, dash: "5 4" },
+                 { label: "stress gap", color: "#c0392b", box: true }],
+        hover: function (i) {
+          return { title: pretty(ymd[i]), rows: [
+            { label: "ETc", value: num(e1[i]) + " mm", color: "#b06a2c" },
+            { label: "ETa", value: num(e2[i]) + " mm", color: "#4d8b3f" },
+            { label: "gap", value: (e1[i] != null && e2[i] != null ? num(e1[i] - e2[i]) : "—") + " mm",
+              color: "#c0392b" },
+            { label: "rain", value: num(rr[i]) + " mm", color: COL.rain },
+            { label: "stress today", value: ks[i] == null ? "—" : num((1 - ks[i]) * 100) + " %",
+              color: "#666" }
+          ] };
+        }
+      });
     }
     function x100(v) { return v == null ? null : v * 100; }
     /* Pick the bar scale so the right-hand axis lands on round numbers. */
@@ -387,11 +448,15 @@
     }
 
     /* ---------------- monthly charts ---------------- */
-    function renderMonthly(s) {
-      var rows = s.monthly.filter(function (r) { return r.rain != null; }),
-          want = +elWindow.value;
-      rows = rows.slice(Math.max(0, rows.length - want));
+    function renderMonthly(s, range) {
+      var rows = s.monthly.filter(function (r) { return r.rain != null; });
+      if (range.year != null) {
+        rows = rows.filter(function (r) { return r.year === range.year; });
+      } else {
+        rows = rows.slice(Math.max(0, rows.length - (+elWindow.value)));
+      }
       var n = rows.length;
+      if (!n) { elCharts.innerHTML = '<div class="placeholder">No month with data in this window.</div>'; return; }
       var ticks = [], steps = [1, 2, 3, 6, 12, 24, 60], every = steps[steps.length - 1], q;
       for (q = 0; q < steps.length; q++) {           // keep the axis under ~16 labels
         if (n / steps[q] <= 16) { every = steps[q]; break; }
@@ -495,6 +560,35 @@
             ? [{ label: "observed wells", value: pctTxt(mWells[i]), color: "#8e44ad" }] : []) };
         }
       });
+
+      /* 5 — monthly water balance and evapotranspiration */
+      window.WAICharts.render(card(), {
+        title: "Water balance and evapotranspiration — monthly",
+        subtitle: s.meta.name + " · bars = rainfall − crop demand · lines = ETc and what the " +
+          "crop actually took up" + partial,
+        yLabel: "mm / month", n: n, xTicks: ticks,
+        bars: { values: rows.map(function (r) { return r.balance; }),
+                pos: "#5b93c6", neg: "#c0603c", width: 0.75 },
+        series: [
+          { label: "ETc", values: rows.map(function (r) { return r.etc; }), color: "#b06a2c", width: 2 },
+          { label: "ETa", values: rows.map(function (r) { return r.eta; }), color: "#4d8b3f", width: 2 }
+        ],
+        legend: [{ label: "surplus (rain > demand)", color: "#5b93c6", box: true },
+                 { label: "deficit (rain < demand)", color: "#c0603c", box: true },
+                 { label: "crop demand ETc", color: "#b06a2c" },
+                 { label: "actual uptake ETa", color: "#4d8b3f" }],
+        hover: function (i) {
+          var r = rows[i];
+          return { title: lbl(r), rows: [
+            { label: "rain", value: num(r.rain) + " mm", color: COL.rain },
+            { label: "ETc", value: num(r.etc) + " mm", color: "#b06a2c" },
+            { label: "ETa", value: num(r.eta) + " mm", color: "#4d8b3f" },
+            { label: "balance", value: sgn(r.balance) + " mm",
+              color: r.balance >= 0 ? "#5b93c6" : "#c0603c" },
+            { label: "stress days", value: num(r.stressDays) + " / " + r.dim, color: "#666" }
+          ] };
+        }
+      });
     }
     function scaleTo100(a) {
       var v = a.filter(function (x) { return x != null; });
@@ -504,9 +598,10 @@
     }
 
     /* ---------------- station table ---------------- */
-    function renderTable() {
+    function renderTable(yr) {
       var rows = S.map(function (st) { return states[st.id]; }).filter(Boolean);
       if (!rows.length) { elTable.innerHTML = ""; return; }
+      if (yr != null) return renderYearTable(rows, yr);
       var body = rows.map(function (s) {
         var n = s.now, ir = n.irrigation || {};
         return '<tr' + (elStation.value === s.meta.id ? ' class="on"' : '') + '>' +
@@ -533,6 +628,38 @@
         body + '</tbody></table></div>';
     }
 
+    /* Per-station figures for one calendar year — "what did 2008 look like?" */
+    function renderYearTable(list, yr) {
+      var body = list.map(function (s) {
+        var y = window.WAI.yearSummary(s, yr);
+        if (!y) return "";
+        var cat = window.WAI.category(y.wai);
+        return '<tr' + (elStation.value === s.meta.id ? ' class="on"' : '') + '>' +
+          '<td class="local"><b>' + s.meta.name + '</b><span>' + s.meta.province + ' · ' +
+            s.meta.alt + ' m</span></td>' +
+          '<td>' + num(y.rain) + ' <small>mm</small><span class="' +
+            (y.rainAnomPct >= 0 ? "up" : "down") + '">' + sgn(y.rainAnomPct, "%") +
+            ' vs ' + num(y.rainNorm) + '</span></td>' +
+          '<td><span class="wai-chip cat-' + cat.key + '">' + num(y.wai) + '</span></td>' +
+          '<td>' + num(y.waiMin) + '<span>' + (y.worstDate ? pretty(y.worstDate) : "—") + '</span></td>' +
+          '<td>' + num(y.stressDays) + ' <small>d</small><span>of ' + y.days + '</span></td>' +
+          '<td>' + num(y.etc) + ' <small>mm</small><span>ETa ' + num(y.eta) + '</span></td>' +
+          '<td>' + num(y.gap) + ' <small>mm</small><span>' +
+            (y.etc ? Math.round(y.gap / y.etc * 100) : "—") + ' % of demand</span></td>' +
+          '</tr>';
+      }).join("");
+      elTable.innerHTML =
+        '<h3 class="sec-title">Station board — calendar year ' + yr + '</h3>' +
+        '<div class="ctable-wrap"><table class="ctable wai-table"><thead><tr>' +
+        '<th>Station</th><th>Rainfall</th><th>Mean WAI</th><th>Lowest WAI</th>' +
+        '<th>Stress days</th><th>Crop demand</th><th>Transpiration lost</th>' +
+        '</tr></thead><tbody>' + body + '</tbody></table></div>' +
+        '<p class="note">Stress day = the root zone sat below ' +
+        Math.round(window.WAI.C.STRESS_P * 100) + ' % of its wilting→saturation range, so the ' +
+        'crop could not transpire at its potential rate. Rainfall is compared with the ' +
+        '1991–2020 annual normal for the same point.</p>';
+    }
+
     /* ---------------- method block ---------------- */
     function renderMethod(man) {
       document.getElementById("method").innerHTML =
@@ -550,6 +677,17 @@
           '(gate on <code>GWETPROF</code> 0.55→0.90, rain above 5 mm/day, 150-day recession) — how the ' +
           'basalt aquifers actually refill. <b>Modelled, not measured.</b> Drop observed NAWAPI or farm-well ' +
           'levels into <code>data/central_highlands_wells.js</code> and they are plotted on top.</div></div>' +
+        '<div class="term"><span class="abbr">Water stress</span> <span class="full">ET₀ / ETc / ETa</span>' +
+          '<div class="desc">Reference evapotranspiration by Hargreaves (POWER min/mean/max ' +
+          'temperature), crop demand ETc = ' + window.WAI.C.KC + ' × ET₀, and actual uptake ' +
+          'ETa = Ks × ETc with the FAO-56 stress coefficient Ks = min(1, root-zone wetness / ' +
+          window.WAI.C.STRESS_P + '). The red area between ETc and ETa is transpiration the trees ' +
+          'could not take up. A <b>stress day</b> is any day with Ks &lt; 1.</div></div>' +
+        '<div class="term"><span class="abbr">History</span> <span class="full">any year since 1991</span>' +
+          '<div class="desc">Window → “One calendar year…” puts one year on screen in either view; ' +
+          'the index cards then read as of 31 December of that year and the station board switches ' +
+          'to annual totals — rainfall vs the annual normal, mean and lowest WAI, stress days, ' +
+          'crop demand and transpiration lost.</div></div>' +
         '<div class="term stress"><span class="abbr">WAI</span> <span class="full">composite 0–100</span>' +
           '<div class="desc">0.35 × rainfall percentile (half 30-day, half 90-day) + 0.35 × root-zone ' +
           'percentile + 0.30 × store percentile. Below 20 = severe deficit, above 80 = surplus.</div></div>' +
@@ -570,22 +708,36 @@
     }
 
     /* ---------------- wiring ---------------- */
+    function fillYears() {
+      var s = region || states[S[0].id];
+      if (!s) return;
+      var y0 = s.ax.y[0], y1 = s.ax.y[s.n - 1], y, keep = elYear.value;
+      elYear.innerHTML = "";
+      for (y = y1; y >= y0; y--) elYear.add(new Option(String(y), y));
+      elYear.value = keep && +keep >= y0 && +keep <= y1 ? keep : String(y1 - 1);
+    }
     function fillWindows() {
       var opts = WINDOWS[elMode.value], keep = elWindow.value;
       elWindow.innerHTML = "";
       opts.forEach(function (o) { elWindow.add(new Option(o.label, o.v)); });
-      elWindow.value = opts.some(function (o) { return String(o.v) === keep; }) ? keep : opts[1].v;
+      elWindow.value = opts.some(function (o) { return String(o.v) === keep; }) ? keep : String(opts[1].v);
+      elYearLab.hidden = elWindow.value !== "year";
     }
     function draw() {
       var s = current();
       if (!s) { elCharts.innerHTML = '<div class="placeholder">No data loaded.</div>'; return; }
-      renderKpis(s);
-      if (elMode.value === "daily") renderDaily(s); else renderMonthly(s);
-      renderTable();
+      elYearLab.hidden = elWindow.value !== "year";
+      var range = windowRange(s);
+      // the KPI cards describe the last day on screen, so a past year reads as of 31 Dec
+      var snap = range.end === (s.now && s.now.idx) ? s.now : window.WAI.snapshotAt(s, range.end);
+      renderKpis(s, snap || s.now, range.year);
+      if (elMode.value === "daily") renderDaily(s, range); else renderMonthly(s, range);
+      renderTable(range.year);
     }
     elStation.addEventListener("change", draw);
     elMode.addEventListener("change", function () { fillWindows(); draw(); });
     elWindow.addEventListener("change", draw);
+    elYear.addEventListener("change", draw);
     document.getElementById("btn-refresh").addEventListener("click", function () {
       var b = this; b.disabled = true;
       refreshTail().then(function () {
@@ -609,6 +761,7 @@
       }).then(function () { return null; });
     }).then(function (man) {
       if (!computeAll()) throw new Error("no station data");
+      fillYears();
       draw();
       renderMethod(man);
       setStatus((man ? "snapshot " + man.generated : "live") + " · data to " +

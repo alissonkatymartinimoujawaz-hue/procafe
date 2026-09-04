@@ -243,3 +243,5 @@ table.ctable sup { color: var(--accent-soft); font-size: 10px; }
 .wai-chip.cat-surplus { background: #d3ebe3; }
 .term code { background: color-mix(in srgb, var(--accent) 12%, transparent);
   padding: 1px 5px; border-radius: 4px; font-size: 11.5px; }
+/* .controls label sets display:flex, which would otherwise beat [hidden] */
+.controls label[hidden] { display: none; }

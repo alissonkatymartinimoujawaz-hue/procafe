@@ -25,6 +25,8 @@
     ROUND_MM: 44,        // one irrigation round: 400 L/tree x 1100 trees/ha
     DRY_START: [11, 15], // dry-season anchor (15 Nov) for the deficit count
     TRIG_GR: 0.40,       // root-zone wetness triggering a round
+    STRESS_P: 0.50,      // depletion fraction: transpiration is unrestricted while the
+                         // root zone stays above 50 % of its wilting->saturation range
     CATS: [
       { max: 20,  key: "severe",  label: "Severe deficit" },
       { max: 40,  key: "deficit", label: "Deficit" },
@@ -206,6 +208,26 @@
     return out;
   }
 
+  /* FAO-56 style water stress. GWETROOT is already scaled 0 = wilting, 1 = saturation,
+     so it doubles as the relative available water. Transpiration runs at its potential
+     rate down to STRESS_P, then falls off linearly:
+       Ks  = min(1, gr / STRESS_P)        stress coefficient, 1 = no stress
+       ETc = Kc x ET0                     crop demand
+       ETa = Ks x ETc                     what the crop can actually take up
+       gap = ETc - ETa                    transpiration lost to water stress */
+  function waterStress(pet, gr) {
+    var etc = new Array(pet.length), eta = new Array(pet.length),
+        ks = new Array(pet.length), gap = new Array(pet.length), i, k;
+    for (i = 0; i < pet.length; i++) {
+      if (pet[i] == null) { etc[i] = eta[i] = ks[i] = gap[i] = null; continue; }
+      etc[i] = Math.round(pet[i] * C.KC * 100) / 100;
+      k = gr[i] == null ? null : Math.max(0, Math.min(1, gr[i] / C.STRESS_P));
+      ks[i] = k;
+      eta[i] = k == null ? null : Math.round(etc[i] * k * 100) / 100;
+      gap[i] = k == null ? null : Math.round(etc[i] * (1 - k) * 100) / 100;
+    }
+    return { etc: etc, eta: eta, ks: ks, gap: gap };
+  }
   function category(v) {
     if (v == null) return { key: "na", label: "No data" };
     for (var i = 0; i < C.CATS.length; i++) if (v < C.CATS[i].max) return C.CATS[i];
@@ -258,10 +280,15 @@
       key = ax.y[i] + "-" + (ax.m[i] < 10 ? "0" : "") + ax.m[i];
       if (!by[key]) { by[key] = { ym: key, year: ax.y[i], month: ax.m[i], days: 0, rain: 0,
                                   nRain: 0, gr: 0, nGr: 0, gp: 0, nGp: 0, res: 0, nRes: 0,
-                                  wai: 0, nWai: 0 }; order.push(key); }
+                                  wai: 0, nWai: 0, et0: 0, etc: 0, eta: 0, gap: 0, nEt: 0,
+                                  stressDays: 0 }; order.push(key); }
       var b = by[key];
       b.days++;
       if (st.p[i] != null) { b.rain += st.p[i]; b.nRain++; }
+      if (st.pet[i] != null && st.eta[i] != null) {
+        b.et0 += st.pet[i]; b.etc += st.etc[i]; b.eta += st.eta[i]; b.gap += st.gap[i]; b.nEt++;
+        if (st.ks[i] < 0.999) b.stressDays++;
+      }
       if (st.gr[i] != null) { b.gr += st.gr[i]; b.nGr++; }
       if (st.gp[i] != null) { b.gp += st.gp[i]; b.nGp++; }
       if (st.res[i] != null) { b.res += st.res[i]; b.nRes++; }
@@ -276,7 +303,13 @@
         gr: b.nGr ? b.gr / b.nGr : null,
         gp: b.nGp ? b.gp / b.nGp : null,
         res: b.nRes ? b.res / b.nRes : null,
-        wai: b.nWai ? Math.round(b.wai / b.nWai * 10) / 10 : null
+        wai: b.nWai ? Math.round(b.wai / b.nWai * 10) / 10 : null,
+        et0: b.nEt ? Math.round(b.et0 * 10) / 10 : null,
+        etc: b.nEt ? Math.round(b.etc * 10) / 10 : null,
+        eta: b.nEt ? Math.round(b.eta * 10) / 10 : null,
+        gap: b.nEt ? Math.round(b.gap * 10) / 10 : null,
+        stressDays: b.nEt ? b.stressDays : null,
+        balance: (b.nRain && b.nEt) ? Math.round((b.rain - b.etc) * 10) / 10 : null
       };
     });
     // baseline distribution of monthly rainfall totals -> anomaly, % of normal, SPI
@@ -303,6 +336,75 @@
       r.resPct = null; r.grPct = null;
     });
     return { rows: rows, norm: means };
+  }
+
+  /* Conditions on one given day. Used for "now" and for any historical date the page
+     asks about (a year view ends on 31 December of that year, for instance). */
+  function snapshotAt(S, i0) {
+    if (i0 == null || i0 < 0 || S.series.wai[i0] == null) return null;
+    var ax = S.ax, series = S.series, pct = S.pct, clim = S.clim, i, k, st30 = 0, stN = 0,
+        gap30 = 0, gapN = 0;
+    for (i = Math.max(0, i0 - 29); i <= i0; i++) {
+      k = series.ks[i];
+      if (k != null) { stN++; if (k < 0.999) st30++; }
+      if (series.gap[i] != null) { gap30 += series.gap[i]; gapN++; }
+    }
+    var resTrend = (i0 >= 30 && pct.res[i0] != null && pct.res[i0 - 30] != null)
+      ? Math.round((pct.res[i0] - pct.res[i0 - 30]) * 10) / 10 : null;
+
+    var now = {
+      date: ax.ymd[i0], idx: i0,
+      wai: Math.round(series.wai[i0] * 10) / 10, cat: category(series.wai[i0]),
+      rain30: series.rain30[i0] == null ? null : Math.round(series.rain30[i0]),
+      rain30Norm: normalAt(clim.rain30.mean, ax, i0), rain30Pct: pct.rain30[i0],
+      rain90: series.rain90[i0] == null ? null : Math.round(series.rain90[i0]),
+      rain90Norm: normalAt(clim.rain90.mean, ax, i0), rain90Pct: pct.rain90[i0],
+      gt: series.gt[i0], gtPct: pct.gt[i0],
+      gr: series.gr[i0], grPct: pct.gr[i0],
+      gp: series.gp[i0], gpPct: pct.gp[i0],
+      res: series.res[i0], resPct: pct.res[i0], resTrend: resTrend,
+      et0: series.pet[i0], etc: series.etc[i0], eta: series.eta[i0], ks: series.ks[i0],
+      stress: series.ks[i0] == null ? null : Math.round((1 - series.ks[i0]) * 100),
+      stressDays30: stN ? st30 : null,
+      gap30: gapN ? Math.round(gap30) : null,
+      irrigation: irrigation(series.p, series.pet, series.gr, ax, i0)
+    };
+    now.rain30AnomPct = now.rain30Norm ? Math.round((now.rain30 / now.rain30Norm - 1) * 100) : null;
+    now.rain90AnomPct = now.rain90Norm ? Math.round((now.rain90 / now.rain90Norm - 1) * 100) : null;
+    return now;
+  }
+
+  /* Whole-calendar-year figures, for "what did 2008 look like?". */
+  function yearSummary(S, year) {
+    var ax = S.ax, se = S.series, i, rain = 0, nRain = 0, wai = [], stress = 0, gap = 0,
+        etc = 0, eta = 0, nEt = 0, worst = null;
+    for (i = 0; i < ax.ymd.length; i++) {
+      if (ax.y[i] !== year) continue;
+      if (se.p[i] != null) { rain += se.p[i]; nRain++; }
+      if (se.wai[i] != null) {
+        wai.push(se.wai[i]);
+        if (worst == null || se.wai[i] < se.wai[worst]) worst = i;
+      }
+      if (se.eta[i] != null) {
+        etc += se.etc[i]; eta += se.eta[i]; gap += se.gap[i]; nEt++;
+        if (se.ks[i] < 0.999) stress++;
+      }
+    }
+    if (!nRain) return null;
+    var norm = S.monthNorm ? S.monthNorm.reduce(function (a, b) {
+      return a + (b == null ? 0 : b); }, 0) : 0;
+    return {
+      year: year, days: nRain,
+      rain: Math.round(rain), rainNorm: norm ? Math.round(norm) : null,
+      rainAnomPct: norm ? Math.round((rain / norm - 1) * 100) : null,
+      wai: wai.length ? Math.round(wai.reduce(function (a, b) { return a + b; }, 0) / wai.length * 10) / 10 : null,
+      waiMin: wai.length ? Math.round(Math.min.apply(null, wai) * 10) / 10 : null,
+      worstDate: worst == null ? null : ax.ymd[worst],
+      stressDays: nEt ? stress : null,
+      etc: nEt ? Math.round(etc) : null,
+      eta: nEt ? Math.round(eta) : null,
+      gap: nEt ? Math.round(gap) : null
+    };
   }
 
   /* ---------------- station state ---------------- */
@@ -333,37 +435,18 @@
         : Math.round((C.W_RAIN * rs + C.W_SOIL * ss + C.W_RES * es) * 10) / 10;
     }
 
+    var wsx = waterStress(pet, v.gr);
     var st = { p: v.p, gt: v.gt, gr: v.gr, gp: v.gp, t: v.t, pet: pet,
+               etc: wsx.etc, eta: wsx.eta, ks: wsx.ks, gap: wsx.gap,
                rain30: rain30, rain90: rain90, res: res, wai: wai };
     var last = n - 1;
     while (last >= 0 && wai[last] == null) last--;
     var mon = monthlyRollup(st, ax);
 
-    // 30-day trend of the reservoir, in percentile points
-    var resTrend = null;
-    if (last >= 30 && pct.res[last] != null && pct.res[last - 30] != null)
-      resTrend = Math.round((pct.res[last] - pct.res[last - 30]) * 10) / 10;
-
-    var i0 = last, now = i0 < 0 ? null : {
-      date: ax.ymd[i0], idx: i0,
-      wai: wai[i0], cat: category(wai[i0]),
-      rain30: rain30[i0] == null ? null : Math.round(rain30[i0]),
-      rain30Norm: normalAt(clim.rain30.mean, ax, i0),
-      rain30Pct: pct.rain30[i0],
-      rain90: rain90[i0] == null ? null : Math.round(rain90[i0]),
-      rain90Norm: normalAt(clim.rain90.mean, ax, i0),
-      rain90Pct: pct.rain90[i0],
-      gt: v.gt[i0], gtPct: pct.gt[i0],
-      gr: v.gr[i0], grPct: pct.gr[i0],
-      gp: v.gp[i0], gpPct: pct.gp[i0],
-      res: res[i0], resPct: pct.res[i0], resTrend: resTrend,
-      irrigation: irrigation(v.p, pet, v.gr, ax, i0)
-    };
-    if (now && now.rain30Norm) now.rain30AnomPct = Math.round((now.rain30 / now.rain30Norm - 1) * 100);
-    if (now && now.rain90Norm) now.rain90AnomPct = Math.round((now.rain90 / now.rain90Norm - 1) * 100);
-
-    return { meta: meta, ax: ax, n: n, series: st, pct: pct, clim: clim,
-             monthly: mon.rows, monthNorm: mon.norm, now: now };
+    var state = { meta: meta, ax: ax, n: n, series: st, pct: pct, clim: clim,
+                  monthly: mon.rows, monthNorm: mon.norm };
+    state.now = snapshotAt(state, last);
+    return state;
   }
 
   /* ---------------- regional aggregate ---------------- */
@@ -399,6 +482,10 @@
       gp: mix(function (s) { return s.series.gp; }),
       t: mix(function (s) { return s.series.t; }),
       pet: mix(function (s) { return s.series.pet; }),
+      etc: mix(function (s) { return s.series.etc; }),
+      eta: mix(function (s) { return s.series.eta; }),
+      ks: mix(function (s) { return s.series.ks; }),
+      gap: mix(function (s) { return s.series.gap; }),
       rain30: mix(function (s) { return s.series.rain30; }),
       rain90: mix(function (s) { return s.series.rain90; }),
       res: mix(function (s) { return s.series.res; }),
@@ -413,7 +500,7 @@
 
     /* Regional reference = weighted mean of the station quantile tables, so the
        normal bands and normal lines are available on the aggregate too. */
-    var clim = {}, norms = {};
+    var clim = {};
     ["rain30", "rain90", "gt", "gr", "gp", "res"].forEach(function (k) {
       var mean = [], q = [], m, j;
       for (m = 0; m < NODES; m++) {
@@ -425,31 +512,14 @@
         q.push(row[0] == null ? null : row);
       }
       clim[k] = { q: q, mean: mean, nodes: NODES };
-      norms[k] = mean;
     });
     var resTrend = (last >= 30 && pct.res[last] != null && pct.res[last - 30] != null)
       ? Math.round((pct.res[last] - pct.res[last - 30]) * 10) / 10 : null;
 
-    var i0 = last;
-    var now = i0 < 0 ? null : {
-      date: ax.ymd[i0], idx: i0,
-      wai: Math.round(series.wai[i0] * 10) / 10, cat: category(series.wai[i0]),
-      rain30: Math.round(series.rain30[i0]), rain30Norm: normalAt(norms.rain30, ax, i0),
-      rain30Pct: pct.rain30[i0],
-      rain90: Math.round(series.rain90[i0]), rain90Norm: normalAt(norms.rain90, ax, i0),
-      rain90Pct: pct.rain90[i0],
-      gt: series.gt[i0], gtPct: pct.gt[i0],
-      gr: series.gr[i0], grPct: pct.gr[i0],
-      gp: series.gp[i0], gpPct: pct.gp[i0],
-      res: series.res[i0], resPct: pct.res[i0], resTrend: resTrend,
-      irrigation: irrigation(series.p, series.pet, series.gr, ax, i0)
-    };
-    if (now) {
-      now.rain30AnomPct = now.rain30Norm ? Math.round((now.rain30 / now.rain30Norm - 1) * 100) : null;
-      now.rain90AnomPct = now.rain90Norm ? Math.round((now.rain90 / now.rain90Norm - 1) * 100) : null;
-    }
-    return { meta: meta, ax: ax, n: n, series: series, pct: pct, clim: clim,
-             monthly: mon.rows, monthNorm: mon.norm, now: now, isRegion: true };
+    var state = { meta: meta, ax: ax, n: n, series: series, pct: pct, clim: clim,
+                  monthly: mon.rows, monthNorm: mon.norm, isRegion: true };
+    state.now = snapshotAt(state, last);
+    return state;
   }
 
   /* ---------------- NASA POWER access (live refresh / first-run bootstrap) ---------------- */
@@ -500,6 +570,7 @@
   window.WAI = {
     C: C, category: category, fmt: fmt, dateAxis: dateAxis, rolling: rolling,
     computeStation: computeStation, aggregate: aggregate,
+    snapshotAt: snapshotAt, yearSummary: yearSummary,
     normalSeries: normalSeries, climQAt: climQAt,
     fetchPower: fetchPower, mergeTail: mergeTail, todayMinus: todayMinus,
     pctOf: pctOf, invNorm: invNorm

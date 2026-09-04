@@ -9,12 +9,29 @@ robusta belt, daily and monthly:
 | Is the soil actually soaked? | surface (0–5 cm), root zone (~1 m) and whole-profile wetness against the normal range for the same time of year | `GWETTOP` `GWETROOT` `GWETPROF` |
 | How full is the reservoir? | a modelled slow groundwater store, as a percentile of its own 1991–2020 record, plus observed wells if you supply them | modelled from `PRECTOTCORR` + `GWETPROF` |
 
-The three are combined into **WAI**, a 0–100 index: `0.35 × rainfall + 0.35 × root-zone
+A fourth block covers the demand side: reference evapotranspiration ET₀ (Hargreaves),
+crop demand ETc = 0.9 × ET₀, actual uptake ETa = Ks × ETc with the FAO-56 stress
+coefficient, and the gap between them — the transpiration the trees could not take up.
+
+The three water-supply terms are combined into **WAI**, a 0–100 index: `0.35 × rainfall + 0.35 × root-zone
 soil + 0.30 × groundwater store`, each term a percentile of 1991–2020 for that time of
 year. Below 20 = severe deficit, above 80 = surplus; 50 is exactly normal.
 
 Ten points cover the five provinces (Đắk Lắk ×3, Đắk Nông ×2, Gia Lai ×2, Kon Tum ×1,
 Lâm Đồng ×2), each selectable, plus a weighted regional line.
+
+## Looking at a past year (2008, 2016, …)
+
+The record starts in **1991**, so any past season is already there once the snapshot is
+built. Set **Window → “One calendar year…”** and pick the year:
+
+* the charts show that year alone against the 1991–2020 normal, daily or monthly;
+* the index cards read as of 31 December of that year, not today;
+* the station board switches to annual figures — rainfall and its anomaly, mean and
+  lowest WAI, number of stress days, crop demand ETc, and transpiration lost to stress.
+
+That is the answer to "how dry was 2008 for Vietnamese coffee, and where": pick 2008,
+read the station board, then switch to daily to see when in the year it happened.
 
 ## Data
 
