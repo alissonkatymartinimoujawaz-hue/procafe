@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Depot Volumes — Weather & Coffee</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <div class="crumb"><a href="index.html">← Brazil regions</a></div>
+      <h1>📦 Depot volumes — Minas Gerais & Espírito Santo</h1>
+      <p>Daily inflow / outflow and stock of the coffee depots, from <code>volumes/daily_log.csv</code>, plus the official monthly exports of both states (Comex Stat).</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="example-banner" class="est-banner" style="display:block" hidden>⚠️ The log only contains <b>example</b> lines. Delete them in <code>volumes/daily_log.csv</code>, add your own daily numbers and run <code>python volumes/build_volumes.py</code>.</div>
+    <div id="empty" class="placeholder" hidden>No entries yet. Add lines to <code>volumes/daily_log.csv</code> and run <code>python volumes/build_volumes.py</code>.</div>
+
+    <section id="tracker" hidden>
+      <div class="controls">
+        <label>Scope <select id="sel-scope"></select></label>
+        <label>Granularity <select id="sel-gran">
+          <option value="day">Day</option><option value="week">Week (ISO)</option><option value="month">Month</option></select></label>
+        <label>Range <select id="sel-range">
+          <option value="30">Last 30 days</option><option value="90" selected>Last 90 days</option>
+          <option value="365">Last 365 days</option><option value="all">All</option></select></label>
+      </div>
+
+      <div class="kpis" id="kpis"></div>
+
+      <div class="charts-grid">
+        <div class="chart-card" id="chart-stock"></div>
+        <div class="chart-card" id="chart-flows"></div>
+      </div>
+
+      <h3 class="sec">Period table</h3>
+      <div class="ctable-wrap"><table class="ctable" id="period-table"></table></div>
+
+      <h3 class="sec">Latest raw entries</h3>
+      <div class="ctable-wrap"><table class="ctable" id="log-table"></table></div>
+    </section>
+
+    <section id="exports" class="tabpanel" hidden>
+      <h3 class="sec">Official monthly exports — Comex Stat (MDIC)</h3>
+      <p class="muted" id="exports-meta"></p>
+      <div class="charts-grid">
+        <div class="chart-card" id="chart-exports"></div>
+        <div class="chart-card" id="chart-exports-total"></div>
+      </div>
+      <div class="charts-grid" style="margin-top:16px">
+        <div><h4 class="sec">Top municipalities — MG (bags, all years fetched)</h4><div class="ctable-wrap"><table class="ctable" id="mun-MG"></table></div></div>
+        <div><h4 class="sec">Top municipalities — ES (bags, all years fetched)</h4><div class="ctable-wrap"><table class="ctable" id="mun-ES"></table></div></div>
+      </div>
+    </section>
+    <p class="muted" id="no-exports" hidden>Official exports not fetched yet: run <code>python volumes/build_volumes.py --exports</code> (downloads the Comex Stat bulk files once, then cached).</p>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">Bags of 60 kg · Daily log = your own numbers · Exports = Comex Stat (MDIC) · <span id="updated"></span></div>
+  </footer>
+
+  <script src="data/volumes.js"></script>
+  <script src="assets/chart.js?v=10"></script>
+  <script src="assets/volumes-chart.js?v=1"></script>
+  <script>
+  (function () {
+    const V = window.VOLUMES;
+    const $ = id => document.getElementById(id);
+    const fmt = v => (v == null ? "–" : Math.round(v).toLocaleString("en-US"));
+    const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    const C = { stock: "#6f4e37", inflow: "#7a9e5e", outflow: "#c0392b", MG: "#6f4e37", ES: "#2f6fbf" };
+    if (!V) return;
+    $("updated").textContent = "Generated " + V.generated;
+
+    /* ---------------- daily tracker ---------------- */
+    const S = V.series;
+    if (!S || !V.log.length) { $("empty").hidden = false; }
+    else {
+      $("tracker").hidden = false;
+      if (V.log.every(r => r.source === "example")) $("example-banner").hidden = false;
+
+      const scopes = [{ id: "all", label: "All depots" }];
+      Object.keys(S.states).forEach(st => scopes.push({ id: "state:" + st, label: V.states[st] + " (total)" }));
+      Object.keys(S.sites).sort().forEach(k => scopes.push({ id: "site:" + k, label: k + " · " + S.sites[k].state }));
+      scopes.forEach(s => { const o = document.createElement("option"); o.value = s.id; o.textContent = s.label; $("sel-scope").appendChild(o); });
+
+      function pick(scope) {
+        if (scope === "all") return S.all;
+        const [k, v] = scope.split(/:(.*)/s);
+        return k === "state" ? S.states[v] : S.sites[v];
+      }
+      const isoWeek = d => {           // Monday of the ISO week, as "YYYY-Www"
+        const t = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+        const day = t.getUTCDay() || 7; t.setUTCDate(t.getUTCDate() + 4 - day);
+        const y0 = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+        return t.getUTCFullYear() + "-W" + String(Math.ceil(((t - y0) / 864e5 + 1) / 7)).padStart(2, "0");
+      };
+      const keyOf = (iso, gran) => {
+        const d = new Date(iso + "T00:00:00Z");
+        if (gran === "day") return iso;
+        if (gran === "week") return isoWeek(d);
+        return iso.slice(0, 7);
+      };
+      const labelOf = (key, gran) => gran === "day" ? key.slice(5).replace("-", "/")
+        : gran === "week" ? key.slice(2) : key;
+
+      function aggregate(src, gran, rangeDays) {
+        const dates = S.dates;
+        let from = 0;
+        if (rangeDays !== "all") from = Math.max(0, dates.length - +rangeDays);
+        const buckets = new Map();
+        for (let i = from; i < dates.length; i++) {
+          const k = keyOf(dates[i], gran);
+          let b = buckets.get(k);
+          if (!b) { b = { key: k, inflow: 0, outflow: 0, stock: null, measured: false, days: 0 }; buckets.set(k, b); }
+          b.inflow += src.inflow[i]; b.outflow += src.outflow[i]; b.days++;
+          if (src.stock[i] != null) b.stock = src.stock[i];
+          if (src.measured && src.measured[i]) b.measured = true;
+        }
+        return [...buckets.values()];
+      }
+
+      function render() {
+        const scope = $("sel-scope").value, gran = $("sel-gran").value, range = $("sel-range").value;
+        const src = pick(scope);
+        const rows = aggregate(src, gran, range);
+        const labels = rows.map(r => labelOf(r.key, gran));
+        const unitLabel = gran === "day" ? "per day" : gran === "week" ? "per ISO week" : "per month";
+
+        // KPIs (always on daily data, last 7 days)
+        const n = S.dates.length, last7 = i => i >= n - 7;
+        const in7 = src.inflow.reduce((a, v, i) => a + (last7(i) ? v : 0), 0);
+        const out7 = src.outflow.reduce((a, v, i) => a + (last7(i) ? v : 0), 0);
+        const cur = src.stock[n - 1];
+        $("kpis").innerHTML = [
+          ["Current stock", fmt(cur), "bags · " + S.dates[n - 1]],
+          ["Inflow, last 7 days", fmt(in7), "bags"],
+          ["Outflow, last 7 days", fmt(out7), "bags"],
+          ["Net, last 7 days", (in7 - out7 >= 0 ? "+" : "") + fmt(in7 - out7), "bags"],
+        ].map(([t, v, s]) => `<div class="kpi"><div class="kt">${t}</div><div class="kv">${v}</div><div class="ks">${s}</div></div>`).join("");
+
+        $("chart-stock").innerHTML = renderTimeChart({
+          title: "Stock in depot", subtitle: scopes.find(s => s.id === scope).label + " — end of " + gran,
+          yLabel: "bags (60 kg)", labels,
+          series: [{ label: "stock", color: C.stock, kind: "line", values: rows.map(r => r.stock), dots: rows.map(r => r.measured) }]
+        });
+        $("chart-flows").innerHTML = renderTimeChart({
+          title: "Inflow vs outflow", subtitle: unitLabel, yLabel: "bags (60 kg)", labels,
+          series: [{ label: "inflow", color: C.inflow, kind: "bar", values: rows.map(r => r.inflow) },
+                   { label: "outflow", color: C.outflow, kind: "bar", values: rows.map(r => r.outflow) }]
+        });
+
+        $("period-table").innerHTML = `<thead><tr><th class="local">${gran}</th><th>inflow</th><th>outflow</th><th>net</th><th>stock (end)</th><th>days</th></tr></thead><tbody>` +
+          rows.slice().reverse().map(r => `<tr><td class="local">${esc(r.key)}${r.measured ? " <sup>●</sup>" : ""}</td><td>${fmt(r.inflow)}</td><td>${fmt(r.outflow)}</td><td>${(r.inflow - r.outflow >= 0 ? "+" : "") + fmt(r.inflow - r.outflow)}</td><td>${fmt(r.stock)}</td><td>${r.days}</td></tr>`).join("") +
+          `</tbody>`;
+      }
+      ["sel-scope", "sel-gran", "sel-range"].forEach(id => $(id).addEventListener("change", render));
+      render();
+
+      const log = V.log.slice().sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : a.site.localeCompare(b.site))).slice(0, 40);
+      $("log-table").innerHTML = `<thead><tr><th class="local">date</th><th class="local">site</th><th>state</th><th>inflow</th><th>outflow</th><th>stock (measured)</th><th class="local">source</th><th class="local">note</th></tr></thead><tbody>` +
+        log.map(r => `<tr><td class="local">${r.date}</td><td class="local">${esc(r.site)}</td><td>${r.state}</td><td>${fmt(r.inflow)}</td><td>${fmt(r.outflow)}</td><td>${r.stock == null ? "" : fmt(r.stock)}</td><td class="local">${esc(r.source)}</td><td class="local">${esc(r.note)}</td></tr>`).join("") + `</tbody>`;
+    }
+
+    /* ---------------- Comex Stat exports ---------------- */
+    const E = V.exports;
+    if (!E) { $("no-exports").hidden = false; return; }
+    $("exports").hidden = false;
+    $("exports-meta").textContent = `${E.source} · ${E.unit} · years ${E.years.join(", ")}`;
+    const months = [...new Set([].concat(...Object.values(E.monthly).map(m => Object.keys(m))))].sort().slice(-24);
+    const ser = (cat) => Object.keys(E.monthly).map(uf => ({
+      label: `${uf} ${cat}`, color: C[uf], kind: "bar", values: months.map(m => (E.monthly[uf][m] || {})[cat] ?? 0)
+    }));
+    $("chart-exports").innerHTML = renderTimeChart({ title: "Green coffee exports by state of origin", subtitle: "NCM 0901.11 + 0901.12, monthly", yLabel: "bags (60 kg)", labels: months.map(m => m.slice(2)), series: ser("green") });
+    $("chart-exports-total").innerHTML = renderTimeChart({ title: "All coffee exports (0901) by state of origin", subtitle: "green + roasted + other, monthly", yLabel: "bags (60 kg)", labels: months.map(m => m.slice(2)), series: ser("total") });
+    ["MG", "ES"].forEach(uf => {
+      const list = (E.municipal && E.municipal[uf]) || [];
+      $("mun-" + uf).innerHTML = `<thead><tr><th>#</th><th class="local">municipality</th><th>bags</th></tr></thead><tbody>` +
+        list.map((m, i) => `<tr><td>${i + 1}</td><td class="local">${esc(m.name)}</td><td>${fmt(m.bags)}</td></tr>`).join("") + `</tbody>`;
+    });
+  })();
+  </script>
+</body>
+</html>

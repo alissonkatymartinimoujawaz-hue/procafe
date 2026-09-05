@@ -1,0 +1,26 @@
+# Daily coffee depot log — one line per site per day. Bags of 60 kg.
+# date (YYYY-MM-DD), state (MG or ES), site (free label, keep it identical every day),
+# inflow_bags, outflow_bags, stock_bags (optional measured end-of-day stock; overrides the running balance),
+# source (where the number comes from), note.
+# The lines below with source=example are placeholders: delete them and start logging your own numbers.
+date,state,site,inflow_bags,outflow_bags,stock_bags,source,note
+2026-08-24,MG,Armazém Varginha,1200,300,9800,example,opening physical count
+2026-08-25,MG,Armazém Varginha,950,420,,example,
+2026-08-26,MG,Armazém Varginha,1100,600,,example,
+2026-08-27,MG,Armazém Varginha,800,900,,example,truck to Santos
+2026-08-28,MG,Armazém Varginha,600,250,10500,example,physical count end of day
+2026-08-31,MG,Armazém Varginha,700,1200,,example,
+2026-09-01,MG,Armazém Varginha,400,800,,example,
+2026-09-02,MG,Armazém Varginha,500,350,,example,
+2026-09-03,MG,Armazém Varginha,300,700,,example,
+2026-09-04,MG,Armazém Varginha,250,400,,example,
+2026-08-24,ES,Armazém Vitória,2000,1500,25500,example,opening physical count (conilon)
+2026-08-25,ES,Armazém Vitória,1800,2200,,example,
+2026-08-26,ES,Armazém Vitória,1500,900,,example,
+2026-08-27,ES,Armazém Vitória,1200,2600,,example,vessel loading
+2026-08-28,ES,Armazém Vitória,900,1100,24000,example,physical count end of day
+2026-08-31,ES,Armazém Vitória,700,1900,,example,
+2026-09-01,ES,Armazém Vitória,600,1300,,example,
+2026-09-02,ES,Armazém Vitória,800,700,,example,
+2026-09-03,ES,Armazém Vitória,500,1500,,example,
+2026-09-04,ES,Armazém Vitória,400,900,,example,

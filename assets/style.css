@@ -178,3 +178,14 @@ table.ctable sup { color: var(--accent-soft); font-size: 10px; }
 .img-host { margin-top: 4px; }
 .img-host .placeholder code { background: color-mix(in srgb, var(--accent) 12%, transparent);
   padding: 2px 6px; border-radius: 5px; font-size: 12px; color: var(--ink); }
+
+/* ---------- Volumes page ---------- */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 0 0 18px; }
+.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow); }
+.kpi .kt { font-size: 12px; color: var(--muted); font-weight: 600; }
+.kpi .kv { font-size: 24px; font-weight: 700; letter-spacing: -.3px; margin: 2px 0; }
+.kpi .ks { font-size: 12px; color: var(--muted); }
+h3.sec, h4.sec { margin: 26px 0 10px; font-size: 16px; }
+h4.sec { font-size: 14px; margin-top: 0; }
+.muted { color: var(--muted); font-size: 13px; }
+code { background: color-mix(in srgb, var(--accent) 12%, transparent); padding: 1px 6px; border-radius: 5px; font-size: .92em; }

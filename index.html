@@ -39,6 +39,14 @@
         <div class="cities"><b>${r.cities.length} towns:</b> ${r.cities.map(c => c.name).join(' · ')}</div>`;
       grid.appendChild(a);
     });
+    const vol = document.createElement('a');
+    vol.className = 'card'; vol.href = 'volumes.html';
+    vol.innerHTML = `
+      <span class="tag">Volumes</span>
+      <h2>📦 Depot volumes</h2>
+      <p>Daily inflow / outflow and stock of the coffee depots in Minas Gerais and Espírito Santo, with the official monthly exports of both states.</p>
+      <div class="cities"><b>Day · week · month</b> · log in volumes/daily_log.csv</div>`;
+    grid.appendChild(vol);
     if (SITE_CONFIG.updated) {
       document.getElementById('updated').textContent = 'Updated ' + SITE_CONFIG.updated;
     }

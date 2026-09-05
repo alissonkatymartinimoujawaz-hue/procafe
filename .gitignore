@@ -1,0 +1,3 @@
+volumes/cache/
+__pycache__/
+*.part
