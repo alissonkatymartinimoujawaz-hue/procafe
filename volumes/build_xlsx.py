@@ -7,11 +7,11 @@ Sheets
   Definitions : how to read Cecafé's Resumo Diário (certificate / customs / shipment ...)
   Donnees     : raw rows (one per day × table × unit), the same layout as cecafe_daily.csv
   Arabica, Robusta : interactive dashboards driven by the "Date affichée" cell:
-      1. per stage, all ports: day D (red), month-to-date (green), % change vs previous month (blue, right axis)
+      0. summary like Cecafé's own comparison: day, current month, previous month, variation (rolling month names)
+      1. per stage, all ports: day D (red) + % change vs previous month (blue, right axis)
       2. per port × stage: movement of the day
       3. per port × stage: % change of the month-to-date vs previous month (bars up / down)
-      4. per port × stage: month-to-date vs previous month same period (supporting numbers)
-      5. history: every day collected, per stage, with % change vs previous month
+      4. history: every day collected, per stage, with % change vs previous month
 
 Everything is formulas over the Donnees sheet: paste new rows there and the dashboards follow.
 Run:  python volumes/build_xlsx.py      (needs openpyxl)
@@ -228,10 +228,9 @@ def sheet_type(wb, name, rows):
     ws.cell(row=r0 + 2, column=7, value="café vendu, pas encore parti").font = font(italic=True, color="7A6F66")
     cats = Reference(ws, min_col=1, min_row=r0 + 1, max_row=r0 + 3)
     combo(ws, "I12", cats,
-          [(Reference(ws, min_col=2, min_row=r0 + 1, max_row=r0 + 3), "Total du jour", RED),
-           (Reference(ws, min_col=4, min_row=r0 + 1, max_row=r0 + 3), "Cumul du mois", GRN)],
+          [(Reference(ws, min_col=2, min_row=r0 + 1, max_row=r0 + 3), "Total du jour", RED)],
           [(Reference(ws, min_col=6, min_row=r0 + 1, max_row=r0 + 3), "Variation % vs mois précédent", BLU)],
-          f"{name} — mouvement du jour (rouge), cumul du mois (vert), variation % vs mois précédent (bleu, axe droit)")
+          f"{name} — mouvement du jour (rouge) et variation % du cumul vs mois précédent (bleu, axe droit)")
 
     # ---- block 2: per port, day D per stage + % vs previous month
     r1 = r0 + 6
@@ -260,31 +259,12 @@ def sheet_type(wb, name, rows):
     pc.set_categories(cats); pc.height = 9.5; pc.width = 20; pc.legend.position = "b"
     ws.add_chart(pc, "I52")
 
-    # ---- block 3: per port, month-to-date vs previous month
-    r2 = r1 + len(PORTS) + 4
-    ws.cell(row=r2 - 1, column=1, value="4. Par port, cumul du mois (rouge) contre même période du mois précédent (bleu)").font = font(bold=True, size=11)
-    header(ws, r2, ["Port / unité", "Certificats cumul", "Certificats mois préc.", "Dédouanés cumul", "Dédouanés mois préc.", "Embarqués cumul", "Embarqués mois préc."])
-    for i, (k, lab) in enumerate(PORTS):
-        r = r2 + 1 + i
-        ws.cell(row=r, column=1, value=lab)
-        for j, (st, _) in enumerate(STAGES):
-            ws.cell(row=r, column=2 + 2 * j, value="=" + cum(DD, st, k)).number_format = "#,##0"
-            ws.cell(row=r, column=3 + 2 * j, value="=" + prv(DD, st, k)).number_format = "#,##0"
-        for j in range(1, 8): ws.cell(row=r, column=j).border = BOX
-    cats = Reference(ws, min_col=1, min_row=r2 + 1, max_row=r2 + len(PORTS))
-    combo(ws, "I72", cats,
-          [(Reference(ws, min_col=2, min_row=r2 + 1, max_row=r2 + len(PORTS)), "Certificats cumul", RED),
-           (Reference(ws, min_col=3, min_row=r2 + 1, max_row=r2 + len(PORTS)), "Certificats mois préc.", BLU),
-           (Reference(ws, min_col=4, min_row=r2 + 1, max_row=r2 + len(PORTS)), "Dédouanés cumul", RED2),
-           (Reference(ws, min_col=5, min_row=r2 + 1, max_row=r2 + len(PORTS)), "Dédouanés mois préc.", BLU2),
-           (Reference(ws, min_col=6, min_row=r2 + 1, max_row=r2 + len(PORTS)), "Embarqués cumul", RED3),
-           (Reference(ws, min_col=7, min_row=r2 + 1, max_row=r2 + len(PORTS)), "Embarqués mois préc.", BLU3)],
-          [], f"{name} — cumul du mois (rouges) vs même période du mois précédent (bleus)")
+    r2 = r1  # (block "cumul vs mois précédent par port" removed on request)
 
     # ---- block 4: history, one row per day collected
     dates = sorted({r["date"] for r in rows})
-    r3 = r2 + len(PORTS) + 4
-    ws.cell(row=r3 - 1, column=1, value="5. Historique jour par jour (toutes unités)").font = font(bold=True, size=11)
+    r3 = r1 + len(PORTS) + 4
+    ws.cell(row=r3 - 1, column=1, value="4. Historique jour par jour (toutes unités)").font = font(bold=True, size=11)
     header(ws, r3, ["Date", "Certificats J", "Dédouanés J", "Embarqués J", "Certificats cumul", "Embarqués cumul", "Certifiés − embarqués", "Var. % certificats vs mois préc.", "Var. % embarqués vs mois préc."])
     for i, d in enumerate(dates):
         r = r3 + 1 + i
@@ -302,7 +282,7 @@ def sheet_type(wb, name, rows):
     rl = r3 + max(1, len(dates))
     ws.cell(row=rl + 1, column=1, value="Le script build_xlsx.py ajoute une ligne par nouvelle journée. Si tu colles des jours à la main dans Donnees, ajoute aussi la date ici (colonne A), les formules de la ligne au-dessus se copient.").font = font(italic=True, color="7A6F66")
     cats = Reference(ws, min_col=1, min_row=r3 + 1, max_row=rl)
-    combo(ws, "I92", cats,
+    combo(ws, "I52", cats,
           [(Reference(ws, min_col=2, min_row=r3 + 1, max_row=rl), "Certificats J", RED),
            (Reference(ws, min_col=3, min_row=r3 + 1, max_row=rl), "Dédouanés J", RED2),
            (Reference(ws, min_col=4, min_row=r3 + 1, max_row=rl), "Embarqués J", RED3)],
