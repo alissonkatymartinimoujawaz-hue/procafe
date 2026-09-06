@@ -71,6 +71,14 @@ MG or ES. What exists publicly:
 So the daily granularity comes from **your own numbers** (your depot, your
 broker, cooperative bulletins). The page then aggregates by day, week and month.
 
+## Excel example
+
+`exemple_suivi_volumes.xlsx` shows what the tracking produces, in Excel form:
+raw Cecafé rows, day vs prior day, cumulative by day of month vs previous month,
+monthly totals by year, and the depot log with a running balance. Formulas
+recalculate when Excel opens the file; only 4 Sep 2026 is real, 1–3 Sep are
+marked EXEMPLE.
+
 ## Files
 
 ```
