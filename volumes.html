@@ -54,7 +54,14 @@
       </div>
       <div class="kpis" id="cc-kpis"></div>
       <div class="charts-grid">
+        <div class="chart-card" id="cc-chart-vs"></div>
         <div class="chart-card" id="cc-chart-day"></div>
+      </div>
+      <div class="charts-grid" style="margin-top:16px">
+        <div class="chart-card" id="cc-chart-months"></div>
+        <div class="chart-card" id="cc-chart-years"></div>
+      </div>
+      <div class="charts-grid" style="margin-top:16px">
         <div class="chart-card" id="cc-chart-cum"></div>
       </div>
       <h4 class="sec" style="margin-top:22px">Latest position by unit</h4>
@@ -68,8 +75,12 @@
     <section id="exports" class="tabpanel" hidden>
       <h3 class="sec">Official monthly exports — Comex Stat (MDIC)</h3>
       <p class="muted" id="exports-meta"></p>
+      <div class="controls"><label>State <select id="ex-uf"><option value="BR">Brazil (all states)</option><option value="MG">Minas Gerais</option><option value="ES">Espírito Santo</option></select></label></div>
       <div class="charts-grid">
+        <div class="chart-card" id="chart-exports-years"></div>
         <div class="chart-card" id="chart-exports"></div>
+      </div>
+      <div class="charts-grid" style="margin-top:16px">
         <div class="chart-card" id="chart-exports-total"></div>
       </div>
       <div class="charts-grid" style="margin-top:16px">
@@ -217,8 +228,59 @@
           ["Certified − shipped (MTD)", cM != null && sM != null ? fmt(cM - sM) : "–", "export coffee waiting in warehouses"],
         ].map(([t, v, s]) => `<div class="kpi"><div class="kt">${t}</div><div class="kv">${v}</div><div class="ks">${s}</div></div>`).join("");
 
+        // --- Today vs prior day (per stage) ---
+        const prevDate = CC.dates.length > 1 ? CC.dates[CC.dates.length - 2] : null;
+        const stageVals = d => TABLES.map(([t]) => d ? get(d, t, u, ty + "_day") : null);
+        $("cc-chart-vs").innerHTML = renderTimeChart({
+          title: "Today vs prior day", subtitle: CC.units[u] + " — " + ty + (prevDate ? ` — ${prevDate} vs ${last}` : " — no prior day yet"),
+          yLabel: "bags (60 kg)", labels: TABLES.map(([, lab]) => lab),
+          series: [{ label: "prior day " + (prevDate || ""), color: "#b8a99a", kind: "bar", values: stageVals(prevDate) },
+                   { label: "today " + last, color: "#6f4e37", kind: "bar", values: stageVals(last) }]
+        });
+
+        // --- Cumulative by day of month: this month vs other months vs same month other years ---
+        const MN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const mLabel = m => MN[+m.slice(5, 7) - 1] + " " + m.slice(0, 4);
+        const prevMonthOf = m => { const y = +m.slice(0, 4), mo = +m.slice(5, 7); return mo === 1 ? `${y - 1}-12` : `${y}-${String(mo - 1).padStart(2, "0")}`; };
+        const own = new Map();   // month -> [31] cumulative from our own daily rows
+        const recon = new Map(); // month -> [31] reconstructed from Cecafé's "previous month" column
+        CC.rows.filter(r => r.table === "certificates" && r.unit === u).forEach(r => {
+          const m = r.date.slice(0, 7), k = +r.date.slice(8, 10) - 1;
+          if (!own.has(m)) own.set(m, Array(31).fill(null));
+          own.get(m)[k] = r[ty + "_cum"];
+          const pm = prevMonthOf(m);
+          if (!recon.has(pm)) recon.set(pm, Array(31).fill(null));
+          if (r[ty + "_prev"] != null) recon.get(pm)[k] = r[ty + "_prev"];
+        });
+        const curM = last.slice(0, 7), curMo = curM.slice(5, 7);
+        const months = new Map();
+        [...recon.keys()].forEach(m => { if (!own.has(m)) months.set(m, { v: recon.get(m), src: "prev-month column" }); });
+        [...own.keys()].forEach(m => months.set(m, { v: own.get(m), src: "daily" }));
+        const keys = [...months.keys()].sort();
+        const recent = keys.slice(-6);
+        const sameMonth = keys.filter(m => m.slice(5, 7) === curMo && !recent.includes(m));
+        const shades = ["#b8a99a", "#d9a76f", "#b07a4a", "#7a9e5e", "#2f6fbf", "#6f4e37"];
+        const yearsColors = ["#7a9e5e", "#2f6fbf", "#8e44ad"];
+        const monthSeries = [...sameMonth.map((m, i) => ({ label: mLabel(m) + (months.get(m).src === "daily" ? "" : " (Cecafé prev.)"), color: yearsColors[i % 3], kind: "line", values: months.get(m).v })),
+          ...recent.map((m, i) => ({ label: mLabel(m) + (months.get(m).src === "daily" ? "" : " (Cecafé prev.)"), color: m === curM ? "#6f4e37" : shades[i % shades.length], kind: "line", values: months.get(m).v }))];
+        $("cc-chart-months").innerHTML = renderTimeChart({
+          title: "Certificates, cumulative by day of month", subtitle: CC.units[u] + " — " + ty + " — month vs other months vs same month other years",
+          yLabel: "bags (60 kg)", labels: Array.from({ length: 31 }, (_, i) => String(i + 1)), series: monthSeries
+        });
+
+        // --- Monthly totals by year (last cumulative observed in each month) ---
+        const yearsSet = [...new Set(keys.filter(m => months.get(m).src === "daily").map(m => m.slice(0, 4)))].sort();
+        const lastObs = m => { const v = months.get(m).v; for (let i = 30; i >= 0; i--) if (v[i] != null) return { val: v[i], dom: i + 1 }; return null; };
+        const ySeries = yearsSet.map((y, i) => ({ label: y, color: i === yearsSet.length - 1 ? "#6f4e37" : shades[(i + 1) % shades.length], kind: "bar",
+          values: MN.map((_, mi) => { const m = `${y}-${String(mi + 1).padStart(2, "0")}`; const o = months.has(m) && months.get(m).src === "daily" ? lastObs(m) : null; return o ? o.val : null; }) }));
+        const curObs = months.has(curM) ? lastObs(curM) : null;
+        $("cc-chart-years").innerHTML = renderTimeChart({
+          title: "Certificates, monthly total by year", subtitle: CC.units[u] + " — " + ty + (curObs ? ` — ${mLabel(curM)} partial (day ${curObs.dom})` : ""),
+          yLabel: "bags (60 kg)", labels: MN, series: ySeries
+        });
+
         $("cc-chart-day").innerHTML = renderTimeChart({
-          title: "Movement of the day", subtitle: CC.units[u] + " — " + ty, yLabel: "bags (60 kg)", labels,
+          title: "Movement of the day, last 60 days", subtitle: CC.units[u] + " — " + ty, yLabel: "bags (60 kg)", labels,
           series: TABLES.map(([t, lab, col]) => ({ label: lab, color: col, kind: "bar", values: dates.map(d => get(d, t, u, ty + "_day")) }))
         });
         $("cc-chart-cum").innerHTML = renderTimeChart({
@@ -253,7 +315,20 @@
     $("exports").hidden = false;
     $("exports-meta").textContent = `${E.source} · ${E.unit} · years ${E.years.join(", ")}`;
     const months = [...new Set([].concat(...Object.values(E.monthly).map(m => Object.keys(m))))].sort().slice(-24);
-    const ser = (cat) => Object.keys(E.monthly).map(uf => ({
+    const MN2 = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const shades2 = ["#b8a99a", "#d9a76f", "#b07a4a", "#7a9e5e", "#2f6fbf", "#6f4e37"];
+    function renderExportYears() {
+      const uf = $("ex-uf").value, m = E.monthly[uf] || {};
+      const yrs = [...new Set(Object.keys(m).map(k => k.slice(0, 4)))].sort();
+      $("chart-exports-years").innerHTML = renderTimeChart({
+        title: "Green coffee exports, monthly by year", subtitle: ($("ex-uf").selectedOptions[0].textContent) + " — NCM 0901.11 + 0901.12",
+        yLabel: "bags (60 kg)", labels: MN2,
+        series: yrs.map((y, i) => ({ label: y, color: i === yrs.length - 1 ? "#6f4e37" : shades2[(i + 1) % shades2.length], kind: "bar",
+          values: MN2.map((_, mi) => { const k = `${y}-${String(mi + 1).padStart(2, "0")}`; return m[k] ? m[k].green : null; }) }))
+      });
+    }
+    $("ex-uf").addEventListener("change", renderExportYears); renderExportYears();
+    const ser = (cat) => Object.keys(E.monthly).filter(uf => uf !== "BR").map(uf => ({
       label: `${uf} ${cat}`, color: C[uf], kind: "bar", values: months.map(m => (E.monthly[uf][m] || {})[cat] ?? 0)
     }));
     $("chart-exports").innerHTML = renderTimeChart({ title: "Green coffee exports by state of origin", subtitle: "NCM 0901.11 + 0901.12, monthly", yLabel: "bags (60 kg)", labels: months.map(m => m.slice(2)), series: ser("green") });

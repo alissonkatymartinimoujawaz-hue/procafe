@@ -18,6 +18,7 @@ Usage:
     python volumes/fetch_cecafe.py --file page.html   # parse a saved copy instead (offline)
     python volumes/fetch_cecafe.py --date 2026-09-04  # force the reference date
     python volumes/fetch_cecafe.py --print            # show what was parsed, do not write
+    python volumes/fetch_cecafe.py --browser          # render with Chromium if the tables are built by JS
 
 Stdlib only. Rows already present (same date, table, unit) are replaced.
 """
@@ -171,6 +172,26 @@ def fetch(url, tries=3):
     sys.exit(f"fetch failed: {last!r}")
 
 
+def fetch_browser(url):
+    """Fallback when the tables are rendered by JavaScript: needs `pip install playwright`
+       and `playwright install chromium`."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        sys.exit("--browser needs: pip install playwright && playwright install chromium")
+    with sync_playwright() as p:
+        b = p.chromium.launch()
+        pg = b.new_page()
+        pg.goto(url, wait_until="networkidle", timeout=90000)
+        try:
+            pg.wait_for_selector("table", timeout=30000)
+        except Exception:
+            pass
+        html = pg.content()
+        b.close()
+    return html
+
+
 def load_csv(path):
     if not os.path.exists(path):
         return []
@@ -184,9 +205,14 @@ def main():
     ap.add_argument("--date", help="reference date YYYY-MM-DD (default: date found on the page, else today)")
     ap.add_argument("--print", action="store_true", help="print parsed rows, do not write the CSV")
     ap.add_argument("--out", default=CSV)
+    ap.add_argument("--browser", action="store_true", help="render the page with Playwright/Chromium (JS fallback)")
+    ap.add_argument("--save-html", help="save the fetched HTML to this path (debugging)")
     a = ap.parse_args()
 
-    html = open(a.file, encoding="utf-8", errors="replace").read() if a.file else fetch(URL)
+    html = open(a.file, encoding="utf-8", errors="replace").read() if a.file else (fetch_browser(URL) if a.browser else fetch(URL))
+    if a.save_html:
+        with open(a.save_html, "w", encoding="utf-8") as f:
+            f.write(html)
     rows, page_date = parse(html)
     if not rows:
         sys.exit("no table recognised on the page (layout changed?) — save the HTML and open an issue")

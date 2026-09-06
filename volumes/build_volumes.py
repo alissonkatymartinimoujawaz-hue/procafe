@@ -243,16 +243,15 @@ def parse_ncm(path, acc):
             if not ncm.startswith("0901"):
                 continue
             uf = row[iU]
-            if uf not in STATES:
-                continue
             key = f"{row[iY]}-{int(row[iM]):02d}"
             kg = float(row[iK])
-            a = acc[uf][key]
-            a["total"] += kg
-            if ncm[:6] in ("090111", "090112"):
-                a["green"] += kg
-            elif ncm[:6] in ("090121", "090122"):
-                a["roasted"] += kg
+            for k in ((uf, "BR") if uf in STATES else ("BR",)):
+                a = acc[k][key]
+                a["total"] += kg
+                if ncm[:6] in ("090111", "090112"):
+                    a["green"] += kg
+                elif ncm[:6] in ("090121", "090122"):
+                    a["roasted"] += kg
 
 
 def parse_mun(path, acc):
@@ -303,7 +302,7 @@ def build_exports(years, refresh):
     names = load_mun_names(download(COMEX_UFMUN, os.path.join(CACHE, "UF_MUN.csv"), refresh))
 
     monthly = {}
-    for uf in STATES:
+    for uf in list(STATES) + ["BR"]:
         monthly[uf] = {k: {c: round(v / BAG_KG) for c, v in d.items()}
                        for k, d in sorted(ncm_acc[uf].items())}
     municipal = {}

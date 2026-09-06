@@ -19,7 +19,22 @@ jobs:
         with:
           python-version: "3.12"
       - name: Fetch Cecafé daily summary
-        run: python volumes/fetch_cecafe.py
+        id: plain
+        continue-on-error: true
+        run: python volumes/fetch_cecafe.py --save-html cecafe_page.html
+      - name: Fetch with a browser (fallback if the tables are rendered by JavaScript)
+        if: steps.plain.outcome == 'failure'
+        run: |
+          pip install playwright
+          playwright install --with-deps chromium
+          python volumes/fetch_cecafe.py --browser --save-html cecafe_page.html
+      - name: Keep the fetched page as an artifact (debugging)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cecafe-page-${{ github.run_id }}
+          path: cecafe_page.html
+          retention-days: 7
       - name: Rebuild data/volumes.js
         run: python volumes/build_volumes.py
       - name: Commit if changed
