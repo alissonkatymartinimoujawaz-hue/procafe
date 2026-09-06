@@ -11,7 +11,7 @@
     <div class="wrap">
       <div class="crumb"><a href="index.html">← Brazil regions</a></div>
       <h1>📦 Depot volumes — Minas Gerais & Espírito Santo</h1>
-      <p>Daily inflow / outflow and stock of the coffee depots, from <code>volumes/daily_log.csv</code>, plus the official monthly exports of both states (Comex Stat).</p>
+      <p>Three layers: your own depot log (<code>volumes/daily_log.csv</code>), the daily export pipeline published by Cecafé (certificates of origin → customs → shipment, incl. Vitória/ES and REDEX-EADI Minas Gerais), and the official monthly exports of both states (Comex Stat).</p>
     </div>
   </header>
 
@@ -43,6 +43,28 @@
       <div class="ctable-wrap"><table class="ctable" id="log-table"></table></div>
     </section>
 
+    <section id="cecafe" class="tabpanel" hidden>
+      <h3 class="sec">Daily export pipeline — Cecafé "Resumo Diário"</h3>
+      <p class="muted" id="cecafe-meta"></p>
+      <div class="controls">
+        <label>Unit <select id="cc-unit"></select></label>
+        <label>Type <select id="cc-type">
+          <option value="total">All coffee</option><option value="arabica">Arabica</option>
+          <option value="conilon">Conilon</option><option value="soluble">Soluble</option></select></label>
+      </div>
+      <div class="kpis" id="cc-kpis"></div>
+      <div class="charts-grid">
+        <div class="chart-card" id="cc-chart-day"></div>
+        <div class="chart-card" id="cc-chart-cum"></div>
+      </div>
+      <h4 class="sec" style="margin-top:22px">Latest position by unit</h4>
+      <div class="ctable-wrap"><table class="ctable" id="cc-units"></table></div>
+      <h4 class="sec" style="margin-top:22px">Day by day</h4>
+      <div class="ctable-wrap"><table class="ctable" id="cc-days"></table></div>
+      <p class="muted">Certificates of origin are issued when the coffee is sold for export and sits in a warehouse ready to go; customs clearance and shipment follow days or weeks later. <b>Certified − shipped</b> (month-to-date) is therefore a proxy of the export coffee waiting in the port and inland warehouses. Vitória (ES) and REDEX/EADI (MG) are the two units located in the states tracked here. "Previous month" is the figure Cecafé shows next to the cumulative.</p>
+    </section>
+    <p class="muted" id="no-cecafe" hidden>Cecafé daily summary not fetched yet: run <code>python volumes/fetch_cecafe.py</code> then <code>python volumes/build_volumes.py</code>, or enable the GitHub Actions workflow.</p>
+
     <section id="exports" class="tabpanel" hidden>
       <h3 class="sec">Official monthly exports — Comex Stat (MDIC)</h3>
       <p class="muted" id="exports-meta"></p>
@@ -64,7 +86,7 @@
 
   <script src="data/volumes.js"></script>
   <script src="assets/chart.js?v=10"></script>
-  <script src="assets/volumes-chart.js?v=1"></script>
+  <script src="assets/volumes-chart.js?v=2"></script>
   <script>
   (function () {
     const V = window.VOLUMES;
@@ -163,6 +185,66 @@
       const log = V.log.slice().sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : a.site.localeCompare(b.site))).slice(0, 40);
       $("log-table").innerHTML = `<thead><tr><th class="local">date</th><th class="local">site</th><th>state</th><th>inflow</th><th>outflow</th><th>stock (measured)</th><th class="local">source</th><th class="local">note</th></tr></thead><tbody>` +
         log.map(r => `<tr><td class="local">${r.date}</td><td class="local">${esc(r.site)}</td><td>${r.state}</td><td>${fmt(r.inflow)}</td><td>${fmt(r.outflow)}</td><td>${r.stock == null ? "" : fmt(r.stock)}</td><td class="local">${esc(r.source)}</td><td class="local">${esc(r.note)}</td></tr>`).join("") + `</tbody>`;
+    }
+
+    /* ---------------- Cecafé daily export pipeline ---------------- */
+    const CC = V.cecafe;
+    if (!CC || !CC.dates.length) { $("no-cecafe").hidden = false; }
+    else {
+      $("cecafe").hidden = false;
+      $("cecafe-meta").textContent = `${CC.source} · ${CC.unit} · ${CC.dates.length} day(s), last ${CC.dates[CC.dates.length - 1]}`;
+      const TABLES = [["certificates", "certificates of origin", "#6f4e37"], ["customs", "customs clearance", "#b07a4a"], ["shipment", "shipped", "#2f6fbf"]];
+      const present = new Set(CC.rows.map(r => r.unit));
+      Object.entries(CC.units).filter(([k]) => present.has(k)).forEach(([k, lab]) => {
+        const o = document.createElement("option"); o.value = k; o.textContent = lab; $("cc-unit").appendChild(o);
+      });
+      const byKey = new Map(CC.rows.map(r => [r.date + "|" + r.table + "|" + r.unit, r]));
+      const get = (d, t, u, f) => { const r = byKey.get(d + "|" + t + "|" + u); return r ? r[f] : null; };
+      const pct = (a, b) => (b ? ((a / b - 1) * 100).toFixed(0).replace(/^(\d)/, "+$1") + "%" : "–");
+
+      function renderCC() {
+        const u = $("cc-unit").value, ty = $("cc-type").value;
+        const dates = CC.dates.slice(-60), labels = dates.map(d => d.slice(5).replace("-", "/"));
+        const last = CC.dates[CC.dates.length - 1];
+        const cD = get(last, "certificates", u, ty + "_day"), sD = get(last, "shipment", u, ty + "_day");
+        const cM = get(last, "certificates", u, ty + "_cum"), cP = get(last, "certificates", u, ty + "_prev");
+        const sM = get(last, "shipment", u, ty + "_cum"), sP = get(last, "shipment", u, ty + "_prev");
+        $("cc-kpis").innerHTML = [
+          ["Certified today", fmt(cD), "bags · " + last],
+          ["Shipped today", fmt(sD), sD == null ? "no shipment line for this unit" : "bags"],
+          ["Certified, month to date", fmt(cM), "vs previous month " + fmt(cP) + " (" + pct(cM, cP) + ")"],
+          ["Shipped, month to date", fmt(sM), sM == null ? "no shipment line for this unit" : "vs previous month " + fmt(sP) + " (" + pct(sM, sP) + ")"],
+          ["Certified − shipped (MTD)", cM != null && sM != null ? fmt(cM - sM) : "–", "export coffee waiting in warehouses"],
+        ].map(([t, v, s]) => `<div class="kpi"><div class="kt">${t}</div><div class="kv">${v}</div><div class="ks">${s}</div></div>`).join("");
+
+        $("cc-chart-day").innerHTML = renderTimeChart({
+          title: "Movement of the day", subtitle: CC.units[u] + " — " + ty, yLabel: "bags (60 kg)", labels,
+          series: TABLES.map(([t, lab, col]) => ({ label: lab, color: col, kind: "bar", values: dates.map(d => get(d, t, u, ty + "_day")) }))
+        });
+        $("cc-chart-cum").innerHTML = renderTimeChart({
+          title: "Month to date (cumulative)", subtitle: CC.units[u] + " — " + ty, yLabel: "bags (60 kg)", labels,
+          series: [
+            { label: "certificates MTD", color: "#6f4e37", kind: "line", values: dates.map(d => get(d, "certificates", u, ty + "_cum")) },
+            { label: "shipped MTD", color: "#2f6fbf", kind: "line", values: dates.map(d => get(d, "shipment", u, ty + "_cum")) },
+            { label: "certificates, previous month", color: "#b8a99a", kind: "line", values: dates.map(d => get(d, "certificates", u, ty + "_prev")) },
+          ]
+        });
+
+        const tot = get(last, "certificates", "total", ty + "_cum") || 0;
+        $("cc-units").innerHTML = `<thead><tr><th class="local">unit · ${last}</th><th>certified today</th><th>certified MTD</th><th>share</th><th>prev. month</th><th>cleared MTD</th><th>shipped MTD</th><th>certified − shipped</th></tr></thead><tbody>` +
+          Object.keys(CC.units).filter(k => present.has(k)).map(k => {
+            const c = get(last, "certificates", k, ty + "_cum"), sh = get(last, "shipment", k, ty + "_cum");
+            return `<tr${k === "total" ? ' class="media"' : ""}><td class="local">${esc(CC.units[k])}</td><td>${fmt(get(last, "certificates", k, ty + "_day"))}</td><td>${fmt(c)}</td><td>${k === "total" || !tot ? "" : (100 * (c || 0) / tot).toFixed(0) + "%"}</td><td>${fmt(get(last, "certificates", k, ty + "_prev"))}</td><td>${fmt(get(last, "customs", k, ty + "_cum"))}</td><td>${fmt(sh)}</td><td>${c != null && sh != null ? fmt(c - sh) : "–"}</td></tr>`;
+          }).join("") + `</tbody>`;
+
+        $("cc-days").innerHTML = `<thead><tr><th class="local">date</th><th>certified</th><th>cleared</th><th>shipped</th><th>certified MTD</th><th>shipped MTD</th><th>certified − shipped</th></tr></thead><tbody>` +
+          CC.dates.slice(-30).reverse().map(d => {
+            const c = get(d, "certificates", u, ty + "_cum"), sh = get(d, "shipment", u, ty + "_cum");
+            return `<tr><td class="local">${d}</td><td>${fmt(get(d, "certificates", u, ty + "_day"))}</td><td>${fmt(get(d, "customs", u, ty + "_day"))}</td><td>${fmt(get(d, "shipment", u, ty + "_day"))}</td><td>${fmt(c)}</td><td>${fmt(sh)}</td><td>${c != null && sh != null ? fmt(c - sh) : "–"}</td></tr>`;
+          }).join("") + `</tbody>`;
+      }
+      ["cc-unit", "cc-type"].forEach(id => $(id).addEventListener("change", renderCC));
+      renderCC();
     }
 
     /* ---------------- Comex Stat exports ---------------- */

@@ -1,7 +1,56 @@
 # Volumes — coffee depot / storage tracker (Minas Gerais & Espírito Santo)
 
-Daily tracking of what enters and leaves the depots, plus the official monthly
-export series for the two states. Page: `volumes.html`.
+Three layers on one page (`volumes.html`):
+
+1. **Your depot log** — daily, manual (`daily_log.csv`).
+2. **Cecafé daily export pipeline** — daily, automatic (`cecafe_daily.csv`,
+   scraped by `fetch_cecafe.py`, GitHub Actions runs it every weekday evening).
+3. **Comex Stat monthly exports** by state and municipality — monthly, automatic
+   with `build_volumes.py --exports`.
+
+## Layer 2: Cecafé "Resumo Diário" (the only public DAILY series)
+
+https://www.cecafe.com.br/dados-estatisticos/exportacoes-brasileiras/resumo-diario/
+
+Every business day Cecafé publishes, per unit and per type (arabica, conilon,
+soluble), three stages of the export pipeline, each with the movement of the
+day, the month-to-date cumulative and the previous-month figure:
+
+| stage | meaning |
+| --- | --- |
+| certificates of origin | coffee sold for export, sitting in a warehouse, paperwork issued |
+| customs clearance | coffee cleared at the customs unit |
+| shipment | coffee actually loaded (sea and road) |
+
+Units include **Vitória (ES)** and **REDEX / EADI (Minas Gerais)** — inland
+customs warehouses in Minas — which is as close as public data gets to depot
+movements in the two states. Santos, Rio de Janeiro, Salvador and "others"
+complete the picture.
+
+What the page derives from it:
+
+* movement of the day per stage, per unit, per type;
+* month-to-date curves vs the previous month;
+* **certified − shipped** (month to date): coffee that has paperwork but has
+  not left yet, i.e. export coffee waiting in port / inland warehouses.
+
+Commands:
+
+```
+python volumes/fetch_cecafe.py             # fetch today's page, append to cecafe_daily.csv
+python volumes/fetch_cecafe.py --print     # just show what is parsed
+python volumes/fetch_cecafe.py --file saved_page.html --date 2026-09-04   # offline / backfill
+python volumes/build_volumes.py            # rebuild data/volumes.js
+```
+
+`.github/workflows/cecafe-daily.yml` does the first and the last step at 18:30
+Brasília time, Monday to Friday, and commits `cecafe_daily.csv` and
+`data/volumes.js` when something changed. It can also be launched by hand from
+the Actions tab ("Run workflow"). If Cecafé changes the page layout the script
+stops with "no table recognised": save the page HTML and adjust `parse()`.
+
+The first row in `cecafe_daily.csv` was transcribed from a screenshot of the
+page; its date (2026-09-04) is assumed. Fix or delete it if needed.
 
 ## Why a manual daily log
 
@@ -12,6 +61,7 @@ MG or ES. What exists publicly:
 | --- | --- | --- | --- |
 | Conab — Levantamento de Estoques Privados | private stocks by state and type (arabica/conilon) | once a year, reference 31 March | enter it as a `stock_bags` line for the state total |
 | Comex Stat (MDIC) | exports by NCM 0901, by state and municipality of origin | monthly, ~1st of the next month | fetched automatically with `--exports` (outflow) |
+| Cecafé Resumo Diário | certificates issued / cleared / shipped per unit and type | every business day | fetched automatically (layer 2) |
 | Cecafé monthly report | exports by port (Santos, Vitória, Rio) and by type | monthly, ~10th | manual reference |
 | CCCV Vitória | ES exports + daily quotes | monthly / daily | manual reference for ES |
 | Cooxupé harvest bulletin | harvest progress and volumes received (Sul de Minas) | weekly during harvest | enter as `inflow_bags` for a "Cooxupé" site |
@@ -25,13 +75,16 @@ broker, cooperative bulletins). The page then aggregates by day, week and month.
 
 ```
 volumes/
-  daily_log.csv        <- YOU edit this every day
-  build_volumes.py     <- turns the log (+ Comex Stat) into data/volumes.js
+  daily_log.csv        <- YOU edit this every day (layer 1)
+  cecafe_daily.csv     <- appended by fetch_cecafe.py (layer 2)
+  fetch_cecafe.py      <- scrapes Cecafé's Resumo Diário
+  build_volumes.py     <- turns everything (+ Comex Stat, layer 3) into data/volumes.js
   cache/               <- downloaded Comex Stat CSVs (ignored by git)
   README.md
 data/volumes.js        <- generated, loaded by volumes.html
-volumes.html           <- the page (day / week / month, per site, per state, total)
+volumes.html           <- the page
 assets/volumes-chart.js<- time-series chart renderer
+.github/workflows/cecafe-daily.yml <- daily automation
 ```
 
 ## Daily routine

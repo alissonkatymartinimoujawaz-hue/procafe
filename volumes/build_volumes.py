@@ -12,12 +12,16 @@ What it does
                                   the running balance (previous stock + inflow - outflow).
    Lines starting with '#' and blank lines are ignored.
 
-2. (optional, --exports) Downloads the official Comex Stat bulk CSVs (MDIC) and builds
+2. Reads volumes/cecafe_daily.csv — the daily export pipeline scraped from Cecafé's
+   "Resumo Diário" by volumes/fetch_cecafe.py (certificates of origin issued, customs
+   clearance, shipments; per port incl. Vitória/ES and REDEX-EADI Minas Gerais).
+
+3. (optional, --exports) Downloads the official Comex Stat bulk CSVs (MDIC) and builds
    the MONTHLY export series of coffee (NCM 0901) shipped from MG and ES — the only
    official "outflow" series that exists for the two states. Files are cached in
    volumes/cache/ (they are big: ~100-200 MB per year).
 
-3. Writes data/volumes.js  ->  window.VOLUMES, consumed by volumes.html.
+4. Writes data/volumes.js  ->  window.VOLUMES, consumed by volumes.html.
 
 Usage (from the repo root, any Python 3.8+, no extra packages):
     python volumes/build_volumes.py                       # daily log only, no network
@@ -32,6 +36,7 @@ from datetime import date, datetime, timedelta
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 LOG = os.path.join(HERE, "daily_log.csv")
+CECAFE = os.path.join(HERE, "cecafe_daily.csv")
 CACHE = os.path.join(HERE, "cache")
 OUT = os.path.join(ROOT, "data", "volumes.js")
 
@@ -156,6 +161,34 @@ def build_series(rows):
             states[st]["sites"] = sorted(keys)
     return {"dates": [d.isoformat() for d in dates], "sites": sites,
             "states": states, "all": total(list(sites))}
+
+
+# --------------------------------------------------------------------------- Cecafé daily
+CECAFE_UNITS = {"total": "Brazil (all units)", "santos": "Santos (SP)", "vitoria": "Vitória (ES)",
+                "minas": "REDEX / EADI Minas Gerais", "rio": "Rio de Janeiro", "salvador": "Salvador",
+                "others": "Others"}
+
+
+def read_cecafe(path):
+    """volumes/cecafe_daily.csv written by fetch_cecafe.py -> compact records for the page."""
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8", newline="") as f:
+        rows = list(csv.DictReader(f))
+    if not rows:
+        return None
+    nums = [k for k in rows[0] if k.endswith(("_day", "_cum", "_prev"))]
+    recs = []
+    for r in rows:
+        rec = {"date": r["date"], "table": r["table"], "unit": r["unit"]}
+        for k in nums:
+            rec[k] = int(float(r[k] or 0))
+        recs.append(rec)
+    recs.sort(key=lambda r: (r["date"], r["table"], r["unit"]))
+    dates = sorted({r["date"] for r in recs})
+    return {"source": "Cecafé — Resumo Diário das Exportações (certificates of origin, customs clearance, shipments)",
+            "url": "https://www.cecafe.com.br/dados-estatisticos/exportacoes-brasileiras/resumo-diario/",
+            "unit": "bags of 60 kg", "dates": dates, "units": CECAFE_UNITS, "rows": recs}
 
 
 # --------------------------------------------------------------------------- Comex Stat
@@ -302,6 +335,9 @@ def main():
     print(f"  {len(rows)} entries, {len({r['site'] for r in rows})} sites")
     series = build_series(rows)
 
+    cecafe = read_cecafe(CECAFE)
+    print(f"  cecafe: {len(cecafe['dates']) if cecafe else 0} days")
+
     exports = None
     if args.exports:
         years = args.years or [date.today().year - 1, date.today().year]
@@ -328,6 +364,7 @@ def main():
                  "inflow": r["inflow"], "outflow": r["outflow"], "stock": r["stock"],
                  "source": r["source"], "note": r["note"]} for r in rows],
         "series": series,
+        "cecafe": cecafe,
         "exports": exports,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

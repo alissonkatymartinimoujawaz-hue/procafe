@@ -60,6 +60,8 @@
         d += (d && s.values[i - 1] != null ? "L" : "M") + px.toFixed(1) + " " + py.toFixed(1) + " ";
         if (s.dots && s.dots[i])
           dots += `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="3.6" fill="#fff" stroke="${s.color}" stroke-width="2"><title>${esc(spec.labels[i])}: ${fmt(v)} (measured)</title></circle>`;
+        else if (n <= 45)
+          dots += `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="2.6" fill="${s.color}"><title>${esc(spec.labels[i])} — ${esc(s.label)}: ${fmt(v)}</title></circle>`;
         else
           dots += `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="5" fill="#000" fill-opacity="0"><title>${esc(spec.labels[i])} — ${esc(s.label)}: ${fmt(v)}</title></circle>`;
       });
