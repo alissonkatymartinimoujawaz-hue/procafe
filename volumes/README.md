@@ -49,7 +49,9 @@ Brasília time, Monday to Friday, and commits `cecafe_daily.csv` and
 the Actions tab ("Run workflow"). If Cecafé changes the page layout the script
 stops with "no table recognised": save the page HTML and adjust `parse()`.
 
-The first row in `cecafe_daily.csv` was transcribed from a screenshot of the
+`volumes/suivi_volumes.xlsx` is an Excel version of the same tracking (raw Cecafé rows,
+day vs prior day, cumulative by day of month, monthly totals by year, depot log),
+built only from real data. The first row in `cecafe_daily.csv` was transcribed from a screenshot of the
 page; its date (2026-09-04) is assumed. Fix or delete it if needed.
 
 ## Why a manual daily log
