@@ -41,10 +41,19 @@ Robusta (a "Date affichée" cell drives everything: day D in red, month-to-date
 in green, % vs previous month in blue; per-port movement of the day; per-port
 % change; month-to-date vs previous month; daily history).
 
+**Excel dashboard** — `volumes/suivi_cecafe.xlsx`, rebuilt by `build_xlsx.py`
+from the CSV (needs `pip install openpyxl`). Sheets: Definitions (how to read
+the page), Donnees (raw rows), Arabica and Robusta (interactive: the yellow
+"Date affichée" cell drives every table and chart — day vs previous month,
+per-port day movement, per-port % change, month-to-date vs previous month,
+daily history). Everything is formulas over Donnees, so pasting new rows there
+updates the dashboards.
+
 Commands:
 
 ```
 python volumes/fetch_cecafe.py             # fetch today's page, append to cecafe_daily.csv
+python volumes/build_xlsx.py               # rebuild the Excel dashboard
 python volumes/build_xlsx.py               # rebuild the Excel dashboard (pip install openpyxl)
 python volumes/fetch_cecafe.py --print     # just show what is parsed
 python volumes/fetch_cecafe.py --file saved_page.html --date 2026-09-04   # offline / backfill
@@ -96,6 +105,8 @@ volumes/
   daily_log.csv        <- YOU edit this every day (layer 1)
   cecafe_daily.csv     <- appended by fetch_cecafe.py (layer 2)
   fetch_cecafe.py      <- scrapes Cecafé's Resumo Diário
+  build_xlsx.py        <- Excel dashboard (Definitions / Donnees / Arabica / Robusta)
+  suivi_cecafe.xlsx    <- generated dashboard
   build_xlsx.py        <- Excel dashboard from cecafe_daily.csv
   suivi_cecafe.xlsx    <- generated Excel dashboard (Definitions, Donnees, Arabica, Robusta)
   build_volumes.py     <- turns everything (+ Comex Stat, layer 3) into data/volumes.js
