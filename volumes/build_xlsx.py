@@ -23,6 +23,15 @@ from openpyxl.chart import BarChart, LineChart, Reference
 from openpyxl.chart.series import SeriesLabel
 from openpyxl.utils import get_column_letter as L
 from openpyxl.workbook.properties import CalcProperties
+from openpyxl.formatting.rule import CellIsRule
+
+MONTHS_FR = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+def month_label(date_cell, offset=0):
+    """Excel formula giving e.g. 'Septembre 2026' for the month of date_cell (offset=-1 -> previous month)."""
+    d = date_cell if offset == 0 else f"DATE(YEAR({date_cell}),MONTH({date_cell})+({offset}),1)"
+    names = ",".join(f'"{m}"' for m in MONTHS_FR)
+    return f'=CHOOSE(MONTH({d}),{names})&" "&YEAR({d})'
+
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CSV = os.path.join(HERE, "cecafe_daily.csv")
@@ -181,10 +190,30 @@ def sheet_type(wb, name, rows):
     for c in ("A4", "A5", "A6"): ws[c].font = font(bold=True)
     DD, DV = "$B$4", "$B$5"
 
+    # ---- block 0: simplified summary (movement of the day, current month, previous month, variation)
+    rs = 8
+    ws.cell(row=rs - 1, column=1, value=f"{name.upper()} — résumé (les noms de mois suivent la date affichée)").font = font(bold=True, size=11)
+    header(ws, rs, ["Type", "Mouvement du jour", "", "", "Variation (%)"])
+    ws.cell(row=rs, column=3, value=month_label(DD)); ws.cell(row=rs, column=4, value=month_label(DD, -1))
+    for i, (k, lab) in enumerate([("certificates", "ÉMISSION (certificats)"), ("shipment", "EMBARQUE")]):
+        r = rs + 1 + i
+        ws.cell(row=r, column=1, value=lab).font = font(bold=True)
+        ws.cell(row=r, column=2, value="=" + day(DD, k, "total")).number_format = "#,##0"
+        ws.cell(row=r, column=3, value="=" + cum(DD, k, "total")).number_format = "#,##0"
+        ws.cell(row=r, column=4, value="=" + prv(DD, k, "total")).number_format = "#,##0"
+        ws.cell(row=r, column=5, value=f"=IF(D{r}=0,NA(),C{r}/D{r}-1)").number_format = "+0.0%;-0.0%;0.0%"
+        ws.cell(row=r, column=5).font = font(bold=True)
+        for j in range(1, 6): ws.cell(row=r, column=j).border = BOX; ws.cell(row=r, column=j).alignment = Alignment(horizontal="center")
+        ws.cell(row=r, column=1).alignment = Alignment(horizontal="left")
+    ws.conditional_formatting.add(f"E{rs+1}:E{rs+2}", CellIsRule(operator="greaterThan", formula=["0"], font=Font(name=F, bold=True, color="1E8449")))
+    ws.conditional_formatting.add(f"E{rs+1}:E{rs+2}", CellIsRule(operator="lessThan", formula=["0"], font=Font(name=F, bold=True, color="C0392B")))
+    ws.cell(row=rs + 3, column=1, value="Dédouanement = embarquement en total : même café vu par la douane. Colonne mois précédent = même période du mois précédent.").font = font(italic=True, color="7A6F66")
+
     # ---- block 1: day D vs prior day per stage, % vs previous month
-    r0 = 8
+    r0 = 13
     ws.cell(row=r0 - 1, column=1, value="1. Par étape, toutes unités : jour J, veille, cumul du mois, variation % vs mois précédent").font = font(bold=True, size=11)
     header(ws, r0, ["Étape", "Jour J", "Veille", "Cumul mois", "Mois précédent (même période)", "Variation % vs mois précédent", "Certifiés − embarqués (cumul)"])
+    ws.cell(row=r0, column=4, value='="Cumul "&' + month_label(DD)[1:]); ws.cell(row=r0, column=5, value="=" + month_label(DD, -1)[1:] + '&" (même période)"')
     for i, (k, lab) in enumerate(STAGES):
         r = r0 + 1 + i
         ws.cell(row=r, column=1, value=lab)
@@ -198,7 +227,7 @@ def sheet_type(wb, name, rows):
     ws.cell(row=r0 + 1, column=7, value=f"=D{r0+1}-D{r0+3}").number_format = "#,##0"
     ws.cell(row=r0 + 2, column=7, value="café vendu, pas encore parti").font = font(italic=True, color="7A6F66")
     cats = Reference(ws, min_col=1, min_row=r0 + 1, max_row=r0 + 3)
-    combo(ws, "I7", cats,
+    combo(ws, "I12", cats,
           [(Reference(ws, min_col=2, min_row=r0 + 1, max_row=r0 + 3), "Total du jour", RED),
            (Reference(ws, min_col=4, min_row=r0 + 1, max_row=r0 + 3), "Cumul du mois", GRN)],
           [(Reference(ws, min_col=6, min_row=r0 + 1, max_row=r0 + 3), "Variation % vs mois précédent", BLU)],
@@ -217,7 +246,7 @@ def sheet_type(wb, name, rows):
         for j in range(1, 8): ws.cell(row=r, column=j).border = BOX
     ws.cell(row=r1 + len(PORTS) + 1, column=1, value="Vitória et REDEX/EADI Minas n'ont pas de ligne « embarquement » sur la page : leur café part par Santos. #N/A = pas de valeur le mois précédent.").font = font(italic=True, color="7A6F66")
     cats = Reference(ws, min_col=1, min_row=r1 + 1, max_row=r1 + len(PORTS))
-    combo(ws, "I27", cats,
+    combo(ws, "I32", cats,
           [(Reference(ws, min_col=2, min_row=r1 + 1, max_row=r1 + len(PORTS)), "Certificats J", RED),
            (Reference(ws, min_col=3, min_row=r1 + 1, max_row=r1 + len(PORTS)), "Dédouanés J", RED2),
            (Reference(ws, min_col=4, min_row=r1 + 1, max_row=r1 + len(PORTS)), "Embarqués J", RED3)],
@@ -229,7 +258,7 @@ def sheet_type(wb, name, rows):
         pc.add_data(Reference(ws, min_col=5 + j, min_row=r1 + 1, max_row=r1 + len(PORTS)), titles_from_data=False)
         sr = pc.series[-1]; sr.tx = SeriesLabel(v=lab); color_bar(sr, rgb)
     pc.set_categories(cats); pc.height = 9.5; pc.width = 20; pc.legend.position = "b"
-    ws.add_chart(pc, "I47")
+    ws.add_chart(pc, "I52")
 
     # ---- block 3: per port, month-to-date vs previous month
     r2 = r1 + len(PORTS) + 4
@@ -243,7 +272,7 @@ def sheet_type(wb, name, rows):
             ws.cell(row=r, column=3 + 2 * j, value="=" + prv(DD, st, k)).number_format = "#,##0"
         for j in range(1, 8): ws.cell(row=r, column=j).border = BOX
     cats = Reference(ws, min_col=1, min_row=r2 + 1, max_row=r2 + len(PORTS))
-    combo(ws, "I67", cats,
+    combo(ws, "I72", cats,
           [(Reference(ws, min_col=2, min_row=r2 + 1, max_row=r2 + len(PORTS)), "Certificats cumul", RED),
            (Reference(ws, min_col=3, min_row=r2 + 1, max_row=r2 + len(PORTS)), "Certificats mois préc.", BLU),
            (Reference(ws, min_col=4, min_row=r2 + 1, max_row=r2 + len(PORTS)), "Dédouanés cumul", RED2),
@@ -273,7 +302,7 @@ def sheet_type(wb, name, rows):
     rl = r3 + max(1, len(dates))
     ws.cell(row=rl + 1, column=1, value="Le script build_xlsx.py ajoute une ligne par nouvelle journée. Si tu colles des jours à la main dans Donnees, ajoute aussi la date ici (colonne A), les formules de la ligne au-dessus se copient.").font = font(italic=True, color="7A6F66")
     cats = Reference(ws, min_col=1, min_row=r3 + 1, max_row=rl)
-    combo(ws, "I87", cats,
+    combo(ws, "I92", cats,
           [(Reference(ws, min_col=2, min_row=r3 + 1, max_row=rl), "Certificats J", RED),
            (Reference(ws, min_col=3, min_row=r3 + 1, max_row=rl), "Dédouanés J", RED2),
            (Reference(ws, min_col=4, min_row=r3 + 1, max_row=rl), "Embarqués J", RED3)],
