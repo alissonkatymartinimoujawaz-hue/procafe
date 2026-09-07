@@ -1,0 +1,10 @@
+year,arabica_prod_conab_msacs,total_prod_conab_msacs,yield_sacas_ha,price_cepea_rs_saca,price_note,variable_cost_rs_saca,variable_cost_note,total_cost_proxy_rs_saca,cash_margin_pct,full_margin_pct,fert_barter_sacas_per_t
+2018,47.5,58.0,,422.62,Cepea safra 2018/19 (published in real terms),,"n.d. (est. total cost ~480, Conab Guaxupé)",480.0,,-14.0,
+2019,34.3,49.3,27.2,504.9,Cepea safra 2019/20,,n.d. (est. total cost ~500),500.0,,1.0,
+2020,48.8,63.1,33.0,800.0,derived: 2021/22 avg 1325.65 = +65.14% vs 2020/21 (real),364.09,"Portaria Mapa 66, safra 2020/21",564.0,54.0,29.0,
+2021,31.4,47.7,23.0,1325.65,Cepea safra 2021/22,369.4,safra 2021/22 (set before fertilizer spike),573.0,72.0,57.0,
+2022,32.4,50.9,27.1,1100.0,"approx: H2-2022 avg 1176 (Cepea), H1-2023 ~1000",606.66,safra 2022/23,940.0,45.0,15.0,2.9
+2023,38.5,55.1,29.0,950.0,"approx: Jul-Dec 2023 avg 855.98 (Cepea), H1-2024 ~1100",684.2,safra 2023/24 = 637.91/(1-0.0676),1061.0,28.0,-12.0,2.9
+2024,39.6,54.2,26.7,1950.0,"approx: Jul-24 1420, Oct 1490, Nov 1775, Jan-25 2333, Feb 2628, Mar-Jun ~2300",637.91,safra 2024/25,989.0,67.0,49.0,1.79
+2025,35.0,55.3,24.9,2000.0,approx: >2000 most of 2025 except Jul; Sep 2234; Feb-26 1865; Mar-Apr-26 ~1900,662.04,safra 2025/26,1026.0,67.0,49.0,1.1
+2026,45.7,66.7,34.4,1800.0,"partial: Feb 1865, Mar-Apr ~1900-1950, Jul Sul de Minas ~1716 (Rabobank)",,"n.d. (safra 2026/27 minimum set, value not retrieved)",,,,1.6

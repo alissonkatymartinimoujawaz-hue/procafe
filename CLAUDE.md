@@ -27,7 +27,7 @@ d'arabica au Brésil sont-elles liées à la marge des producteurs ?
   Préférer la marge par hectare sur 2 ans et le ratio d'échange café/engrais.
 
 ### Données déjà trouvées (R$ nominaux / sac 60 kg, indicateur Cepea arabica type 6)
-Voir `data/bresil_margins_template.csv` (préremplie, colonnes vides à compléter).
+Voir `data/bresil_margins.csv` et `docs/bresil_margins.md` (méthode, tableau, limites).
 
 ### Ce qu'il faut tirer de Bloomberg dans le terminal local
 1. `KC1 Comdty` et `KCA Comdty` : arabica ICE NY, moyennes annuelles et par
