@@ -57,6 +57,19 @@
     table.m th:first-child, table.m td:first-child { text-align: left; }
     table.m th { color: var(--muted); font-weight: 600; font-size: 12px; }
     .two { display: grid; grid-template-columns: 1fr; gap: 0; }
+    .kpi { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 0 0 14px; }
+    .kpi .tile { background: var(--surface-1); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+    .kpi .lbl { font-size: 12px; color: var(--text-secondary); margin: 0 0 2px; }
+    .kpi .val { font-size: 26px; font-weight: 600; color: var(--text-primary); line-height: 1.15; }
+    .kpi .val small { font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-left: 3px; }
+    .kpi .d { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
+    .zone { display: flex; align-items: center; gap: 10px; font-size: 14px; margin: 0 0 14px; }
+    .zone .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--series-1); flex: none; }
+    table.dz { border-collapse: collapse; width: 100%; font-size: 13px; }
+    table.dz th, table.dz td { border-bottom: 1px solid var(--line); padding: 7px 8px; text-align: left; vertical-align: top; }
+    table.dz th { color: var(--muted); font-weight: 600; font-size: 12px; }
+    table.dz td.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    table.dz tr.now td { background: color-mix(in srgb, var(--series-1) 10%, transparent); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -70,6 +83,17 @@
 
   <main class="wrap" style="padding: 26px 0 60px;">
     <p class="note">Campagne N = récolte N (mai–sept), vendue de juillet N à juin N+1. Les valeurs claires sont des estimations (coût 2018–2019 sans fiche Conab ; 2026 = prévision de récolte et prix partiel). Survolez les marques pour le détail.</p>
+
+    <section class="viz" id="viz-decide">
+      <h2>Faut-il produire ? — situation au <span id="asof"></span></h2>
+      <p class="sub">Le caféier est pérenne : la vraie décision est l'intensité des tratos culturais et de la taille pour la récolte suivante. Seuils calculés sur le coût variable Conab 2026/27 et le coût total estimé (× 1,55).</p>
+      <div class="kpi" id="kpi"></div>
+      <div class="zone" id="zone"></div>
+      <table class="dz" id="dz"></table>
+      <p class="sub" style="margin-top:12px">Sensibilité de la marge complète au prix (R$/sac) :</p>
+      <table class="dz" id="sens"></table>
+      <div class="tip"></div>
+    </section>
 
     <section class="viz" id="viz-margin">
       <h2>Marge complète du producteur</h2>
@@ -111,13 +135,13 @@
     <div class="wrap">Sources : Cepea/Esalq, Conab, CNA Campo Futuro, Rabobank · série générée le <span id="gen"></span></div>
   </footer>
 
-  <script src="data/bresil_margins.js?v=1"></script>
+  <script src="data/bresil_margins.js?v=2"></script>
   <script>
   (function () {
     const R = window.BRESIL_MARGINS.rows;
     document.getElementById("gen").textContent = window.BRESIL_MARGINS.generated;
     const W = 720, mL = 48, mR = 16, mT = 14, mB = 30;
-    const fmt = (v, d = 0) => v == null ? "n.d." : v.toLocaleString("fr-FR", { maximumFractionDigits: d, minimumFractionDigits: d });
+    const fmt = (v, d = 0) => v == null ? "n.d." : (Math.abs(v) < 0.5 && d === 0 ? 0 : v).toLocaleString("fr-FR", { maximumFractionDigits: d, minimumFractionDigits: d });
     const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
     const nice = (v, step) => Math.ceil(v / step) * step;
 
@@ -165,6 +189,43 @@
         el.addEventListener("mouseleave", () => tip.style.display = "none");
       });
     }
+
+
+    /* ---- 0. Decision block ---- */
+    (function () {
+      const C = window.BRESIL_MARGINS.current;
+      const tc = C.var_cost * C.factor;
+      const full = (C.price - tc) / C.price * 100, cash = (C.price - C.var_cost) / C.price * 100;
+      const cushion = (C.price / tc - 1) * 100;
+      document.getElementById("asof").textContent = C.asof;
+      const tile = (l, v, u, d) => `<div class="tile"><p class="lbl">${l}</p><div class="val">${v}<small>${u}</small></div><div class="d">${d}</div></div>`;
+      document.getElementById("kpi").innerHTML =
+        tile("Prix Cepea", fmt(C.price), "R$/sc", `${C.price_12m_change_pct} % sur 13 mois`) +
+        tile("Seuil coût variable", fmt(C.var_cost), "R$/sc", "prix minimum Conab 2026/27 (+20 % vs 2025/26)") +
+        tile("Seuil coût total (est.)", fmt(tc), "R$/sc", "point mort complet, proxy × 1,55") +
+        tile("Marge complète", fmt(full), "%", `marge cash ${fmt(cash)} % · coussin de prix ${fmt(cushion)} % avant perte`) +
+        tile("Café / engrais", fmt(C.fert_ratio, 1), "sc/t", C.fert_note);
+      let zone, txt;
+      if (C.price >= tc * 1.15) { zone = "A"; txt = "Zone A : le prix couvre le coût total avec plus de 15 % de marge. Fertilisation complète, taille et renouvellement justifiés, plantation rentable si le prix tient."; }
+      else if (C.price >= tc) { zone = "B"; txt = "Zone B : entre coût total et coût variable. Produire et entretenir, mais ne pas étendre ni renouveler."; }
+      else if (C.price >= C.var_cost) { zone = "B−"; txt = "Zone B− : le prix ne couvre plus les amortissements. Maintenir le verger a minima, différer les investissements."; }
+      else { zone = "C"; txt = "Zone C : le prix ne couvre pas le coût variable. Réduire les intrants, esqueletamento, vendre le strict nécessaire."; }
+      document.getElementById("zone").innerHTML = `<span class="dot"></span><span><b>${txt}</b> ${C.next_crop}.</span>`;
+      const zones = [
+        ["A", "prix ≥ coût total × 1,15", "≥ " + fmt(tc * 1.15), "intrants complets, renouvellement, plantations", "marge en hausse ⇒ récolte N+2 plus forte"],
+        ["B", "coût total ≤ prix < coût total × 1,15", fmt(tc) + " – " + fmt(tc * 1.15), "produire, entretenir, pas d'expansion", "production stable"],
+        ["B−", "coût variable ≤ prix < coût total", fmt(C.var_cost) + " – " + fmt(tc), "maintenir a minima, différer taille et renouvellement", "verger vieillit ⇒ baisse à N+2/N+3"],
+        ["C", "prix < coût variable", "< " + fmt(C.var_cost), "couper les intrants, esqueletamento", "chute de rendement à N+1"],
+      ];
+      let h = "<thead><tr><th>Zone</th><th>Règle</th><th>Prix R$/sc</th><th>Décision du producteur</th><th>Effet attendu sur l'offre</th></tr></thead><tbody>";
+      zones.forEach(z => h += `<tr class="${z[0] === zone ? "now" : ""}"><td>${z[0]}${z[0] === zone ? " ◀ aujourd'hui" : ""}</td><td>${z[1]}</td><td class="n">${z[2]}</td><td>${z[3]}</td><td>${z[4]}</td></tr>`);
+      document.getElementById("dz").innerHTML = h + "</tbody>";
+      const prices = [2000, C.price, 1500, 1400, 1300, Math.round(tc), 1100, 1000, Math.round(C.var_cost)];
+      let hs = "<thead><tr><th>Prix R$/sc</th>" + prices.map(p => `<th style="text-align:right">${fmt(p)}</th>`).join("") + "</tr></thead><tbody>";
+      hs += "<tr><td>Marge complète</td>" + prices.map(p => `<td class="n">${fmt((p - tc) / p * 100)} %</td>`).join("") + "</tr>";
+      hs += "<tr><td>Marge cash</td>" + prices.map(p => `<td class="n">${fmt((p - C.var_cost) / p * 100)} %</td>`).join("") + "</tr>";
+      document.getElementById("sens").innerHTML = hs + "</tbody>";
+    })();
 
     /* ---- 1. Diverging margin columns ---- */
     (function () {

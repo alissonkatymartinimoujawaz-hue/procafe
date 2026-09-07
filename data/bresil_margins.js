@@ -1,6 +1,18 @@
 // AUTO-GENERATED from data/bresil_margins.csv — see docs/bresil_margins.md for method & limits.
 window.BRESIL_MARGINS = {
  "generated": "2026-09-07",
+ "current": {
+  "asof": "2026-09-07",
+  "price": 1722.0,
+  "price_note": "Cepea arábica tipo 6, début septembre 2026 (août : moyenne 1 726)",
+  "var_cost": 792.53,
+  "var_cost_note": "prix minimum Conab 2026/27 = coût variable relevé",
+  "factor": 1.55,
+  "fert_ratio": 1.6,
+  "fert_note": "sacs par tonne de 20-05-20, mai 2026 (1,1 en avril 2025)",
+  "price_12m_change_pct": -23,
+  "next_crop": "2027 = année « off » du cycle biennal ; floraison sept-oct 2026"
+ },
  "rows": [
   {
    "year": 2018,
@@ -119,12 +131,12 @@ window.BRESIL_MARGINS = {
    "arabica": 45.7,
    "total": 66.7,
    "yield": 34.4,
-   "price": 1800.0,
-   "price_note": "partial: Feb 1865, Mar-Apr ~1900-1950, Jul Sul de Minas ~1716 (Rabobank)",
-   "var_cost": null,
-   "total_cost": null,
-   "cash_margin": null,
-   "full_margin": 40.0,
+   "price": 1720.0,
+   "price_note": "partial 2026/27: Jul ~1716 (Sul de Minas, Rabobank), Aug avg 1726 (Cepea), early Sep ~1722",
+   "var_cost": 792.53,
+   "total_cost": 1228.0,
+   "cash_margin": 54.0,
+   "full_margin": 29.0,
    "fert_ratio": 1.6,
    "est": true
   }

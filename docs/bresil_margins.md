@@ -29,11 +29,26 @@ vendue surtout de juillet N à juin N+1).
 | 2023 | ~38,5 | ~950 | 684 | 1 061 | 28 % | −12 % |
 | 2024 | ~39,6 | ~1 950 | 638 | 989 | 67 % | 49 % |
 | 2025 | ~35,0 | ~2 000 | 662 | 1 026 | 67 % | 49 % |
-| 2026 | 45,7 (prév.) | ~1 800 (partiel) | n.d. | n.d. | — | ≈ +40 % (est.) |
+| 2026 | 45,7 (prév.) | ~1 720 (juil-sept) | 793 | 1 228 | 54 % | 29 % |
 
 Ratio d'échange café/engrais (sacs par tonne de 20-05-20) : ~2,9 en 2023,
 1,8 en juillet 2024, 1,1 en avril 2025, 1,6 en mai 2026 ; moyenne 5 ans à
 2024 : 4,0. Plus le chiffre est bas, plus le producteur peut fertiliser.
+
+## Faut-il produire ? (septembre 2026)
+Prix Cepea ~1 722 R$/sc, coût variable 2026/27 = 793 (prix minimum Conab,
++20 % en un an), coût total proxy 1 228. Marge complète 29 %, marge cash 54 %.
+Le prix peut baisser de 40 % avant que le coût total ne soit plus couvert.
+Zones de décision (calculées dans `margins.html`) :
+- A, prix ≥ 1 413 : intrants complets, renouvellement, plantations. **Situation actuelle.**
+- B, 1 228-1 413 : produire et entretenir, pas d'expansion.
+- B−, 793-1 228 : maintenir a minima, différer taille et renouvellement.
+- C, < 793 : couper les intrants, esqueletamento.
+Tendance : prix −23 % sur 13 mois, coût +20 %, ratio café/engrais passé de
+1,1 à 1,6 sc/t. La zone A tient mais se rétrécit. 2027 est une année « off »
+et le record 2026 pèse sur les prix : le point à surveiller est un passage
+sous ~1 400 R$/sc pendant la floraison sept-oct 2026 et la fertilisation
+d'été, ce qui ferait basculer les décisions d'intrants pour 2027.
 
 ## Lecture marge → production (décalage 1-2 ans)
 - 2018-2019 : marge nulle ou négative, prix réel le plus bas depuis 2001/02.
