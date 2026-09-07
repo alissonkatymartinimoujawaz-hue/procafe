@@ -13,6 +13,7 @@
       --grid: #e1e0d9; --baseline: #c3c2b7;
       --series-1: #2a78d6; --series-1-soft: #86b6ef;   /* price / positive margin / production */
       --series-2: #eb6834;                              /* total cost */
+      --series-3: #1baf7a;                              /* production */
       --neg: #e34948; --neg-soft: #f2a3a2;              /* negative margin (diverging pair: blue <-> red) */
       --tip-bg: #ffffff; --tip-ring: rgba(11,11,11,.12);
     }
@@ -22,7 +23,7 @@
         --surface-1: #1a1a19; --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
         --grid: #2c2c2a; --baseline: #383835;
         --series-1: #3987e5; --series-1-soft: #1c5cab;
-        --series-2: #d95926;
+        --series-2: #d95926; --series-3: #199e70;
         --neg: #e66767; --neg-soft: #8a3a3a;
         --tip-bg: #262624; --tip-ring: rgba(255,255,255,.14);
       }
@@ -32,7 +33,7 @@
       --surface-1: #1a1a19; --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
       --grid: #2c2c2a; --baseline: #383835;
       --series-1: #3987e5; --series-1-soft: #1c5cab;
-      --series-2: #d95926;
+      --series-2: #d95926; --series-3: #199e70;
       --neg: #e66767; --neg-soft: #8a3a3a;
       --tip-bg: #262624; --tip-ring: rgba(255,255,255,.14);
     }
@@ -126,6 +127,22 @@
         <div class="tip"></div>
       </section>
     </div>
+
+
+    <section class="viz" id="viz-yoy">
+      <h2>Variation annuelle (YoY)</h2>
+      <p class="sub">variation en % d'une campagne à la suivante · prix Cepea, coût total estimé, production d'arabica</p>
+      <div id="c-yoy"></div>
+      <div class="legend">
+        <span><i style="background:var(--series-1)"></i> prix</span>
+        <span><i style="background:var(--series-2)"></i> coût total</span>
+        <span><i style="background:var(--series-3)"></i> production arabica</span>
+      </div>
+      <div class="tip"></div>
+    </section>
+
+    <h2 style="font-size:17px; margin: 26px 0 10px;">YoY table</h2>
+    <div class="tbl-wrap"><table class="m" id="tbl-yoy"></table></div>
 
     <h2 style="font-size:17px; margin: 26px 0 10px;">Table</h2>
     <div class="tbl-wrap"><table class="m" id="tbl"></table></div>
@@ -306,6 +323,55 @@
       const host = document.getElementById("c-prod");
       host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Production d'arabica par campagne">${g}</svg>`;
       attachTips(document.getElementById("viz-prod"), host.firstChild);
+    })();
+
+
+    /* ---- 4. YoY grouped diverging columns + table ---- */
+    (function () {
+      const pct = (a, b) => (a == null || b == null || b === 0) ? null : (a / b - 1) * 100;
+      const Y = R.map((r, i) => {
+        const p = i ? R[i - 1] : null;
+        return { year: r.year, est: r.est,
+          price: p ? pct(r.price, p.price) : null,
+          cost: p ? pct(r.total_cost, p.total_cost) : null,
+          prod: p ? pct(r.arabica, p.arabica) : null,
+          margin_pts: (p && r.full_margin != null && p.full_margin != null) ? r.full_margin - p.full_margin : null,
+          cash_pts: (p && r.cash_margin != null && p.cash_margin != null) ? r.cash_margin - p.cash_margin : null };
+      });
+      const H = 320, yMin = -60, yMax = 120, F = frame(H, yMin, yMax, 30, " %");
+      const bw = 14, gap = 2, y0v = F.yAt(0);
+      const series = [["price", "var(--series-1)", "prix"], ["cost", "var(--series-2)", "coût total"], ["prod", "var(--series-3)", "production"]];
+      let g = F.g;
+      Y.forEach((y, i) => {
+        if (i === 0) return;
+        const tip = `<b>${y.year} vs ${y.year - 1}${y.est ? " (estimation)" : ""}</b><br>Prix : ${y.price == null ? "n.d." : (y.price > 0 ? "+" : "") + fmt(y.price)} %<br>Coût total : ${y.cost == null ? "n.d." : (y.cost > 0 ? "+" : "") + fmt(y.cost)} %<br>Production arabica : ${y.prod == null ? "n.d." : (y.prod > 0 ? "+" : "") + fmt(y.prod)} %` +
+          (y.margin_pts == null ? "" : `<br><span class="n">Marge complète : ${y.margin_pts > 0 ? "+" : ""}${fmt(y.margin_pts)} pts</span>`);
+        const x0 = F.xAt(i) - (bw * 3 + gap * 2) / 2;
+        series.forEach((sd, k) => {
+          const v = y[sd[0]]; if (v == null) return;
+          const vv = Math.max(yMin, Math.min(yMax, v));
+          g += `<path d="${barPath(x0 + k * (bw + gap), y0v, F.yAt(vv), bw)}" fill="${sd[1]}" data-tip="${esc(tip)}"/>`;
+        });
+        g += `<rect x="${(F.xAt(i) - F.band / 2).toFixed(1)}" y="${F.y0}" width="${F.band.toFixed(1)}" height="${F.y1 - F.y0}" fill="transparent" data-tip="${esc(tip)}"/>`;
+      });
+      // selective direct labels: the two largest moves
+      const lab = (i, key, txt, dy) => g += `<text x="${(F.xAt(i) - (bw * 3 + gap * 2) / 2 + series.findIndex(s => s[0] === key) * (bw + gap) + bw / 2).toFixed(1)}" y="${dy.toFixed(1)}" font-size="11" font-weight="600" fill="var(--text-primary)" text-anchor="middle">${txt}</text>`;
+      Y.forEach((y, i) => {
+        if (y.year === 2024 && y.price != null) lab(i, "price", "+" + fmt(y.price) + " %", F.yAt(y.price) - 5);
+        if (y.year === 2022 && y.cost != null) lab(i, "cost", "+" + fmt(y.cost) + " %", F.yAt(y.cost) - 5);
+        if (y.year === 2021 && y.prod != null) lab(i, "prod", fmt(y.prod) + " %", F.yAt(y.prod) + 13);
+      });
+      const host = document.getElementById("c-yoy");
+      host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Variation annuelle du prix, du coût et de la production">${g}</svg>`;
+      attachTips(document.getElementById("viz-yoy"), host.firstChild);
+
+      const sg = v => v == null ? "n.d." : (v > 0 ? "+" : "") + fmt(v);
+      const cols = [["Campagne", y => y.year + (y.est ? "*" : "")], ["Prix Cepea", y => sg(y.price) + (y.price == null ? "" : " %")],
+        ["Coût total est.", y => sg(y.cost) + (y.cost == null ? "" : " %")], ["Production arabica", y => sg(y.prod) + (y.prod == null ? "" : " %")],
+        ["Marge complète", y => sg(y.margin_pts) + (y.margin_pts == null ? "" : " pts")], ["Marge cash", y => sg(y.cash_pts) + (y.cash_pts == null ? "" : " pts")]];
+      let h = "<thead><tr>" + cols.map(c => `<th>${c[0]}</th>`).join("") + "</tr></thead><tbody>";
+      Y.slice(1).forEach(y => h += "<tr>" + cols.map(c => `<td>${c[1](y)}</td>`).join("") + "</tr>");
+      document.getElementById("tbl-yoy").innerHTML = h + "</tbody>";
     })();
 
     /* ---- Table view ---- */
