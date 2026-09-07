@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marges producteurs — Weather & Coffee</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Chart tokens (validated palette, light + dark). Text never wears the series color. */
+    .viz {
+      color-scheme: light;
+      --surface-1: #fcfcfb; --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #898781;
+      --grid: #e1e0d9; --baseline: #c3c2b7;
+      --series-1: #2a78d6; --series-1-soft: #86b6ef;   /* price / positive margin / production */
+      --series-2: #eb6834;                              /* total cost */
+      --neg: #e34948; --neg-soft: #f2a3a2;              /* negative margin (diverging pair: blue <-> red) */
+      --tip-bg: #ffffff; --tip-ring: rgba(11,11,11,.12);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:where(:not([data-theme="light"])) .viz {
+        color-scheme: dark;
+        --surface-1: #1a1a19; --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
+        --grid: #2c2c2a; --baseline: #383835;
+        --series-1: #3987e5; --series-1-soft: #1c5cab;
+        --series-2: #d95926;
+        --neg: #e66767; --neg-soft: #8a3a3a;
+        --tip-bg: #262624; --tip-ring: rgba(255,255,255,.14);
+      }
+    }
+    :root[data-theme="dark"] .viz {
+      color-scheme: dark;
+      --surface-1: #1a1a19; --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
+      --grid: #2c2c2a; --baseline: #383835;
+      --series-1: #3987e5; --series-1-soft: #1c5cab;
+      --series-2: #d95926;
+      --neg: #e66767; --neg-soft: #8a3a3a;
+      --tip-bg: #262624; --tip-ring: rgba(255,255,255,.14);
+    }
+    .viz { background: var(--surface-1); border: 1px solid var(--line); border-radius: var(--radius);
+           box-shadow: var(--shadow); padding: 18px 18px 12px; margin: 0 0 18px; position: relative; }
+    .viz h2 { margin: 0 0 2px; font-size: 17px; color: var(--text-primary); }
+    .viz .sub { margin: 0 0 10px; font-size: 13px; color: var(--text-secondary); }
+    .viz svg { width: 100%; height: auto; display: block; font-family: inherit; }
+    .viz .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px; color: var(--text-secondary); margin: 6px 0 0; }
+    .viz .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .viz .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
+    .viz .legend i.line { height: 2px; width: 18px; border-radius: 1px; }
+    .tip { position: absolute; pointer-events: none; background: var(--tip-bg); color: var(--text-primary);
+           border: 1px solid var(--tip-ring); border-radius: 8px; padding: 7px 10px; font-size: 12.5px;
+           line-height: 1.4; box-shadow: 0 6px 20px rgba(0,0,0,.12); display: none; max-width: 280px; z-index: 5; }
+    .tip b { font-weight: 600; }
+    .tip .n { color: var(--text-secondary); font-size: 12px; }
+    .note { font-size: 13px; color: var(--muted); margin: 0 0 22px; max-width: 760px; }
+    .tbl-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; }
+    table.m { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 700px; font-variant-numeric: tabular-nums; }
+    table.m th, table.m td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: right; }
+    table.m th:first-child, table.m td:first-child { text-align: left; }
+    table.m th { color: var(--muted); font-weight: 600; font-size: 12px; }
+    .two { display: grid; grid-template-columns: 1fr; gap: 0; }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <div class="crumb"><a href="index.html">← Brazil regions</a></div>
+      <h1>Marge des producteurs d'arabica — Brésil</h1>
+      <p>Prix Cepea de campagne, coût variable Conab (prix minimum), coût total estimé, et production arabica. Méthode et limites dans <code>docs/bresil_margins.md</code>.</p>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding: 26px 0 60px;">
+    <p class="note">Campagne N = récolte N (mai–sept), vendue de juillet N à juin N+1. Les valeurs claires sont des estimations (coût 2018–2019 sans fiche Conab ; 2026 = prévision de récolte et prix partiel). Survolez les marques pour le détail.</p>
+
+    <section class="viz" id="viz-margin">
+      <h2>Marge complète du producteur</h2>
+      <p class="sub">(prix − coût total estimé) / prix, en % · coût total = coût variable Conab × 1,55</p>
+      <div id="c-margin"></div>
+      <div class="legend">
+        <span><i style="background:var(--series-1)"></i> marge positive</span>
+        <span><i style="background:var(--neg)"></i> marge négative</span>
+        <span><i style="background:var(--series-1-soft)"></i> estimation</span>
+      </div>
+      <div class="tip"></div>
+    </section>
+
+    <div class="two">
+      <section class="viz" id="viz-price">
+        <h2>Prix vs coût total</h2>
+        <p class="sub">R$ nominaux par sac de 60 kg</p>
+        <div id="c-price"></div>
+        <div class="legend">
+          <span><i class="line" style="background:var(--series-1)"></i> prix Cepea (campagne)</span>
+          <span><i class="line" style="background:var(--series-2)"></i> coût total estimé</span>
+        </div>
+        <div class="tip"></div>
+      </section>
+
+      <section class="viz" id="viz-prod">
+        <h2>Production d'arabica (Conab)</h2>
+        <p class="sub">millions de sacs de 60 kg · 2026 = prévision</p>
+        <div id="c-prod"></div>
+        <div class="tip"></div>
+      </section>
+    </div>
+
+    <h2 style="font-size:17px; margin: 26px 0 10px;">Table</h2>
+    <div class="tbl-wrap"><table class="m" id="tbl"></table></div>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">Sources : Cepea/Esalq, Conab, CNA Campo Futuro, Rabobank · série générée le <span id="gen"></span></div>
+  </footer>
+
+  <script src="data/bresil_margins.js?v=1"></script>
+  <script>
+  (function () {
+    const R = window.BRESIL_MARGINS.rows;
+    document.getElementById("gen").textContent = window.BRESIL_MARGINS.generated;
+    const W = 720, mL = 48, mR = 16, mT = 14, mB = 30;
+    const fmt = (v, d = 0) => v == null ? "n.d." : v.toLocaleString("fr-FR", { maximumFractionDigits: d, minimumFractionDigits: d });
+    const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+    const nice = (v, step) => Math.ceil(v / step) * step;
+
+    function frame(H, yMin, yMax, yStep, unit) {
+      const x0 = mL, x1 = W - mR, y0 = mT, y1 = H - mB;
+      const yAt = v => y1 - (v - yMin) / (yMax - yMin) * (y1 - y0);
+      const band = (x1 - x0) / R.length;
+      const xAt = i => x0 + band * (i + 0.5);
+      let g = "";
+      for (let v = yMin; v <= yMax + 1e-9; v += yStep) {
+        const y = yAt(v).toFixed(1);
+        g += `<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="var(--grid)" stroke-width="1"/>`;
+        g += `<text x="${x0 - 6}" y="${+y + 3.5}" font-size="11" fill="var(--text-muted)" text-anchor="end">${fmt(v)}${unit || ""}</text>`;
+      }
+      if (yMin < 0 && yMax > 0)
+        g += `<line x1="${x0}" y1="${yAt(0).toFixed(1)}" x2="${x1}" y2="${yAt(0).toFixed(1)}" stroke="var(--baseline)" stroke-width="1"/>`;
+      else
+        g += `<line x1="${x0}" y1="${y1}" x2="${x1}" y2="${y1}" stroke="var(--baseline)" stroke-width="1"/>`;
+      R.forEach((r, i) => {
+        g += `<text x="${xAt(i).toFixed(1)}" y="${y1 + 18}" font-size="11.5" fill="var(--text-secondary)" text-anchor="middle">${r.year}${r.est ? "*" : ""}</text>`;
+      });
+      return { g, yAt, xAt, band, x0, x1, y0, y1 };
+    }
+
+    // Bar with 4px rounded data-end, square at the baseline.
+    function barPath(x, yBase, yVal, w) {
+      const r = 4, up = yVal < yBase;
+      const top = Math.min(yBase, yVal), bot = Math.max(yBase, yVal), h = bot - top;
+      const rr = Math.min(r, h / 2);
+      if (up) return `M${x},${bot} V${top + rr} a${rr},${rr} 0 0 1 ${rr},-${rr} h${w - 2 * rr} a${rr},${rr} 0 0 1 ${rr},${rr} V${bot} Z`;
+      return `M${x},${top} V${bot - rr} a${rr},${rr} 0 0 0 ${rr},${rr} h${w - 2 * rr} a${rr},${rr} 0 0 0 ${rr},-${rr} V${top} Z`;
+    }
+
+    function attachTips(sec, svg) {
+      const tip = sec.querySelector(".tip");
+      svg.querySelectorAll("[data-tip]").forEach(el => {
+        el.addEventListener("mousemove", e => {
+          tip.innerHTML = el.getAttribute("data-tip");
+          tip.style.display = "block";
+          const b = sec.getBoundingClientRect();
+          let lx = e.clientX - b.left + 14, ly = e.clientY - b.top + 14;
+          if (lx + tip.offsetWidth > b.width - 8) lx = e.clientX - b.left - tip.offsetWidth - 14;
+          tip.style.left = lx + "px"; tip.style.top = ly + "px";
+        });
+        el.addEventListener("mouseleave", () => tip.style.display = "none");
+      });
+    }
+
+    /* ---- 1. Diverging margin columns ---- */
+    (function () {
+      const H = 300, yMin = -20, yMax = 60, F = frame(H, yMin, yMax, 20, " %");
+      const bw = 24, y0v = F.yAt(0);
+      let g = F.g;
+      R.forEach((r, i) => {
+        if (r.full_margin == null) return;
+        const x = F.xAt(i) - bw / 2, yv = F.yAt(r.full_margin);
+        const neg = r.full_margin < 0;
+        const fill = r.est ? (neg ? "var(--neg-soft)" : "var(--series-1-soft)") : (neg ? "var(--neg)" : "var(--series-1)");
+        const tip = `<b>${r.year}${r.est ? " (estimation)" : ""}</b><br>Marge complète : ${fmt(r.full_margin)} %<br>` +
+          `<span class="n">Prix ${fmt(r.price)} R$/sc · coût total ${r.total_cost != null ? fmt(r.total_cost) : "n.d."} R$/sc` +
+          (r.cash_margin != null ? `<br>Marge cash (sur coût variable) : ${fmt(r.cash_margin)} %` : "") + `</span>`;
+        g += `<path d="${barPath(x, y0v, yv, bw)}" fill="${fill}" data-tip="${esc(tip)}"/>`;
+        // selective direct labels: extremes only
+        if (r.year === 2021 || r.year === 2023 || r.year === 2018)
+          g += `<text x="${F.xAt(i).toFixed(1)}" y="${(neg ? yv + 13 : yv - 6).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--text-primary)" text-anchor="middle">${fmt(r.full_margin)} %</text>`;
+        // wider invisible hit target
+        g += `<rect x="${(F.xAt(i) - F.band / 2).toFixed(1)}" y="${F.y0}" width="${F.band.toFixed(1)}" height="${F.y1 - F.y0}" fill="transparent" data-tip="${esc(tip)}"/>`;
+      });
+      const host = document.getElementById("c-margin");
+      host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Marge complète du producteur par campagne">${g}</svg>`;
+      attachTips(document.getElementById("viz-margin"), host.firstChild);
+    })();
+
+    /* ---- 2. Price vs cost lines ---- */
+    (function () {
+      const H = 300, yMax = 2400, F = frame(H, 0, yMax, 600, "");
+      const pts = (key) => R.map((r, i) => r[key] == null ? null : [F.xAt(i), F.yAt(r[key]), r, i]).filter(Boolean);
+      const path = p => p.map((q, k) => (k ? "L" : "M") + q[0].toFixed(1) + "," + q[1].toFixed(1)).join(" ");
+      const price = pts("price"), cost = pts("total_cost");
+      let g = F.g;
+      // wash between price and cost where both exist (the margin itself)
+      const both = R.map((r, i) => (r.price != null && r.total_cost != null) ? i : null).filter(v => v != null);
+      if (both.length > 1) {
+        const up = both.map(i => `${F.xAt(i).toFixed(1)},${F.yAt(R[i].price).toFixed(1)}`);
+        const dn = both.slice().reverse().map(i => `${F.xAt(i).toFixed(1)},${F.yAt(R[i].total_cost).toFixed(1)}`);
+        g += `<polygon points="${up.concat(dn).join(" ")}" fill="var(--series-1)" opacity=".10"/>`;
+      }
+      g += `<path d="${path(cost)}" fill="none" stroke="var(--series-2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+      g += `<path d="${path(price)}" fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+      const dot = (q, color, label) => {
+        const r = q[2];
+        const tip = `<b>${r.year}${r.est ? " (estimation)" : ""}</b><br>Prix Cepea : ${fmt(r.price)} R$/sc<br>Coût total estimé : ${r.total_cost != null ? fmt(r.total_cost) : "n.d."} R$/sc` +
+          (r.var_cost != null ? `<br>Coût variable (prix minimum Conab) : ${fmt(r.var_cost)} R$/sc` : "") +
+          `<br><span class="n">${esc(r.price_note)}</span>`;
+        return `<circle cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="4" fill="${color}" stroke="var(--surface-1)" stroke-width="2"/>` +
+               `<circle cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="12" fill="transparent" data-tip="${esc(tip)}"/>`;
+      };
+      cost.forEach(q => g += dot(q, "var(--series-2)"));
+      price.forEach(q => g += dot(q, "var(--series-1)"));
+      // direct end labels
+      const lp = price[price.length - 1], lc = cost[cost.length - 1];
+      g += `<text x="${(lp[0] + 8).toFixed(1)}" y="${(lp[1] - 8).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--text-primary)" text-anchor="end">prix ${fmt(lp[2].price)}</text>`;
+      g += `<text x="${(lc[0] + 8).toFixed(1)}" y="${(lc[1] + 16).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--text-primary)" text-anchor="end">coût ${fmt(lc[2].total_cost)}</text>`;
+      const host = document.getElementById("c-price");
+      host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Prix Cepea et coût total par campagne">${g}</svg>`;
+      attachTips(document.getElementById("viz-price"), host.firstChild);
+    })();
+
+    /* ---- 3. Production columns ---- */
+    (function () {
+      const H = 300, yMax = 50, F = frame(H, 0, yMax, 10, "");
+      const bw = 24;
+      let g = F.g;
+      R.forEach((r, i) => {
+        if (r.arabica == null) return;
+        const x = F.xAt(i) - bw / 2, yv = F.yAt(r.arabica);
+        const fill = r.year === 2026 ? "var(--series-1-soft)" : "var(--series-1)";
+        const tip = `<b>${r.year}${r.year === 2026 ? " (prévision)" : ""}</b><br>Arabica : ${fmt(r.arabica, 1)} M sacs<br><span class="n">Total café : ${fmt(r.total, 1)} M sacs` +
+          (r.yield != null ? ` · rendement ${fmt(r.yield, 1)} sc/ha` : "") + `</span>`;
+        g += `<path d="${barPath(x, F.y1, yv, bw)}" fill="${fill}" data-tip="${esc(tip)}"/>`;
+        if (r.year === 2021 || r.year === 2026 || r.year === 2020)
+          g += `<text x="${F.xAt(i).toFixed(1)}" y="${(yv - 6).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--text-primary)" text-anchor="middle">${fmt(r.arabica, 1)}</text>`;
+        g += `<rect x="${(F.xAt(i) - F.band / 2).toFixed(1)}" y="${F.y0}" width="${F.band.toFixed(1)}" height="${F.y1 - F.y0}" fill="transparent" data-tip="${esc(tip)}"/>`;
+      });
+      const host = document.getElementById("c-prod");
+      host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Production d'arabica par campagne">${g}</svg>`;
+      attachTips(document.getElementById("viz-prod"), host.firstChild);
+    })();
+
+    /* ---- Table view ---- */
+    (function () {
+      const cols = [
+        ["Campagne", r => r.year + (r.est ? "*" : "")],
+        ["Arabica (M sacs)", r => fmt(r.arabica, 1)],
+        ["Rendement (sc/ha)", r => fmt(r.yield, 1)],
+        ["Prix Cepea (R$/sc)", r => fmt(r.price)],
+        ["Coût variable (R$/sc)", r => fmt(r.var_cost)],
+        ["Coût total est. (R$/sc)", r => fmt(r.total_cost)],
+        ["Marge cash", r => r.cash_margin == null ? "n.d." : fmt(r.cash_margin) + " %"],
+        ["Marge complète", r => r.full_margin == null ? "n.d." : fmt(r.full_margin) + " %"],
+        ["Café/engrais (sc/t)", r => fmt(r.fert_ratio, 1)],
+      ];
+      let h = "<thead><tr>" + cols.map(c => `<th>${c[0]}</th>`).join("") + "</tr></thead><tbody>";
+      R.forEach(r => h += "<tr>" + cols.map(c => `<td>${c[1](r)}</td>`).join("") + "</tr>");
+      h += "</tbody>";
+      document.getElementById("tbl").innerHTML = h;
+    })();
+  })();
+  </script>
+</body>
+</html>
