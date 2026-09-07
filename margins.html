@@ -108,6 +108,18 @@
       <div class="tip"></div>
     </section>
 
+    <section class="viz" id="viz-myoy">
+      <h2>Marge du producteur — variation annuelle (YoY)</h2>
+      <p class="sub">écart de marge complète entre la campagne N et la campagne N−1, en points de pourcentage</p>
+      <div id="c-myoy"></div>
+      <div class="legend">
+        <span><i style="background:var(--series-1)"></i> marge en hausse</span>
+        <span><i style="background:var(--neg)"></i> marge en baisse</span>
+        <span><i style="background:var(--series-1-soft)"></i> estimation</span>
+      </div>
+      <div class="tip"></div>
+    </section>
+
     <div class="two">
       <section class="viz" id="viz-price">
         <h2>Prix vs coût total</h2>
@@ -267,6 +279,33 @@
       const host = document.getElementById("c-margin");
       host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Marge complète du producteur par campagne">${g}</svg>`;
       attachTips(document.getElementById("viz-margin"), host.firstChild);
+    })();
+
+
+    /* ---- 1b. Margin YoY (points) ---- */
+    (function () {
+      const H = 300, yMin = -60, yMax = 80, F = frame(H, yMin, yMax, 20, " pts");
+      const bw = 24, y0v = F.yAt(0);
+      let g = F.g;
+      R.forEach((r, i) => {
+        if (!i || r.full_margin == null || R[i - 1].full_margin == null) return;
+        const d = r.full_margin - R[i - 1].full_margin;
+        const dc = (r.cash_margin != null && R[i - 1].cash_margin != null) ? r.cash_margin - R[i - 1].cash_margin : null;
+        const x = F.xAt(i) - bw / 2, yv = F.yAt(d);
+        const neg = d < 0, est = r.est || R[i - 1].est;
+        const fill = est ? (neg ? "var(--neg-soft)" : "var(--series-1-soft)") : (neg ? "var(--neg)" : "var(--series-1)");
+        const sg = v => (v > 0 ? "+" : "") + fmt(v);
+        const tip = `<b>${r.year} vs ${r.year - 1}${est ? " (estimation)" : ""}</b><br>Marge complète : ${fmt(R[i - 1].full_margin)} % → ${fmt(r.full_margin)} % (${sg(d)} pts)` +
+          (dc == null ? "" : `<br>Marge cash : ${fmt(R[i - 1].cash_margin)} % → ${fmt(r.cash_margin)} % (${sg(dc)} pts)`) +
+          `<br><span class="n">Prix ${sg((r.price / R[i - 1].price - 1) * 100)} % · coût total ${r.total_cost && R[i - 1].total_cost ? sg((r.total_cost / R[i - 1].total_cost - 1) * 100) + " %" : "n.d."}</span>`;
+        g += `<path d="${barPath(x, y0v, yv, bw)}" fill="${fill}" data-tip="${esc(tip)}"/>`;
+        if (r.year === 2022 || r.year === 2024 || r.year === 2026)
+          g += `<text x="${F.xAt(i).toFixed(1)}" y="${(neg ? yv + 13 : yv - 6).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--text-primary)" text-anchor="middle">${sg(d)} pts</text>`;
+        g += `<rect x="${(F.xAt(i) - F.band / 2).toFixed(1)}" y="${F.y0}" width="${F.band.toFixed(1)}" height="${F.y1 - F.y0}" fill="transparent" data-tip="${esc(tip)}"/>`;
+      });
+      const host = document.getElementById("c-myoy");
+      host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Variation annuelle de la marge du producteur en points">${g}</svg>`;
+      attachTips(document.getElementById("viz-myoy"), host.firstChild);
     })();
 
     /* ---- 2. Price vs cost lines ---- */
