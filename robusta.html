@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dak Lak vs London Robusta — Weather & Coffee</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .viz {
+      color-scheme: light;
+      --surface-1: #fcfcfb; --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #898781;
+      --grid: #e1e0d9; --baseline: #c3c2b7;
+      --series-1: #2a78d6;   /* London ICE robusta (DF1) */
+      --series-2: #eb6834;   /* Dak Lak farm-gate, converted */
+      --neg: #e34948;
+      --tip-bg: #ffffff; --tip-ring: rgba(11,11,11,.12);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:where(:not([data-theme="light"])) .viz {
+        color-scheme: dark;
+        --surface-1: #1a1a19; --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
+        --grid: #2c2c2a; --baseline: #383835;
+        --series-1: #3987e5; --series-2: #d95926; --neg: #e66767;
+        --tip-bg: #262624; --tip-ring: rgba(255,255,255,.14);
+      }
+    }
+    :root[data-theme="dark"] .viz {
+      color-scheme: dark;
+      --surface-1: #1a1a19; --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
+      --grid: #2c2c2a; --baseline: #383835;
+      --series-1: #3987e5; --series-2: #d95926; --neg: #e66767;
+      --tip-bg: #262624; --tip-ring: rgba(255,255,255,.14);
+    }
+    .viz { background: var(--surface-1); border: 1px solid var(--line); border-radius: var(--radius);
+           box-shadow: var(--shadow); padding: 18px 18px 12px; margin: 0 0 18px; position: relative; }
+    .viz h2 { margin: 0 0 2px; font-size: 17px; color: var(--text-primary); }
+    .viz .sub { margin: 0 0 10px; font-size: 13px; color: var(--text-secondary); }
+    .viz svg { width: 100%; height: auto; display: block; font-family: inherit; }
+    .viz .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px; color: var(--text-secondary); margin: 6px 0 0; }
+    .viz .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .viz .legend i { display: inline-block; width: 18px; height: 2px; border-radius: 1px; }
+    .viz .legend i.dot { width: 8px; height: 8px; border-radius: 50%; }
+    .viz .legend i.bar { width: 12px; height: 12px; border-radius: 3px; }
+    .tip { position: absolute; pointer-events: none; background: var(--tip-bg); color: var(--text-primary);
+           border: 1px solid var(--tip-ring); border-radius: 8px; padding: 7px 10px; font-size: 12.5px;
+           line-height: 1.4; box-shadow: 0 6px 20px rgba(0,0,0,.12); display: none; max-width: 280px; z-index: 5; }
+    .tip b { font-weight: 600; }
+    .tip .n { color: var(--text-secondary); font-size: 12px; }
+    .note { font-size: 13px; color: var(--muted); margin: 0 0 22px; max-width: 800px; }
+    .tbl-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; }
+    table.m { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 640px; font-variant-numeric: tabular-nums; }
+    table.m th, table.m td { border-bottom: 1px solid var(--line); padding: 5px 8px; text-align: right; }
+    table.m th:first-child, table.m td:first-child { text-align: left; }
+    table.m th { color: var(--muted); font-weight: 600; font-size: 12px; }
+    table.m td.e { color: var(--muted); font-style: italic; }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <div class="crumb"><a href="index.html">← Brazil regions</a></div>
+      <h1>Dak Lak robusta vs London (DF1)</h1>
+      <p>Vietnamese farm-gate robusta and the ICE London front-month future on one axis, both in USD per tonne. The gap between the lines is the Vietnam domestic differential.</p>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding: 26px 0 60px;">
+    <p class="note" id="note"></p>
+
+    <section class="viz" id="viz-px">
+      <h2>Dak Lak farm-gate vs London front month</h2>
+      <p class="sub">USD per tonne, monthly · Dak Lak converted from VND/kg at the month's approximate USD/VND · dots mark months backed by a dated quote or an ICO monthly average, the rest is interpolated</p>
+      <div id="c-px"></div>
+      <div class="legend">
+        <span><i style="background:var(--series-1)"></i> London robusta, front month (DF1)</span>
+        <span><i style="background:var(--series-2)"></i> Dak Lak farm-gate, USD/t</span>
+        <span><i class="dot" style="background:var(--text-secondary)"></i> verified month</span>
+      </div>
+      <div class="tip"></div>
+    </section>
+
+    <section class="viz" id="viz-diff">
+      <h2>Differential: Dak Lak minus London</h2>
+      <p class="sub">USD per tonne · positive = farm-gate above the future (tight domestic supply), negative = farm-gate below</p>
+      <div id="c-diff"></div>
+      <div class="legend">
+        <span><i class="bar" style="background:var(--series-1)"></i> premium</span>
+        <span><i class="bar" style="background:var(--neg)"></i> discount</span>
+      </div>
+      <div class="tip"></div>
+    </section>
+
+    <h2 style="font-size:17px; margin: 26px 0 10px;">Table</h2>
+    <div class="tbl-wrap"><table class="m" id="tbl"></table></div>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">Sources: ICO Coffee Market Reports (London ICE monthly averages), giacaphe.com / baovanhoa / vietnam.vn (Dak Lak daily quotes), press reports · approximate series generated <span id="gen"></span></div>
+  </footer>
+
+  <script src="data/robusta_daklak_df1.js?v=1"></script>
+  <script>
+  (function () {
+    const P = window.ROBUSTA_DL_DF1, R = P.rows;
+    document.getElementById("gen").textContent = P.generated;
+    document.getElementById("note").textContent = P.note;
+    const W = 720, mL = 52, mR = 16, mT = 14, mB = 34;
+    const fmt = (v, d = 0) => v == null ? "n.d." : (Math.abs(v) < 0.5 && d === 0 ? 0 : v).toLocaleString("en-US", { maximumFractionDigits: d, minimumFractionDigits: d });
+    const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+    const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const lab = ym => { const [y, m] = ym.split("-"); return MON[+m - 1] + " " + y.slice(2); };
+
+    function frame(H, yMin, yMax, yStep) {
+      const x0 = mL, x1 = W - mR, y0 = mT, y1 = H - mB;
+      const yAt = v => y1 - (v - yMin) / (yMax - yMin) * (y1 - y0);
+      const band = (x1 - x0) / R.length;
+      const xAt = i => x0 + band * (i + 0.5);
+      let g = "";
+      for (let v = yMin; v <= yMax + 1e-9; v += yStep) {
+        const y = yAt(v).toFixed(1);
+        g += `<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="var(--grid)" stroke-width="1"/>`;
+        g += `<text x="${x0 - 6}" y="${+y + 3.5}" font-size="11" fill="var(--text-muted)" text-anchor="end">${fmt(v)}</text>`;
+      }
+      g += `<line x1="${x0}" y1="${yAt(yMin < 0 ? 0 : yMin).toFixed(1)}" x2="${x1}" y2="${yAt(yMin < 0 ? 0 : yMin).toFixed(1)}" stroke="var(--baseline)" stroke-width="1"/>`;
+      R.forEach((r, i) => {
+        const m = +r.ym.slice(5);
+        if (m === 1 || m === 4 || m === 7 || m === 10)
+          g += `<text x="${xAt(i).toFixed(1)}" y="${y1 + 18}" font-size="11" fill="var(--text-secondary)" text-anchor="middle">${lab(r.ym)}</text>`;
+        if (m === 1) g += `<line x1="${xAt(i) - band / 2}" y1="${y0}" x2="${xAt(i) - band / 2}" y2="${y1}" stroke="var(--grid)" stroke-width="1"/>`;
+      });
+      return { g, yAt, xAt, band, x0, x1, y0, y1 };
+    }
+    function barPath(x, yBase, yVal, w) {
+      const r = 4, up = yVal < yBase;
+      const top = Math.min(yBase, yVal), bot = Math.max(yBase, yVal), h = bot - top, rr = Math.min(r, h / 2);
+      if (up) return `M${x},${bot} V${top + rr} a${rr},${rr} 0 0 1 ${rr},-${rr} h${w - 2 * rr} a${rr},${rr} 0 0 1 ${rr},${rr} V${bot} Z`;
+      return `M${x},${top} V${bot - rr} a${rr},${rr} 0 0 0 ${rr},${rr} h${w - 2 * rr} a${rr},${rr} 0 0 0 ${rr},-${rr} V${top} Z`;
+    }
+    function attachTips(sec, svg) {
+      const tip = sec.querySelector(".tip");
+      svg.querySelectorAll("[data-tip]").forEach(el => {
+        el.addEventListener("mousemove", e => {
+          tip.innerHTML = el.getAttribute("data-tip"); tip.style.display = "block";
+          const b = sec.getBoundingClientRect();
+          let lx = e.clientX - b.left + 14, ly = e.clientY - b.top + 14;
+          if (lx + tip.offsetWidth > b.width - 8) lx = e.clientX - b.left - tip.offsetWidth - 14;
+          tip.style.left = lx + "px"; tip.style.top = ly + "px";
+        });
+        el.addEventListener("mouseleave", () => tip.style.display = "none");
+      });
+    }
+    const tipFor = r => `<b>${lab(r.ym)}</b><br>London (DF1): ${fmt(r.london_usd_t)} USD/t${r.london_verified ? "" : ' <span class="n">(interp.)</span>'}` +
+      `<br>Dak Lak: ${fmt(r.daklak_usd_t)} USD/t${r.daklak_verified ? "" : ' <span class="n">(interp.)</span>'}` +
+      `<br>Differential: ${r.diff_usd_t > 0 ? "+" : ""}${fmt(r.diff_usd_t)} USD/t` +
+      `<br><span class="n">Dak Lak ${fmt(r.daklak_vnd_kg)} VND/kg · USD/VND ${fmt(r.usdvnd)}</span>`;
+
+    /* ---- 1. Two lines, one axis ---- */
+    (function () {
+      const H = 340, F = frame(H, 2000, 6000, 1000);
+      const path = key => R.map((r, i) => (i ? "L" : "M") + F.xAt(i).toFixed(1) + "," + F.yAt(r[key]).toFixed(1)).join(" ");
+      let g = F.g;
+      g += `<path d="${path("daklak_usd_t")}" fill="none" stroke="var(--series-2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+      g += `<path d="${path("london_usd_t")}" fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+      R.forEach((r, i) => {
+        const x = F.xAt(i).toFixed(1);
+        if (r.daklak_verified) g += `<circle cx="${x}" cy="${F.yAt(r.daklak_usd_t).toFixed(1)}" r="4" fill="var(--series-2)" stroke="var(--surface-1)" stroke-width="2"/>`;
+        if (r.london_verified) g += `<circle cx="${x}" cy="${F.yAt(r.london_usd_t).toFixed(1)}" r="4" fill="var(--series-1)" stroke="var(--surface-1)" stroke-width="2"/>`;
+        g += `<rect x="${(F.xAt(i) - F.band / 2).toFixed(1)}" y="${F.y0}" width="${F.band.toFixed(1)}" height="${F.y1 - F.y0}" fill="transparent" data-tip="${esc(tipFor(r))}"/>`;
+      });
+      const last = R[R.length - 1], xl = F.xAt(R.length - 1);
+      g += `<text x="${(xl - 6).toFixed(1)}" y="${(F.yAt(last.london_usd_t) + 16).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--text-primary)" text-anchor="end">London ${fmt(last.london_usd_t)}</text>`;
+      g += `<text x="${(xl - 6).toFixed(1)}" y="${(F.yAt(last.daklak_usd_t) - 8).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--text-primary)" text-anchor="end">Dak Lak ${fmt(last.daklak_usd_t)}</text>`;
+      const pk = R.reduce((a, r, i) => r.london_usd_t > R[a].london_usd_t ? i : a, 0);
+      g += `<text x="${F.xAt(pk).toFixed(1)}" y="${(F.yAt(R[pk].london_usd_t) - 8).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--text-primary)" text-anchor="middle">${fmt(R[pk].london_usd_t)}</text>`;
+      const host = document.getElementById("c-px");
+      host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Dak Lak farm-gate and London robusta, USD per tonne">${g}</svg>`;
+      attachTips(document.getElementById("viz-px"), host.firstChild);
+    })();
+
+    /* ---- 2. Differential columns ---- */
+    (function () {
+      const H = 260, F = frame(H, -600, 900, 300);
+      const bw = Math.min(14, F.band - 4), y0v = F.yAt(0);
+      let g = F.g;
+      R.forEach((r, i) => {
+        const d = r.diff_usd_t, neg = d < 0;
+        g += `<path d="${barPath(F.xAt(i) - bw / 2, y0v, F.yAt(d), bw)}" fill="${neg ? "var(--neg)" : "var(--series-1)"}" data-tip="${esc(tipFor(r))}"/>`;
+        g += `<rect x="${(F.xAt(i) - F.band / 2).toFixed(1)}" y="${F.y0}" width="${F.band.toFixed(1)}" height="${F.y1 - F.y0}" fill="transparent" data-tip="${esc(tipFor(r))}"/>`;
+      });
+      const mx = R.reduce((a, r, i) => r.diff_usd_t > R[a].diff_usd_t ? i : a, 0);
+      const mn = R.reduce((a, r, i) => r.diff_usd_t < R[a].diff_usd_t ? i : a, 0);
+      g += `<text x="${F.xAt(mx).toFixed(1)}" y="${(F.yAt(R[mx].diff_usd_t) - 6).toFixed(1)}" font-size="11" font-weight="600" fill="var(--text-primary)" text-anchor="middle">+${fmt(R[mx].diff_usd_t)}</text>`;
+      g += `<text x="${F.xAt(mn).toFixed(1)}" y="${(F.yAt(R[mn].diff_usd_t) + 13).toFixed(1)}" font-size="11" font-weight="600" fill="var(--text-primary)" text-anchor="middle">${fmt(R[mn].diff_usd_t)}</text>`;
+      const host = document.getElementById("c-diff");
+      host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Dak Lak minus London differential">${g}</svg>`;
+      attachTips(document.getElementById("viz-diff"), host.firstChild);
+    })();
+
+    /* ---- Table ---- */
+    (function () {
+      let h = "<thead><tr><th>Month</th><th>London DF1 USD/t</th><th>Dak Lak VND/kg</th><th>USD/VND</th><th>Dak Lak USD/t</th><th>Diff USD/t</th></tr></thead><tbody>";
+      R.forEach(r => h += `<tr><td>${lab(r.ym)}</td><td class="${r.london_verified ? "" : "e"}">${fmt(r.london_usd_t)}</td><td class="${r.daklak_verified ? "" : "e"}">${fmt(r.daklak_vnd_kg)}</td><td class="e">${fmt(r.usdvnd)}</td><td class="${r.daklak_verified ? "" : "e"}">${fmt(r.daklak_usd_t)}</td><td>${r.diff_usd_t > 0 ? "+" : ""}${fmt(r.diff_usd_t)}</td></tr>`);
+      document.getElementById("tbl").innerHTML = h + "</tbody>";
+    })();
+  })();
+  </script>
+</body>
+</html>
