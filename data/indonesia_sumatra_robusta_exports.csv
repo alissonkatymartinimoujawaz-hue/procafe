@@ -1,0 +1,17 @@
+month,tonnes,basis,yoy_pct,mom_pct,source
+2024-02,3341.8,reported,,,Reuters via TradingView (Feb-2025 release: "from 3341.81 tons a year earlier")
+2024-06,7263,derived,,,Jul-2024 release: +140% m/m => 17431.3/2.40
+2024-07,17431.3,reported,13.4,140,Reuters via TradingView (Aug-2024)
+2024-10,37299,derived,,,Oct-2025 release: -2.26% y/y
+2024-11,21181,derived,,,Nov-2025 release: +61% y/y
+2025-01,18449.45,reported,,,Reuters via TradingView (Feb-2025)
+2025-02,29852,reported,793,62,Reuters via TradingView (Apr-2025)
+2025-04,14296,derived,,,Apr-2026 release: -45% y/y
+2025-09,40014.3,reported,,,Reuters via TradingView (Oct-2025)
+2025-10,36455.8,reported,-2.26,-8.9,Reuters via TradingView (Nov-2025)
+2025-11,34101.7,reported,61,-6.5,Reuters via TradingView (Jan-2026)
+2025-12,32505,derived,,,Jan-2026 release: -42.2% m/m
+2026-01,18788.1,reported,1.84,-42.2,Reuters via TradingView / MarketScreener (Feb-2026)
+2026-02,22270,derived,-25.4,,MarketScreener headline: -25.4% y/y (Mar-2026)
+2026-03,7304.9,reported,,,Reuters via TradingView (Jun-2026)
+2026-04,7862.8,reported,-45,7.6,Reuters via TradingView (Jun-2026)

@@ -83,3 +83,11 @@ Cepea/Esalq (bilans de campagne 2018/19, 2019/20, 2021/22, rétrospectives
 2025/26, levantamentos de safra, rendements), CNA Campo Futuro et Cocapec
 (panels de coût 2022-2024), Rabobank Brazilian coffee monthly update (ratio
 d'échange, prix physiques juillet 2026), StoneX (enquête récolte 2026/27).
+
+## Annexe — exportations mensuelles de robusta d'Indonésie (Sumatra)
+Série publique la plus suivie : exportations de grains de robusta de Sumatra
+(bureau du commerce de Lampung, port de Panjang), reprise chaque mois par
+Reuters. Partiel : voir `data/indonesia_sumatra_robusta_exports.csv`
+(colonne `basis` = reported / derived). Agrégat USDA : avril-août 2025 =
+3,5 M sacs (210 kt), +83 % sur un an. National (tous cafés) : 508,8 kt
+exportées en 2025 ; cible AEKI 2026 : 330-360 kt.
