@@ -129,10 +129,10 @@ def enso_for_crop_year(country, year):
 
 
 def intensity_class(oni, phase):
-    """Intensity class used in the reports: El Nino fort (ONI >= 2), modere (1 to 2),
-    faible (< 1); La Nina forte (<= -1.5), moderee (-1.5 to -1), faible (> -1)."""
+    """Two levels per phase, as used in the reports:
+    El Nino fort (ONI >= 1.5) / El Nino (0.5 to 1.5); La Nina forte (ONI <= -1.5) / La Nina (-0.5 to -1.5)."""
     if phase == "El Nino":
-        return "El Nino fort (ONI >= 2)" if oni >= 2 else ("El Nino modere (1-2)" if oni >= 1 else "El Nino faible (< 1)")
+        return "El Nino fort (ONI >= 1.5)" if oni >= 1.5 else "El Nino (ONI 0.5-1.5)"
     if phase == "La Nina":
-        return "La Nina forte (<= -1.5)" if oni <= -1.5 else ("La Nina moderee (-1.5 a -1)" if oni <= -1 else "La Nina faible (> -1)")
+        return "La Nina forte (ONI <= -1.5)" if oni <= -1.5 else "La Nina (ONI -0.5 a -1.5)"
     return "neutre"

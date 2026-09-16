@@ -103,13 +103,11 @@ def history(country, data, path, enso_years=None, label=None):
 
 def enso_bars(country, eff, series_list, path, label=None):
     """Mean anomaly (% vs neighbouring years) by ENSO phase, one group per series."""
-    phases = ["El Nino fort (ONI >= 2)", "El Nino modere (1-2)", "El Nino faible (< 1)", "neutral",
-              "La Nina faible (> -1)", "La Nina moderee (-1.5 a -1)", "La Nina forte (<= -1.5)"]
-    labels = ["El Niño fort\n(ONI ≥ 2)", "El Niño modéré\n(1 à 2)", "El Niño faible\n(< 1)", "neutre",
-              "La Niña faible\n(> −1)", "La Niña modérée\n(−1,5 à −1)", "La Niña forte\n(≤ −1,5)"]
-    colors = [C_RED, "#ec7a79", "#f4b0af", C_MUTED, "#a9c8ee", "#6ea3e3", C_BLUE]
+    phases = ["El Nino fort (ONI >= 1.5)", "El Nino (ONI 0.5-1.5)", "neutral", "La Nina (ONI -0.5 a -1.5)", "La Nina forte (ONI <= -1.5)"]
+    labels = ["El Niño fort\n(ONI ≥ 1,5)", "El Niño\n(0,5 à 1,5)", "neutre", "La Niña\n(−0,5 à −1,5)", "La Niña forte\n(≤ −1,5)"]
+    colors = [C_RED, "#f08c8b", C_MUTED, "#7fb0e8", C_BLUE]
     e = eff[(eff.country == country) & (eff.series.isin(series_list))]
-    fig, axes = plt.subplots(1, len(series_list), figsize=(6.2 * len(series_list), 4.0), squeeze=False)
+    fig, axes = plt.subplots(1, len(series_list), figsize=(5.0 * len(series_list), 3.8), squeeze=False)
     for ax, s in zip(axes[0], series_list):
         g = e[e.series == s].set_index("phase")
         vals = [g.loc[p, "mean_anomaly_pct"] if p in g.index else np.nan for p in phases]
@@ -120,7 +118,7 @@ def enso_bars(country, eff, series_list, path, label=None):
             if np.isfinite(v):
                 ax.text(i, v + (0.4 if v >= 0 else -0.4), f"{v:+.1f} %\n(n={n})", ha="center",
                         va="bottom" if v >= 0 else "top", fontsize=7.5, color=C_TEXT)
-        ax.set_xticks(range(len(phases))); ax.set_xticklabels(labels, fontsize=6.5, rotation=25, ha="right")
+        ax.set_xticks(range(len(phases))); ax.set_xticklabels(labels, fontsize=7.5)
         ax.set_title(s, loc="left", fontsize=10)
         lim = max(3, np.nanmax(np.abs(vals)) * 1.6)
         ax.set_ylim(-lim, lim)
