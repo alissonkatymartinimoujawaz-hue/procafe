@@ -154,3 +154,21 @@ plus regressors whose future values are known or can be set as scenarios.
 * With 20–30 annual points, ARMA forecasts are wide and the 80 % interval is the
   realistic planning range. The point forecast should be read together with the
   backtest columns of the report.
+
+## ENSO analysis and per-origin Word reports
+
+* `enso.py` classifies every crop year by the El Niño / La Niña episode that
+  drives it (NOAA CPC episode list; drop the official ONI or RONI table in
+  `data/oni.csv`, columns `year, DJF … NDJ`, and it is used instead).
+  Brazil, Peru, Indonesia and Vietnam are driven by the episode peaking the
+  winter before their harvest; Colombia, Honduras, Ethiopia and Uganda by the
+  episode developing during their growing year.
+* `enso_analysis.py` measures, in the balance sheet, the mean deviation of
+  yield and production from the neighbouring crop years by ENSO phase (Brazil
+  ON/OFF removed first), and the Brazil state weather by phase →
+  `output/enso/`.
+* `report_docx.py` (+ `report_figures.py`) writes one Word report per origin in
+  `output/reports/`: causal chain, crop calendar, balance-sheet facts, yield
+  drivers, measured ENSO effects, forecast and the implication of the current
+  El Niño. Ethiopia and Peru reports carry the structure and climatology only
+  (their sheets are copies of Honduras).

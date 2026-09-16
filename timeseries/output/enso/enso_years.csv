@@ -1,0 +1,773 @@
+year,anomaly_pct,season,oni,phase,strength,country,series,value,yoy_pct
+2002,32.269,2001,-0.300,neutral,,Brazil,Production Arabica,41600.000,70.492
+2003,-13.535,2002,1.300,El Nino,moderate,Brazil,Production Arabica,23600.000,-43.269
+2004,-3.859,2003,0.400,neutral,,Brazil,Production Arabica,34300.000,45.339
+2005,-2.203,2004,0.700,El Nino,weak,Brazil,Production Arabica,26000.000,-24.198
+2006,0.519,2005,-0.900,La Nina,weak,Brazil,Production Arabica,36000.000,38.462
+2007,-7.423,2006,0.900,El Nino,weak,Brazil,Production Arabica,27650.000,-23.194
+2008,6.285,2007,-1.600,La Nina,strong,Brazil,Production Arabica,40500.000,46.474
+2009,1.552,2008,-0.800,La Nina,weak,Brazil,Production Arabica,33000.000,-18.519
+2010,1.345,2009,1.600,El Nino,moderate,Brazil,Production Arabica,41800.000,26.667
+2011,-3.171,2010,-1.600,La Nina,strong,Brazil,Production Arabica,34700.000,-16.986
+2012,-1.346,2011,-1.100,La Nina,moderate,Brazil,Production Arabica,42100.000,21.326
+2013,21.313,2012,-0.200,neutral,,Brazil,Production Arabica,41800.000,-0.713
+2014,-18.961,2013,-0.400,neutral,,Brazil,Production Arabica,37300.000,-10.766
+2015,-3.004,2014,0.700,El Nino,weak,Brazil,Production Arabica,36100.000,-3.217
+2016,3.033,2015,2.600,El Nino,very strong,Brazil,Production Arabica,45600.000,26.316
+2017,-0.298,2016,-0.700,La Nina,weak,Brazil,Production Arabica,39500.000,-13.377
+2018,4.037,2017,-1.000,La Nina,weak,Brazil,Production Arabica,49700.000,25.823
+2019,4.342,2018,0.900,El Nino,weak,Brazil,Production Arabica,42000.000,-15.493
+2020,9.572,2019,0.500,neutral,,Brazil,Production Arabica,49700.000,18.333
+2021,-9.052,2020,-1.300,La Nina,moderate,Brazil,Production Arabica,36400.000,-26.761
+2022,-17.830,2021,-1.000,La Nina,moderate,Brazil,Production Arabica,39800.000,9.341
+2023,22.634,2022,-1.000,La Nina,weak,Brazil,Production Arabica,44900.000,12.814
+2024,-3.243,2023,2.000,El Nino,strong,Brazil,Production Arabica,44500.000,-0.891
+2002,21.427,2001,-0.300,neutral,,Brazil,Production Robusta,12000.000,12.150
+2003,-8.658,2002,1.300,El Nino,moderate,Brazil,Production Robusta,9600.000,-20.000
+2004,-12.395,2003,0.400,neutral,,Brazil,Production Robusta,9300.000,-3.125
+2005,-1.449,2004,0.700,El Nino,weak,Brazil,Production Robusta,10100.000,8.602
+2006,-2.074,2005,-0.900,La Nina,weak,Brazil,Production Robusta,10700.000,5.941
+2007,1.003,2006,0.900,El Nino,weak,Brazil,Production Robusta,11450.000,7.009
+2008,9.636,2007,-1.600,La Nina,strong,Brazil,Production Robusta,12800.000,11.790
+2009,-8.154,2008,-0.800,La Nina,weak,Brazil,Production Robusta,11800.000,-7.812
+2010,-7.061,2009,1.600,El Nino,moderate,Brazil,Production Robusta,12700.000,7.627
+2011,4.793,2010,-1.600,La Nina,strong,Brazil,Production Robusta,14500.000,14.173
+2012,3.934,2011,-1.100,La Nina,moderate,Brazil,Production Robusta,15500.000,6.897
+2013,2.247,2012,-0.200,neutral,,Brazil,Production Robusta,15400.000,-0.645
+2014,24.215,2013,-0.400,neutral,,Brazil,Production Robusta,17000.000,10.390
+2015,-4.045,2014,0.700,El Nino,weak,Brazil,Production Robusta,13300.000,-21.765
+2016,-29.742,2015,2.600,El Nino,very strong,Brazil,Production Robusta,10500.000,-21.053
+2017,-14.628,2016,-0.700,La Nina,weak,Brazil,Production Robusta,12600.000,20.000
+2018,8.649,2017,-1.000,La Nina,weak,Brazil,Production Robusta,16800.000,33.333
+2019,3.864,2018,0.900,El Nino,weak,Brazil,Production Robusta,18500.000,10.119
+2020,1.184,2019,0.500,neutral,,Brazil,Production Robusta,20200.000,9.189
+2021,4.771,2020,-1.300,La Nina,moderate,Brazil,Production Robusta,21700.000,7.426
+2022,8.120,2021,-1.000,La Nina,moderate,Brazil,Production Robusta,22800.000,5.069
+2023,-5.354,2022,-1.000,La Nina,weak,Brazil,Production Robusta,21400.000,-6.140
+2024,-9.038,2023,2.000,El Nino,strong,Brazil,Production Robusta,21000.000,-1.869
+2002,29.466,2001,-0.300,neutral,,Brazil,Production Total,53600.000,52.707
+2003,-12.302,2002,1.300,El Nino,moderate,Brazil,Production Total,33200.000,-38.060
+2004,-6.010,2003,0.400,neutral,,Brazil,Production Total,43600.000,31.325
+2005,-2.001,2004,0.700,El Nino,weak,Brazil,Production Total,36100.000,-17.202
+2006,-0.150,2005,-0.900,La Nina,weak,Brazil,Production Total,46700.000,29.363
+2007,-5.292,2006,0.900,El Nino,weak,Brazil,Production Total,39100.000,-16.274
+2008,7.123,2007,-1.600,La Nina,strong,Brazil,Production Total,53300.000,36.317
+2009,-0.993,2008,-0.800,La Nina,weak,Brazil,Production Total,44800.000,-15.947
+2010,-0.958,2009,1.600,El Nino,moderate,Brazil,Production Total,54500.000,21.652
+2011,-1.143,2010,-1.600,La Nina,strong,Brazil,Production Total,49200.000,-9.725
+2012,0.299,2011,-1.100,La Nina,moderate,Brazil,Production Total,57700.000,17.276
+2013,15.789,2012,-0.200,neutral,,Brazil,Production Total,57200.000,-0.867
+2014,-8.261,2013,-0.400,neutral,,Brazil,Production Total,54300.000,-5.070
+2015,-3.260,2014,0.700,El Nino,weak,Brazil,Production Total,49400.000,-9.024
+2016,-5.800,2015,2.600,El Nino,very strong,Brazil,Production Total,56100.000,13.563
+2017,-3.942,2016,-0.700,La Nina,weak,Brazil,Production Total,52100.000,-7.130
+2018,5.228,2017,-1.000,La Nina,weak,Brazil,Production Total,66500.000,27.639
+2019,4.210,2018,0.900,El Nino,weak,Brazil,Production Total,60500.000,-9.023
+2020,6.856,2019,0.500,neutral,,Brazil,Production Total,69900.000,15.537
+2021,-4.616,2020,-1.300,La Nina,moderate,Brazil,Production Total,58100.000,-16.881
+2022,-9.397,2021,-1.000,La Nina,moderate,Brazil,Production Total,62600.000,7.745
+2023,12.453,2022,-1.000,La Nina,weak,Brazil,Production Total,66300.000,5.911
+2024,-5.306,2023,2.000,El Nino,strong,Brazil,Production Total,65500.000,-1.207
+2002,0.835,2001,-0.300,neutral,,Brazil,Area total,2535.000,1.889
+2003,8.519,2002,1.300,El Nino,moderate,Brazil,Area total,2675.000,5.523
+2004,-6.145,2003,0.400,neutral,,Brazil,Area total,2379.000,-11.065
+2005,-1.245,2004,0.700,El Nino,weak,Brazil,Area total,2458.000,3.321
+2006,1.981,2005,-0.900,La Nina,weak,Brazil,Area total,2471.000,0.529
+2007,-0.246,2006,0.900,El Nino,weak,Brazil,Area total,2431.000,-1.619
+2008,-0.103,2007,-1.600,La Nina,strong,Brazil,Area total,2424.000,-0.288
+2009,-0.972,2008,-0.800,La Nina,weak,Brazil,Area total,2395.000,-1.196
+2010,0.208,2009,1.600,El Nino,moderate,Brazil,Area total,2409.000,0.585
+2011,0.073,2010,-1.600,La Nina,strong,Brazil,Area total,2410.000,0.042
+2012,-1.547,2011,-1.100,La Nina,moderate,Brazil,Area total,2387.000,-0.954
+2013,1.286,2012,-0.200,neutral,,Brazil,Area total,2442.000,2.304
+2014,1.026,2013,-0.400,neutral,,Brazil,Area total,2437.000,-0.205
+2015,-0.506,2014,0.700,El Nino,weak,Brazil,Area total,2410.000,-1.108
+2016,-0.021,2015,2.600,El Nino,very strong,Brazil,Area total,2410.000,0.000
+2017,-0.052,2016,-0.700,La Nina,weak,Brazil,Area total,2400.000,-0.415
+2018,-0.416,2017,-1.000,La Nina,weak,Brazil,Area total,2395.000,-0.208
+2019,-1.392,2018,0.900,El Nino,weak,Brazil,Area total,2390.000,-0.209
+2020,-0.820,2019,0.500,neutral,,Brazil,Area total,2420.000,1.255
+2021,1.070,2020,-1.300,La Nina,moderate,Brazil,Area total,2480.000,2.479
+2022,3.473,2021,-1.000,La Nina,moderate,Brazil,Area total,2495.000,0.605
+2023,6.075,2022,-1.000,La Nina,weak,Brazil,Area total,2510.000,0.601
+2024,-7.645,2023,2.000,El Nino,strong,Brazil,Area total,2235.000,-10.956
+2002,-8.711,2001,-0.300,neutral,,Brazil,Area bearing,2005.000,-2.433
+2003,10.552,2002,1.300,El Nino,moderate,Brazil,Area bearing,2360.000,17.706
+2004,-3.109,2003,0.400,neutral,,Brazil,Area bearing,2174.000,-7.881
+2005,1.609,2004,0.700,El Nino,weak,Brazil,Area bearing,2305.000,6.026
+2006,3.167,2005,-0.900,La Nina,weak,Brazil,Area bearing,2305.000,0.000
+2007,-0.490,2006,0.900,El Nino,weak,Brazil,Area bearing,2235.000,-3.037
+2008,0.293,2007,-1.600,La Nina,strong,Brazil,Area bearing,2223.000,-0.537
+2009,-2.038,2008,-0.800,La Nina,weak,Brazil,Area bearing,2151.000,-3.239
+2010,0.823,2009,1.600,El Nino,moderate,Brazil,Area bearing,2175.000,1.116
+2011,0.397,2010,-1.600,La Nina,strong,Brazil,Area bearing,2150.000,-1.149
+2012,-1.520,2011,-1.100,La Nina,moderate,Brazil,Area bearing,2105.000,-2.093
+2013,1.485,2012,-0.200,neutral,,Brazil,Area bearing,2135.000,1.425
+2014,-0.239,2013,-0.400,neutral,,Brazil,Area bearing,2090.000,-2.108
+2015,-0.421,2014,0.700,El Nino,weak,Brazil,Area bearing,2070.000,-0.957
+2016,0.485,2015,2.600,El Nino,very strong,Brazil,Area bearing,2070.000,0.000
+2017,-1.942,2016,-0.700,La Nina,weak,Brazil,Area bearing,2020.000,-2.415
+2018,0.122,2017,-1.000,La Nina,weak,Brazil,Area bearing,2060.000,1.980
+2019,-0.366,2018,0.900,El Nino,weak,Brazil,Area bearing,2040.000,-0.971
+2020,3.321,2019,0.500,neutral,,Brazil,Area bearing,2100.000,2.941
+2021,-1.832,2020,-1.300,La Nina,moderate,Brazil,Area bearing,2010.000,-4.286
+2022,0.736,2021,-1.000,La Nina,moderate,Brazil,Area bearing,2020.000,0.498
+2023,4.505,2022,-1.000,La Nina,weak,Brazil,Area bearing,2030.000,0.495
+2024,-4.502,2023,2.000,El Nino,strong,Brazil,Area bearing,1881.000,-7.340
+2002,41.638,2001,-0.300,neutral,,Brazil,Yield (production / bearing area),26.733,56.515
+2003,-20.476,2002,1.300,El Nino,moderate,Brazil,Yield (production / bearing area),14.068,-47.377
+2004,-4.624,2003,0.400,neutral,,Brazil,Yield (production / bearing area),20.055,42.561
+2005,-3.071,2004,0.700,El Nino,weak,Brazil,Yield (production / bearing area),15.662,-21.908
+2006,-4.133,2005,-0.900,La Nina,weak,Brazil,Yield (production / bearing area),20.260,29.363
+2007,-4.620,2006,0.900,El Nino,weak,Brazil,Yield (production / bearing area),17.494,-13.652
+2008,6.279,2007,-1.600,La Nina,strong,Brazil,Yield (production / bearing area),23.977,37.053
+2009,1.043,2008,-0.800,La Nina,weak,Brazil,Yield (production / bearing area),20.828,-13.134
+2010,-2.005,2009,1.600,El Nino,moderate,Brazil,Yield (production / bearing area),25.058,20.310
+2011,-1.523,2010,-1.600,La Nina,strong,Brazil,Yield (production / bearing area),22.884,-8.675
+2012,1.889,2011,-1.100,La Nina,moderate,Brazil,Yield (production / bearing area),27.411,19.784
+2013,14.078,2012,-0.200,neutral,,Brazil,Yield (production / bearing area),26.792,-2.259
+2014,-7.892,2013,-0.400,neutral,,Brazil,Yield (production / bearing area),25.981,-3.026
+2015,-3.013,2014,0.700,El Nino,weak,Brazil,Yield (production / bearing area),23.865,-8.145
+2016,-6.081,2015,2.600,El Nino,very strong,Brazil,Yield (production / bearing area),27.101,13.563
+2017,-2.401,2016,-0.700,La Nina,weak,Brazil,Yield (production / bearing area),25.792,-4.831
+2018,5.416,2017,-1.000,La Nina,weak,Brazil,Yield (production / bearing area),32.282,25.161
+2019,4.496,2018,0.900,El Nino,weak,Brazil,Yield (production / bearing area),29.657,-8.131
+2020,3.518,2019,0.500,neutral,,Brazil,Yield (production / bearing area),33.286,12.236
+2021,-3.118,2020,-1.300,La Nina,moderate,Brazil,Yield (production / bearing area),28.905,-13.159
+2022,-9.850,2021,-1.000,La Nina,moderate,Brazil,Yield (production / bearing area),30.990,7.212
+2023,7.065,2022,-1.000,La Nina,weak,Brazil,Yield (production / bearing area),32.660,5.389
+2024,-0.107,2023,2.000,El Nino,strong,Brazil,Yield (production / bearing area),34.822,6.619
+1999,-7.373,1999,-1.700,La Nina,strong,Colombia,Production Arabica,10000.000,-7.987
+2000,-3.442,2000,-0.700,La Nina,weak,Colombia,Production Arabica,10520.000,5.200
+2001,1.652,2001,-0.300,neutral,,Colombia,Production Arabica,11000.000,4.563
+2002,6.219,2002,1.300,El Nino,moderate,Colombia,Production Arabica,11712.000,6.473
+2003,-4.297,2003,0.400,neutral,,Colombia,Production Arabica,11053.000,-5.627
+2004,-1.608,2004,0.700,El Nino,weak,Colombia,Production Arabica,11532.000,4.334
+2005,1.159,2005,-0.900,La Nina,weak,Colombia,Production Arabica,11953.000,3.651
+2006,8.938,2006,0.900,El Nino,weak,Colombia,Production Arabica,12164.000,1.765
+2007,22.453,2007,-1.600,La Nina,strong,Colombia,Production Arabica,12515.000,2.886
+2008,-16.095,2008,-0.800,La Nina,weak,Colombia,Production Arabica,8664.000,-30.771
+2009,-13.274,2009,1.600,El Nino,moderate,Colombia,Production Arabica,8100.000,-6.510
+2010,-0.716,2010,-1.600,La Nina,strong,Colombia,Production Arabica,8525.000,5.247
+2011,-20.729,2011,-1.100,La Nina,moderate,Colombia,Production Arabica,7655.000,-10.205
+2012,-4.445,2012,-0.200,neutral,,Colombia,Production Arabica,9927.000,29.680
+2013,7.616,2013,-0.400,neutral,,Colombia,Production Arabica,12075.000,21.638
+2014,5.134,2014,0.700,El Nino,weak,Colombia,Production Arabica,13300.000,10.145
+2015,4.089,2015,2.600,El Nino,very strong,Colombia,Production Arabica,14000.000,5.263
+2016,6.191,2016,-0.700,La Nina,weak,Colombia,Production Arabica,14600.000,4.286
+2017,-2.245,2017,-1.000,La Nina,weak,Colombia,Production Arabica,13825.000,-5.308
+2018,-0.796,2018,0.900,El Nino,weak,Colombia,Production Arabica,13870.000,0.325
+2019,6.626,2019,0.500,neutral,,Colombia,Production Arabica,14100.000,1.658
+2020,6.202,2020,-1.300,La Nina,moderate,Colombia,Production Arabica,13400.000,-4.965
+2021,-7.378,2021,-1.000,La Nina,moderate,Colombia,Production Arabica,11800.000,-11.940
+2022,-18.878,2022,-1.000,La Nina,weak,Colombia,Production Arabica,10700.000,-9.322
+2023,2.490,2023,2.000,El Nino,strong,Colombia,Production Arabica,12760.000,19.252
+2024,23.471,2024,-0.600,La Nina,weak,Colombia,Production Arabica,14800.000,15.987
+1999,1.170,1999,-1.700,La Nina,strong,Colombia,Area total,836.000,-3.797
+2000,-1.979,2000,-0.700,La Nina,weak,Colombia,Area total,805.000,-3.708
+2001,1.067,2001,-0.300,neutral,,Colombia,Area total,805.000,0.000
+2002,-1.431,2002,1.300,El Nino,moderate,Colombia,Area total,775.000,-3.727
+2003,-1.440,2003,0.400,neutral,,Colombia,Area total,770.000,-0.645
+2004,-1.449,2004,0.700,El Nino,weak,Colombia,Area total,765.000,-0.649
+2005,0.808,2005,-0.900,La Nina,weak,Colombia,Area total,780.000,1.961
+2006,0.483,2006,0.900,El Nino,weak,Colombia,Area total,780.000,0.000
+2007,0.000,2007,-1.600,La Nina,strong,Colombia,Area total,780.000,0.000
+2008,0.000,2008,-0.800,La Nina,weak,Colombia,Area total,780.000,0.000
+2009,0.000,2009,1.600,El Nino,moderate,Colombia,Area total,780.000,0.000
+2010,0.000,2010,-1.600,La Nina,strong,Colombia,Area total,780.000,0.000
+2011,0.000,2011,-1.100,La Nina,moderate,Colombia,Area total,780.000,0.000
+2012,0.000,2012,-0.200,neutral,,Colombia,Area total,780.000,0.000
+2013,0.000,2013,-0.400,neutral,,Colombia,Area total,780.000,0.000
+2014,0.000,2014,0.700,El Nino,weak,Colombia,Area total,780.000,0.000
+2015,0.000,2015,2.600,El Nino,very strong,Colombia,Area total,780.000,0.000
+2016,0.000,2016,-0.700,La Nina,weak,Colombia,Area total,780.000,0.000
+2017,-0.637,2017,-1.000,La Nina,weak,Colombia,Area total,780.000,0.000
+2018,-1.266,2018,0.900,El Nino,weak,Colombia,Area total,780.000,0.000
+2019,1.266,2019,0.500,neutral,,Colombia,Area total,800.000,2.564
+2020,0.629,2020,-1.300,La Nina,moderate,Colombia,Area total,800.000,0.000
+2021,0.000,2021,-1.000,La Nina,moderate,Colombia,Area total,800.000,0.000
+2022,0.000,2022,-1.000,La Nina,weak,Colombia,Area total,800.000,0.000
+2023,0.000,2023,2.000,El Nino,strong,Colombia,Area total,800.000,0.000
+2024,0.000,2024,-0.600,La Nina,weak,Colombia,Area total,800.000,0.000
+1999,2.828,1999,-1.700,La Nina,strong,Colombia,Area bearing,715.000,-9.033
+2000,-6.508,2000,-0.700,La Nina,weak,Colombia,Area bearing,650.000,-9.091
+2001,-0.952,2001,-0.300,neutral,,Colombia,Area bearing,650.000,0.000
+2002,-1.176,2002,1.300,El Nino,moderate,Colombia,Area bearing,630.000,-3.077
+2003,-0.787,2003,0.400,neutral,,Colombia,Area bearing,630.000,0.000
+2004,-2.362,2004,0.700,El Nino,weak,Colombia,Area bearing,620.000,-1.587
+2005,1.186,2005,-0.900,La Nina,weak,Colombia,Area bearing,640.000,3.226
+2006,0.787,2006,0.900,El Nino,weak,Colombia,Area bearing,640.000,0.000
+2007,0.000,2007,-1.600,La Nina,strong,Colombia,Area bearing,640.000,0.000
+2008,0.000,2008,-0.800,La Nina,weak,Colombia,Area bearing,640.000,0.000
+2009,0.000,2009,1.600,El Nino,moderate,Colombia,Area bearing,640.000,0.000
+2010,0.000,2010,-1.600,La Nina,strong,Colombia,Area bearing,640.000,0.000
+2011,0.000,2011,-1.100,La Nina,moderate,Colombia,Area bearing,640.000,0.000
+2012,0.000,2012,-0.200,neutral,,Colombia,Area bearing,640.000,0.000
+2013,0.000,2013,-0.400,neutral,,Colombia,Area bearing,640.000,0.000
+2014,0.000,2014,0.700,El Nino,weak,Colombia,Area bearing,640.000,0.000
+2015,0.000,2015,2.600,El Nino,very strong,Colombia,Area bearing,640.000,0.000
+2016,0.000,2016,-0.700,La Nina,weak,Colombia,Area bearing,640.000,0.000
+2017,0.000,2017,-1.000,La Nina,weak,Colombia,Area bearing,640.000,0.000
+2018,0.000,2018,0.900,El Nino,weak,Colombia,Area bearing,640.000,0.000
+2019,0.000,2019,0.500,neutral,,Colombia,Area bearing,640.000,0.000
+2020,0.000,2020,-1.300,La Nina,moderate,Colombia,Area bearing,640.000,0.000
+2021,0.000,2021,-1.000,La Nina,moderate,Colombia,Area bearing,640.000,0.000
+2022,0.000,2022,-1.000,La Nina,weak,Colombia,Area bearing,640.000,0.000
+2023,0.000,2023,2.000,El Nino,strong,Colombia,Area bearing,640.000,0.000
+2024,0.000,2024,-0.600,La Nina,weak,Colombia,Area bearing,640.000,0.000
+1999,-8.548,1999,-1.700,La Nina,strong,Colombia,Yield,11.962,-4.355
+2000,-1.825,2000,-0.700,La Nina,weak,Colombia,Yield,13.068,9.251
+2001,0.297,2001,-0.300,neutral,,Colombia,Yield,13.665,4.563
+2002,7.634,2002,1.300,El Nino,moderate,Colombia,Yield,15.112,10.595
+2003,-2.970,2003,0.400,neutral,,Colombia,Yield,14.354,-5.014
+2004,-0.146,2004,0.700,El Nino,weak,Colombia,Yield,15.075,5.016
+2005,0.375,2005,-0.900,La Nina,weak,Colombia,Yield,15.324,1.658
+2006,8.389,2006,0.900,El Nino,weak,Colombia,Yield,15.595,1.765
+2007,22.453,2007,-1.600,La Nina,strong,Colombia,Yield,16.045,2.886
+2008,-16.095,2008,-0.800,La Nina,weak,Colombia,Yield,11.108,-30.771
+2009,-13.274,2009,1.600,El Nino,moderate,Colombia,Yield,10.385,-6.510
+2010,-0.716,2010,-1.600,La Nina,strong,Colombia,Yield,10.930,5.247
+2011,-20.729,2011,-1.100,La Nina,moderate,Colombia,Yield,9.814,-10.205
+2012,-4.445,2012,-0.200,neutral,,Colombia,Yield,12.727,29.680
+2013,7.616,2013,-0.400,neutral,,Colombia,Yield,15.481,21.638
+2014,5.134,2014,0.700,El Nino,weak,Colombia,Yield,17.051,10.145
+2015,4.089,2015,2.600,El Nino,very strong,Colombia,Yield,17.949,5.263
+2016,6.191,2016,-0.700,La Nina,weak,Colombia,Yield,18.718,4.286
+2017,-1.632,2017,-1.000,La Nina,weak,Colombia,Yield,17.724,-5.308
+2018,0.439,2018,0.900,El Nino,weak,Colombia,Yield,17.782,0.326
+2019,5.214,2019,0.500,neutral,,Colombia,Yield,17.625,-0.883
+2020,5.459,2020,-1.300,La Nina,moderate,Colombia,Yield,16.750,-4.965
+2021,-7.378,2021,-1.000,La Nina,moderate,Colombia,Yield,14.750,-11.940
+2022,-18.878,2022,-1.000,La Nina,weak,Colombia,Yield,13.375,-9.322
+2023,2.490,2023,2.000,El Nino,strong,Colombia,Yield,15.950,19.252
+2024,23.471,2024,-0.600,La Nina,weak,Colombia,Yield,18.500,15.987
+2008,7.282,2008,-0.800,La Nina,weak,Colombia (Fedecafe),Production Arabica,13809.759,-0.038
+2009,-7.851,2009,1.600,El Nino,moderate,Colombia (Fedecafe),Production Arabica,11814.857,-14.446
+2010,11.133,2010,-1.600,La Nina,strong,Colombia (Fedecafe),Production Arabica,12987.242,9.923
+2011,-7.417,2011,-1.100,La Nina,moderate,Colombia (Fedecafe),Production Arabica,10673.863,-17.813
+2012,-10.465,2012,-0.200,neutral,,Colombia (Fedecafe),Production Arabica,10446.190,-2.133
+2013,-8.359,2013,-0.400,neutral,,Colombia (Fedecafe),Production Arabica,10867.534,4.033
+2014,-2.334,2014,0.700,El Nino,weak,Colombia (Fedecafe),Production Arabica,12139.999,11.709
+2015,10.239,2015,2.600,El Nino,very strong,Colombia (Fedecafe),Production Arabica,14175.001,16.763
+2016,5.294,2016,-0.700,La Nina,weak,Colombia (Fedecafe),Production Arabica,14231.999,0.402
+2017,0.371,2017,-1.000,La Nina,weak,Colombia (Fedecafe),Production Arabica,14194.001,-0.267
+2018,-3.556,2018,0.900,El Nino,weak,Colombia (Fedecafe),Production Arabica,13556.999,-4.488
+2019,9.109,2019,0.500,neutral,,Colombia (Fedecafe),Production Arabica,14602.239,7.710
+2020,1.717,2020,-1.300,La Nina,moderate,Colombia (Fedecafe),Production Arabica,13199.280,-9.608
+2021,0.021,2021,-1.000,La Nina,moderate,Colombia (Fedecafe),Production Arabica,12582.262,-4.675
+2022,-12.468,2022,-1.000,La Nina,weak,Colombia (Fedecafe),Production Arabica,11164.303,-11.270
+2023,-11.498,2023,2.000,El Nino,strong,Colombia (Fedecafe),Production Arabica,11352.818,1.689
+2024,15.068,2024,-0.600,La Nina,weak,Colombia (Fedecafe),Production Arabica,13883.971,22.295
+2008,-0.611,2008,-0.800,La Nina,weak,Colombia (Fedecafe),Area total,867.000,0.814
+2009,-1.160,2009,1.600,El Nino,moderate,Colombia (Fedecafe),Area total,873.000,0.692
+2010,-2.293,2010,-1.600,La Nina,strong,Colombia (Fedecafe),Area total,884.000,1.260
+2011,0.000,2011,-1.100,La Nina,moderate,Colombia (Fedecafe),Area total,922.000,4.299
+2012,2.682,2012,-0.200,neutral,,Colombia (Fedecafe),Area total,957.000,3.796
+2013,3.397,2013,-0.400,neutral,,Colombia (Fedecafe),Area total,974.000,1.776
+2014,-0.315,2014,0.700,El Nino,weak,Colombia (Fedecafe),Area total,948.000,-2.669
+2015,0.160,2015,2.600,El Nino,very strong,Colombia (Fedecafe),Area total,941.000,-0.738
+2016,1.580,2016,-0.700,La Nina,weak,Colombia (Fedecafe),Area total,932.000,-0.956
+2017,0.166,2017,-1.000,La Nina,weak,Colombia (Fedecafe),Area total,904.000,-3.004
+2018,-1.100,2018,0.900,El Nino,weak,Colombia (Fedecafe),Area total,877.000,-2.987
+2019,-0.979,2019,0.500,neutral,,Colombia (Fedecafe),Area total,860.000,-1.938
+2020,-0.555,2020,-1.300,La Nina,moderate,Colombia (Fedecafe),Area total,851.000,-1.047
+2021,-0.795,2021,-1.000,La Nina,moderate,Colombia (Fedecafe),Area total,842.000,-1.058
+2022,0.119,2022,-1.000,La Nina,weak,Colombia (Fedecafe),Area total,844.000,0.238
+2023,-0.030,2023,2.000,El Nino,strong,Colombia (Fedecafe),Area total,840.000,-0.474
+2024,-0.119,2024,-0.600,La Nina,weak,Colombia (Fedecafe),Area total,839.000,-0.119
+2001,0.380,2001,-0.300,neutral,,Colombia (Fedecafe),Area bearing,705.000,4.444
+2002,-0.975,2002,1.300,El Nino,moderate,Colombia (Fedecafe),Area bearing,711.000,0.851
+2003,-3.674,2003,0.400,neutral,,Colombia (Fedecafe),Area bearing,721.000,1.406
+2004,1.950,2004,0.700,El Nino,weak,Colombia (Fedecafe),Area bearing,771.000,6.935
+2005,6.045,2005,-0.900,La Nina,weak,Colombia (Fedecafe),Area bearing,807.000,4.669
+2006,1.354,2006,0.900,El Nino,weak,Colombia (Fedecafe),Area bearing,786.000,-2.602
+2007,-1.352,2007,-1.600,La Nina,strong,Colombia (Fedecafe),Area bearing,766.000,-2.545
+2008,-0.623,2008,-0.800,La Nina,weak,Colombia (Fedecafe),Area bearing,758.000,-1.044
+2009,1.342,2009,1.600,El Nino,moderate,Colombia (Fedecafe),Area bearing,755.000,-0.396
+2010,1.397,2010,-1.600,La Nina,strong,Colombia (Fedecafe),Area bearing,744.000,-1.457
+2011,-4.462,2011,-1.100,La Nina,moderate,Colombia (Fedecafe),Area bearing,712.000,-4.301
+2012,-3.924,2012,-0.200,neutral,,Colombia (Fedecafe),Area bearing,710.000,-0.281
+2013,4.642,2013,-0.400,neutral,,Colombia (Fedecafe),Area bearing,772.000,8.732
+2014,-4.868,2014,0.700,El Nino,weak,Colombia (Fedecafe),Area bearing,728.000,-5.699
+2015,5.708,2015,2.600,El Nino,very strong,Colombia (Fedecafe),Area bearing,801.000,10.027
+2016,3.664,2016,-0.700,La Nina,weak,Colombia (Fedecafe),Area bearing,778.000,-2.871
+2017,0.534,2017,-1.000,La Nina,weak,Colombia (Fedecafe),Area bearing,753.000,-3.213
+2018,-2.207,2018,0.900,El Nino,weak,Colombia (Fedecafe),Area bearing,720.000,-4.382
+2019,-3.396,2019,0.500,neutral,,Colombia (Fedecafe),Area bearing,697.000,-3.194
+2020,1.991,2020,-1.300,La Nina,moderate,Colombia (Fedecafe),Area bearing,717.000,2.869
+2021,-0.961,2021,-1.000,La Nina,moderate,Colombia (Fedecafe),Area bearing,696.000,-2.929
+2022,0.503,2022,-1.000,La Nina,weak,Colombia (Fedecafe),Area bearing,699.000,0.431
+2023,2.685,2023,2.000,El Nino,strong,Colombia (Fedecafe),Area bearing,698.000,-0.143
+2024,-1.805,2024,-0.600,La Nina,weak,Colombia (Fedecafe),Area bearing,671.000,-3.868
+2008,6.856,2008,-0.800,La Nina,weak,Colombia (Fedecafe),Yield,18.211,1.039
+2009,-8.800,2009,1.600,El Nino,moderate,Colombia (Fedecafe),Yield,15.656,-14.031
+2010,9.818,2010,-1.600,La Nina,strong,Colombia (Fedecafe),Yield,17.448,11.449
+2011,-3.161,2011,-1.100,La Nina,moderate,Colombia (Fedecafe),Yield,14.983,-14.129
+2012,-4.789,2012,-0.200,neutral,,Colombia (Fedecafe),Yield,14.703,-1.867
+2013,-10.086,2013,-0.400,neutral,,Colombia (Fedecafe),Yield,14.081,-4.234
+2014,-5.774,2014,0.700,El Nino,weak,Colombia (Fedecafe),Yield,15.260,8.372
+2015,6.462,2015,2.600,El Nino,very strong,Colombia (Fedecafe),Yield,17.695,15.958
+2016,3.649,2016,-0.700,La Nina,weak,Colombia (Fedecafe),Yield,18.300,3.420
+2017,-0.528,2017,-1.000,La Nina,weak,Colombia (Fedecafe),Yield,18.843,2.964
+2018,-1.575,2018,0.900,El Nino,weak,Colombia (Fedecafe),Yield,18.826,-0.088
+2019,12.981,2019,0.500,neutral,,Colombia (Fedecafe),Yield,20.949,11.279
+2020,-0.220,2020,-1.300,La Nina,moderate,Colombia (Fedecafe),Yield,18.417,-12.088
+2021,1.017,2021,-1.000,La Nina,moderate,Colombia (Fedecafe),Yield,18.084,-1.810
+2022,-13.030,2022,-1.000,La Nina,weak,Colombia (Fedecafe),Yield,15.971,-11.682
+2023,-14.036,2023,2.000,El Nino,strong,Colombia (Fedecafe),Yield,16.269,1.867
+2024,16.643,2024,-0.600,La Nina,weak,Colombia (Fedecafe),Yield,20.686,27.146
+2001,-6.632,2001,-0.300,neutral,,Honduras,Production Arabica,2600.000,-9.597
+2002,-2.061,2002,1.300,El Nino,moderate,Honduras,Production Arabica,2661.000,2.346
+2003,2.065,2003,0.400,neutral,,Honduras,Production Arabica,2817.000,5.862
+2004,-15.170,2004,0.700,El Nino,weak,Honduras,Production Arabica,2575.000,-8.591
+2005,2.577,2005,-0.900,La Nina,weak,Honduras,Production Arabica,3204.000,24.427
+2006,8.176,2006,0.900,El Nino,weak,Honduras,Production Arabica,3460.000,7.990
+2007,7.220,2007,-1.600,La Nina,strong,Honduras,Production Arabica,3642.000,5.260
+2008,-7.760,2008,-0.800,La Nina,weak,Honduras,Production Arabica,3373.000,-7.386
+2009,-14.406,2009,1.600,El Nino,moderate,Honduras,Production Arabica,3550.000,5.248
+2010,-7.815,2010,-1.600,La Nina,strong,Honduras,Production Arabica,3975.000,11.972
+2011,34.535,2011,-1.100,La Nina,moderate,Honduras,Production Arabica,5600.000,40.881
+2012,-0.917,2012,-0.200,neutral,,Honduras,Production Arabica,4725.000,-15.625
+2013,-15.078,2013,-0.400,neutral,,Honduras,Production Arabica,4400.000,-6.878
+2014,-6.998,2014,0.700,El Nino,weak,Honduras,Production Arabica,5100.000,15.909
+2015,-13.856,2015,2.600,El Nino,very strong,Honduras,Production Arabica,5300.000,3.922
+2016,19.681,2016,-0.700,La Nina,weak,Honduras,Production Arabica,7510.000,41.698
+2017,21.067,2017,-1.000,La Nina,weak,Honduras,Production Arabica,7600.000,1.198
+2018,5.931,2018,0.900,El Nino,weak,Honduras,Production Arabica,7100.000,-6.579
+2019,-20.000,2019,0.500,neutral,,Honduras,Production Arabica,5200.000,-26.761
+2020,14.035,2020,-1.300,La Nina,moderate,Honduras,Production Arabica,6500.000,25.000
+2021,-14.477,2021,-1.000,La Nina,moderate,Honduras,Production Arabica,4800.000,-26.154
+2022,5.800,2022,-1.000,La Nina,weak,Honduras,Production Arabica,5700.000,18.750
+2023,-6.047,2023,2.000,El Nino,strong,Honduras,Production Arabica,5050.000,-11.404
+2024,-5.740,2024,-0.600,La Nina,weak,Honduras,Production Arabica,5200.000,2.970
+2001,9.231,2001,-0.300,neutral,,Honduras,Area total,284.000,0.000
+2002,-6.767,2002,1.300,El Nino,moderate,Honduras,Area total,248.000,-12.676
+2003,-3.502,2003,0.400,neutral,,Honduras,Area total,248.000,0.000
+2004,0.507,2004,0.700,El Nino,weak,Honduras,Area total,248.000,0.000
+2005,1.018,2005,-0.900,La Nina,weak,Honduras,Area total,248.000,0.000
+2006,-1.119,2006,0.900,El Nino,weak,Honduras,Area total,243.000,-2.016
+2007,-0.715,2007,-1.600,La Nina,strong,Honduras,Area total,243.000,0.000
+2008,-2.008,2008,-0.800,La Nina,weak,Honduras,Area total,244.000,0.412
+2009,-5.973,2009,1.600,El Nino,moderate,Honduras,Area total,244.000,0.000
+2010,-2.206,2010,-1.600,La Nina,strong,Honduras,Area total,266.000,9.016
+2011,4.779,2011,-1.100,La Nina,moderate,Honduras,Area total,285.000,7.143
+2012,13.821,2012,-0.200,neutral,,Honduras,Area total,315.000,10.526
+2013,-12.040,2013,-0.400,neutral,,Honduras,Area total,263.000,-16.508
+2014,-3.539,2014,0.700,El Nino,weak,Honduras,Area total,293.000,11.407
+2015,-1.623,2015,2.600,El Nino,very strong,Honduras,Area total,303.000,3.413
+2016,6.032,2016,-0.700,La Nina,weak,Honduras,Area total,334.000,10.231
+2017,8.228,2017,-1.000,La Nina,weak,Honduras,Area total,342.000,2.395
+2018,0.000,2018,0.900,El Nino,weak,Honduras,Area total,322.000,-5.848
+2019,-4.538,2019,0.500,neutral,,Honduras,Area total,305.000,-5.280
+2020,-2.073,2020,-1.300,La Nina,moderate,Honduras,Area total,307.000,0.656
+2021,-2.694,2021,-1.000,La Nina,moderate,Honduras,Area total,307.000,0.000
+2022,-0.312,2022,-1.000,La Nina,weak,Honduras,Area total,320.000,4.235
+2023,0.228,2023,2.000,El Nino,strong,Honduras,Area total,330.000,3.125
+2024,2.000,2024,-0.600,La Nina,weak,Honduras,Area total,340.000,3.030
+2001,7.860,2001,-0.300,neutral,,Honduras,Area bearing,215.000,-6.522
+2002,-9.471,2002,1.300,El Nino,moderate,Honduras,Area bearing,184.000,-14.419
+2003,-4.042,2003,0.400,neutral,,Honduras,Area bearing,184.000,0.000
+2004,-5.882,2004,0.700,El Nino,weak,Honduras,Area bearing,184.000,0.000
+2005,-11.111,2005,-0.900,La Nina,weak,Honduras,Area bearing,184.000,0.000
+2006,11.922,2006,0.900,El Nino,weak,Honduras,Area bearing,230.000,25.000
+2007,6.729,2007,-1.600,La Nina,strong,Honduras,Area bearing,230.000,0.000
+2008,-2.820,2008,-0.800,La Nina,weak,Honduras,Area bearing,224.000,-2.609
+2009,-4.376,2009,1.600,El Nino,moderate,Honduras,Area bearing,224.000,0.000
+2010,-0.833,2010,-1.600,La Nina,strong,Honduras,Area bearing,238.000,6.250
+2011,4.034,2011,-1.100,La Nina,moderate,Honduras,Area bearing,245.000,2.941
+2012,15.710,2012,-0.200,neutral,,Honduras,Area bearing,267.000,8.980
+2013,-12.972,2013,-0.400,neutral,,Honduras,Area bearing,213.000,-20.225
+2014,-9.200,2014,0.700,El Nino,weak,Honduras,Area bearing,227.000,6.573
+2015,-5.697,2015,2.600,El Nino,very strong,Honduras,Area bearing,240.000,5.727
+2016,6.565,2016,-0.700,La Nina,weak,Honduras,Area bearing,280.000,16.667
+2017,10.781,2017,-1.000,La Nina,weak,Honduras,Area bearing,298.000,6.429
+2018,2.052,2018,0.900,El Nino,weak,Honduras,Area bearing,286.000,-4.027
+2019,-4.594,2019,0.500,neutral,,Honduras,Area bearing,270.000,-5.594
+2020,-2.151,2020,-1.300,La Nina,moderate,Honduras,Area bearing,273.000,1.111
+2021,-1.786,2021,-1.000,La Nina,moderate,Honduras,Area bearing,275.000,0.733
+2022,0.000,2022,-1.000,La Nina,weak,Honduras,Area bearing,285.000,3.636
+2023,-0.171,2023,2.000,El Nino,strong,Honduras,Area bearing,292.000,2.456
+2024,1.466,2024,-0.600,La Nina,weak,Honduras,Area bearing,300.000,2.740
+2001,-14.186,2001,-0.300,neutral,,Honduras,Yield,12.093,-3.289
+2002,7.321,2002,1.300,El Nino,moderate,Honduras,Yield,14.462,19.590
+2003,5.653,2003,0.400,neutral,,Honduras,Yield,15.310,5.862
+2004,-10.044,2004,0.700,El Nino,weak,Honduras,Yield,13.995,-8.591
+2005,15.734,2005,-0.900,La Nina,weak,Honduras,Yield,17.413,24.427
+2006,-3.413,2006,0.900,El Nino,weak,Honduras,Yield,15.043,-13.608
+2007,-0.037,2007,-1.600,La Nina,strong,Honduras,Yield,15.835,5.260
+2008,-5.039,2008,-0.800,La Nina,weak,Honduras,Yield,15.058,-4.906
+2009,-10.019,2009,1.600,El Nino,moderate,Honduras,Yield,15.848,5.248
+2010,-6.511,2010,-1.600,La Nina,strong,Honduras,Yield,16.702,5.385
+2011,28.947,2011,-1.100,La Nina,moderate,Honduras,Yield,22.857,36.855
+2012,-14.388,2012,-0.200,neutral,,Honduras,Yield,17.697,-22.577
+2013,-2.908,2013,-0.400,neutral,,Honduras,Yield,20.657,16.730
+2014,2.990,2014,0.700,El Nino,weak,Honduras,Yield,22.467,8.761
+2015,-7.455,2015,2.600,El Nino,very strong,Honduras,Yield,22.083,-1.708
+2016,13.076,2016,-0.700,La Nina,weak,Honduras,Yield,26.821,21.456
+2017,9.705,2017,-1.000,La Nina,weak,Honduras,Yield,25.503,-4.914
+2018,4.096,2018,0.900,El Nino,weak,Honduras,Yield,24.825,-2.659
+2019,-15.891,2019,0.500,neutral,,Honduras,Yield,19.259,-22.420
+2020,16.801,2020,-1.300,La Nina,moderate,Honduras,Yield,23.809,23.626
+2021,-13.122,2021,-1.000,La Nina,moderate,Honduras,Yield,17.454,-26.691
+2022,5.413,2022,-1.000,La Nina,weak,Honduras,Yield,20.000,14.584
+2023,-5.877,2023,2.000,El Nino,strong,Honduras,Yield,17.294,-13.528
+2024,-7.150,2024,-0.600,La Nina,weak,Honduras,Yield,17.333,0.224
+2005,18.310,2004,0.700,El Nino,weak,Indonesia,Production Robusta,8400.000,12.000
+2006,-16.981,2005,-0.900,La Nina,weak,Indonesia,Production Robusta,6600.000,-21.429
+2007,-11.927,2006,0.900,El Nino,weak,Indonesia,Production Robusta,7200.000,9.091
+2008,13.171,2007,-1.600,La Nina,strong,Indonesia,Production Robusta,8700.000,20.833
+2009,16.694,2008,-0.800,La Nina,weak,Indonesia,Production Robusta,9000.000,3.448
+2010,-8.092,2009,1.600,El Nino,moderate,Indonesia,Production Robusta,7950.000,-11.667
+2011,-24.016,2010,-1.600,La Nina,strong,Indonesia,Production Robusta,7000.000,-11.950
+2012,15.959,2011,-1.100,La Nina,moderate,Indonesia,Production Robusta,9900.000,41.429
+2013,8.992,2012,-0.200,neutral,,Indonesia,Production Robusta,10000.000,1.010
+2014,-7.538,2013,-0.400,neutral,,Indonesia,Production Robusta,9200.000,-8.000
+2015,11.873,2014,0.700,El Nino,weak,Indonesia,Production Robusta,10600.000,15.217
+2016,-3.627,2015,2.600,El Nino,very strong,Indonesia,Production Robusta,9300.000,-12.264
+2017,-2.968,2016,-0.700,La Nina,weak,Indonesia,Production Robusta,9400.000,1.075
+2018,0.133,2017,-1.000,La Nina,weak,Indonesia,Production Robusta,9400.000,0.000
+2019,0.800,2018,0.900,El Nino,weak,Indonesia,Production Robusta,9450.000,0.532
+2020,-0.133,2019,0.500,neutral,,Indonesia,Production Robusta,9400.000,-0.529
+2021,5.832,2020,-1.300,La Nina,moderate,Indonesia,Production Robusta,9300.000,-1.064
+2022,9.195,2021,-1.000,La Nina,moderate,Indonesia,Production Robusta,9500.000,2.151
+2023,-30.435,2022,-1.000,La Nina,weak,Indonesia,Production Robusta,6800.000,-28.421
+2024,2.198,2023,2.000,El Nino,strong,Indonesia,Production Robusta,9300.000,36.765
+2005,12.500,2004,0.700,El Nino,weak,Indonesia,Production Arabica,1050.000,10.526
+2006,2.439,2005,-0.900,La Nina,weak,Indonesia,Production Arabica,1050.000,0.000
+2007,-34.694,2006,0.900,El Nino,weak,Indonesia,Production Arabica,800.000,-23.810
+2008,10.053,2007,-1.600,La Nina,strong,Indonesia,Production Arabica,1300.000,62.500
+2009,25.654,2008,-0.800,La Nina,weak,Indonesia,Production Arabica,1500.000,15.385
+2010,-9.836,2009,1.600,El Nino,moderate,Indonesia,Production Arabica,1375.000,-8.333
+2011,-23.247,2010,-1.600,La Nina,strong,Indonesia,Production Arabica,1300.000,-5.455
+2012,36.869,2011,-1.100,La Nina,moderate,Indonesia,Production Arabica,2000.000,53.846
+2013,25.206,2012,-0.200,neutral,,Indonesia,Production Arabica,1900.000,-5.000
+2014,-24.179,2013,-0.400,neutral,,Indonesia,Production Arabica,1270.000,-33.158
+2015,9.689,2014,0.700,El Nino,weak,Indonesia,Production Arabica,1500.000,18.110
+2016,4.628,2015,2.600,El Nino,very strong,Indonesia,Production Arabica,1300.000,-13.333
+2017,-23.810,2016,-0.700,La Nina,weak,Indonesia,Production Arabica,1000.000,-23.077
+2018,-1.031,2017,-1.000,La Nina,weak,Indonesia,Production Arabica,1200.000,20.000
+2019,4.603,2018,0.900,El Nino,weak,Indonesia,Production Arabica,1250.000,4.167
+2020,5.477,2019,0.500,neutral,,Indonesia,Production Arabica,1300.000,4.000
+2021,0.392,2020,-1.300,La Nina,moderate,Indonesia,Production Arabica,1280.000,-1.538
+2022,-9.944,2021,-1.000,La Nina,moderate,Indonesia,Production Arabica,1200.000,-6.250
+2023,2.857,2022,-1.000,La Nina,weak,Indonesia,Production Arabica,1350.000,12.500
+2024,7.143,2023,2.000,El Nino,strong,Indonesia,Production Arabica,1400.000,3.704
+2005,17.635,2004,0.700,El Nino,weak,Indonesia,Production Total,9450.000,11.834
+2006,-14.763,2005,-0.900,La Nina,weak,Indonesia,Production Total,7650.000,-19.048
+2007,-14.894,2006,0.900,El Nino,weak,Indonesia,Production Total,8000.000,4.575
+2008,12.755,2007,-1.600,La Nina,strong,Indonesia,Production Total,10000.000,25.000
+2009,17.895,2008,-0.800,La Nina,weak,Indonesia,Production Total,10500.000,5.000
+2010,-8.354,2009,1.600,El Nino,moderate,Indonesia,Production Total,9325.000,-11.190
+2011,-23.897,2010,-1.600,La Nina,strong,Indonesia,Production Total,8300.000,-10.992
+2012,19.015,2011,-1.100,La Nina,moderate,Indonesia,Production Total,11900.000,43.373
+2013,11.293,2012,-0.200,neutral,,Indonesia,Production Total,11900.000,0.000
+2014,-9.935,2013,-0.400,neutral,,Indonesia,Production Total,10470.000,-12.017
+2015,11.598,2014,0.700,El Nino,weak,Indonesia,Production Total,12100.000,15.568
+2016,-2.685,2015,2.600,El Nino,very strong,Indonesia,Production Total,10600.000,-12.397
+2017,-5.455,2016,-0.700,La Nina,weak,Indonesia,Production Total,10400.000,-1.887
+2018,0.000,2017,-1.000,La Nina,weak,Indonesia,Production Total,10600.000,1.923
+2019,1.230,2018,0.900,El Nino,weak,Indonesia,Production Total,10700.000,0.943
+2020,0.517,2019,0.500,neutral,,Indonesia,Production Total,10700.000,0.000
+2021,5.143,2020,-1.300,La Nina,moderate,Indonesia,Production Total,10580.000,-1.121
+2022,6.653,2021,-1.000,La Nina,moderate,Indonesia,Production Total,10700.000,1.134
+2023,-26.494,2022,-1.000,La Nina,weak,Indonesia,Production Total,8150.000,-23.832
+2024,2.819,2023,2.000,El Nino,strong,Indonesia,Production Total,10700.000,31.288
+2005,-10.811,2004,0.700,El Nino,weak,Indonesia,Area bearing,0.825,-10.811
+2006,-1.370,2005,-0.900,La Nina,weak,Indonesia,Area bearing,0.900,9.091
+2007,-1.935,2006,0.900,El Nino,weak,Indonesia,Area bearing,0.950,5.556
+2008,-9.846,2007,-1.600,La Nina,strong,Indonesia,Area bearing,0.950,0.000
+2009,13.879,2008,-0.800,La Nina,weak,Indonesia,Area bearing,1.200,26.316
+2010,4.018,2009,1.600,El Nino,moderate,Indonesia,Area bearing,1.165,-2.917
+2011,-3.056,2010,-1.600,La Nina,strong,Indonesia,Area bearing,1.150,-1.288
+2012,0.106,2011,-1.100,La Nina,moderate,Indonesia,Area bearing,1.180,2.609
+2013,1.480,2012,-0.200,neutral,,Indonesia,Area bearing,1.200,1.695
+2014,0.418,2013,-0.400,neutral,,Indonesia,Area bearing,1.200,0.000
+2015,0.000,2014,0.700,El Nino,weak,Indonesia,Area bearing,1.200,0.000
+2016,0.000,2015,2.600,El Nino,very strong,Indonesia,Area bearing,1.200,0.000
+2017,0.000,2016,-0.700,La Nina,weak,Indonesia,Area bearing,1.200,0.000
+2018,0.000,2017,-1.000,La Nina,weak,Indonesia,Area bearing,1.200,0.000
+2019,0.000,2018,0.900,El Nino,weak,Indonesia,Area bearing,1.200,0.000
+2020,0.000,2019,0.500,neutral,,Indonesia,Area bearing,1.200,0.000
+2021,0.000,2020,-1.300,La Nina,moderate,Indonesia,Area bearing,1.200,0.000
+2022,0.000,2021,-1.000,La Nina,moderate,Indonesia,Area bearing,1.200,0.000
+2023,0.000,2022,-1.000,La Nina,weak,Indonesia,Area bearing,1.200,0.000
+2024,0.000,2023,2.000,El Nino,strong,Indonesia,Area bearing,1.200,0.000
+2005,-12.723,2004,0.700,El Nino,weak,Indonesia,Area total,1.875,-5.063
+2006,4.887,2005,-0.900,La Nina,weak,Indonesia,Area total,2.200,17.333
+2007,2.657,2006,0.900,El Nino,weak,Indonesia,Area total,2.270,3.182
+2008,-3.404,2007,-1.600,La Nina,strong,Indonesia,Area total,2.270,0.000
+2009,6.724,2008,-0.800,La Nina,weak,Indonesia,Area total,2.500,10.132
+2010,1.419,2009,1.600,El Nino,moderate,Indonesia,Area total,2.430,-2.800
+2011,-1.840,2010,-1.600,La Nina,strong,Indonesia,Area total,2.400,-1.235
+2012,-0.495,2011,-1.100,La Nina,moderate,Indonesia,Area total,2.414,0.583
+2013,0.537,2012,-0.200,neutral,,Indonesia,Area total,2.436,0.911
+2014,0.226,2013,-0.400,neutral,,Indonesia,Area total,2.438,0.082
+2015,-0.041,2014,0.700,El Nino,weak,Indonesia,Area total,2.440,0.082
+2016,-0.184,2015,2.600,El Nino,very strong,Indonesia,Area total,2.440,0.000
+2017,0.204,2016,-0.700,La Nina,weak,Indonesia,Area total,2.450,0.410
+2018,0.102,2017,-1.000,La Nina,weak,Indonesia,Area total,2.450,0.000
+2019,0.000,2018,0.900,El Nino,weak,Indonesia,Area total,2.450,0.000
+2020,0.000,2019,0.500,neutral,,Indonesia,Area total,2.450,0.000
+2021,0.000,2020,-1.300,La Nina,moderate,Indonesia,Area total,2.450,0.000
+2022,0.000,2021,-1.000,La Nina,moderate,Indonesia,Area total,2.450,0.000
+2023,0.000,2022,-1.000,La Nina,weak,Indonesia,Area total,2.450,0.000
+2024,0.000,2023,2.000,El Nino,strong,Indonesia,Area total,2.450,0.000
+2005,31.882,2004,0.700,El Nino,weak,Indonesia,Yield (production / bearing area),11.454,25.390
+2006,-14.005,2005,-0.900,La Nina,weak,Indonesia,Yield (production / bearing area),8.500,-25.793
+2007,-14.138,2006,0.900,El Nino,weak,Indonesia,Yield (production / bearing area),8.421,-0.928
+2008,25.033,2007,-1.600,La Nina,strong,Indonesia,Yield (production / bearing area),10.526,24.999
+2009,2.432,2008,-0.800,La Nina,weak,Indonesia,Yield (production / bearing area),8.750,-16.875
+2010,-12.470,2009,1.600,El Nino,moderate,Indonesia,Yield (production / bearing area),8.004,-8.522
+2011,-21.455,2010,-1.600,La Nina,strong,Indonesia,Yield (production / bearing area),7.217,-9.831
+2012,19.122,2011,-1.100,La Nina,moderate,Indonesia,Yield (production / bearing area),10.085,39.728
+2013,9.849,2012,-0.200,neutral,,Indonesia,Yield (production / bearing area),9.917,-1.666
+2014,-10.324,2013,-0.400,neutral,,Indonesia,Yield (production / bearing area),8.725,-12.017
+2015,11.597,2014,0.700,El Nino,weak,Indonesia,Yield (production / bearing area),10.083,15.568
+2016,-2.686,2015,2.600,El Nino,very strong,Indonesia,Yield (production / bearing area),8.833,-12.397
+2017,-5.454,2016,-0.700,La Nina,weak,Indonesia,Yield (production / bearing area),8.667,-1.886
+2018,-0.001,2017,-1.000,La Nina,weak,Indonesia,Yield (production / bearing area),8.833,1.922
+2019,1.230,2018,0.900,El Nino,weak,Indonesia,Yield (production / bearing area),8.917,0.944
+2020,0.517,2019,0.500,neutral,,Indonesia,Yield (production / bearing area),8.917,0.000
+2021,5.143,2020,-1.300,La Nina,moderate,Indonesia,Yield (production / bearing area),8.817,-1.121
+2022,6.653,2021,-1.000,La Nina,moderate,Indonesia,Yield (production / bearing area),8.917,1.134
+2023,-26.494,2022,-1.000,La Nina,weak,Indonesia,Yield (production / bearing area),6.792,-23.832
+2024,2.819,2023,2.000,El Nino,strong,Indonesia,Yield (production / bearing area),8.917,31.288
+1996,-10.489,1995,-1.000,La Nina,moderate,Vietnam,Production Robusta,5450.000,39.744
+1997,0.105,1996,-0.500,neutral,,Vietnam,Production Robusta,6933.000,27.211
+1998,-24.765,1997,2.400,El Nino,very strong,Vietnam,Production Robusta,7433.000,7.212
+1999,2.377,1998,-1.600,La Nina,strong,Vietnam,Production Robusta,10920.000,46.912
+2000,56.851,1999,-1.700,La Nina,strong,Vietnam,Production Robusta,16216.000,48.498
+2001,-8.432,2000,-0.700,La Nina,weak,Vietnam,Production Robusta,12084.000,-25.481
+2002,-23.592,2001,-0.300,neutral,,Vietnam,Production Robusta,10917.000,-9.657
+2003,17.127,2002,1.300,El Nino,moderate,Vietnam,Production Robusta,14734.000,34.964
+2004,-5.288,2003,0.400,neutral,,Vietnam,Production Robusta,14117.000,-4.188
+2005,-21.840,2004,0.700,El Nino,weak,Vietnam,Production Robusta,13200.000,-6.496
+2006,32.337,2005,-0.900,La Nina,weak,Vietnam,Production Robusta,20770.000,57.348
+2007,3.139,2006,0.900,El Nino,weak,Vietnam,Production Robusta,17933.000,-13.659
+2008,-7.278,2007,-1.600,La Nina,strong,Vietnam,Production Robusta,17529.000,-2.253
+2009,-9.216,2008,-0.800,La Nina,weak,Vietnam,Production Robusta,18050.000,2.972
+2010,-12.632,2009,1.600,El Nino,moderate,Vietnam,Production Robusta,18867.000,4.526
+2011,10.557,2010,-1.600,La Nina,strong,Vietnam,Production Robusta,25200.000,33.567
+2012,3.356,2011,-1.100,La Nina,moderate,Vietnam,Production Robusta,25600.000,1.587
+2013,9.194,2012,-0.200,neutral,,Vietnam,Production Robusta,28658.000,11.945
+2014,-2.125,2013,-0.400,neutral,,Vietnam,Production Robusta,26350.000,-8.054
+2015,2.239,2014,0.700,El Nino,weak,Vietnam,Production Robusta,27830.000,5.617
+2016,-8.400,2015,2.600,El Nino,very strong,Vietnam,Production Robusta,25600.000,-8.013
+2017,0.115,2016,-0.700,La Nina,weak,Vietnam,Production Robusta,28274.000,10.445
+2018,4.656,2017,-1.000,La Nina,weak,Vietnam,Production Robusta,29336.000,3.756
+2019,4.012,2018,0.900,El Nino,weak,Vietnam,Production Robusta,30200.000,2.945
+2020,-4.361,2019,0.500,neutral,,Vietnam,Production Robusta,28050.000,-7.119
+2021,8.760,2020,-1.300,La Nina,moderate,Vietnam,Production Robusta,30480.000,8.663
+2022,-3.431,2021,-1.000,La Nina,moderate,Vietnam,Production Robusta,27300.000,-10.433
+2023,-8.669,2022,-1.000,La Nina,weak,Vietnam,Production Robusta,26550.000,-2.747
+2024,-0.415,2023,2.000,El Nino,strong,Vietnam,Production Robusta,28000.000,5.461
+1996,-10.409,1995,-1.000,La Nina,moderate,Vietnam,Production Total,5500.000,40.414
+1997,0.261,1996,-0.500,neutral,,Vietnam,Production Total,7000.000,27.273
+1998,-24.704,1997,2.400,El Nino,very strong,Vietnam,Production Total,7500.000,7.143
+1999,2.221,1998,-1.600,La Nina,strong,Vietnam,Production Total,11010.000,46.800
+2000,55.823,1999,-1.700,La Nina,strong,Vietnam,Production Total,16333.000,48.347
+2001,-8.428,2000,-0.700,La Nina,weak,Vietnam,Production Total,12250.000,-24.998
+2002,-23.096,2001,-0.300,neutral,,Vietnam,Production Total,11167.000,-8.841
+2003,16.693,2002,1.300,El Nino,moderate,Vietnam,Production Total,15000.000,34.324
+2004,-4.110,2003,0.400,neutral,,Vietnam,Production Total,14500.000,-3.333
+2005,-21.342,2004,0.700,El Nino,weak,Vietnam,Production Total,13500.000,-6.897
+2006,29.427,2005,-0.900,La Nina,weak,Vietnam,Production Total,20819.000,54.215
+2007,3.535,2006,0.900,El Nino,weak,Vietnam,Production Total,18333.000,-11.941
+2008,-6.591,2007,-1.600,La Nina,strong,Vietnam,Production Total,18009.000,-1.767
+2009,-9.545,2008,-0.800,La Nina,weak,Vietnam,Production Total,18500.000,2.726
+2010,-12.517,2009,1.600,El Nino,moderate,Vietnam,Production Total,19467.000,5.227
+2011,10.286,2010,-1.600,La Nina,strong,Vietnam,Production Total,26000.000,33.559
+2012,3.213,2011,-1.100,La Nina,moderate,Vietnam,Production Total,26500.000,1.923
+2013,9.650,2012,-0.200,neutral,,Vietnam,Production Total,29833.000,12.577
+2014,-2.111,2013,-0.400,neutral,,Vietnam,Production Total,27400.000,-8.155
+2015,2.196,2014,0.700,El Nino,weak,Vietnam,Production Total,28930.000,5.584
+2016,-7.955,2015,2.600,El Nino,very strong,Vietnam,Production Total,26700.000,-7.708
+2017,-0.111,2016,-0.700,La Nina,weak,Vietnam,Production Total,29300.000,9.738
+2018,4.557,2017,-1.000,La Nina,weak,Vietnam,Production Total,30400.000,3.754
+2019,4.090,2018,0.900,El Nino,weak,Vietnam,Production Total,31300.000,2.961
+2020,-4.511,2019,0.500,neutral,,Vietnam,Production Total,29000.000,-7.348
+2021,8.850,2020,-1.300,La Nina,moderate,Vietnam,Production Total,31580.000,8.897
+2022,-3.779,2021,-1.000,La Nina,moderate,Vietnam,Production Total,28200.000,-10.703
+2023,-8.608,2022,-1.000,La Nina,weak,Vietnam,Production Total,27550.000,-2.305
+2024,-0.172,2023,2.000,El Nino,strong,Vietnam,Production Total,29100.000,5.626
+1996,-13.014,1995,-1.000,La Nina,moderate,Vietnam,Area total,254.000,36.559
+1997,8.800,1996,-0.500,neutral,,Vietnam,Area total,340.000,33.858
+1998,-13.259,1997,2.400,El Nino,very strong,Vietnam,Area total,350.000,2.941
+1999,2.793,1998,-1.600,La Nina,strong,Vietnam,Area total,460.000,31.429
+2000,19.786,1999,-1.700,La Nina,strong,Vietnam,Area total,560.000,21.739
+2001,5.366,2000,-0.700,La Nina,weak,Vietnam,Area total,540.000,-3.571
+2002,-1.422,2001,-0.300,neutral,,Vietnam,Area total,520.000,-3.704
+2003,-0.730,2002,1.300,El Nino,moderate,Vietnam,Area total,510.000,-1.923
+2004,-1.961,2003,0.400,neutral,,Vietnam,Area total,500.000,-1.961
+2005,-3.320,2004,0.700,El Nino,weak,Vietnam,Area total,495.000,-1.000
+2006,0.537,2005,-0.900,La Nina,weak,Vietnam,Area total,515.000,4.040
+2007,0.722,2006,0.900,El Nino,weak,Vietnam,Area total,523.000,1.553
+2008,-0.979,2007,-1.600,La Nina,strong,Vietnam,Area total,531.000,1.530
+2009,-4.328,2008,-0.800,La Nina,weak,Vietnam,Area total,536.000,0.942
+2010,-2.601,2009,1.600,El Nino,moderate,Vietnam,Area total,571.000,6.530
+2011,1.860,2010,-1.600,La Nina,strong,Vietnam,Area total,616.000,7.881
+2015,5.835,2014,0.700,El Nino,weak,Vietnam,Area total,662.000,7.468
+2016,-0.952,2015,2.600,El Nino,very strong,Vietnam,Area total,650.000,-1.813
+2017,-0.894,2016,-0.700,La Nina,weak,Vietnam,Area total,665.000,2.308
+2018,0.962,2017,-1.000,La Nina,weak,Vietnam,Area total,682.000,2.556
+2019,0.364,2018,0.900,El Nino,weak,Vietnam,Area total,690.000,1.173
+2020,0.000,2019,0.500,neutral,,Vietnam,Area total,697.000,1.014
+2021,0.427,2020,-1.300,La Nina,moderate,Vietnam,Area total,706.000,1.291
+2022,0.247,2021,-1.000,La Nina,moderate,Vietnam,Area total,710.000,0.567
+2023,-0.035,2022,-1.000,La Nina,weak,Vietnam,Area total,715.000,0.704
+2024,-0.464,2023,2.000,El Nino,strong,Vietnam,Area total,715.000,0.000
+1996,-3.438,1995,-1.000,La Nina,moderate,Vietnam,Area bearing,206.000,106.000
+1997,15.385,1996,-0.500,neutral,,Vietnam,Area bearing,270.000,31.068
+1998,-16.019,1997,2.400,El Nino,very strong,Vietnam,Area bearing,270.000,0.000
+1999,-1.370,1998,-1.600,La Nina,strong,Vietnam,Area bearing,360.000,33.333
+2000,11.801,1999,-1.700,La Nina,strong,Vietnam,Area bearing,450.000,25.000
+2001,3.297,2000,-0.700,La Nina,weak,Vietnam,Area bearing,470.000,4.444
+2002,6.527,2001,-0.300,neutral,,Vietnam,Area bearing,510.000,8.511
+2003,2.041,2002,1.300,El Nino,moderate,Vietnam,Area bearing,500.000,-1.961
+2004,-0.503,2003,0.400,neutral,,Vietnam,Area bearing,495.000,-1.000
+2005,-2.020,2004,0.700,El Nino,weak,Vietnam,Area bearing,485.000,-2.020
+2006,0.508,2005,-0.900,La Nina,weak,Vietnam,Area bearing,495.000,2.062
+2007,-1.210,2006,0.900,El Nino,weak,Vietnam,Area bearing,490.000,-1.010
+2008,-6.235,2007,-1.600,La Nina,strong,Vietnam,Area bearing,500.000,2.041
+2009,-12.325,2008,-0.800,La Nina,weak,Vietnam,Area bearing,504.000,0.800
+2012,10.350,2011,-1.100,La Nina,moderate,Vietnam,Area bearing,644.000,27.778
+2013,10.669,2012,-0.200,neutral,,Vietnam,Area bearing,665.400,3.323
+2014,6.128,2013,-0.400,neutral,,Vietnam,Area bearing,665.000,-0.060
+2016,-6.860,2015,2.600,El Nino,very strong,Vietnam,Area bearing,592.000,-10.977
+2017,-2.576,2016,-0.700,La Nina,weak,Vietnam,Area bearing,605.000,2.196
+2018,-0.369,2017,-1.000,La Nina,weak,Vietnam,Area bearing,607.000,0.331
+2019,1.142,2018,0.900,El Nino,weak,Vietnam,Area bearing,620.000,2.142
+2020,0.875,2019,0.500,neutral,,Vietnam,Area bearing,620.000,0.000
+2021,0.690,2020,-1.300,La Nina,moderate,Vietnam,Area bearing,620.000,0.000
+2022,-0.831,2021,-1.000,La Nina,moderate,Vietnam,Area bearing,611.500,-1.371
+2023,-1.240,2022,-1.000,La Nina,weak,Vietnam,Area bearing,611.500,0.000
+2024,-0.442,2023,2.000,El Nino,strong,Vietnam,Area bearing,615.000,0.572
+2004,-13.015,2003,0.400,neutral,,Vietnam,Yield,1.760,-2.222
+2005,-19.332,2004,0.700,El Nino,weak,Vietnam,Yield,1.690,-3.977
+2006,31.465,2005,-0.900,La Nina,weak,Vietnam,Yield,2.580,52.663
+2007,5.164,2006,0.900,El Nino,weak,Vietnam,Yield,2.240,-13.178
+2008,-4.950,2007,-1.600,La Nina,strong,Vietnam,Yield,2.160,-3.571
+2009,-7.317,2008,-0.800,La Nina,weak,Vietnam,Yield,2.090,-3.241
+2010,-4.803,2009,1.600,El Nino,moderate,Vietnam,Yield,2.180,4.306
+2011,3.499,2010,-1.600,La Nina,strong,Vietnam,Yield,2.440,11.927
+2012,0.611,2011,-1.100,La Nina,moderate,Vietnam,Yield,2.470,1.230
+2013,7.171,2012,-0.200,neutral,,Vietnam,Yield,2.690,8.907
+2014,-3.182,2013,-0.400,neutral,,Vietnam,Yield,2.510,-6.691
+2015,-0.851,2014,0.700,El Nino,weak,Vietnam,Yield,2.620,4.382
+2016,-4.163,2015,2.600,El Nino,very strong,Vietnam,Yield,2.590,-1.145
+2017,0.816,2016,-0.700,La Nina,weak,Vietnam,Yield,2.780,7.336
+2018,5.455,2017,-1.000,La Nina,weak,Vietnam,Yield,2.900,4.317
+2019,2.998,2018,0.900,El Nino,weak,Vietnam,Yield,2.920,0.690
+2020,-5.328,2019,0.500,neutral,,Vietnam,Yield,2.710,-7.192
+2021,6.691,2020,-1.300,La Nina,moderate,Vietnam,Yield,2.950,8.856
+2022,-3.770,2021,-1.000,La Nina,moderate,Vietnam,Yield,2.680,-9.153
+2023,-2.309,2022,-1.000,La Nina,weak,Vietnam,Yield,2.750,2.612
+2024,-1.681,2023,2.000,El Nino,strong,Vietnam,Yield,2.730,-0.727
+1999,8.458,1999,-1.700,La Nina,strong,Uganda,Production Arabica,436.000,0.000
+2000,-18.250,2000,-0.700,La Nina,weak,Uganda,Production Arabica,355.000,-18.578
+2001,-5.949,2001,-0.300,neutral,,Uganda,Production Arabica,415.000,16.901
+2002,-2.121,2002,1.300,El Nino,moderate,Uganda,Production Arabica,450.000,8.434
+2003,2.998,2003,0.400,neutral,,Uganda,Production Arabica,524.000,16.444
+2004,0.092,2004,0.700,El Nino,weak,Uganda,Production Arabica,545.000,4.008
+2005,15.955,2005,-0.900,La Nina,weak,Uganda,Production Arabica,625.000,14.679
+2006,-0.515,2006,0.900,El Nino,weak,Uganda,Production Arabica,579.000,-7.360
+2007,-23.952,2007,-1.600,La Nina,strong,Uganda,Production Arabica,508.000,-12.263
+2008,2.001,2008,-0.800,La Nina,weak,Uganda,Production Arabica,650.000,27.953
+2009,22.226,2009,1.600,El Nino,moderate,Uganda,Production Arabica,818.000,25.846
+2010,-18.040,2010,-1.600,La Nina,strong,Uganda,Production Arabica,644.000,-21.271
+2011,12.468,2011,-1.100,La Nina,moderate,Uganda,Production Arabica,875.000,35.870
+2012,0.978,2012,-0.200,neutral,,Uganda,Production Arabica,800.000,-8.571
+2013,-0.730,2013,-0.400,neutral,,Uganda,Production Arabica,850.000,6.250
+2014,-13.514,2014,0.700,El Nino,weak,Uganda,Production Arabica,800.000,-5.882
+2015,-3.797,2015,2.600,El Nino,very strong,Uganda,Production Arabica,950.000,18.750
+2016,10.000,2016,-0.700,La Nina,weak,Uganda,Production Arabica,1100.000,15.789
+2017,16.364,2017,-1.000,La Nina,weak,Uganda,Production Arabica,1200.000,9.091
+2018,3.576,2018,0.900,El Nino,weak,Uganda,Production Arabica,1050.000,-12.500
+2019,3.275,2019,0.500,neutral,,Uganda,Production Arabica,1025.000,-2.381
+2020,-27.990,2020,-1.300,La Nina,moderate,Uganda,Production Arabica,730.000,-28.780
+2021,5.741,2021,-1.000,La Nina,moderate,Uganda,Production Arabica,990.000,35.616
+2022,5.600,2022,-1.000,La Nina,weak,Uganda,Production Arabica,990.000,0.000
+2023,-3.148,2023,2.000,El Nino,strong,Uganda,Production Arabica,1000.000,1.010
+2024,-0.643,2024,-0.600,La Nina,weak,Uganda,Production Arabica,1030.000,3.000
+1999,11.596,1999,-1.700,La Nina,strong,Uganda,Production Robusta,3272.000,2.122
+2000,-5.708,2000,-0.700,La Nina,weak,Uganda,Production Robusta,2742.000,-16.198
+2001,8.149,2001,-0.300,neutral,,Uganda,Production Robusta,2850.000,3.939
+2002,-7.408,2002,1.300,El Nino,moderate,Uganda,Production Robusta,2306.000,-19.088
+2003,0.327,2003,0.400,neutral,,Uganda,Production Robusta,2221.000,-3.686
+2004,2.297,2004,0.700,El Nino,weak,Uganda,Production Robusta,2149.000,-3.242
+2005,-35.937,2005,-0.900,La Nina,weak,Uganda,Production Robusta,1550.000,-27.873
+2006,0.140,2006,0.900,El Nino,weak,Uganda,Production Robusta,2326.000,50.065
+2007,39.705,2007,-1.600,La Nina,strong,Uganda,Production Robusta,2982.000,28.203
+2008,5.157,2008,-0.800,La Nina,weak,Uganda,Production Robusta,2610.000,-12.475
+2009,-20.772,2009,1.600,El Nino,moderate,Uganda,Production Robusta,2052.000,-21.379
+2010,6.313,2010,-1.600,La Nina,strong,Uganda,Production Robusta,2568.000,25.146
+2011,-15.547,2011,-1.100,La Nina,moderate,Uganda,Production Robusta,2200.000,-14.330
+2012,6.993,2012,-0.200,neutral,,Uganda,Production Robusta,2800.000,27.273
+2013,16.505,2013,-0.400,neutral,,Uganda,Production Robusta,3000.000,7.143
+2014,-11.294,2014,0.700,El Nino,weak,Uganda,Production Robusta,2700.000,-10.000
+2015,-19.223,2015,2.600,El Nino,very strong,Uganda,Production Robusta,2600.000,-3.704
+2016,22.764,2016,-0.700,La Nina,weak,Uganda,Production Robusta,3775.000,45.192
+2017,-5.719,2017,-1.000,La Nina,weak,Uganda,Production Robusta,3400.000,-9.934
+2018,-17.832,2018,0.900,El Nino,weak,Uganda,Production Robusta,3600.000,5.882
+2019,-0.891,2019,0.500,neutral,,Uganda,Production Robusta,4450.000,23.611
+2020,26.305,2020,-1.300,La Nina,moderate,Uganda,Production Robusta,5900.000,32.584
+2021,-5.088,2021,-1.000,La Nina,moderate,Uganda,Production Robusta,5060.000,-14.237
+2022,1.226,2022,-1.000,La Nina,weak,Uganda,Production Robusta,5575.000,10.178
+2023,-3.052,2023,2.000,El Nino,strong,Uganda,Production Robusta,5400.000,-3.139
+2024,0.354,2024,-0.600,La Nina,weak,Uganda,Production Robusta,5670.000,5.000
+1999,11.218,1999,-1.700,La Nina,strong,Uganda,Production Total,3708.000,1.868
+2000,-7.338,2000,-0.700,La Nina,weak,Uganda,Production Total,3097.000,-16.478
+2001,6.127,2001,-0.300,neutral,,Uganda,Production Total,3265.000,5.425
+2002,-6.584,2002,1.300,El Nino,moderate,Uganda,Production Total,2756.000,-15.590
+2003,0.826,2003,0.400,neutral,,Uganda,Production Total,2745.000,-0.399
+2004,1.843,2004,0.700,El Nino,weak,Uganda,Production Total,2694.000,-1.858
+2005,-26.483,2005,-0.900,La Nina,weak,Uganda,Production Total,2175.000,-19.265
+2006,0.009,2006,0.900,El Nino,weak,Uganda,Production Total,2905.000,33.563
+2007,24.532,2007,-1.600,La Nina,strong,Uganda,Production Total,3490.000,20.138
+2008,4.512,2008,-0.800,La Nina,weak,Uganda,Production Total,3260.000,-6.590
+2009,-11.943,2009,1.600,El Nino,moderate,Uganda,Production Total,2870.000,-11.963
+2010,0.336,2010,-1.600,La Nina,strong,Uganda,Production Total,3212.000,11.916
+2011,-9.104,2011,-1.100,La Nina,moderate,Uganda,Production Total,3075.000,-4.265
+2012,5.595,2012,-0.200,neutral,,Uganda,Production Total,3600.000,17.073
+2013,12.204,2013,-0.400,neutral,,Uganda,Production Total,3850.000,6.944
+2014,-11.811,2014,0.700,El Nino,weak,Uganda,Production Total,3500.000,-9.091
+2015,-15.602,2015,2.600,El Nino,very strong,Uganda,Production Total,3550.000,1.429
+2016,19.632,2016,-0.700,La Nina,weak,Uganda,Production Total,4875.000,37.324
+2017,-0.809,2017,-1.000,La Nina,weak,Uganda,Production Total,4600.000,-5.641
+2018,-13.809,2018,0.900,El Nino,weak,Uganda,Production Total,4650.000,1.087
+2019,-0.137,2019,0.500,neutral,,Uganda,Production Total,5475.000,17.742
+2020,16.623,2020,-1.300,La Nina,moderate,Uganda,Production Total,6630.000,21.096
+2021,-3.470,2021,-1.000,La Nina,moderate,Uganda,Production Total,6050.000,-8.748
+2022,1.862,2022,-1.000,La Nina,weak,Uganda,Production Total,6565.000,8.512
+2023,-3.067,2023,2.000,El Nino,strong,Uganda,Production Total,6400.000,-2.513
+2024,0.199,2024,-0.600,La Nina,weak,Uganda,Production Total,6700.000,4.688
+2009,-6.297,2009,1.600,El Nino,moderate,Uganda,Area total,248.000,5.085
+2010,-5.882,2010,-1.600,La Nina,strong,Uganda,Area total,260.000,4.839
+2011,0.931,2011,-1.100,La Nina,moderate,Uganda,Area total,298.000,14.615
+2012,2.621,2012,-0.200,neutral,,Uganda,Area total,323.000,8.389
+2013,5.740,2013,-0.400,neutral,,Uganda,Area total,350.000,8.359
+2014,1.813,2014,0.700,El Nino,weak,Uganda,Area total,351.000,0.286
+2015,-0.142,2015,2.600,El Nino,very strong,Uganda,Area total,352.000,0.285
+2017,-12.485,2017,-1.000,La Nina,weak,Uganda,Area total,354.000,0.568
+2018,-22.234,2018,0.900,El Nino,weak,Uganda,Area total,355.000,0.282
+2019,22.471,2019,0.500,neutral,,Uganda,Area total,560.000,57.746
+2020,9.804,2020,-1.300,La Nina,moderate,Uganda,Area total,560.000,0.000
+2021,-1.104,2021,-1.000,La Nina,moderate,Uganda,Area total,560.000,0.000
+2022,-0.877,2022,-1.000,La Nina,weak,Uganda,Area total,565.000,0.893
+2023,1.089,2023,2.000,El Nino,strong,Uganda,Area total,580.000,2.655
+2024,0.288,2024,-0.600,La Nina,weak,Uganda,Area total,580.000,0.000
+2009,-4.847,2009,1.600,El Nino,moderate,Uganda,Output per planted ha,11.573,-16.223
+2010,5.474,2010,-1.600,La Nina,strong,Uganda,Output per planted ha,12.354,6.750
+2011,-10.411,2011,-1.100,La Nina,moderate,Uganda,Output per planted ha,10.319,-16.473
+2012,2.149,2012,-0.200,neutral,,Uganda,Output per planted ha,11.146,8.012
+2013,5.970,2013,-0.400,neutral,,Uganda,Output per planted ha,11.000,-1.305
+2014,-11.806,2014,0.700,El Nino,weak,Uganda,Output per planted ha,9.972,-9.350
+2015,-14.286,2015,2.600,El Nino,very strong,Uganda,Output per planted ha,10.085,1.140
+2017,21.069,2017,-1.000,La Nina,weak,Uganda,Output per planted ha,12.994,28.846
+2018,17.225,2018,0.900,El Nino,weak,Uganda,Output per planted ha,13.099,0.802
+2019,-19.757,2019,0.500,neutral,,Uganda,Output per planted ha,9.777,-25.360
+2020,4.545,2020,-1.300,La Nina,moderate,Uganda,Output per planted ha,11.839,21.096
+2021,-2.385,2021,-1.000,La Nina,moderate,Uganda,Output per planted ha,10.804,-8.748
+2022,2.761,2022,-1.000,La Nina,weak,Uganda,Output per planted ha,11.620,7.552
+2023,-4.048,2023,2.000,El Nino,strong,Uganda,Output per planted ha,11.034,-5.035
+2024,-0.070,2024,-0.600,La Nina,weak,Uganda,Output per planted ha,11.552,4.687
