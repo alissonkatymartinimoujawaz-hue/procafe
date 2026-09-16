@@ -321,7 +321,7 @@ class Data:
 
 
 def growth_decomposition(D, country):
-    """Production growth over the last 10 observed crop years split into area and yield (log)."""
+    """Production growth since 2010/11 split into area and yield (compound rates)."""
     prod = D.s(country, "Production Total")
     if prod.empty:
         prod = D.s(country, "Production Arabica")
@@ -332,7 +332,8 @@ def growth_decomposition(D, country):
     both = both[both.index <= 2025]
     if len(both) < 6:
         return None
-    y1, y0 = both.index[-1], both.index[max(0, len(both) - 11)]
+    y1 = both.index[-1]
+    y0 = 2010 if 2010 in both.index else both.index[0]
     n = y1 - y0
     gp = (both.p[y1] / both.p[y0]) ** (1 / n) - 1
     ga = (both.a[y1] / both.a[y0]) ** (1 / n) - 1
@@ -383,6 +384,13 @@ def build(country, D):
         if l_all is not None:
             txt += f". La Niña : {l_all.mean_anomaly_pct:+.1f} % ({int(l_all.n)} campagnes)."
         bullet(doc, txt)
+    if country == "Brazil":
+        ep = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_episodes.csv"))
+        st = ep[ep.classe == "El Nino fort (ONI >= 2)"]
+        bullet(doc, f"El Niño fort (ONI ≥ 2 : épisodes {', '.join(st.episode)}, campagnes suivantes {', '.join(st.campagne)}) : "
+                    f"Minas Gerais {st.rain_mg_dev.mean():+.0f} mm et {st.temp_mg_dev.mean():+.1f} °C, Espírito Santo {st.rain_es_dev.mean():+.0f} mm "
+                    f"et {st.temp_es_dev.mean():+.1f} °C. Robusta {st.robusta_anom.mean():+.1f} % par rapport à l'attendu, arabica {st.arabica_anom.mean():+.1f} % "
+                    f"(années ON, qui tiennent grâce au cycle), total {st.total_anom.mean():+.1f} %.")
     target = 2027 if info["enso_season"] == "prev" else 2026
     bullet(doc, info["enso_window"].split(". ")[-1].replace("(jusqu'à mars 2027)", "(attendu jusqu'à mars 2027)"))
     if has and info["forecast_series"]:
@@ -500,8 +508,43 @@ def build(country, D):
               "la tendance et, au Brésil, le cycle ON/OFF (retiré au préalable). Les moyennes par phase sont ensuite comparées ; "
               "« fort » = pic |ONI| ≥ 1.")
     if country == "Brazil":
-        p = os.path.join(FIGS, "brazil_weather_phase.png"); fig.brazil_weather_phase(D.bw, p)
-        picture(doc, p, 17, "Figure 4. Météo des États caféiers par phase ENSO (balance sheet).")
+        para(doc, "Convention retenue, comme demandé : l'épisode ENSO de l'hiver N/N+1 est rattaché à la campagne N+1/N+2 "
+                  "(celle dont la floraison, sept.-nov. N+1, et le remplissage se déroulent pendant et juste après l'épisode). "
+                  "Exemples : El Niño 2015/16 → campagne 2016/17 ; El Niño 2023/24 → campagne 2024/25 ; El Niño 2009/10 → 2010/11. "
+                  "Les classes d'intensité suivent le pic ONI : fort ≥ 2, modéré 1 à 2, faible < 1.")
+        p = os.path.join(FIGS, "brazil_weather_phase.png")
+        fig.brazil_weather_phase(D.bw, p, phases=["El Nino fort (ONI >= 2)", "El Nino modere (1-2)", "El Nino faible (< 1)", "neutral",
+                                                  "La Nina faible (> -1)", "La Nina moderee (-1.5 a -1)", "La Nina forte (<= -1.5)"],
+                                 colors=[fig.C_RED, "#ec7a79", "#f4b0af", fig.C_MUTED, "#a9c8ee", "#6ea3e3", fig.C_BLUE],
+                                 labels=["El Niño fort", "El Niño modéré", "El Niño faible", "neutre", "La Niña faible", "La Niña modérée", "La Niña forte"])
+        picture(doc, p, 17, "Figure 4. Météo des États caféiers pendant la campagne qui suit chaque classe d'épisode (écart à la moyenne 1998-2025).")
+        ep = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_episodes.csv"))
+        para(doc, "Épisode par épisode, campagne N+1 (écart = par rapport à la moyenne des campagnes voisines, cycle ON/OFF retiré ; "
+                  "variation = par rapport à la campagne précédente) :", bold=True)
+        rows = []
+        for _, r in ep.iterrows():
+            rows.append([f"{r.episode} ({r.oni:+.1f})", r.classe.replace("El Nino", "El Niño").replace("La Nina", "La Niña"), f"{r.campagne} {r.onoff}",
+                         f"{fmt(r.arabica)} ({r.arabica_yoy:+.0f} % / {r.arabica_anom:+.1f} %)", f"{fmt(r.robusta)} ({r.robusta_yoy:+.0f} % / {r.robusta_anom:+.1f} %)",
+                         f"{r.yield_anom:+.1f} %", f"{r.rain_mg_dev:+.0f} mm / {r.temp_mg_dev:+.1f} °C", f"{r.rain_es_dev:+.0f} mm / {r.temp_es_dev:+.1f} °C"])
+        add_table(doc, ["Épisode (ONI)", "Classe", "Campagne N+1", "Arabica (var. / écart)", "Robusta (var. / écart)", "Rendement écart", "Minas Gerais", "Espírito Santo"],
+                  rows, widths=[2.2, 2.6, 1.9, 2.8, 2.8, 1.5, 2.2, 2.2], font=7)
+        cls_rows = []
+        for cls in ["El Nino fort (ONI >= 2)", "El Nino modere (1-2)", "El Nino faible (< 1)", "La Nina faible (> -1)", "La Nina moderee (-1.5 a -1)", "La Nina forte (<= -1.5)"]:
+            g = ep[ep.classe == cls]
+            if len(g):
+                cls_rows.append([cls.replace("El Nino", "El Niño").replace("La Nina", "La Niña"), len(g), f"{g.arabica_anom.mean():+.1f} %", f"{g.robusta_anom.mean():+.1f} %",
+                                 f"{g.total_anom.mean():+.1f} %", f"{g.yield_anom.mean():+.1f} %", f"{g.rain_mg_dev.mean():+.0f} mm / {g.temp_mg_dev.mean():+.1f} °C",
+                                 f"{g.rain_es_dev.mean():+.0f} mm / {g.temp_es_dev.mean():+.1f} °C", " ".join(g.campagne)])
+        para(doc, "Moyennes par classe d'intensité (campagnes N+1) :", bold=True)
+        add_table(doc, ["Classe", "n", "Arabica", "Robusta", "Total", "Rendement", "Minas Gerais", "Espírito Santo", "Campagnes"], cls_rows,
+                  widths=[2.8, 0.8, 1.5, 1.5, 1.5, 1.6, 2.3, 2.3, 3.5], font=7)
+        st = ep[ep.classe == "El Nino fort (ONI >= 2)"]
+        para(doc, f"Lecture : les deux El Niño forts de la période (2015/16, 2023/24) ont donné des campagnes N+1 avec {st.rain_es_dev.mean():+.0f} mm et "
+                  f"{st.temp_es_dev.mean():+.1f} °C en Espírito Santo et {st.rain_mg_dev.mean():+.0f} mm, {st.temp_mg_dev.mean():+.1f} °C à Minas Gerais. "
+                  f"Le conilon, non irrigué dans une bonne partie de São Mateus, a perdu {st.robusta_anom.mean():+.1f} % par rapport à l'attendu "
+                  f"(−30 % en 2016/17) ; l'arabica, en année ON les deux fois, est resté à {st.arabica_anom.mean():+.1f} % de l'attendu : le cycle a masqué "
+                  f"le choc, mais ces deux années ON sont les plus faibles de leur décennie pour une année ON. Les El Niño faibles (ONI < 1) n'ont "
+                  f"pas de signature météo ni de signature de rendement.")
         r_en, r_ln = D.bw[D.bw.phase == "El Nino"].iloc[0], D.bw[D.bw.phase == "La Nina"].iloc[0]
         para(doc, f"Dans les données : les campagnes El Niño ont eu {r_en.rain_mg_dev:+.0f} mm de pluie à Minas Gerais et "
                   f"{r_en.rain_es_dev:+.0f} mm en Espírito Santo, avec {r_en.temp_mg_dev:+.2f} °C et {r_en.temp_es_dev:+.2f} °C, "

@@ -126,3 +126,13 @@ def enso_for_crop_year(country, year):
     s = year - 1 if CROP_SEASON.get(country, "same") == "prev" else year
     oni, phase, strength = ONI_SEASONS.get(s, (None, "unknown", ""))
     return s, oni, phase, strength
+
+
+def intensity_class(oni, phase):
+    """Intensity class used in the reports: El Nino fort (ONI >= 2), modere (1 to 2),
+    faible (< 1); La Nina forte (<= -1.5), moderee (-1.5 to -1), faible (> -1)."""
+    if phase == "El Nino":
+        return "El Nino fort (ONI >= 2)" if oni >= 2 else ("El Nino modere (1-2)" if oni >= 1 else "El Nino faible (< 1)")
+    if phase == "La Nina":
+        return "La Nina forte (<= -1.5)" if oni <= -1.5 else ("La Nina moderee (-1.5 a -1)" if oni <= -1 else "La Nina faible (> -1)")
+    return "neutre"

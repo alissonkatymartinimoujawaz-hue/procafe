@@ -2,170 +2,374 @@ country,series,phase,n,mean_anomaly_pct,median_anomaly_pct,mean_yoy_pct,share_be
 Brazil,Production Arabica,El Nino,8,-2.59,-2.60,-7.16,62.50,2003/04 2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Brazil,Production Arabica,La Nina,10,0.33,0.11,7.86,50.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Brazil,Production Arabica,neutral,5,8.07,9.57,24.54,40.00,2002/03 2004/05 2013/14 2014/15 2020/21
+Brazil,Production Arabica,El Nino faible (< 1),4,-2.07,-2.60,-16.53,75.00,2005/06 2007/08 2015/16 2019/20
+Brazil,Production Arabica,El Nino fort (ONI >= 2),2,-0.11,-0.11,12.71,50.00,2016/17 2024/25
+Brazil,Production Arabica,El Nino modere (1-2),2,-6.09,-6.09,-8.30,50.00,2003/04 2010/11
+Brazil,Production Arabica,La Nina faible (> -1),3,0.59,0.52,2.19,33.33,2006/07 2009/10 2017/18
+Brazil,Production Arabica,La Nina forte (<= -1.5),2,1.56,1.56,14.74,50.00,2008/09 2011/12
+Brazil,Production Arabica,La Nina moderee (-1.5 a -1),5,-0.31,-1.35,8.51,60.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Production Arabica,El Nino (|ONI| >= 1),4,-3.10,-0.95,2.21,50.00,2003/04 2010/11 2016/17 2024/25
 Brazil,Production Arabica,La Nina (|ONI| >= 1),7,0.22,-1.35,10.29,57.14,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Production Robusta,El Nino,8,-6.89,-5.55,-3.92,75.00,2003/04 2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Brazil,Production Robusta,La Nina,10,0.97,4.35,9.07,40.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Brazil,Production Robusta,neutral,5,7.34,2.25,5.59,20.00,2002/03 2004/05 2013/14 2014/15 2020/21
+Brazil,Production Robusta,El Nino faible (< 1),4,-0.16,-0.22,0.99,50.00,2005/06 2007/08 2015/16 2019/20
+Brazil,Production Robusta,El Nino fort (ONI >= 2),2,-19.39,-19.39,-11.46,100.00,2016/17 2024/25
+Brazil,Production Robusta,El Nino modere (1-2),2,-7.86,-7.86,-6.19,100.00,2003/04 2010/11
+Brazil,Production Robusta,La Nina faible (> -1),3,-8.29,-8.15,6.04,100.00,2006/07 2009/10 2017/18
+Brazil,Production Robusta,La Nina forte (<= -1.5),2,7.21,7.21,12.98,0.00,2008/09 2011/12
+Brazil,Production Robusta,La Nina moderee (-1.5 a -1),5,4.02,4.77,9.32,20.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Production Robusta,El Nino (|ONI| >= 1),4,-13.62,-8.85,-8.82,100.00,2003/04 2010/11 2016/17 2024/25
 Brazil,Production Robusta,La Nina (|ONI| >= 1),7,4.94,4.79,10.36,14.29,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Production Total,El Nino,8,-3.84,-4.28,-6.95,87.50,2003/04 2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Brazil,Production Total,La Nina,10,0.49,-0.57,7.46,60.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Brazil,Production Total,neutral,5,7.57,6.86,18.73,40.00,2002/03 2004/05 2013/14 2014/15 2020/21
+Brazil,Production Total,El Nino faible (< 1),4,-1.59,-2.63,-12.88,75.00,2005/06 2007/08 2015/16 2019/20
+Brazil,Production Total,El Nino fort (ONI >= 2),2,-5.55,-5.55,6.18,100.00,2016/17 2024/25
+Brazil,Production Total,El Nino modere (1-2),2,-6.63,-6.63,-8.20,100.00,2003/04 2010/11
+Brazil,Production Total,La Nina faible (> -1),3,-1.70,-0.99,2.10,100.00,2006/07 2009/10 2017/18
+Brazil,Production Total,La Nina forte (<= -1.5),2,2.99,2.99,13.30,50.00,2008/09 2011/12
+Brazil,Production Total,La Nina moderee (-1.5 a -1),5,0.79,0.30,8.34,40.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Production Total,El Nino (|ONI| >= 1),4,-6.09,-5.55,-1.01,100.00,2003/04 2010/11 2016/17 2024/25
 Brazil,Production Total,La Nina (|ONI| >= 1),7,1.42,0.30,9.75,42.86,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Area total,El Nino,8,-0.29,-0.38,-0.56,75.00,2003/04 2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Brazil,Area total,La Nina,10,0.96,0.01,0.12,50.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Brazil,Area total,neutral,5,-0.76,0.84,-1.16,40.00,2002/03 2004/05 2013/14 2014/15 2020/21
+Brazil,Area total,El Nino faible (< 1),4,-0.85,-0.88,0.10,100.00,2005/06 2007/08 2015/16 2019/20
+Brazil,Area total,El Nino fort (ONI >= 2),2,-3.83,-3.83,-5.48,100.00,2016/17 2024/25
+Brazil,Area total,El Nino modere (1-2),2,4.36,4.36,3.05,0.00,2003/04 2010/11
+Brazil,Area total,La Nina faible (> -1),3,0.32,-0.05,-0.36,66.67,2006/07 2009/10 2017/18
+Brazil,Area total,La Nina forte (<= -1.5),2,-0.02,-0.02,-0.12,50.00,2008/09 2011/12
+Brazil,Area total,La Nina moderee (-1.5 a -1),5,1.73,1.07,0.50,40.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Area total,El Nino (|ONI| >= 1),4,0.27,0.09,-1.21,50.00,2003/04 2010/11 2016/17 2024/25
 Brazil,Area total,La Nina (|ONI| >= 1),7,1.23,0.07,0.33,42.86,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Area bearing,El Nino,8,0.96,0.06,1.57,50.00,2003/04 2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Brazil,Area bearing,La Nina,10,0.19,0.21,-1.07,40.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Brazil,Area bearing,neutral,5,-1.45,-0.24,-1.61,60.00,2002/03 2004/05 2013/14 2014/15 2020/21
+Brazil,Area bearing,El Nino faible (< 1),4,0.08,-0.39,0.27,75.00,2005/06 2007/08 2015/16 2019/20
+Brazil,Area bearing,El Nino fort (ONI >= 2),2,-2.01,-2.01,-3.67,50.00,2016/17 2024/25
+Brazil,Area bearing,El Nino modere (1-2),2,5.69,5.69,9.41,0.00,2003/04 2010/11
+Brazil,Area bearing,La Nina faible (> -1),3,-0.27,-1.94,-1.88,66.67,2006/07 2009/10 2017/18
+Brazil,Area bearing,La Nina forte (<= -1.5),2,0.35,0.35,-0.84,0.00,2008/09 2011/12
+Brazil,Area bearing,La Nina moderee (-1.5 a -1),5,0.40,0.12,-0.68,40.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Area bearing,El Nino (|ONI| >= 1),4,1.84,0.65,2.87,25.00,2003/04 2010/11 2016/17 2024/25
 Brazil,Area bearing,La Nina (|ONI| >= 1),7,0.39,0.29,-0.73,28.57,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Yield (production / bearing area),El Nino,8,-4.36,-3.04,-7.34,87.50,2003/04 2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Brazil,Yield (production / bearing area),La Nina,10,0.07,-0.24,8.42,50.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Brazil,Yield (production / bearing area),neutral,5,9.34,3.52,21.21,40.00,2002/03 2004/05 2013/14 2014/15 2020/21
+Brazil,Yield (production / bearing area),El Nino faible (< 1),4,-1.55,-3.04,-12.96,75.00,2005/06 2007/08 2015/16 2019/20
+Brazil,Yield (production / bearing area),El Nino fort (ONI >= 2),2,-3.09,-3.09,10.09,100.00,2016/17 2024/25
+Brazil,Yield (production / bearing area),El Nino modere (1-2),2,-11.24,-11.24,-13.53,100.00,2003/04 2010/11
+Brazil,Yield (production / bearing area),La Nina faible (> -1),3,-1.83,-2.40,3.80,66.67,2006/07 2009/10 2017/18
+Brazil,Yield (production / bearing area),La Nina forte (<= -1.5),2,2.38,2.38,14.19,50.00,2008/09 2011/12
+Brazil,Yield (production / bearing area),La Nina moderee (-1.5 a -1),5,0.28,1.89,8.88,40.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Brazil,Yield (production / bearing area),El Nino (|ONI| >= 1),4,-7.17,-4.04,-1.72,100.00,2003/04 2010/11 2016/17 2024/25
 Brazil,Yield (production / bearing area),La Nina (|ONI| >= 1),7,0.88,1.89,10.39,42.86,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Colombia,Production Arabica,El Nino,8,1.40,3.29,5.13,37.50,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Colombia,Production Arabica,La Nina,13,-1.34,-2.25,-3.33,61.54,1999/00 2000/01 2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Colombia,Production Arabica,neutral,5,1.43,1.65,10.38,40.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Colombia,Production Arabica,El Nino faible (< 1),4,2.92,2.17,4.14,50.00,2004/05 2006/07 2014/15 2018/19
+Colombia,Production Arabica,El Nino fort (ONI >= 2),2,3.29,3.29,12.26,0.00,2015/16 2023/24
+Colombia,Production Arabica,El Nino modere (1-2),2,-3.53,-3.53,-0.02,50.00,2002/03 2009/10
+Colombia,Production Arabica,La Nina faible (> -1),5,2.26,1.16,-0.33,40.00,2000/01 2005/06 2008/09 2016/17 2024/25
+Colombia,Production Arabica,La Nina forte (<= -1.5),3,4.79,-0.72,0.05,66.67,1999/00 2007/08 2010/11
+Colombia,Production Arabica,La Nina moderee (-1.5 a -1),5,-8.61,-7.38,-8.35,80.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia,Production Arabica,El Nino (|ONI| >= 1),4,-0.12,3.29,6.12,25.00,2002/03 2009/10 2015/16 2023/24
 Colombia,Production Arabica,La Nina (|ONI| >= 1),8,-3.58,-4.81,-5.20,75.00,1999/00 2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia,Area total,El Nino,8,-0.46,0.00,-0.55,37.50,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Colombia,Area total,La Nina,13,-0.00,0.00,-0.43,15.38,1999/00 2000/01 2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Colombia,Area total,neutral,5,0.18,0.00,0.38,20.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Colombia,Area total,El Nino faible (< 1),4,-0.56,-0.63,-0.16,50.00,2004/05 2006/07 2014/15 2018/19
+Colombia,Area total,El Nino fort (ONI >= 2),2,0.00,0.00,0.00,0.00,2015/16 2023/24
+Colombia,Area total,El Nino modere (1-2),2,-0.72,-0.72,-1.86,50.00,2002/03 2009/10
+Colombia,Area total,La Nina faible (> -1),5,-0.23,0.00,-0.35,20.00,2000/01 2005/06 2008/09 2016/17 2024/25
+Colombia,Area total,La Nina forte (<= -1.5),3,0.39,0.00,-1.27,0.00,1999/00 2007/08 2010/11
+Colombia,Area total,La Nina moderee (-1.5 a -1),5,-0.00,0.00,0.00,20.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia,Area total,El Nino (|ONI| >= 1),4,-0.36,0.00,-0.93,25.00,2002/03 2009/10 2015/16 2023/24
 Colombia,Area total,La Nina (|ONI| >= 1),8,0.15,0.00,-0.47,12.50,1999/00 2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia,Area bearing,El Nino,8,-0.34,0.00,-0.58,25.00,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Colombia,Area bearing,La Nina,13,-0.19,0.00,-1.15,7.69,1999/00 2000/01 2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Colombia,Area bearing,neutral,5,-0.35,0.00,0.00,40.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Colombia,Area bearing,El Nino faible (< 1),4,-0.39,0.00,-0.40,25.00,2004/05 2006/07 2014/15 2018/19
+Colombia,Area bearing,El Nino fort (ONI >= 2),2,0.00,0.00,0.00,0.00,2015/16 2023/24
+Colombia,Area bearing,El Nino modere (1-2),2,-0.59,-0.59,-1.54,50.00,2002/03 2009/10
+Colombia,Area bearing,La Nina faible (> -1),5,-1.06,0.00,-1.17,20.00,2000/01 2005/06 2008/09 2016/17 2024/25
+Colombia,Area bearing,La Nina forte (<= -1.5),3,0.94,0.00,-3.01,0.00,1999/00 2007/08 2010/11
+Colombia,Area bearing,La Nina moderee (-1.5 a -1),5,0.00,0.00,0.00,0.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia,Area bearing,El Nino (|ONI| >= 1),4,-0.29,0.00,-0.77,25.00,2002/03 2009/10 2015/16 2023/24
 Colombia,Area bearing,La Nina (|ONI| >= 1),8,0.35,0.00,-1.13,0.00,1999/00 2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia,Yield,El Nino,8,1.84,3.29,5.73,25.00,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Colombia,Yield,La Nina,13,-1.37,-1.63,-2.89,61.54,1999/00 2000/01 2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Colombia,Yield,neutral,5,1.14,0.30,10.00,40.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Colombia,Yield,El Nino faible (< 1),4,3.45,2.79,4.31,25.00,2004/05 2006/07 2014/15 2018/19
+Colombia,Yield,El Nino fort (ONI >= 2),2,3.29,3.29,12.26,0.00,2015/16 2023/24
+Colombia,Yield,El Nino modere (1-2),2,-2.82,-2.82,2.04,50.00,2002/03 2009/10
+Colombia,Yield,La Nina faible (> -1),5,2.42,0.37,0.08,40.00,2000/01 2005/06 2008/09 2016/17 2024/25
+Colombia,Yield,La Nina forte (<= -1.5),3,4.40,-0.72,1.26,66.67,1999/00 2007/08 2010/11
+Colombia,Yield,La Nina moderee (-1.5 a -1),5,-8.63,-7.38,-8.35,80.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia,Yield,El Nino (|ONI| >= 1),4,0.23,3.29,7.15,25.00,2002/03 2009/10 2015/16 2023/24
 Colombia,Yield,La Nina (|ONI| >= 1),8,-3.75,-4.51,-4.75,75.00,1999/00 2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia (Fedecafe),Production Arabica,El Nino,5,-3.00,-3.56,2.25,80.00,2009/10 2014/15 2015/16 2018/19 2023/24
 Colombia (Fedecafe),Production Arabica,La Nina,9,2.33,1.72,-1.23,22.22,2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Colombia (Fedecafe),Production Arabica,neutral,3,-3.24,-8.36,3.20,66.67,2012/13 2013/14 2019/20
+Colombia (Fedecafe),Production Arabica,El Nino faible (< 1),2,-2.95,-2.95,3.61,100.00,2014/15 2018/19
+Colombia (Fedecafe),Production Arabica,El Nino fort (ONI >= 2),2,-0.63,-0.63,9.23,50.00,2015/16 2023/24
+Colombia (Fedecafe),Production Arabica,El Nino modere (1-2),1,-7.85,-7.85,-14.45,100.00,2009/10
+Colombia (Fedecafe),Production Arabica,La Nina faible (> -1),3,9.21,7.28,7.55,0.00,2008/09 2016/17 2024/25
+Colombia (Fedecafe),Production Arabica,La Nina forte (<= -1.5),1,11.13,11.13,9.92,0.00,2010/11
+Colombia (Fedecafe),Production Arabica,La Nina moderee (-1.5 a -1),5,-3.56,0.02,-8.73,40.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia (Fedecafe),Production Arabica,El Nino (|ONI| >= 1),3,-3.04,-7.85,1.34,66.67,2009/10 2015/16 2023/24
 Colombia (Fedecafe),Production Arabica,La Nina (|ONI| >= 1),6,-1.11,0.20,-5.62,33.33,2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia (Fedecafe),Area total,El Nino,5,-0.49,-0.32,-1.24,80.00,2009/10 2014/15 2015/16 2018/19 2023/24
 Colombia (Fedecafe),Area total,La Nina,9,-0.28,-0.12,0.05,55.56,2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Colombia (Fedecafe),Area total,neutral,3,1.70,2.68,1.21,33.33,2012/13 2013/14 2019/20
+Colombia (Fedecafe),Area total,El Nino faible (< 1),2,-0.71,-0.71,-2.83,100.00,2014/15 2018/19
+Colombia (Fedecafe),Area total,El Nino fort (ONI >= 2),2,0.06,0.06,-0.61,50.00,2015/16 2023/24
+Colombia (Fedecafe),Area total,El Nino modere (1-2),1,-1.16,-1.16,0.69,100.00,2009/10
+Colombia (Fedecafe),Area total,La Nina faible (> -1),3,0.28,-0.12,-0.09,66.67,2008/09 2016/17 2024/25
+Colombia (Fedecafe),Area total,La Nina forte (<= -1.5),1,-2.29,-2.29,1.26,100.00,2010/11
+Colombia (Fedecafe),Area total,La Nina moderee (-1.5 a -1),5,-0.21,0.00,-0.11,40.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia (Fedecafe),Area total,El Nino (|ONI| >= 1),3,-0.34,-0.03,-0.17,66.67,2009/10 2015/16 2023/24
 Colombia (Fedecafe),Area total,La Nina (|ONI| >= 1),6,-0.56,-0.28,0.11,50.00,2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia (Fedecafe),Area bearing,El Nino,8,0.62,1.35,0.57,37.50,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Colombia (Fedecafe),Area bearing,La Nina,11,0.45,0.50,-1.30,45.45,2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Colombia (Fedecafe),Area bearing,neutral,5,-1.19,-3.40,2.22,60.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Colombia (Fedecafe),Area bearing,El Nino faible (< 1),4,-0.94,-0.43,-1.44,50.00,2004/05 2006/07 2014/15 2018/19
+Colombia (Fedecafe),Area bearing,El Nino fort (ONI >= 2),2,4.20,4.20,4.94,0.00,2015/16 2023/24
+Colombia (Fedecafe),Area bearing,El Nino modere (1-2),2,0.18,0.18,0.23,50.00,2002/03 2009/10
+Colombia (Fedecafe),Area bearing,La Nina faible (> -1),4,1.82,1.52,-0.78,50.00,2005/06 2008/09 2016/17 2024/25
+Colombia (Fedecafe),Area bearing,La Nina forte (<= -1.5),2,0.02,0.02,-2.00,50.00,2007/08 2010/11
+Colombia (Fedecafe),Area bearing,La Nina moderee (-1.5 a -1),5,-0.48,0.50,-1.43,40.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia (Fedecafe),Area bearing,El Nino (|ONI| >= 1),4,2.19,2.01,2.58,25.00,2002/03 2009/10 2015/16 2023/24
 Colombia (Fedecafe),Area bearing,La Nina (|ONI| >= 1),7,-0.34,0.50,-1.59,42.86,2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia (Fedecafe),Yield,El Nino,5,-4.74,-5.77,2.42,80.00,2009/10 2014/15 2015/16 2018/19 2023/24
 Colombia (Fedecafe),Yield,La Nina,9,2.34,1.02,0.70,44.44,2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Colombia (Fedecafe),Yield,neutral,3,-0.63,-4.79,1.73,66.67,2012/13 2013/14 2019/20
+Colombia (Fedecafe),Yield,El Nino faible (< 1),2,-3.67,-3.67,4.14,100.00,2014/15 2018/19
+Colombia (Fedecafe),Yield,El Nino fort (ONI >= 2),2,-3.79,-3.79,8.91,50.00,2015/16 2023/24
+Colombia (Fedecafe),Yield,El Nino modere (1-2),1,-8.80,-8.80,-14.03,100.00,2009/10
+Colombia (Fedecafe),Yield,La Nina faible (> -1),3,9.05,6.86,10.54,0.00,2008/09 2016/17 2024/25
+Colombia (Fedecafe),Yield,La Nina forte (<= -1.5),1,9.82,9.82,11.45,0.00,2010/11
+Colombia (Fedecafe),Yield,La Nina moderee (-1.5 a -1),5,-3.18,-0.53,-7.35,80.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Colombia (Fedecafe),Yield,El Nino (|ONI| >= 1),3,-5.46,-8.80,1.26,66.67,2009/10 2015/16 2023/24
 Colombia (Fedecafe),Yield,La Nina (|ONI| >= 1),6,-1.02,-0.37,-4.22,66.67,2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Honduras,Production Arabica,El Nino,8,-5.55,-6.52,1.11,75.00,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Honduras,Production Arabica,La Nina,11,6.28,5.80,12.60,36.36,2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Honduras,Production Arabica,neutral,5,-8.11,-6.63,-10.60,80.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Honduras,Production Arabica,El Nino faible (< 1),4,-2.02,-0.53,2.18,50.00,2004/05 2006/07 2014/15 2018/19
+Honduras,Production Arabica,El Nino fort (ONI >= 2),2,-9.95,-9.95,-3.74,100.00,2015/16 2023/24
+Honduras,Production Arabica,El Nino modere (1-2),2,-8.23,-8.23,3.80,100.00,2002/03 2009/10
+Honduras,Production Arabica,La Nina faible (> -1),4,2.19,-1.58,15.43,50.00,2005/06 2008/09 2016/17 2024/25
+Honduras,Production Arabica,La Nina forte (<= -1.5),2,-0.30,-0.30,8.62,50.00,2007/08 2010/11
+Honduras,Production Arabica,La Nina moderee (-1.5 a -1),5,12.19,14.04,11.94,20.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Honduras,Production Arabica,El Nino (|ONI| >= 1),4,-9.09,-9.95,0.03,100.00,2002/03 2009/10 2015/16 2023/24
 Honduras,Production Arabica,La Nina (|ONI| >= 1),7,8.62,7.22,10.99,28.57,2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Honduras,Area total,El Nino,8,-2.29,-1.37,-0.32,62.50,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Honduras,Area total,La Nina,11,1.10,-0.31,3.37,54.55,2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Honduras,Area total,neutral,5,0.59,-3.50,-2.25,60.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Honduras,Area total,El Nino faible (< 1),4,-1.04,-0.56,0.89,50.00,2004/05 2006/07 2014/15 2018/19
+Honduras,Area total,El Nino fort (ONI >= 2),2,-0.70,-0.70,3.27,50.00,2015/16 2023/24
+Honduras,Area total,El Nino modere (1-2),2,-6.37,-6.37,-6.34,100.00,2002/03 2009/10
+Honduras,Area total,La Nina faible (> -1),4,1.76,1.51,3.42,25.00,2005/06 2008/09 2016/17 2024/25
+Honduras,Area total,La Nina forte (<= -1.5),2,-1.46,-1.46,4.51,100.00,2007/08 2010/11
+Honduras,Area total,La Nina moderee (-1.5 a -1),5,1.59,-0.31,2.89,60.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Honduras,Area total,El Nino (|ONI| >= 1),4,-3.53,-3.80,-1.53,75.00,2002/03 2009/10 2015/16 2023/24
 Honduras,Area total,La Nina (|ONI| >= 1),7,0.72,-0.72,3.35,71.43,2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Honduras,Area bearing,El Nino,8,-2.60,-5.04,2.66,75.00,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Honduras,Area bearing,La Nina,11,0.99,0.00,3.45,45.45,2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Honduras,Area bearing,neutral,5,0.39,-4.04,-4.67,60.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Honduras,Area bearing,El Nino faible (< 1),4,-0.28,-1.92,6.89,50.00,2004/05 2006/07 2014/15 2018/19
+Honduras,Area bearing,El Nino fort (ONI >= 2),2,-2.93,-2.93,4.09,100.00,2015/16 2023/24
+Honduras,Area bearing,El Nino modere (1-2),2,-6.92,-6.92,-7.21,100.00,2002/03 2009/10
+Honduras,Area bearing,La Nina faible (> -1),4,-1.48,-0.68,4.20,50.00,2005/06 2008/09 2016/17 2024/25
+Honduras,Area bearing,La Nina forte (<= -1.5),2,2.95,2.95,3.12,50.00,2007/08 2010/11
+Honduras,Area bearing,La Nina moderee (-1.5 a -1),5,2.18,0.00,2.97,40.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Honduras,Area bearing,El Nino (|ONI| >= 1),4,-4.93,-5.04,-1.56,100.00,2002/03 2009/10 2015/16 2023/24
 Honduras,Area bearing,La Nina (|ONI| >= 1),7,2.40,0.00,3.01,42.86,2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Honduras,Yield,El Nino,8,-2.80,-4.65,-0.81,62.50,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Honduras,Yield,La Nina,11,5.26,5.41,8.66,45.45,2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Honduras,Yield,neutral,5,-8.34,-14.19,-5.14,80.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Honduras,Yield,El Nino faible (< 1),4,-1.59,-0.21,-4.02,50.00,2004/05 2006/07 2014/15 2018/19
+Honduras,Yield,El Nino fort (ONI >= 2),2,-6.67,-6.67,-7.62,100.00,2015/16 2023/24
+Honduras,Yield,El Nino modere (1-2),2,-1.35,-1.35,12.42,50.00,2002/03 2009/10
+Honduras,Yield,La Nina faible (> -1),4,4.16,4.02,10.30,50.00,2005/06 2008/09 2016/17 2024/25
+Honduras,Yield,La Nina forte (<= -1.5),2,-3.27,-3.27,5.32,100.00,2007/08 2010/11
+Honduras,Yield,La Nina moderee (-1.5 a -1),5,9.55,9.70,8.69,20.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Honduras,Yield,El Nino (|ONI| >= 1),4,-4.01,-6.67,2.40,75.00,2002/03 2009/10 2015/16 2023/24
 Honduras,Yield,La Nina (|ONI| >= 1),7,5.89,5.41,7.73,42.86,2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Indonesia,Production Robusta,El Nino,7,1.36,0.80,7.10,42.86,2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Indonesia,Production Robusta,La Nina,10,-1.34,2.98,0.61,40.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Indonesia,Production Robusta,neutral,3,0.44,-0.13,-2.51,66.67,2013/14 2014/15 2020/21
+Indonesia,Production Robusta,El Nino faible (< 1),4,4.76,6.34,9.21,25.00,2005/06 2007/08 2015/16 2019/20
+Indonesia,Production Robusta,El Nino fort (ONI >= 2),2,-0.71,-0.71,12.25,50.00,2016/17 2024/25
+Indonesia,Production Robusta,El Nino modere (1-2),1,-8.09,-8.09,-11.67,100.00,2010/11
+Indonesia,Production Robusta,La Nina faible (> -1),3,-1.09,-2.97,-5.64,66.67,2006/07 2009/10 2017/18
+Indonesia,Production Robusta,La Nina forte (<= -1.5),2,-5.42,-5.42,4.44,50.00,2008/09 2011/12
+Indonesia,Production Robusta,La Nina moderee (-1.5 a -1),5,0.14,5.83,2.82,20.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Production Robusta,El Nino (|ONI| >= 1),3,-3.17,-3.63,4.28,66.67,2010/11 2016/17 2024/25
 Indonesia,Production Robusta,La Nina (|ONI| >= 1),7,-1.45,5.83,3.28,28.57,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Production Arabica,El Nino,7,-0.85,4.63,-1.28,28.57,2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Indonesia,Production Arabica,La Nina,10,2.02,1.42,12.79,40.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Indonesia,Production Arabica,neutral,3,2.17,5.48,-11.39,33.33,2013/14 2014/15 2020/21
+Indonesia,Production Arabica,El Nino faible (< 1),4,-1.98,7.15,2.25,25.00,2005/06 2007/08 2015/16 2019/20
+Indonesia,Production Arabica,El Nino fort (ONI >= 2),2,5.89,5.89,-4.81,0.00,2016/17 2024/25
+Indonesia,Production Arabica,El Nino modere (1-2),1,-9.84,-9.84,-8.33,100.00,2010/11
+Indonesia,Production Arabica,La Nina faible (> -1),3,1.43,2.44,-2.56,33.33,2006/07 2009/10 2017/18
+Indonesia,Production Arabica,La Nina forte (<= -1.5),2,-6.60,-6.60,28.52,50.00,2008/09 2011/12
+Indonesia,Production Arabica,La Nina moderee (-1.5 a -1),5,5.83,0.39,15.71,40.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Production Arabica,El Nino (|ONI| >= 1),3,0.64,4.63,-5.99,33.33,2010/11 2016/17 2024/25
 Indonesia,Production Arabica,La Nina (|ONI| >= 1),7,2.28,0.39,19.37,42.86,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Production Total,El Nino,7,1.05,1.23,5.80,42.86,2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Indonesia,Production Total,La Nina,10,-0.91,2.57,1.96,40.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Indonesia,Production Total,neutral,3,0.62,0.52,-4.01,33.33,2013/14 2014/15 2020/21
+Indonesia,Production Total,El Nino faible (< 1),4,3.89,6.41,8.23,25.00,2005/06 2007/08 2015/16 2019/20
+Indonesia,Production Total,El Nino fort (ONI >= 2),2,0.07,0.07,9.45,50.00,2016/17 2024/25
+Indonesia,Production Total,El Nino modere (1-2),1,-8.35,-8.35,-11.19,100.00,2010/11
+Indonesia,Production Total,La Nina faible (> -1),3,-0.77,-5.45,-5.31,66.67,2006/07 2009/10 2017/18
+Indonesia,Production Total,La Nina forte (<= -1.5),2,-5.57,-5.57,7.00,50.00,2008/09 2011/12
+Indonesia,Production Total,La Nina moderee (-1.5 a -1),5,0.86,5.14,4.30,20.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Production Total,El Nino (|ONI| >= 1),3,-2.74,-2.69,2.57,66.67,2010/11 2016/17 2024/25
 Indonesia,Production Total,La Nina (|ONI| >= 1),7,-0.97,5.14,5.07,28.57,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Area bearing,El Nino,7,-1.25,0.00,-1.17,28.57,2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Indonesia,Area bearing,La Nina,10,-0.03,0.00,3.67,30.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Indonesia,Area bearing,neutral,3,0.63,0.42,0.56,0.00,2013/14 2014/15 2020/21
+Indonesia,Area bearing,El Nino faible (< 1),4,-3.19,-0.97,-1.31,50.00,2005/06 2007/08 2015/16 2019/20
+Indonesia,Area bearing,El Nino fort (ONI >= 2),2,0.00,0.00,0.00,0.00,2016/17 2024/25
+Indonesia,Area bearing,El Nino modere (1-2),1,4.02,4.02,-2.92,0.00,2010/11
+Indonesia,Area bearing,La Nina faible (> -1),3,4.17,0.00,11.80,33.33,2006/07 2009/10 2017/18
+Indonesia,Area bearing,La Nina forte (<= -1.5),2,-6.45,-6.45,-0.64,100.00,2008/09 2011/12
+Indonesia,Area bearing,La Nina moderee (-1.5 a -1),5,0.02,0.00,0.52,0.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Area bearing,El Nino (|ONI| >= 1),3,1.34,0.00,-0.97,0.00,2010/11 2016/17 2024/25
 Indonesia,Area bearing,La Nina (|ONI| >= 1),7,-1.83,0.00,0.19,28.57,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Area total,El Nino,7,-1.27,0.00,-0.66,42.86,2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Indonesia,Area total,La Nina,10,0.62,0.00,2.72,30.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Indonesia,Area total,neutral,3,0.25,0.23,0.33,0.00,2013/14 2014/15 2020/21
+Indonesia,Area total,El Nino faible (< 1),4,-2.53,-0.02,-0.45,50.00,2005/06 2007/08 2015/16 2019/20
+Indonesia,Area total,El Nino fort (ONI >= 2),2,-0.09,-0.09,0.00,50.00,2016/17 2024/25
+Indonesia,Area total,El Nino modere (1-2),1,1.42,1.42,-2.80,0.00,2010/11
+Indonesia,Area total,La Nina faible (> -1),3,3.94,4.89,9.29,0.00,2006/07 2009/10 2017/18
+Indonesia,Area total,La Nina forte (<= -1.5),2,-2.62,-2.62,-0.62,100.00,2008/09 2011/12
+Indonesia,Area total,La Nina moderee (-1.5 a -1),5,-0.08,0.00,0.12,20.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Area total,El Nino (|ONI| >= 1),3,0.41,0.00,-0.93,33.33,2010/11 2016/17 2024/25
 Indonesia,Area total,La Nina (|ONI| >= 1),7,-0.81,0.00,-0.09,42.86,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Yield (production / bearing area),El Nino,7,2.61,1.23,7.33,42.86,2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Indonesia,Yield (production / bearing area),La Nina,10,-0.90,1.22,-1.16,50.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Indonesia,Yield (production / bearing area),neutral,3,0.01,0.52,-4.56,33.33,2013/14 2014/15 2020/21
+Indonesia,Yield (production / bearing area),El Nino faible (< 1),4,7.64,6.41,10.24,25.00,2005/06 2007/08 2015/16 2019/20
+Indonesia,Yield (production / bearing area),El Nino fort (ONI >= 2),2,0.07,0.07,9.45,50.00,2016/17 2024/25
+Indonesia,Yield (production / bearing area),El Nino modere (1-2),1,-12.47,-12.47,-8.52,100.00,2010/11
+Indonesia,Yield (production / bearing area),La Nina faible (> -1),3,-5.68,-5.45,-14.85,66.67,2006/07 2009/10 2017/18
+Indonesia,Yield (production / bearing area),La Nina forte (<= -1.5),2,1.79,1.79,7.58,50.00,2008/09 2011/12
+Indonesia,Yield (production / bearing area),La Nina moderee (-1.5 a -1),5,0.88,5.14,3.57,40.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Indonesia,Yield (production / bearing area),El Nino (|ONI| >= 1),3,-4.11,-2.69,3.46,66.67,2010/11 2016/17 2024/25
 Indonesia,Yield (production / bearing area),La Nina (|ONI| >= 1),7,1.14,5.14,4.71,42.86,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Vietnam,Production Robusta,El Nino,9,-4.61,-0.41,3.62,55.56,1998/99 2003/04 2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Vietnam,Production Robusta,La Nina,14,5.11,1.25,15.18,42.86,1996/97 1999/00 2000/01 2001/02 2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Vietnam,Production Robusta,neutral,6,-4.34,-3.24,1.69,66.67,1997/98 2002/03 2004/05 2013/14 2014/15 2020/21
+Vietnam,Production Robusta,El Nino faible (< 1),4,-3.11,2.69,-2.90,25.00,2005/06 2007/08 2015/16 2019/20
+Vietnam,Production Robusta,El Nino fort (ONI >= 2),3,-11.19,-8.40,1.55,100.00,1998/99 2016/17 2024/25
+Vietnam,Production Robusta,El Nino modere (1-2),2,2.25,2.25,19.75,50.00,2003/04 2010/11
+Vietnam,Production Robusta,La Nina faible (> -1),4,3.70,-4.16,11.32,50.00,2001/02 2006/07 2009/10 2017/18
+Vietnam,Production Robusta,La Nina forte (<= -1.5),4,15.63,6.47,31.68,25.00,1999/00 2000/01 2008/09 2011/12
+Vietnam,Production Robusta,La Nina moderee (-1.5 a -1),6,-0.97,-0.04,6.76,50.00,1996/97 2012/13 2018/19 2021/22 2022/23 2023/24
 Vietnam,Production Robusta,El Nino (|ONI| >= 1),5,-5.82,-8.40,8.83,80.00,1998/99 2003/04 2010/11 2016/17 2024/25
 Vietnam,Production Robusta,La Nina (|ONI| >= 1),10,5.67,2.87,16.73,40.00,1996/97 1999/00 2000/01 2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Vietnam,Production Total,El Nino,9,-4.46,-0.17,3.81,55.56,1998/99 2003/04 2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Vietnam,Production Total,La Nina,14,4.78,1.06,15.04,50.00,1996/97 1999/00 2000/01 2001/02 2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Vietnam,Production Total,neutral,6,-3.99,-3.11,2.03,66.67,1997/98 2002/03 2004/05 2013/14 2014/15 2020/21
+Vietnam,Production Total,El Nino faible (< 1),4,-2.88,2.87,-2.57,25.00,2005/06 2007/08 2015/16 2019/20
+Vietnam,Production Total,El Nino fort (ONI >= 2),3,-10.94,-7.95,1.69,100.00,1998/99 2016/17 2024/25
+Vietnam,Production Total,El Nino modere (1-2),2,2.09,2.09,19.78,50.00,2003/04 2010/11
+Vietnam,Production Total,La Nina faible (> -1),4,2.84,-4.27,10.42,75.00,2001/02 2006/07 2009/10 2017/18
+Vietnam,Production Total,La Nina forte (<= -1.5),4,15.43,6.25,31.73,25.00,1999/00 2000/01 2008/09 2011/12
+Vietnam,Production Total,La Nina moderee (-1.5 a -1),6,-1.03,-0.28,7.00,50.00,1996/97 2012/13 2018/19 2021/22 2022/23 2023/24
 Vietnam,Production Total,El Nino (|ONI| >= 1),5,-5.73,-7.95,8.92,80.00,1998/99 2003/04 2010/11 2016/17 2024/25
 Vietnam,Production Total,La Nina (|ONI| >= 1),10,5.56,2.72,16.89,40.00,1996/97 1999/00 2000/01 2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Vietnam,Area total,El Nino,9,-1.60,-0.73,1.66,66.67,1998/99 2003/04 2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Vietnam,Area total,La Nina,13,0.98,0.43,8.31,38.46,1996/97 1999/00 2000/01 2001/02 2006/07 2008/09 2009/10 2011/12 2017/18 2018/19 2021/22 2022/23 2023/24
 Vietnam,Area total,neutral,4,1.35,-0.71,7.30,50.00,1997/98 2002/03 2004/05 2020/21
+Vietnam,Area total,El Nino faible (< 1),4,0.90,0.54,2.30,25.00,2005/06 2007/08 2015/16 2019/20
+Vietnam,Area total,El Nino fort (ONI >= 2),3,-4.89,-0.95,0.38,100.00,1998/99 2016/17 2024/25
+Vietnam,Area total,El Nino modere (1-2),2,-1.67,-1.67,2.30,100.00,2003/04 2010/11
+Vietnam,Area total,La Nina faible (> -1),4,0.17,-0.18,0.93,50.00,2001/02 2006/07 2009/10 2017/18
+Vietnam,Area total,La Nina forte (<= -1.5),4,5.87,2.33,15.64,25.00,1999/00 2000/01 2008/09 2011/12
+Vietnam,Area total,La Nina moderee (-1.5 a -1),5,-2.28,0.25,8.34,40.00,1996/97 2018/19 2021/22 2022/23 2023/24
 Vietnam,Area total,El Nino (|ONI| >= 1),5,-3.60,-0.95,1.15,100.00,1998/99 2003/04 2010/11 2016/17 2024/25
 Vietnam,Area total,La Nina (|ONI| >= 1),9,1.34,0.43,11.58,33.33,1996/97 1999/00 2000/01 2008/09 2011/12 2018/19 2021/22 2022/23 2023/24
 Vietnam,Area bearing,El Nino,7,-3.34,-1.21,-1.89,71.43,1998/99 2003/04 2005/06 2007/08 2016/17 2019/20 2024/25
 Vietnam,Area bearing,La Nina,13,-0.13,-0.83,15.59,61.54,1996/97 1999/00 2000/01 2001/02 2006/07 2008/09 2009/10 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Vietnam,Area bearing,neutral,6,6.51,6.33,6.97,16.67,1997/98 2002/03 2004/05 2013/14 2014/15 2020/21
+Vietnam,Area bearing,El Nino faible (< 1),3,-0.70,-1.21,-0.30,66.67,2005/06 2007/08 2019/20
+Vietnam,Area bearing,El Nino fort (ONI >= 2),3,-7.77,-6.86,-3.47,100.00,1998/99 2016/17 2024/25
+Vietnam,Area bearing,El Nino modere (1-2),1,2.04,2.04,-1.96,0.00,2003/04
+Vietnam,Area bearing,La Nina faible (> -1),4,-2.77,-1.03,2.38,50.00,2001/02 2006/07 2009/10 2017/18
+Vietnam,Area bearing,La Nina forte (<= -1.5),3,1.40,-1.37,20.12,66.67,1999/00 2000/01 2008/09
+Vietnam,Area bearing,La Nina moderee (-1.5 a -1),6,0.86,-0.60,22.12,66.67,1996/97 2012/13 2018/19 2021/22 2022/23 2023/24
 Vietnam,Area bearing,El Nino (|ONI| >= 1),4,-5.32,-3.65,-3.09,75.00,1998/99 2003/04 2016/17 2024/25
 Vietnam,Area bearing,La Nina (|ONI| >= 1),9,1.04,-0.83,21.46,66.67,1996/97 1999/00 2000/01 2008/09 2012/13 2018/19 2021/22 2022/23 2023/24
 Vietnam,Yield,El Nino,7,-3.24,-1.68,-1.38,71.43,2005/06 2007/08 2010/11 2015/16 2016/17 2019/20 2024/25
 Vietnam,Yield,La Nina,10,3.02,0.71,7.30,40.00,2006/07 2008/09 2009/10 2011/12 2012/13 2017/18 2018/19 2021/22 2022/23 2023/24
 Vietnam,Yield,neutral,4,-3.59,-4.25,-1.80,75.00,2004/05 2013/14 2014/15 2020/21
+Vietnam,Yield,El Nino faible (< 1),4,-3.01,1.07,-3.02,50.00,2005/06 2007/08 2015/16 2019/20
+Vietnam,Yield,El Nino fort (ONI >= 2),2,-2.92,-2.92,-0.94,100.00,2016/17 2024/25
+Vietnam,Yield,El Nino modere (1-2),1,-4.80,-4.80,4.31,100.00,2010/11
+Vietnam,Yield,La Nina faible (> -1),3,8.32,0.82,18.92,33.33,2006/07 2009/10 2017/18
+Vietnam,Yield,La Nina forte (<= -1.5),2,-0.73,-0.73,4.18,50.00,2008/09 2011/12
+Vietnam,Yield,La Nina moderee (-1.5 a -1),5,1.34,0.61,1.57,40.00,2012/13 2018/19 2021/22 2022/23 2023/24
 Vietnam,Yield,El Nino (|ONI| >= 1),3,-3.55,-4.16,0.81,100.00,2010/11 2016/17 2024/25
 Vietnam,Yield,La Nina (|ONI| >= 1),7,0.75,0.61,2.32,42.86,2008/09 2011/12 2012/13 2018/19 2021/22 2022/23 2023/24
 Uganda,Production Arabica,El Nino,8,0.35,-1.32,4.04,62.50,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Uganda,Production Arabica,La Nina,13,-0.95,5.60,4.70,38.46,1999/00 2000/01 2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Uganda,Production Arabica,neutral,5,0.11,0.98,5.73,40.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Uganda,Production Arabica,El Nino faible (< 1),4,-2.59,-0.21,-5.43,50.00,2004/05 2006/07 2014/15 2018/19
+Uganda,Production Arabica,El Nino fort (ONI >= 2),2,-3.47,-3.47,9.88,100.00,2015/16 2023/24
+Uganda,Production Arabica,El Nino modere (1-2),2,10.05,10.05,17.14,50.00,2002/03 2009/10
+Uganda,Production Arabica,La Nina faible (> -1),5,1.81,2.00,8.57,40.00,2000/01 2005/06 2008/09 2016/17 2024/25
+Uganda,Production Arabica,La Nina forte (<= -1.5),3,-11.18,-18.04,-11.18,66.67,1999/00 2007/08 2010/11
+Uganda,Production Arabica,La Nina moderee (-1.5 a -1),5,2.44,5.74,10.36,20.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Uganda,Production Arabica,El Nino (|ONI| >= 1),4,3.29,-2.63,13.51,75.00,2002/03 2009/10 2015/16 2023/24
 Uganda,Production Arabica,La Nina (|ONI| >= 1),8,-2.67,5.67,2.28,37.50,1999/00 2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Uganda,Production Robusta,El Nino,8,-9.64,-9.35,-0.58,75.00,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Uganda,Production Robusta,La Nina,13,3.49,1.23,4.11,38.46,1999/00 2000/01 2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Uganda,Production Robusta,neutral,5,6.22,6.99,11.66,20.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Uganda,Production Robusta,El Nino faible (< 1),4,-6.67,-5.58,10.68,50.00,2004/05 2006/07 2014/15 2018/19
+Uganda,Production Robusta,El Nino fort (ONI >= 2),2,-11.14,-11.14,-3.42,100.00,2015/16 2023/24
+Uganda,Production Robusta,El Nino modere (1-2),2,-14.09,-14.09,-20.23,100.00,2002/03 2009/10
+Uganda,Production Robusta,La Nina faible (> -1),5,-2.67,0.35,-1.27,40.00,2000/01 2005/06 2008/09 2016/17 2024/25
+Uganda,Production Robusta,La Nina forte (<= -1.5),3,19.20,11.60,18.49,0.00,1999/00 2007/08 2010/11
+Uganda,Production Robusta,La Nina moderee (-1.5 a -1),5,0.24,-5.09,0.85,60.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Uganda,Production Robusta,El Nino (|ONI| >= 1),4,-12.61,-13.32,-11.83,100.00,2002/03 2009/10 2015/16 2023/24
 Uganda,Production Robusta,La Nina (|ONI| >= 1),8,7.35,3.77,7.47,37.50,1999/00 2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Uganda,Production Total,El Nino,8,-7.62,-9.20,-0.62,75.00,2002/03 2004/05 2006/07 2009/10 2014/15 2015/16 2018/19 2023/24
 Uganda,Production Total,La Nina,13,2.44,0.34,3.43,38.46,1999/00 2000/01 2005/06 2007/08 2008/09 2010/11 2011/12 2016/17 2017/18 2020/21 2021/22 2022/23 2024/25
 Uganda,Production Total,neutral,5,4.92,5.60,9.36,20.00,2001/02 2003/04 2012/13 2013/14 2019/20
+Uganda,Production Total,El Nino faible (< 1),4,-5.94,-5.90,5.93,50.00,2004/05 2006/07 2014/15 2018/19
+Uganda,Production Total,El Nino fort (ONI >= 2),2,-9.33,-9.33,-0.54,100.00,2015/16 2023/24
+Uganda,Production Total,El Nino modere (1-2),2,-9.26,-9.26,-13.78,100.00,2002/03 2009/10
+Uganda,Production Total,La Nina faible (> -1),5,-1.90,0.20,-0.06,40.00,2000/01 2005/06 2008/09 2016/17 2024/25
+Uganda,Production Total,La Nina forte (<= -1.5),3,12.03,11.22,11.31,0.00,1999/00 2007/08 2010/11
+Uganda,Production Total,La Nina moderee (-1.5 a -1),5,1.02,-0.81,2.19,60.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Uganda,Production Total,El Nino (|ONI| >= 1),4,-9.30,-9.26,-7.16,100.00,2002/03 2009/10 2015/16 2023/24
 Uganda,Production Total,La Nina (|ONI| >= 1),8,5.15,1.10,5.61,37.50,1999/00 2007/08 2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Uganda,Area total,El Nino,5,-5.15,-0.14,1.72,60.00,2009/10 2014/15 2015/16 2018/19 2023/24
 Uganda,Area total,La Nina,7,-1.33,-0.88,2.99,57.14,2010/11 2011/12 2017/18 2020/21 2021/22 2022/23 2024/25
 Uganda,Area total,neutral,3,10.28,5.74,24.83,0.00,2012/13 2013/14 2019/20
+Uganda,Area total,El Nino faible (< 1),2,-10.21,-10.21,0.28,50.00,2014/15 2018/19
+Uganda,Area total,El Nino fort (ONI >= 2),2,0.47,0.47,1.47,50.00,2015/16 2023/24
+Uganda,Area total,El Nino modere (1-2),1,-6.30,-6.30,5.08,100.00,2009/10
+Uganda,Area total,La Nina faible (> -1),1,0.29,0.29,0.00,0.00,2024/25
+Uganda,Area total,La Nina forte (<= -1.5),1,-5.88,-5.88,4.84,100.00,2010/11
+Uganda,Area total,La Nina moderee (-1.5 a -1),5,-0.75,-0.88,3.22,60.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Uganda,Area total,El Nino (|ONI| >= 1),3,-1.78,-0.14,2.67,66.67,2009/10 2015/16 2023/24
 Uganda,Area total,La Nina (|ONI| >= 1),6,-1.60,-0.99,3.49,66.67,2010/11 2011/12 2017/18 2020/21 2021/22 2022/23
 Uganda,Output per planted ha,El Nino,5,-3.55,-4.85,-5.73,80.00,2009/10 2014/15 2015/16 2018/19 2023/24
 Uganda,Output per planted ha,La Nina,7,3.00,2.76,6.24,42.86,2010/11 2011/12 2017/18 2020/21 2021/22 2022/23 2024/25
 Uganda,Output per planted ha,neutral,3,-3.88,2.15,-6.22,33.33,2012/13 2013/14 2019/20
+Uganda,Output per planted ha,El Nino faible (< 1),2,2.71,2.71,-4.27,50.00,2014/15 2018/19
+Uganda,Output per planted ha,El Nino fort (ONI >= 2),2,-9.17,-9.17,-1.95,100.00,2015/16 2023/24
+Uganda,Output per planted ha,El Nino modere (1-2),1,-4.85,-4.85,-16.22,100.00,2009/10
+Uganda,Output per planted ha,La Nina faible (> -1),1,-0.07,-0.07,4.69,100.00,2024/25
+Uganda,Output per planted ha,La Nina forte (<= -1.5),1,5.47,5.47,6.75,0.00,2010/11
+Uganda,Output per planted ha,La Nina moderee (-1.5 a -1),5,3.12,2.76,6.45,40.00,2011/12 2017/18 2020/21 2021/22 2022/23
 Uganda,Output per planted ha,El Nino (|ONI| >= 1),3,-7.73,-4.85,-6.71,100.00,2009/10 2015/16 2023/24
 Uganda,Output per planted ha,La Nina (|ONI| >= 1),6,3.51,3.65,6.50,33.33,2010/11 2011/12 2017/18 2020/21 2021/22 2022/23

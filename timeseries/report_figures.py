@@ -103,11 +103,13 @@ def history(country, data, path, enso_years=None, label=None):
 
 def enso_bars(country, eff, series_list, path, label=None):
     """Mean anomaly (% vs neighbouring years) by ENSO phase, one group per series."""
-    phases = ["El Nino (|ONI| >= 1)", "El Nino", "neutral", "La Nina", "La Nina (|ONI| >= 1)"]
-    labels = ["El Niño fort", "El Niño (tous)", "neutre", "La Niña (tous)", "La Niña forte"]
-    colors = [C_RED, "#f08c8b", C_MUTED, "#7fb0e8", C_BLUE]
+    phases = ["El Nino fort (ONI >= 2)", "El Nino modere (1-2)", "El Nino faible (< 1)", "neutral",
+              "La Nina faible (> -1)", "La Nina moderee (-1.5 a -1)", "La Nina forte (<= -1.5)"]
+    labels = ["El Niño fort\n(ONI ≥ 2)", "El Niño modéré\n(1 à 2)", "El Niño faible\n(< 1)", "neutre",
+              "La Niña faible\n(> −1)", "La Niña modérée\n(−1,5 à −1)", "La Niña forte\n(≤ −1,5)"]
+    colors = [C_RED, "#ec7a79", "#f4b0af", C_MUTED, "#a9c8ee", "#6ea3e3", C_BLUE]
     e = eff[(eff.country == country) & (eff.series.isin(series_list))]
-    fig, axes = plt.subplots(1, len(series_list), figsize=(4.2 * len(series_list), 3.4), squeeze=False)
+    fig, axes = plt.subplots(1, len(series_list), figsize=(5.2 * len(series_list), 3.8), squeeze=False)
     for ax, s in zip(axes[0], series_list):
         g = e[e.series == s].set_index("phase")
         vals = [g.loc[p, "mean_anomaly_pct"] if p in g.index else np.nan for p in phases]
@@ -118,7 +120,7 @@ def enso_bars(country, eff, series_list, path, label=None):
             if np.isfinite(v):
                 ax.text(i, v + (0.4 if v >= 0 else -0.4), f"{v:+.1f} %\n(n={n})", ha="center",
                         va="bottom" if v >= 0 else "top", fontsize=7.5, color=C_TEXT)
-        ax.set_xticks(range(len(phases))); ax.set_xticklabels(labels, fontsize=7.5, rotation=20)
+        ax.set_xticks(range(len(phases))); ax.set_xticklabels(labels, fontsize=6.5)
         ax.set_title(s, loc="left", fontsize=10)
         lim = max(3, np.nanmax(np.abs(vals)) * 1.6)
         ax.set_ylim(-lim, lim)
@@ -127,23 +129,27 @@ def enso_bars(country, eff, series_list, path, label=None):
     fig.tight_layout(); fig.savefig(path, dpi=150, bbox_inches="tight"); plt.close(fig)
 
 
-def brazil_weather_phase(w, path):
-    """Rainfall / temperature deviation by ENSO phase for the coffee states."""
-    phases = ["El Nino", "neutral", "La Nina"]; colors = [C_RED, C_MUTED, C_BLUE]
+def brazil_weather_phase(w, path, phases=None, colors=None, labels=None):
+    """Rainfall / temperature deviation by ENSO phase (or intensity class) for the coffee states."""
+    phases = phases or ["El Nino", "neutral", "La Nina"]; colors = colors or [C_RED, C_MUTED, C_BLUE]
+    labels = labels or phases
     states = [("mg", "Minas Gerais"), ("es", "Espírito Santo"), ("sp", "São Paulo"), ("pr", "Paraná")]
-    fig, axes = plt.subplots(1, 2, figsize=(11, 3.6))
+    fig, axes = plt.subplots(1, 2, figsize=(12, 3.8))
     for ax, (kind, ttl, unit) in zip(axes, [("rain", "Pluie annuelle : écart à la moyenne 1998-2025", "mm"),
                                             ("temp", "Température moyenne : écart à la moyenne", "°C")]):
-        x = np.arange(len(states)); wdt = 0.26
-        for k, (ph, col) in enumerate(zip(phases, colors)):
+        x = np.arange(len(states)); wdt = 0.8 / len(phases)
+        for k, (ph, col, lab) in enumerate(zip(phases, colors, labels)):
+            if not (w.phase == ph).any():
+                continue
             r = w[w.phase == ph].iloc[0]
             vals = [r[f"{kind}_{st}_dev"] for st, _ in states]
-            ax.bar(x + (k - 1) * wdt, vals, wdt, color=col, label=f"{ph} (n={int(r.n)})")
-            for xi, v in zip(x + (k - 1) * wdt, vals):
+            xs = x + (k - (len(phases) - 1) / 2) * wdt
+            ax.bar(xs, vals, wdt, color=col, label=f"{lab} (n={int(r.n)})")
+            for xi, v in zip(xs, vals):
                 ax.text(xi, v + (2 if kind == "rain" else 0.02) * (1 if v >= 0 else -1), f"{v:+.0f}" if kind == "rain" else f"{v:+.2f}",
                         ha="center", va="bottom" if v >= 0 else "top", fontsize=7)
         ax.axhline(0, color=C_MUTED, lw=0.8); ax.set_xticks(x); ax.set_xticklabels([n for _, n in states])
         ax.set_title(ttl, loc="left", fontsize=10); ax.set_ylabel(unit); ax.legend(fontsize=7.5)
-    fig.suptitle("Brésil : ce que chaque phase ENSO a fait à la météo des États caféiers (balance sheet, 1998/99-2025/26)",
+    fig.suptitle("Brésil : météo des États caféiers pendant la campagne qui suit chaque épisode (balance sheet, 1998/99-2025/26)",
                  x=0.01, ha="left", fontsize=11, fontweight="bold")
     fig.tight_layout(); fig.savefig(path, dpi=150, bbox_inches="tight"); plt.close(fig)

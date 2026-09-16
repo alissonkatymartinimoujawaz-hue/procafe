@@ -18,7 +18,7 @@ Outputs (timeseries/output/enso/):
 import os
 import numpy as np
 import pandas as pd
-from enso import enso_for_crop_year
+from enso import enso_for_crop_year, intensity_class, ONI_SEASONS
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data", "coffee_series.csv")
@@ -76,6 +76,15 @@ def main():
                              mean_yoy_pct=gg["yoy_pct"].mean(),
                              share_below_trend=(gg["anomaly_pct"] < 0).mean() * 100,
                              years=" ".join(f"{yr}/{str(yr+1)[2:]}" for yr in gg.index)))
+        # intensity classes
+        ph["classe"] = [intensity_class(o, p_) for o, p_ in zip(ph.oni, ph.phase)]
+        for cls, gg in ph.groupby("classe"):
+            if cls == "neutre":
+                continue
+            rows.append(dict(country=country, series=series, phase=cls, n=len(gg),
+                             mean_anomaly_pct=gg["anomaly_pct"].mean(), median_anomaly_pct=gg["anomaly_pct"].median(),
+                             mean_yoy_pct=gg["yoy_pct"].mean(), share_below_trend=(gg["anomaly_pct"] < 0).mean() * 100,
+                             years=" ".join(f"{yr}/{str(yr+1)[2:]}" for yr in gg.index)))
         # strong events only
         for phase in ("El Nino", "La Nina"):
             gg = ph[(ph.phase == phase) & (ph.oni.abs() >= 1.0)]
@@ -95,14 +104,39 @@ def main():
     w["season"], w["oni"], w["phase"], _ = zip(*[enso_for_crop_year("Brazil", yr) for yr in w.index])
     cols = [c for c in w.columns if c.startswith(("rain_", "temp_"))]
     mean_all = w[cols].mean()
+    w["classe"] = [intensity_class(o, p_) for o, p_ in zip(w.oni, w.phase)]
     out = []
-    for phase, gg in w.groupby("phase"):
+    for key in ("phase", "classe"):
+      for phase, gg in w.groupby(key):
+        if key == "classe" and phase == "neutre":
+            continue
         rec = {"phase": phase, "n": len(gg), "years": " ".join(f"{yr}/{str(yr+1)[2:]}" for yr in gg.index)}
         for c in cols:
             rec[c] = gg[c].mean()
             rec[c + "_dev"] = gg[c].mean() - mean_all[c]
         out.append(rec)
     pd.DataFrame(out).to_csv(os.path.join(OUT, "brazil_weather_by_phase.csv"), index=False, float_format="%.2f")
+
+    # Brazil: every El Nino / La Nina episode -> crop year N+1, by species, with the state weather of that crop year
+    yrs = pd.concat(years)
+    def col(series, field):
+        g = yrs[(yrs.country == "Brazil") & (yrs.series == series)].set_index("year")
+        return g[field] if len(g) else pd.Series(dtype=float)
+    ep = []
+    for season, (oni, phase, strength) in sorted(ONI_SEASONS.items()):
+        cy = season + 1
+        if phase == "neutral" or cy not in col("Production Total", "value").index:
+            continue
+        rec = dict(episode=f"{season}/{str(season+1)[2:]}", oni=oni, phase=phase, classe=intensity_class(oni, phase),
+                   campagne=f"{cy}/{str(cy+1)[2:]}", year=cy, onoff="ON" if ex.loc[cy, "onoff"] == 1 else "OFF")
+        for series, tag in [("Production Arabica", "arabica"), ("Production Robusta", "robusta"), ("Production Total", "total"),
+                            ("Yield (production / bearing area)", "yield")]:
+            rec[tag] = col(series, "value").get(cy); rec[tag + "_yoy"] = col(series, "yoy_pct").get(cy); rec[tag + "_anom"] = col(series, "anomaly_pct").get(cy)
+        for c in ("rain_mg", "temp_mg", "rain_es", "temp_es", "rain_sp", "rain_pr"):
+            rec[c] = ex.loc[cy, c] if cy in ex.index else np.nan
+            rec[c + "_dev"] = rec[c] - mean_all[c]
+        ep.append(rec)
+    pd.DataFrame(ep).to_csv(os.path.join(OUT, "brazil_enso_episodes.csv"), index=False, float_format="%.2f")
 
     pd.set_option("display.width", 250)
     show = eff[eff.series.isin(["Production Total", "Production Arabica", "Yield", "Yield (production / bearing area)", "Output per planted ha"])]
