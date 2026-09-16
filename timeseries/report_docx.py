@@ -239,6 +239,7 @@ COUNTRIES = {
         forecast_series="Production Total", enso_series_yield="Output per planted ha",
         extra_note="Surface bearing, non-bearing et rendement par ha récolté n'existent que depuis 2019/20 ; « output per planted ha » sert de rendement sur 2008-2026."),
 }
+EXCLUDE_CAMPAIGNS = {"Brazil": {2014}}      # campaigns removed from the shock tables on request
 PHASE_FR = {"El Nino": "El Niño", "La Nina": "La Niña", "neutral": "neutre", "El Nino (|ONI| >= 1)": "El Niño fort (|ONI| ≥ 1)",
             "La Nina (|ONI| >= 1)": "La Niña forte (|ONI| ≥ 1)"}
 
@@ -480,16 +481,18 @@ def build(country, D):
                       f"sécheresse d'hiver, par région, qu'il faut charger (script NASA POWER fourni).")
         # shocks table
         if ey is not None and yseries:
-            g = ey[ey.series == yseries].sort_values("anomaly_pct")
+            g = ey[(ey.series == yseries) & (~ey.year.isin(EXCLUDE_CAMPAIGNS.get(country, set())))].sort_values("anomaly_pct")
             worst, best = g.head(4), g.tail(3).iloc[::-1]
             rows = []
             for _, r in pd.concat([worst, best]).iterrows():
                 cause = info["shocks"].get(int(r.year), "")
-                rows.append([cy(int(r.year)), f"{r.anomaly_pct:+.1f} %", f"{r.yoy_pct:+.1f} %" if np.isfinite(r.yoy_pct) else "–",
-                             f"{PHASE_FR.get(r.phase, r.phase)} ({r.oni:+.1f})" if np.isfinite(r.oni) else PHASE_FR.get(r.phase, r.phase), cause])
+                ph_lab = PHASE_FR.get(r.phase, r.phase)
+                if np.isfinite(r.oni):
+                    ph_lab = f"{ph_lab} {int(r.season)}/{str(int(r.season) + 1)[2:]} ({r.oni:+.1f})"
+                rows.append([cy(int(r.year)), f"{r.anomaly_pct:+.1f} %", f"{r.yoy_pct:+.1f} %" if np.isfinite(r.yoy_pct) else "–", ph_lab, cause])
             para(doc, f"Les plus grands écarts de rendement ({yseries}) et leur cause documentée :", bold=True)
-            add_table(doc, ["Campagne", "Écart aux voisines", "Variation annuelle", "Phase ENSO (ONI)", "Cause documentée"], rows,
-                      widths=[2, 2.2, 2.2, 3.2, 7.4], font=8)
+            add_table(doc, ["Campagne", "Écart aux voisines", "Variation annuelle", "Épisode ENSO pilote (ONI)", "Cause documentée"], rows,
+                      widths=[2, 2.2, 2.2, 3.4, 7.2], font=8)
         prodser = info["forecast_series"]
         if prodser:
             g = ey[ey.series == prodser]
