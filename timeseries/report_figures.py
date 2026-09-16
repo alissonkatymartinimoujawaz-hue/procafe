@@ -109,7 +109,7 @@ def enso_bars(country, eff, series_list, path, label=None):
               "La Niña faible\n(> −1)", "La Niña modérée\n(−1,5 à −1)", "La Niña forte\n(≤ −1,5)"]
     colors = [C_RED, "#ec7a79", "#f4b0af", C_MUTED, "#a9c8ee", "#6ea3e3", C_BLUE]
     e = eff[(eff.country == country) & (eff.series.isin(series_list))]
-    fig, axes = plt.subplots(1, len(series_list), figsize=(5.2 * len(series_list), 3.8), squeeze=False)
+    fig, axes = plt.subplots(1, len(series_list), figsize=(6.2 * len(series_list), 4.0), squeeze=False)
     for ax, s in zip(axes[0], series_list):
         g = e[e.series == s].set_index("phase")
         vals = [g.loc[p, "mean_anomaly_pct"] if p in g.index else np.nan for p in phases]
@@ -120,7 +120,7 @@ def enso_bars(country, eff, series_list, path, label=None):
             if np.isfinite(v):
                 ax.text(i, v + (0.4 if v >= 0 else -0.4), f"{v:+.1f} %\n(n={n})", ha="center",
                         va="bottom" if v >= 0 else "top", fontsize=7.5, color=C_TEXT)
-        ax.set_xticks(range(len(phases))); ax.set_xticklabels(labels, fontsize=6.5)
+        ax.set_xticks(range(len(phases))); ax.set_xticklabels(labels, fontsize=6.5, rotation=25, ha="right")
         ax.set_title(s, loc="left", fontsize=10)
         lim = max(3, np.nanmax(np.abs(vals)) * 1.6)
         ax.set_ylim(-lim, lim)

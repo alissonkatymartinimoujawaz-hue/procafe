@@ -552,7 +552,7 @@ def build(country, D):
                   f"{r_ln.rain_pr_dev:+.0f} mm au Paraná. Le signal attendu (Sud plus humide, Sudeste plus sec et plus chaud sous "
                   f"El Niño) est bien là, et c'est le Sudeste qui porte l'arabica et le conilon.")
     if has and yseries:
-        ser = [s for s in [yseries, info["forecast_series"]] if s]
+        ser = ["Production Arabica", "Production Robusta", yseries] if country == "Brazil" else [s for s in [yseries, info["forecast_series"]] if s]
         p = os.path.join(FIGS, f"{tag}_enso.png"); fig.enso_bars(country, D.eff, ser, p, fr)
         picture(doc, p, 16, "Figure 5. Écart moyen du rendement et de la production par phase ENSO.")
         rows = []
