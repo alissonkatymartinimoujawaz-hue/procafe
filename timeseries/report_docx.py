@@ -637,12 +637,12 @@ def build(country, D):
                     trend = r.b * t
                     on = (half if f.onoff == 1 else -half) if has_on else 0.0
                     carry = f.forecast - (base + trend + on)
-                    txt = f"{lab} {fmt(f.forecast)} = {fmt(base)} (point de départ 2001/02, niveau moyen du cycle) + {fmt(trend)} (croissance structurelle {r.b:+,.0f} par an × {t} campagnes)"
+                    txt = f"{lab} {fmt(f.forecast)} = {fmt(base)} (point de départ 2001/02, niveau moyen du cycle) + {fmt(trend)} (croissance structurelle {fmt(r.b)} par an × {t} campagnes)"
                     if has_on:
                         txt += f" {'+' if on >= 0 else '−'} {fmt(abs(on))} (année {'ON : moitié de l’écart ON/OFF en plus' if f.onoff == 1 else 'OFF : moitié de l’écart ON/OFF en moins'})"
                     if abs(carry) > 1:
                         txt += f" {'+' if carry > 0 else '−'} {fmt(abs(carry))} (report de {abs(r.get('ma.L1', 0.72)) * 100:.0f} % de la surprise de la dernière campagne observée)"
-                    parts.append(txt.replace(",", "\u202f"))
+                    parts.append(txt)
                 line = f"{cy(int(y))} : " + " ; ".join(parts) + ". Météo : normale, donc 0."
                 if int(y) == 2027:
                     a_ = fa[(fa.series == "Production Arabica") & (fa.year == y)].iloc[0].forecast
