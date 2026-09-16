@@ -618,8 +618,10 @@ def build(country, D):
             para(doc, "Comment chaque chiffre est obtenu (milliers de sacs) :", bold=True)
             para(doc, "Vocabulaire : le point de départ est le niveau de production que le modèle estime pour la première campagne (2001/02) hors "
                       "effet du cycle ; la croissance structurelle est le gain moyen par an sur 2001-2025 une fois le cycle ON/OFF retiré (nouvelles "
-                      "variétés, densité, irrigation, Cerrado) ; on la multiplie par le nombre de campagnes écoulées depuis 2001/02 ; le bonus ON "
-                      "est le supplément moyen d'une année ON. La météo n'entre pas dans ces chiffres : ils supposent une météo normale.", size=9, italic=True)
+                      "variétés, densité, irrigation, Cerrado) ; on la multiplie par le nombre de campagnes écoulées depuis 2001/02 ; le cycle "
+                      "ajoute la moitié de l'écart ON/OFF les années ON et la retire les années OFF (écart total arabica : "
+                      f"{fmt(D.armax.set_index('series').loc['Production Arabica', 'g_on'])} milliers de sacs). La météo n'entre pas dans ces chiffres : "
+                      "ils supposent une météo normale.", size=9, italic=True)
             am = D.armax.set_index("series")
             ep = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_episodes.csv"))
             en_mod = ep[ep.classe == "El Nino (ONI 0.5-1.5)"]; en_fort = ep[ep.classe == "El Nino fort (ONI >= 1.5)"]
@@ -629,11 +631,15 @@ def build(country, D):
                 parts = []
                 for sname, lab in [("Production Arabica", "Arabica"), ("Production Robusta", "Robusta"), ("Production Total", "Total")]:
                     r = am.loc[sname]; f = fa[(fa.series == sname) & (fa.year == y)].iloc[0]
-                    base = r.c; trend = r.b * t; on = (r.g_on if np.isfinite(r.get("g_on", np.nan)) else 0) * (1 if f.onoff == 1 else 0)
+                    has_on = np.isfinite(r.get("g_on", np.nan))
+                    half = r.g_on / 2 if has_on else 0.0
+                    base = r.c + half                      # mid-cycle level of 2001/02 (average of an ON and an OFF year)
+                    trend = r.b * t
+                    on = (half if f.onoff == 1 else -half) if has_on else 0.0
                     carry = f.forecast - (base + trend + on)
-                    txt = f"{lab} {fmt(f.forecast)} = {fmt(base)} (point de départ 2001/02) + {fmt(trend)} (croissance structurelle {r.b:+,.0f} par an × {t} campagnes)"
-                    if np.isfinite(r.get("g_on", np.nan)):
-                        txt += f" + {fmt(on) if on else '0'} (année {'ON : bonus du cycle' if f.onoff == 1 else 'OFF : pas de bonus'})"
+                    txt = f"{lab} {fmt(f.forecast)} = {fmt(base)} (point de départ 2001/02, niveau moyen du cycle) + {fmt(trend)} (croissance structurelle {r.b:+,.0f} par an × {t} campagnes)"
+                    if has_on:
+                        txt += f" {'+' if on >= 0 else '−'} {fmt(abs(on))} (année {'ON : moitié de l’écart ON/OFF en plus' if f.onoff == 1 else 'OFF : moitié de l’écart ON/OFF en moins'})"
                     if abs(carry) > 1:
                         txt += f" {'+' if carry > 0 else '−'} {fmt(abs(carry))} (report de {abs(r.get('ma.L1', 0.72)) * 100:.0f} % de la surprise de la dernière campagne observée)"
                     parts.append(txt.replace(",", "\u202f"))
@@ -646,7 +652,7 @@ def build(country, D):
                              f"{en_fort.arabica_anom.mean():+.1f} % → {fmt(a_ * (1 + en_fort.arabica_anom.mean() / 100))}, robusta {en_fort.robusta_anom.mean():+.1f} % → "
                              f"{fmt(r_ * (1 + en_fort.robusta_anom.mean() / 100))} (moyennes historiques des campagnes N+1 de chaque classe).")
                 bullet(doc, line, 8.5)
-            para(doc, "En une phrase : chaque prévision = point de départ + croissance structurelle × nombre de campagnes + bonus ON/OFF, à laquelle on applique "
+            para(doc, "En une phrase : chaque prévision = point de départ + croissance structurelle × nombre de campagnes ± moitié de l'écart ON/OFF, à laquelle on applique "
                       "l'effet El Niño historique de la classe attendue ; l'intervalle 80 % vient de la taille des surprises passées.", italic=True)
             picture(doc, os.path.join(OUT, "armax", "plots", "production_arabica.png"), 16.5, "Figure 6. Arabica : ajustement ON/OFF et prévision ARMAX.")
         else:
