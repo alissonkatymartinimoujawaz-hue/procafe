@@ -384,7 +384,7 @@ def build(country, D):
             txt += f". La Niña : {l_all.mean_anomaly_pct:+.1f} % ({int(l_all.n)} campagnes)."
         bullet(doc, txt)
     target = 2027 if info["enso_season"] == "prev" else 2026
-    bullet(doc, info["enso_window"].split(". ")[-1].replace("L'El Niño en cours", "L'El Niño en cours (attendu jusqu'à mars 2027)"))
+    bullet(doc, info["enso_window"].split(". ")[-1].replace("(jusqu'à mars 2027)", "(attendu jusqu'à mars 2027)"))
     if has and info["forecast_series"]:
         f = D.fc[(D.fc.country == country) & (D.fc.series == info["forecast_series"]) & (D.fc.year == max(target, 2027))]
         if len(f):
