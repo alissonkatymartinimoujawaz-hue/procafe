@@ -28,6 +28,8 @@ OUT = os.path.join(HERE, "output", "enso")
 SERIES = ["Production Total", "Production Arabica", "Production Robusta", "Yield", "Yield (production / bearing area)",
           "Yield (per harvested ha)", "Output per planted ha", "Area bearing", "Area total"]
 EXCLUDE = {("Vietnam", "Production Arabica")}     # 17 -> 1 200 bags: % anomalies meaningless
+# ENSO seasons left out of the averages on request (Brazil: the weak 2014/15 El Nino)
+EXCLUDE_SEASONS = {"Brazil": {2014}}
 
 
 def anomalies(y, onoff=None):
@@ -67,6 +69,7 @@ def main():
         a = anomalies(y, onoff)
         ph = pd.DataFrame({"anomaly_pct": a}).dropna()
         ph["season"], ph["oni"], ph["phase"], ph["strength"] = zip(*[enso_for_crop_year(country, yr) for yr in ph.index])
+        ph = ph[~ph["season"].isin(EXCLUDE_SEASONS.get(country, set()))]
         ph["country"], ph["series"], ph["value"] = country, series, y.loc[ph.index].values
         ph["yoy_pct"] = (y.pct_change() * 100).loc[ph.index].values
         years.append(ph.reset_index().rename(columns={"index": "year"}))
@@ -102,6 +105,7 @@ def main():
     # Brazil weather by phase (state rainfall and temperature, crop years 1998/99 - 2025/26)
     w = ex.loc[ex.index <= 2025].copy()
     w["season"], w["oni"], w["phase"], _ = zip(*[enso_for_crop_year("Brazil", yr) for yr in w.index])
+    w = w[~w["season"].isin(EXCLUDE_SEASONS.get("Brazil", set()))]
     cols = [c for c in w.columns if c.startswith(("rain_", "temp_"))]
     mean_all = w[cols].mean()
     w["classe"] = [intensity_class(o, p_) for o, p_ in zip(w.oni, w.phase)]
@@ -125,7 +129,7 @@ def main():
     ep = []
     for season, (oni, phase, strength) in sorted(ONI_SEASONS.items()):
         cy = season + 1
-        if phase == "neutral" or cy not in col("Production Total", "value").index:
+        if phase == "neutral" or cy not in col("Production Total", "value").index or season in EXCLUDE_SEASONS.get("Brazil", set()):
             continue
         rec = dict(episode=f"{season}/{str(season+1)[2:]}", oni=oni, phase=phase, classe=intensity_class(oni, phase),
                    campagne=f"{cy}/{str(cy+1)[2:]}", year=cy, onoff="ON" if ex.loc[cy, "onoff"] == 1 else "OFF")

@@ -511,7 +511,8 @@ def build(country, D):
         para(doc, "Convention retenue, comme demandé : l'épisode ENSO de l'hiver N/N+1 est rattaché à la campagne N+1/N+2 "
                   "(celle dont la floraison, sept.-nov. N+1, et le remplissage se déroulent pendant et juste après l'épisode). "
                   "Exemples : El Niño 2015/16 → campagne 2016/17 ; El Niño 2023/24 → campagne 2024/25 ; El Niño 2009/10 → 2010/11. "
-                  "Les classes d'intensité suivent le pic ONI : fort ≥ 2, modéré 1 à 2, faible < 1.")
+                  "Les classes d'intensité suivent le pic ONI : fort ≥ 2, modéré 1 à 2, faible < 1. L'épisode 2014/15 (El Niño faible, "
+                  "contesté) est exclu des tableaux et des moyennes, comme demandé.")
         p = os.path.join(FIGS, "brazil_weather_phase.png")
         fig.brazil_weather_phase(D.bw, p, phases=["El Nino fort (ONI >= 2)", "El Nino modere (1-2)", "El Nino faible (< 1)", "neutral",
                                                   "La Nina faible (> -1)", "La Nina moderee (-1.5 a -1)", "La Nina forte (<= -1.5)"],
@@ -609,6 +610,36 @@ def build(country, D):
                 rows.append([cy(int(y)), "ON" if on == 1 else "OFF", fmt(r["Production Arabica"].forecast), fmt(r["Production Robusta"].forecast),
                              f"{fmt(r['Production Total'].forecast)} [{fmt(r['Production Total'].lo80)} – {fmt(r['Production Total'].hi80)}]"])
             add_table(doc, ["Campagne", "ON/OFF", "Arabica", "Robusta", "Total [80 %]"], rows, widths=[2.5, 2, 3, 3, 5.5])
+            # one plain line of arithmetic per forecast year
+            para(doc, "Comment chaque chiffre est obtenu (milliers de sacs) :", bold=True)
+            am = D.armax.set_index("series")
+            ep = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_episodes.csv"))
+            en_mod = ep[ep.classe == "El Nino modere (1-2)"]; en_fort = ep[ep.classe == "El Nino fort (ONI >= 2)"]
+            first_year = int(am.loc["Production Arabica", "first_year"])
+            for y in years:
+                t = int(y) - first_year + 1
+                parts = []
+                for sname, lab in [("Production Arabica", "Arabica"), ("Production Robusta", "Robusta"), ("Production Total", "Total")]:
+                    r = am.loc[sname]; f = fa[(fa.series == sname) & (fa.year == y)].iloc[0]
+                    base = r.c; trend = r.b * t; on = (r.g_on if np.isfinite(r.get("g_on", np.nan)) else 0) * (1 if f.onoff == 1 else 0)
+                    carry = f.forecast - (base + trend + on)
+                    txt = f"{lab} {fmt(f.forecast)} = {fmt(base)} (niveau de base) + {fmt(trend)} (tendance {r.b:+,.0f} par an × {t} campagnes depuis {cy(first_year)})"
+                    if np.isfinite(r.get("g_on", np.nan)):
+                        txt += f" + {fmt(on) if on else '0'} (année {'ON : bonus du cycle' if f.onoff == 1 else 'OFF : pas de bonus'})"
+                    if abs(carry) > 1:
+                        txt += f" {'+' if carry > 0 else '−'} {fmt(abs(carry))} (report de {abs(r.get('ma.L1', 0.72)) * 100:.0f} % de la surprise de la dernière campagne observée)"
+                    parts.append(txt.replace(",", "\u202f"))
+                line = f"{cy(int(y))} : " + " ; ".join(parts) + ". Météo : normale, donc 0."
+                if int(y) == 2027:
+                    a_ = fa[(fa.series == "Production Arabica") & (fa.year == y)].iloc[0].forecast
+                    r_ = fa[(fa.series == "Production Robusta") & (fa.year == y)].iloc[0].forecast
+                    line += (f" Campagne pilotée par l'El Niño en cours : si modéré, arabica {en_mod.arabica_anom.mean():+.1f} % → {fmt(a_ * (1 + en_mod.arabica_anom.mean() / 100))}, "
+                             f"robusta {en_mod.robusta_anom.mean():+.1f} % → {fmt(r_ * (1 + en_mod.robusta_anom.mean() / 100))} ; si fort, arabica "
+                             f"{en_fort.arabica_anom.mean():+.1f} % → {fmt(a_ * (1 + en_fort.arabica_anom.mean() / 100))}, robusta {en_fort.robusta_anom.mean():+.1f} % → "
+                             f"{fmt(r_ * (1 + en_fort.robusta_anom.mean() / 100))} (moyennes historiques des campagnes N+1 de chaque classe).")
+                bullet(doc, line, 8.5)
+            para(doc, "En une phrase : chaque prévision = niveau de base + tendance × nombre de campagnes + bonus ON/OFF, à laquelle on applique "
+                      "l'effet El Niño historique de la classe attendue ; l'intervalle 80 % vient de la taille des surprises passées.", italic=True)
             picture(doc, os.path.join(OUT, "armax", "plots", "production_arabica.png"), 16.5, "Figure 6. Arabica : ajustement ON/OFF et prévision ARMAX.")
         else:
             from arma_models import slug
