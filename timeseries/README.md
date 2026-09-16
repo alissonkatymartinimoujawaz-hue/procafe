@@ -13,8 +13,10 @@ forecast the next crop years with an honest uncertainty band.
 
 | file | role |
 |---|---|
-| `extract_series.py` | reads the workbook, writes the tidy dataset `data/coffee_series.csv` |
+| `extract_series.py` | reads the workbook, writes the tidy dataset `data/coffee_series.csv` and the Brazil ON/OFF + weather table `data/exog_brazil.csv` |
 | `arma_models.py` | identifies, estimates, checks and forecasts one ARMA/ARIMA model per series |
+| `armax_models.py` | Brazil only: ARMA + ON/OFF flag + weather as exogenous regressors (ARMAX), weather scenarios |
+| `build_region_weather.py` | fetches NASA POWER weather for São Mateus, Cerrado Mineiro and Sul de Minas by crop year (run it where NASA POWER is reachable) |
 | `data/coffee_series.csv` | one row per country × series × crop year |
 | `output/models_summary.md` | **the report**: model, equation, diagnostics and forecasts per origin |
 | `output/models.csv` | one row per series: order, coefficients (φ, θ, c, σ²), AIC/AICc/BIC, tests, backtest |
@@ -22,6 +24,8 @@ forecast the next crop years with an honest uncertainty band.
 | `output/fitted.csv` | observed values and one-step-ahead fitted values |
 | `output/plots/<country>/<series>.png` | series + fit + forecast, ACF, PACF, residuals |
 | `output/plots/<country>/_overview.png` | all series of an origin on one page |
+| `output/armax/armax_summary.md` | Brazil ARMAX report: coefficients, candidate table, scenario forecasts |
+| `output/armax/models_armax.csv`, `forecasts_armax.csv` | same, machine-readable (one forecast row per scenario × year) |
 
 ## Run
 
@@ -32,6 +36,9 @@ python timeseries/arma_models.py                       # all origins, 5-year hor
 python timeseries/arma_models.py --country Brazil Vietnam --horizon 3
 python timeseries/arma_models.py --criterion bic       # AICc (default), AIC or BIC
 python timeseries/arma_models.py --last-year 2025      # drop the USDA projections of later crop years
+python timeseries/armax_models.py                      # Brazil: ON/OFF + weather (state weather of the sheet)
+python timeseries/build_region_weather.py              # needs internet: NASA POWER for the three regions
+python timeseries/armax_models.py --weather regions    # then: regional weather instead of state weather
 ```
 
 The workbook is not stored in the repository; re-run the first command whenever
@@ -73,6 +80,50 @@ with ε_t white noise. `arma_models.py` follows the page section by section:
 The equations in the report use the intercept form of the page. statsmodels
 estimates the equivalent "mean + trend + ARMA noise" form; both sets of
 coefficients are in `output/models.csv` (`c`, `b` vs `mu`, `beta`).
+
+## Brazil: ON/OFF cycle and weather (ARMAX)
+
+`armax_models.py` is the ARMAX generalisation of the page: the same ARMA noise,
+plus regressors whose future values are known or can be set as scenarios.
+
+    X_t = c + b·t + g_on·ON_t + g_rain·RAIN_{t−L} + g_temp·TEMP_{t−L} + u_t,   u_t ~ ARMA(p, q)
+
+* **ON/OFF**: the flag written in the header of the Brazil sheet (ON = high
+  year of the biennial cycle). The future pattern is known (it alternates), so
+  the forecast keeps the full ON/OFF amplitude instead of damping it as a plain
+  ARMA does. The effect is large and significant: about +7.4 million bags of
+  arabica in an ON year, p < 0.001, and the AICc drops from 503 to 494.
+* **Weather**: the balance sheet only has annual state averages (rainfall and
+  temperature for Minas Gerais, Espírito Santo, São Paulo, Paraná, others).
+  Minas Gerais stands in for Cerrado Mineiro + Sul de Minas (arabica) and
+  Espírito Santo for São Mateus (robusta). At this resolution the weather adds
+  nothing the criterion keeps: rainfall has the right sign (about +450 to
+  +500 bags per +100 mm) but p ≈ 0.15 to 0.6, temperature nothing. What drives
+  a coffee crop is seasonal (rain at flowering in Sep–Nov, the Oct–Apr wet
+  season, winter frost, Aug–Sep drought) and regional, hence the next point.
+* **Regional weather**: `build_region_weather.py` fetches NASA POWER daily data
+  for São Mateus, Cerrado Mineiro and Sul de Minas (three or four points each)
+  and aggregates them by crop year into the seasonal indicators above. NASA
+  POWER is not reachable from the environment where this was written, so the
+  script is tested on synthetic data only; run it from your own machine (like
+  `build_data.py`) and then `armax_models.py --weather regions`.
+* **Scenarios**: ON/OFF is known; weather is not. Forecasts are given for
+  normal weather (anomaly 0), dry-hot (rain −1 sd, temp +1 sd) and wet-cool
+  (+1 sd, −1 sd). With the state weather not selected, the three scenarios
+  coincide; they separate once a weather regressor is kept.
+* The ARMAX fit stops at 2025/26 (last crop year with observed weather), so its
+  first forecast year 2026/27 can be compared with the USDA projection stored
+  in the sheet (arabica: model 49.9 vs USDA 47.5 million bags).
+
+## Data corrections applied
+
+* **Brazil production rows 27–28** ("Production Arabica / Robusta (1000 60KG
+  bags)") are shifted one crop year late for 2001/02–2008/09: their
+  "2003/2004 (OFF)" column holds the 2002/03 record crop (53.6 million bags in
+  USDA terms) and so on until 2009/10, where both blocks realign. The
+  "Total Production" block (rows 54–56, million bags) matches the USDA
+  marketing-year series throughout and is the one used here (×1000). Brazil
+  yield is recomputed from it as production / bearing area.
 
 ## What the data allowed, and what to watch
 

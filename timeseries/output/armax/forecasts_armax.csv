@@ -1,0 +1,73 @@
+country,series,scenario,year,forecast,lo80,hi80,lo95,hi95,onoff
+Brazil,Production Arabica,normal,2026,49943.7,44957,54930.3,42317.3,57570.1,1
+Brazil,Production Arabica,normal,2027,43119.1,38132.4,48105.7,35492.7,50745.5,0
+Brazil,Production Arabica,normal,2028,51180.4,46193.7,56167,43554,58806.8,1
+Brazil,Production Arabica,normal,2029,44355.8,39369.2,49342.4,36729.4,51982.2,0
+Brazil,Production Arabica,normal,2030,52417.1,47430.5,57403.7,44790.7,60043.5,1
+Brazil,Production Arabica,normal,2031,45592.5,40605.9,50579.2,37966.1,53218.9,0
+Brazil,Production Arabica,dry-hot,2026,49943.7,44957,54930.3,42317.3,57570.1,1
+Brazil,Production Arabica,dry-hot,2027,43119.1,38132.4,48105.7,35492.7,50745.5,0
+Brazil,Production Arabica,dry-hot,2028,51180.4,46193.7,56167,43554,58806.8,1
+Brazil,Production Arabica,dry-hot,2029,44355.8,39369.2,49342.4,36729.4,51982.2,0
+Brazil,Production Arabica,dry-hot,2030,52417.1,47430.5,57403.7,44790.7,60043.5,1
+Brazil,Production Arabica,dry-hot,2031,45592.5,40605.9,50579.2,37966.1,53218.9,0
+Brazil,Production Arabica,wet-cool,2026,49943.7,44957,54930.3,42317.3,57570.1,1
+Brazil,Production Arabica,wet-cool,2027,43119.1,38132.4,48105.7,35492.7,50745.5,0
+Brazil,Production Arabica,wet-cool,2028,51180.4,46193.7,56167,43554,58806.8,1
+Brazil,Production Arabica,wet-cool,2029,44355.8,39369.2,49342.4,36729.4,51982.2,0
+Brazil,Production Arabica,wet-cool,2030,52417.1,47430.5,57403.7,44790.7,60043.5,1
+Brazil,Production Arabica,wet-cool,2031,45592.5,40605.9,50579.2,37966.1,53218.9,0
+Brazil,Production Robusta,normal,2026,24709.6,22666.1,26753,21584.4,27834.7,
+Brazil,Production Robusta,normal,2027,23196.2,20675.2,25717.1,19340.7,27051.7,
+Brazil,Production Robusta,normal,2028,23765.9,21245,26286.9,19910.4,27621.4,
+Brazil,Production Robusta,normal,2029,24335.7,21814.7,26856.6,20480.2,28191.2,
+Brazil,Production Robusta,normal,2030,24905.4,22384.5,27426.4,21050,28760.9,
+Brazil,Production Robusta,normal,2031,25475.2,22954.2,27996.1,21619.7,29330.7,
+Brazil,Production Robusta,dry-hot,2026,24709.6,22666.1,26753,21584.4,27834.7,
+Brazil,Production Robusta,dry-hot,2027,23196.2,20675.2,25717.1,19340.7,27051.7,
+Brazil,Production Robusta,dry-hot,2028,23765.9,21245,26286.9,19910.4,27621.4,
+Brazil,Production Robusta,dry-hot,2029,24335.7,21814.7,26856.6,20480.2,28191.2,
+Brazil,Production Robusta,dry-hot,2030,24905.4,22384.5,27426.4,21050,28760.9,
+Brazil,Production Robusta,dry-hot,2031,25475.2,22954.2,27996.1,21619.7,29330.7,
+Brazil,Production Robusta,wet-cool,2026,24709.6,22666.1,26753,21584.4,27834.7,
+Brazil,Production Robusta,wet-cool,2027,23196.2,20675.2,25717.1,19340.7,27051.7,
+Brazil,Production Robusta,wet-cool,2028,23765.9,21245,26286.9,19910.4,27621.4,
+Brazil,Production Robusta,wet-cool,2029,24335.7,21814.7,26856.6,20480.2,28191.2,
+Brazil,Production Robusta,wet-cool,2030,24905.4,22384.5,27426.4,21050,28760.9,
+Brazil,Production Robusta,wet-cool,2031,25475.2,22954.2,27996.1,21619.7,29330.7,
+Brazil,Production Total,normal,2026,72338.4,67229.7,77447.1,64525.4,80151.5,1
+Brazil,Production Total,normal,2027,66037.6,60928.9,71146.3,58224.5,73850.7,0
+Brazil,Production Total,normal,2028,74694.5,69585.8,79803.2,66881.4,82507.5,1
+Brazil,Production Total,normal,2029,68393.6,63284.9,73502.3,60580.6,76206.7,0
+Brazil,Production Total,normal,2030,77050.5,71941.8,82159.2,69237.4,84863.6,1
+Brazil,Production Total,normal,2031,70749.7,65641,75858.4,62936.6,78562.7,0
+Brazil,Production Total,dry-hot,2026,72338.4,67229.7,77447.1,64525.4,80151.5,1
+Brazil,Production Total,dry-hot,2027,66037.6,60928.9,71146.3,58224.5,73850.7,0
+Brazil,Production Total,dry-hot,2028,74694.5,69585.8,79803.2,66881.4,82507.5,1
+Brazil,Production Total,dry-hot,2029,68393.6,63284.9,73502.3,60580.6,76206.7,0
+Brazil,Production Total,dry-hot,2030,77050.5,71941.8,82159.2,69237.4,84863.6,1
+Brazil,Production Total,dry-hot,2031,70749.7,65641,75858.4,62936.6,78562.7,0
+Brazil,Production Total,wet-cool,2026,72338.4,67229.7,77447.1,64525.4,80151.5,1
+Brazil,Production Total,wet-cool,2027,66037.6,60928.9,71146.3,58224.5,73850.7,0
+Brazil,Production Total,wet-cool,2028,74694.5,69585.8,79803.2,66881.4,82507.5,1
+Brazil,Production Total,wet-cool,2029,68393.6,63284.9,73502.3,60580.6,76206.7,0
+Brazil,Production Total,wet-cool,2030,77050.5,71941.8,82159.2,69237.4,84863.6,1
+Brazil,Production Total,wet-cool,2031,70749.7,65641,75858.4,62936.6,78562.7,0
+Brazil,Yield (production / bearing area),normal,2026,36.4612,33.6682,39.2541,32.1897,40.7326,1
+Brazil,Yield (production / bearing area),normal,2027,33.6474,30.8545,36.4404,29.376,37.9188,0
+Brazil,Yield (production / bearing area),normal,2028,37.866,35.0731,40.6589,33.5946,42.1374,1
+Brazil,Yield (production / bearing area),normal,2029,35.0523,32.2594,37.8452,30.7809,39.3237,0
+Brazil,Yield (production / bearing area),normal,2030,39.2709,36.4779,42.0638,34.9995,43.5423,1
+Brazil,Yield (production / bearing area),normal,2031,36.4571,33.6642,39.2501,32.1857,40.7286,0
+Brazil,Yield (production / bearing area),dry-hot,2026,36.4612,33.6682,39.2541,32.1897,40.7326,1
+Brazil,Yield (production / bearing area),dry-hot,2027,33.6474,30.8545,36.4404,29.376,37.9188,0
+Brazil,Yield (production / bearing area),dry-hot,2028,37.866,35.0731,40.6589,33.5946,42.1374,1
+Brazil,Yield (production / bearing area),dry-hot,2029,35.0523,32.2594,37.8452,30.7809,39.3237,0
+Brazil,Yield (production / bearing area),dry-hot,2030,39.2709,36.4779,42.0638,34.9995,43.5423,1
+Brazil,Yield (production / bearing area),dry-hot,2031,36.4571,33.6642,39.2501,32.1857,40.7286,0
+Brazil,Yield (production / bearing area),wet-cool,2026,36.4612,33.6682,39.2541,32.1897,40.7326,1
+Brazil,Yield (production / bearing area),wet-cool,2027,33.6474,30.8545,36.4404,29.376,37.9188,0
+Brazil,Yield (production / bearing area),wet-cool,2028,37.866,35.0731,40.6589,33.5946,42.1374,1
+Brazil,Yield (production / bearing area),wet-cool,2029,35.0523,32.2594,37.8452,30.7809,39.3237,0
+Brazil,Yield (production / bearing area),wet-cool,2030,39.2709,36.4779,42.0638,34.9995,43.5423,1
+Brazil,Yield (production / bearing area),wet-cool,2031,36.4571,33.6642,39.2501,32.1857,40.7286,0

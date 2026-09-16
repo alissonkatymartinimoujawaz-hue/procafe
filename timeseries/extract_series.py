@@ -8,6 +8,10 @@ origin in the "Balance Sheet" workbook into one tidy CSV.
 
 Output -> timeseries/data/coffee_series.csv with columns
     country, source, variable, series, unit, crop_year, year, value
+and timeseries/data/exog_brazil.csv: Brazil ON/OFF flag of each crop year and
+annual rainfall (mm) / mean temperature (degC) by state (Minas Gerais,
+Espirito Santo, Sao Paulo, Parana, others) plus production-weighted averages
+for arabica, robusta and total, used by armax_models.py.
 
 * `year` is the first calendar year of the crop year ("2024/2025" -> 2024).
 * Only "main" crop-year columns are read.  Revision columns of the same crop
@@ -40,16 +44,20 @@ COUNTRIES = {
     "Brazil": {
         "sheet": "Brazil", "source": "USDA / CONAB", "crop_year_start": "July",
         "rows": [
-            ("production", "Production Arabica", "1000 60-kg bags", 27),
-            ("production", "Production Robusta", "1000 60-kg bags", 28),
-            ("production", "Production Total",   "1000 60-kg bags", ("sum", 27, 28)),
+            # rows 54-56 (million bags, USDA marketing years) rather than rows 27-28:
+            # rows 27-28 are shifted one crop year late for 2001/02-2008/09
+            # (their "2003/2004 (OFF)" holds the 2002/03 record crop).
+            ("production", "Production Arabica", "1000 60-kg bags", ("scale", 55, 1000.0)),
+            ("production", "Production Robusta", "1000 60-kg bags", ("scale", 56, 1000.0)),
+            ("production", "Production Total",   "1000 60-kg bags", ("scale", 54, 1000.0)),
             ("area", "Area total",        "1000 ha", 4),
             ("area", "Area non-bearing",  "1000 ha", 5),
             ("area", "Area bearing",      "1000 ha", 6),
             ("trees", "Trees non-bearing", "million trees", 8),
             ("trees", "Trees bearing",     "million trees", 14),
             ("trees", "Trees total",       "million trees", 15),
-            ("yield", "Yield", "bags/ha", 24),
+            # bags per bearing hectare from the aligned production block
+            ("yield", "Yield (production / bearing area)", "bags/ha", ("ratio", ("scale", 54, 1000.0), 6, 1.0)),
         ],
     },
     "Colombia": {
@@ -137,6 +145,65 @@ COUNTRIES = {
 }
 
 
+# Brazil: ON/OFF label of the crop year (row 1) and state weather rows
+# (annual rainfall in mm and mean temperature in degC, rows under each state).
+BRAZIL_WEATHER = {          # state: (rain row, temp row)
+    "mg": (36, 37), "es": (41, 42), "sp": (44, 45), "pr": (47, 48), "others": (52, 53),
+}
+BRAZIL_SHARES = {           # production rows (million bags) used as weather weights
+    "arabica": {"mg": 32, "es": 39, "sp": 43, "pr": 46, "others": 50},
+    "robusta": {"es": 40, "others": 51},
+}
+EXOG_OUT = os.path.join(HERE, "data", "exog_brazil.csv")
+
+
+def extract_brazil_exog(wb, path):
+    ws = wb["Brazil"]
+    cols = year_columns(ws)
+    labels = {}
+    for c in ws[1]:
+        if isinstance(c.value, str):
+            m = YEAR_RE.match(c.value)
+            if m and m.group(3):
+                labels[int(m.group(1))] = 1 if "ON" in m.group(3).upper() else 0
+    years = [y for _, _, y in cols]
+    # ON/OFF before the first label: the cycle alternates (2002/03 was the ON record crop)
+    first = min(labels)
+    for y in years:
+        if y not in labels:
+            labels[y] = labels[first] if (first - y) % 2 == 0 else 1 - labels[first]
+    weather = {st: (row_values(ws, r, cols), row_values(ws, t, cols)) for st, (r, t) in BRAZIL_WEATHER.items()}
+    shares = {}
+    for grp, rows in BRAZIL_SHARES.items():
+        vals = {st: row_values(ws, r, cols) for st, r in rows.items()}
+        mean = {st: sum(v for v in d.values() if v) / max(1, sum(1 for v in d.values() if v)) for st, d in vals.items()}
+        tot = sum(mean.values())
+        shares[grp] = {st: m / tot for st, m in mean.items()}
+    shares["total"] = {}
+    for grp, w in (("arabica", 0.68), ("robusta", 0.32)):   # long-run arabica / robusta split
+        for st, sh in shares[grp].items():
+            shares["total"][st] = shares["total"].get(st, 0) + w * sh
+    fields = ["year", "crop_year", "onoff"] + [f"{k}_{st}" for st in BRAZIL_WEATHER for k in ("rain", "temp")] \
+             + [f"{k}_{g}" for g in ("arabica", "robusta", "total") for k in ("rain", "temp")]
+    rows_out = []
+    for ci, crop_year, y in cols:
+        rec = {"year": y, "crop_year": crop_year, "onoff": labels[y]}
+        for st, (rain, temp) in weather.items():
+            rec[f"rain_{st}"], rec[f"temp_{st}"] = rain[y], temp[y]
+        for grp, sh in shares.items():
+            for k in ("rain", "temp"):
+                vals = [(rec[f"{k}_{st}"], w) for st, w in sh.items() if rec[f"{k}_{st}"] is not None]
+                rec[f"{k}_{grp}"] = round(sum(v * w for v, w in vals) / sum(w for _, w in vals), 2) if vals else None
+        if any(rec[f] is not None for f in fields[3:]):
+            rows_out.append(rec)
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        w.writerows(rows_out)
+    print(f"Brazil ON/OFF + weather: {len(rows_out)} crop years -> {path}")
+    print("  weather weights:", {g: {st: round(v, 2) for st, v in sh.items()} for g, sh in shares.items()})
+
+
 def year_columns(ws):
     """Return [(col_index, crop_year_label, first_year)] for main crop-year headers."""
     cols = []
@@ -175,6 +242,9 @@ def spec_values(ws, spec, cols):
     if kind == "ratio":
         n, d, k = spec_values(ws, spec[1], cols), spec_values(ws, spec[2], cols), spec[3]
         return {y: (n[y] / d[y] * k) if (n[y] is not None and d[y] is not None) else None for y in n}
+    if kind == "scale":
+        a, k = spec_values(ws, spec[1], cols), spec[2]
+        return {y: (a[y] * k) if a[y] is not None else None for y in a}
     raise ValueError(spec)
 
 
@@ -191,6 +261,8 @@ def spec_rows(spec):
         return spec_rows(spec[1]) | spec_rows(spec[2])
     if spec[0] == "ratio":
         return spec_rows(spec[1]) | spec_rows(spec[2])
+    if spec[0] == "scale":
+        return spec_rows(spec[1])
     raise ValueError(spec)
 
 
@@ -198,6 +270,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("xlsx", help="Balance Sheet workbook")
     ap.add_argument("--out", default=OUT)
+    ap.add_argument("--exog-out", default=EXOG_OUT)
     args = ap.parse_args()
 
     wb = openpyxl.load_workbook(args.xlsx, data_only=True)
@@ -239,6 +312,7 @@ def main():
         w.writeheader()
         w.writerows(records)
     print(f"\n{len(records)} values written to {args.out}")
+    extract_brazil_exog(wb, args.exog_out)
     for country, ref in skipped:
         print(f"WARNING: sheet '{country}' is an exact copy of '{ref}' -> skipped. "
               f"Fill it with {country} data and re-run to model it.", file=sys.stderr)
