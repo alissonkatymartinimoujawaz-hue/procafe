@@ -1,0 +1,1426 @@
+country,series,year,observed,fitted
+Brazil,Production Arabica,2001,26600,
+Brazil,Production Arabica,2002,23000,10746.9
+Brazil,Production Arabica,2003,39600,25189.1
+Brazil,Production Arabica,2004,22600,29505.7
+Brazil,Production Arabica,2005,34300,32937.6
+Brazil,Production Arabica,2006,26000,27185.3
+Brazil,Production Arabica,2007,36000,31047.2
+Brazil,Production Arabica,2008,26300,29919.1
+Brazil,Production Arabica,2009,33000,32198.5
+Brazil,Production Arabica,2010,41800,28925.8
+Brazil,Production Arabica,2011,34700,36448.8
+Brazil,Production Arabica,2012,41100,39017.5
+Brazil,Production Arabica,2013,39500,37208.2
+Brazil,Production Arabica,2014,37300,40472.9
+Brazil,Production Arabica,2015,36100,38637.8
+Brazil,Production Arabica,2016,45600,36829.7
+Brazil,Production Arabica,2017,38500,39823.1
+Brazil,Production Arabica,2018,48200,42817.5
+Brazil,Production Arabica,2019,39900,42301.5
+Brazil,Production Arabica,2020,47800,44947.2
+Brazil,Production Arabica,2021,36400,42996.1
+Brazil,Production Arabica,2022,39800,43332.2
+Brazil,Production Arabica,2023,44900,37732.5
+Brazil,Production Arabica,2024,44000,41798.7
+Brazil,Production Arabica,2025,38000,44547.3
+Brazil,Production Arabica,2026,47500,41648.6
+Brazil,Production Robusta,2001,7500,
+Brazil,Production Robusta,2002,10700,9584.28
+Brazil,Production Robusta,2003,12000,11127.8
+Brazil,Production Robusta,2004,9400,12348.5
+Brazil,Production Robusta,2005,9300,8214.25
+Brazil,Production Robusta,2006,10100,9737.09
+Brazil,Production Robusta,2007,10700,10246.1
+Brazil,Production Robusta,2008,11300,10882.8
+Brazil,Production Robusta,2009,11800,11468
+Brazil,Production Robusta,2010,12700,11933.7
+Brazil,Production Robusta,2011,14500,13008.6
+Brazil,Production Robusta,2012,15000,15100.5
+Brazil,Production Robusta,2013,15000,14959.5
+Brazil,Production Robusta,2014,17000,15016.3
+Brazil,Production Robusta,2015,13300,17798.7
+Brazil,Production Robusta,2016,10500,11488.6
+Brazil,Production Robusta,2017,12400,10102
+Brazil,Production Robusta,2018,16600,13325.3
+Brazil,Production Robusta,2019,18100,17918.6
+Brazil,Production Robusta,2020,20100,18173.1
+Brazil,Production Robusta,2021,21700,20875.9
+Brazil,Production Robusta,2022,22800,22031.8
+Brazil,Production Robusta,2023,21400,23109.3
+Brazil,Production Robusta,2024,21000,20711.7
+Brazil,Production Robusta,2025,25000,21116.1
+Brazil,Production Robusta,2026,24400,26563.9
+Brazil,Production Total,2001,34100,
+Brazil,Production Total,2002,33700,20909.9
+Brazil,Production Total,2003,51600,40728
+Brazil,Production Total,2004,32000,42564.6
+Brazil,Production Total,2005,43600,42548.2
+Brazil,Production Total,2006,36100,34470.3
+Brazil,Production Total,2007,46700,43292.6
+Brazil,Production Total,2008,37600,39725.4
+Brazil,Production Total,2009,44800,44034.5
+Brazil,Production Total,2010,54500,39197
+Brazil,Production Total,2011,49200,54928.7
+Brazil,Production Total,2012,56100,50437.4
+Brazil,Production Total,2013,54500,53485.5
+Brazil,Production Total,2014,54300,56407.2
+Brazil,Production Total,2015,49400,53289.7
+Brazil,Production Total,2016,56100,51330.2
+Brazil,Production Total,2017,50900,53154
+Brazil,Production Total,2018,64800,53995.8
+Brazil,Production Total,2019,58000,59196
+Brazil,Production Total,2020,67900,63027.3
+Brazil,Production Total,2021,58100,62331.1
+Brazil,Production Total,2022,62600,63943.8
+Brazil,Production Total,2023,66300,58079.6
+Brazil,Production Total,2024,65000,67795.6
+Brazil,Production Total,2025,63000,64526.3
+Brazil,Production Total,2026,71900,63822.1
+Brazil,Area total,2001,2488,2497.18
+Brazil,Area total,2002,2535,2491.51
+Brazil,Area total,2003,2675,2485.83
+Brazil,Area total,2004,2379,2480.16
+Brazil,Area total,2005,2458,2474.49
+Brazil,Area total,2006,2471,2468.82
+Brazil,Area total,2007,2431,2463.14
+Brazil,Area total,2008,2424,2457.47
+Brazil,Area total,2009,2395,2451.8
+Brazil,Area total,2010,2409,2446.12
+Brazil,Area total,2011,2410,2440.45
+Brazil,Area total,2012,2387,2434.78
+Brazil,Area total,2013,2442,2429.11
+Brazil,Area total,2014,2437,2423.43
+Brazil,Area total,2015,2410,2417.76
+Brazil,Area total,2016,2410,2412.09
+Brazil,Area total,2017,2400,2406.42
+Brazil,Area total,2018,2395,2400.74
+Brazil,Area total,2019,2390,2395.07
+Brazil,Area total,2020,2420,2389.4
+Brazil,Area total,2021,2480,2383.72
+Brazil,Area total,2022,2495,2378.05
+Brazil,Area total,2023,2510,2372.38
+Brazil,Area total,2024,2235,2366.71
+Brazil,Area total,2025,2255,2361.03
+Brazil,Area total,2026,2342,2355.36
+Brazil,Area non-bearing,2001,433,
+Brazil,Area non-bearing,2002,530,433
+Brazil,Area non-bearing,2003,315,530
+Brazil,Area non-bearing,2004,205,315
+Brazil,Area non-bearing,2005,153,205
+Brazil,Area non-bearing,2006,166,153
+Brazil,Area non-bearing,2007,196,166
+Brazil,Area non-bearing,2008,201,196
+Brazil,Area non-bearing,2009,244,201
+Brazil,Area non-bearing,2010,234,244
+Brazil,Area non-bearing,2011,260,234
+Brazil,Area non-bearing,2012,282,260
+Brazil,Area non-bearing,2013,307,282
+Brazil,Area non-bearing,2014,347,307
+Brazil,Area non-bearing,2015,340,347
+Brazil,Area non-bearing,2016,340,340
+Brazil,Area non-bearing,2017,380,340
+Brazil,Area non-bearing,2018,335,380
+Brazil,Area non-bearing,2019,350,335
+Brazil,Area non-bearing,2020,320,350
+Brazil,Area non-bearing,2021,470,320
+Brazil,Area non-bearing,2022,475,470
+Brazil,Area non-bearing,2023,480,475
+Brazil,Area non-bearing,2024,354,480
+Brazil,Area non-bearing,2025,396,354
+Brazil,Area non-bearing,2026,402,396
+Brazil,Area bearing,2001,2055,2246.22
+Brazil,Area bearing,2002,2005,2234.43
+Brazil,Area bearing,2003,2360,2222.64
+Brazil,Area bearing,2004,2174,2210.84
+Brazil,Area bearing,2005,2305,2199.05
+Brazil,Area bearing,2006,2305,2187.26
+Brazil,Area bearing,2007,2235,2175.46
+Brazil,Area bearing,2008,2223,2163.67
+Brazil,Area bearing,2009,2151,2151.88
+Brazil,Area bearing,2010,2175,2140.08
+Brazil,Area bearing,2011,2150,2128.29
+Brazil,Area bearing,2012,2105,2116.5
+Brazil,Area bearing,2013,2135,2104.7
+Brazil,Area bearing,2014,2090,2092.91
+Brazil,Area bearing,2015,2070,2081.12
+Brazil,Area bearing,2016,2070,2069.33
+Brazil,Area bearing,2017,2020,2057.53
+Brazil,Area bearing,2018,2060,2045.74
+Brazil,Area bearing,2019,2040,2033.95
+Brazil,Area bearing,2020,2100,2022.15
+Brazil,Area bearing,2021,2010,2010.36
+Brazil,Area bearing,2022,2020,1998.57
+Brazil,Area bearing,2023,2030,1986.77
+Brazil,Area bearing,2024,1881,1974.98
+Brazil,Area bearing,2025,1859,1963.19
+Brazil,Area bearing,2026,1941,1951.39
+Brazil,Trees non-bearing,1998,553,
+Brazil,Trees non-bearing,1999,939,553
+Brazil,Trees non-bearing,2000,1435,939
+Brazil,Trees non-bearing,2001,1385,1435
+Brazil,Trees non-bearing,2002,1440,1385
+Brazil,Trees non-bearing,2003,1125,1440
+Brazil,Trees non-bearing,2004,631,1125
+Brazil,Trees non-bearing,2005,466,631
+Brazil,Trees non-bearing,2006,513,466
+Brazil,Trees non-bearing,2007,679,513
+Brazil,Trees non-bearing,2008,677,679
+Brazil,Trees non-bearing,2009,873,677
+Brazil,Trees non-bearing,2010,815,873
+Brazil,Trees non-bearing,2011,835,815
+Brazil,Trees non-bearing,2012,1000,835
+Brazil,Trees non-bearing,2013,1055,1000
+Brazil,Trees non-bearing,2014,1185,1055
+Brazil,Trees non-bearing,2015,1125,1185
+Brazil,Trees non-bearing,2016,1125,1125
+Brazil,Trees non-bearing,2017,1300,1125
+Brazil,Trees non-bearing,2018,1150,1300
+Brazil,Trees non-bearing,2019,1230,1150
+Brazil,Trees non-bearing,2020,1050,1230
+Brazil,Trees non-bearing,2021,1500,1050
+Brazil,Trees non-bearing,2022,1510,1500
+Brazil,Trees non-bearing,2023,1324,1510
+Brazil,Trees non-bearing,2024,1306,1324
+Brazil,Trees non-bearing,2025,1440,1306
+Brazil,Trees non-bearing,2026,1461,1440
+Brazil,Trees bearing,1998,3200,
+Brazil,Trees bearing,1999,3330,3331.29
+Brazil,Trees bearing,2000,3485,3461.29
+Brazil,Trees bearing,2001,4015,3616.29
+Brazil,Trees bearing,2002,4270,4146.29
+Brazil,Trees bearing,2003,5265,4401.29
+Brazil,Trees bearing,2004,5050,5396.29
+Brazil,Trees bearing,2005,5255,5181.29
+Brazil,Trees bearing,2006,5220,5386.29
+Brazil,Trees bearing,2007,5720,5351.29
+Brazil,Trees bearing,2008,5890,5851.29
+Brazil,Trees bearing,2009,5725,6021.29
+Brazil,Trees bearing,2010,5820,5856.29
+Brazil,Trees bearing,2011,5760,5951.29
+Brazil,Trees bearing,2012,5860,5891.29
+Brazil,Trees bearing,2013,5810,5991.29
+Brazil,Trees bearing,2014,5770,5941.29
+Brazil,Trees bearing,2015,5735,5901.29
+Brazil,Trees bearing,2016,5735,5866.29
+Brazil,Trees bearing,2017,5640,5866.29
+Brazil,Trees bearing,2018,5740,5771.29
+Brazil,Trees bearing,2019,5700,5871.29
+Brazil,Trees bearing,2020,6200,5831.29
+Brazil,Trees bearing,2021,6010,6331.29
+Brazil,Trees bearing,2022,6100,6141.29
+Brazil,Trees bearing,2023,6150,6231.29
+Brazil,Trees bearing,2024,6577,6281.29
+Brazil,Trees bearing,2025,6482,6708.29
+Brazil,Trees bearing,2026,6876,6613.29
+Brazil,Trees total,2003,6390,5907.89
+Brazil,Trees total,2004,5681,6212.69
+Brazil,Trees total,2005,5721,5943.11
+Brazil,Trees total,2006,5733,6009.77
+Brazil,Trees total,2007,6399,6063.85
+Brazil,Trees total,2008,6567,6411.54
+Brazil,Trees total,2009,6598,6535.66
+Brazil,Trees total,2010,6635,6598.28
+Brazil,Trees total,2011,6595,6663.59
+Brazil,Trees total,2012,6860,6694.33
+Brazil,Trees total,2013,6865,6862
+Brazil,Trees total,2014,6955,6912.95
+Brazil,Trees total,2015,6860,7002.05
+Brazil,Trees total,2016,6860,7008.11
+Brazil,Trees total,2017,6940,7056.81
+Brazil,Trees total,2018,6890,7141.42
+Brazil,Trees total,2019,6930,7167.68
+Brazil,Trees total,2020,7250,7234.33
+Brazil,Trees total,2021,7510,7426.69
+Brazil,Trees total,2022,7610,7592.11
+Brazil,Trees total,2023,7474,7685.71
+Brazil,Trees total,2024,7883,7673.36
+Brazil,Trees total,2025,7922,7905.67
+Brazil,Trees total,2026,8337,7971.88
+Brazil,Yield,2003,21.8644,
+Brazil,Yield,2004,14.7194,22.6331
+Brazil,Yield,2005,18.9154,22.0579
+Brazil,Yield,2006,15.6616,16.8396
+Brazil,Yield,2007,20.8949,19.7699
+Brazil,Yield,2008,16.9141,17.958
+Brazil,Yield,2009,20.8275,21.6259
+Brazil,Yield,2010,25.0575,18.9862
+Brazil,Yield,2011,22.8837,22.9534
+Brazil,Yield,2012,26.6508,26.0955
+Brazil,Yield,2013,25.5269,24.931
+Brazil,Yield,2014,25.9809,27.8672
+Brazil,Yield,2015,23.8647,27.0113
+Brazil,Yield,2016,27.1014,27.0287
+Brazil,Yield,2017,25.198,25.8219
+Brazil,Yield,2018,31.4563,28.1853
+Brazil,Yield,2019,28.4314,27.6685
+Brazil,Yield,2020,32.3333,32.3497
+Brazil,Yield,2021,28.9055,30.5016
+Brazil,Yield,2022,30.9901,33.1583
+Brazil,Yield,2023,32.6601,30.667
+Brazil,Yield,2024,34.5561,32.6811
+Brazil,Yield,2025,33.8892,34.3895
+Brazil,Yield,2026,37.0428,35.8501
+Colombia,Production Arabica,1998,10868,
+Colombia,Production Arabica,1999,10000,10868
+Colombia,Production Arabica,2000,10520,10000
+Colombia,Production Arabica,2001,11000,10520
+Colombia,Production Arabica,2002,11712,11000
+Colombia,Production Arabica,2003,11053,11712
+Colombia,Production Arabica,2004,11532,11053
+Colombia,Production Arabica,2005,11953,11532
+Colombia,Production Arabica,2006,12164,11953
+Colombia,Production Arabica,2007,12515,12164
+Colombia,Production Arabica,2008,8664,12515
+Colombia,Production Arabica,2009,8100,8664
+Colombia,Production Arabica,2010,8525,8100
+Colombia,Production Arabica,2011,7655,8525
+Colombia,Production Arabica,2012,9927,7655
+Colombia,Production Arabica,2013,12075,9927
+Colombia,Production Arabica,2014,13300,12075
+Colombia,Production Arabica,2015,14000,13300
+Colombia,Production Arabica,2016,14600,14000
+Colombia,Production Arabica,2017,13825,14600
+Colombia,Production Arabica,2018,13870,13825
+Colombia,Production Arabica,2019,14100,13870
+Colombia,Production Arabica,2020,13400,14100
+Colombia,Production Arabica,2021,11800,13400
+Colombia,Production Arabica,2022,10700,11800
+Colombia,Production Arabica,2023,12760,10700
+Colombia,Production Arabica,2024,14800,12760
+Colombia,Production Arabica,2025,12500,14800
+Colombia,Production Arabica,2026,13400,12500
+Colombia,Area total,1998,869,809.137
+Colombia,Area total,1999,836,866.69
+Colombia,Area total,2000,805,815.062
+Colombia,Area total,2001,805,779.818
+Colombia,Area total,2002,775,791.647
+Colombia,Area total,2003,770,767.421
+Colombia,Area total,2004,765,758.411
+Colombia,Area total,2005,780,764.916
+Colombia,Area total,2006,780,785.653
+Colombia,Area total,2007,780,789.208
+Colombia,Area total,2008,780,782.57
+Colombia,Area total,2009,780,782.57
+Colombia,Area total,2010,780,782.57
+Colombia,Area total,2011,780,782.57
+Colombia,Area total,2012,780,782.57
+Colombia,Area total,2013,780,782.57
+Colombia,Area total,2014,780,782.57
+Colombia,Area total,2015,780,782.57
+Colombia,Area total,2016,780,782.57
+Colombia,Area total,2017,780,782.57
+Colombia,Area total,2018,780,782.57
+Colombia,Area total,2019,800,782.57
+Colombia,Area total,2020,800,807.866
+Colombia,Area total,2021,800,809.657
+Colombia,Area total,2022,800,800.806
+Colombia,Area total,2023,800,800.806
+Colombia,Area total,2024,800,800.806
+Colombia,Area total,2025,800,800.806
+Colombia,Area total,2026,800,800.806
+Colombia,Area non-bearing,1998,83,125.489
+Colombia,Area non-bearing,1999,121,97.071
+Colombia,Area non-bearing,2000,155,155.7
+Colombia,Area non-bearing,2001,155,168.427
+Colombia,Area non-bearing,2002,145,141.114
+Colombia,Area non-bearing,2003,140,129.068
+Colombia,Area non-bearing,2004,145,131.634
+Colombia,Area non-bearing,2005,140,142.827
+Colombia,Area non-bearing,2006,140,133.035
+Colombia,Area non-bearing,2007,140,137.855
+Colombia,Area non-bearing,2008,140,138.555
+Colombia,Area non-bearing,2009,140,139.255
+Colombia,Area non-bearing,2010,140,139.955
+Colombia,Area non-bearing,2011,140,140.655
+Colombia,Area non-bearing,2012,140,141.355
+Colombia,Area non-bearing,2013,140,142.056
+Colombia,Area non-bearing,2014,140,142.756
+Colombia,Area non-bearing,2015,140,143.456
+Colombia,Area non-bearing,2016,140,144.156
+Colombia,Area non-bearing,2017,140,144.856
+Colombia,Area non-bearing,2018,140,145.557
+Colombia,Area non-bearing,2019,160,146.257
+Colombia,Area non-bearing,2020,160,172.449
+Colombia,Area non-bearing,2021,160,156.671
+Colombia,Area non-bearing,2022,160,157.371
+Colombia,Area non-bearing,2023,160,158.071
+Colombia,Area non-bearing,2024,160,158.771
+Colombia,Area non-bearing,2025,160,159.471
+Colombia,Area non-bearing,2026,160,160.172
+Colombia,Area bearing,1998,786,737.019
+Colombia,Area bearing,1999,715,778.066
+Colombia,Area bearing,2000,650,663.789
+Colombia,Area bearing,2001,650,609.583
+Colombia,Area bearing,2002,630,656.398
+Colombia,Area bearing,2003,630,623.446
+Colombia,Area bearing,2004,620,637.487
+Colombia,Area bearing,2005,640,620.749
+Colombia,Area bearing,2006,640,659.935
+Colombia,Area bearing,2007,640,644.845
+Colombia,Area bearing,2008,640,644.321
+Colombia,Area bearing,2009,640,643.796
+Colombia,Area bearing,2010,640,643.272
+Colombia,Area bearing,2011,640,642.748
+Colombia,Area bearing,2012,640,642.223
+Colombia,Area bearing,2013,640,641.699
+Colombia,Area bearing,2014,640,641.175
+Colombia,Area bearing,2015,640,640.65
+Colombia,Area bearing,2016,640,640.126
+Colombia,Area bearing,2017,640,639.602
+Colombia,Area bearing,2018,640,639.077
+Colombia,Area bearing,2019,640,638.553
+Colombia,Area bearing,2020,640,638.029
+Colombia,Area bearing,2021,640,637.504
+Colombia,Area bearing,2022,640,636.98
+Colombia,Area bearing,2023,640,636.456
+Colombia,Area bearing,2024,640,635.931
+Colombia,Area bearing,2025,640,635.407
+Colombia,Area bearing,2026,640,634.883
+Colombia,Trees total,1998,3692,
+Colombia,Trees total,1999,3763,3692
+Colombia,Trees total,2000,3820,3763
+Colombia,Trees total,2001,3820,3820
+Colombia,Trees total,2002,3880,3820
+Colombia,Trees total,2003,3830,3880
+Colombia,Trees total,2004,3830,3830
+Colombia,Trees total,2005,3830,3830
+Colombia,Trees total,2006,3970,3830
+Colombia,Trees total,2007,3970,3970
+Colombia,Trees total,2008,3970,3970
+Colombia,Trees total,2009,3970,3970
+Colombia,Trees total,2010,3970,3970
+Colombia,Trees total,2011,3970,3970
+Colombia,Trees total,2012,3970,3970
+Colombia,Trees total,2013,3970,3970
+Colombia,Trees total,2014,3970,3970
+Colombia,Trees total,2015,4500,3970
+Colombia,Trees total,2016,4500,4500
+Colombia,Trees total,2017,4500,4500
+Colombia,Trees total,2018,4500,4500
+Colombia,Trees total,2019,4500,4500
+Colombia,Trees total,2020,4500,4500
+Colombia,Trees total,2021,4500,4500
+Colombia,Trees total,2022,4500,4500
+Colombia,Trees total,2023,4500,4500
+Colombia,Trees total,2024,4500,4500
+Colombia,Trees total,2025,4500,4500
+Colombia,Trees total,2026,4500,4500
+Colombia,Trees non-bearing,1998,580,961.918
+Colombia,Trees non-bearing,1999,773,613.535
+Colombia,Trees non-bearing,2000,1030,934.674
+Colombia,Trees non-bearing,2001,1030,1197.79
+Colombia,Trees non-bearing,2002,1030,1019.88
+Colombia,Trees non-bearing,2003,1030,1019.88
+Colombia,Trees non-bearing,2004,1030,1019.88
+Colombia,Trees non-bearing,2005,1030,1019.88
+Colombia,Trees non-bearing,2006,1070,1019.88
+Colombia,Trees non-bearing,2007,1070,1081.63
+Colombia,Trees non-bearing,2008,1070,1053.94
+Colombia,Trees non-bearing,2009,1070,1053.94
+Colombia,Trees non-bearing,2010,1070,1053.94
+Colombia,Trees non-bearing,2011,1070,1053.94
+Colombia,Trees non-bearing,2012,1070,1053.94
+Colombia,Trees non-bearing,2013,1070,1053.94
+Colombia,Trees non-bearing,2014,1070,1053.94
+Colombia,Trees non-bearing,2015,1000,1053.94
+Colombia,Trees non-bearing,2016,1000,945.885
+Colombia,Trees non-bearing,2017,1000,994.341
+Colombia,Trees non-bearing,2018,1000,994.341
+Colombia,Trees non-bearing,2019,1000,994.341
+Colombia,Trees non-bearing,2020,1000,994.341
+Colombia,Trees non-bearing,2021,1000,994.341
+Colombia,Trees non-bearing,2022,1000,994.341
+Colombia,Trees non-bearing,2023,1000,994.341
+Colombia,Trees non-bearing,2024,1000,994.341
+Colombia,Trees non-bearing,2025,1000,994.341
+Colombia,Trees non-bearing,2026,1000,994.341
+Colombia,Trees bearing,1998,3112,
+Colombia,Trees bearing,1999,2990,3112
+Colombia,Trees bearing,2000,2790,2990
+Colombia,Trees bearing,2001,2790,2790
+Colombia,Trees bearing,2002,2850,2790
+Colombia,Trees bearing,2003,2800,2850
+Colombia,Trees bearing,2004,2800,2800
+Colombia,Trees bearing,2005,2800,2800
+Colombia,Trees bearing,2006,2900,2800
+Colombia,Trees bearing,2007,2900,2900
+Colombia,Trees bearing,2008,2900,2900
+Colombia,Trees bearing,2009,2900,2900
+Colombia,Trees bearing,2010,2900,2900
+Colombia,Trees bearing,2011,2900,2900
+Colombia,Trees bearing,2012,2900,2900
+Colombia,Trees bearing,2013,2900,2900
+Colombia,Trees bearing,2014,2900,2900
+Colombia,Trees bearing,2015,3500,2900
+Colombia,Trees bearing,2016,3500,3500
+Colombia,Trees bearing,2017,3500,3500
+Colombia,Trees bearing,2018,3500,3500
+Colombia,Trees bearing,2019,3500,3500
+Colombia,Trees bearing,2020,3500,3500
+Colombia,Trees bearing,2021,3500,3500
+Colombia,Trees bearing,2022,3500,3500
+Colombia,Trees bearing,2023,3500,3500
+Colombia,Trees bearing,2024,3500,3500
+Colombia,Trees bearing,2025,3500,3500
+Colombia,Trees bearing,2026,3500,3500
+Colombia,Yield,1998,12.5063,
+Colombia,Yield,1999,11.9617,12.5063
+Colombia,Yield,2000,13.0683,11.9617
+Colombia,Yield,2001,13.6646,13.0683
+Colombia,Yield,2002,15.1123,13.6646
+Colombia,Yield,2003,14.3545,15.1123
+Colombia,Yield,2004,15.0745,14.3545
+Colombia,Yield,2005,15.3244,15.0745
+Colombia,Yield,2006,15.5949,15.3244
+Colombia,Yield,2007,16.0449,15.5949
+Colombia,Yield,2008,11.1077,16.0449
+Colombia,Yield,2009,10.3846,11.1077
+Colombia,Yield,2010,10.9295,10.3846
+Colombia,Yield,2011,9.8141,10.9295
+Colombia,Yield,2012,12.7269,9.8141
+Colombia,Yield,2013,15.4808,12.7269
+Colombia,Yield,2014,17.0513,15.4808
+Colombia,Yield,2015,17.9487,17.0513
+Colombia,Yield,2016,18.7179,17.9487
+Colombia,Yield,2017,17.7244,18.7179
+Colombia,Yield,2018,17.7821,17.7244
+Colombia,Yield,2019,17.625,17.7821
+Colombia,Yield,2020,16.75,17.625
+Colombia,Yield,2021,14.75,16.75
+Colombia,Yield,2022,13.375,14.75
+Colombia,Yield,2023,15.95,13.375
+Colombia,Yield,2024,18.5,15.95
+Colombia,Yield,2025,15.625,18.5
+Colombia,Yield,2026,16.75,15.625
+Colombia (Fedecafe),Production Arabica,2007,13815,
+Colombia (Fedecafe),Production Arabica,2008,13809.8,13815
+Colombia (Fedecafe),Production Arabica,2009,11814.9,13809.8
+Colombia (Fedecafe),Production Arabica,2010,12987.2,11814.9
+Colombia (Fedecafe),Production Arabica,2011,10673.9,12987.2
+Colombia (Fedecafe),Production Arabica,2012,10446.2,10673.9
+Colombia (Fedecafe),Production Arabica,2013,10867.5,10446.2
+Colombia (Fedecafe),Production Arabica,2014,12140,10867.5
+Colombia (Fedecafe),Production Arabica,2015,14175,12140
+Colombia (Fedecafe),Production Arabica,2016,14232,14175
+Colombia (Fedecafe),Production Arabica,2017,14194,14232
+Colombia (Fedecafe),Production Arabica,2018,13557,14194
+Colombia (Fedecafe),Production Arabica,2019,14602.2,13557
+Colombia (Fedecafe),Production Arabica,2020,13199.3,14602.2
+Colombia (Fedecafe),Production Arabica,2021,12582.3,13199.3
+Colombia (Fedecafe),Production Arabica,2022,11164.3,12582.3
+Colombia (Fedecafe),Production Arabica,2023,11352.8,11164.3
+Colombia (Fedecafe),Production Arabica,2024,13884,11352.8
+Colombia (Fedecafe),Production Arabica,2025,13680.4,13884
+Colombia (Fedecafe),Production Arabica,2026,13400,13680.4
+Colombia (Fedecafe),Area total,2007,860,
+Colombia (Fedecafe),Area total,2008,867,860.161
+Colombia (Fedecafe),Area total,2009,873,871.448
+Colombia (Fedecafe),Area total,2010,884,876.812
+Colombia (Fedecafe),Area total,2011,922,890.989
+Colombia (Fedecafe),Area total,2012,957,946.145
+Colombia (Fedecafe),Area total,2013,974,979.239
+Colombia (Fedecafe),Area total,2014,948,984.802
+Colombia (Fedecafe),Area total,2015,941,931.48
+Colombia (Fedecafe),Area total,2016,932,936.552
+Colombia (Fedecafe),Area total,2017,904,926.281
+Colombia (Fedecafe),Area total,2018,877,886.209
+Colombia (Fedecafe),Area total,2019,860,859.844
+Colombia (Fedecafe),Area total,2020,851,849.198
+Colombia (Fedecafe),Area total,2021,842,845.281
+Colombia (Fedecafe),Area total,2022,844,836.281
+Colombia (Fedecafe),Area total,2023,840,845.271
+Colombia (Fedecafe),Area total,2024,839,837.458
+Colombia (Fedecafe),Area total,2025,836,838.365
+Colombia (Fedecafe),Area total,2026,833,834.094
+Colombia (Fedecafe),Area non-bearing,2007,94,157.786
+Colombia (Fedecafe),Area non-bearing,2008,109,114.515
+Colombia (Fedecafe),Area non-bearing,2009,118,124.691
+Colombia (Fedecafe),Area non-bearing,2010,140,130.796
+Colombia (Fedecafe),Area non-bearing,2011,210,145.72
+Colombia (Fedecafe),Area non-bearing,2012,247,193.207
+Colombia (Fedecafe),Area non-bearing,2013,202,218.307
+Colombia (Fedecafe),Area non-bearing,2014,220,187.78
+Colombia (Fedecafe),Area non-bearing,2015,140,199.991
+Colombia (Fedecafe),Area non-bearing,2016,154,145.72
+Colombia (Fedecafe),Area non-bearing,2017,151,155.218
+Colombia (Fedecafe),Area non-bearing,2018,157,153.183
+Colombia (Fedecafe),Area non-bearing,2019,163,157.253
+Colombia (Fedecafe),Area non-bearing,2020,134,161.323
+Colombia (Fedecafe),Area non-bearing,2021,146,141.65
+Colombia (Fedecafe),Area non-bearing,2022,145,149.791
+Colombia (Fedecafe),Area non-bearing,2023,142,149.112
+Colombia (Fedecafe),Area non-bearing,2024,168,147.077
+Colombia (Fedecafe),Area non-bearing,2025,183,164.715
+Colombia (Fedecafe),Area non-bearing,2026,193,174.891
+Colombia (Fedecafe),Area bearing,2000,675,
+Colombia (Fedecafe),Area bearing,2001,705,675
+Colombia (Fedecafe),Area bearing,2002,711,705
+Colombia (Fedecafe),Area bearing,2003,721,711
+Colombia (Fedecafe),Area bearing,2004,771,721
+Colombia (Fedecafe),Area bearing,2005,807,771
+Colombia (Fedecafe),Area bearing,2006,786,807
+Colombia (Fedecafe),Area bearing,2007,766,786
+Colombia (Fedecafe),Area bearing,2008,758,766
+Colombia (Fedecafe),Area bearing,2009,755,758
+Colombia (Fedecafe),Area bearing,2010,744,755
+Colombia (Fedecafe),Area bearing,2011,712,744
+Colombia (Fedecafe),Area bearing,2012,710,712
+Colombia (Fedecafe),Area bearing,2013,772,710
+Colombia (Fedecafe),Area bearing,2014,728,772
+Colombia (Fedecafe),Area bearing,2015,801,728
+Colombia (Fedecafe),Area bearing,2016,778,801
+Colombia (Fedecafe),Area bearing,2017,753,778
+Colombia (Fedecafe),Area bearing,2018,720,753
+Colombia (Fedecafe),Area bearing,2019,697,720
+Colombia (Fedecafe),Area bearing,2020,717,697
+Colombia (Fedecafe),Area bearing,2021,696,717
+Colombia (Fedecafe),Area bearing,2022,699,696
+Colombia (Fedecafe),Area bearing,2023,698,699
+Colombia (Fedecafe),Area bearing,2024,671,698
+Colombia (Fedecafe),Area bearing,2025,653,671
+Colombia (Fedecafe),Area bearing,2026,640,653
+Colombia (Fedecafe),Trees total,2012,3007.71,3575
+Colombia (Fedecafe),Trees total,2013,3896,3253.85
+Colombia (Fedecafe),Trees total,2014,4062.86,3915.66
+Colombia (Fedecafe),Trees total,2015,4032.86,4059.69
+Colombia (Fedecafe),Trees total,2016,4739.89,4062.43
+Colombia (Fedecafe),Trees total,2017,4700.8,4594.15
+Colombia (Fedecafe),Trees total,2018,4560.4,4590.37
+Colombia (Fedecafe),Trees total,2019,4499.52,4513.88
+Colombia (Fedecafe),Trees total,2020,4477.11,4494.47
+Colombia (Fedecafe),Trees total,2021,4435.66,4502.66
+Colombia (Fedecafe),Trees total,2022,4462.23,4497.18
+Colombia (Fedecafe),Trees total,2023,4465.44,4540.53
+Colombia (Fedecafe),Trees total,2024,4480.26,4567.11
+Colombia (Fedecafe),Trees total,2025,4485.14,4602.03
+Colombia (Fedecafe),Trees total,2026,4500,4629.81
+Colombia (Fedecafe),Yield,2007,18.024,
+Colombia (Fedecafe),Yield,2008,18.2113,18.024
+Colombia (Fedecafe),Yield,2009,15.6561,18.2113
+Colombia (Fedecafe),Yield,2010,17.4485,15.6561
+Colombia (Fedecafe),Yield,2011,14.9832,17.4485
+Colombia (Fedecafe),Yield,2012,14.7034,14.9832
+Colombia (Fedecafe),Yield,2013,14.0808,14.7034
+Colombia (Fedecafe),Yield,2014,15.2596,14.0808
+Colombia (Fedecafe),Yield,2015,17.6948,15.2596
+Colombia (Fedecafe),Yield,2016,18.3,17.6948
+Colombia (Fedecafe),Yield,2017,18.8425,18.3
+Colombia (Fedecafe),Yield,2018,18.8259,18.8425
+Colombia (Fedecafe),Yield,2019,20.9492,18.8259
+Colombia (Fedecafe),Yield,2020,18.4169,20.9492
+Colombia (Fedecafe),Yield,2021,18.0836,18.4169
+Colombia (Fedecafe),Yield,2022,15.971,18.0836
+Colombia (Fedecafe),Yield,2023,16.2691,15.971
+Colombia (Fedecafe),Yield,2024,20.6855,16.2691
+Colombia (Fedecafe),Yield,2025,20.9618,20.6855
+Colombia (Fedecafe),Yield,2026,16.0864,20.9618
+Honduras,Production Arabica,2000,2876,
+Honduras,Production Arabica,2001,2600,2876
+Honduras,Production Arabica,2002,2661,2600
+Honduras,Production Arabica,2003,2817,2661
+Honduras,Production Arabica,2004,2575,2817
+Honduras,Production Arabica,2005,3204,2575
+Honduras,Production Arabica,2006,3460,3204
+Honduras,Production Arabica,2007,3642,3460
+Honduras,Production Arabica,2008,3373,3642
+Honduras,Production Arabica,2009,3550,3373
+Honduras,Production Arabica,2010,3975,3550
+Honduras,Production Arabica,2011,5600,3975
+Honduras,Production Arabica,2012,4725,5600
+Honduras,Production Arabica,2013,4400,4725
+Honduras,Production Arabica,2014,5100,4400
+Honduras,Production Arabica,2015,5300,5100
+Honduras,Production Arabica,2016,7510,5300
+Honduras,Production Arabica,2017,7600,7510
+Honduras,Production Arabica,2018,7100,7600
+Honduras,Production Arabica,2019,5200,7100
+Honduras,Production Arabica,2020,6500,5200
+Honduras,Production Arabica,2021,4800,6500
+Honduras,Production Arabica,2022,5700,4800
+Honduras,Production Arabica,2023,5050,5700
+Honduras,Production Arabica,2024,5200,5050
+Honduras,Production Arabica,2025,5800,5200
+Honduras,Production Arabica,2026,6030,5800
+Honduras,Area total,2000,284,
+Honduras,Area total,2001,284,284
+Honduras,Area total,2002,248,284
+Honduras,Area total,2003,248,248
+Honduras,Area total,2004,248,248
+Honduras,Area total,2005,248,248
+Honduras,Area total,2006,243,248
+Honduras,Area total,2007,243,243
+Honduras,Area total,2008,244,243
+Honduras,Area total,2009,244,244
+Honduras,Area total,2010,266,244
+Honduras,Area total,2011,285,266
+Honduras,Area total,2012,315,285
+Honduras,Area total,2013,263,315
+Honduras,Area total,2014,293,263
+Honduras,Area total,2015,303,293
+Honduras,Area total,2016,334,303
+Honduras,Area total,2017,342,334
+Honduras,Area total,2018,322,342
+Honduras,Area total,2019,305,322
+Honduras,Area total,2020,307,305
+Honduras,Area total,2021,307,307
+Honduras,Area total,2022,320,307
+Honduras,Area total,2023,330,320
+Honduras,Area total,2024,340,330
+Honduras,Area total,2025,350,340
+Honduras,Area total,2026,360,350
+Honduras,Area non-bearing,2000,54,44.9362
+Honduras,Area non-bearing,2001,69,48.9755
+Honduras,Area non-bearing,2002,64,55.6604
+Honduras,Area non-bearing,2003,64,53.4321
+Honduras,Area non-bearing,2004,64,53.4321
+Honduras,Area non-bearing,2005,64,53.4321
+Honduras,Area non-bearing,2006,13,53.4321
+Honduras,Area non-bearing,2007,13,30.7037
+Honduras,Area non-bearing,2008,20,30.7037
+Honduras,Area non-bearing,2009,20,33.8233
+Honduras,Area non-bearing,2010,28,33.8233
+Honduras,Area non-bearing,2011,40,37.3885
+Honduras,Area non-bearing,2012,48,42.7364
+Honduras,Area non-bearing,2013,50,46.3016
+Honduras,Area non-bearing,2014,66,47.1929
+Honduras,Area non-bearing,2015,63,54.3234
+Honduras,Area non-bearing,2016,54,52.9864
+Honduras,Area non-bearing,2017,44,48.9755
+Honduras,Area non-bearing,2018,36,44.519
+Honduras,Area non-bearing,2019,35,40.9537
+Honduras,Area non-bearing,2020,34,40.5081
+Honduras,Area non-bearing,2021,32,40.0624
+Honduras,Area non-bearing,2022,35,39.1711
+Honduras,Area non-bearing,2023,38,40.5081
+Honduras,Area non-bearing,2024,100,41.8451
+Honduras,Area non-bearing,2025,40,69.4757
+Honduras,Area non-bearing,2026,30,42.7364
+Honduras,Area bearing,2000,230,185.698
+Honduras,Area bearing,2001,215,208.809
+Honduras,Area bearing,2002,184,188.33
+Honduras,Area bearing,2003,184,170.499
+Honduras,Area bearing,2004,184,190.195
+Honduras,Area bearing,2005,184,209.868
+Honduras,Area bearing,2006,230,215.925
+Honduras,Area bearing,2007,230,240.421
+Honduras,Area bearing,2008,224,236.016
+Honduras,Area bearing,2009,224,219.461
+Honduras,Area bearing,2010,238,226.882
+Honduras,Area bearing,2011,245,241.186
+Honduras,Area bearing,2012,267,246.864
+Honduras,Area bearing,2013,213,253.998
+Honduras,Area bearing,2014,227,230.329
+Honduras,Area bearing,2015,240,244.615
+Honduras,Area bearing,2016,280,276.419
+Honduras,Area bearing,2017,298,289.404
+Honduras,Area bearing,2018,286,287.869
+Honduras,Area bearing,2019,270,267.45
+Honduras,Area bearing,2020,273,261.915
+Honduras,Area bearing,2021,275,278.084
+Honduras,Area bearing,2022,285,291.288
+Honduras,Area bearing,2023,292,299.581
+Honduras,Area bearing,2024,300,305.29
+Honduras,Area bearing,2025,310,308.569
+Honduras,Area bearing,2026,330,313.74
+Honduras,Trees non-bearing,2000,133,
+Honduras,Trees non-bearing,2001,130,133.029
+Honduras,Trees non-bearing,2002,125,128.687
+Honduras,Trees non-bearing,2003,128,123.032
+Honduras,Trees non-bearing,2004,131,130.801
+Honduras,Trees non-bearing,2005,131,131.114
+Honduras,Trees non-bearing,2006,141,130.934
+Honduras,Trees non-bearing,2007,141,146.817
+Honduras,Trees non-bearing,2008,141,137.636
+Honduras,Trees non-bearing,2009,141,142.945
+Honduras,Trees non-bearing,2010,141,139.875
+Honduras,Trees non-bearing,2011,170,141.651
+Honduras,Trees non-bearing,2012,188,186.398
+Honduras,Trees non-bearing,2013,210,188.927
+Honduras,Trees non-bearing,2014,279,222.189
+Honduras,Trees non-bearing,2015,270,311.861
+Honduras,Trees non-bearing,2016,234,245.787
+Honduras,Trees non-bearing,2017,186,227.182
+Honduras,Trees non-bearing,2018,153,162.179
+Honduras,Trees non-bearing,2019,150,147.691
+Honduras,Trees non-bearing,2020,163,151.336
+Honduras,Trees non-bearing,2021,172,169.747
+Honduras,Trees non-bearing,2022,200,173.303
+Honduras,Trees non-bearing,2023,232,215.442
+Honduras,Trees non-bearing,2024,245,241.578
+Honduras,Trees non-bearing,2025,260,246.98
+Honduras,Trees non-bearing,2026,270,267.531
+Honduras,Trees bearing,2000,750,
+Honduras,Trees bearing,2001,705,801.923
+Honduras,Trees bearing,2002,747,756.923
+Honduras,Trees bearing,2003,769,798.923
+Honduras,Trees bearing,2004,753,820.923
+Honduras,Trees bearing,2005,753,804.923
+Honduras,Trees bearing,2006,1049,804.923
+Honduras,Trees bearing,2007,1049,1100.92
+Honduras,Trees bearing,2008,1049,1100.92
+Honduras,Trees bearing,2009,1049,1100.92
+Honduras,Trees bearing,2010,1049,1100.92
+Honduras,Trees bearing,2011,1042,1100.92
+Honduras,Trees bearing,2012,1068,1093.92
+Honduras,Trees bearing,2013,900,1119.92
+Honduras,Trees bearing,2014,966,951.923
+Honduras,Trees bearing,2015,1020,1017.92
+Honduras,Trees bearing,2016,1191,1071.92
+Honduras,Trees bearing,2017,1269,1242.92
+Honduras,Trees bearing,2018,1362,1320.92
+Honduras,Trees bearing,2019,1290,1413.92
+Honduras,Trees bearing,2020,1295,1341.92
+Honduras,Trees bearing,2021,1375,1346.92
+Honduras,Trees bearing,2022,1600,1426.92
+Honduras,Trees bearing,2023,1800,1651.92
+Honduras,Trees bearing,2024,1900,1851.92
+Honduras,Trees bearing,2025,2000,1951.92
+Honduras,Trees bearing,2026,2100,2051.92
+Honduras,Trees total,2000,883,
+Honduras,Trees total,2001,835,940.192
+Honduras,Trees total,2002,872,892.192
+Honduras,Trees total,2003,897,929.192
+Honduras,Trees total,2004,884,954.192
+Honduras,Trees total,2005,884,941.192
+Honduras,Trees total,2006,1190,941.192
+Honduras,Trees total,2007,1190,1247.19
+Honduras,Trees total,2008,1190,1247.19
+Honduras,Trees total,2009,1190,1247.19
+Honduras,Trees total,2010,1190,1247.19
+Honduras,Trees total,2011,1212,1247.19
+Honduras,Trees total,2012,1256,1269.19
+Honduras,Trees total,2013,1110,1313.19
+Honduras,Trees total,2014,1245,1167.19
+Honduras,Trees total,2015,1290,1302.19
+Honduras,Trees total,2016,1425,1347.19
+Honduras,Trees total,2017,1455,1482.19
+Honduras,Trees total,2018,1515,1512.19
+Honduras,Trees total,2019,1440,1572.19
+Honduras,Trees total,2020,1458,1497.19
+Honduras,Trees total,2021,1547,1515.19
+Honduras,Trees total,2022,1800,1604.19
+Honduras,Trees total,2023,2032,1857.19
+Honduras,Trees total,2024,2145,2089.19
+Honduras,Trees total,2025,2260,2202.19
+Honduras,Trees total,2026,2370,2317.19
+Honduras,Yield,2000,12.5043,
+Honduras,Yield,2001,12.093,12.5042
+Honduras,Yield,2002,14.462,12.3164
+Honduras,Yield,2003,15.3098,13.1751
+Honduras,Yield,2004,13.9946,14.8493
+Honduras,Yield,2005,17.413,14.709
+Honduras,Yield,2006,15.0435,15.5561
+Honduras,Yield,2007,15.8348,16.3307
+Honduras,Yield,2008,15.058,15.405
+Honduras,Yield,2009,15.8482,15.48
+Honduras,Yield,2010,16.7017,15.4189
+Honduras,Yield,2011,22.8571,16.2381
+Honduras,Yield,2012,17.6966,19.5134
+Honduras,Yield,2013,20.6573,20.4999
+Honduras,Yield,2014,22.467,19.049
+Honduras,Yield,2015,22.0833,21.4839
+Honduras,Yield,2016,26.8214,22.2917
+Honduras,Yield,2017,25.5034,24.2476
+Honduras,Yield,2018,24.8252,26.2194
+Honduras,Yield,2019,19.2593,25.1936
+Honduras,Yield,2020,23.8095,22.2828
+Honduras,Yield,2021,17.4545,21.3378
+Honduras,Yield,2022,20,20.9066
+Honduras,Yield,2023,17.2945,18.6172
+Honduras,Yield,2024,17.3333,18.7642
+Honduras,Yield,2025,18.7097,17.3122
+Honduras,Yield,2026,18.2727,17.962
+Indonesia,Production Robusta,2004,7500,7860.3
+Indonesia,Production Robusta,2005,8400,7955.57
+Indonesia,Production Robusta,2006,6600,8050.85
+Indonesia,Production Robusta,2007,7200,8146.12
+Indonesia,Production Robusta,2008,8700,8241.39
+Indonesia,Production Robusta,2009,9000,8336.67
+Indonesia,Production Robusta,2010,7950,8431.94
+Indonesia,Production Robusta,2011,7000,8527.21
+Indonesia,Production Robusta,2012,9900,8622.49
+Indonesia,Production Robusta,2013,10000,8717.76
+Indonesia,Production Robusta,2014,9200,8813.03
+Indonesia,Production Robusta,2015,10600,8908.31
+Indonesia,Production Robusta,2016,9300,9003.58
+Indonesia,Production Robusta,2017,9400,9098.85
+Indonesia,Production Robusta,2018,9400,9194.13
+Indonesia,Production Robusta,2019,9450,9289.4
+Indonesia,Production Robusta,2020,9400,9384.67
+Indonesia,Production Robusta,2021,9300,9479.95
+Indonesia,Production Robusta,2022,9500,9575.22
+Indonesia,Production Robusta,2023,6800,9670.49
+Indonesia,Production Robusta,2024,9300,9765.77
+Indonesia,Production Robusta,2025,11000,9861.04
+Indonesia,Production Robusta,2026,10000,9956.31
+Indonesia,Production Arabica,2004,950,
+Indonesia,Production Arabica,2005,1050,939.274
+Indonesia,Production Arabica,2006,1050,1004.46
+Indonesia,Production Arabica,2007,800,1003.16
+Indonesia,Production Arabica,2008,1300,866.316
+Indonesia,Production Arabica,2009,1500,1284.47
+Indonesia,Production Arabica,2010,1375,1212.74
+Indonesia,Production Arabica,2011,1300,1314.48
+Indonesia,Production Arabica,2012,2000,1378.45
+Indonesia,Production Arabica,2013,1900,1849.45
+Indonesia,Production Arabica,2014,1270,1598.64
+Indonesia,Production Arabica,2015,1500,1483.96
+Indonesia,Production Arabica,2016,1300,1734.09
+Indonesia,Production Arabica,2017,1000,1245.32
+Indonesia,Production Arabica,2018,1200,1173.26
+Indonesia,Production Arabica,2019,1250,1287.47
+Indonesia,Production Arabica,2020,1300,1143.05
+Indonesia,Production Arabica,2021,1280,1263.32
+Indonesia,Production Arabica,2022,1200,1261.88
+Indonesia,Production Arabica,2023,1350,1230.59
+Indonesia,Production Arabica,2024,1400,1347.68
+Indonesia,Production Arabica,2025,1370,1316.48
+Indonesia,Production Arabica,2026,1380,1354.54
+Indonesia,Production Total,2004,8450,9071.02
+Indonesia,Production Total,2005,9450,9174.93
+Indonesia,Production Total,2006,7650,9278.84
+Indonesia,Production Total,2007,8000,9382.74
+Indonesia,Production Total,2008,10000,9486.65
+Indonesia,Production Total,2009,10500,9590.56
+Indonesia,Production Total,2010,9325,9694.46
+Indonesia,Production Total,2011,8300,9798.37
+Indonesia,Production Total,2012,11900,9902.28
+Indonesia,Production Total,2013,11900,10006.2
+Indonesia,Production Total,2014,10470,10110.1
+Indonesia,Production Total,2015,12100,10214
+Indonesia,Production Total,2016,10600,10317.9
+Indonesia,Production Total,2017,10400,10421.8
+Indonesia,Production Total,2018,10600,10525.7
+Indonesia,Production Total,2019,10700,10629.6
+Indonesia,Production Total,2020,10700,10733.5
+Indonesia,Production Total,2021,10580,10837.4
+Indonesia,Production Total,2022,10700,10941.3
+Indonesia,Production Total,2023,8150,11045.2
+Indonesia,Production Total,2024,10700,11149.2
+Indonesia,Production Total,2025,12370,11253.1
+Indonesia,Production Total,2026,11380,11357
+Indonesia,Area non-bearing,2004,1.05,1.24653
+Indonesia,Area non-bearing,2005,1.05,1.13709
+Indonesia,Area non-bearing,2006,1.3,1.20135
+Indonesia,Area non-bearing,2007,1.32,1.43153
+Indonesia,Area non-bearing,2008,1.32,1.34714
+Indonesia,Area non-bearing,2009,1.3,1.25042
+Indonesia,Area non-bearing,2010,1.265,1.2292
+Indonesia,Area non-bearing,2011,1.25,1.21239
+Indonesia,Area non-bearing,2012,1.234,1.2227
+Indonesia,Area non-bearing,2013,1.236,1.22976
+Indonesia,Area non-bearing,2014,1.238,1.24281
+Indonesia,Area non-bearing,2015,1.24,1.24911
+Indonesia,Area non-bearing,2016,1.24,1.24903
+Indonesia,Area non-bearing,2017,1.25,1.24753
+Indonesia,Area non-bearing,2018,1.25,1.25387
+Indonesia,Area non-bearing,2019,1.25,1.24993
+Indonesia,Area non-bearing,2020,1.25,1.24638
+Indonesia,Area non-bearing,2021,1.25,1.24638
+Indonesia,Area non-bearing,2022,1.25,1.24638
+Indonesia,Area non-bearing,2023,1.25,1.24638
+Indonesia,Area non-bearing,2024,1.25,1.24638
+Indonesia,Area non-bearing,2025,1.25,1.24638
+Indonesia,Area non-bearing,2026,1.25,1.24638
+Indonesia,Area bearing,2004,0.925,
+Indonesia,Area bearing,2005,0.825,0.925
+Indonesia,Area bearing,2006,0.9,0.825
+Indonesia,Area bearing,2007,0.95,0.9
+Indonesia,Area bearing,2008,0.95,0.95
+Indonesia,Area bearing,2009,1.2,0.95
+Indonesia,Area bearing,2010,1.165,1.2
+Indonesia,Area bearing,2011,1.15,1.165
+Indonesia,Area bearing,2012,1.18,1.15
+Indonesia,Area bearing,2013,1.2,1.18
+Indonesia,Area bearing,2014,1.2,1.2
+Indonesia,Area bearing,2015,1.2,1.2
+Indonesia,Area bearing,2016,1.2,1.2
+Indonesia,Area bearing,2017,1.2,1.2
+Indonesia,Area bearing,2018,1.2,1.2
+Indonesia,Area bearing,2019,1.2,1.2
+Indonesia,Area bearing,2020,1.2,1.2
+Indonesia,Area bearing,2021,1.2,1.2
+Indonesia,Area bearing,2022,1.2,1.2
+Indonesia,Area bearing,2023,1.2,1.2
+Indonesia,Area bearing,2024,1.2,1.2
+Indonesia,Area bearing,2025,1.2,1.2
+Indonesia,Area bearing,2026,1.2,1.2
+Indonesia,Area total,2004,1.975,2.19834
+Indonesia,Area total,2005,1.875,2.10353
+Indonesia,Area total,2006,2.2,2.08002
+Indonesia,Area total,2007,2.27,2.33278
+Indonesia,Area total,2008,2.27,2.21213
+Indonesia,Area total,2009,2.5,2.32264
+Indonesia,Area total,2010,2.43,2.43701
+Indonesia,Area total,2011,2.4,2.30168
+Indonesia,Area total,2012,2.414,2.40552
+Indonesia,Area total,2013,2.436,2.34584
+Indonesia,Area total,2014,2.438,2.43077
+Indonesia,Area total,2015,2.44,2.37603
+Indonesia,Area total,2016,2.44,2.44008
+Indonesia,Area total,2017,2.45,2.401
+Indonesia,Area total,2018,2.45,2.45862
+Indonesia,Area total,2019,2.45,2.42485
+Indonesia,Area total,2020,2.45,2.46942
+Indonesia,Area total,2021,2.45,2.44677
+Indonesia,Area total,2022,2.45,2.4818
+Indonesia,Area total,2023,2.45,2.4673
+Indonesia,Area total,2024,2.45,2.49535
+Indonesia,Area total,2025,2.45,2.48684
+Indonesia,Area total,2026,2.45,2.50974
+Indonesia,Trees non-bearing,2004,235,
+Indonesia,Trees non-bearing,2005,235,221.25
+Indonesia,Trees non-bearing,2006,240,221.25
+Indonesia,Trees non-bearing,2007,190,226.25
+Indonesia,Trees non-bearing,2008,190,176.25
+Indonesia,Trees non-bearing,2009,190,176.25
+Indonesia,Trees non-bearing,2010,105,176.25
+Indonesia,Trees non-bearing,2011,105,91.25
+Indonesia,Trees non-bearing,2012,50,91.25
+Indonesia,Trees non-bearing,2013,34,36.25
+Indonesia,Trees non-bearing,2014,17,20.25
+Indonesia,Trees non-bearing,2015,15,3.25
+Indonesia,Trees non-bearing,2016,15,1.25
+Indonesia,Trees non-bearing,2017,15,1.25
+Indonesia,Trees non-bearing,2018,15,1.25
+Indonesia,Trees non-bearing,2019,15,1.25
+Indonesia,Trees non-bearing,2020,15,1.25
+Indonesia,Trees bearing,2004,1145,1198.33
+Indonesia,Trees bearing,2005,1145,1174.14
+Indonesia,Trees bearing,2006,1160,1181.69
+Indonesia,Trees bearing,2007,1200,1185.05
+Indonesia,Trees bearing,2008,1390,1207.71
+Indonesia,Trees bearing,2009,1470,1313.9
+Indonesia,Trees bearing,2010,1230,1297.69
+Indonesia,Trees bearing,2011,1215,1155.17
+Indonesia,Trees bearing,2012,1168,1236.5
+Indonesia,Trees bearing,2013,1170,1154.62
+Indonesia,Trees bearing,2014,1155,1208.14
+Indonesia,Trees bearing,2015,1160,1164.41
+Indonesia,Trees bearing,2016,1160,1195.51
+Indonesia,Trees bearing,2017,1160,1175.66
+Indonesia,Trees bearing,2018,1160,1188.33
+Indonesia,Trees bearing,2019,1160,1180.24
+Indonesia,Trees bearing,2020,1160,1185.41
+Indonesia,Trees total,2004,1380,1467.16
+Indonesia,Trees total,2005,1380,1409.58
+Indonesia,Trees total,2006,1400,1410.01
+Indonesia,Trees total,2007,1390,1398.65
+Indonesia,Trees total,2008,1580,1378.26
+Indonesia,Trees total,2009,1660,1471.08
+Indonesia,Trees total,2010,1335,1443.19
+Indonesia,Trees total,2011,1320,1261.09
+Indonesia,Trees total,2012,1218,1330.62
+Indonesia,Trees total,2013,1204,1216.56
+Indonesia,Trees total,2014,1172,1249.76
+Indonesia,Trees total,2015,1175,1193.35
+Indonesia,Trees total,2016,1175,1204.5
+Indonesia,Trees total,2017,1175,1177.4
+Indonesia,Trees total,2018,1175,1171.03
+Indonesia,Trees total,2019,1175,1153.42
+Indonesia,Trees total,2020,1175,1141.91
+Indonesia,Yield (production / bearing area),2004,9.1351,9.05297
+Indonesia,Yield (production / bearing area),2005,11.4545,9.05297
+Indonesia,Yield (production / bearing area),2006,8.5,9.05297
+Indonesia,Yield (production / bearing area),2007,8.4211,9.05297
+Indonesia,Yield (production / bearing area),2008,10.5263,9.05297
+Indonesia,Yield (production / bearing area),2009,8.75,9.05297
+Indonesia,Yield (production / bearing area),2010,8.0043,9.05297
+Indonesia,Yield (production / bearing area),2011,7.2174,9.05297
+Indonesia,Yield (production / bearing area),2012,10.0847,9.05297
+Indonesia,Yield (production / bearing area),2013,9.9167,9.05297
+Indonesia,Yield (production / bearing area),2014,8.725,9.05297
+Indonesia,Yield (production / bearing area),2015,10.0833,9.05297
+Indonesia,Yield (production / bearing area),2016,8.8333,9.05297
+Indonesia,Yield (production / bearing area),2017,8.6667,9.05297
+Indonesia,Yield (production / bearing area),2018,8.8333,9.05297
+Indonesia,Yield (production / bearing area),2019,8.9167,9.05297
+Indonesia,Yield (production / bearing area),2020,8.9167,9.05297
+Indonesia,Yield (production / bearing area),2021,8.8167,9.05297
+Indonesia,Yield (production / bearing area),2022,8.9167,9.05297
+Indonesia,Yield (production / bearing area),2023,6.7917,9.05297
+Indonesia,Yield (production / bearing area),2024,8.9167,9.05297
+Indonesia,Yield (production / bearing area),2025,10.3083,9.05297
+Indonesia,Yield (production / bearing area),2026,9.4833,9.05297
+Indonesia,Production (BPS),2004,647,
+Indonesia,Production (BPS),2005,640,647
+Indonesia,Production (BPS),2006,682,640
+Indonesia,Production (BPS),2007,676,682
+Indonesia,Production (BPS),2008,698,676
+Indonesia,Production (BPS),2009,683,698
+Indonesia,Production (BPS),2010,687,683
+Indonesia,Production (BPS),2011,639,687
+Indonesia,Production (BPS),2012,691,639
+Indonesia,Production (BPS),2013,676,691
+Indonesia,Production (BPS),2014,644,676
+Indonesia,Production (BPS),2015,639,644
+Indonesia,Production (BPS),2016,664,639
+Indonesia,Production (BPS),2017,716,664
+Indonesia,Production (BPS),2018,756,716
+Indonesia,Production (BPS),2019,753,756
+Indonesia,Production (BPS),2020,762,753
+Indonesia,Production (BPS),2021,786,762
+Indonesia,Production (BPS),2022,775,786
+Indonesia,Production (BPS),2023,759,775
+Indonesia,Area total (BPS),2004,1.304,
+Indonesia,Area total (BPS),2005,1.255,1.304
+Indonesia,Area total (BPS),2006,1.309,1.255
+Indonesia,Area total (BPS),2007,1.296,1.309
+Indonesia,Area total (BPS),2008,1.295,1.296
+Indonesia,Area total (BPS),2009,1.266,1.295
+Indonesia,Area total (BPS),2010,1.21,1.266
+Indonesia,Area total (BPS),2011,1.234,1.21
+Indonesia,Area total (BPS),2012,1.235,1.234
+Indonesia,Area total (BPS),2013,1.242,1.235
+Indonesia,Area total (BPS),2014,1.23,1.242
+Indonesia,Area total (BPS),2015,1.23,1.23
+Indonesia,Area total (BPS),2016,1.246,1.23
+Indonesia,Area total (BPS),2017,1.238,1.246
+Indonesia,Area total (BPS),2018,1.253,1.238
+Indonesia,Area total (BPS),2019,1.245,1.253
+Indonesia,Area total (BPS),2020,1.25,1.245
+Indonesia,Area total (BPS),2021,1.28,1.25
+Indonesia,Area total (BPS),2022,1.266,1.28
+Indonesia,Area total (BPS),2023,1.266,1.266
+Vietnam,Production Robusta,1995,3900,
+Vietnam,Production Robusta,1996,5450,3866.33
+Vietnam,Production Robusta,1997,6933,5729.7
+Vietnam,Production Robusta,1998,7433,7344.37
+Vietnam,Production Robusta,1999,10920,8284.89
+Vietnam,Production Robusta,2000,16216,10759.6
+Vietnam,Production Robusta,2001,12084,14933.9
+Vietnam,Production Robusta,2002,10917,14104.1
+Vietnam,Production Robusta,2003,14734,13071.2
+Vietnam,Production Robusta,2004,14117,14960
+Vietnam,Production Robusta,2005,13200,15339.2
+Vietnam,Production Robusta,2006,20770,14937.6
+Vietnam,Production Robusta,2007,17933,19338.4
+Vietnam,Production Robusta,2008,17529,19378.8
+Vietnam,Production Robusta,2009,18050,19151.5
+Vietnam,Production Robusta,2010,18867,19375
+Vietnam,Production Robusta,2011,25200,19956.1
+Vietnam,Production Robusta,2012,25600,24002.3
+Vietnam,Production Robusta,2013,28658,25851.9
+Vietnam,Production Robusta,2014,26350,28429.5
+Vietnam,Production Robusta,2015,27830,28063.8
+Vietnam,Production Robusta,2016,25600,28810.1
+Vietnam,Production Robusta,2017,28274,27763.3
+Vietnam,Production Robusta,2018,29336,28958.1
+Vietnam,Production Robusta,2019,30200,30072.8
+Vietnam,Production Robusta,2020,28050,31036.5
+Vietnam,Production Robusta,2021,30480,30124.4
+Vietnam,Production Robusta,2022,27300,31225.7
+Vietnam,Production Robusta,2023,26550,29747.8
+Vietnam,Production Robusta,2024,28000,28708.4
+Vietnam,Production Robusta,2025,30500,29168.7
+Vietnam,Production Robusta,2026,31400,30857.8
+Vietnam,Production Arabica,1995,17,
+Vietnam,Production Arabica,1996,50,51.9355
+Vietnam,Production Arabica,1997,67,84.9355
+Vietnam,Production Arabica,1998,67,101.935
+Vietnam,Production Arabica,1999,90,101.935
+Vietnam,Production Arabica,2000,117,124.935
+Vietnam,Production Arabica,2001,166,151.935
+Vietnam,Production Arabica,2002,250,200.935
+Vietnam,Production Arabica,2003,266,284.935
+Vietnam,Production Arabica,2004,383,300.935
+Vietnam,Production Arabica,2005,300,417.935
+Vietnam,Production Arabica,2006,49,334.935
+Vietnam,Production Arabica,2007,400,83.9355
+Vietnam,Production Arabica,2008,480,434.935
+Vietnam,Production Arabica,2009,450,514.935
+Vietnam,Production Arabica,2010,600,484.935
+Vietnam,Production Arabica,2011,800,634.935
+Vietnam,Production Arabica,2012,900,834.935
+Vietnam,Production Arabica,2013,1175,934.935
+Vietnam,Production Arabica,2014,1050,1209.94
+Vietnam,Production Arabica,2015,1100,1084.94
+Vietnam,Production Arabica,2016,1100,1134.94
+Vietnam,Production Arabica,2017,1026,1134.94
+Vietnam,Production Arabica,2018,1064,1060.94
+Vietnam,Production Arabica,2019,1100,1098.94
+Vietnam,Production Arabica,2020,950,1134.94
+Vietnam,Production Arabica,2021,1100,984.935
+Vietnam,Production Arabica,2022,900,1134.94
+Vietnam,Production Arabica,2023,1000,934.935
+Vietnam,Production Arabica,2024,1100,1034.94
+Vietnam,Production Arabica,2025,1200,1134.94
+Vietnam,Production Arabica,2026,1100,1234.94
+Vietnam,Production Total,1995,3917,
+Vietnam,Production Total,1996,5500,3965.62
+Vietnam,Production Total,1997,7000,5866.08
+Vietnam,Production Total,1998,7500,7500.38
+Vietnam,Production Total,1999,11010,8422.17
+Vietnam,Production Total,2000,16333,10965.8
+Vietnam,Production Total,2001,12250,15251
+Vietnam,Production Total,2002,11167,14292.6
+Vietnam,Production Total,2003,15000,13256.1
+Vietnam,Production Total,2004,14500,15270.9
+Vietnam,Production Total,2005,13500,15709.9
+Vietnam,Production Total,2006,20819,15247.2
+Vietnam,Production Total,2007,18333,19660.6
+Vietnam,Production Total,2008,18009,19750.7
+Vietnam,Production Total,2009,18500,19581.4
+Vietnam,Production Total,2010,19467,19825.8
+Vietnam,Production Total,2011,26000,20523
+Vietnam,Production Total,2012,26500,24877
+Vietnam,Production Total,2013,29833,26816
+Vietnam,Production Total,2014,27400,29628.5
+Vietnam,Production Total,2015,28930,29154.1
+Vietnam,Production Total,2016,26700,29935.7
+Vietnam,Production Total,2017,29300,28830.2
+Vietnam,Production Total,2018,30400,30046.6
+Vietnam,Production Total,2019,31300,31190.1
+Vietnam,Production Total,2020,29000,32181
+Vietnam,Production Total,2021,31580,31109.8
+Vietnam,Production Total,2022,28200,32326.5
+Vietnam,Production Total,2023,27550,30662.8
+Vietnam,Production Total,2024,29100,29634.3
+Vietnam,Production Total,2025,31700,30221.5
+Vietnam,Production Total,2026,32500,32070
+Vietnam,Area total,1995,186,322.682
+Vietnam,Area total,1996,254,219.646
+Vietnam,Area total,1997,340,309.364
+Vietnam,Area total,1998,350,378.106
+Vietnam,Area total,1999,460,349.372
+Vietnam,Area total,2000,560,536.084
+Vietnam,Area total,2001,540,548.684
+Vietnam,Area total,2002,520,513.116
+Vietnam,Area total,2003,510,514.691
+Vietnam,Area total,2004,500,502.353
+Vietnam,Area total,2005,495,500.922
+Vietnam,Area total,2006,515,498.475
+Vietnam,Area total,2007,523,534.821
+Vietnam,Area total,2008,531,522.221
+Vietnam,Area total,2009,536,548.389
+Vietnam,Area total,2010,571,539.269
+Vietnam,Area total,2011,616,603.761
+Vietnam,Area total,2012,627.5,625.097
+Vietnam,Area total,2013,639,629.691
+Vietnam,Area total,2014,650.5,647.563
+Vietnam,Area total,2015,662,654.903
+Vietnam,Area total,2016,650,670.597
+Vietnam,Area total,2017,665,643.909
+Vietnam,Area total,2018,682,691.92
+Vietnam,Area total,2019,690,683.721
+Vietnam,Area total,2020,697,706.416
+Vietnam,Area total,2021,706,703.083
+Vietnam,Area total,2022,710,723.439
+Vietnam,Area total,2023,715,717.397
+Vietnam,Area total,2024,715,733.816
+Vietnam,Area total,2025,730,724.811
+Vietnam,Area total,2026,730,758.796
+Vietnam,Area non-bearing,1995,86,
+Vietnam,Area non-bearing,1996,48,86.0081
+Vietnam,Area non-bearing,1997,70,35.8414
+Vietnam,Area non-bearing,1998,80,82.1724
+Vietnam,Area non-bearing,1999,100,79.2157
+Vietnam,Area non-bearing,2000,110,107.517
+Vietnam,Area non-bearing,2001,70,110.898
+Vietnam,Area non-bearing,2002,10,55.2053
+Vietnam,Area non-bearing,2003,10,-6.35279
+Vietnam,Area non-bearing,2004,5,15.9155
+Vietnam,Area non-bearing,2005,10,1.05135
+Vietnam,Area non-bearing,2006,20,13.2371
+Vietnam,Area non-bearing,2007,33,22.4464
+Vietnam,Area non-bearing,2008,31,36.8177
+Vietnam,Area non-bearing,2009,32,28.8955
+Vietnam,Area non-bearing,2010,35.7143,33.123
+Vietnam,Area non-bearing,2011,39.4286,36.6517
+Vietnam,Area non-bearing,2012,43.1429,40.4331
+Vietnam,Area non-bearing,2013,46.8571,44.1231
+Vietnam,Area non-bearing,2014,50.5714,47.8462
+Vietnam,Area non-bearing,2015,54.2857,51.5573
+Vietnam,Area non-bearing,2016,58,55.2727
+Vietnam,Area non-bearing,2017,60,58.9866
+Vietnam,Area non-bearing,2018,75,60.3666
+Vietnam,Area non-bearing,2019,70,80.2936
+Vietnam,Area non-bearing,2020,77,66.2764
+Vietnam,Area non-bearing,2021,86,80.8792
+Vietnam,Area non-bearing,2022,98.5,87.8524
+Vietnam,Area non-bearing,2023,103.5,102.352
+Vietnam,Area non-bearing,2024,100,103.915
+Vietnam,Area non-bearing,2025,99.8,98.5836
+Vietnam,Area non-bearing,2026,86,100.24
+Vietnam,Area bearing,1995,100,
+Vietnam,Area bearing,1996,206,120.911
+Vietnam,Area bearing,1997,270,275.254
+Vietnam,Area bearing,1998,270,315.38
+Vietnam,Area bearing,1999,360,279.001
+Vietnam,Area bearing,2000,450,420.159
+Vietnam,Area bearing,2001,470,510.159
+Vietnam,Area bearing,2002,510,490.37
+Vietnam,Area bearing,2003,500,541.738
+Vietnam,Area bearing,2004,495,503.317
+Vietnam,Area bearing,2005,485,501.159
+Vietnam,Area bearing,2006,495,488.317
+Vietnam,Area bearing,2007,490,509.686
+Vietnam,Area bearing,2008,500,496.159
+Vietnam,Area bearing,2009,504,514.686
+Vietnam,Area bearing,2010,550.667,515.275
+Vietnam,Area bearing,2011,597.333,586.194
+Vietnam,Area bearing,2012,644,632.861
+Vietnam,Area bearing,2013,665.4,679.528
+Vietnam,Area bearing,2014,665,686.565
+Vietnam,Area bearing,2015,628.5,673.774
+Vietnam,Area bearing,2016,592,616.754
+Vietnam,Area bearing,2017,605,580.254
+Vietnam,Area bearing,2018,607,621.391
+Vietnam,Area bearing,2019,620,617.138
+Vietnam,Area bearing,2020,620,636.391
+Vietnam,Area bearing,2021,620,629.001
+Vietnam,Area bearing,2022,611.5,629.001
+Vietnam,Area bearing,2023,611.5,615.67
+Vietnam,Area bearing,2024,615,620.501
+Vietnam,Area bearing,2025,630.2,625.991
+Vietnam,Area bearing,2026,644,647.841
+Vietnam,Yield,2003,1.8,
+Vietnam,Yield,2004,1.76,1.84729
+Vietnam,Yield,2005,1.69,1.8485
+Vietnam,Yield,2006,2.58,1.83359
+Vietnam,Yield,2007,2.24,2.13309
+Vietnam,Yield,2008,2.16,2.21385
+Vietnam,Yield,2009,2.09,2.24491
+Vietnam,Yield,2010,2.18,2.24644
+Vietnam,Yield,2011,2.44,2.2743
+Vietnam,Yield,2012,2.47,2.3698
+Vietnam,Yield,2013,2.69,2.44617
+Vietnam,Yield,2014,2.51,2.56413
+Vietnam,Yield,2015,2.62,2.59574
+Vietnam,Yield,2016,2.59,2.65005
+Vietnam,Yield,2017,2.78,2.67995
+Vietnam,Yield,2018,2.9,2.7562
+Vietnam,Yield,2019,2.92,2.84512
+Vietnam,Yield,2020,2.71,2.91408
+Vietnam,Yield,2021,2.95,2.90229
+Vietnam,Yield,2022,2.68,2.96339
+Vietnam,Yield,2023,2.75,2.92863
+Vietnam,Yield,2024,2.73,2.92421
+Vietnam,Yield,2025,2.9,2.91527
+Vietnam,Yield,2026,2.93,2.95814
+Uganda,Production Arabica,1998,436,399.164
+Uganda,Production Arabica,1999,436,439.634
+Uganda,Production Arabica,2000,355,457.092
+Uganda,Production Arabica,2001,415,445.46
+Uganda,Production Arabica,2002,450,484.466
+Uganda,Production Arabica,2003,524,514.494
+Uganda,Production Arabica,2004,545,558.527
+Uganda,Production Arabica,2005,625,583.527
+Uganda,Production Arabica,2006,579,629.715
+Uganda,Production Arabica,2007,508,630.653
+Uganda,Production Arabica,2008,650,622.613
+Uganda,Production Arabica,2009,818,691.067
+Uganda,Production Arabica,2010,644,768.859
+Uganda,Production Arabica,2011,875,723.828
+Uganda,Production Arabica,2012,800,824.245
+Uganda,Production Arabica,2013,850,814.769
+Uganda,Production Arabica,2014,800,850.183
+Uganda,Production Arabica,2015,950,849.684
+Uganda,Production Arabica,2016,1100,921.012
+Uganda,Production Arabica,2017,1200,992.34
+Uganda,Production Arabica,2018,1050,1045.71
+Uganda,Production Arabica,2019,1025,1009.3
+Uganda,Production Arabica,2020,730,1017.78
+Uganda,Production Arabica,2021,990,929.293
+Uganda,Production Arabica,2022,990,1040.12
+Uganda,Production Arabica,2023,1000,1057.58
+Uganda,Production Arabica,2024,1030,1078.63
+Uganda,Production Arabica,2025,1120,1106.86
+Uganda,Production Arabica,2026,1135,1156.64
+Uganda,Production Robusta,1998,3204,
+Uganda,Production Robusta,1999,3272,3204
+Uganda,Production Robusta,2000,2742,3272
+Uganda,Production Robusta,2001,2850,2742
+Uganda,Production Robusta,2002,2306,2850
+Uganda,Production Robusta,2003,2221,2306
+Uganda,Production Robusta,2004,2149,2221
+Uganda,Production Robusta,2005,1550,2149
+Uganda,Production Robusta,2006,2326,1550
+Uganda,Production Robusta,2007,2982,2326
+Uganda,Production Robusta,2008,2610,2982
+Uganda,Production Robusta,2009,2052,2610
+Uganda,Production Robusta,2010,2568,2052
+Uganda,Production Robusta,2011,2200,2568
+Uganda,Production Robusta,2012,2800,2200
+Uganda,Production Robusta,2013,3000,2800
+Uganda,Production Robusta,2014,2700,3000
+Uganda,Production Robusta,2015,2600,2700
+Uganda,Production Robusta,2016,3775,2600
+Uganda,Production Robusta,2017,3400,3775
+Uganda,Production Robusta,2018,3600,3400
+Uganda,Production Robusta,2019,4450,3600
+Uganda,Production Robusta,2020,5900,4450
+Uganda,Production Robusta,2021,5060,5900
+Uganda,Production Robusta,2022,5575,5060
+Uganda,Production Robusta,2023,5400,5575
+Uganda,Production Robusta,2024,5670,5400
+Uganda,Production Robusta,2025,5975,5670
+Uganda,Production Robusta,2026,6025,5975
+Uganda,Production Total,1998,3640,
+Uganda,Production Total,1999,3708,3640
+Uganda,Production Total,2000,3097,3708
+Uganda,Production Total,2001,3265,3097
+Uganda,Production Total,2002,2756,3265
+Uganda,Production Total,2003,2745,2756
+Uganda,Production Total,2004,2694,2745
+Uganda,Production Total,2005,2175,2694
+Uganda,Production Total,2006,2905,2175
+Uganda,Production Total,2007,3490,2905
+Uganda,Production Total,2008,3260,3490
+Uganda,Production Total,2009,2870,3260
+Uganda,Production Total,2010,3212,2870
+Uganda,Production Total,2011,3075,3212
+Uganda,Production Total,2012,3600,3075
+Uganda,Production Total,2013,3850,3600
+Uganda,Production Total,2014,3500,3850
+Uganda,Production Total,2015,3550,3500
+Uganda,Production Total,2016,4875,3550
+Uganda,Production Total,2017,4600,4875
+Uganda,Production Total,2018,4650,4600
+Uganda,Production Total,2019,5475,4650
+Uganda,Production Total,2020,6630,5475
+Uganda,Production Total,2021,6050,6630
+Uganda,Production Total,2022,6565,6050
+Uganda,Production Total,2023,6400,6565
+Uganda,Production Total,2024,6700,6400
+Uganda,Production Total,2025,7095,6700
+Uganda,Production Total,2026,7160,7095
+Uganda,Area total,2008,236,
+Uganda,Area total,2009,248,255.944
+Uganda,Area total,2010,260,267.944
+Uganda,Area total,2011,298,279.944
+Uganda,Area total,2012,323,317.944
+Uganda,Area total,2013,350,342.944
+Uganda,Area total,2014,351,369.944
+Uganda,Area total,2015,352,370.944
+Uganda,Area total,2016,353,371.944
+Uganda,Area total,2017,354,372.944
+Uganda,Area total,2018,355,373.944
+Uganda,Area total,2019,560,374.944
+Uganda,Area total,2020,560,579.944
+Uganda,Area total,2021,560,579.944
+Uganda,Area total,2022,565,579.944
+Uganda,Area total,2023,580,584.944
+Uganda,Area total,2024,580,599.944
+Uganda,Area total,2025,590,599.944
+Uganda,Area total,2026,595,609.944
+Uganda,Output per planted ha,2008,13.8136,11.5041
+Uganda,Output per planted ha,2009,11.5726,11.5041
+Uganda,Output per planted ha,2010,12.3538,11.5041
+Uganda,Output per planted ha,2011,10.3188,11.5041
+Uganda,Output per planted ha,2012,11.1455,11.5041
+Uganda,Output per planted ha,2013,11,11.5041
+Uganda,Output per planted ha,2014,9.9715,11.5041
+Uganda,Output per planted ha,2015,10.0852,11.5041
+Uganda,Output per planted ha,2016,11.5398,11.5041
+Uganda,Output per planted ha,2017,12.9944,11.5041
+Uganda,Output per planted ha,2018,13.0986,11.5041
+Uganda,Output per planted ha,2019,9.7768,11.5041
+Uganda,Output per planted ha,2020,11.8393,11.5041
+Uganda,Output per planted ha,2021,10.8036,11.5041
+Uganda,Output per planted ha,2022,11.6195,11.5041
+Uganda,Output per planted ha,2023,11.0345,11.5041
+Uganda,Output per planted ha,2024,11.5517,11.5041
+Uganda,Output per planted ha,2025,12.0254,11.5041
+Uganda,Output per planted ha,2026,12.0336,11.5041

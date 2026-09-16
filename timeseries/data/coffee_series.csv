@@ -1,0 +1,1438 @@
+country,source,variable,series,unit,crop_year,year,value
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2001/2002,2001,26600.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2002/2003,2002,23000.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2003/2004,2003,39600.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2004/2005,2004,22600.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2005/2006,2005,34300.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2006/2007,2006,26000.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2007/2008,2007,36000.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2008/2009,2008,26300.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2009/2010,2009,33000.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2010/2011,2010,41800.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2011/2012,2011,34700.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2012/2013,2012,41100.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2013/2014,2013,39500.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2014/2015,2014,37300.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2015/2016,2015,36100.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2016/2017,2016,45600.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2017/2018,2017,38500.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2018/2019,2018,48200.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2019/2020,2019,39900.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2020/2021,2020,47800.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2021/2022,2021,36400.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2022/2023,2022,39800.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2023/2024,2023,44900.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2024/2025,2024,44000.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2025/2026,2025,38000.0
+Brazil,USDA / CONAB,production,Production Arabica,1000 60-kg bags,2026/2027,2026,47500.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2001/2002,2001,7500.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2002/2003,2002,10700.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2003/2004,2003,12000.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2004/2005,2004,9400.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2005/2006,2005,9300.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2006/2007,2006,10100.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2007/2008,2007,10700.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2008/2009,2008,11300.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2009/2010,2009,11800.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2010/2011,2010,12700.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2011/2012,2011,14500.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2012/2013,2012,15000.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2013/2014,2013,15000.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2014/2015,2014,17000.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2015/2016,2015,13300.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2016/2017,2016,10500.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2017/2018,2017,12400.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2018/2019,2018,16600.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2019/2020,2019,18100.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2020/2021,2020,20100.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2021/2022,2021,21700.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2022/2023,2022,22800.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2023/2024,2023,21400.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2024/2025,2024,21000.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2025/2026,2025,25000.0
+Brazil,USDA / CONAB,production,Production Robusta,1000 60-kg bags,2026/2027,2026,24400.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2001/2002,2001,34100.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2002/2003,2002,33700.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2003/2004,2003,51600.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2004/2005,2004,32000.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2005/2006,2005,43600.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2006/2007,2006,36100.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2007/2008,2007,46700.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2008/2009,2008,37600.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2009/2010,2009,44800.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2010/2011,2010,54500.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2011/2012,2011,49200.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2012/2013,2012,56100.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2013/2014,2013,54500.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2014/2015,2014,54300.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2015/2016,2015,49400.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2016/2017,2016,56100.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2017/2018,2017,50900.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2018/2019,2018,64800.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2019/2020,2019,58000.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2020/2021,2020,67900.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2021/2022,2021,58100.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2022/2023,2022,62600.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2023/2024,2023,66300.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2024/2025,2024,65000.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2025/2026,2025,63000.0
+Brazil,USDA / CONAB,production,Production Total,1000 60-kg bags,2026/2027,2026,71900.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2001/2002,2001,2488.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2002/2003,2002,2535.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2003/2004,2003,2675.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2004/2005,2004,2379.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2005/2006,2005,2458.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2006/2007,2006,2471.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2007/2008,2007,2431.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2008/2009,2008,2424.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2009/2010,2009,2395.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2010/2011,2010,2409.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2011/2012,2011,2410.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2012/2013,2012,2387.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2013/2014,2013,2442.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2014/2015,2014,2437.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2015/2016,2015,2410.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2016/2017,2016,2410.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2017/2018,2017,2400.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2018/2019,2018,2395.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2019/2020,2019,2390.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2020/2021,2020,2420.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2021/2022,2021,2480.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2022/2023,2022,2495.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2023/2024,2023,2510.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2024/2025,2024,2235.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2025/2026,2025,2255.0
+Brazil,USDA / CONAB,area,Area total,1000 ha,2026/2027,2026,2342.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2001/2002,2001,433.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2002/2003,2002,530.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2003/2004,2003,315.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2004/2005,2004,205.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2005/2006,2005,153.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2006/2007,2006,166.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2007/2008,2007,196.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2008/2009,2008,201.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2009/2010,2009,244.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2010/2011,2010,234.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2011/2012,2011,260.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2012/2013,2012,282.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2013/2014,2013,307.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2014/2015,2014,347.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2015/2016,2015,340.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2016/2017,2016,340.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2017/2018,2017,380.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2018/2019,2018,335.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2019/2020,2019,350.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2020/2021,2020,320.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2021/2022,2021,470.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2022/2023,2022,475.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2023/2024,2023,480.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2024/2025,2024,354.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2025/2026,2025,396.0
+Brazil,USDA / CONAB,area,Area non-bearing,1000 ha,2026/2027,2026,402.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2001/2002,2001,2055.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2002/2003,2002,2005.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2003/2004,2003,2360.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2004/2005,2004,2174.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2005/2006,2005,2305.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2006/2007,2006,2305.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2007/2008,2007,2235.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2008/2009,2008,2223.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2009/2010,2009,2151.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2010/2011,2010,2175.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2011/2012,2011,2150.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2012/2013,2012,2105.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2013/2014,2013,2135.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2014/2015,2014,2090.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2015/2016,2015,2070.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2016/2017,2016,2070.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2017/2018,2017,2020.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2018/2019,2018,2060.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2019/2020,2019,2040.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2020/2021,2020,2100.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2021/2022,2021,2010.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2022/2023,2022,2020.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2023/2024,2023,2030.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2024/2025,2024,1881.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2025/2026,2025,1859.0
+Brazil,USDA / CONAB,area,Area bearing,1000 ha,2026/2027,2026,1941.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,1998/1999,1998,553.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,1999/2000,1999,939.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2000/2001,2000,1435.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2001/2002,2001,1385.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2002/2003,2002,1440.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2003/2004,2003,1125.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2004/2005,2004,631.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2005/2006,2005,466.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2006/2007,2006,513.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2007/2008,2007,679.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2008/2009,2008,677.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2009/2010,2009,873.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2010/2011,2010,815.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2011/2012,2011,835.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2012/2013,2012,1000.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2013/2014,2013,1055.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2014/2015,2014,1185.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2015/2016,2015,1125.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2016/2017,2016,1125.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2017/2018,2017,1300.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2018/2019,2018,1150.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2019/2020,2019,1230.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2020/2021,2020,1050.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2021/2022,2021,1500.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2022/2023,2022,1510.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2023/2024,2023,1324.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2024/2025,2024,1306.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2025/2026,2025,1440.0
+Brazil,USDA / CONAB,trees,Trees non-bearing,million trees,2026/2027,2026,1461.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,1998/1999,1998,3200.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,1999/2000,1999,3330.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2000/2001,2000,3485.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2001/2002,2001,4015.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2002/2003,2002,4270.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2003/2004,2003,5265.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2004/2005,2004,5050.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2005/2006,2005,5255.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2006/2007,2006,5220.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2007/2008,2007,5720.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2008/2009,2008,5890.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2009/2010,2009,5725.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2010/2011,2010,5820.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2011/2012,2011,5760.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2012/2013,2012,5860.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2013/2014,2013,5810.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2014/2015,2014,5770.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2015/2016,2015,5735.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2016/2017,2016,5735.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2017/2018,2017,5640.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2018/2019,2018,5740.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2019/2020,2019,5700.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2020/2021,2020,6200.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2021/2022,2021,6010.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2022/2023,2022,6100.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2023/2024,2023,6150.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2024/2025,2024,6577.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2025/2026,2025,6482.0
+Brazil,USDA / CONAB,trees,Trees bearing,million trees,2026/2027,2026,6876.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2003/2004,2003,6390.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2004/2005,2004,5681.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2005/2006,2005,5721.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2006/2007,2006,5733.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2007/2008,2007,6399.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2008/2009,2008,6567.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2009/2010,2009,6598.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2010/2011,2010,6635.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2011/2012,2011,6595.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2012/2013,2012,6860.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2013/2014,2013,6865.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2014/2015,2014,6955.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2015/2016,2015,6860.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2016/2017,2016,6860.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2017/2018,2017,6940.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2018/2019,2018,6890.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2019/2020,2019,6930.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2020/2021,2020,7250.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2021/2022,2021,7510.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2022/2023,2022,7610.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2023/2024,2023,7474.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2024/2025,2024,7883.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2025/2026,2025,7922.0
+Brazil,USDA / CONAB,trees,Trees total,million trees,2026/2027,2026,8337.0
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2003/2004,2003,21.8644
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2004/2005,2004,14.7194
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2005/2006,2005,18.9154
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2006/2007,2006,15.6616
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2007/2008,2007,20.8949
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2008/2009,2008,16.9141
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2009/2010,2009,20.8275
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2010/2011,2010,25.0575
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2011/2012,2011,22.8837
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2012/2013,2012,26.6508
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2013/2014,2013,25.5269
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2014/2015,2014,25.9809
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2015/2016,2015,23.8647
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2016/2017,2016,27.1014
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2017/2018,2017,25.198
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2018/2019,2018,31.4563
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2019/2020,2019,28.4314
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2020/2021,2020,32.3333
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2021/2022,2021,28.9055
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2022/2023,2022,30.9901
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2023/2024,2023,32.6601
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2024/2025,2024,34.5561
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2025/2026,2025,33.8892
+Brazil,USDA / CONAB,yield,Yield,bags/ha,2026/2027,2026,37.0428
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,1998/1999,1998,10868.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,1999/2000,1999,10000.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2000/2001,2000,10520.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2001/2002,2001,11000.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2002/2003,2002,11712.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2003/2004,2003,11053.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2004/2005,2004,11532.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2005/2006,2005,11953.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2006/2007,2006,12164.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2007/2008,2007,12515.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2008/2009,2008,8664.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2009/2010,2009,8100.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2010/2011,2010,8525.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2011/2012,2011,7655.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2012/2013,2012,9927.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2013/2014,2013,12075.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2014/2015,2014,13300.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2015/2016,2015,14000.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2016/2017,2016,14600.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2017/2018,2017,13825.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2018/2019,2018,13870.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2019/2020,2019,14100.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2020/2021,2020,13400.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2021/2022,2021,11800.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2022/2023,2022,10700.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2023/2024,2023,12760.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2024/2025,2024,14800.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2025/2026,2025,12500.0
+Colombia,USDA,production,Production Arabica,1000 60-kg bags,2026/2027,2026,13400.0
+Colombia,USDA,area,Area total,1000 ha,1998/1999,1998,869.0
+Colombia,USDA,area,Area total,1000 ha,1999/2000,1999,836.0
+Colombia,USDA,area,Area total,1000 ha,2000/2001,2000,805.0
+Colombia,USDA,area,Area total,1000 ha,2001/2002,2001,805.0
+Colombia,USDA,area,Area total,1000 ha,2002/2003,2002,775.0
+Colombia,USDA,area,Area total,1000 ha,2003/2004,2003,770.0
+Colombia,USDA,area,Area total,1000 ha,2004/2005,2004,765.0
+Colombia,USDA,area,Area total,1000 ha,2005/2006,2005,780.0
+Colombia,USDA,area,Area total,1000 ha,2006/2007,2006,780.0
+Colombia,USDA,area,Area total,1000 ha,2007/2008,2007,780.0
+Colombia,USDA,area,Area total,1000 ha,2008/2009,2008,780.0
+Colombia,USDA,area,Area total,1000 ha,2009/2010,2009,780.0
+Colombia,USDA,area,Area total,1000 ha,2010/2011,2010,780.0
+Colombia,USDA,area,Area total,1000 ha,2011/2012,2011,780.0
+Colombia,USDA,area,Area total,1000 ha,2012/2013,2012,780.0
+Colombia,USDA,area,Area total,1000 ha,2013/2014,2013,780.0
+Colombia,USDA,area,Area total,1000 ha,2014/2015,2014,780.0
+Colombia,USDA,area,Area total,1000 ha,2015/2016,2015,780.0
+Colombia,USDA,area,Area total,1000 ha,2016/2017,2016,780.0
+Colombia,USDA,area,Area total,1000 ha,2017/2018,2017,780.0
+Colombia,USDA,area,Area total,1000 ha,2018/2019,2018,780.0
+Colombia,USDA,area,Area total,1000 ha,2019/2020,2019,800.0
+Colombia,USDA,area,Area total,1000 ha,2020/2021,2020,800.0
+Colombia,USDA,area,Area total,1000 ha,2021/2022,2021,800.0
+Colombia,USDA,area,Area total,1000 ha,2022/2023,2022,800.0
+Colombia,USDA,area,Area total,1000 ha,2023/2024,2023,800.0
+Colombia,USDA,area,Area total,1000 ha,2024/2025,2024,800.0
+Colombia,USDA,area,Area total,1000 ha,2025/2026,2025,800.0
+Colombia,USDA,area,Area total,1000 ha,2026/2027,2026,800.0
+Colombia,USDA,area,Area non-bearing,1000 ha,1998/1999,1998,83.0
+Colombia,USDA,area,Area non-bearing,1000 ha,1999/2000,1999,121.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2000/2001,2000,155.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2001/2002,2001,155.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2002/2003,2002,145.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2003/2004,2003,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2004/2005,2004,145.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2005/2006,2005,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2006/2007,2006,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2007/2008,2007,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2008/2009,2008,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2009/2010,2009,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2010/2011,2010,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2011/2012,2011,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2012/2013,2012,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2013/2014,2013,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2014/2015,2014,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2015/2016,2015,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2016/2017,2016,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2017/2018,2017,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2018/2019,2018,140.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2019/2020,2019,160.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2020/2021,2020,160.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2021/2022,2021,160.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2022/2023,2022,160.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2023/2024,2023,160.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2024/2025,2024,160.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2025/2026,2025,160.0
+Colombia,USDA,area,Area non-bearing,1000 ha,2026/2027,2026,160.0
+Colombia,USDA,area,Area bearing,1000 ha,1998/1999,1998,786.0
+Colombia,USDA,area,Area bearing,1000 ha,1999/2000,1999,715.0
+Colombia,USDA,area,Area bearing,1000 ha,2000/2001,2000,650.0
+Colombia,USDA,area,Area bearing,1000 ha,2001/2002,2001,650.0
+Colombia,USDA,area,Area bearing,1000 ha,2002/2003,2002,630.0
+Colombia,USDA,area,Area bearing,1000 ha,2003/2004,2003,630.0
+Colombia,USDA,area,Area bearing,1000 ha,2004/2005,2004,620.0
+Colombia,USDA,area,Area bearing,1000 ha,2005/2006,2005,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2006/2007,2006,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2007/2008,2007,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2008/2009,2008,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2009/2010,2009,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2010/2011,2010,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2011/2012,2011,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2012/2013,2012,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2013/2014,2013,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2014/2015,2014,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2015/2016,2015,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2016/2017,2016,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2017/2018,2017,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2018/2019,2018,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2019/2020,2019,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2020/2021,2020,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2021/2022,2021,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2022/2023,2022,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2023/2024,2023,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2024/2025,2024,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2025/2026,2025,640.0
+Colombia,USDA,area,Area bearing,1000 ha,2026/2027,2026,640.0
+Colombia,USDA,trees,Trees total,million trees,1998/1999,1998,3692.0
+Colombia,USDA,trees,Trees total,million trees,1999/2000,1999,3763.0
+Colombia,USDA,trees,Trees total,million trees,2000/2001,2000,3820.0
+Colombia,USDA,trees,Trees total,million trees,2001/2002,2001,3820.0
+Colombia,USDA,trees,Trees total,million trees,2002/2003,2002,3880.0
+Colombia,USDA,trees,Trees total,million trees,2003/2004,2003,3830.0
+Colombia,USDA,trees,Trees total,million trees,2004/2005,2004,3830.0
+Colombia,USDA,trees,Trees total,million trees,2005/2006,2005,3830.0
+Colombia,USDA,trees,Trees total,million trees,2006/2007,2006,3970.0
+Colombia,USDA,trees,Trees total,million trees,2007/2008,2007,3970.0
+Colombia,USDA,trees,Trees total,million trees,2008/2009,2008,3970.0
+Colombia,USDA,trees,Trees total,million trees,2009/2010,2009,3970.0
+Colombia,USDA,trees,Trees total,million trees,2010/2011,2010,3970.0
+Colombia,USDA,trees,Trees total,million trees,2011/2012,2011,3970.0
+Colombia,USDA,trees,Trees total,million trees,2012/2013,2012,3970.0
+Colombia,USDA,trees,Trees total,million trees,2013/2014,2013,3970.0
+Colombia,USDA,trees,Trees total,million trees,2014/2015,2014,3970.0
+Colombia,USDA,trees,Trees total,million trees,2015/2016,2015,4500.0
+Colombia,USDA,trees,Trees total,million trees,2016/2017,2016,4500.0
+Colombia,USDA,trees,Trees total,million trees,2017/2018,2017,4500.0
+Colombia,USDA,trees,Trees total,million trees,2018/2019,2018,4500.0
+Colombia,USDA,trees,Trees total,million trees,2019/2020,2019,4500.0
+Colombia,USDA,trees,Trees total,million trees,2020/2021,2020,4500.0
+Colombia,USDA,trees,Trees total,million trees,2021/2022,2021,4500.0
+Colombia,USDA,trees,Trees total,million trees,2022/2023,2022,4500.0
+Colombia,USDA,trees,Trees total,million trees,2023/2024,2023,4500.0
+Colombia,USDA,trees,Trees total,million trees,2024/2025,2024,4500.0
+Colombia,USDA,trees,Trees total,million trees,2025/2026,2025,4500.0
+Colombia,USDA,trees,Trees total,million trees,2026/2027,2026,4500.0
+Colombia,USDA,trees,Trees non-bearing,million trees,1998/1999,1998,580.0
+Colombia,USDA,trees,Trees non-bearing,million trees,1999/2000,1999,773.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2000/2001,2000,1030.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2001/2002,2001,1030.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2002/2003,2002,1030.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2003/2004,2003,1030.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2004/2005,2004,1030.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2005/2006,2005,1030.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2006/2007,2006,1070.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2007/2008,2007,1070.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2008/2009,2008,1070.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2009/2010,2009,1070.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2010/2011,2010,1070.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2011/2012,2011,1070.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2012/2013,2012,1070.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2013/2014,2013,1070.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2014/2015,2014,1070.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2015/2016,2015,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2016/2017,2016,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2017/2018,2017,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2018/2019,2018,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2019/2020,2019,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2020/2021,2020,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2021/2022,2021,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2022/2023,2022,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2023/2024,2023,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2024/2025,2024,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2025/2026,2025,1000.0
+Colombia,USDA,trees,Trees non-bearing,million trees,2026/2027,2026,1000.0
+Colombia,USDA,trees,Trees bearing,million trees,1998/1999,1998,3112.0
+Colombia,USDA,trees,Trees bearing,million trees,1999/2000,1999,2990.0
+Colombia,USDA,trees,Trees bearing,million trees,2000/2001,2000,2790.0
+Colombia,USDA,trees,Trees bearing,million trees,2001/2002,2001,2790.0
+Colombia,USDA,trees,Trees bearing,million trees,2002/2003,2002,2850.0
+Colombia,USDA,trees,Trees bearing,million trees,2003/2004,2003,2800.0
+Colombia,USDA,trees,Trees bearing,million trees,2004/2005,2004,2800.0
+Colombia,USDA,trees,Trees bearing,million trees,2005/2006,2005,2800.0
+Colombia,USDA,trees,Trees bearing,million trees,2006/2007,2006,2900.0
+Colombia,USDA,trees,Trees bearing,million trees,2007/2008,2007,2900.0
+Colombia,USDA,trees,Trees bearing,million trees,2008/2009,2008,2900.0
+Colombia,USDA,trees,Trees bearing,million trees,2009/2010,2009,2900.0
+Colombia,USDA,trees,Trees bearing,million trees,2010/2011,2010,2900.0
+Colombia,USDA,trees,Trees bearing,million trees,2011/2012,2011,2900.0
+Colombia,USDA,trees,Trees bearing,million trees,2012/2013,2012,2900.0
+Colombia,USDA,trees,Trees bearing,million trees,2013/2014,2013,2900.0
+Colombia,USDA,trees,Trees bearing,million trees,2014/2015,2014,2900.0
+Colombia,USDA,trees,Trees bearing,million trees,2015/2016,2015,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2016/2017,2016,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2017/2018,2017,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2018/2019,2018,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2019/2020,2019,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2020/2021,2020,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2021/2022,2021,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2022/2023,2022,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2023/2024,2023,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2024/2025,2024,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2025/2026,2025,3500.0
+Colombia,USDA,trees,Trees bearing,million trees,2026/2027,2026,3500.0
+Colombia,USDA,yield,Yield,bags/ha,1998/1999,1998,12.5063
+Colombia,USDA,yield,Yield,bags/ha,1999/2000,1999,11.9617
+Colombia,USDA,yield,Yield,bags/ha,2000/2001,2000,13.0683
+Colombia,USDA,yield,Yield,bags/ha,2001/2002,2001,13.6646
+Colombia,USDA,yield,Yield,bags/ha,2002/2003,2002,15.1123
+Colombia,USDA,yield,Yield,bags/ha,2003/2004,2003,14.3545
+Colombia,USDA,yield,Yield,bags/ha,2004/2005,2004,15.0745
+Colombia,USDA,yield,Yield,bags/ha,2005/2006,2005,15.3244
+Colombia,USDA,yield,Yield,bags/ha,2006/2007,2006,15.5949
+Colombia,USDA,yield,Yield,bags/ha,2007/2008,2007,16.0449
+Colombia,USDA,yield,Yield,bags/ha,2008/2009,2008,11.1077
+Colombia,USDA,yield,Yield,bags/ha,2009/2010,2009,10.3846
+Colombia,USDA,yield,Yield,bags/ha,2010/2011,2010,10.9295
+Colombia,USDA,yield,Yield,bags/ha,2011/2012,2011,9.8141
+Colombia,USDA,yield,Yield,bags/ha,2012/2013,2012,12.7269
+Colombia,USDA,yield,Yield,bags/ha,2013/2014,2013,15.4808
+Colombia,USDA,yield,Yield,bags/ha,2014/2015,2014,17.0513
+Colombia,USDA,yield,Yield,bags/ha,2015/2016,2015,17.9487
+Colombia,USDA,yield,Yield,bags/ha,2016/2017,2016,18.7179
+Colombia,USDA,yield,Yield,bags/ha,2017/2018,2017,17.7244
+Colombia,USDA,yield,Yield,bags/ha,2018/2019,2018,17.7821
+Colombia,USDA,yield,Yield,bags/ha,2019/2020,2019,17.625
+Colombia,USDA,yield,Yield,bags/ha,2020/2021,2020,16.75
+Colombia,USDA,yield,Yield,bags/ha,2021/2022,2021,14.75
+Colombia,USDA,yield,Yield,bags/ha,2022/2023,2022,13.375
+Colombia,USDA,yield,Yield,bags/ha,2023/2024,2023,15.95
+Colombia,USDA,yield,Yield,bags/ha,2024/2025,2024,18.5
+Colombia,USDA,yield,Yield,bags/ha,2025/2026,2025,15.625
+Colombia,USDA,yield,Yield,bags/ha,2026/2027,2026,16.75
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2007/2008,2007,13814.9682
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2008/2009,2008,13809.7593
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2009/2010,2009,11814.857
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2010/2011,2010,12987.2415
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2011/2012,2011,10673.863
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2012/2013,2012,10446.1895
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2013/2014,2013,10867.5345
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2014/2015,2014,12139.9993
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2015/2016,2015,14175.0012
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2016/2017,2016,14231.999
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2017/2018,2017,14194.0008
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2018/2019,2018,13556.999
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2019/2020,2019,14602.2395
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2020/2021,2020,13199.2802
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2021/2022,2021,12582.2622
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2022/2023,2022,11164.3028
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2023/2024,2023,11352.8183
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2024/2025,2024,13883.971
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2025/2026,2025,13680.4225
+Colombia (Fedecafe),Fedecafe / Agronet,production,Production Arabica,1000 60-kg bags,2026/2027,2026,13400.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2007/2008,2007,860.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2008/2009,2008,867.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2009/2010,2009,873.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2010/2011,2010,884.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2011/2012,2011,922.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2012/2013,2012,957.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2013/2014,2013,974.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2014/2015,2014,948.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2015/2016,2015,941.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2016/2017,2016,932.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2017/2018,2017,904.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2018/2019,2018,877.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2019/2020,2019,860.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2020/2021,2020,851.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2021/2022,2021,842.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2022/2023,2022,844.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2023/2024,2023,840.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2024/2025,2024,839.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2025/2026,2025,836.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area total,1000 ha,2026/2027,2026,833.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2007/2008,2007,94.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2008/2009,2008,109.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2009/2010,2009,118.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2010/2011,2010,140.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2011/2012,2011,210.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2012/2013,2012,247.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2013/2014,2013,202.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2014/2015,2014,220.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2015/2016,2015,140.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2016/2017,2016,154.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2017/2018,2017,151.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2018/2019,2018,157.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2019/2020,2019,163.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2020/2021,2020,134.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2021/2022,2021,146.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2022/2023,2022,145.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2023/2024,2023,142.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2024/2025,2024,168.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2025/2026,2025,183.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area non-bearing,1000 ha,2026/2027,2026,193.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2000/2001,2000,675.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2001/2002,2001,705.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2002/2003,2002,711.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2003/2004,2003,721.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2004/2005,2004,771.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2005/2006,2005,807.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2006/2007,2006,786.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2007/2008,2007,766.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2008/2009,2008,758.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2009/2010,2009,755.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2010/2011,2010,744.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2011/2012,2011,712.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2012/2013,2012,710.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2013/2014,2013,772.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2014/2015,2014,728.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2015/2016,2015,801.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2016/2017,2016,778.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2017/2018,2017,753.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2018/2019,2018,720.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2019/2020,2019,697.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2020/2021,2020,717.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2021/2022,2021,696.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2022/2023,2022,699.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2023/2024,2023,698.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2024/2025,2024,671.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2025/2026,2025,653.0
+Colombia (Fedecafe),Fedecafe / Agronet,area,Area bearing,1000 ha,2026/2027,2026,640.0
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2012/2013,2012,3007.7143
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2013/2014,2013,3896.0
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2014/2015,2014,4062.8571
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2015/2016,2015,4032.8571
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2016/2017,2016,4739.8857
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2017/2018,2017,4700.8
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2018/2019,2018,4560.4
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2019/2020,2019,4499.52
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2020/2021,2020,4477.111
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2021/2022,2021,4435.656
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2022/2023,2022,4462.228
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2023/2024,2023,4465.44
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2024/2025,2024,4480.26
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2025/2026,2025,4485.14
+Colombia (Fedecafe),Fedecafe / Agronet,trees,Trees total,million trees,2026/2027,2026,4500.0
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2007/2008,2007,18.024
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2008/2009,2008,18.2113
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2009/2010,2009,15.6561
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2010/2011,2010,17.4485
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2011/2012,2011,14.9832
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2012/2013,2012,14.7034
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2013/2014,2013,14.0808
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2014/2015,2014,15.2596
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2015/2016,2015,17.6948
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2016/2017,2016,18.3
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2017/2018,2017,18.8425
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2018/2019,2018,18.8259
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2019/2020,2019,20.9492
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2020/2021,2020,18.4169
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2021/2022,2021,18.0836
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2022/2023,2022,15.971
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2023/2024,2023,16.2691
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2024/2025,2024,20.6855
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2025/2026,2025,20.9618
+Colombia (Fedecafe),Fedecafe / Agronet,yield,Yield,bags/ha,2026/2027,2026,16.0864
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2000/2001,2000,2876.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2001/2002,2001,2600.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2002/2003,2002,2661.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2003/2004,2003,2817.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2004/2005,2004,2575.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2005/2006,2005,3204.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2006/2007,2006,3460.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2007/2008,2007,3642.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2008/2009,2008,3373.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2009/2010,2009,3550.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2010/2011,2010,3975.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2011/2012,2011,5600.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2012/2013,2012,4725.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2013/2014,2013,4400.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2014/2015,2014,5100.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2015/2016,2015,5300.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2016/2017,2016,7510.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2017/2018,2017,7600.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2018/2019,2018,7100.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2019/2020,2019,5200.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2020/2021,2020,6500.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2021/2022,2021,4800.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2022/2023,2022,5700.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2023/2024,2023,5050.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2024/2025,2024,5200.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2025/2026,2025,5800.0
+Honduras,USDA,production,Production Arabica,1000 60-kg bags,2026/2027,2026,6030.0
+Honduras,USDA,area,Area total,1000 ha,2000/2001,2000,284.0
+Honduras,USDA,area,Area total,1000 ha,2001/2002,2001,284.0
+Honduras,USDA,area,Area total,1000 ha,2002/2003,2002,248.0
+Honduras,USDA,area,Area total,1000 ha,2003/2004,2003,248.0
+Honduras,USDA,area,Area total,1000 ha,2004/2005,2004,248.0
+Honduras,USDA,area,Area total,1000 ha,2005/2006,2005,248.0
+Honduras,USDA,area,Area total,1000 ha,2006/2007,2006,243.0
+Honduras,USDA,area,Area total,1000 ha,2007/2008,2007,243.0
+Honduras,USDA,area,Area total,1000 ha,2008/2009,2008,244.0
+Honduras,USDA,area,Area total,1000 ha,2009/2010,2009,244.0
+Honduras,USDA,area,Area total,1000 ha,2010/2011,2010,266.0
+Honduras,USDA,area,Area total,1000 ha,2011/2012,2011,285.0
+Honduras,USDA,area,Area total,1000 ha,2012/2013,2012,315.0
+Honduras,USDA,area,Area total,1000 ha,2013/2014,2013,263.0
+Honduras,USDA,area,Area total,1000 ha,2014/2015,2014,293.0
+Honduras,USDA,area,Area total,1000 ha,2015/2016,2015,303.0
+Honduras,USDA,area,Area total,1000 ha,2016/2017,2016,334.0
+Honduras,USDA,area,Area total,1000 ha,2017/2018,2017,342.0
+Honduras,USDA,area,Area total,1000 ha,2018/2019,2018,322.0
+Honduras,USDA,area,Area total,1000 ha,2019/2020,2019,305.0
+Honduras,USDA,area,Area total,1000 ha,2020/2021,2020,307.0
+Honduras,USDA,area,Area total,1000 ha,2021/2022,2021,307.0
+Honduras,USDA,area,Area total,1000 ha,2022/2023,2022,320.0
+Honduras,USDA,area,Area total,1000 ha,2023/2024,2023,330.0
+Honduras,USDA,area,Area total,1000 ha,2024/2025,2024,340.0
+Honduras,USDA,area,Area total,1000 ha,2025/2026,2025,350.0
+Honduras,USDA,area,Area total,1000 ha,2026/2027,2026,360.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2000/2001,2000,54.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2001/2002,2001,69.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2002/2003,2002,64.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2003/2004,2003,64.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2004/2005,2004,64.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2005/2006,2005,64.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2006/2007,2006,13.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2007/2008,2007,13.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2008/2009,2008,20.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2009/2010,2009,20.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2010/2011,2010,28.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2011/2012,2011,40.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2012/2013,2012,48.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2013/2014,2013,50.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2014/2015,2014,66.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2015/2016,2015,63.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2016/2017,2016,54.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2017/2018,2017,44.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2018/2019,2018,36.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2019/2020,2019,35.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2020/2021,2020,34.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2021/2022,2021,32.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2022/2023,2022,35.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2023/2024,2023,38.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2024/2025,2024,100.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2025/2026,2025,40.0
+Honduras,USDA,area,Area non-bearing,1000 ha,2026/2027,2026,30.0
+Honduras,USDA,area,Area bearing,1000 ha,2000/2001,2000,230.0
+Honduras,USDA,area,Area bearing,1000 ha,2001/2002,2001,215.0
+Honduras,USDA,area,Area bearing,1000 ha,2002/2003,2002,184.0
+Honduras,USDA,area,Area bearing,1000 ha,2003/2004,2003,184.0
+Honduras,USDA,area,Area bearing,1000 ha,2004/2005,2004,184.0
+Honduras,USDA,area,Area bearing,1000 ha,2005/2006,2005,184.0
+Honduras,USDA,area,Area bearing,1000 ha,2006/2007,2006,230.0
+Honduras,USDA,area,Area bearing,1000 ha,2007/2008,2007,230.0
+Honduras,USDA,area,Area bearing,1000 ha,2008/2009,2008,224.0
+Honduras,USDA,area,Area bearing,1000 ha,2009/2010,2009,224.0
+Honduras,USDA,area,Area bearing,1000 ha,2010/2011,2010,238.0
+Honduras,USDA,area,Area bearing,1000 ha,2011/2012,2011,245.0
+Honduras,USDA,area,Area bearing,1000 ha,2012/2013,2012,267.0
+Honduras,USDA,area,Area bearing,1000 ha,2013/2014,2013,213.0
+Honduras,USDA,area,Area bearing,1000 ha,2014/2015,2014,227.0
+Honduras,USDA,area,Area bearing,1000 ha,2015/2016,2015,240.0
+Honduras,USDA,area,Area bearing,1000 ha,2016/2017,2016,280.0
+Honduras,USDA,area,Area bearing,1000 ha,2017/2018,2017,298.0
+Honduras,USDA,area,Area bearing,1000 ha,2018/2019,2018,286.0
+Honduras,USDA,area,Area bearing,1000 ha,2019/2020,2019,270.0
+Honduras,USDA,area,Area bearing,1000 ha,2020/2021,2020,273.0
+Honduras,USDA,area,Area bearing,1000 ha,2021/2022,2021,275.0
+Honduras,USDA,area,Area bearing,1000 ha,2022/2023,2022,285.0
+Honduras,USDA,area,Area bearing,1000 ha,2023/2024,2023,292.0
+Honduras,USDA,area,Area bearing,1000 ha,2024/2025,2024,300.0
+Honduras,USDA,area,Area bearing,1000 ha,2025/2026,2025,310.0
+Honduras,USDA,area,Area bearing,1000 ha,2026/2027,2026,330.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2000/2001,2000,133.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2001/2002,2001,130.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2002/2003,2002,125.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2003/2004,2003,128.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2004/2005,2004,131.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2005/2006,2005,131.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2006/2007,2006,141.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2007/2008,2007,141.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2008/2009,2008,141.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2009/2010,2009,141.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2010/2011,2010,141.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2011/2012,2011,170.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2012/2013,2012,188.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2013/2014,2013,210.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2014/2015,2014,279.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2015/2016,2015,270.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2016/2017,2016,234.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2017/2018,2017,186.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2018/2019,2018,153.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2019/2020,2019,150.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2020/2021,2020,163.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2021/2022,2021,172.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2022/2023,2022,200.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2023/2024,2023,232.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2024/2025,2024,245.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2025/2026,2025,260.0
+Honduras,USDA,trees,Trees non-bearing,million trees,2026/2027,2026,270.0
+Honduras,USDA,trees,Trees bearing,million trees,2000/2001,2000,750.0
+Honduras,USDA,trees,Trees bearing,million trees,2001/2002,2001,705.0
+Honduras,USDA,trees,Trees bearing,million trees,2002/2003,2002,747.0
+Honduras,USDA,trees,Trees bearing,million trees,2003/2004,2003,769.0
+Honduras,USDA,trees,Trees bearing,million trees,2004/2005,2004,753.0
+Honduras,USDA,trees,Trees bearing,million trees,2005/2006,2005,753.0
+Honduras,USDA,trees,Trees bearing,million trees,2006/2007,2006,1049.0
+Honduras,USDA,trees,Trees bearing,million trees,2007/2008,2007,1049.0
+Honduras,USDA,trees,Trees bearing,million trees,2008/2009,2008,1049.0
+Honduras,USDA,trees,Trees bearing,million trees,2009/2010,2009,1049.0
+Honduras,USDA,trees,Trees bearing,million trees,2010/2011,2010,1049.0
+Honduras,USDA,trees,Trees bearing,million trees,2011/2012,2011,1042.0
+Honduras,USDA,trees,Trees bearing,million trees,2012/2013,2012,1068.0
+Honduras,USDA,trees,Trees bearing,million trees,2013/2014,2013,900.0
+Honduras,USDA,trees,Trees bearing,million trees,2014/2015,2014,966.0
+Honduras,USDA,trees,Trees bearing,million trees,2015/2016,2015,1020.0
+Honduras,USDA,trees,Trees bearing,million trees,2016/2017,2016,1191.0
+Honduras,USDA,trees,Trees bearing,million trees,2017/2018,2017,1269.0
+Honduras,USDA,trees,Trees bearing,million trees,2018/2019,2018,1362.0
+Honduras,USDA,trees,Trees bearing,million trees,2019/2020,2019,1290.0
+Honduras,USDA,trees,Trees bearing,million trees,2020/2021,2020,1295.0
+Honduras,USDA,trees,Trees bearing,million trees,2021/2022,2021,1375.0
+Honduras,USDA,trees,Trees bearing,million trees,2022/2023,2022,1600.0
+Honduras,USDA,trees,Trees bearing,million trees,2023/2024,2023,1800.0
+Honduras,USDA,trees,Trees bearing,million trees,2024/2025,2024,1900.0
+Honduras,USDA,trees,Trees bearing,million trees,2025/2026,2025,2000.0
+Honduras,USDA,trees,Trees bearing,million trees,2026/2027,2026,2100.0
+Honduras,USDA,trees,Trees total,million trees,2000/2001,2000,883.0
+Honduras,USDA,trees,Trees total,million trees,2001/2002,2001,835.0
+Honduras,USDA,trees,Trees total,million trees,2002/2003,2002,872.0
+Honduras,USDA,trees,Trees total,million trees,2003/2004,2003,897.0
+Honduras,USDA,trees,Trees total,million trees,2004/2005,2004,884.0
+Honduras,USDA,trees,Trees total,million trees,2005/2006,2005,884.0
+Honduras,USDA,trees,Trees total,million trees,2006/2007,2006,1190.0
+Honduras,USDA,trees,Trees total,million trees,2007/2008,2007,1190.0
+Honduras,USDA,trees,Trees total,million trees,2008/2009,2008,1190.0
+Honduras,USDA,trees,Trees total,million trees,2009/2010,2009,1190.0
+Honduras,USDA,trees,Trees total,million trees,2010/2011,2010,1190.0
+Honduras,USDA,trees,Trees total,million trees,2011/2012,2011,1212.0
+Honduras,USDA,trees,Trees total,million trees,2012/2013,2012,1256.0
+Honduras,USDA,trees,Trees total,million trees,2013/2014,2013,1110.0
+Honduras,USDA,trees,Trees total,million trees,2014/2015,2014,1245.0
+Honduras,USDA,trees,Trees total,million trees,2015/2016,2015,1290.0
+Honduras,USDA,trees,Trees total,million trees,2016/2017,2016,1425.0
+Honduras,USDA,trees,Trees total,million trees,2017/2018,2017,1455.0
+Honduras,USDA,trees,Trees total,million trees,2018/2019,2018,1515.0
+Honduras,USDA,trees,Trees total,million trees,2019/2020,2019,1440.0
+Honduras,USDA,trees,Trees total,million trees,2020/2021,2020,1458.0
+Honduras,USDA,trees,Trees total,million trees,2021/2022,2021,1547.0
+Honduras,USDA,trees,Trees total,million trees,2022/2023,2022,1800.0
+Honduras,USDA,trees,Trees total,million trees,2023/2024,2023,2032.0
+Honduras,USDA,trees,Trees total,million trees,2024/2025,2024,2145.0
+Honduras,USDA,trees,Trees total,million trees,2025/2026,2025,2260.0
+Honduras,USDA,trees,Trees total,million trees,2026/2027,2026,2370.0
+Honduras,USDA,yield,Yield,bags/ha,2000/2001,2000,12.5043
+Honduras,USDA,yield,Yield,bags/ha,2001/2002,2001,12.093
+Honduras,USDA,yield,Yield,bags/ha,2002/2003,2002,14.462
+Honduras,USDA,yield,Yield,bags/ha,2003/2004,2003,15.3098
+Honduras,USDA,yield,Yield,bags/ha,2004/2005,2004,13.9946
+Honduras,USDA,yield,Yield,bags/ha,2005/2006,2005,17.413
+Honduras,USDA,yield,Yield,bags/ha,2006/2007,2006,15.0435
+Honduras,USDA,yield,Yield,bags/ha,2007/2008,2007,15.8348
+Honduras,USDA,yield,Yield,bags/ha,2008/2009,2008,15.058
+Honduras,USDA,yield,Yield,bags/ha,2009/2010,2009,15.8482
+Honduras,USDA,yield,Yield,bags/ha,2010/2011,2010,16.7017
+Honduras,USDA,yield,Yield,bags/ha,2011/2012,2011,22.8571
+Honduras,USDA,yield,Yield,bags/ha,2012/2013,2012,17.6966
+Honduras,USDA,yield,Yield,bags/ha,2013/2014,2013,20.6573
+Honduras,USDA,yield,Yield,bags/ha,2014/2015,2014,22.467
+Honduras,USDA,yield,Yield,bags/ha,2015/2016,2015,22.0833
+Honduras,USDA,yield,Yield,bags/ha,2016/2017,2016,26.8214
+Honduras,USDA,yield,Yield,bags/ha,2017/2018,2017,25.5034
+Honduras,USDA,yield,Yield,bags/ha,2018/2019,2018,24.8252
+Honduras,USDA,yield,Yield,bags/ha,2019/2020,2019,19.2593
+Honduras,USDA,yield,Yield,bags/ha,2020/2021,2020,23.8095
+Honduras,USDA,yield,Yield,bags/ha,2021/2022,2021,17.4545
+Honduras,USDA,yield,Yield,bags/ha,2022/2023,2022,20.0
+Honduras,USDA,yield,Yield,bags/ha,2023/2024,2023,17.2945
+Honduras,USDA,yield,Yield,bags/ha,2024/2025,2024,17.3333
+Honduras,USDA,yield,Yield,bags/ha,2025/2026,2025,18.7097
+Honduras,USDA,yield,Yield,bags/ha,2026/2027,2026,18.2727
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2004/2005,2004,7500.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2005/2006,2005,8400.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2006/2007,2006,6600.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2007/2008,2007,7200.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2008/2009,2008,8700.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2009/2010,2009,9000.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2010/2011,2010,7950.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2011/2012,2011,7000.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2012/2013,2012,9900.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2013/2014,2013,10000.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2014/2015,2014,9200.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2015/2016,2015,10600.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2016/2017,2016,9300.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2017/2018,2017,9400.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2018/2019,2018,9400.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2019/2020,2019,9450.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2020/2021,2020,9400.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2021/2022,2021,9300.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2022/2023,2022,9500.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2023/2024,2023,6800.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2024/2025,2024,9300.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2025/2026,2025,11000.0
+Indonesia,USDA,production,Production Robusta,1000 60-kg bags,2026/2027,2026,10000.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2004/2005,2004,950.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2005/2006,2005,1050.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2006/2007,2006,1050.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2007/2008,2007,800.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2008/2009,2008,1300.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2009/2010,2009,1500.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2010/2011,2010,1375.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2011/2012,2011,1300.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2012/2013,2012,2000.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2013/2014,2013,1900.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2014/2015,2014,1270.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2015/2016,2015,1500.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2016/2017,2016,1300.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2017/2018,2017,1000.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2018/2019,2018,1200.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2019/2020,2019,1250.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2020/2021,2020,1300.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2021/2022,2021,1280.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2022/2023,2022,1200.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2023/2024,2023,1350.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2024/2025,2024,1400.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2025/2026,2025,1370.0
+Indonesia,USDA,production,Production Arabica,1000 60-kg bags,2026/2027,2026,1380.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2004/2005,2004,8450.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2005/2006,2005,9450.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2006/2007,2006,7650.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2007/2008,2007,8000.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2008/2009,2008,10000.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2009/2010,2009,10500.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2010/2011,2010,9325.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2011/2012,2011,8300.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2012/2013,2012,11900.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2013/2014,2013,11900.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2014/2015,2014,10470.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2015/2016,2015,12100.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2016/2017,2016,10600.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2017/2018,2017,10400.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2018/2019,2018,10600.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2019/2020,2019,10700.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2020/2021,2020,10700.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2021/2022,2021,10580.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2022/2023,2022,10700.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2023/2024,2023,8150.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2024/2025,2024,10700.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2025/2026,2025,12370.0
+Indonesia,USDA,production,Production Total,1000 60-kg bags,2026/2027,2026,11380.0
+Indonesia,USDA,area,Area non-bearing,million ha,2004/2005,2004,1.05
+Indonesia,USDA,area,Area non-bearing,million ha,2005/2006,2005,1.05
+Indonesia,USDA,area,Area non-bearing,million ha,2006/2007,2006,1.3
+Indonesia,USDA,area,Area non-bearing,million ha,2007/2008,2007,1.32
+Indonesia,USDA,area,Area non-bearing,million ha,2008/2009,2008,1.32
+Indonesia,USDA,area,Area non-bearing,million ha,2009/2010,2009,1.3
+Indonesia,USDA,area,Area non-bearing,million ha,2010/2011,2010,1.265
+Indonesia,USDA,area,Area non-bearing,million ha,2011/2012,2011,1.25
+Indonesia,USDA,area,Area non-bearing,million ha,2012/2013,2012,1.234
+Indonesia,USDA,area,Area non-bearing,million ha,2013/2014,2013,1.236
+Indonesia,USDA,area,Area non-bearing,million ha,2014/2015,2014,1.238
+Indonesia,USDA,area,Area non-bearing,million ha,2015/2016,2015,1.24
+Indonesia,USDA,area,Area non-bearing,million ha,2016/2017,2016,1.24
+Indonesia,USDA,area,Area non-bearing,million ha,2017/2018,2017,1.25
+Indonesia,USDA,area,Area non-bearing,million ha,2018/2019,2018,1.25
+Indonesia,USDA,area,Area non-bearing,million ha,2019/2020,2019,1.25
+Indonesia,USDA,area,Area non-bearing,million ha,2020/2021,2020,1.25
+Indonesia,USDA,area,Area non-bearing,million ha,2021/2022,2021,1.25
+Indonesia,USDA,area,Area non-bearing,million ha,2022/2023,2022,1.25
+Indonesia,USDA,area,Area non-bearing,million ha,2023/2024,2023,1.25
+Indonesia,USDA,area,Area non-bearing,million ha,2024/2025,2024,1.25
+Indonesia,USDA,area,Area non-bearing,million ha,2025/2026,2025,1.25
+Indonesia,USDA,area,Area non-bearing,million ha,2026/2027,2026,1.25
+Indonesia,USDA,area,Area bearing,million ha,2004/2005,2004,0.925
+Indonesia,USDA,area,Area bearing,million ha,2005/2006,2005,0.825
+Indonesia,USDA,area,Area bearing,million ha,2006/2007,2006,0.9
+Indonesia,USDA,area,Area bearing,million ha,2007/2008,2007,0.95
+Indonesia,USDA,area,Area bearing,million ha,2008/2009,2008,0.95
+Indonesia,USDA,area,Area bearing,million ha,2009/2010,2009,1.2
+Indonesia,USDA,area,Area bearing,million ha,2010/2011,2010,1.165
+Indonesia,USDA,area,Area bearing,million ha,2011/2012,2011,1.15
+Indonesia,USDA,area,Area bearing,million ha,2012/2013,2012,1.18
+Indonesia,USDA,area,Area bearing,million ha,2013/2014,2013,1.2
+Indonesia,USDA,area,Area bearing,million ha,2014/2015,2014,1.2
+Indonesia,USDA,area,Area bearing,million ha,2015/2016,2015,1.2
+Indonesia,USDA,area,Area bearing,million ha,2016/2017,2016,1.2
+Indonesia,USDA,area,Area bearing,million ha,2017/2018,2017,1.2
+Indonesia,USDA,area,Area bearing,million ha,2018/2019,2018,1.2
+Indonesia,USDA,area,Area bearing,million ha,2019/2020,2019,1.2
+Indonesia,USDA,area,Area bearing,million ha,2020/2021,2020,1.2
+Indonesia,USDA,area,Area bearing,million ha,2021/2022,2021,1.2
+Indonesia,USDA,area,Area bearing,million ha,2022/2023,2022,1.2
+Indonesia,USDA,area,Area bearing,million ha,2023/2024,2023,1.2
+Indonesia,USDA,area,Area bearing,million ha,2024/2025,2024,1.2
+Indonesia,USDA,area,Area bearing,million ha,2025/2026,2025,1.2
+Indonesia,USDA,area,Area bearing,million ha,2026/2027,2026,1.2
+Indonesia,USDA,area,Area total,million ha,2004/2005,2004,1.975
+Indonesia,USDA,area,Area total,million ha,2005/2006,2005,1.875
+Indonesia,USDA,area,Area total,million ha,2006/2007,2006,2.2
+Indonesia,USDA,area,Area total,million ha,2007/2008,2007,2.27
+Indonesia,USDA,area,Area total,million ha,2008/2009,2008,2.27
+Indonesia,USDA,area,Area total,million ha,2009/2010,2009,2.5
+Indonesia,USDA,area,Area total,million ha,2010/2011,2010,2.43
+Indonesia,USDA,area,Area total,million ha,2011/2012,2011,2.4
+Indonesia,USDA,area,Area total,million ha,2012/2013,2012,2.414
+Indonesia,USDA,area,Area total,million ha,2013/2014,2013,2.436
+Indonesia,USDA,area,Area total,million ha,2014/2015,2014,2.438
+Indonesia,USDA,area,Area total,million ha,2015/2016,2015,2.44
+Indonesia,USDA,area,Area total,million ha,2016/2017,2016,2.44
+Indonesia,USDA,area,Area total,million ha,2017/2018,2017,2.45
+Indonesia,USDA,area,Area total,million ha,2018/2019,2018,2.45
+Indonesia,USDA,area,Area total,million ha,2019/2020,2019,2.45
+Indonesia,USDA,area,Area total,million ha,2020/2021,2020,2.45
+Indonesia,USDA,area,Area total,million ha,2021/2022,2021,2.45
+Indonesia,USDA,area,Area total,million ha,2022/2023,2022,2.45
+Indonesia,USDA,area,Area total,million ha,2023/2024,2023,2.45
+Indonesia,USDA,area,Area total,million ha,2024/2025,2024,2.45
+Indonesia,USDA,area,Area total,million ha,2025/2026,2025,2.45
+Indonesia,USDA,area,Area total,million ha,2026/2027,2026,2.45
+Indonesia,USDA,trees,Trees non-bearing,million trees,2004/2005,2004,235.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2005/2006,2005,235.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2006/2007,2006,240.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2007/2008,2007,190.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2008/2009,2008,190.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2009/2010,2009,190.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2010/2011,2010,105.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2011/2012,2011,105.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2012/2013,2012,50.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2013/2014,2013,34.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2014/2015,2014,17.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2015/2016,2015,15.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2016/2017,2016,15.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2017/2018,2017,15.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2018/2019,2018,15.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2019/2020,2019,15.0
+Indonesia,USDA,trees,Trees non-bearing,million trees,2020/2021,2020,15.0
+Indonesia,USDA,trees,Trees bearing,million trees,2004/2005,2004,1145.0
+Indonesia,USDA,trees,Trees bearing,million trees,2005/2006,2005,1145.0
+Indonesia,USDA,trees,Trees bearing,million trees,2006/2007,2006,1160.0
+Indonesia,USDA,trees,Trees bearing,million trees,2007/2008,2007,1200.0
+Indonesia,USDA,trees,Trees bearing,million trees,2008/2009,2008,1390.0
+Indonesia,USDA,trees,Trees bearing,million trees,2009/2010,2009,1470.0
+Indonesia,USDA,trees,Trees bearing,million trees,2010/2011,2010,1230.0
+Indonesia,USDA,trees,Trees bearing,million trees,2011/2012,2011,1215.0
+Indonesia,USDA,trees,Trees bearing,million trees,2012/2013,2012,1168.0
+Indonesia,USDA,trees,Trees bearing,million trees,2013/2014,2013,1170.0
+Indonesia,USDA,trees,Trees bearing,million trees,2014/2015,2014,1155.0
+Indonesia,USDA,trees,Trees bearing,million trees,2015/2016,2015,1160.0
+Indonesia,USDA,trees,Trees bearing,million trees,2016/2017,2016,1160.0
+Indonesia,USDA,trees,Trees bearing,million trees,2017/2018,2017,1160.0
+Indonesia,USDA,trees,Trees bearing,million trees,2018/2019,2018,1160.0
+Indonesia,USDA,trees,Trees bearing,million trees,2019/2020,2019,1160.0
+Indonesia,USDA,trees,Trees bearing,million trees,2020/2021,2020,1160.0
+Indonesia,USDA,trees,Trees total,million trees,2004/2005,2004,1380.0
+Indonesia,USDA,trees,Trees total,million trees,2005/2006,2005,1380.0
+Indonesia,USDA,trees,Trees total,million trees,2006/2007,2006,1400.0
+Indonesia,USDA,trees,Trees total,million trees,2007/2008,2007,1390.0
+Indonesia,USDA,trees,Trees total,million trees,2008/2009,2008,1580.0
+Indonesia,USDA,trees,Trees total,million trees,2009/2010,2009,1660.0
+Indonesia,USDA,trees,Trees total,million trees,2010/2011,2010,1335.0
+Indonesia,USDA,trees,Trees total,million trees,2011/2012,2011,1320.0
+Indonesia,USDA,trees,Trees total,million trees,2012/2013,2012,1218.0
+Indonesia,USDA,trees,Trees total,million trees,2013/2014,2013,1204.0
+Indonesia,USDA,trees,Trees total,million trees,2014/2015,2014,1172.0
+Indonesia,USDA,trees,Trees total,million trees,2015/2016,2015,1175.0
+Indonesia,USDA,trees,Trees total,million trees,2016/2017,2016,1175.0
+Indonesia,USDA,trees,Trees total,million trees,2017/2018,2017,1175.0
+Indonesia,USDA,trees,Trees total,million trees,2018/2019,2018,1175.0
+Indonesia,USDA,trees,Trees total,million trees,2019/2020,2019,1175.0
+Indonesia,USDA,trees,Trees total,million trees,2020/2021,2020,1175.0
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2004/2005,2004,9.1351
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2005/2006,2005,11.4545
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2006/2007,2006,8.5
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2007/2008,2007,8.4211
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2008/2009,2008,10.5263
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2009/2010,2009,8.75
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2010/2011,2010,8.0043
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2011/2012,2011,7.2174
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2012/2013,2012,10.0847
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2013/2014,2013,9.9167
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2014/2015,2014,8.725
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2015/2016,2015,10.0833
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2016/2017,2016,8.8333
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2017/2018,2017,8.6667
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2018/2019,2018,8.8333
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2019/2020,2019,8.9167
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2020/2021,2020,8.9167
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2021/2022,2021,8.8167
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2022/2023,2022,8.9167
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2023/2024,2023,6.7917
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2024/2025,2024,8.9167
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2025/2026,2025,10.3083
+Indonesia,USDA,yield,Yield (production / bearing area),bags/ha,2026/2027,2026,9.4833
+Indonesia,USDA,production,Production (BPS),1000 t,2004/2005,2004,647.0
+Indonesia,USDA,production,Production (BPS),1000 t,2005/2006,2005,640.0
+Indonesia,USDA,production,Production (BPS),1000 t,2006/2007,2006,682.0
+Indonesia,USDA,production,Production (BPS),1000 t,2007/2008,2007,676.0
+Indonesia,USDA,production,Production (BPS),1000 t,2008/2009,2008,698.0
+Indonesia,USDA,production,Production (BPS),1000 t,2009/2010,2009,683.0
+Indonesia,USDA,production,Production (BPS),1000 t,2010/2011,2010,687.0
+Indonesia,USDA,production,Production (BPS),1000 t,2011/2012,2011,639.0
+Indonesia,USDA,production,Production (BPS),1000 t,2012/2013,2012,691.0
+Indonesia,USDA,production,Production (BPS),1000 t,2013/2014,2013,676.0
+Indonesia,USDA,production,Production (BPS),1000 t,2014/2015,2014,644.0
+Indonesia,USDA,production,Production (BPS),1000 t,2015/2016,2015,639.0
+Indonesia,USDA,production,Production (BPS),1000 t,2016/2017,2016,664.0
+Indonesia,USDA,production,Production (BPS),1000 t,2017/2018,2017,716.0
+Indonesia,USDA,production,Production (BPS),1000 t,2018/2019,2018,756.0
+Indonesia,USDA,production,Production (BPS),1000 t,2019/2020,2019,753.0
+Indonesia,USDA,production,Production (BPS),1000 t,2020/2021,2020,762.0
+Indonesia,USDA,production,Production (BPS),1000 t,2021/2022,2021,786.0
+Indonesia,USDA,production,Production (BPS),1000 t,2022/2023,2022,775.0
+Indonesia,USDA,production,Production (BPS),1000 t,2023/2024,2023,759.0
+Indonesia,USDA,area,Area total (BPS),million ha,2004/2005,2004,1.304
+Indonesia,USDA,area,Area total (BPS),million ha,2005/2006,2005,1.255
+Indonesia,USDA,area,Area total (BPS),million ha,2006/2007,2006,1.309
+Indonesia,USDA,area,Area total (BPS),million ha,2007/2008,2007,1.296
+Indonesia,USDA,area,Area total (BPS),million ha,2008/2009,2008,1.295
+Indonesia,USDA,area,Area total (BPS),million ha,2009/2010,2009,1.266
+Indonesia,USDA,area,Area total (BPS),million ha,2010/2011,2010,1.21
+Indonesia,USDA,area,Area total (BPS),million ha,2011/2012,2011,1.234
+Indonesia,USDA,area,Area total (BPS),million ha,2012/2013,2012,1.235
+Indonesia,USDA,area,Area total (BPS),million ha,2013/2014,2013,1.242
+Indonesia,USDA,area,Area total (BPS),million ha,2014/2015,2014,1.23
+Indonesia,USDA,area,Area total (BPS),million ha,2015/2016,2015,1.23
+Indonesia,USDA,area,Area total (BPS),million ha,2016/2017,2016,1.246
+Indonesia,USDA,area,Area total (BPS),million ha,2017/2018,2017,1.238
+Indonesia,USDA,area,Area total (BPS),million ha,2018/2019,2018,1.253
+Indonesia,USDA,area,Area total (BPS),million ha,2019/2020,2019,1.245
+Indonesia,USDA,area,Area total (BPS),million ha,2020/2021,2020,1.25
+Indonesia,USDA,area,Area total (BPS),million ha,2021/2022,2021,1.28
+Indonesia,USDA,area,Area total (BPS),million ha,2022/2023,2022,1.266
+Indonesia,USDA,area,Area total (BPS),million ha,2023/2024,2023,1.266
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,1995/1996,1995,3900.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,1996/1997,1996,5450.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,1997/1998,1997,6933.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,1998/1999,1998,7433.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,1999/2000,1999,10920.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2000/2001,2000,16216.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2001/2002,2001,12084.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2002/2003,2002,10917.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2003/2004,2003,14734.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2004/2005,2004,14117.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2005/2006,2005,13200.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2006/2007,2006,20770.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2007/2008,2007,17933.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2008/2009,2008,17529.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2009/2010,2009,18050.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2010/2011,2010,18867.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2011/2012,2011,25200.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2012/2013,2012,25600.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2013/2014,2013,28658.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2014/2015,2014,26350.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2015/2016,2015,27830.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2016/2017,2016,25600.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2017/2018,2017,28274.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2018/2019,2018,29336.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2019/2020,2019,30200.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2020/2021,2020,28050.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2021/2022,2021,30480.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2022/2023,2022,27300.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2023/2024,2023,26550.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2024/2025,2024,28000.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2025/2026,2025,30500.0
+Vietnam,USDA,production,Production Robusta,1000 60-kg bags,2026/2027,2026,31400.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,1995/1996,1995,17.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,1996/1997,1996,50.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,1997/1998,1997,67.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,1998/1999,1998,67.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,1999/2000,1999,90.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2000/2001,2000,117.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2001/2002,2001,166.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2002/2003,2002,250.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2003/2004,2003,266.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2004/2005,2004,383.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2005/2006,2005,300.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2006/2007,2006,49.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2007/2008,2007,400.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2008/2009,2008,480.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2009/2010,2009,450.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2010/2011,2010,600.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2011/2012,2011,800.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2012/2013,2012,900.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2013/2014,2013,1175.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2014/2015,2014,1050.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2015/2016,2015,1100.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2016/2017,2016,1100.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2017/2018,2017,1026.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2018/2019,2018,1064.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2019/2020,2019,1100.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2020/2021,2020,950.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2021/2022,2021,1100.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2022/2023,2022,900.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2023/2024,2023,1000.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2024/2025,2024,1100.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2025/2026,2025,1200.0
+Vietnam,USDA,production,Production Arabica,1000 60-kg bags,2026/2027,2026,1100.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,1995/1996,1995,3917.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,1996/1997,1996,5500.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,1997/1998,1997,7000.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,1998/1999,1998,7500.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,1999/2000,1999,11010.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2000/2001,2000,16333.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2001/2002,2001,12250.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2002/2003,2002,11167.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2003/2004,2003,15000.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2004/2005,2004,14500.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2005/2006,2005,13500.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2006/2007,2006,20819.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2007/2008,2007,18333.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2008/2009,2008,18009.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2009/2010,2009,18500.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2010/2011,2010,19467.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2011/2012,2011,26000.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2012/2013,2012,26500.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2013/2014,2013,29833.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2014/2015,2014,27400.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2015/2016,2015,28930.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2016/2017,2016,26700.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2017/2018,2017,29300.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2018/2019,2018,30400.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2019/2020,2019,31300.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2020/2021,2020,29000.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2021/2022,2021,31580.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2022/2023,2022,28200.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2023/2024,2023,27550.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2024/2025,2024,29100.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2025/2026,2025,31700.0
+Vietnam,USDA,production,Production Total,1000 60-kg bags,2026/2027,2026,32500.0
+Vietnam,USDA,area,Area total,1000 ha,1995/1996,1995,186.0
+Vietnam,USDA,area,Area total,1000 ha,1996/1997,1996,254.0
+Vietnam,USDA,area,Area total,1000 ha,1997/1998,1997,340.0
+Vietnam,USDA,area,Area total,1000 ha,1998/1999,1998,350.0
+Vietnam,USDA,area,Area total,1000 ha,1999/2000,1999,460.0
+Vietnam,USDA,area,Area total,1000 ha,2000/2001,2000,560.0
+Vietnam,USDA,area,Area total,1000 ha,2001/2002,2001,540.0
+Vietnam,USDA,area,Area total,1000 ha,2002/2003,2002,520.0
+Vietnam,USDA,area,Area total,1000 ha,2003/2004,2003,510.0
+Vietnam,USDA,area,Area total,1000 ha,2004/2005,2004,500.0
+Vietnam,USDA,area,Area total,1000 ha,2005/2006,2005,495.0
+Vietnam,USDA,area,Area total,1000 ha,2006/2007,2006,515.0
+Vietnam,USDA,area,Area total,1000 ha,2007/2008,2007,523.0
+Vietnam,USDA,area,Area total,1000 ha,2008/2009,2008,531.0
+Vietnam,USDA,area,Area total,1000 ha,2009/2010,2009,536.0
+Vietnam,USDA,area,Area total,1000 ha,2010/2011,2010,571.0
+Vietnam,USDA,area,Area total,1000 ha,2011/2012,2011,616.0
+Vietnam,USDA,area,Area total,1000 ha,2015/2016,2015,662.0
+Vietnam,USDA,area,Area total,1000 ha,2016/2017,2016,650.0
+Vietnam,USDA,area,Area total,1000 ha,2017/2018,2017,665.0
+Vietnam,USDA,area,Area total,1000 ha,2018/2019,2018,682.0
+Vietnam,USDA,area,Area total,1000 ha,2019/2020,2019,690.0
+Vietnam,USDA,area,Area total,1000 ha,2020/2021,2020,697.0
+Vietnam,USDA,area,Area total,1000 ha,2021/2022,2021,706.0
+Vietnam,USDA,area,Area total,1000 ha,2022/2023,2022,710.0
+Vietnam,USDA,area,Area total,1000 ha,2023/2024,2023,715.0
+Vietnam,USDA,area,Area total,1000 ha,2024/2025,2024,715.0
+Vietnam,USDA,area,Area total,1000 ha,2025/2026,2025,730.0
+Vietnam,USDA,area,Area total,1000 ha,2026/2027,2026,730.0
+Vietnam,USDA,area,Area total,1000 ha,2029/2030,2029,727.18
+Vietnam,USDA,area,Area non-bearing,1000 ha,1995/1996,1995,86.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,1996/1997,1996,48.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,1997/1998,1997,70.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,1998/1999,1998,80.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,1999/2000,1999,100.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2000/2001,2000,110.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2001/2002,2001,70.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2002/2003,2002,10.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2003/2004,2003,10.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2004/2005,2004,5.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2005/2006,2005,10.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2006/2007,2006,20.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2007/2008,2007,33.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2008/2009,2008,31.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2009/2010,2009,32.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2016/2017,2016,58.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2017/2018,2017,60.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2018/2019,2018,75.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2019/2020,2019,70.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2020/2021,2020,77.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2021/2022,2021,86.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2022/2023,2022,98.5
+Vietnam,USDA,area,Area non-bearing,1000 ha,2023/2024,2023,103.5
+Vietnam,USDA,area,Area non-bearing,1000 ha,2024/2025,2024,100.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2025/2026,2025,99.8
+Vietnam,USDA,area,Area non-bearing,1000 ha,2026/2027,2026,86.0
+Vietnam,USDA,area,Area non-bearing,1000 ha,2027/2028,2027,96.6
+Vietnam,USDA,area,Area bearing,1000 ha,1995/1996,1995,100.0
+Vietnam,USDA,area,Area bearing,1000 ha,1996/1997,1996,206.0
+Vietnam,USDA,area,Area bearing,1000 ha,1997/1998,1997,270.0
+Vietnam,USDA,area,Area bearing,1000 ha,1998/1999,1998,270.0
+Vietnam,USDA,area,Area bearing,1000 ha,1999/2000,1999,360.0
+Vietnam,USDA,area,Area bearing,1000 ha,2000/2001,2000,450.0
+Vietnam,USDA,area,Area bearing,1000 ha,2001/2002,2001,470.0
+Vietnam,USDA,area,Area bearing,1000 ha,2002/2003,2002,510.0
+Vietnam,USDA,area,Area bearing,1000 ha,2003/2004,2003,500.0
+Vietnam,USDA,area,Area bearing,1000 ha,2004/2005,2004,495.0
+Vietnam,USDA,area,Area bearing,1000 ha,2005/2006,2005,485.0
+Vietnam,USDA,area,Area bearing,1000 ha,2006/2007,2006,495.0
+Vietnam,USDA,area,Area bearing,1000 ha,2007/2008,2007,490.0
+Vietnam,USDA,area,Area bearing,1000 ha,2008/2009,2008,500.0
+Vietnam,USDA,area,Area bearing,1000 ha,2009/2010,2009,504.0
+Vietnam,USDA,area,Area bearing,1000 ha,2012/2013,2012,644.0
+Vietnam,USDA,area,Area bearing,1000 ha,2013/2014,2013,665.4
+Vietnam,USDA,area,Area bearing,1000 ha,2014/2015,2014,665.0
+Vietnam,USDA,area,Area bearing,1000 ha,2016/2017,2016,592.0
+Vietnam,USDA,area,Area bearing,1000 ha,2017/2018,2017,605.0
+Vietnam,USDA,area,Area bearing,1000 ha,2018/2019,2018,607.0
+Vietnam,USDA,area,Area bearing,1000 ha,2019/2020,2019,620.0
+Vietnam,USDA,area,Area bearing,1000 ha,2020/2021,2020,620.0
+Vietnam,USDA,area,Area bearing,1000 ha,2021/2022,2021,620.0
+Vietnam,USDA,area,Area bearing,1000 ha,2022/2023,2022,611.5
+Vietnam,USDA,area,Area bearing,1000 ha,2023/2024,2023,611.5
+Vietnam,USDA,area,Area bearing,1000 ha,2024/2025,2024,615.0
+Vietnam,USDA,area,Area bearing,1000 ha,2025/2026,2025,630.2
+Vietnam,USDA,area,Area bearing,1000 ha,2026/2027,2026,644.0
+Vietnam,USDA,yield,Yield,t/ha,2003/2004,2003,1.8
+Vietnam,USDA,yield,Yield,t/ha,2004/2005,2004,1.76
+Vietnam,USDA,yield,Yield,t/ha,2005/2006,2005,1.69
+Vietnam,USDA,yield,Yield,t/ha,2006/2007,2006,2.58
+Vietnam,USDA,yield,Yield,t/ha,2007/2008,2007,2.24
+Vietnam,USDA,yield,Yield,t/ha,2008/2009,2008,2.16
+Vietnam,USDA,yield,Yield,t/ha,2009/2010,2009,2.09
+Vietnam,USDA,yield,Yield,t/ha,2010/2011,2010,2.18
+Vietnam,USDA,yield,Yield,t/ha,2011/2012,2011,2.44
+Vietnam,USDA,yield,Yield,t/ha,2012/2013,2012,2.47
+Vietnam,USDA,yield,Yield,t/ha,2013/2014,2013,2.69
+Vietnam,USDA,yield,Yield,t/ha,2014/2015,2014,2.51
+Vietnam,USDA,yield,Yield,t/ha,2015/2016,2015,2.62
+Vietnam,USDA,yield,Yield,t/ha,2016/2017,2016,2.59
+Vietnam,USDA,yield,Yield,t/ha,2017/2018,2017,2.78
+Vietnam,USDA,yield,Yield,t/ha,2018/2019,2018,2.9
+Vietnam,USDA,yield,Yield,t/ha,2019/2020,2019,2.92
+Vietnam,USDA,yield,Yield,t/ha,2020/2021,2020,2.71
+Vietnam,USDA,yield,Yield,t/ha,2021/2022,2021,2.95
+Vietnam,USDA,yield,Yield,t/ha,2022/2023,2022,2.68
+Vietnam,USDA,yield,Yield,t/ha,2023/2024,2023,2.75
+Vietnam,USDA,yield,Yield,t/ha,2024/2025,2024,2.73
+Vietnam,USDA,yield,Yield,t/ha,2025/2026,2025,2.9
+Vietnam,USDA,yield,Yield,t/ha,2026/2027,2026,2.93
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,1998/1999,1998,436.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,1999/2000,1999,436.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2000/2001,2000,355.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2001/2002,2001,415.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2002/2003,2002,450.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2003/2004,2003,524.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2004/2005,2004,545.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2005/2006,2005,625.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2006/2007,2006,579.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2007/2008,2007,508.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2008/2009,2008,650.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2009/2010,2009,818.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2010/2011,2010,644.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2011/2012,2011,875.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2012/2013,2012,800.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2013/2014,2013,850.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2014/2015,2014,800.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2015/2016,2015,950.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2016/2017,2016,1100.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2017/2018,2017,1200.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2018/2019,2018,1050.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2019/2020,2019,1025.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2020/2021,2020,730.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2021/2022,2021,990.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2022/2023,2022,990.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2023/2024,2023,1000.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2024/2025,2024,1030.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2025/2026,2025,1120.0
+Uganda,USDA,production,Production Arabica,1000 60-kg bags,2026/2027,2026,1135.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,1998/1999,1998,3204.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,1999/2000,1999,3272.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2000/2001,2000,2742.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2001/2002,2001,2850.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2002/2003,2002,2306.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2003/2004,2003,2221.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2004/2005,2004,2149.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2005/2006,2005,1550.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2006/2007,2006,2326.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2007/2008,2007,2982.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2008/2009,2008,2610.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2009/2010,2009,2052.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2010/2011,2010,2568.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2011/2012,2011,2200.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2012/2013,2012,2800.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2013/2014,2013,3000.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2014/2015,2014,2700.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2015/2016,2015,2600.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2016/2017,2016,3775.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2017/2018,2017,3400.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2018/2019,2018,3600.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2019/2020,2019,4450.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2020/2021,2020,5900.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2021/2022,2021,5060.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2022/2023,2022,5575.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2023/2024,2023,5400.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2024/2025,2024,5670.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2025/2026,2025,5975.0
+Uganda,USDA,production,Production Robusta,1000 60-kg bags,2026/2027,2026,6025.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,1998/1999,1998,3640.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,1999/2000,1999,3708.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2000/2001,2000,3097.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2001/2002,2001,3265.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2002/2003,2002,2756.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2003/2004,2003,2745.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2004/2005,2004,2694.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2005/2006,2005,2175.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2006/2007,2006,2905.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2007/2008,2007,3490.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2008/2009,2008,3260.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2009/2010,2009,2870.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2010/2011,2010,3212.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2011/2012,2011,3075.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2012/2013,2012,3600.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2013/2014,2013,3850.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2014/2015,2014,3500.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2015/2016,2015,3550.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2016/2017,2016,4875.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2017/2018,2017,4600.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2018/2019,2018,4650.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2019/2020,2019,5475.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2020/2021,2020,6630.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2021/2022,2021,6050.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2022/2023,2022,6565.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2023/2024,2023,6400.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2024/2025,2024,6700.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2025/2026,2025,7095.0
+Uganda,USDA,production,Production Total,1000 60-kg bags,2026/2027,2026,7160.0
+Uganda,USDA,area,Area total,1000 ha,2008/2009,2008,236.0
+Uganda,USDA,area,Area total,1000 ha,2009/2010,2009,248.0
+Uganda,USDA,area,Area total,1000 ha,2010/2011,2010,260.0
+Uganda,USDA,area,Area total,1000 ha,2011/2012,2011,298.0
+Uganda,USDA,area,Area total,1000 ha,2012/2013,2012,323.0
+Uganda,USDA,area,Area total,1000 ha,2013/2014,2013,350.0
+Uganda,USDA,area,Area total,1000 ha,2014/2015,2014,351.0
+Uganda,USDA,area,Area total,1000 ha,2015/2016,2015,352.0
+Uganda,USDA,area,Area total,1000 ha,2017/2018,2017,354.0
+Uganda,USDA,area,Area total,1000 ha,2018/2019,2018,355.0
+Uganda,USDA,area,Area total,1000 ha,2019/2020,2019,560.0
+Uganda,USDA,area,Area total,1000 ha,2020/2021,2020,560.0
+Uganda,USDA,area,Area total,1000 ha,2021/2022,2021,560.0
+Uganda,USDA,area,Area total,1000 ha,2022/2023,2022,565.0
+Uganda,USDA,area,Area total,1000 ha,2023/2024,2023,580.0
+Uganda,USDA,area,Area total,1000 ha,2024/2025,2024,580.0
+Uganda,USDA,area,Area total,1000 ha,2025/2026,2025,590.0
+Uganda,USDA,area,Area total,1000 ha,2026/2027,2026,595.0
+Uganda,USDA,area,Area non-bearing,1000 ha,2019/2020,2019,35.0
+Uganda,USDA,area,Area non-bearing,1000 ha,2020/2021,2020,15.0
+Uganda,USDA,area,Area non-bearing,1000 ha,2021/2022,2021,10.0
+Uganda,USDA,area,Area non-bearing,1000 ha,2022/2023,2022,5.0
+Uganda,USDA,area,Area non-bearing,1000 ha,2023/2024,2023,10.0
+Uganda,USDA,area,Area non-bearing,1000 ha,2024/2025,2024,10.0
+Uganda,USDA,area,Area non-bearing,1000 ha,2025/2026,2025,15.0
+Uganda,USDA,area,Area non-bearing,1000 ha,2026/2027,2026,15.0
+Uganda,USDA,area,Area bearing,1000 ha,2019/2020,2019,525.0
+Uganda,USDA,area,Area bearing,1000 ha,2020/2021,2020,545.0
+Uganda,USDA,area,Area bearing,1000 ha,2021/2022,2021,550.0
+Uganda,USDA,area,Area bearing,1000 ha,2022/2023,2022,560.0
+Uganda,USDA,area,Area bearing,1000 ha,2023/2024,2023,570.0
+Uganda,USDA,area,Area bearing,1000 ha,2024/2025,2024,570.0
+Uganda,USDA,area,Area bearing,1000 ha,2025/2026,2025,575.0
+Uganda,USDA,area,Area bearing,1000 ha,2026/2027,2026,580.0
+Uganda,USDA,yield,Yield (per harvested ha),bags/ha,2019/2020,2019,10.4286
+Uganda,USDA,yield,Yield (per harvested ha),bags/ha,2020/2021,2020,12.1651
+Uganda,USDA,yield,Yield (per harvested ha),bags/ha,2021/2022,2021,11.0
+Uganda,USDA,yield,Yield (per harvested ha),bags/ha,2022/2023,2022,11.7232
+Uganda,USDA,yield,Yield (per harvested ha),bags/ha,2023/2024,2023,11.2281
+Uganda,USDA,yield,Yield (per harvested ha),bags/ha,2024/2025,2024,11.7544
+Uganda,USDA,yield,Yield (per harvested ha),bags/ha,2025/2026,2025,12.3391
+Uganda,USDA,yield,Yield (per harvested ha),bags/ha,2026/2027,2026,12.3448
+Uganda,USDA,yield,Output per planted ha,bags/ha,2008/2009,2008,13.8136
+Uganda,USDA,yield,Output per planted ha,bags/ha,2009/2010,2009,11.5726
+Uganda,USDA,yield,Output per planted ha,bags/ha,2010/2011,2010,12.3538
+Uganda,USDA,yield,Output per planted ha,bags/ha,2011/2012,2011,10.3188
+Uganda,USDA,yield,Output per planted ha,bags/ha,2012/2013,2012,11.1455
+Uganda,USDA,yield,Output per planted ha,bags/ha,2013/2014,2013,11.0
+Uganda,USDA,yield,Output per planted ha,bags/ha,2014/2015,2014,9.9715
+Uganda,USDA,yield,Output per planted ha,bags/ha,2015/2016,2015,10.0852
+Uganda,USDA,yield,Output per planted ha,bags/ha,2017/2018,2017,12.9944
+Uganda,USDA,yield,Output per planted ha,bags/ha,2018/2019,2018,13.0986
+Uganda,USDA,yield,Output per planted ha,bags/ha,2019/2020,2019,9.7768
+Uganda,USDA,yield,Output per planted ha,bags/ha,2020/2021,2020,11.8393
+Uganda,USDA,yield,Output per planted ha,bags/ha,2021/2022,2021,10.8036
+Uganda,USDA,yield,Output per planted ha,bags/ha,2022/2023,2022,11.6195
+Uganda,USDA,yield,Output per planted ha,bags/ha,2023/2024,2023,11.0345
+Uganda,USDA,yield,Output per planted ha,bags/ha,2024/2025,2024,11.5517
+Uganda,USDA,yield,Output per planted ha,bags/ha,2025/2026,2025,12.0254
+Uganda,USDA,yield,Output per planted ha,bags/ha,2026/2027,2026,12.0336
