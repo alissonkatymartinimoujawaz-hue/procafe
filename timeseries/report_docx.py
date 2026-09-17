@@ -542,6 +542,18 @@ def build(country, D):
                 cls_rows.append([cls.replace("El Nino", "El Niño").replace("La Nina", "La Niña"), len(g), f"{g.arabica_anom.mean():+.1f} %", f"{g.robusta_anom.mean():+.1f} %",
                                  f"{g.total_anom.mean():+.1f} %", f"{g.yield_anom.mean():+.1f} %", f"{g.rain_mg_dev.mean():+.0f} mm / {g.temp_mg_dev.mean():+.1f} °C",
                                  f"{g.rain_es_dev.mean():+.0f} mm / {g.temp_es_dev.mean():+.1f} °C", " ".join(g.campagne)])
+        # client convention: RONI growing-season index, YoY change, robusta / arabica
+        cl = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_client_summary.csv"))
+        para(doc, "Ta convention (index RONI de la saison de croissance, variation d'une campagne à l'autre, robusta et arabica séparés ; "
+                  "détail et graphiques dans brazil_enso_client.xlsx) :", bold=True)
+        rows_c = [[r.enso_class, r.index_range, int(r.n), f"{r.Robusta_avg_change_pct:+.1f} %" if pd.notna(r.Robusta_avg_change_pct) else "–",
+                   f"{r.Arabica_avg_change_pct:+.1f} %" if pd.notna(r.Arabica_avg_change_pct) else "–",
+                   f"{r.ES_rain_dev_mm:+.0f} mm / {r.ES_temp_dev_c:+.1f} °C" if pd.notna(r.ES_rain_dev_mm) else "–", r.crop_years] for _, r in cl.iterrows()]
+        add_table(doc, ["ENSO class", "Index (RONI)", "Occurrences", "Robusta avg change", "Arabica avg change", "Espírito Santo rain / temp dev.", "Crop years"],
+                  rows_c, widths=[2.6, 2.2, 1.6, 2.2, 2.2, 3.2, 5], font=7.5)
+        para(doc, "Index de la campagne Y/Y+1 = valeur extrême du RONI entre SON de Y−1 et FMA de Y (floraison → fin du remplissage). "
+                  "Classement identique à ta liste ; 2009/10 ressort La Niña par l'index (−1,0) alors qu'elle n'y figurait pas. "
+                  "Espírito Santo = moyenne de l'État, en attendant São Mateus et Linhares (NASA POWER).", size=8, italic=True, color="52514e")
         para(doc, "Moyennes par classe d'intensité (campagnes N+1) :", bold=True)
         add_table(doc, ["Classe", "n", "Arabica", "Robusta", "Total", "Rendement", "Minas Gerais", "Espírito Santo", "Campagnes"], cls_rows,
                   widths=[2.8, 0.8, 1.5, 1.5, 1.5, 1.6, 2.3, 2.3, 3.5], font=7)

@@ -36,8 +36,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "data", "weather_regions.csv")
 
 REGIONS = {
-    "sao_mateus":      [("Sao Mateus", -18.716, -39.859), ("Nova Venecia", -18.716, -40.400),
-                        ("Jaguare", -18.906, -40.075)],
+    "sao_mateus":      [("Sao Mateus", -18.716, -39.859), ("Linhares", -19.391, -40.072),
+                        ("Nova Venecia", -18.716, -40.400), ("Jaguare", -18.906, -40.075)],
     "cerrado_mineiro": [("Patrocinio", -18.944, -46.993), ("Araguari", -18.647, -48.187),
                         ("Monte Carmelo", -18.724, -47.499)],
     "sul_de_minas":    [("Varginha", -21.567, -45.406), ("Carmo de Minas", -22.175, -45.151),
