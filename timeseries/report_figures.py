@@ -184,7 +184,7 @@ def client_bars(summ, path):
 def client_weather(years, base, path):
     """Espirito Santo (robusta) and Minas Gerais (arabica) rain / temperature by ENSO class, deviation from the 1998-2025 mean."""
     fig, axes = plt.subplots(1, 2, figsize=(11, 3.8))
-    states = [("ES", "Espírito Santo (São Mateus / Linhares proxy)"), ("MG", "Minas Gerais (Cerrado / Sul de Minas proxy)")]
+    states = [("ES", "Espírito Santo\n(São Mateus / Linhares proxy)"), ("MG", "Minas Gerais\n(Cerrado / Sul de Minas proxy)")]
     for ax, (kind, unit, ttl) in zip(axes, [("rain", "mm", "Annual rainfall: deviation from 1998-2025 mean"), ("temp", "°C", "Mean temperature: deviation from 1998-2025 mean")]):
         x = np.arange(len(states)); w = 0.8 / len(CLIENT_CLASSES)
         for k, (cls, lab, col) in enumerate(CLIENT_CLASSES):
