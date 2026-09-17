@@ -128,11 +128,19 @@ def enso_for_crop_year(country, year):
     return s, oni, phase, strength
 
 
-def intensity_class(oni, phase):
-    """Two levels per phase, as used in the reports:
-    El Nino fort (ONI >= 1.5) / El Nino (0.5 to 1.5); La Nina forte (ONI <= -1.5) / La Nina (-0.5 to -1.5)."""
+# Thresholds on the peak index: strong >= 1.6, ordinary 0.6-1.6, weak < 0.6.
+# 2023/24 is kept as an ordinary El Nino on the user's assessment (ONI peak 2.0,
+# but relative ONI (RONI) peak only about 1.3): NOT_STRONG lists such seasons.
+STRONG, WEAK = 1.6, 0.6
+NOT_STRONG = {2023}
+
+
+def intensity_class(oni, phase, season=None):
+    """Three levels per phase: fort (|peak| >= 1.6), ordinaire (0.6-1.6), faible (< 0.6)."""
+    a = abs(oni)
+    strong = a >= STRONG and season not in NOT_STRONG
     if phase == "El Nino":
-        return "El Nino fort (ONI >= 1.5)" if oni >= 1.5 else "El Nino (ONI 0.5-1.5)"
+        return "El Nino fort" if strong else ("El Nino faible" if a < WEAK else "El Nino")
     if phase == "La Nina":
-        return "La Nina forte (ONI <= -1.5)" if oni <= -1.5 else "La Nina (ONI -0.5 a -1.5)"
+        return "La Nina forte" if strong else ("La Nina faible" if a < WEAK else "La Nina")
     return "neutre"

@@ -80,7 +80,7 @@ def main():
                              share_below_trend=(gg["anomaly_pct"] < 0).mean() * 100,
                              years=" ".join(f"{yr}/{str(yr+1)[2:]}" for yr in gg.index)))
         # intensity classes
-        ph["classe"] = [intensity_class(o, p_) for o, p_ in zip(ph.oni, ph.phase)]
+        ph["classe"] = [intensity_class(o, p_, se) for o, p_, se in zip(ph.oni, ph.phase, ph.season)]
         for cls, gg in ph.groupby("classe"):
             if cls == "neutre":
                 continue
@@ -108,7 +108,7 @@ def main():
     w = w[~w["season"].isin(EXCLUDE_SEASONS.get("Brazil", set()))]
     cols = [c for c in w.columns if c.startswith(("rain_", "temp_"))]
     mean_all = w[cols].mean()
-    w["classe"] = [intensity_class(o, p_) for o, p_ in zip(w.oni, w.phase)]
+    w["classe"] = [intensity_class(o, p_, se) for o, p_, se in zip(w.oni, w.phase, w.season)]
     out = []
     for key in ("phase", "classe"):
       for phase, gg in w.groupby(key):
@@ -131,7 +131,7 @@ def main():
         cy = season + 1
         if phase == "neutral" or cy not in col("Production Total", "value").index or season in EXCLUDE_SEASONS.get("Brazil", set()):
             continue
-        rec = dict(episode=f"{season}/{str(season+1)[2:]}", oni=oni, phase=phase, classe=intensity_class(oni, phase),
+        rec = dict(episode=f"{season}/{str(season+1)[2:]}", oni=oni, phase=phase, classe=intensity_class(oni, phase, season),
                    campagne=f"{cy}/{str(cy+1)[2:]}", year=cy, onoff="ON" if ex.loc[cy, "onoff"] == 1 else "OFF")
         for series, tag in [("Production Arabica", "arabica"), ("Production Robusta", "robusta"), ("Production Total", "total"),
                             ("Yield (production / bearing area)", "yield")]:
