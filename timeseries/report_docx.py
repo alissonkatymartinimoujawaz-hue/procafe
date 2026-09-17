@@ -241,7 +241,9 @@ COUNTRIES = {
 }
 EXCLUDE_CAMPAIGNS = {"Brazil": {2014, 2003}}      # campaigns removed from the shock tables on request
 PHASE_FR = {"El Nino": "El Niño", "La Nina": "La Niña", "neutral": "neutre", "El Nino (|ONI| >= 1)": "El Niño fort (|ONI| ≥ 1)",
-            "La Nina (|ONI| >= 1)": "La Niña forte (|ONI| ≥ 1)"}
+            "La Nina (|ONI| >= 1)": "La Niña forte (|ONI| ≥ 1)", "El Nino fort": "El Niño fort (≥ 1,6)", "El Nino ordinaire": "El Niño (0,5 à 1,5)",
+            "La Nina ordinaire": "La Niña", "La Nina forte": "La Niña forte (≤ −1,6)", "neutre": "neutre"}
+PHASE_ROWS = ["El Nino fort", "El Nino ordinaire", "neutral", "La Nina ordinaire", "La Nina forte"]
 
 
 # ----------------------------------------------------------------------------- helpers
@@ -575,7 +577,7 @@ def build(country, D):
         p = os.path.join(FIGS, f"{tag}_enso.png"); fig.enso_bars(country, D.eff, ser, p, fr)
         picture(doc, p, 16, "Figure 5. Écart moyen du rendement et de la production par phase ENSO.")
         rows = []
-        for phase in ["El Nino (|ONI| >= 1)", "El Nino", "neutral", "La Nina", "La Nina (|ONI| >= 1)"]:
+        for phase in PHASE_ROWS:
             if phase in eff.index:
                 r = eff.loc[phase]
                 rp = effp.loc[phase] if effp is not None and phase in effp.index else None
