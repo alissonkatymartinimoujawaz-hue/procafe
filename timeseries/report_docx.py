@@ -392,7 +392,7 @@ def build(country, D):
                     f"Minas Gerais {st.rain_mg_dev.mean():+.0f} mm et {st.temp_mg_dev.mean():+.1f} °C, Espírito Santo {st.rain_es_dev.mean():+.0f} mm "
                     f"et {st.temp_es_dev.mean():+.1f} °C. Robusta {st.robusta_anom.mean():+.1f} % par rapport à l'attendu, arabica {st.arabica_anom.mean():+.1f} % "
                     f"(années ON, qui tiennent grâce au cycle), total {st.total_anom.mean():+.1f} %.")
-        en = ep[ep.classe == "El Nino"]
+        en = ep[ep.classe == "El Nino ordinaire"]
         bullet(doc, f"El Niño ordinaire (pic entre 0,6 et 1,6, 2023/24 inclus : {', '.join(en.episode)}) : arabica {en.arabica_anom.mean():+.1f} %, robusta {en.robusta_anom.mean():+.1f} %, "
                     f"total {en.total_anom.mean():+.1f} % ; Minas Gerais {en.rain_mg_dev.mean():+.0f} mm, Espírito Santo {en.rain_es_dev.mean():+.0f} mm : pas de signal net.")
     target = 2027 if info["enso_season"] == "prev" else 2026
@@ -521,7 +521,7 @@ def build(country, D):
                   "pour La Niña. 2023/24 est classé El Niño simple (pic ONI 2,0 mais indice relatif RONI d'environ 1,3). "
                   "L'épisode 2014/15 est exclu des tableaux et des moyennes, comme demandé.")
         p = os.path.join(FIGS, "brazil_weather_phase.png")
-        fig.brazil_weather_phase(D.bw, p, phases=["El Nino fort", "El Nino", "neutral", "La Nina", "La Nina forte"],
+        fig.brazil_weather_phase(D.bw, p, phases=["El Nino fort", "El Nino ordinaire", "neutral", "La Nina ordinaire", "La Nina forte"],
                                  colors=[fig.C_RED, "#f08c8b", fig.C_MUTED, "#7fb0e8", fig.C_BLUE],
                                  labels=["El Niño fort", "El Niño", "neutre", "La Niña", "La Niña forte"])
         picture(doc, p, 17, "Figure 4. Météo des États caféiers pendant la campagne qui suit chaque classe d'épisode (écart à la moyenne 1998-2025).")
@@ -536,7 +536,7 @@ def build(country, D):
         add_table(doc, ["Épisode (ONI)", "Classe", "Campagne N+1", "Arabica (var. / écart)", "Robusta (var. / écart)", "Rendement écart", "Minas Gerais", "Espírito Santo"],
                   rows, widths=[2.2, 2.6, 1.9, 2.8, 2.8, 1.5, 2.2, 2.2], font=7)
         cls_rows = []
-        for cls in ["El Nino fort", "El Nino", "El Nino faible", "La Nina faible", "La Nina", "La Nina forte"]:
+        for cls in ["El Nino fort", "El Nino ordinaire", "El Nino faible", "La Nina faible", "La Nina ordinaire", "La Nina forte"]:
             g = ep[ep.classe == cls]
             if len(g):
                 cls_rows.append([cls.replace("El Nino", "El Niño").replace("La Nina", "La Niña"), len(g), f"{g.arabica_anom.mean():+.1f} %", f"{g.robusta_anom.mean():+.1f} %",
@@ -625,7 +625,7 @@ def build(country, D):
                       "milliers de sacs pour l'arabica). La météo n'entre pas dans ces chiffres : ils supposent une météo normale.", size=9, italic=True)
             am = D.armax.set_index("series")
             ep = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_episodes.csv"))
-            en_mod = ep[ep.classe == "El Nino"]; en_fort = ep[ep.classe == "El Nino fort"]
+            en_mod = ep[ep.classe == "El Nino ordinaire"]; en_fort = ep[ep.classe == "El Nino fort"]
             first_year = int(am.loc["Production Arabica", "first_year"])
             for y in years:
                 t = int(y) - first_year + 1

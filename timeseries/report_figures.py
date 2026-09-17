@@ -104,7 +104,7 @@ def history(country, data, path, enso_years=None, label=None):
 def enso_bars(country, eff, series_list, path, label=None):
     """Mean anomaly (% vs neighbouring years) by ENSO phase, one group per series."""
     e = eff[(eff.country == country) & (eff.series.isin(series_list))]
-    phases = ["El Nino fort", "El Nino", "El Nino faible", "neutral", "La Nina faible", "La Nina", "La Nina forte"]
+    phases = ["El Nino fort", "El Nino ordinaire", "El Nino faible", "neutral", "La Nina faible", "La Nina ordinaire", "La Nina forte"]
     labels = ["El Niño fort\n(≥ 1,6)", "El Niño\n(0,6 à 1,6)", "El Niño faible\n(< 0,6)", "neutre", "La Niña faible\n(> −0,6)", "La Niña\n(−0,6 à −1,6)", "La Niña forte\n(≤ −1,6)"]
     colors = [C_RED, "#f08c8b", "#f7c2c1", C_MUTED, "#c2d7f2", "#7fb0e8", C_BLUE]
     present = [i for i, p in enumerate(phases) if p == "neutral" or (e.phase == p).any()]

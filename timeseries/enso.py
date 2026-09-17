@@ -140,7 +140,7 @@ def intensity_class(oni, phase, season=None):
     a = abs(oni)
     strong = a >= STRONG and season not in NOT_STRONG
     if phase == "El Nino":
-        return "El Nino fort" if strong else ("El Nino faible" if a < WEAK else "El Nino")
+        return "El Nino fort" if strong else ("El Nino faible" if a < WEAK else "El Nino ordinaire")
     if phase == "La Nina":
-        return "La Nina forte" if strong else ("La Nina faible" if a < WEAK else "La Nina")
+        return "La Nina forte" if strong else ("La Nina faible" if a < WEAK else "La Nina ordinaire")
     return "neutre"
