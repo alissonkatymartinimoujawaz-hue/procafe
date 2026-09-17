@@ -8,7 +8,7 @@ Index of crop year Y/Y+1 = the growing-season value of the NOAA relative ONI
 3-month seasons SON(Y-1) .. FMA(Y), i.e. flowering (Sep-Nov of Y-1) to the end
 of fruit development (Apr of Y), harvest May-Sep of Y.
 Classes (client's thresholds):
-    El Nino strong   index >= 1.6
+    El Nino strong   index >= 1.6, or an El Nino peaking >= 1.6 during the marketing year (2015/16)
     El Nino normal   0.5 <= index < 1.6
     Neutral          -0.5 < index < 0.5
     La Nina          index <= -0.5
@@ -46,10 +46,12 @@ def season_index(oni, y):
     return max(vals, key=abs)
 
 
-def classify(x):
+def classify(x, peak_in_year=np.nan):
+    """peak_in_year = NDJ value of the crop year's first calendar year: an El Nino
+    peaking at >= 1.6 inside the marketing year (2015/16) counts as strong too."""
     if np.isnan(x):
         return "n/a"
-    if x >= 1.6:
+    if x >= 1.6 or (pd.notna(peak_in_year) and peak_in_year >= 1.6):
         return "El Nino strong"
     if x >= 0.5:
         return "El Nino normal"
@@ -69,7 +71,11 @@ def main():
     rows = []
     for y in years:
         idx = season_index(oni, y)
-        rec = dict(crop_year=f"{y}/{str(y + 1)[2:]}", year=y, index=idx, enso_class=classify(idx),
+        peak = oni.loc[y, "NDJ"] if y in oni.index else np.nan
+        cls = classify(idx, peak)
+        if cls == "El Nino strong" and idx < 1.6:
+            idx = peak                                    # show the peak that made it strong
+        rec = dict(crop_year=f"{y}/{str(y + 1)[2:]}", year=y, index=idx, enso_class=cls,
                    status="USDA estimate" if y >= 2026 else "historical")
         for sp in ("Robusta", "Arabica"):
             s = ser[sp]
