@@ -239,7 +239,7 @@ COUNTRIES = {
         forecast_series="Production Total", enso_series_yield="Output per planted ha",
         extra_note="Surface bearing, non-bearing et rendement par ha récolté n'existent que depuis 2019/20 ; « output per planted ha » sert de rendement sur 2008-2026."),
 }
-EXCLUDE_CAMPAIGNS = {"Brazil": {2014}}      # campaigns removed from the shock tables on request
+EXCLUDE_CAMPAIGNS = {"Brazil": {2014, 2003}}      # campaigns removed from the shock tables on request
 PHASE_FR = {"El Nino": "El Niño", "La Nina": "La Niña", "neutral": "neutre", "El Nino (|ONI| >= 1)": "El Niño fort (|ONI| ≥ 1)",
             "La Nina (|ONI| >= 1)": "La Niña forte (|ONI| ≥ 1)"}
 
@@ -519,7 +519,7 @@ def build(country, D):
                   "Exemples : El Niño 2015/16 → campagne 2016/17 ; El Niño 2023/24 → campagne 2024/25 ; El Niño 2009/10 → 2010/11. "
                   "Niveaux : El Niño fort quand le pic atteint 1,6 (2009/10, 2015/16), El Niño entre 0,6 et 1,6, faible sous 0,6 ; même grille "
                   "pour La Niña. 2023/24 est classé El Niño simple (pic ONI 2,0 mais indice relatif RONI d'environ 1,3). "
-                  "L'épisode 2014/15 est exclu des tableaux et des moyennes, comme demandé.")
+                  "Les épisodes 2014/15 et 2002/03 (campagne 2003/04) sont exclus des tableaux et des moyennes, comme demandé.")
         p = os.path.join(FIGS, "brazil_weather_phase.png")
         fig.brazil_weather_phase(D.bw, p, phases=["El Nino fort", "El Nino ordinaire", "neutral", "La Nina ordinaire", "La Nina forte"],
                                  colors=[fig.C_RED, "#f08c8b", fig.C_MUTED, "#7fb0e8", fig.C_BLUE],
