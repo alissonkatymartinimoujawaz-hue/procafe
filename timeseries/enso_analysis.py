@@ -29,7 +29,7 @@ SERIES = ["Production Total", "Production Arabica", "Production Robusta", "Yield
           "Yield (per harvested ha)", "Output per planted ha", "Area bearing", "Area total"]
 EXCLUDE = {("Vietnam", "Production Arabica")}     # 17 -> 1 200 bags: % anomalies meaningless
 # ENSO seasons left out of the averages on request (Brazil: the weak 2014/15 El Nino)
-EXCLUDE_SEASONS = {"Brazil": {2014, 2002}}     # 2014/15 and 2002/03 episodes left out on request
+EXCLUDE_SEASONS = {"Brazil": {2002}}     # 2002/03 episode (campaign 2003/04) left out on request
 
 
 def anomalies(y, onoff=None):

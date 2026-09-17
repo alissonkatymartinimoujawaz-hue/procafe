@@ -11,6 +11,7 @@ year,anomaly_pct,season,oni,phase,strength,country,series,value,yoy_pct
 2012,-1.346,2011,-1.000,La Nina,moderate,Brazil,Production Arabica,42100.000,21.326
 2013,21.313,2012,-0.600,neutral,,Brazil,Production Arabica,41800.000,-0.713
 2014,-18.961,2013,-0.500,neutral,,Brazil,Production Arabica,37300.000,-10.766
+2015,-3.004,2014,1.000,El Nino,moderate,Brazil,Production Arabica,36100.000,-3.217
 2016,3.033,2015,2.300,El Nino,very strong,Brazil,Production Arabica,45600.000,26.316
 2017,-0.298,2016,-1.000,La Nina,moderate,Brazil,Production Arabica,39500.000,-13.377
 2018,4.037,2017,-1.100,La Nina,moderate,Brazil,Production Arabica,49700.000,25.823
@@ -32,6 +33,7 @@ year,anomaly_pct,season,oni,phase,strength,country,series,value,yoy_pct
 2012,3.934,2011,-1.000,La Nina,moderate,Brazil,Production Robusta,15500.000,6.897
 2013,2.247,2012,-0.600,neutral,,Brazil,Production Robusta,15400.000,-0.645
 2014,24.215,2013,-0.500,neutral,,Brazil,Production Robusta,17000.000,10.390
+2015,-4.045,2014,1.000,El Nino,moderate,Brazil,Production Robusta,13300.000,-21.765
 2016,-29.742,2015,2.300,El Nino,very strong,Brazil,Production Robusta,10500.000,-21.053
 2017,-14.628,2016,-1.000,La Nina,moderate,Brazil,Production Robusta,12600.000,20.000
 2018,8.649,2017,-1.100,La Nina,moderate,Brazil,Production Robusta,16800.000,33.333
@@ -53,6 +55,7 @@ year,anomaly_pct,season,oni,phase,strength,country,series,value,yoy_pct
 2012,0.299,2011,-1.000,La Nina,moderate,Brazil,Production Total,57700.000,17.276
 2013,15.789,2012,-0.600,neutral,,Brazil,Production Total,57200.000,-0.867
 2014,-8.261,2013,-0.500,neutral,,Brazil,Production Total,54300.000,-5.070
+2015,-3.260,2014,1.000,El Nino,moderate,Brazil,Production Total,49400.000,-9.024
 2016,-5.800,2015,2.300,El Nino,very strong,Brazil,Production Total,56100.000,13.563
 2017,-3.942,2016,-1.000,La Nina,moderate,Brazil,Production Total,52100.000,-7.130
 2018,5.228,2017,-1.100,La Nina,moderate,Brazil,Production Total,66500.000,27.639
@@ -74,6 +77,7 @@ year,anomaly_pct,season,oni,phase,strength,country,series,value,yoy_pct
 2012,-1.547,2011,-1.000,La Nina,moderate,Brazil,Area total,2387.000,-0.954
 2013,1.286,2012,-0.600,neutral,,Brazil,Area total,2442.000,2.304
 2014,1.026,2013,-0.500,neutral,,Brazil,Area total,2437.000,-0.205
+2015,-0.506,2014,1.000,El Nino,moderate,Brazil,Area total,2410.000,-1.108
 2016,-0.021,2015,2.300,El Nino,very strong,Brazil,Area total,2410.000,0.000
 2017,-0.052,2016,-1.000,La Nina,moderate,Brazil,Area total,2400.000,-0.415
 2018,-0.416,2017,-1.100,La Nina,moderate,Brazil,Area total,2395.000,-0.208
@@ -95,6 +99,7 @@ year,anomaly_pct,season,oni,phase,strength,country,series,value,yoy_pct
 2012,-1.520,2011,-1.000,La Nina,moderate,Brazil,Area bearing,2105.000,-2.093
 2013,1.485,2012,-0.600,neutral,,Brazil,Area bearing,2135.000,1.425
 2014,-0.239,2013,-0.500,neutral,,Brazil,Area bearing,2090.000,-2.108
+2015,-0.421,2014,1.000,El Nino,moderate,Brazil,Area bearing,2070.000,-0.957
 2016,0.485,2015,2.300,El Nino,very strong,Brazil,Area bearing,2070.000,0.000
 2017,-1.942,2016,-1.000,La Nina,moderate,Brazil,Area bearing,2020.000,-2.415
 2018,0.122,2017,-1.100,La Nina,moderate,Brazil,Area bearing,2060.000,1.980
@@ -116,6 +121,7 @@ year,anomaly_pct,season,oni,phase,strength,country,series,value,yoy_pct
 2012,1.889,2011,-1.000,La Nina,moderate,Brazil,Yield (production / bearing area),27.411,19.784
 2013,14.078,2012,-0.600,neutral,,Brazil,Yield (production / bearing area),26.792,-2.259
 2014,-7.892,2013,-0.500,neutral,,Brazil,Yield (production / bearing area),25.981,-3.026
+2015,-3.013,2014,1.000,El Nino,moderate,Brazil,Yield (production / bearing area),23.865,-8.145
 2016,-6.081,2015,2.300,El Nino,very strong,Brazil,Yield (production / bearing area),27.101,13.563
 2017,-2.401,2016,-1.000,La Nina,moderate,Brazil,Yield (production / bearing area),25.792,-4.831
 2018,5.416,2017,-1.100,La Nina,moderate,Brazil,Yield (production / bearing area),32.282,25.161
