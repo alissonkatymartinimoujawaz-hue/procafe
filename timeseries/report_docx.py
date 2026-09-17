@@ -662,6 +662,9 @@ def build(country, D):
     else:
         para(doc, "Pas de prévision possible sans données propres à l'origine.")
 
+    if country == "Brazil":
+        brazil_usda_table(doc, D)
+
     # ---- 8. limits
     doc.add_heading("8. Limites et données à ajouter", 1)
     for t in ["Séries annuelles de 20 à 30 points : les effets ENSO sont des moyennes sur 8 à 15 campagnes, à présenter comme des ordres de grandeur.",
@@ -678,6 +681,73 @@ def build(country, D):
     path = os.path.join(REP, f"{fr.replace('é', 'e').replace('É', 'E')}_balance_sheet_cafe.docx")
     doc.save(path)
     return path
+
+
+USER_ROW_2027 = dict(area_planted=None, area_harvested=1906, yield_=34.82, bearing=6807, nonbearing=1592, arabica=41325, robusta=22226)
+
+
+def brazil_usda_table(doc, D):
+    """The USDA-style table 2010/11-2027/28 with the 2027/28 row filled cell by cell by the models."""
+    doc.add_heading("7 bis. Le tableau USDA 2010/11 – 2027/28 et le calcul de la ligne 2027/28", 1)
+    ex = pd.read_csv(os.path.join(HERE, "data", "exog_brazil.csv")).set_index("year")
+    ser = {k: D.s("Brazil", v) for k, v in [("planted", "Area total"), ("harv", "Area bearing"), ("bear", "Trees bearing"),
+                                              ("nonb", "Trees non-bearing"), ("arab", "Production Arabica"), ("rob", "Production Robusta")]}
+    fc = D.fc[(D.fc.country == "Brazil") & (D.fc.year == 2027)].set_index("series")
+    fa = D.armax_fc[(D.armax_fc.scenario == "normal") & (D.armax_fc.year == 2027)].set_index("series")
+    am = D.armax.set_index("series")
+    mo = D.models[D.models.country == "Brazil"].set_index("series")
+    ep = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_episodes.csv"))
+    en_o, en_f = ep[ep.classe == "El Nino ordinaire"], ep[ep.classe == "El Nino fort"]
+    planted, harv = fc.loc["Area total", "forecast"], fc.loc["Area bearing", "forecast"]
+    bear, nonb = fc.loc["Trees bearing", "forecast"], fc.loc["Trees non-bearing", "forecast"]
+    arab, rob = fa.loc["Production Arabica", "forecast"], fa.loc["Production Robusta", "forecast"]
+    yld = (arab + rob) / harv
+    arab_o, rob_o = arab * (1 + en_o.arabica_anom.mean() / 100), rob * (1 + en_o.robusta_anom.mean() / 100)
+    arab_f, rob_f = arab * (1 + en_f.arabica_anom.mean() / 100), rob * (1 + en_f.robusta_anom.mean() / 100)
+    yld_o, yld_f = (arab_o + rob_o) / harv, (arab_f + rob_f) / harv
+    hdr = ["Campagne", "Statut", "Cycle", "Surface plantée (1000 ha)", "Surface récoltée (1000 ha)", "Rendement (sacs/ha)",
+           "Arbres bearing (M)", "Arbres non-bearing (M)", "Arabica (1000 sacs)", "Robusta (1000 sacs)"]
+    rows = []
+    for y in range(2010, 2027):
+        g = lambda k: ser[k].get(y)
+        a, r, h = g("arab"), g("rob"), g("harv")
+        yv = (a + r) / h if a is not None and r is not None and h else None
+        status = "Historique" if y <= 2025 else "Estimation USDA"
+        rows.append([cy(y), status, "ON" if ex.loc[y, "onoff"] == 1 else "OFF", fmt(g("planted")), fmt(h), f"{yv:.2f}" if yv else "–",
+                     fmt(g("bear")), fmt(g("nonb")), fmt(a), fmt(r)])
+    rows.append([cy(2027), "Prévision modèles, météo normale", "OFF", fmt(planted), fmt(harv), f"{yld:.2f}", fmt(bear), fmt(nonb), fmt(arab), fmt(rob)])
+    rows.append([cy(2027), "Prévision modèles, El Niño ordinaire", "OFF", fmt(planted), fmt(harv), f"{yld_o:.2f}", fmt(bear), fmt(nonb), fmt(arab_o), fmt(rob_o)])
+    rows.append([cy(2027), "Prévision modèles, El Niño fort", "OFF", fmt(planted), fmt(harv), f"{yld_f:.2f}", fmt(bear), fmt(nonb), fmt(arab_f), fmt(rob_f)])
+    u = USER_ROW_2027
+    rows.append([cy(2027), "Ta ligne (tableau fourni)", "OFF", "–", fmt(u["area_harvested"]), f"{u['yield_']:.2f}", fmt(u["bearing"]), fmt(u["nonbearing"]), fmt(u["arabica"]), fmt(u["robusta"])])
+    add_table(doc, hdr, rows, widths=[1.6, 2.6, 1.1, 1.7, 1.7, 1.6, 1.5, 1.6, 1.7, 1.7], font=7)
+    para(doc, "Rendement = (arabica + robusta) / surface récoltée. Le tableau fourni indique 26,06 pour 2010/11 ; avec 54 500 / 2 175 on obtient 25,06.",
+         size=8, italic=True, color="52514e")
+    para(doc, "Comment chaque case de 2027/28 est calculée :", bold=True)
+    mp, mh, mb = mo.loc["Area total"], mo.loc["Area bearing"], mo.loc["Trees bearing"]
+    ra, rr = am.loc["Production Arabica"], am.loc["Production Robusta"]
+    lines = [
+        f"Cycle : OFF. 2026/27 est ON, le cycle alterne.",
+        f"Surface plantée {fmt(planted)} = {fmt(mp.mu)} (droite en 2000/01) − {abs(mp.beta):.2f} × 27 campagnes : la surface plantée baisse en moyenne de "
+        f"{abs(mp.beta):.1f} milliers d'ha par an depuis 2001/02 (2 488 → 2 342). Dernière valeur USDA : 2 342.",
+        f"Surface récoltée {fmt(harv)} = {fmt(mh.mu)} − {abs(mh.beta):.2f} × 27 : la surface en production recule de {abs(mh.beta):.1f} milliers d'ha par an "
+        f"depuis 2001/02 (2 175 → 1 941), le rendement compense. Dernière valeur USDA : 1 941.",
+        f"Arbres bearing {fmt(bear)} = 6 876 (2026/27) + {mb.c:.0f} : le stock d'arbres en production gagne en moyenne {mb.c:.0f} millions par an depuis 1998/99.",
+        f"Arbres non-bearing {fmt(nonb)} = 1 461, dernière valeur reconduite : aucune tendance stable sur cette série (marche aléatoire), l'intervalle 80 % va de "
+        f"{fmt(fc.loc['Trees non-bearing', 'lo80'])} à {fmt(fc.loc['Trees non-bearing', 'hi80'])}.",
+        f"Arabica {fmt(arab)} = {fmt(ra.c)} (point de départ 2001/02, année OFF) + {fmt(ra.b)} × 27 campagnes + 0 (année OFF, pas de bonus). "
+        f"Avec El Niño ordinaire ({en_o.arabica_anom.mean():+.1f} % historique) : {fmt(arab_o)} ; avec El Niño fort ({en_f.arabica_anom.mean():+.1f} %) : {fmt(arab_f)}.",
+        f"Robusta {fmt(rob)} = {fmt(rr.c)} + {fmt(rr.b)} × 27 campagnes (le report de surprise de 2025/26 ne joue plus). "
+        f"Avec El Niño ordinaire ({en_o.robusta_anom.mean():+.1f} %) : {fmt(rob_o)} ; avec El Niño fort ({en_f.robusta_anom.mean():+.1f} %) : {fmt(rob_f)}.",
+        f"Rendement {yld:.2f} = ({fmt(arab)} + {fmt(rob)}) / {fmt(harv)} ; El Niño ordinaire {yld_o:.2f} ; El Niño fort {yld_f:.2f}. "
+        f"Contrôle : le modèle de rendement direct (ON/OFF + tendance) donne {fa.loc['Yield (production / bearing area)', 'forecast']:.2f} sacs/ha, "
+        f"soit {fmt(fa.loc['Yield (production / bearing area)', 'forecast'] * harv)} milliers de sacs par la surface récoltée : cohérent à 2 % près avec la production prévue.",
+        f"Comparaison avec ta ligne : arabica {fmt(u['arabica'])} est entre mon scénario El Niño ordinaire ({fmt(arab_o)}) et la météo normale ({fmt(arab)}) ; "
+        f"robusta {fmt(u['robusta'])} est proche de mon El Niño ordinaire ({fmt(rob_o)}) ; ta surface récoltée {fmt(u['area_harvested'])} suppose un recul de 35 kha "
+        f"en un an, plus fort que la tendance ({fmt(harv)}) ; tes arbres bearing {fmt(u['bearing'])} supposent une baisse alors que la dérive historique est de +{mb.c:.0f} M par an.",
+    ]
+    for t in lines:
+        bullet(doc, t, 8.5)
 
 
 def main():
