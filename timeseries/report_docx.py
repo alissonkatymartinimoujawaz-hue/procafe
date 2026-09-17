@@ -690,6 +690,9 @@ def brazil_usda_table(doc, D):
     """The USDA-style table 2010/11-2027/28 with the 2027/28 row filled cell by cell by the models."""
     doc.add_heading("7 bis. Le tableau USDA 2010/11 – 2027/28 et le calcul de la ligne 2027/28", 1)
     ex = pd.read_csv(os.path.join(HERE, "data", "exog_brazil.csv")).set_index("year")
+    onoff = ex["onoff"].to_dict()
+    for y in range(int(ex.index.max()) + 1, 2029):          # the cycle alternates beyond the last weather row
+        onoff[y] = 1 - onoff[y - 1]
     ser = {k: D.s("Brazil", v) for k, v in [("planted", "Area total"), ("harv", "Area bearing"), ("bear", "Trees bearing"),
                                               ("nonb", "Trees non-bearing"), ("arab", "Production Arabica"), ("rob", "Production Robusta")]}
     fc = D.fc[(D.fc.country == "Brazil") & (D.fc.year == 2027)].set_index("series")
@@ -713,7 +716,7 @@ def brazil_usda_table(doc, D):
         a, r, h = g("arab"), g("rob"), g("harv")
         yv = (a + r) / h if a is not None and r is not None and h else None
         status = "Historique" if y <= 2025 else "Estimation USDA"
-        rows.append([cy(y), status, "ON" if ex.loc[y, "onoff"] == 1 else "OFF", fmt(g("planted")), fmt(h), f"{yv:.2f}" if yv else "–",
+        rows.append([cy(y), status, "ON" if onoff[y] == 1 else "OFF", fmt(g("planted")), fmt(h), f"{yv:.2f}" if yv else "–",
                      fmt(g("bear")), fmt(g("nonb")), fmt(a), fmt(r)])
     rows.append([cy(2027), "Prévision modèles, météo normale", "OFF", fmt(planted), fmt(harv), f"{yld:.2f}", fmt(bear), fmt(nonb), fmt(arab), fmt(rob)])
     rows.append([cy(2027), "Prévision modèles, El Niño ordinaire", "OFF", fmt(planted), fmt(harv), f"{yld_o:.2f}", fmt(bear), fmt(nonb), fmt(arab_o), fmt(rob_o)])
