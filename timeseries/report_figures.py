@@ -112,7 +112,7 @@ def enso_bars(country, eff, series_list, path, label=None):
     fig, axes = plt.subplots(1, len(series_list), figsize=(5.0 * len(series_list), 3.8), squeeze=False)
     for ax, s in zip(axes[0], series_list):
         g = e[e.series == s].set_index("phase")
-        vals = [g.loc[p, "mean_anomaly_pct"] if p in g.index else np.nan for p in phases]
+        vals = [g.loc[p, "mean_yoy_pct"] if p in g.index else np.nan for p in phases]
         ns = [int(g.loc[p, "n"]) if p in g.index else 0 for p in phases]
         ax.bar(range(len(phases)), vals, color=colors, width=0.7)
         ax.axhline(0, color=C_MUTED, lw=0.8)
@@ -124,8 +124,8 @@ def enso_bars(country, eff, series_list, path, label=None):
         ax.set_title(s, loc="left", fontsize=10)
         lim = max(3, np.nanmax(np.abs(vals)) * 1.6)
         ax.set_ylim(-lim, lim)
-        ax.set_ylabel("écart à la moyenne des campagnes voisines (%)", fontsize=7.5)
-    fig.suptitle(f"{label or country} : effet mesuré des phases ENSO dans la balance sheet", x=0.01, ha="left", fontsize=11, fontweight="bold")
+        ax.set_ylabel("variation vs campagne précédente (%)", fontsize=7.5)
+    fig.suptitle(f"{label or country} : variation annuelle moyenne par phase ENSO (balance sheet)", x=0.01, ha="left", fontsize=11, fontweight="bold")
     fig.tight_layout(); fig.savefig(path, dpi=150, bbox_inches="tight"); plt.close(fig)
 
 

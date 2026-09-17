@@ -577,24 +577,27 @@ def build(country, D):
     if has and yseries:
         ser = ["Production Arabica", "Production Robusta", yseries] if country == "Brazil" else [s for s in [yseries, info["forecast_series"]] if s]
         p = os.path.join(FIGS, f"{tag}_enso.png"); fig.enso_bars(country, D.eff, ser, p, fr)
-        picture(doc, p, 16, "Figure 5. Écart moyen du rendement et de la production par phase ENSO.")
+        picture(doc, p, 16, "Figure 5. Variation annuelle moyenne du rendement et de la production par phase ENSO.")
         rows = []
         for phase in PHASE_ROWS:
             if phase in eff.index:
                 r = eff.loc[phase]
                 rp = effp.loc[phase] if effp is not None and phase in effp.index else None
-                rows.append([PHASE_FR[phase], int(r.n), f"{r.mean_anomaly_pct:+.1f} %", f"{r.share_below_trend:.0f} %",
-                             f"{rp.mean_anomaly_pct:+.1f} %" if rp is not None else "–", r.years])
-        add_table(doc, ["Phase", "n", "Rendement : écart moyen", "% sous la moyenne", "Production : écart moyen", "Campagnes"], rows,
-                  widths=[3.2, 1, 2.4, 2, 2.4, 6], font=7.5)
+                rows.append([PHASE_FR[phase], int(r.n), f"{r.mean_yoy_pct:+.1f} %", f"{r.mean_anomaly_pct:+.1f} %",
+                             f"{rp.mean_yoy_pct:+.1f} %" if rp is not None else "–", r.years])
+        add_table(doc, ["Phase", "n", "Rendement : variation annuelle moyenne", "Rendement : écart aux voisines", "Production : variation annuelle moyenne", "Campagnes"], rows,
+                  widths=[3.2, 1, 2.6, 2.4, 2.6, 5.2], font=7.5)
+        para(doc, "Variation annuelle = campagne N contre N−1 ; écart aux voisines = campagne N contre la moyenne des deux campagnes d'avant et des deux d'après "
+                  "(cycle ON/OFF retiré au Brésil). Au Brésil la variation annuelle porte le cycle : une classe composée surtout d'années ON affiche une "
+                  "hausse mécanique, et inversement.", size=8, italic=True, color="52514e")
         # reading
         e = eff.loc["El Nino"] if "El Nino" in eff.index else None
         l = eff.loc["La Nina"] if "La Nina" in eff.index else None
         if e is not None and l is not None:
-            sign_e = "négatif" if e.mean_anomaly_pct < -1 else ("positif" if e.mean_anomaly_pct > 1 else "neutre")
-            sign_l = "négatif" if l.mean_anomaly_pct < -1 else ("positif" if l.mean_anomaly_pct > 1 else "neutre")
-            para(doc, f"Lecture : pour {fr}, El Niño est historiquement {sign_e} pour le rendement ({e.mean_anomaly_pct:+.1f} %) et "
-                      f"La Niña {sign_l} ({l.mean_anomaly_pct:+.1f} %). Avec 8 à 15 campagnes par phase, ce sont des tendances "
+            sign_e = "négatif" if e.mean_yoy_pct < -1 else ("positif" if e.mean_yoy_pct > 1 else "neutre")
+            sign_l = "négatif" if l.mean_yoy_pct < -1 else ("positif" if l.mean_yoy_pct > 1 else "neutre")
+            para(doc, f"Lecture : pour {fr}, El Niño est historiquement {sign_e} pour le rendement (variation annuelle moyenne {e.mean_yoy_pct:+.1f} %, "
+                      f"écart aux voisines {e.mean_anomaly_pct:+.1f} %) et La Niña {sign_l} ({l.mean_yoy_pct:+.1f} %, écart {l.mean_anomaly_pct:+.1f} %). Avec 8 à 15 campagnes par phase, ce sont des tendances "
                       f"centrales, pas des lois : l'intensité de l'épisode, son calage sur la floraison et l'état du verger font l'écart.")
     # implication
     para(doc, "Implication pour l'El Niño en cours (jusqu'à mars 2027) :", bold=True)
