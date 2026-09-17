@@ -243,7 +243,7 @@ EXCLUDE_CAMPAIGNS = {"Brazil": {2003}}      # campaigns removed from the shock t
 PHASE_FR = {"El Nino": "El Niño", "La Nina": "La Niña", "neutral": "neutre", "El Nino (|ONI| >= 1)": "El Niño fort (|ONI| ≥ 1)",
             "La Nina (|ONI| >= 1)": "La Niña forte (|ONI| ≥ 1)", "El Nino fort": "El Niño fort (≥ 1,6)", "El Nino ordinaire": "El Niño (0,5 à 1,6)",
             "La Nina ordinaire": "La Niña", "La Nina forte": "La Niña forte (≤ −1,6)", "neutre": "neutre"}
-PHASE_ROWS = ["El Nino fort", "El Nino ordinaire", "neutral", "La Nina ordinaire", "La Nina forte"]
+PHASE_ROWS = ["El Nino fort", "El Nino ordinaire", "neutral", "La Nina"]
 
 
 # ----------------------------------------------------------------------------- helpers
@@ -525,9 +525,9 @@ def build(country, D):
                   "pour La Niña. 2023/24 est classé El Niño simple (pic ONI 2,0 mais indice relatif RONI d'environ 1,3). "
                   "L'épisode 2002/03 (campagne 2003/04) est exclu des tableaux et des moyennes, comme demandé.")
         p = os.path.join(FIGS, "brazil_weather_phase.png")
-        fig.brazil_weather_phase(D.bw, p, phases=["El Nino fort", "El Nino ordinaire", "neutral", "La Nina ordinaire", "La Nina forte"],
-                                 colors=[fig.C_RED, "#f08c8b", fig.C_MUTED, "#7fb0e8", fig.C_BLUE],
-                                 labels=["El Niño fort", "El Niño", "neutre", "La Niña", "La Niña forte"])
+        fig.brazil_weather_phase(D.bw, p, phases=["El Nino fort", "El Nino ordinaire", "neutral", "La Nina"],
+                                 colors=[fig.C_RED, "#f08c8b", fig.C_MUTED, fig.C_BLUE],
+                                 labels=["El Niño fort", "El Niño", "neutre", "La Niña"])
         picture(doc, p, 17, "Figure 4. Météo des États caféiers pendant la campagne qui suit chaque classe d'épisode, 2001/02-2025/26, écart à la moyenne 1998-2025 (mêmes campagnes que les tableaux).")
         ep = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_episodes.csv"))
         para(doc, "Épisode par épisode, campagne N+1 (écart = par rapport à la moyenne des campagnes voisines, cycle ON/OFF retiré ; "
@@ -540,8 +540,8 @@ def build(country, D):
         add_table(doc, ["Épisode (ONI)", "Classe", "Campagne N+1", "Arabica (var. / écart)", "Robusta (var. / écart)", "Rendement écart", "Minas Gerais", "Espírito Santo"],
                   rows, widths=[2.2, 2.6, 1.9, 2.8, 2.8, 1.5, 2.2, 2.2], font=7)
         cls_rows = []
-        for cls in ["El Nino fort", "El Nino ordinaire", "El Nino faible", "La Nina faible", "La Nina ordinaire", "La Nina forte"]:
-            g = ep[ep.classe == cls]
+        for cls in ["El Nino fort", "El Nino ordinaire", "El Nino faible", "La Nina"]:
+            g = ep[ep.phase == "La Nina"] if cls == "La Nina" else ep[ep.classe == cls]
             if len(g):
                 cls_rows.append([cls.replace("El Nino", "El Niño").replace("La Nina", "La Niña"), len(g), f"{g.arabica_anom.mean():+.1f} %", f"{g.robusta_anom.mean():+.1f} %",
                                  f"{g.total_anom.mean():+.1f} %", f"{g.yield_anom.mean():+.1f} %", f"{g.rain_mg_dev.mean():+.0f} mm / {g.temp_mg_dev.mean():+.1f} °C",

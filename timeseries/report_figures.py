@@ -104,9 +104,9 @@ def history(country, data, path, enso_years=None, label=None):
 def enso_bars(country, eff, series_list, path, label=None):
     """Mean anomaly (% vs neighbouring years) by ENSO phase, one group per series."""
     e = eff[(eff.country == country) & (eff.series.isin(series_list))]
-    phases = ["El Nino fort", "El Nino ordinaire", "El Nino faible", "neutral", "La Nina faible", "La Nina ordinaire", "La Nina forte"]
-    labels = ["El Niño fort\n(≥ 1,6)", "El Niño\n(0,5 à 1,6)", "El Niño faible\n(< 0,5)", "neutre", "La Niña faible\n(> −0,5)", "La Niña\n(−0,5 à −1,6)", "La Niña forte\n(≤ −1,6)"]
-    colors = [C_RED, "#f08c8b", "#f7c2c1", C_MUTED, "#c2d7f2", "#7fb0e8", C_BLUE]
+    phases = ["El Nino fort", "El Nino ordinaire", "El Nino faible", "neutral", "La Nina"]
+    labels = ["El Niño fort\n(≥ 1,6)", "El Niño\n(0,5 à 1,6)", "El Niño faible\n(< 0,5)", "neutre", "La Niña\n(≤ −0,5)"]
+    colors = [C_RED, "#f08c8b", "#f7c2c1", C_MUTED, C_BLUE]
     present = [i for i, p in enumerate(phases) if p == "neutral" or (e.phase == p).any()]
     phases, labels, colors = [phases[i] for i in present], [labels[i] for i in present], [colors[i] for i in present]
     fig, axes = plt.subplots(1, len(series_list), figsize=(5.0 * len(series_list), 3.8), squeeze=False)
