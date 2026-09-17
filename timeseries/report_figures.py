@@ -105,7 +105,7 @@ def enso_bars(country, eff, series_list, path, label=None):
     """Mean anomaly (% vs neighbouring years) by ENSO phase, one group per series."""
     e = eff[(eff.country == country) & (eff.series.isin(series_list))]
     phases = ["El Nino fort", "El Nino ordinaire", "El Nino faible", "neutral", "La Nina faible", "La Nina ordinaire", "La Nina forte"]
-    labels = ["El Niño fort\n(≥ 1,6)", "El Niño\n(0,6 à 1,6)", "El Niño faible\n(< 0,6)", "neutre", "La Niña faible\n(> −0,6)", "La Niña\n(−0,6 à −1,6)", "La Niña forte\n(≤ −1,6)"]
+    labels = ["El Niño fort\n(≥ 1,6)", "El Niño\n(0,5 à 1,6)", "El Niño faible\n(< 0,5)", "neutre", "La Niña faible\n(> −0,5)", "La Niña\n(−0,5 à −1,6)", "La Niña forte\n(≤ −1,6)"]
     colors = [C_RED, "#f08c8b", "#f7c2c1", C_MUTED, "#c2d7f2", "#7fb0e8", C_BLUE]
     present = [i for i, p in enumerate(phases) if p == "neutral" or (e.phase == p).any()]
     phases, labels, colors = [phases[i] for i in present], [labels[i] for i in present], [colors[i] for i in present]
@@ -150,6 +150,6 @@ def brazil_weather_phase(w, path, phases=None, colors=None, labels=None):
                         ha="center", va="bottom" if v >= 0 else "top", fontsize=7)
         ax.axhline(0, color=C_MUTED, lw=0.8); ax.set_xticks(x); ax.set_xticklabels([n for _, n in states])
         ax.set_title(ttl, loc="left", fontsize=10); ax.set_ylabel(unit); ax.legend(fontsize=7.5)
-    fig.suptitle("Brésil : météo des États caféiers pendant la campagne qui suit chaque épisode (balance sheet, 1998/99-2025/26)",
+    fig.suptitle("Brésil : météo des États caféiers pendant la campagne qui suit chaque épisode (balance sheet, 2001/02-2025/26)",
                  x=0.01, ha="left", fontsize=11, fontweight="bold")
     fig.tight_layout(); fig.savefig(path, dpi=150, bbox_inches="tight"); plt.close(fig)

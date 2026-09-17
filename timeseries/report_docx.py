@@ -241,7 +241,7 @@ COUNTRIES = {
 }
 EXCLUDE_CAMPAIGNS = {"Brazil": {2003}}      # campaigns removed from the shock tables on request
 PHASE_FR = {"El Nino": "El Niño", "La Nina": "La Niña", "neutral": "neutre", "El Nino (|ONI| >= 1)": "El Niño fort (|ONI| ≥ 1)",
-            "La Nina (|ONI| >= 1)": "La Niña forte (|ONI| ≥ 1)", "El Nino fort": "El Niño fort (≥ 1,6)", "El Nino ordinaire": "El Niño (0,5 à 1,5)",
+            "La Nina (|ONI| >= 1)": "La Niña forte (|ONI| ≥ 1)", "El Nino fort": "El Niño fort (≥ 1,6)", "El Nino ordinaire": "El Niño (0,5 à 1,6)",
             "La Nina ordinaire": "La Niña", "La Nina forte": "La Niña forte (≤ −1,6)", "neutre": "neutre"}
 PHASE_ROWS = ["El Nino fort", "El Nino ordinaire", "neutral", "La Nina ordinaire", "La Nina forte"]
 
@@ -528,7 +528,7 @@ def build(country, D):
         fig.brazil_weather_phase(D.bw, p, phases=["El Nino fort", "El Nino ordinaire", "neutral", "La Nina ordinaire", "La Nina forte"],
                                  colors=[fig.C_RED, "#f08c8b", fig.C_MUTED, "#7fb0e8", fig.C_BLUE],
                                  labels=["El Niño fort", "El Niño", "neutre", "La Niña", "La Niña forte"])
-        picture(doc, p, 17, "Figure 4. Météo des États caféiers pendant la campagne qui suit chaque classe d'épisode (écart à la moyenne 1998-2025).")
+        picture(doc, p, 17, "Figure 4. Météo des États caféiers pendant la campagne qui suit chaque classe d'épisode, 2001/02-2025/26, écart à la moyenne 1998-2025 (mêmes campagnes que les tableaux).")
         ep = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_episodes.csv"))
         para(doc, "Épisode par épisode, campagne N+1 (écart = par rapport à la moyenne des campagnes voisines, cycle ON/OFF retiré ; "
                   "variation = par rapport à la campagne précédente) :", bold=True)

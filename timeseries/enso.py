@@ -128,10 +128,10 @@ def enso_for_crop_year(country, year):
     return s, oni, phase, strength
 
 
-# Thresholds on the peak index: strong >= 1.6, ordinary 0.6-1.6, weak < 0.6.
+# Thresholds on the peak index: strong >= 1.6, ordinary 0.5-1.6 (weak class < 0.5 is empty by construction).
 # 2023/24 is kept as an ordinary El Nino on the user's assessment (ONI peak 2.0,
 # but relative ONI (RONI) peak only about 1.3): NOT_STRONG lists such seasons.
-STRONG, WEAK = 1.6, 0.6
+STRONG, WEAK = 1.6, 0.5
 NOT_STRONG = {2023}
 
 

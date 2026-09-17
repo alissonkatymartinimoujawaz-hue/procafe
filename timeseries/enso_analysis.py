@@ -103,7 +103,7 @@ def main():
     pd.concat(years).to_csv(os.path.join(OUT, "enso_years.csv"), index=False, float_format="%.3f")
 
     # Brazil weather by phase (state rainfall and temperature, crop years 1998/99 - 2025/26)
-    w = ex.loc[ex.index <= 2025].copy()
+    w = ex.loc[(ex.index >= 2001) & (ex.index <= 2025)].copy()      # same crop years as the production tables
     w["season"], w["oni"], w["phase"], _ = zip(*[enso_for_crop_year("Brazil", yr) for yr in w.index])
     w = w[~w["season"].isin(EXCLUDE_SEASONS.get("Brazil", set()))]
     cols = [c for c in w.columns if c.startswith(("rain_", "temp_"))]
