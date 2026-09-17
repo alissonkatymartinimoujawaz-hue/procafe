@@ -714,8 +714,8 @@ def brazil_usda_table(doc, D):
     fa = D.armax_fc[(D.armax_fc.scenario == "normal") & (D.armax_fc.year == 2027)].set_index("series")
     am = D.armax.set_index("series")
     mo = D.models[D.models.country == "Brazil"].set_index("series")
-    ep = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_episodes.csv"))
-    en_o, en_f = ep[ep.classe == "El Nino ordinaire"], ep[ep.classe == "El Nino fort"]
+    clx = pd.read_csv(os.path.join(OUT, "enso", "brazil_enso_client_summary.csv")).set_index("enso_class")
+    rob_n, rob_s = clx.loc["El Nino normal", "Robusta_avg_change_pct"], clx.loc["El Nino strong", "Robusta_avg_change_pct"]
     st = {k: step_trend(ser[k]) for k in ("planted", "harv", "bear", "nonb")}
     planted, harv = st["planted"][2] + st["planted"][0], st["harv"][2] + st["harv"][0]
     bear, nonb = st["bear"][2] + st["bear"][0], st["nonb"][2] + st["nonb"][0]
