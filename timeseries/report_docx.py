@@ -552,7 +552,7 @@ def build(country, D):
         add_table(doc, ["ENSO class", "Index (RONI)", "Occurrences", "Robusta avg change", "Arabica avg change", "Espírito Santo rain / temp dev.", "Crop years"],
                   rows_c, widths=[2.6, 2.2, 1.6, 2.2, 2.2, 3.2, 5], font=7.5)
         para(doc, "Index de la campagne Y/Y+1 = valeur extrême du RONI entre SON de Y−1 et FMA de Y (floraison → fin du remplissage). "
-                  "Classement identique à ta liste (2009/10 La Niña, index −1,0 ; 2010/11 El Niño normal, index +1,5). "
+                  "Seuils : El Niño fort ≥ 1,6, El Niño normal 0,5 à 1,5, neutre entre −0,5 et 0,5, La Niña ≤ −0,5. "
                   "Espírito Santo = moyenne de l'État, en attendant São Mateus et Linhares (NASA POWER).", size=8, italic=True, color="52514e")
         para(doc, "Moyennes par classe d'intensité (campagnes N+1) :", bold=True)
         add_table(doc, ["Classe", "n", "Arabica", "Robusta", "Total", "Rendement", "Minas Gerais", "Espírito Santo", "Campagnes"], cls_rows,
