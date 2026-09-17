@@ -153,3 +153,51 @@ def brazil_weather_phase(w, path, phases=None, colors=None, labels=None):
     fig.suptitle("Brésil : météo des États caféiers pendant la campagne qui suit chaque épisode (balance sheet, 2001/02-2025/26)",
                  x=0.01, ha="left", fontsize=11, fontweight="bold")
     fig.tight_layout(); fig.savefig(path, dpi=150, bbox_inches="tight"); plt.close(fig)
+
+
+CLIENT_CLASSES = [("El Nino strong", "El Niño strong\n(≥ 1.6)", C_RED), ("El Nino normal", "El Niño normal\n(0.5 to 1.5)", "#f08c8b"),
+                  ("Neutral", "Neutral\n(−0.5 to 0.5)", C_MUTED), ("La Nina", "La Niña\n(≤ −0.5)", C_BLUE)]
+
+
+def client_bars(summ, path):
+    """Average year-over-year production change by ENSO class, robusta and arabica (client convention)."""
+    fig, axes = plt.subplots(1, 2, figsize=(11, 3.8))
+    for ax, sp in zip(axes, ("Robusta", "Arabica")):
+        g = summ.set_index("enso_class")
+        vals, ns = [], []
+        for cls, _, _ in CLIENT_CLASSES:
+            vals.append(g.loc[cls, f"{sp}_avg_change_pct"] if cls in g.index else np.nan)
+            ns.append(int(g.loc[cls, "n"]) if cls in g.index else 0)
+        ax.bar(range(len(vals)), vals, color=[c for _, _, c in CLIENT_CLASSES], width=0.7)
+        ax.axhline(0, color=C_MUTED, lw=0.8)
+        for i, (v, n) in enumerate(zip(vals, ns)):
+            if np.isfinite(v):
+                ax.text(i, v + (0.6 if v >= 0 else -0.6), f"{v:+.1f} %\n(n={n})", ha="center", va="bottom" if v >= 0 else "top", fontsize=8, color=C_TEXT)
+        ax.set_xticks(range(len(vals))); ax.set_xticklabels([l for _, l, _ in CLIENT_CLASSES], fontsize=8)
+        lim = max(5, np.nanmax(np.abs(vals)) * 1.5); ax.set_ylim(-lim, lim)
+        ax.set_title(f"{sp}: average change vs previous crop year", loc="left", fontsize=10)
+        ax.set_ylabel("%", fontsize=8)
+    fig.suptitle("Brazil: production change by ENSO class (RONI growing-season index, 2008/09-2025/26)", x=0.01, ha="left", fontsize=11, fontweight="bold")
+    fig.tight_layout(); fig.savefig(path, dpi=150, bbox_inches="tight"); plt.close(fig)
+
+
+def client_weather(years, base, path):
+    """Espirito Santo (robusta) and Minas Gerais (arabica) rain / temperature by ENSO class, deviation from the 1998-2025 mean."""
+    fig, axes = plt.subplots(1, 2, figsize=(11, 3.8))
+    states = [("ES", "Espírito Santo (São Mateus / Linhares proxy)"), ("MG", "Minas Gerais (Cerrado / Sul de Minas proxy)")]
+    for ax, (kind, unit, ttl) in zip(axes, [("rain", "mm", "Annual rainfall: deviation from 1998-2025 mean"), ("temp", "°C", "Mean temperature: deviation from 1998-2025 mean")]):
+        x = np.arange(len(states)); w = 0.8 / len(CLIENT_CLASSES)
+        for k, (cls, lab, col) in enumerate(CLIENT_CLASSES):
+            g = years[years.enso_class == cls]
+            if not len(g):
+                continue
+            vals = [g[f"{st}_{'rain_mm' if kind == 'rain' else 'temp_c'}"].mean() - base[f"{st}_{kind}"] for st, _ in states]
+            xs = x + (k - (len(CLIENT_CLASSES) - 1) / 2) * w
+            ax.bar(xs, vals, w, color=col, label=f"{lab.splitlines()[0]} (n={len(g)})")
+            for xi, v in zip(xs, vals):
+                ax.text(xi, v + (3 if kind == "rain" else 0.02) * (1 if v >= 0 else -1), f"{v:+.0f}" if kind == "rain" else f"{v:+.2f}",
+                        ha="center", va="bottom" if v >= 0 else "top", fontsize=7)
+        ax.axhline(0, color=C_MUTED, lw=0.8); ax.set_xticks(x); ax.set_xticklabels([n for _, n in states], fontsize=8)
+        ax.set_title(ttl, loc="left", fontsize=10); ax.set_ylabel(unit); ax.legend(fontsize=7.5)
+    fig.suptitle("Brazil: weather of each ENSO class (balance sheet state averages, crop years 2008/09-2025/26)", x=0.01, ha="left", fontsize=11, fontweight="bold")
+    fig.tight_layout(); fig.savefig(path, dpi=150, bbox_inches="tight"); plt.close(fig)
