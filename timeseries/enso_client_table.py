@@ -9,8 +9,7 @@ Index of crop year Y/Y+1 = the growing-season value of the NOAA relative ONI
 of fruit development (Apr of Y), harvest May-Sep of Y.
 Classes (client's thresholds):
     El Nino strong   index >= 1.6
-    El Nino normal   0.7 <= index < 1.6
-    El Nino weak     0.5 <= index < 0.7
+    El Nino normal   0.5 <= index < 1.6
     Neutral          -0.7 < index < 0.5
     La Nina          index <= -0.7
 Production change = crop year Y/Y+1 vs Y-1/Y, robusta and arabica separately.
@@ -33,8 +32,7 @@ from openpyxl.utils import get_column_letter
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "output", "enso")
 COLS = ["DJF", "JFM", "FMA", "MAM", "AMJ", "MJJ", "JJA", "JAS", "ASO", "SON", "OND", "NDJ"]
-CLASSES = [("El Nino strong", ">= 1.6"), ("El Nino normal", "0.7 to 1.5"), ("El Nino weak", "0.5 to 0.7"),
-           ("Neutral", "-0.7 to 0.5"), ("La Nina", "<= -0.7")]
+CLASSES = [("El Nino strong", ">= 1.6"), ("El Nino normal", "0.5 to 1.5"), ("Neutral", "-0.7 to 0.5"), ("La Nina", "<= -0.7")]
 
 
 def season_index(oni, y):
@@ -53,10 +51,8 @@ def classify(x):
         return "n/a"
     if x >= 1.6:
         return "El Nino strong"
-    if x >= 0.7:
-        return "El Nino normal"
     if x >= 0.5:
-        return "El Nino weak"
+        return "El Nino normal"
     if x <= -0.7:
         return "La Nina"
     return "Neutral"
