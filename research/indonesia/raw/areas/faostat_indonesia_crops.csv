@@ -1,0 +1,489 @@
+item_code,item,element_code,element,unit,year,value,flag
+661,Cocoa beans,5312,Area harvested,ha,1990,158820.000000,A
+661,Cocoa beans,5312,Area harvested,ha,1991,183956.000000,A
+661,Cocoa beans,5312,Area harvested,ha,1992,189596.000000,A
+661,Cocoa beans,5312,Area harvested,ha,1993,299546.000000,A
+661,Cocoa beans,5312,Area harvested,ha,1994,359086.000000,A
+661,Cocoa beans,5312,Area harvested,ha,1995,374261.000000,A
+661,Cocoa beans,5312,Area harvested,ha,1996,398655.000000,A
+661,Cocoa beans,5312,Area harvested,ha,1997,386605.000000,A
+661,Cocoa beans,5312,Area harvested,ha,1998,403166.000000,A
+661,Cocoa beans,5312,Area harvested,ha,1999,667897.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2000,749917.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2001,765405.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2002,776901.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2003,961107.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2004,1090960.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2005,1167046.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2006,905730.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2007,923968.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2008,1425216.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2009,1587136.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2010,1651539.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2011,1732600.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2012,1852900.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2013,1740600.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2014,1727400.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2015,1709284.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2016,1701351.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2017,1658421.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2018,1611014.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2019,1560945.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2020,1508955.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2021,1421014.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2022,1421014.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2023,1393390.000000,A
+661,Cocoa beans,5312,Area harvested,ha,2024,1386749.000000,A
+661,Cocoa beans,5412,Yield,kg/ha,1990,896.300000,A
+661,Cocoa beans,5412,Yield,kg/ha,1991,950.800000,A
+661,Cocoa beans,5412,Yield,kg/ha,1992,1092.600000,A
+661,Cocoa beans,5412,Yield,kg/ha,1993,861.500000,A
+661,Cocoa beans,5412,Yield,kg/ha,1994,673.100000,A
+661,Cocoa beans,5412,Yield,kg/ha,1995,743.900000,A
+661,Cocoa beans,5412,Yield,kg/ha,1996,880.000000,A
+661,Cocoa beans,5412,Yield,kg/ha,1997,852.800000,A
+661,Cocoa beans,5412,Yield,kg/ha,1998,1132.300000,A
+661,Cocoa beans,5412,Yield,kg/ha,1999,550.200000,A
+661,Cocoa beans,5412,Yield,kg/ha,2000,561.600000,A
+661,Cocoa beans,5412,Yield,kg/ha,2001,701.300000,A
+661,Cocoa beans,5412,Yield,kg/ha,2002,797.000000,A
+661,Cocoa beans,5412,Yield,kg/ha,2003,723.500000,A
+661,Cocoa beans,5412,Yield,kg/ha,2004,634.000000,A
+661,Cocoa beans,5412,Yield,kg/ha,2005,641.600000,A
+661,Cocoa beans,5412,Yield,kg/ha,2006,849.500000,A
+661,Cocoa beans,5412,Yield,kg/ha,2007,800.900000,A
+661,Cocoa beans,5412,Yield,kg/ha,2008,563.800000,A
+661,Cocoa beans,5412,Yield,kg/ha,2009,510.100000,A
+661,Cocoa beans,5412,Yield,kg/ha,2010,511.400000,A
+661,Cocoa beans,5412,Yield,kg/ha,2011,411.100000,A
+661,Cocoa beans,5412,Yield,kg/ha,2012,399.600000,A
+661,Cocoa beans,5412,Yield,kg/ha,2013,414.200000,A
+661,Cocoa beans,5412,Yield,kg/ha,2014,421.700000,A
+661,Cocoa beans,5412,Yield,kg/ha,2015,347.100000,A
+661,Cocoa beans,5412,Yield,kg/ha,2016,386.100000,A
+661,Cocoa beans,5412,Yield,kg/ha,2017,356.200000,A
+661,Cocoa beans,5412,Yield,kg/ha,2018,476.300000,A
+661,Cocoa beans,5412,Yield,kg/ha,2019,470.700000,A
+661,Cocoa beans,5412,Yield,kg/ha,2020,477.600000,A
+661,Cocoa beans,5412,Yield,kg/ha,2021,457.900000,A
+661,Cocoa beans,5412,Yield,kg/ha,2022,457.900000,A
+661,Cocoa beans,5412,Yield,kg/ha,2023,453.700000,A
+661,Cocoa beans,5412,Yield,kg/ha,2024,456.200000,A
+661,Cocoa beans,5510,Production,t,1990,142347.000000,A
+661,Cocoa beans,5510,Production,t,1991,174899.000000,A
+661,Cocoa beans,5510,Production,t,1992,207147.000000,A
+661,Cocoa beans,5510,Production,t,1993,258059.000000,A
+661,Cocoa beans,5510,Production,t,1994,241701.000000,A
+661,Cocoa beans,5510,Production,t,1995,278400.000000,A
+661,Cocoa beans,5510,Production,t,1996,350800.000000,A
+661,Cocoa beans,5510,Production,t,1997,329700.000000,A
+661,Cocoa beans,5510,Production,t,1998,456499.000000,A
+661,Cocoa beans,5510,Production,t,1999,367475.000000,A
+661,Cocoa beans,5510,Production,t,2000,421142.000000,A
+661,Cocoa beans,5510,Production,t,2001,536804.000000,A
+661,Cocoa beans,5510,Production,t,2002,619192.000000,A
+661,Cocoa beans,5510,Production,t,2003,695361.000000,A
+661,Cocoa beans,5510,Production,t,2004,691704.000000,A
+661,Cocoa beans,5510,Production,t,2005,748827.000000,A
+661,Cocoa beans,5510,Production,t,2006,769386.000000,A
+661,Cocoa beans,5510,Production,t,2007,740006.000000,A
+661,Cocoa beans,5510,Production,t,2008,803593.000000,A
+661,Cocoa beans,5510,Production,t,2009,809583.000000,A
+661,Cocoa beans,5510,Production,t,2010,844626.000000,A
+661,Cocoa beans,5510,Production,t,2011,712200.000000,A
+661,Cocoa beans,5510,Production,t,2012,740500.000000,A
+661,Cocoa beans,5510,Production,t,2013,720900.000000,A
+661,Cocoa beans,5510,Production,t,2014,728400.000000,A
+661,Cocoa beans,5510,Production,t,2015,593331.000000,A
+661,Cocoa beans,5510,Production,t,2016,656817.000000,A
+661,Cocoa beans,5510,Production,t,2017,590684.000000,A
+661,Cocoa beans,5510,Production,t,2018,767280.000000,A
+661,Cocoa beans,5510,Production,t,2019,734795.000000,A
+661,Cocoa beans,5510,Production,t,2020,720660.000000,A
+661,Cocoa beans,5510,Production,t,2021,650611.690000,A
+661,Cocoa beans,5510,Production,t,2022,650611.690000,A
+661,Cocoa beans,5510,Production,t,2023,632117.000000,A
+661,Cocoa beans,5510,Production,t,2024,632702.000000,A
+656,"Coffee, green",5312,Area harvested,ha,1990,746759.000000,A
+656,"Coffee, green",5312,Area harvested,ha,1991,760308.000000,A
+656,"Coffee, green",5312,Area harvested,ha,1992,793000.000000,A
+656,"Coffee, green",5312,Area harvested,ha,1993,810000.000000,A
+656,"Coffee, green",5312,Area harvested,ha,1994,797000.000000,A
+656,"Coffee, green",5312,Area harvested,ha,1995,846078.000000,A
+656,"Coffee, green",5312,Area harvested,ha,1996,836621.000000,A
+656,"Coffee, green",5312,Area harvested,ha,1997,831782.000000,A
+656,"Coffee, green",5312,Area harvested,ha,1998,844172.000000,A
+656,"Coffee, green",5312,Area harvested,ha,1999,900000.000000,X
+656,"Coffee, green",5312,Area harvested,ha,2000,1260687.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2001,1313383.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2002,1372184.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2003,1381730.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2004,1303943.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2005,1255272.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2006,1308732.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2007,1295912.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2008,1295111.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2009,1266235.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2010,1268476.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2011,1293000.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2012,1233900.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2013,1241700.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2014,1230500.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2015,1230001.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2016,1228512.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2017,1238598.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2018,1252826.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2019,1245359.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2020,1250452.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2021,1279570.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2022,1265961.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2023,1266848.000000,A
+656,"Coffee, green",5312,Area harvested,ha,2024,1269354.000000,A
+656,"Coffee, green",5412,Yield,kg/ha,1990,552.700000,A
+656,"Coffee, green",5412,Yield,kg/ha,1991,563.300000,A
+656,"Coffee, green",5412,Yield,kg/ha,1992,551.000000,A
+656,"Coffee, green",5412,Yield,kg/ha,1993,541.800000,A
+656,"Coffee, green",5412,Yield,kg/ha,1994,564.900000,A
+656,"Coffee, green",5412,Yield,kg/ha,1995,541.100000,A
+656,"Coffee, green",5412,Yield,kg/ha,1996,504.100000,A
+656,"Coffee, green",5412,Yield,kg/ha,1997,513.100000,A
+656,"Coffee, green",5412,Yield,kg/ha,1998,606.700000,A
+656,"Coffee, green",5412,Yield,kg/ha,1999,583.000000,E
+656,"Coffee, green",5412,Yield,kg/ha,2000,439.900000,A
+656,"Coffee, green",5412,Yield,kg/ha,2001,433.400000,A
+656,"Coffee, green",5412,Yield,kg/ha,2002,497.000000,A
+656,"Coffee, green",5412,Yield,kg/ha,2003,480.200000,A
+656,"Coffee, green",5412,Yield,kg/ha,2004,496.500000,A
+656,"Coffee, green",5412,Yield,kg/ha,2005,510.100000,A
+656,"Coffee, green",5412,Yield,kg/ha,2006,521.200000,A
+656,"Coffee, green",5412,Yield,kg/ha,2007,522.000000,A
+656,"Coffee, green",5412,Yield,kg/ha,2008,539.000000,A
+656,"Coffee, green",5412,Yield,kg/ha,2009,539.100000,A
+656,"Coffee, green",5412,Yield,kg/ha,2010,539.300000,A
+656,"Coffee, green",5412,Yield,kg/ha,2011,493.900000,A
+656,"Coffee, green",5412,Yield,kg/ha,2012,560.100000,A
+656,"Coffee, green",5412,Yield,kg/ha,2013,544.300000,A
+656,"Coffee, green",5412,Yield,kg/ha,2014,523.300000,A
+656,"Coffee, green",5412,Yield,kg/ha,2015,519.800000,A
+656,"Coffee, green",5412,Yield,kg/ha,2016,520.400000,A
+656,"Coffee, green",5412,Yield,kg/ha,2017,579.700000,A
+656,"Coffee, green",5412,Yield,kg/ha,2018,603.500000,A
+656,"Coffee, green",5412,Yield,kg/ha,2019,604.300000,A
+656,"Coffee, green",5412,Yield,kg/ha,2020,609.700000,A
+656,"Coffee, green",5412,Yield,kg/ha,2021,614.400000,A
+656,"Coffee, green",5412,Yield,kg/ha,2022,612.200000,A
+656,"Coffee, green",5412,Yield,kg/ha,2023,598.900000,A
+656,"Coffee, green",5412,Yield,kg/ha,2024,636.200000,A
+656,"Coffee, green",5510,Production,t,1990,412767.000000,A
+656,"Coffee, green",5510,Production,t,1991,428305.000000,A
+656,"Coffee, green",5510,Production,t,1992,436930.000000,A
+656,"Coffee, green",5510,Production,t,1993,438868.000000,A
+656,"Coffee, green",5510,Production,t,1994,450191.000000,A
+656,"Coffee, green",5510,Production,t,1995,457801.000000,A
+656,"Coffee, green",5510,Production,t,1996,421751.000000,A
+656,"Coffee, green",5510,Production,t,1997,426800.000000,A
+656,"Coffee, green",5510,Production,t,1998,512165.000000,A
+656,"Coffee, green",5510,Production,t,1999,524687.000000,A
+656,"Coffee, green",5510,Production,t,2000,554574.000000,A
+656,"Coffee, green",5510,Production,t,2001,569234.000000,A
+656,"Coffee, green",5510,Production,t,2002,682019.000000,A
+656,"Coffee, green",5510,Production,t,2003,663571.000000,A
+656,"Coffee, green",5510,Production,t,2004,647385.000000,A
+656,"Coffee, green",5510,Production,t,2005,640365.000000,A
+656,"Coffee, green",5510,Production,t,2006,682158.000000,A
+656,"Coffee, green",5510,Production,t,2007,676475.000000,A
+656,"Coffee, green",5510,Production,t,2008,698016.000000,A
+656,"Coffee, green",5510,Production,t,2009,682591.000000,A
+656,"Coffee, green",5510,Production,t,2010,684076.000000,A
+656,"Coffee, green",5510,Production,t,2011,638600.000000,A
+656,"Coffee, green",5510,Production,t,2012,691163.000000,A
+656,"Coffee, green",5510,Production,t,2013,675800.000000,A
+656,"Coffee, green",5510,Production,t,2014,643900.000000,A
+656,"Coffee, green",5510,Production,t,2015,639412.000000,A
+656,"Coffee, green",5510,Production,t,2016,639305.000000,A
+656,"Coffee, green",5510,Production,t,2017,717962.000000,A
+656,"Coffee, green",5510,Production,t,2018,756051.000000,A
+656,"Coffee, green",5510,Production,t,2019,752512.000000,A
+656,"Coffee, green",5510,Production,t,2020,762380.000000,A
+656,"Coffee, green",5510,Production,t,2021,786191.000000,A
+656,"Coffee, green",5510,Production,t,2022,774960.530000,A
+656,"Coffee, green",5510,Production,t,2023,758725.000000,A
+656,"Coffee, green",5510,Production,t,2024,807578.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,1990,1865606.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,1991,1877537.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,1992,1966000.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,1993,2065470.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,1994,2056097.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,1995,2260687.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,1996,2245754.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,1997,2260471.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,1998,2268733.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,1999,2300000.000000,E
+836,Natural rubber in primary forms,5312,Area harvested,ha,2000,2400000.000000,E
+836,Natural rubber in primary forms,5312,Area harvested,ha,2001,2599470.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2002,2634720.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2003,2675060.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2004,2675060.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2005,3279391.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2006,2725858.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2007,2775546.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2008,3424217.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2009,3435270.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2010,3445121.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2011,3456100.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2012,3484100.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2013,3555800.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2014,3606245.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2015,3621102.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2016,3637264.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2017,3659090.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2018,3671387.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2019,3683482.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2020,3726173.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2021,3776486.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2022,3557092.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2023,3152745.000000,A
+836,Natural rubber in primary forms,5312,Area harvested,ha,2024,3149277.000000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,1990,683.600000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,1991,707.400000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,1992,711.300000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,1993,714.300000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,1994,712.300000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,1995,677.700000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,1996,700.900000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,1997,685.100000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,1998,689.500000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,1999,697.500000,E
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2000,625.600000,E
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2001,618.400000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2002,618.800000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2003,670.000000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2004,772.300000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2005,692.500000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2006,967.500000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2007,992.700000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2008,803.500000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2009,710.400000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2010,793.800000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2011,865.200000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2012,864.600000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2013,873.900000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2014,874.400000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2015,868.600000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2016,909.200000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2017,1005.800000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2018,988.800000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2019,936.300000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2020,815.100000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2021,806.400000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2022,763.800000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2023,710.800000,A
+836,Natural rubber in primary forms,5412,Yield,kg/ha,2024,718.300000,A
+836,Natural rubber in primary forms,5510,Production,t,1990,1275295.000000,A
+836,Natural rubber in primary forms,5510,Production,t,1991,1328172.000000,A
+836,Natural rubber in primary forms,5510,Production,t,1992,1398448.000000,A
+836,Natural rubber in primary forms,5510,Production,t,1993,1475438.000000,A
+836,Natural rubber in primary forms,5510,Production,t,1994,1464499.000000,A
+836,Natural rubber in primary forms,5510,Production,t,1995,1532143.000000,A
+836,Natural rubber in primary forms,5510,Production,t,1996,1574026.000000,A
+836,Natural rubber in primary forms,5510,Production,t,1997,1548609.000000,A
+836,Natural rubber in primary forms,5510,Production,t,1998,1564324.000000,A
+836,Natural rubber in primary forms,5510,Production,t,1999,1604358.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2000,1501430.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2001,1607460.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2002,1630360.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2003,1792350.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2004,2065820.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2005,2270891.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2006,2637231.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2007,2755172.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2008,2751286.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2009,2440347.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2010,2734900.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2011,2990200.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2012,3012254.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2013,3107544.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2014,3153186.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2015,3145398.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2016,3307142.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2017,3680428.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2018,3630357.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2019,3448782.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2020,3037348.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2021,3045314.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2022,2717080.550000,A
+836,Natural rubber in primary forms,5510,Production,t,2023,2240826.000000,A
+836,Natural rubber in primary forms,5510,Production,t,2024,2262088.000000,A
+258,Oil of palm kernel,5510,Production,t,1990,305000.000000,X
+258,Oil of palm kernel,5510,Production,t,1991,256000.000000,X
+258,Oil of palm kernel,5510,Production,t,1992,293000.000000,X
+258,Oil of palm kernel,5510,Production,t,1993,365000.000000,X
+258,Oil of palm kernel,5510,Production,t,1994,411800.000000,X
+258,Oil of palm kernel,5510,Production,t,1995,427696.000000,A
+258,Oil of palm kernel,5510,Production,t,1996,492443.000000,A
+258,Oil of palm kernel,5510,Production,t,1997,551300.000000,X
+258,Oil of palm kernel,5510,Production,t,1998,527300.000000,X
+258,Oil of palm kernel,5510,Production,t,1999,641600.000000,X
+258,Oil of palm kernel,5510,Production,t,2000,717800.000000,X
+258,Oil of palm kernel,5510,Production,t,2001,782300.000000,X
+258,Oil of palm kernel,5510,Production,t,2002,972300.000000,X
+258,Oil of palm kernel,5510,Production,t,2003,1083600.000000,X
+258,Oil of palm kernel,5510,Production,t,2004,1281200.000000,X
+258,Oil of palm kernel,5510,Production,t,2005,1459600.000000,X
+258,Oil of palm kernel,5510,Production,t,2006,1682100.000000,X
+258,Oil of palm kernel,5510,Production,t,2007,1820100.000000,X
+258,Oil of palm kernel,5510,Production,t,2008,2062600.000000,X
+258,Oil of palm kernel,5510,Production,t,2009,2282900.000000,X
+258,Oil of palm kernel,5510,Production,t,2010,2363000.000000,X
+258,Oil of palm kernel,5510,Production,t,2011,2603300.000000,X
+258,Oil of palm kernel,5510,Production,t,2012,2919200.000000,X
+258,Oil of palm kernel,5510,Production,t,2013,3070500.000000,X
+258,Oil of palm kernel,5510,Production,t,2014,3337300.000000,X
+258,Oil of palm kernel,5510,Production,t,2015,3601200.000000,X
+258,Oil of palm kernel,5510,Production,t,2016,3434900.000000,X
+258,Oil of palm kernel,5510,Production,t,2017,3889400.000000,X
+258,Oil of palm kernel,5510,Production,t,2018,4364500.000000,X
+258,Oil of palm kernel,5510,Production,t,2019,4577600.000000,X
+258,Oil of palm kernel,5510,Production,t,2020,4448900.000000,X
+258,Oil of palm kernel,5510,Production,t,2021,4653100.000000,X
+258,Oil of palm kernel,5510,Production,t,2022,4835200.000000,X
+258,Oil of palm kernel,5510,Production,t,2023,4968400.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,1990,673033.000000,A
+254,Oil palm fruit,5312,Area harvested,ha,1991,772245.000000,A
+254,Oil palm fruit,5312,Area harvested,ha,1992,875100.000000,A
+254,Oil palm fruit,5312,Area harvested,ha,1993,921000.000000,A
+254,Oil palm fruit,5312,Area harvested,ha,1994,1045000.000000,A
+254,Oil palm fruit,5312,Area harvested,ha,1995,1190000.000000,A
+254,Oil palm fruit,5312,Area harvested,ha,1996,1428350.000000,A
+254,Oil palm fruit,5312,Area harvested,ha,1997,1622503.000000,A
+254,Oil palm fruit,5312,Area harvested,ha,1998,1795081.000000,A
+254,Oil palm fruit,5312,Area harvested,ha,1999,1847000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2000,2014000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2001,2200000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2002,2790000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2003,3040000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2004,3320000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2005,3690000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2006,4110000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2007,4560000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2008,4980000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2009,5000000.000000,E
+254,Oil palm fruit,5312,Area harvested,ha,2010,5780000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2011,6170000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2012,6650000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2013,7720000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2014,8150000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2015,8650000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2016,9720000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2017,11000000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2018,12200000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2019,12880000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2020,13250000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2021,13670000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2022,13940000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2023,14170000.000000,X
+254,Oil palm fruit,5312,Area harvested,ha,2024,14320000.000000,X
+254,Oil palm fruit,5412,Yield,kg/ha,1990,16569.500000,A
+254,Oil palm fruit,5412,Yield,kg/ha,1991,15737.500000,A
+254,Oil palm fruit,5412,Yield,kg/ha,1992,15134.900000,A
+254,Oil palm fruit,5412,Yield,kg/ha,1993,18577.600000,E
+254,Oil palm fruit,5412,Yield,kg/ha,1994,19177.000000,E
+254,Oil palm fruit,5412,Yield,kg/ha,1995,18823.500000,E
+254,Oil palm fruit,5412,Yield,kg/ha,1996,17145.700000,E
+254,Oil palm fruit,5412,Yield,kg/ha,1997,16597.800000,E
+254,Oil palm fruit,5412,Yield,kg/ha,1998,16439.400000,E
+254,Oil palm fruit,5412,Yield,kg/ha,1999,17745.000000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2000,18063.600000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2001,18613.600000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2002,16774.200000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2003,17302.600000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2004,18222.900000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2005,18970.200000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2006,19525.500000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2007,17105.300000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2008,17068.300000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2009,18000.000000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2010,19204.200000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2011,18962.700000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2012,19849.600000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2013,18264.200000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2014,18159.500000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2015,18265.900000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2016,16563.800000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2017,17545.500000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2018,16885.200000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2019,16847.800000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2020,17132.100000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2021,18434.500000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2022,17073.200000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2023,16937.200000,E
+254,Oil palm fruit,5412,Yield,kg/ha,2024,16969.300000,E
+254,Oil palm fruit,5510,Production,t,1990,11151795.000000,A
+254,Oil palm fruit,5510,Production,t,1991,12153216.000000,A
+254,Oil palm fruit,5510,Production,t,1992,13244564.000000,A
+254,Oil palm fruit,5510,Production,t,1993,17110000.000000,E
+254,Oil palm fruit,5510,Production,t,1994,20040000.000000,E
+254,Oil palm fruit,5510,Production,t,1995,22400000.000000,E
+254,Oil palm fruit,5510,Production,t,1996,24490000.000000,E
+254,Oil palm fruit,5510,Production,t,1997,26930000.000000,E
+254,Oil palm fruit,5510,Production,t,1998,29510000.000000,E
+254,Oil palm fruit,5510,Production,t,1999,32775000.000000,E
+254,Oil palm fruit,5510,Production,t,2000,36380000.000000,E
+254,Oil palm fruit,5510,Production,t,2001,40950000.000000,E
+254,Oil palm fruit,5510,Production,t,2002,46800000.000000,E
+254,Oil palm fruit,5510,Production,t,2003,52600000.000000,E
+254,Oil palm fruit,5510,Production,t,2004,60500000.000000,E
+254,Oil palm fruit,5510,Production,t,2005,70000000.000000,E
+254,Oil palm fruit,5510,Production,t,2006,80250000.000000,E
+254,Oil palm fruit,5510,Production,t,2007,78000000.000000,E
+254,Oil palm fruit,5510,Production,t,2008,85000000.000000,E
+254,Oil palm fruit,5510,Production,t,2009,90000000.000000,E
+254,Oil palm fruit,5510,Production,t,2010,111000000.000000,E
+254,Oil palm fruit,5510,Production,t,2011,117000000.000000,E
+254,Oil palm fruit,5510,Production,t,2012,132000000.000000,E
+254,Oil palm fruit,5510,Production,t,2013,141000000.000000,E
+254,Oil palm fruit,5510,Production,t,2014,148000000.000000,E
+254,Oil palm fruit,5510,Production,t,2015,158000000.000000,E
+254,Oil palm fruit,5510,Production,t,2016,161000000.000000,E
+254,Oil palm fruit,5510,Production,t,2017,193000000.000000,E
+254,Oil palm fruit,5510,Production,t,2018,206000000.000000,E
+254,Oil palm fruit,5510,Production,t,2019,217000000.000000,E
+254,Oil palm fruit,5510,Production,t,2020,227000000.000000,E
+254,Oil palm fruit,5510,Production,t,2021,252000000.000000,E
+254,Oil palm fruit,5510,Production,t,2022,238000000.000000,E
+254,Oil palm fruit,5510,Production,t,2023,240000000.000000,E
+254,Oil palm fruit,5510,Production,t,2024,243000000.000000,E
+257,Palm oil,5510,Production,t,1990,2412612.000000,A
+257,Palm oil,5510,Production,t,1991,2657600.000000,A
+257,Palm oil,5510,Production,t,1992,3266250.000000,A
+257,Palm oil,5510,Production,t,1993,3421448.000000,A
+257,Palm oil,5510,Production,t,1994,4008060.000000,A
+257,Palm oil,5510,Production,t,1995,4479670.000000,A
+257,Palm oil,5510,Production,t,1996,4898658.000000,A
+257,Palm oil,5510,Production,t,1997,5385458.000000,A
+257,Palm oil,5510,Production,t,1998,5902178.000000,A
+257,Palm oil,5510,Production,t,1999,6011300.000000,X
+257,Palm oil,5510,Production,t,2000,7000507.000000,A
+257,Palm oil,5510,Production,t,2001,8396472.000000,A
+257,Palm oil,5510,Production,t,2002,9622344.000000,A
+257,Palm oil,5510,Production,t,2003,10440834.000000,A
+257,Palm oil,5510,Production,t,2004,10830389.000000,A
+257,Palm oil,5510,Production,t,2005,11861615.000000,A
+257,Palm oil,5510,Production,t,2006,17350848.000000,A
+257,Palm oil,5510,Production,t,2007,17664724.000000,A
+257,Palm oil,5510,Production,t,2008,17539788.000000,A
+257,Palm oil,5510,Production,t,2009,19324292.000000,A
+257,Palm oil,5510,Production,t,2010,21958120.000000,A
+257,Palm oil,5510,Production,t,2011,23096541.000000,A
+257,Palm oil,5510,Production,t,2012,26015519.000000,A
+257,Palm oil,5510,Production,t,2013,27782004.000000,A
+257,Palm oil,5510,Production,t,2014,29278189.000000,A
+257,Palm oil,5510,Production,t,2015,31070015.000000,A
+257,Palm oil,5510,Production,t,2016,31730961.000000,A
+257,Palm oil,5510,Production,t,2017,37965224.000000,A
+257,Palm oil,5510,Production,t,2018,40567230.000000,A
+257,Palm oil,5510,Production,t,2019,47120247.000000,A
+257,Palm oil,5510,Production,t,2020,44759147.000000,A
+257,Palm oil,5510,Production,t,2021,49710345.000000,A
+257,Palm oil,5510,Production,t,2022,46819673.000000,A
+257,Palm oil,5510,Production,t,2023,47084299.000000,A
