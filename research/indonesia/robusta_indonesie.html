@@ -142,7 +142,7 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
 <section>
   <h2>L'essentiel</h2>
   <ul class="verdict">
-    <li><span class="k">Surface</span><p>La surface de Robusta a baissé de <strong>24 % entre 2004 et 2014</strong> (1,14 → 0,86 M ha), puis elle est stable (+4 % jusqu'en 2023). Cette baisse ne vient pas du climat. Le café rapportait moins que ses concurrents : quand un hectare de café rapporte moins qu'un hectare de cacao l'année d'avant, la surface recule de <strong>2,5 % par an</strong> ; sinon, elle reste stable (partie 2 ter). En 2009–2012, un hectare de palmier rapportait même environ 3 fois plus qu'un hectare de café (FAO). L'arabica a aussi pris des terres en altitude, et les forêts protégées ont été fermées aux planteurs. En 2026, le café rapporte environ 1,4 fois le cacao : pas de recul de surface en vue.</p></li>
+    <li><span class="k">Surface</span><p>La surface de Robusta a baissé de <strong>24 % entre 2004 et 2014</strong> (1,14 → 0,86 M ha), puis elle est stable (+4 % jusqu'en 2023). Cette baisse ne vient pas du climat. Le café rapportait moins que ses concurrents : quand un hectare de café rapporte moins qu'un hectare de cacao l'année d'avant, la surface recule de <strong>2,5 % par an</strong> ; sinon, elle reste stable (partie 2 ter). En 2009–2012, un hectare de palmier rapportait même environ 3 fois plus qu'un hectare de café (FAO). L'arabica a aussi pris des terres en altitude, et les forêts protégées ont été fermées aux planteurs. Le coût de l'engrais, lui, n'explique pas la surface : elle n'a pas reculé quand il a flambé (partie 2 quater). En 2026, le café rapporte environ 1,4 fois le cacao : pas de recul de surface en vue.</p></li>
     <li><span class="k">Ton tableau</span><p>Les 500 491 ha productifs de 2023 ne sont pas réels : c'est 6,8 M sacs (USDA) ÷ 13,59 sacs/ha (ministère). Les 1,2 M ha de 2024–2026 sont la surface de <strong>tout</strong> le café indonésien, arabica compris, selon l'USDA.</p></li>
     <li><span class="k">Rendement</span><p>Il y a deux paliers : <strong>11,5 sacs/ha</strong> en moyenne sur 2004–2016, puis <strong>13,4</strong> sur 2017–2022. Les creux viennent de la météo de la floraison : 2011 (La Niña 2010, pluie toute l'année), 2014 (saison sèche 2013 trop humide), 2016 (sécheresse El Niño 2015).</p></li>
     <li><span class="k">Météo</span><p>Le caféier fleurit après un stress sec suivi d'une pluie. Sur 45 ans de données NASA, quand 3 à 5 des villes du Robusta ont eu cette « pluie de floraison » entre juin et octobre, la récolte suivante a fait <strong>+4 %</strong> par rapport aux récoltes voisines. Quand aucune ne l'a eue, <strong>−10 %</strong> (2010, 2022, 2025 trop humides ; 1994 trop sec). Corrélation r = 0,47, p = 0,002.</p></li>
@@ -388,6 +388,93 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   </tbody></table></div>
   <div class="prose stack">
     <p><strong>La limite, honnêtement :</strong> le lien entre surface et revenu relatif tient sur les tendances de plusieurs années, pas d'une année sur l'autre (sur les variations annuelles, r = +0,17). C'est logique pour une culture pérenne : on n'arrache pas des caféiers pour une seule mauvaise année. Il manque aussi le coût par hectare de chaque culture (le café demande beaucoup plus de travail que le palmier), qui renforcerait encore l'avantage du palmier en 2004–2014. Les estimations 2025–2026 supposent que les prix bord champ suivent les prix mondiaux.</p>
+  </div>
+</section>
+
+<section id="revenu-cout">
+  <span class="num">2 QUATER · CE QUI RAPPORTE, CE QUI COÛTE</span>
+  <h2>La surface suit ce que rapporte le café, pas ce que coûte l'engrais</h2>
+  <div class="prose stack">
+    <p>La question : un planteur plante-t-il selon ce que rapporte un hectare, ou selon ce qu'il coûte ? Je mets face à face trois séries depuis 2005 : le revenu brut d'un hectare de café, la facture d'engrais du même hectare, et la variation de la surface plantée en Robusta.</p>
+  </div>
+  <figure>
+    <figcaption><span class="t">Ce que rapporte un hectare de café, et ce que coûte son engrais</span><span class="s">Millions d'IDR par hectare. Revenu brut = prix producteur × rendement (FAOSTAT ; 2026 estimé avec le prix mondial du Robusta de janvier à août). Engrais = dose recommandée par le ministère (urée, SP-36, KCl), au prix du marché et au prix subventionné.</span></figcaption>
+    <div class="chart" id="rc-rev"></div>
+    <div class="legend"><span><i class="sw" style="background:var(--c1)"></i>Revenu brut par hectare</span><span><i class="sw line" style="background:var(--dry)"></i>Engrais, prix du marché</span><span><i class="sw line" style="background:var(--dry-2)"></i>Engrais, prix subventionné</span></div>
+  </figure>
+  <figure>
+    <figcaption><span class="t">En dessous, la surface plantée en Robusta, même axe des années</span><span class="s">Variation sur un an, en % (ministère, 2005–2023).</span></figcaption>
+    <div class="chart" id="rc-area"></div>
+  </figure>
+  <div class="prose stack">
+    <p><strong>Ce que montrent les deux graphiques.</strong> L'engrais a flambé deux fois : ×2,2 en 2008, puis ×3,2 entre 2020 et 2022. La surface n'a pas reculé davantage après ces hausses : en 2021–2022, elle monte même de 3,4 % puis reste stable. Le revenu, lui, change de palier, et la surface suit. De 2005 à 2011, un hectare de café rapporte moins de 8 millions d'IDR : la surface recule chaque année, de 3,2 % en moyenne. De 2012 à 2017, il rapporte 9 à 14 millions : le recul ralentit à 0,8 % par an. De 2018 à 2023, 12 à 15 millions : la surface monte de 0,7 % par an.</p>
+  </div>
+  <div class="tbl"><table><thead><tr><th>Moteur testé</th><th class="n">Lien brut, 2 ans avant</th><th class="n">Lien brut, 3 ans avant</th><th class="n">Sans la tendance, 2 ans</th><th class="n">Sans la tendance, 3 ans</th><th>Verdict</th></tr></thead><tbody>
+    <tr><td><strong>Revenu du café par hectare</strong> (IDR)</td><td class="n"><b>+0,86</b> (p = 0,004)</td><td class="n"><b>+0,85</b> (p = 0,002)</td><td class="n">+0,47 (p = 0,06)</td><td class="n"><b>+0,53</b> (p = 0,02)</td><td>Moteur</td></tr>
+    <tr><td><strong>Revenu du café par hectare</strong> (dollars)</td><td class="n"><b>+0,78</b> (p = 0,03)</td><td class="n"><b>+0,75</b> (p = 0,004)</td><td class="n"><b>+0,50</b> (p = 0,04)</td><td class="n"><b>+0,43</b> (p = 0,04)</td><td>Moteur</td></tr>
+    <tr><td><strong>Revenu du café comparé au cacao</strong></td><td class="n"><b>+0,74</b> (p = 0,01)</td><td class="n"><b>+0,81</b> (p = 0,004)</td><td class="n">+0,12 (p = 0,64)</td><td class="n">+0,40 (p = 0,13)</td><td>Moteur des grandes phases, pas des écarts d'une année</td></tr>
+    <tr><td>Marge sur l'engrais (revenu − engrais)</td><td class="n"><b>+0,82</b> (p = 0,004)</td><td class="n"><b>+0,82</b> (p = 0,002)</td><td class="n">+0,40 (p = 0,09)</td><td class="n">+0,38 (p = 0,10)</td><td>Suit le revenu, qui pèse bien plus que l'engrais</td></tr>
+    <tr><td>Facture d'engrais par hectare</td><td class="n">+0,52 (p = 0,14)</td><td class="n">+0,52 (p = 0,16)</td><td class="n">+0,13 (p = 0,62)</td><td class="n">+0,32 (p = 0,20)</td><td><strong>Pas un moteur</strong></td></tr>
+    <tr><td>Part de l'engrais dans le revenu</td><td class="n">−0,54 (p = 0,06)</td><td class="n"><b>−0,62</b> (p = 0,03)</td><td class="n">−0,20 (p = 0,39)</td><td class="n">−0,01 (p = 0,97)</td><td><strong>Pas un moteur</strong> (le lien brut vient de la tendance)</td></tr>
+    <tr><td>Prix arabica ÷ prix Robusta</td><td class="n" colspan="4">aucun lien significatif (r de −0,38 à +0,35 selon le retard)</td><td><strong>Pas un moteur</strong></td></tr>
+  </tbody></table></div>
+  <p class="meta">Corrélation entre la variation de la surface plantée en Robusta (2007–2023) et chaque moteur 2 ou 3 ans plus tôt. p tient compte de l'inertie des séries (permutation par blocs de 3 ans). « Sans la tendance » : je retire la ligne droite de chaque série (inflation, cycle long) et je ne garde que les écarts d'une année à l'autre.</p>
+  <div class="prose stack">
+    <p><strong>Ma lecture.</strong> Le coût ne décide pas de la surface : aucun lien, même brut, et la surface n'a pas cédé quand l'engrais a flambé. C'est le revenu qui décide. Mais sur la période, le revenu du café et le revenu comparé au cacao bougent ensemble (r = +0,87 en dollars) : les chiffres seuls ne peuvent pas dire lequel des deux compte le plus. Les rapports de l'USDA, eux, parlent clairement de comparaison : en 2009–2012, les planteurs quittent le Robusta pour « des cultures plus rentables », le cacao, l'hévéa et le palmier (tableau plus bas).</p>
+  </div>
+
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:8px">L'arabica paie 2 à 3 fois plus par kilo, mais il ne prend pas la place du Robusta</h3>
+  <figure>
+    <figcaption><span class="t">Prix intérieurs : Robusta au Lampung, arabica à Medan</span><span class="s">Prix spot mensuels, IDR par kg de café vert (Bappebti, repris dans les rapports USDA de Jakarta), janvier 2015 à avril 2026.</span></figcaption>
+    <div class="chart" id="rc-px"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c1)"></i>Robusta, Lampung</span><span><i class="sw line" style="background:var(--c7)"></i>Arabica, Medan</span></div>
+  </figure>
+  <figure>
+    <figcaption><span class="t">Le prix de l'arabica, en nombre de fois le prix du Robusta</span><span class="s">Prix de l'arabica ÷ prix du Robusta. Ligne violette : prix intérieurs (moyenne annuelle Bappebti ; 2026 = janvier–avril). Points : prix producteurs cités par l'USDA en 2010, 2011 et 2013. Ligne grise : prix mondiaux (Banque mondiale ; 2026 = janvier–août).</span></figcaption>
+    <div class="chart" id="rc-ratio"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c7)"></i>Prix intérieurs</span><span><i class="sw" style="background:var(--c7)"></i>Prix producteurs cités par l'USDA</span><span><i class="sw line" style="background:var(--c9)"></i>Prix mondiaux</span></div>
+  </figure>
+  <figure>
+    <figcaption><span class="t">Pourtant, la part de l'arabica dans la production ne progresse plus depuis 2013</span><span class="s">Part de l'arabica dans la production indonésienne de café, en % (USDA PSD, campagnes 2000/01 à 2026/27). Zone beige : programmes publics pour l'arabica (2007–2012). En 2023/24, la part monte seulement parce que le Robusta s'effondre.</span></figcaption>
+    <div class="chart" id="rc-psd"></div>
+  </figure>
+  <div class="prose stack">
+    <p><strong>Ce que dit l'USDA sur l'arabica.</strong> Sa production passe de 0,46 M sacs en 2000/01 à 0,95 M en 2004/05, puis 1,3 à 1,5 M en 2008–2010 et un sommet de 2,0 M en 2012/13. Sa part monte de 7 % à 17 %. C'est la période des programmes publics (tableau ci-dessous). Depuis 2014, elle retombe entre 1,0 et 1,5 M sacs, soit 10 à 13 % de la production (hors 2023/24, quand le Robusta s'effondre). Dernière estimation : 1,37 M sacs en 2025/26 après les inondations de novembre 2025 en Aceh et au Sumatra du Nord, et 1,38 M prévus en 2026/27.</p>
+    <p><strong>Pourquoi le planteur de Robusta ne passe pas à l'arabica, malgré un prix 2 à 3 fois plus haut ?</strong> L'USDA cite trois freins. L'altitude : « l'arabica ne convient qu'aux hautes altitudes » (mai 2024). La main-d'œuvre : l'extension des surfaces d'arabica « peut prendre des années, faute de main-d'œuvre sur les terres d'altitude » (mai 2025, mai 2026). La forêt : les planteurs ont de plus en plus interdiction de planter dans les forêts protégées (nov. 2010), et « le relief difficile et les empiètements sur les forêts protégées » freinent l'extension (mai 2012).</p>
+    <p><strong>Où pousse chaque café.</strong> Selon l'USDA (nov. 2017 et mai 2018), le nord de Sumatra produit surtout de l'arabica, à plus de 90 % en altitude. Le sud de Sumatra (Lampung, Sumatra du Sud, Bengkulu) produit surtout du Robusta : 60 % en altitude, 40 % en plaine. Java et le reste ont les deux, en plaine comme en altitude. <strong>Je corrige ce que j'ai écrit plus haut :</strong> les rapports ne montrent pas l'arabica prenant la place du Robusta. Ils montrent l'arabica qui s'étend sur d'autres terres : les forêts gérées par l'État à Java Ouest, où 20 000 ha seulement sur 291 306 ha propices portaient du café en 2014 (USDA, mai 2014), et de nouvelles plantations à Java Ouest, Java Centre et Sulawesi du Sud (mai 2026). Au sud de Sumatra, seules les terres les plus hautes de la ceinture du Robusta pourraient passer à l'arabica.</p>
+  </div>
+  <div class="tbl"><table><thead><tr><th>Années</th><th>Programme public (source : rapports USDA de Jakarta)</th><th class="n">Budget</th></tr></thead><tbody>
+    <tr><td>2007–2010</td><td>Rajeunissement et replantation d'environ 12 500 ha d'arabica, avec l'appui d'AMARTA (USAID). Objectif : l'arabica à au moins 30 % des exportations. Raison donnée : arabica 26 000–29 000 IDR/kg contre 12 000–16 000 pour le Robusta (nov. 2010)</td><td class="n">≈ 50 milliards d'IDR (≈ 5 M $)</td></tr>
+    <tr><td>2012</td><td>Plants pour étendre l'arabica et rajeunir le Robusta</td><td class="n">37,3 milliards</td></tr>
+    <tr><td>2012</td><td>Engrais pour l'extension de l'arabica et le rajeunissement du Robusta : Aceh, Sumatra du Sud, Bengkulu, Jambi, Lampung</td><td class="n">7,5 milliards</td></tr>
+    <tr><td>2012</td><td>Même aide en engrais : Java Ouest, Java Centre, Nusa Tenggara Ouest, Yogyakarta, Bali (5,9 milliards) ; Nusa Tenggara Est et Papouasie (2,7 milliards)</td><td class="n">8,6 milliards</td></tr>
+    <tr><td>2012</td><td>Intensification des cafés de spécialité : Aceh, Sumatra du Nord et Lampung (33,4 milliards) ; Java et Bali (29,8) ; Nusa Tenggara Est et Sulawesi du Sud (26,2)</td><td class="n">89,4 milliards</td></tr>
+    <tr><td><strong>2012, total</strong></td><td>Plan du ministère de l'Agriculture pour l'arabica et le Robusta (mai 2012)</td><td class="n"><strong>≈ 143 milliards d'IDR (≈ 15 M $)</strong></td></tr>
+    <tr><td>2014</td><td>Perhutani (forêts d'État de Java) ouvre ses terres au café en agroforesterie : 684 000 ha de forêts protégées, dont 291 306 ha propices à Java Ouest ; seulement 20 000 ha plantés. Perhutani ne fournit que la terre</td><td class="n">—</td></tr>
+    <tr><td>2018–2026</td><td>« Pas de programme national » d'extension (mai 2018) ; « pas de grand programme de replantation ou d'extension ces dernières années » (mai 2024, 2025, 2026) ; distribution de plants subventionnés et formation limitées à certaines zones (mai 2026)</td><td class="n">—</td></tr>
+  </tbody></table></div>
+  <p class="meta">Les sept projets de 2012 font 142,8 milliards d'IDR, soit les 143 milliards annoncés. Pour donner l'échelle : c'est le revenu brut d'une année d'environ 15 600 ha de café en 2012 (9,2 millions d'IDR par hectare), sur 1,2 M ha. Un programme modeste.</p>
+
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:8px">Ce que disent les rapports de l'USDA, année par année</h3>
+  <div class="tbl"><table><thead><tr><th>Rapport</th><th>Surface, conversions, marges</th><th>Prix cités</th></tr></thead><tbody>
+    <tr><td>2009, semestriel</td><td>La surface de café baisse, surtout dans les régions Robusta, à cause des prix bas. Des planteurs passent au cacao, qui demande moins d'entretien et paie mieux et plus régulièrement depuis cinq ans, de plus en plus au Lampung</td><td>—</td></tr>
+    <tr><td>Avril 2010</td><td>La surface remonte un peu : des planteurs repassent du cacao au café après l'annonce d'une taxe à l'exportation sur le cacao, fin 2009</td><td>—</td></tr>
+    <tr><td>Nov. 2010</td><td>Les prix bas n'incitent pas à planter du Robusta ; certains passent au cacao, « plus rentable ». Peu d'extension de l'arabica : forêts protégées interdites</td><td>Robusta 12 000–16 000 IDR/kg ; arabica 26 000–29 000</td></tr>
+    <tr><td>Mai 2011</td><td>Le séchage au soleil, bien moins cher que la voie humide, domine chez les petits planteurs</td><td>Robusta non trié au Lampung : 10 000–12 000 IDR/kg en 2010, 17 500–19 000 en 2011</td></tr>
+    <tr><td>Déc. 2011</td><td>—</td><td>Arabica : de 22 000–24 000 à 50 000–60 000 IDR/kg</td></tr>
+    <tr><td>Mai 2012</td><td>Au Lampung, à Bengkulu et au Sumatra du Sud (80 % du Robusta), conversions actives vers le cacao, l'hévéa et le palmier, « plus rentables ». L'arabica gagne des surfaces sans compenser</td><td>—</td></tr>
+    <tr><td>Nov. 2013</td><td>—</td><td>Prix intérieurs : Robusta 2 $/kg, arabica 5 $/kg</td></tr>
+    <tr><td>Mai 2014</td><td>Place disponible pour l'arabica dans les forêts d'État de Java Ouest</td><td>Arabica : de 25 000 IDR/kg en 2013 à 75 000 au 1er trimestre 2014</td></tr>
+    <tr><td>Mai 2017</td><td>Les planteurs préfèrent des pratiques peu productives, parce qu'elles coûtent moins et demandent moins de main-d'œuvre</td><td>—</td></tr>
+    <tr><td>Mai 2018</td><td>Les rares extensions du café se font aux dépens du cacao, plus touché par les maladies. Intrants au minimum ; engrais à crédit chez les collecteurs</td><td>Avril 2017–avril 2018 : Robusta Lampung 23 300–26 300 IDR/kg ; arabica Medan 51 600–57 500</td></tr>
+    <tr><td>Mai 2021</td><td>Le café reste un revenu d'appoint pour la plupart des planteurs. Les jeunes planteurs obtiennent des rendements nettement plus hauts au sud de Sumatra</td><td>—</td></tr>
+    <tr><td>Mai 2024</td><td>Surface stable à 1,2 M ha. Selon le ministère, l'intérêt pour l'arabica a grandi depuis dix ans grâce à son prix, mais il ne pousse qu'en altitude</td><td>—</td></tr>
+    <tr><td>Mai 2025</td><td>Avec des marges plus hautes, les planteurs ajoutent de l'engrais, remettent en état des plantations abandonnées et entretiennent mieux</td><td>—</td></tr>
+    <tr><td>Déc. 2025</td><td>Les marges des petits planteurs ont augmenté depuis deux ans grâce aux prix</td><td>—</td></tr>
+    <tr><td>Mai 2026</td><td>Quelques nouvelles plantations à Java Ouest, Java Centre et Sulawesi du Sud, « probablement grâce aux meilleures marges ». Plus d'engrais, parcelles abandonnées remises en état</td><td>—</td></tr>
+  </tbody></table></div>
+  <div class="prose stack">
+    <p><strong>La logique qui en ressort.</strong> Quand le café paie mal face aux autres cultures (2009–2012), les planteurs partent vers le cacao, l'hévéa ou le palmier. Quand il paie bien (2024–2026), ils remettent en état les parcelles abandonnées, fertilisent et replantent. Le coût de l'engrais n'apparaît jamais comme cause d'un recul de surface : il joue sur l'entretien, donc sur le rendement.</p>
   </div>
 </section>
 
@@ -902,6 +989,36 @@ function draw(){
       series:[{name:'Revenu',color:'--c2',values:solid(rr)},{name:'Revenu',color:'--c2',values:est(rr),dash:true},{name:'Surface',color:'--ink',values:ar,width:2.6}],
       labels:[{i:i12,y:ar[i12],text:'sommet en 2012',dy:-12},{i:i06,y:ar[i06],text:'rupture FAO',dy:22}],
       tip:i=>`<b>${Ys[i]}${estTag(Ys[i])}</b>`+row('Revenu/ha cacao ÷ café',rr[i]==null?'–':'× '+fr(rr[i],2),'--c2')+row('Surface cacao ÷ café',ar[i]==null?'–':'× '+fr(ar[i],2),'--ink')});
+  })();
+  // revenue vs cost, arabica
+  (function(){
+    const D={"yrs":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026],"rev":[null,null,null,null,null,3.26,4.1,5.75,7.4,7.55,7.53,7.74,9.19,9.01,9.16,9.95,10.31,14.38,15.32,13.07,12.44,12.37,13.29,15.46,24.68,32.93,27.16],"bill":[null,null,null,null,null,1.87,1.85,2.54,5.62,3.56,2.92,3.74,4.03,3.79,3.79,4.08,3.13,3.07,3.7,3.65,3.49,7.29,11.08,5.96,5.62,7.14,8.87],"bill_sub":[null,null,null,null,null,null,null,null,null,null,null,null,3.16,3.01,2.95,3.21,2.78,2.6,2.92,2.89,2.79,5.19,7.41,4.52,4.22,5.01,5.41],"g":[null,null,null,null,null,-1.98,-2.04,-6.55,-4.7,-2.46,-2.75,-2.0,0.02,-2.6,-1.75,-0.01,0.93,-1.39,0.06,0.04,0.04,3.44,-0.04,0.7,null,null,null],"m":["2015-01","2015-02","2015-03","2015-04","2015-05","2015-06","2015-07","2015-08","2015-09","2015-10","2015-11","2015-12","2016-01","2016-02","2016-03","2016-04","2016-05","2016-06","2016-07","2016-08","2016-09","2016-10","2016-11","2016-12","2017-01","2017-02","2017-03","2017-04","2017-05","2017-06","2017-07","2017-08","2017-09","2017-10","2017-11","2017-12","2018-01","2018-02","2018-03","2018-04","2018-05","2018-06","2018-07","2018-08","2018-09","2018-10","2018-11","2018-12","2019-01","2019-02","2019-03","2019-04","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04","2020-05","2020-06","2020-07","2020-08","2020-09","2020-10","2020-11","2020-12","2021-01","2021-02","2021-03","2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12","2022-01","2022-02","2022-03","2022-04","2022-05","2022-06","2022-07","2022-08","2022-09","2022-10","2022-11","2022-12","2023-01","2023-02","2023-03","2023-04","2023-05","2023-06","2023-07","2023-08","2023-09","2023-10","2023-11","2023-12","2024-01","2024-02","2024-03","2024-04","2024-05","2024-06","2024-07","2024-08","2024-09","2024-10","2024-11","2024-12","2025-01","2025-02","2025-03","2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04"],"rob":[21446,21803,20592,20194,19040,20927,21354,19723,19539,18819,18248,17719,16460,15953,16089,17092,18795,19192,20403,20806,22270,24078,25767,24916,26655,25741,25723,24812,23318,23976,25981,25873,24289,24545,24704,24787,24930,25855,26317,25265,26219,25686,26674,25311,24104,26943,25346,22758,22528,22462,22226,20628,19829,20469,20135,18998,18812,17862,19491,20238,18529,17980,18352,18195,17701,16943,18353,21951,22606,19073,20089,20593,19208,19635,20693,20555,22043,24333,27666,28552,32259,33041,35249,36428,36713,35316,34569,32441,32504,32950,31702,34919,36132,34302,31026,32143,31831,33933,35219,38642,42340,44939,45401,44114,44526,42037,44700,47790,56069,55854,59018,72712,69183,78739,84688,82914,93811,84037,81332,92146,94724,104371,102373,98659,92487,77196,66446,75000,85290,84128,85386,77284,78595,70862,69785,66661],"ara":[56705,53891,48942,49499,48697,52134,56946,54035,54431,53462,51420,52434,51976,50242,50946,50667,52024,53289,55739,55144,57260,58042,60790,55692,57733,57135,55772,54384,53420,51575,51989,52139,52359,53223,54154,56846,57495,56625,56591,55820,57515,56509,54738,53079,52032,60281,57451,52077,52101,49683,48342,46849,47156,51637,52010,48415,49328,49062,53557,62365,54862,50733,55802,62087,55112,49194,52600,60338,62736,55339,55249,59127,60558,61201,64574,66070,73426,76932,83641,89133,92147,97821,107508,114524,115135,120659,109210,110717,108798,115627,110862,112860,115505,105585,88805,88384,83195,94239,94299,95268,94804,92614,82766,81598,80395,83344,93531,102543,99373,102860,101778,122088,115931,126734,132513,129851,133269,134268,148299,174831,182152,222884,218541,213411,211184,186005,164607,185903,216236,219802,229835,215523,203476,170465,170767,174162],"wr":[2.11,2.26,2.05,1.74,2.24,2.27,1.69,1.43,1.33,1.93,2.49,2.48,1.81,1.48,2.0,1.82,1.85,1.49,1.57,1.78,2.19,2.28,2.46,1.73,1.27,1.74,1.91],"psd_ara":[455.0,495.0,550.0,650.0,950.0,1050.0,900.0,800.0,1300.0,1500.0,1375.0,1300.0,2000.0,1900.0,1270.0,1500.0,1300.0,1000.0,1200.0,1250.0,1300.0,1280.0,1200.0,1350.0,1400.0,1370.0,1380.0],"psd_rob":[6040.0,5665.0,6250.0,6600.0,7500.0,8400.0,6600.0,7200.0,8700.0,9000.0,7950.0,6670.0,9900.0,10000.0,9200.0,10600.0,9300.0,9400.0,9400.0,9450.0,9400.0,9300.0,9500.0,6800.0,9300.0,11000.0,10000.0]};
+    const Ys=D.yrs.filter(y=>y>=2005), at=y=>D.yrs.indexOf(y), sl=a=>Ys.map(y=>a[at(y)]);
+    const rev=sl(D.rev), bill=sl(D.bill), sub=sl(D.bill_sub), g=sl(D.g);
+    chart('rc-rev',{x:Ys.map(String),every:3,aria:"Revenu et coût de l'engrais par hectare",yMin:0,fmt:v=>fr(v,0),h:280,
+      series:[{name:'Revenu',type:'bar',color:'--c1',values:rev,dot:i=>Ys[i]===2026?'--wet-2':'--c1'},{name:'Engrais',color:'--dry',values:bill,width:2.6},{name:'Engrais subventionné',color:'--dry-2',values:sub,dash:true}],
+      labels:[2008,2022].map((y,k)=>({i:Ys.indexOf(y),y:Math.max(rev[Ys.indexOf(y)],bill[Ys.indexOf(y)]),text:k?'engrais ×3,2':'engrais ×2,2',dy:-10,anchor:k?'end':'middle'})),
+      tip:i=>`<b>${Ys[i]}${Ys[i]===2026?' (revenu estimé)':''}</b>`+row('Revenu brut',rev[i]==null?'–':fr(rev[i],1)+' M IDR/ha','--c1')+row('Engrais, prix du marché',bill[i]==null?'–':fr(bill[i],1)+' M IDR/ha','--dry')+row('Engrais, subventionné',sub[i]==null?'–':fr(sub[i],1)+' M IDR/ha','--dry-2')+(rev[i]&&bill[i]?row("Part de l'engrais",fr(100*bill[i]/rev[i],0)+' %'):'')});
+    chart('rc-area',{x:Ys.map(String),every:3,aria:'Variation de la surface de Robusta',fmt:v=>(v>0?'+':'')+fr(v,0)+' %',h:190,
+      series:[{name:'Surface',type:'bar',color:'--neutral',values:g,dot:i=>g[i]<0?'--dry':'--good'}],
+      tip:i=>g[i]==null?'':`<b>${Ys[i]}</b>${row('Surface plantée, sur un an',(g[i]>0?'+':'')+fr(g[i],1)+' %',g[i]<0?'--dry':'--good')}${rev[i-2]!=null?row('Revenu 2 ans avant',fr(rev[i-2],1)+' M IDR/ha','--c1'):''}`});
+    // domestic monthly prices
+    const M=D.m, MN=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+    chart('rc-px',{x:M.map(m=>m.slice(0,4)),every:12,aria:'Prix intérieurs du Robusta et de l\'arabica',yMin:0,fmt:v=>fr(v/1000,0)+' k',h:280,
+      series:[{name:'Robusta',color:'--c1',values:D.rob,width:2.2},{name:'Arabica',color:'--c7',values:D.ara,width:2.2}],
+      tip:i=>`<b>${MN[+M[i].slice(5)-1]} ${M[i].slice(0,4)}</b>`+row('Robusta, Lampung',fr(D.rob[i],0)+' IDR/kg','--c1')+row('Arabica, Medan',fr(D.ara[i],0)+' IDR/kg','--c7')+row('Arabica ÷ Robusta','× '+fr(D.ara[i]/D.rob[i],2))});
+    // ratio: domestic annual average, USDA point quotes, world
+    const Y3=D.yrs, dom=Y3.map(y=>{ const k=M.map((m,i)=>m.startsWith(y+'-')?i:-1).filter(i=>i>=0); if(!k.length) return null; const a=k.reduce((s,i)=>s+D.ara[i],0), r=k.reduce((s,i)=>s+D.rob[i],0); return a/r; });
+    const q={2010:[27500/14000,'arabica 26 000–29 000 contre Robusta 12 000–16 000 IDR/kg (nov. 2010)'],2011:[55000/18250,'arabica 50 000–60 000 (déc. 2011) contre Robusta 17 500–19 000 IDR/kg (mai 2011)'],2013:[2.5,'arabica 5 $/kg contre Robusta 2 $/kg (nov. 2013)']};
+    const qv=Y3.map(y=>q[y]?q[y][0]:null);
+    chart('rc-ratio',{x:Y3.map(String),aria:'Prix de l\'arabica en multiple du Robusta',yMin:0,yMax:3.5,fmt:v=>'× '+fr(v,1),h:260,refs:[{y:1}],
+      series:[{name:'Monde',color:'--c9',values:D.wr,width:1.8},{name:'Intérieur',color:'--c7',values:dom,width:2.6,dot:()=>'--c7'},{name:'USDA',color:'--c7',values:qv,opacity:.001,dot:()=>'--c7'}],
+      tip:i=>`<b>${Y3[i]}</b>`+(dom[i]!=null?row('Prix intérieurs'+(Y3[i]===2026?' (janv.–avr.)':''),'× '+fr(dom[i],2),'--c7'):'')+(q[Y3[i]]?row('Cité par l\'USDA','× '+fr(q[Y3[i]][0],1)+' : '+q[Y3[i]][1],'--c7'):'')+row('Prix mondiaux'+(Y3[i]===2026?' (janv.–août)':''),'× '+fr(D.wr[i],2),'--c9')});
+    // arabica share of production (USDA)
+    const sh=Y3.map((y,i)=>D.psd_ara[i]!=null&&D.psd_rob[i]!=null?100*D.psd_ara[i]/(D.psd_ara[i]+D.psd_rob[i]):null);
+    chart('rc-psd',{x:Y3.map(y=>y+'/'+String(y+1).slice(2)),every:5,band:{from:Y3.indexOf(2007),to:Y3.indexOf(2012),label:'programmes publics'},aria:"Part de l'arabica dans la production",yMin:0,fmt:v=>fr(v,0)+' %',h:220,
+      series:[{name:'Part arabica',type:'bar',color:'--c7',values:sh,dot:i=>Y3[i]===2023?'--neutral':'--c7'}],
+      tip:i=>`<b>${Y3[i]}/${String(Y3[i]+1).slice(2)}</b>`+row('Arabica',fr(D.psd_ara[i]/1000,2)+' M sacs','--c7')+row('Robusta',fr(D.psd_rob[i]/1000,2)+' M sacs','--c1')+row("Part de l'arabica",fr(sh[i],1)+' %')});
   })();
   // 5. scenarios
   const SY=[2019,2020,2021,2022,2023,2024,2025,2026,2027];
