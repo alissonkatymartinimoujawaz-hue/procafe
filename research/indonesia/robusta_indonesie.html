@@ -198,6 +198,28 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   <div class="prose stack">
     <p><strong>2009 → 2012, la période des conversions :</strong> le cacao gagne 266 000 ha (1,59 → 1,85 M ha, son pic historique), le palmier 1,65 M ha (5,0 → 6,65 M ha) et l'hévéa 49 000 ha, pendant que le Robusta perd 44 000 ha plantés (947 000 → 903 000 ha). Ensuite, le cacao recule (1,39 M ha en 2024) : maladies et vieux vergers font chuter son rendement de 510 à 400 kg/ha entre 2010 et 2012.</p>
   </div>
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:12px">Surfaces du Robusta par province et par district</h3>
+  <div class="tbl"><table><thead><tr><th>Hectares</th><th class="n">2013</th><th class="n">2016</th><th class="n">2017</th><th class="n">2021</th><th class="n">2022</th><th class="n">2023</th><th class="n">2024</th></tr></thead><tbody>
+    <tr><td><strong>Sumatra du Sud</strong> (98 % Robusta)</td><td class="n">–</td><td class="n">–</td><td class="n">250 172</td><td class="n">~268 000</td><td class="n">~267 000</td><td class="n">267 187</td><td class="n">266 643</td></tr>
+    <tr><td><strong>Lampung</strong></td><td class="n">–</td><td class="n">–</td><td class="n">161 954</td><td class="n">156 396</td><td class="n">155 165</td><td class="n">~155 200</td><td class="n">152 378</td></tr>
+    <tr><td><strong>Bengkulu</strong></td><td class="n">90 441</td><td class="n">95 313</td><td class="n">86 627</td><td class="n">–</td><td class="n">–</td><td class="n">90 964 ?</td><td class="n">–</td></tr>
+    <tr><td><strong>Java Est</strong></td><td class="n">–</td><td class="n">–</td><td class="n">50 755</td><td class="n">–</td><td class="n">–</td><td class="n">–</td><td class="n">–</td></tr>
+    <tr><td>Indonésie, tout café (FAO)</td><td class="n">1 241 700</td><td class="n">1 228 512</td><td class="n">1 238 598</td><td class="n">1 279 570</td><td class="n">1 265 961</td><td class="n">1 266 848</td><td class="n">1 269 354</td></tr>
+  </tbody></table></div>
+  <div class="tbl"><table><thead><tr><th>District (kabupaten)</th><th>Province</th><th class="n">Surface, ha</th><th>Année</th></tr></thead><tbody>
+    <tr><td>OKU Selatan</td><td>Sumatra du Sud</td><td class="n">89 248</td><td>2024</td></tr>
+    <tr><td>Empat Lawang</td><td>Sumatra du Sud</td><td class="n">62 126</td><td>2024</td></tr>
+    <tr><td>Lampung Barat</td><td>Lampung</td><td class="n">54 096 (54 106 en 2020)</td><td>2023–2024</td></tr>
+    <tr><td>Lahat</td><td>Sumatra du Sud</td><td class="n">53 847</td><td>2024</td></tr>
+    <tr><td>Tanggamus</td><td>Lampung</td><td class="n">41 510</td><td>2020</td></tr>
+    <tr><td>Kepahiang / Rejang Lebong</td><td>Bengkulu</td><td class="n">24 017 / 21 059</td><td>2016 (à confirmer)</td></tr>
+    <tr><td>Muara Enim</td><td>Sumatra du Sud</td><td class="n">22 475</td><td>2024</td></tr>
+    <tr><td>Pagar Alam</td><td>Sumatra du Sud</td><td class="n">8 074</td><td>2024</td></tr>
+  </tbody></table></div>
+  <div class="prose stack">
+    <p><strong>Ce qu'on en tire :</strong> le Robusta pèse environ 71 % de la surface de café indonésienne (moyenne 2013–2023, ministère), soit environ 0,90 M ha en 2023. Depuis 2017, le Sumatra du Sud gagne des surfaces (+6,6 %) et le Lampung en perd (−6 %), en partie à cause des expulsions dans le parc national de Bukit Barisan Selatan, où environ 21 000 ha de café avaient été plantés illégalement fin 2024. L'USDA estime que la production du sud de Sumatra vient à 60 % de l'altitude et à 40 % de la plaine, mais aucune source ne donne la surface par altitude.</p>
+  </div>
+  <p class="meta">Sources : ministère (Outlook Kopi 2023), Dinas Perkebunan du Lampung (2020), Kupas Tuntas (2024), Akurat Sumsel (2024), Databoks/Kompas (2023), Polinela (2017), dépôt du ministère (Bengkulu 2013), FAOSTAT (tout café). Ces chiffres viennent de la recherche web, pas des PDF originaux (bloqués) : les valeurs précédées de « ~ » ou suivies de « ? » sont à confirmer. La série nationale Robusta/arabica année par année depuis 2010 est dans les livres statistiques du ministère, encore inaccessibles.</p>
   <h3 style="font:700 21px/1.25 var(--display);margin-top:12px">Ce que rapportait chaque culture par hectare</h3>
   <figure>
     <figcaption><span class="t">Revenu brut par hectare au prix producteur</span><span class="s">$ par hectare récolté = prix payé au producteur indonésien × rendement national (FAOSTAT). Café : toutes variétés, ~90 % de Robusta. Palmier : régimes frais. Années sans prix FAO complétées avec l'indice des prix producteur de la FAO.</span></figcaption>
@@ -245,9 +267,9 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
     <div class="chart" id="k-rev"></div>
   </figure>
   <figure>
-    <figcaption><span class="t">Variation sur un an : revenu par hectare et prix de l'urée</span><span class="s">% de variation par rapport à l'année précédente. Urée en roupies (prix mondial × taux de change) jusqu'en 2024, en dollars ensuite (taux de change 2025–2026 à venir).</span></figcaption>
+    <figcaption><span class="t">Variation sur un an : revenu, engrais, main-d'œuvre</span><span class="s">% de variation par rapport à l'année précédente. Urée : prix mondial converti en roupies (taux 2025–2026 approximatifs : 16 475 et ~16 950 IDR/$). Main-d'œuvre : salaire journalier national des ouvriers agricoles (BPS) jusqu'en 2022, puis salaire minimum du Lampung (UMP) en relais, faute de série nationale publiée.</span></figcaption>
     <div class="chart" id="k-yoy"></div>
-    <div class="legend"><span><i class="sw" style="background:var(--c1)"></i>Revenu brut par hectare</span><span><i class="sw" style="background:var(--c2)"></i>Urée</span></div>
+    <div class="legend"><span><i class="sw" style="background:var(--c1)"></i>Revenu brut par hectare</span><span><i class="sw" style="background:var(--c2)"></i>Urée (prix du marché)</span><span><i class="sw" style="background:var(--c7)"></i>Main-d'œuvre (salaire agricole BPS jusqu'en 2022, puis salaire minimum du Lampung)</span></div>
   </figure>
   <figure>
     <figcaption><span class="t">Prix des engrais en roupies par kilo</span><span class="s">Prix mondiaux de la Banque mondiale (urée mer Noire/Moyen-Orient, DAP, chlorure de potassium) convertis au taux de change annuel moyen. Ce sont des prix du marché, pas le prix subventionné payé par les planteurs éligibles.</span></figcaption>
@@ -261,7 +283,48 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   </figure>
   <div class="tbl"><table><thead><tr><th>Année</th><th class="n">Prix bord champ, IDR/kg</th><th class="n">Rendement, kg/ha</th><th class="n">Revenu brut, M IDR/ha</th><th class="n">Sur un an</th><th class="n">Urée, $/t</th><th class="n">Urée, IDR/kg</th><th class="n">Sur un an</th><th class="n">Taux, IDR/$</th></tr></thead><tbody id="k-tbl"></tbody></table></div>
   <p class="meta">Sources : FAOSTAT (prix producteur « café vert », Indonésie, en roupies et en dollars ; rendement ; indice des prix producteur), Banque mondiale Pink Sheet (septembre 2026). Taux de change : celui implicite dans FAOSTAT (prix en roupies ÷ prix en dollars). Fichier : <code>research/indonesia/cost_components.csv</code>.</p>
-  <div class="note" id="k-missing"><strong>À venir dans cette section :</strong> le salaire journalier des ouvriers agricoles (BPS, chaque année depuis 2015), les prix subventionnés de l'urée et du NPK (règlements du ministère), le taux de change 2025–2026, puis le coût complet et la marge nette par hectare (enquêtes BPS SEP 2024 et SOUT 2014, études de terrain au Lampung et au Sumatra du Sud).</div>
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:8px">Main-d'œuvre</h3>
+  <figure>
+    <figcaption><span class="t">Coût du travail, indice 2017 = 100</span><span class="s">Salaire journalier national des ouvriers agricoles (BPS, un mois par an, 2015–2022 : de 46 386 à 58 337 IDR/jour) et salaire minimum mensuel du Lampung (UMP, 2017–2026 : de 1,91 à 3,05 M IDR). Le BPS n'a pas publié de série nationale après décembre 2022 (59 226 IDR/jour) : l'UMP du Lampung sert de relais.</span></figcaption>
+    <div class="chart" id="k-lab"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c7)"></i>Salaire agricole national (BPS)</span><span><i class="sw line" style="background:var(--c4)"></i>Salaire minimum du Lampung (UMP)</span></div>
+  </figure>
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:8px">Engrais : prix subventionné et prix du marché</h3>
+  <figure>
+    <figcaption><span class="t">Urée et NPK : prix subventionné (plafond légal) contre prix du marché, IDR/kg</span><span class="s">Le café est éligible à l'engrais subventionné depuis le règlement 10/2022 (9 cultures, 2 ha maximum ; seuls l'urée et le NPK). Plafond de l'urée : 1 800 IDR/kg jusqu'en 2020, 2 250 de 2021 au 21 octobre 2025, 1 800 depuis (baisse de 20 %). Marché : prix mondial converti en roupies, et deux relevés locaux de l'urée non subventionnée (5 800 IDR/kg en mai 2022, ~6 900 en juin 2024).</span></figcaption>
+    <div class="chart" id="k-het"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c2)"></i>Urée, prix du marché</span><span><i class="sw line" style="background:var(--c8)"></i>Urée, plafond subventionné</span><span><i class="sw line" style="background:var(--c1)"></i>NPK, plafond subventionné</span><span><i class="sw" style="background:var(--ink)"></i>Relevés locaux, urée non subventionnée</span></div>
+  </figure>
+  <figure>
+    <figcaption><span class="t">Facture d'engrais à la dose recommandée, en % du revenu brut par hectare</span><span class="s">Dose de la vulgarisation agricole du ministère pour ~1 500 arbres/ha : urée 450 kg, SP-36 240 kg, KCl 300 kg par an (le kiesérite est exclu, faute de prix). Prix mondiaux convertis en roupies (le TSP sert de prix du SP-36). Variante : urée au prix subventionné.</span></figcaption>
+    <div class="chart" id="k-bill"></div>
+    <div class="legend"><span><i class="sw" style="background:var(--c2)"></i>Tout au prix du marché</span><span><i class="sw" style="background:var(--c3)"></i>Urée au prix subventionné</span></div>
+  </figure>
+  <div class="prose stack">
+    <p><strong>Ce que ça montre :</strong> en 2021–2022, fertiliser à la dose recommandée aurait coûté 59 à 83 % du revenu brut de l'hectare. C'est pour ça que les petits planteurs en mettent peu. En 2024–2025, ce n'est plus que 22–23 % (15–17 % avec l'urée subventionnée) : la fenêtre où l'USDA voit les planteurs ajouter de l'engrais. En 2026, l'urée remonte (+33 % en dollars) et le prix du café baisse : la facture remonte, sans doute autour d'un tiers du revenu.</p>
+  </div>
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:8px">Prix bord champ et coût de revient</h3>
+  <figure>
+    <figcaption><span class="t">Prix du café payé au planteur, IDR/kg de café vert</span><span class="s">Barre : fourchette des prix relevés dans la presse et les rapports pour le Lampung et le Sumatra du Sud cette année-là (survole pour la source). Ligne : moyenne nationale annuelle FAO (2025 estimée avec l'indice). Losanges : coût de revient par kg mesuré par deux études de terrain.</span></figcaption>
+    <div class="chart" id="k-fg"></div>
+    <div class="legend"><span><i class="sw" style="background:var(--c5)"></i>Relevés locaux (min–max)</span><span><i class="sw line" style="background:var(--c1)"></i>Moyenne nationale FAO</span><span><i class="sw" style="background:var(--ink)"></i>Coût de revient (études)</span></div>
+  </figure>
+  <div class="prose stack">
+    <p><strong>Lecture :</strong> en 2019, le planteur du Tanggamus vendait vers 19 000 IDR/kg pour un coût de revient de 13 600 : un prix environ 40 % au-dessus du coût. En 2024–2025, les prix bord champ de 48 000 à 84 000 IDR/kg dépassent de loin tout coût de revient mesuré. En 2026, ils sont retombés à 42 000–55 000, mais restent environ 3 fois au-dessus des coûts de 2019–2023.</p>
+  </div>
+  <div class="tbl"><table><thead><tr><th>Étude (lieu, année d'enquête)</th><th>Rendement</th><th>Coûts</th><th>Revenu net</th><th>Ratio recettes/coûts, coût par kg</th><th>Fiabilité</th></tr></thead><tbody>
+    <tr><td>Rejang Lebong, Bengkulu, 2014</td><td>–</td><td>–</td><td class="n">8,42 M IDR/ha</td><td>1,87</td><td>chiffre cité</td></tr>
+    <tr><td>Bulok, Tanggamus, 2019 (30 planteurs)</td><td>–</td><td>–</td><td class="n">11,41 M IDR/ha</td><td>2,97 ; <b>13 598 IDR/kg</b></td><td>chiffre cité</td></tr>
+    <tr><td>Way Ratai, Pesawaran, 2020</td><td>–</td><td>main-d'œuvre 60 000 IDR/jour</td><td>–</td><td>ratio bénéfices/coûts 1,70</td><td>chiffre cité</td></tr>
+    <tr><td>Way Tenong, Lampung Barat, ~2021 (44)</td><td>–</td><td class="n">7,29 M IDR par saison</td><td class="n">21,1 M IDR</td><td>3,89</td><td>unité à vérifier (ha ou exploitation)</td></tr>
+    <tr><td>Kabawetan, Kepahiang, 2022</td><td>–</td><td class="n">5,57 M IDR/exploitation/an</td><td class="n">29,8 M IDR</td><td>~6,3 (calculé)</td><td>chiffre cité</td></tr>
+    <tr><td>Temanggung, Java central, 2023</td><td>–</td><td class="n">22,8 M IDR</td><td class="n">38,4 M IDR</td><td>2,68 ; <b>15 380 IDR/kg</b></td><td>unité à vérifier</td></tr>
+    <tr><td>Lubuk Saung, Kepahiang, 2024</td><td class="n">463 kg/ha</td><td class="n">2,38 M IDR/ha (coûts monétaires)</td><td class="n">25,4 M IDR/ha</td><td>incohérent dans l'étude</td><td>à vérifier</td></tr>
+    <tr><td>Revenu vital, Lampung rural (Anker), 2025</td><td colspan="4">62,25 M IDR par an pour une famille de 4 ; exploitation moyenne de café au Lampung : 1,1 ha</td><td>chiffre cité</td></tr>
+  </tbody></table></div>
+  <p class="meta">Salaires : communiqués BPS (2015–2022) ; salaire minimum : province du Lampung. Plafonds d'engrais : règlements 49/2020, 10/2022, décision 1117/2025 (via Antara, Tempo, portail PSP du ministère). Prix bord champ : Bappebti, Kontan, Antara, Kompas, Bisnis, Detik, Kupas Tuntas. Études : Polinela, Unila, Unived, Undip et autres (liens dans le fichier de sources). « Chiffre cité » : le chiffre est lu dans le résumé de la source trouvée par recherche web ; les PDF originaux restent bloqués depuis mon environnement, et la répartition des coûts par poste (travail, engrais, pesticides) n'est pas encore disponible.</p>
+  <div class="note" id="k-missing"><strong>Encore manquant pour la marge nette :</strong> le coût complet par hectare avec sa répartition (enquêtes BPS SEP 2024 et SOUT 2014, PDF des études), le salaire agricole national 2023–2026, les tarifs de cueillette et le loyer de la terre. Ils arriveront dès que l'accès réseau au BPS et aux universités sera ouvert.</div>
+
 </section>
 
 <section id="rendement">
@@ -643,8 +706,13 @@ function draw(){
     const rev=K.map(r=>r.revenue_m_idr_ha);
     const yoy=(a,i)=>(i>0&&a[i]!=null&&a[i-1]!=null)?100*(a[i]/a[i-1]-1):null;
     const revYoY=rev.map((v,i)=>yoy(rev,i));
-    const ureaIdr=K.map(r=>r.urea_idr_kg), ureaUsd=K.map(r=>r.urea_usd_t);
-    const ureaYoY=K.map((r,i)=>r.urea_idr_kg!=null?yoy(ureaIdr,i):yoy(ureaUsd,i));
+    const X2={"fb":{"2005":{"u":2110,"t":1956,"k":1504,"bill":1.87,"bill_sub":null,"rev":3.26},"2006":{"u":2034,"t":1847,"k":1633,"bill":1.85,"bill_sub":null,"rev":4.1},"2007":{"u":2807,"t":3100,"k":1786,"bill":2.54,"bill_sub":null,"rev":5.75},"2008":{"u":4995,"t":8529,"k":4423,"bill":5.62,"bill_sub":null,"rev":7.4},"2009":{"u":2609,"t":2674,"k":5803,"bill":3.56,"bill_sub":null,"rev":7.55},"2010":{"u":2626,"t":3472,"k":3020,"bill":2.92,"bill_sub":null,"rev":7.53},"2011":{"u":3498,"t":4721,"k":3445,"bill":3.74,"bill_sub":null,"rev":7.74},"2012":{"u":3741,"t":4336,"k":4368,"bill":4.03,"bill_sub":3.16,"rev":9.19},"2013":{"u":3553,"t":3984,"k":4132,"bill":3.79,"bill_sub":3.01,"rev":9.01},"2014":{"u":3659,"t":4532,"k":3519,"bill":3.79,"bill_sub":2.95,"rev":9.16},"2015":{"u":3721,"t":5056,"k":3964,"bill":4.08,"bill_sub":3.21,"rev":9.95},"2016":{"u":2584,"t":3863,"k":3464,"bill":3.13,"bill_sub":2.78,"rev":10.31},"2017":{"u":2862,"t":3789,"k":2920,"bill":3.07,"bill_sub":2.6,"rev":14.38},"2018":{"u":3552,"t":4936,"k":3068,"bill":3.7,"bill_sub":2.92,"rev":15.32},"2019":{"u":3470,"t":4168,"k":3615,"bill":3.65,"bill_sub":2.89,"rev":13.07},"2020":{"u":3341,"t":3864,"k":3516,"bill":3.49,"bill_sub":2.79,"rev":12.44},"2021":{"u":6914,"t":7701,"k":7766,"bill":7.29,"bill_sub":5.19,"rev":12.37},"2022":{"u":10395,"t":10634,"k":12821,"bill":11.08,"bill_sub":7.41,"rev":13.29},"2023":{"u":5455,"t":7317,"k":5839,"bill":5.96,"bill_sub":4.52,"rev":15.46},"2024":{"u":5364,"t":7525,"k":4679,"bill":5.62,"bill_sub":4.22,"rev":24.68},"2025":{"u":6964,"t":9516,"k":5725,"bill":7.14,"bill_sub":5.01,"rev":32.93},"2026":{"u":9499,"t":10921,"k":6592,"bill":8.87,"bill_sub":5.41,"rev":null}},"lab":{"bps":{"2015":46386,"2016":47731,"2017":49912,"2018":51864,"2019":54152,"2020":55503,"2021":56794,"2022":58337},"bps_m":{"2015":"mai","2016":"avr.","2017":"juin","2018":"avr.","2019":"juin","2020":"juin","2021":"juin","2022":"juin"},"ump":{"2017":1908447,"2018":2074673,"2021":2432001,"2022":2440486,"2023":2633285,"2024":2716497,"2025":2893070,"2026":3047734}},"het":{"urea":{"2012":1800,"2013":1800,"2014":1800,"2015":1800,"2016":1800,"2017":1800,"2018":1800,"2019":1800,"2020":1800,"2021":2250,"2022":2250,"2023":2250,"2024":2250,"2025":2250,"2026":1800},"npk":{"2012":2300,"2013":2300,"2014":2300,"2015":2300,"2016":2300,"2017":2300,"2018":2300,"2019":2300,"2020":2300,"2021":2300,"2022":2300,"2023":2300,"2024":2300,"2025":2300,"2026":1840}},"fg":[[2015,17753,18051,"déc., Lampung, prix au comptant (Bappebti)"],[2016,22000,23000,"déc., planteurs du Lampung"],[2018,21373,21512,"nov.–déc., prix producteur BPS, Lampung"],[2019,19000,19000,"mars, Tanggamus (approx.)"],[2020,19500,19500,"vers mai, Lampung"],[2021,17000,17000,"mars, Lampung Barat"],[2022,23000,26000,"mai, Lampung Barat (asalan / grade 4A)"],[2023,25000,35000,"mai, Ulubelu (de 25 000 à 35 000)"],[2024,70000,73000,"juillet, Tanggamus et Lampung Barat"],[2025,48000,84000,"févr.–juin : Pagar Alam 75 000 puis 84 000, Lampung Barat 48 000, Sumsel 56–57 000"],[2026,42000,55000,"avr.–juin : Lampung Barat 42–52 000, Sumsel 45–50 000, Sekincau 52–55 000"]],"anch":[[2019,13598,"coût de revient, Bulok (Tanggamus)"],[2023,15380,"seuil de rentabilité, Temanggung (Java central)"]]};
+    const FXP={2025:16475,2026:16950};
+    const ureaIdr=K.map(r=>r.urea_idr_kg!=null?r.urea_idr_kg:(FXP[r.year]?Math.round(r.urea_usd_t*FXP[r.year]/1000):null)), ureaUsd=K.map(r=>r.urea_usd_t);
+    const labIdx=yrs.map(y=>X2.lab.bps[y]!=null?X2.lab.bps[y]:null);
+    const umpv=yrs.map(y=>X2.lab.ump[y]!=null?X2.lab.ump[y]:null);
+    const labYoY=yrs.map((y,i)=>{ if(y<=2022&&labIdx[i]!=null&&labIdx[i-1]!=null) return 100*(labIdx[i]/labIdx[i-1]-1); if(y>2022&&umpv[i]!=null&&umpv[i-1]!=null) return 100*(umpv[i]/umpv[i-1]-1); return null; });
+    const ureaYoY=K.map((r,i)=>yoy(ureaIdr,i));
     const sg=v=>v==null?'–':Math.abs(v)<0.5?'0 %':(v>0?'+':'')+fr(v,0)+' %';
     const X=yrs.map(y=>String(y).slice(2));
     chart('k-rev',{x:X,aria:'Revenu brut par hectare',yMin:0,fmt:v=>fr(v,0),h:270,
@@ -653,19 +721,20 @@ function draw(){
     (function(){
       const host=document.getElementById('k-yoy'); host.innerHTML='';
       const W=720,H=280,L=52,R=16,T=14,B=34,pw=W-L-R,ph=H-T-B,n=yrs.length;
-      const vals=[...revYoY,...ureaYoY].filter(v=>v!=null); const sc=nice(Math.min(0,...vals),Math.max(0,...vals),6);
+      const vals=[...revYoY,...ureaYoY,...labYoY].filter(v=>v!=null); const sc=nice(Math.min(0,...vals),Math.max(0,...vals),6);
       const Yv=v=>T+ph*(1-(v-sc.a)/(sc.b-sc.a));
       const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Variations sur un an'},host);
       sc.t.forEach(t=>{ el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),class:'grid'},svg); const tx=el('text',{x:L-8,y:Yv(t)+4,'text-anchor':'end'},svg); tx.textContent=(t>0?'+':'')+fr(t,0)+' %'; });
-      const gw=pw/n, bw=gw*0.38;
-      yrs.forEach((y,i)=>{ [[revYoY[i],'--c1',0],[ureaYoY[i],'--c2',1]].forEach(([v,c,k])=>{ if(v==null) return; const x=L+gw*i+gw*0.12+k*bw; el('rect',{x:x+0.5,y:Math.min(Yv(0),Yv(v)),width:bw-1,height:Math.max(1,Math.abs(Yv(v)-Yv(0))),rx:2,fill:css(c)},svg); }); if(i%2===0){ const t=el('text',{x:L+gw*(i+0.5),y:H-10,'text-anchor':'middle'},svg); t.textContent=String(y).slice(2); } });
+      const gw=pw/n, bw=gw*0.26;
+      yrs.forEach((y,i)=>{ [[revYoY[i],'--c1',0],[ureaYoY[i],'--c2',1],[labYoY[i],'--c7',2]].forEach(([v,c,k])=>{ if(v==null) return; const x=L+gw*i+gw*0.12+k*bw; el('rect',{x:x+0.5,y:Math.min(Yv(0),Yv(v)),width:bw-1,height:Math.max(1,Math.abs(Yv(v)-Yv(0))),rx:2,fill:css(c)},svg); }); if(i%2===0){ const t=el('text',{x:L+gw*(i+0.5),y:H-10,'text-anchor':'middle'},svg); t.textContent=String(y).slice(2); } });
       el('line',{x1:L,x2:L+pw,y1:Yv(0),y2:Yv(0),class:'base'},svg);
       const tip=document.createElement('div'); tip.className='tip'; tip.hidden=true; host.appendChild(tip);
       const hit=el('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent'},svg);
-      const mv=ev=>{ const r=svg.getBoundingClientRect(); const i=Math.max(0,Math.min(n-1,Math.floor(((ev.clientX-r.left)*W/r.width-L)/gw))); tip.innerHTML=`<b>${yrs[i]}</b>${row('Revenu / ha',sg(revYoY[i]),'--c1')}${row('Urée'+(K[i].urea_idr_kg!=null?' (IDR)':' ($)'),sg(ureaYoY[i]),'--c2')}`; tip.hidden=false; const hr=host.getBoundingClientRect(); let left=(L+gw*(i+1))*r.width/W+(r.left-hr.left)+6; if(left+tip.offsetWidth>hr.width) left-=tip.offsetWidth+gw*r.width/W+12; tip.style.left=Math.max(0,left)+'px'; tip.style.top='8px'; };
+      const mv=ev=>{ const r=svg.getBoundingClientRect(); const i=Math.max(0,Math.min(n-1,Math.floor(((ev.clientX-r.left)*W/r.width-L)/gw))); tip.innerHTML=`<b>${yrs[i]}</b>${row('Revenu / ha',sg(revYoY[i]),'--c1')}${row('Urée (IDR)',sg(ureaYoY[i]),'--c2')}${row(yrs[i]<=2022?'Salaire agricole (BPS)':'Salaire minimum Lampung',sg(labYoY[i]),'--c7')}`; tip.hidden=false; const hr=host.getBoundingClientRect(); let left=(L+gw*(i+1))*r.width/W+(r.left-hr.left)+6; if(left+tip.offsetWidth>hr.width) left-=tip.offsetWidth+gw*r.width/W+12; tip.style.left=Math.max(0,left)+'px'; tip.style.top='8px'; };
       hit.addEventListener('pointermove',mv); hit.addEventListener('pointerdown',mv); hit.addEventListener('pointerleave',()=>{tip.hidden=true;});
     })();
-    const fs=[['Urée','--c2',K.map(r=>r.urea_idr_kg)],['DAP','--c7',K.map(r=>r.dap_idr_kg)],['KCl','--c3',K.map(r=>r.kcl_idr_kg)]];
+    const fx2=(r,f)=>r[f+'_idr_kg']!=null?r[f+'_idr_kg']:(FXP[r.year]?Math.round(r[f+'_usd_t']*FXP[r.year]/1000):null);
+    const fs=[['Urée','--c2',K.map(r=>fx2(r,'urea'))],['DAP','--c7',K.map(r=>fx2(r,'dap'))],['KCl','--c3',K.map(r=>fx2(r,'kcl'))]];
     chart('k-fert',{x:X,aria:'Prix des engrais en roupies',yMin:0,fmt:v=>fr(v,0),h:270,
       series:fs.map(([n,c,a])=>({name:n,color:c,values:a})),
       tip:i=>`<b>${yrs[i]}</b>`+fs.map(([n,c,a])=>row(n,a[i]==null?'en attente du taux':fr(a[i],0)+' IDR/kg',c)).join('')+row('Urée en $',fr(K[i].urea_usd_t,0)+' $/t')});
@@ -675,7 +744,61 @@ function draw(){
     chart('k-idx',{x:Y2.map(i=>String(yrs[i])),aria:'Indice 2015 = 100',yMin:0,fmt:v=>fr(v,0),h:280,refs:[{y:100}],
       series:is.map(([n,c,a])=>({name:n,color:c,values:Y2.map(i=>a[i])})),
       tip:j=>{ const i=Y2[j]; return `<b>${yrs[i]}</b>`+is.map(([n,c,a])=>row(n,a[i]==null?'–':fr(a[i],0),c)).join(''); }});
-    document.getElementById('k-tbl').innerHTML=K.map((r,i)=>`<tr><td>${r.year}${r.price_est?' *':''}</td><td class="n">${r.price_idr_kg==null?'–':fr(r.price_idr_kg,0)}</td><td class="n">${r.yield_kg_ha==null?'–':fr(r.yield_kg_ha,0)}</td><td class="n">${r.revenue_m_idr_ha==null?'–':fr(r.revenue_m_idr_ha,1)}</td><td class="n">${sg(revYoY[i])}</td><td class="n">${fr(r.urea_usd_t,0)}</td><td class="n">${r.urea_idr_kg==null?'–':fr(r.urea_idr_kg,0)}</td><td class="n">${sg(ureaYoY[i])}</td><td class="n">${r.fx==null?'–':fr(r.fx,0)}</td></tr>`).join('');
+    // labour index 2017 = 100
+    (function(){
+      const Ys=[]; for(let y=2015;y<=2026;y++) Ys.push(y);
+      const b1=X2.lab.bps[2017], b2=X2.lab.ump[2017];
+      const s1=Ys.map(y=>X2.lab.bps[y]!=null?100*X2.lab.bps[y]/b1:null), s2=Ys.map(y=>X2.lab.ump[y]!=null?100*X2.lab.ump[y]/b2:null);
+      chart('k-lab',{x:Ys.map(String),aria:'Indice du coût du travail',yMin:80,fmt:v=>fr(v,0),h:260,refs:[{y:100}],
+        series:[{name:'BPS',color:'--c7',values:s1,dot:()=> '--c7'},{name:'UMP',color:'--c4',values:s2,dot:()=> '--c4'}],
+        tip:i=>{ const y=Ys[i]; return `<b>${y}</b>`+(X2.lab.bps[y]!=null?row('Salaire agricole ('+X2.lab.bps_m[y]+')',fr(X2.lab.bps[y],0)+' IDR/jour','--c7'):'')+(X2.lab.ump[y]!=null?row('Salaire minimum Lampung',fr(X2.lab.ump[y]/1e6,2)+' M IDR/mois','--c4'):''); }});
+    })();
+    // subsidised vs market fertiliser price
+    (function(){
+      const Ys=[]; for(let y=2010;y<=2026;y++) Ys.push(y);
+      const mk=Ys.map(y=>ureaIdr[yrs.indexOf(y)]);
+      const hu=Ys.map(y=>X2.het.urea[y]!=null?X2.het.urea[y]:null), hn=Ys.map(y=>X2.het.npk[y]!=null?X2.het.npk[y]:null);
+      chart('k-het',{x:Ys.map(String),aria:'Prix subventionné et prix du marché',yMin:0,fmt:v=>fr(v,0),h:280,
+        series:[{name:'Marché',color:'--c2',values:mk},{name:'Urée subv.',color:'--c8',values:hu,dash:'6 3',width:2.4},{name:'NPK subv.',color:'--c1',values:hn,dash:'2 3',width:2.4}],
+        tip:i=>{ const y=Ys[i]; const loc=y===2022?'5 800 (mai)':y===2024?'~6 900 (juin)':null; return `<b>${y}</b>${row('Urée, marché',mk[i]==null?'–':fr(mk[i],0)+' IDR/kg','--c2')}${row('Urée, plafond subv.',hu[i]==null?'–':fr(hu[i],0)+(y===2025?' → 1 800 au 22/10':''),'--c8')}${row('NPK, plafond subv.',hn[i]==null?'–':fr(hn[i],0)+(y===2025?' → 1 840 au 22/10':''),'--c1')}`+(loc?row('Relevé local, urée non subv.',loc):''); }});
+      const svg=document.querySelector('#k-het svg'); if(svg){ const vb=svg.viewBox.baseVal; const W=vb.width,H=vb.height,L=48,R=16,T=14,B=34,pw=W-L-R,ph=H-T-B,n=Ys.length; const mx=Math.max(...mk.filter(v=>v!=null),...hn.filter(v=>v!=null)); const sc=nice(0,mx,5); [[2022,5800],[2024,6900]].forEach(([y,v])=>{ const i=Ys.indexOf(y); const x=L+pw*(i+0.5)/n, yy=T+ph*(1-(v-sc.a)/(sc.b-sc.a)); el('rect',{x:x-5,y:yy-5,width:10,height:10,transform:`rotate(45 ${x} ${yy})`,fill:css('--ink')},svg); }); }
+    })();
+    // fertiliser bill as % of revenue
+    (function(){
+      const Ys=Object.keys(X2.fb).map(Number).filter(y=>X2.fb[y].rev!=null);
+      const a=Ys.map(y=>100*X2.fb[y].bill/X2.fb[y].rev), b=Ys.map(y=>X2.fb[y].bill_sub==null?null:100*X2.fb[y].bill_sub/X2.fb[y].rev);
+      const host=document.getElementById('k-bill'); host.innerHTML='';
+      const W=720,H=260,L=48,R=16,T=14,B=34,pw=W-L-R,ph=H-T-B,n=Ys.length; const sc=nice(0,Math.max(...a),5); const Yv=v=>T+ph*(1-(v-sc.a)/(sc.b-sc.a));
+      const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':"Facture d'engrais en % du revenu"},host);
+      sc.t.forEach(t=>{ el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),class:'grid'},svg); const tx=el('text',{x:L-8,y:Yv(t)+4,'text-anchor':'end'},svg); tx.textContent=fr(t,0)+' %'; });
+      const gw=pw/n, bw=gw*0.38;
+      Ys.forEach((y,i)=>{ [[a[i],'--c2',0],[b[i],'--c3',1]].forEach(([v,c,k])=>{ if(v==null) return; const x=L+gw*i+gw*0.12+k*bw; el('rect',{x:x+0.5,y:Yv(v),width:bw-1,height:Math.max(1,Yv(0)-Yv(v)),rx:2,fill:css(c)},svg); }); if(i%2===0||y===2025){ const t=el('text',{x:L+gw*(i+0.5),y:H-10,'text-anchor':'middle'},svg); t.textContent=String(y).slice(2); } });
+      el('line',{x1:L,x2:L+pw,y1:Yv(0),y2:Yv(0),class:'base'},svg);
+      const tip=document.createElement('div'); tip.className='tip'; tip.hidden=true; host.appendChild(tip);
+      const hit=el('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent'},svg);
+      const mv=ev=>{ const r=svg.getBoundingClientRect(); const i=Math.max(0,Math.min(n-1,Math.floor(((ev.clientX-r.left)*W/r.width-L)/gw))); const f=X2.fb[Ys[i]]; tip.innerHTML=`<b>${Ys[i]}</b>${row('Facture, prix du marché',fr(f.bill,1)+' M IDR/ha ('+fr(a[i],0)+' %)','--c2')}${f.bill_sub!=null?row('Avec urée subventionnée',fr(f.bill_sub,1)+' M IDR/ha ('+fr(b[i],0)+' %)','--c3'):''}${row('Revenu brut',fr(f.rev,1)+' M IDR/ha')}${row('Urée / SP-36 / KCl',fr(f.u,0)+' / '+fr(f.t,0)+' / '+fr(f.k,0)+' IDR/kg')}`; tip.hidden=false; const hr=host.getBoundingClientRect(); let left=(L+gw*(i+1))*r.width/W+(r.left-hr.left)+6; if(left+tip.offsetWidth>hr.width) left-=tip.offsetWidth+gw*r.width/W+12; tip.style.left=Math.max(0,left)+'px'; tip.style.top='8px'; };
+      hit.addEventListener('pointermove',mv); hit.addEventListener('pointerdown',mv); hit.addEventListener('pointerleave',()=>{tip.hidden=true;});
+    })();
+    // farmgate price ranges vs FAO average vs cost anchors
+    (function(){
+      const Ys=[]; for(let y=2015;y<=2026;y++) Ys.push(y);
+      const fao=Ys.map(y=>{ const r=K[yrs.indexOf(y)]; return r&&r.price_idr_kg!=null?r.price_idr_kg:null; });
+      const host=document.getElementById('k-fg'); host.innerHTML='';
+      const W=720,H=300,L=56,R=16,T=14,B=34,pw=W-L-R,ph=H-T-B,n=Ys.length; const sc=nice(0,90000,6); const Yv=v=>T+ph*(1-(v-sc.a)/(sc.b-sc.a)); const X=i=>L+pw*(i+0.5)/n;
+      const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Prix bord champ et coût de revient'},host);
+      sc.t.forEach(t=>{ el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),class:'grid'},svg); const tx=el('text',{x:L-8,y:Yv(t)+4,'text-anchor':'end'},svg); tx.textContent=fr(t/1000,0)+' k'; });
+      Ys.forEach((y,i)=>{ const t=el('text',{x:X(i),y:H-10,'text-anchor':'middle'},svg); t.textContent=String(y); });
+      el('line',{x1:L,x2:L+pw,y1:Yv(0),y2:Yv(0),class:'base'},svg);
+      X2.fg.forEach(([y,lo,hi])=>{ const i=Ys.indexOf(y); const bw=pw/n*0.34; const h=Math.max(4,Yv(lo)-Yv(hi)); el('rect',{x:X(i)-bw/2,y:Yv(hi)-(h===4?2:0),width:bw,height:h,rx:3,fill:css('--c5'),opacity:.85},svg); });
+      let d='',pen=false; fao.forEach((v,i)=>{ if(v==null){pen=false;return;} d+=(pen?'L':'M')+X(i).toFixed(1)+','+Yv(v).toFixed(1); pen=true; }); el('path',{d,fill:'none',stroke:css('--c1'),'stroke-width':2.2},svg);
+      fao.forEach((v,i)=>{ if(v!=null) el('circle',{cx:X(i),cy:Yv(v),r:3.5,fill:css('--c1')},svg); });
+      X2.anch.forEach(([y,v])=>{ const i=Ys.indexOf(y); el('rect',{x:X(i)-6,y:Yv(v)-6,width:12,height:12,transform:`rotate(45 ${X(i)} ${Yv(v)})`,fill:css('--ink')},svg); });
+      const tip=document.createElement('div'); tip.className='tip'; tip.hidden=true; host.appendChild(tip);
+      const hit=el('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent'},svg);
+      const mv=ev=>{ const r=svg.getBoundingClientRect(); const i=Math.max(0,Math.min(n-1,Math.floor(((ev.clientX-r.left)*W/r.width-L)/(pw/n)))); const y=Ys[i]; const g=X2.fg.find(z=>z[0]===y); const an=X2.anch.find(z=>z[0]===y); tip.innerHTML=`<b>${y}</b>`+(g?row('Relevés locaux',g[1]===g[2]?fr(g[1],0):fr(g[1],0)+'–'+fr(g[2],0),'--c5')+`<div style="color:var(--ink-2);max-width:260px">${g[3]}</div>`:row('Relevés locaux','–'))+row('Moyenne FAO',fao[i]==null?'–':fr(fao[i],0)+(y===2025?' (estimée)':''),'--c1')+(an?row('Coût de revient',fr(an[1],0)+' IDR/kg')+`<div style="color:var(--ink-2)">${an[2]}</div>`:''); tip.hidden=false; const hr=host.getBoundingClientRect(); let left=X(i)*r.width/W+(r.left-hr.left)+14; if(left+tip.offsetWidth>hr.width) left-=tip.offsetWidth+28; tip.style.left=Math.max(0,left)+'px'; tip.style.top='8px'; };
+      hit.addEventListener('pointermove',mv); hit.addEventListener('pointerdown',mv); hit.addEventListener('pointerleave',()=>{tip.hidden=true;});
+    })();
+    document.getElementById('k-tbl').innerHTML=K.map((r,i)=>`<tr><td>${r.year}${r.price_est?' *':''}</td><td class="n">${r.price_idr_kg==null?'–':fr(r.price_idr_kg,0)}</td><td class="n">${r.yield_kg_ha==null?'–':fr(r.yield_kg_ha,0)}</td><td class="n">${r.revenue_m_idr_ha==null?'–':fr(r.revenue_m_idr_ha,1)}</td><td class="n">${sg(revYoY[i])}</td><td class="n">${fr(r.urea_usd_t,0)}</td><td class="n">${ureaIdr[i]==null?'–':fr(ureaIdr[i],0)+(r.urea_idr_kg==null?' *':'')}</td><td class="n">${sg(ureaYoY[i])}</td><td class="n">${r.fx!=null?fr(r.fx,0):(FXP[r.year]?'~'+fr(FXP[r.year],0)+' *':'–')}</td></tr>`).join('');
   })();
   // 5. scenarios
   const SY=[2019,2020,2021,2022,2023,2024,2025,2026,2027];
