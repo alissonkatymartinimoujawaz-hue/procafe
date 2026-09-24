@@ -576,6 +576,69 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   </div>
 </section>
 
+<section id="arbre">
+  <span class="num">2 QUINQUIES · L'ARBRE DE DÉCISION</span>
+  <h2>Comment un prix devient une surface</h2>
+  <style>
+    #arbre .tree{display:grid;gap:0;justify-items:stretch}
+    #arbre .node{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+    #arbre .node .step{display:block;font:600 12px/1.4 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+    #arbre .node p{margin:0;font-size:15px;line-height:1.5}
+    #arbre .arrow{text-align:center;font:500 13px/1 var(--mono);color:var(--muted);padding:9px 0}
+    #arbre .branches{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    #arbre .branches .node{border-top:4px solid var(--neutral)}
+    #arbre .branches .low{border-top-color:var(--dry)}
+    #arbre .branches .high{border-top-color:var(--good)}
+    @media (max-width:760px){#arbre .branches{grid-template-columns:1fr 1fr}}
+    @media (max-width:460px){#arbre .branches{grid-template-columns:1fr}}
+  </style>
+  <div class="prose stack">
+    <p>La chaîne dans l'ordre où je la lis, avec la donnée qui prouve chaque maillon. La surface bouge par le prix, qui fait la marge. La marge décide entre abandonner, rénover ou étendre. Et c'est la terre disponible qui tranche entre rénover et étendre.</p>
+  </div>
+  <div class="tree">
+    <div class="node"><span class="step">1 · Prix mondial</span><p>Offre du Brésil et du Vietnam, météo (El Niño), stocks. Robusta : 0,82 $/kg en moyenne 2000–2005, 4,86 $ en 2025, 3,90 $ en janvier–août 2026 (Banque mondiale).</p></div>
+    <div class="arrow">↓ × taux de change</div>
+    <div class="node"><span class="step">2 · Prix bord champ, en roupies</span><p>C'est ce prix qui compte pour le planteur. En 1998, la roupie perd 70 % : le café double en IDR de 1997 à 1999 (3 900 → 8 200 IDR/kg) alors qu'il baisse en dollars. En 2024 : 25 800 → 38 800 IDR/kg bord champ (FAO), 76 000 en moyenne au Lampung (Bappebti).</p></div>
+    <div class="arrow">↓ × rendement − coûts, comparé aux autres cultures</div>
+    <div class="node"><span class="step">3 · Marge par hectare</span><p>Revenu net d'un hectare de Robusta : 7 à 16 M IDR en 2017–2019, 25 à 32 M en 2022–2024 (études locales, non vérifiées). Quand le café rapporte moins que le cacao, la surface recule de 2,5 % par an ; sinon, elle tient (partie 2 ter). La facture d'engrais ne décide pas (partie 2 quater).</p></div>
+    <div class="arrow">↓ le planteur choisit</div>
+    <div class="branches">
+      <div class="node low"><span class="step">Prix bas, un concurrent paie mieux</span><p><b>Convertir.</b> 2009–2012 : vers le cacao, l'hévéa et le palmier (USDA). Kasui (Way Kanan), 2018–2024 : vers le palmier.</p></div>
+      <div class="node low"><span class="step">Prix bas, pas d'autre choix</span><p><b>Négliger ou abattre.</b> Vers 2019, au Sumatra du Sud, terres passées à d'autres cultures à 18 000–19 000 IDR/kg ; à Rejang Lebong, caféiers abattus à 15 000 (presse).</p></div>
+      <div class="node high"><span class="step">Prix hauts, terre bloquée</span><p><b>Rénover.</b> Plus d'engrais, parcelles abandonnées remises en état, meilleur entretien (USDA 2025 et 2026). Arabica greffé sur Robusta à Sekincau.</p></div>
+      <div class="node high"><span class="step">Prix hauts, forêt accessible</span><p><b>Étendre.</b> De 1972 à 2006, les défrichements du parc de Bukit Barisan Selatan suivent les prix locaux du café plus que les prix mondiaux (Gaveau et al., 2009). 2024–2026 : Gunung Raya, parc de Kerinci Seblat, 21 000 ha de café dans le parc de Bukit Barisan Selatan.</p></div>
+    </div>
+    <div class="arrow">↓ la terre tranche entre rénover et étendre</div>
+    <div class="node"><span class="step">4 · Terre disponible et prix de la terre</span><p>Un hectare de café en production se vend 120 à 160 M IDR (annonces, non daté). Une parcelle illégale dans le parc de Bukit Barisan Selatan, 3 à 10 M IDR (2025). La forêt est 12 à 50 fois moins chère : c'est là que part l'extension, tant que l'État ne saisit pas (près de 50 000 ha saisis au Lampung Barat en 2025).</p></div>
+    <div class="arrow">↓ 2 à 3 ans</div>
+    <div class="node"><span class="step">5 · Surface productive, puis production</span><p>Un caféier planté en 2026 ne produit qu'en 2028–2029. Pour la récolte 2027, la surface productive est déjà fixée : seul le rendement reste ouvert.</p></div>
+  </div>
+  <figure>
+    <figcaption><span class="t">Le prix du café pour le planteur, en roupies, depuis 1991</span><span class="s">IDR par kg, échelle logarithmique (chaque graduation multiplie le prix par environ 3). Café vert bord champ (FAOSTAT, 1991–2024), Robusta au Lampung et arabica à Medan (prix spot Bappebti, 2015–2026 ; 2026 = janvier–avril).</span></figcaption>
+    <div class="chart" id="arb-px"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c1)"></i>Café bord champ (FAO)</span><span><i class="sw line" style="background:var(--c2)"></i>Robusta, Lampung</span><span><i class="sw line" style="background:var(--c7)"></i>Arabica, Medan</span></div>
+  </figure>
+  <div class="prose stack">
+    <p><strong>Trois chocs de prix en roupies, trois vagues de plantation.</strong> 1998–1999 : le café double en IDR avec la chute de la roupie. 2006–2011 : il passe de 7 900 à 15 700 IDR/kg bord champ, mais le cacao et le palmier paient encore mieux, donc la surface recule. 2023–2025 : le Robusta du Lampung fait plus que doubler (41 300 → 86 900 IDR/kg), et les défrichements repartent en 2024–2026. L'arabica suit le même rythme, à un niveau 2 à 3 fois plus haut.</p>
+  </div>
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:8px">La terre se ferme</h3>
+  <figure>
+    <figcaption><span class="t">Cultures pérennes en Indonésie</span><span class="s">Millions d'hectares : palmier, hévéa, café, cacao, cocotier… (FAOSTAT, estimations FAO, 1990–2024).</span></figcaption>
+    <div class="chart" id="arb-land"></div>
+  </figure>
+  <div class="tbl"><table><thead><tr><th>Période</th><th class="n">Cultures pérennes</th><th class="n">Forêt primaire (évaluation FRA)</th><th>Ce qui change</th></tr></thead><tbody>
+    <tr><td>1990–2000</td><td class="n">+0,38 M ha par an</td><td class="n">−1,03 M ha par an</td><td>Défrichement massif</td></tr>
+    <tr><td>2000–2010</td><td class="n">+0,55 M ha par an</td><td class="n">−0,37 M ha par an</td><td>Boom du palmier</td></tr>
+    <tr><td>2010–2015</td><td class="n">+0,40 M ha par an</td><td class="n">−0,12 M ha par an</td><td>Moratoire sur les nouveaux permis en forêt primaire et tourbières (2011)</td></tr>
+    <tr><td>2015–2020</td><td class="n">+0,52 M ha par an</td><td class="n">+0,37 M ha par an (révision de méthode)</td><td>Moratoire sur le palmier (2018–2021) ; moratoire forestier rendu permanent (2019)</td></tr>
+    <tr><td>2020–2024</td><td class="n"><strong>+0,12 M ha par an</strong></td><td class="n">−0,07 M ha par an (2020–2025)</td><td>L'extension légale ralentit fortement</td></tr>
+  </tbody></table></div>
+  <div class="prose stack">
+    <p><strong>Ce que ça montre.</strong> L'Indonésie a ajouté 14,3 M ha de cultures pérennes depuis 1990, surtout du palmier, en grande partie pris sur la forêt. Depuis 2020, le rythme tombe à +0,12 M ha par an, contre environ +0,5 M ha dans les années 2000 et 2010. Pour le café, l'extension légale est presque fermée. Il reste deux voies : la forêt protégée, illégale et exposée aux saisies, ou la rénovation des parcelles existantes. C'est pourquoi, en 2024–2026, les prix hauts se voient d'abord dans l'entretien, l'engrais et les parcelles remises en état, et seulement ensuite dans quelques défrichements.</p>
+    <p><strong>Les limites.</strong> La FAO ne mesure la forêt que tous les 5 ans (évaluation FRA) et lisse entre deux ; les chiffres officiels 2015–2020 montrent même une hausse de la forêt primaire, due à une révision de méthode. La vraie perte de forêt année par année et par province vient des satellites (Global Forest Watch). Ce site est bloqué dans les deux environnements utilisés. Pour l'avoir, il faut autoriser <code>gfw2-data.s3.amazonaws.com</code> et <code>data-api.globalforestwatch.org</code>.</p>
+  </div>
+</section>
+
 <section id="rendement">
   <span class="num">3 · RENDEMENT</span>
   <h2>Les creux viennent de la météo, la hausse des prix et du travail</h2>
@@ -1135,6 +1198,22 @@ function draw(){
     chart('rc-dc',{x:lab,every:5,aria:'Consommation de café en Indonésie',yMin:0,yMax:6,fmt:v=>fr(v,0),h:240,band:{from:Y.indexOf(2016),to:Y.indexOf(2019),label:'coffee shops ×3'},
       series:[{name:'Consommation',type:'bar',color:'--c1',values:v}],
       tip:i=>`<b>${lab[i]}</b>`+row('Consommation',fr(v[i],2)+' M sacs','--c1')+(i?row('Sur un an',(v[i]>=v[i-1]?'+':'')+fr(100*(v[i]/v[i-1]-1),1)+' %'):'')});
+  })();
+  // decision tree: long-run farmgate price in IDR (log scale)
+  (function(){
+    const P={"yrs":[1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026],"fao":[2023.0,1934.0,1931.0,3119.0,4355.0,3855.0,3903.0,5789.0,8172.0,7727.0,7827.0,5409.0,5668.0,5774.0,6386.0,7857.0,11011.0,13722.0,14007.0,13970.0,15672.0,16406.0,16549.0,17510.0,19135.0,19813.0,24802.0,25393.0,21620.0,20404.0,20141.0,21715.0,25817.0,38789.0,null,null],"rob":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,19950,20152,25034,25451,20306,19197,26638,33726,41289,75875,86945,71476],"ara":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,52716,54318,54227,55851,50875,56098,82295,108512,89883,126816,205507,179718]}, Y=P.yrs, lg=a=>a.map(v=>v==null?null:Math.log10(v));
+    const f=v=>{ const x=Math.pow(10,v); return x>=1000?fr(x/1000,x<10000?1:0)+' k':fr(x,0); };
+    chart('arb-px',{x:Y.map(String),every:3,aria:'Prix du café en roupies depuis 1991',yMin:3,yMax:5.5,fmt:f,h:280,
+      series:[{name:'FAO',color:'--c1',values:lg(P.fao),width:2.6},{name:'Robusta',color:'--c2',values:lg(P.rob),width:2.2},{name:'Arabica',color:'--c7',values:lg(P.ara),width:2.2}],
+      labels:[{i:Y.indexOf(1999),y:Math.log10(P.fao[Y.indexOf(1999)]),text:'roupie −70 %',dy:-12},{i:Y.indexOf(2025),y:Math.log10(P.rob[Y.indexOf(2025)]),text:'×2,1',dy:18}],
+      tip:i=>`<b>${Y[i]}</b>`+(P.fao[i]!=null?row('Café bord champ (FAO)',fr(P.fao[i],0)+' IDR/kg','--c1'):'')+(P.rob[i]!=null?row('Robusta, Lampung',fr(P.rob[i],0)+' IDR/kg','--c2'):'')+(P.ara[i]!=null?row('Arabica, Medan',fr(P.ara[i],0)+' IDR/kg','--c7'):'')});
+  })();
+  (function(){
+    const L={"yrs":[1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"perm":[11.72,11.72,11.45,12.09,13.04,13.84,13.85,13.85,14.0,15.0,15.5,16.4,17.0,17.6,17.7,17.9,19.0,20.0,20.3,21.0,21.0,22.0,22.0,22.5,22.8,23.0,23.5,23.3,24.53,25.17,25.59,26.0,26.1,25.92,26.06,null],"prim":[59.74,58.72,57.69,56.66,55.63,54.6,53.57,52.54,51.51,50.48,49.45,49.08,48.71,48.34,47.97,47.6,47.23,46.86,46.49,46.12,45.75,45.64,45.52,45.4,45.29,45.17,45.53,45.9,46.27,46.63,47.0,46.93,46.86,46.79,46.72,46.65],"bench":[1990,2000,2010,2015,2020,2025]}, Y=L.yrs, lab=Y.map(String);
+    chart('arb-land',{x:lab,every:5,aria:'Cultures pérennes en Indonésie',yMin:0,yMax:30,fmt:v=>fr(v,0),h:240,
+      series:[{name:'Cultures pérennes',color:'--c3',values:L.perm,width:2.6}],
+      labels:[{i:Y.indexOf(2011),y:L.perm[Y.indexOf(2011)],text:'moratoire forestier',dy:-14},{i:Y.indexOf(2018),y:L.perm[Y.indexOf(2018)],text:'moratoire palmier',dy:22}],
+      tip:i=>L.perm[i]==null?'':`<b>${Y[i]}</b>`+row('Cultures pérennes',fr(L.perm[i],1)+' M ha','--c3')+(i&&L.perm[i-1]!=null?row('Sur un an',(L.perm[i]>=L.perm[i-1]?'+':'')+fr(1000*(L.perm[i]-L.perm[i-1]),0)+' milliers ha'):'')});
   })();
   // 5. scenarios
   const SY=[2019,2020,2021,2022,2023,2024,2025,2026,2027];
