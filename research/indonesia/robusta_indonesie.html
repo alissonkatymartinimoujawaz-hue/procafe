@@ -10,6 +10,8 @@
   --wet:#2a78d6; --dry:#eb6834; --good:#1baf7a; --neutral:#9aa29b; --s4:#4a3aa7;
   --band:#ece6d6; --band-2:#dfece4;
   --warn-bg:#fff4dc; --warn-ink:#6b4a00;
+  --dry-2:#f3a17f; --wet-2:#86b6ef;
+  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a; --c4:#eda100; --c5:#e87ba4;
   --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -23,6 +25,8 @@
     --wet:#3987e5; --dry:#d95926; --good:#199e70; --neutral:#7d857f; --s4:#9085e9;
     --band:#2b2a22; --band-2:#1f3029;
     --warn-bg:#3a2f12; --warn-ink:#f3d58a;
+    --dry-2:#9c4220; --wet-2:#256abf;
+    --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181;
   }
 }
 :root[data-theme="dark"]{
@@ -33,6 +37,8 @@
   --wet:#3987e5; --dry:#d95926; --good:#199e70; --neutral:#7d857f; --s4:#9085e9;
   --band:#2b2a22; --band-2:#1f3029;
   --warn-bg:#3a2f12; --warn-ink:#f3d58a;
+  --dry-2:#9c4220; --wet-2:#256abf;
+  --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:17px/1.6 var(--body);margin:0}
@@ -110,6 +116,18 @@ ol.chain li::before{content:counter(c);font:700 22px/1 var(--display);color:var(
 .src li{margin-block:4px}
 code,.mono{font-family:var(--mono);font-size:.88em}
 pre{background:var(--surface-2);border-radius:8px;padding:12px 14px;overflow-x:auto;font:13px/1.5 var(--mono);margin:0}
+.controls{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.ctl{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--ink-2)}
+select{font:inherit;font-size:15px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:3px}
+.seg button{font:600 14px var(--body);color:var(--ink-2);background:transparent;border:0;border-radius:999px;padding:6px 14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+.panels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.panels{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 12px 8px;display:grid;gap:6px;align-content:start}
+.panel h3{font:700 16px/1.3 var(--display);display:flex;align-items:center;gap:8px}
+.panel .sub{font:500 11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -124,11 +142,11 @@ pre{background:var(--surface-2);border-radius:8px;padding:12px 14px;overflow-x:a
 <section>
   <h2>L'essentiel</h2>
   <ul class="verdict">
-    <li><span class="k">Surface</span><p>La surface de Robusta a baissé de <strong>24 % entre 2004 et 2014</strong> (1,14 → 0,86 M ha), puis elle est stable (+4 % jusqu'en 2023). Cette baisse ne vient pas du climat. Le Robusta rapportait moins que le cacao, l'hévéa et le palmier à huile, l'arabica a pris des terres en altitude et les forêts protégées ont été fermées aux planteurs.</p></li>
+    <li><span class="k">Surface</span><p>La surface de Robusta a baissé de <strong>24 % entre 2004 et 2014</strong> (1,14 → 0,86 M ha), puis elle est stable (+4 % jusqu'en 2023). Cette baisse ne vient pas du climat. Le Robusta rapportait moins : en 2009–2012, un hectare de palmier rapportait environ 3 fois plus au producteur qu'un hectare de café (FAO). L'arabica a aussi pris des terres en altitude, et les forêts protégées ont été fermées aux planteurs.</p></li>
     <li><span class="k">Ton tableau</span><p>Les 500 491 ha productifs de 2023 ne sont pas réels : c'est 6,8 M sacs (USDA) ÷ 13,59 sacs/ha (ministère). Les 1,2 M ha de 2024–2026 sont la surface de <strong>tout</strong> le café indonésien, arabica compris, selon l'USDA.</p></li>
     <li><span class="k">Rendement</span><p>Il y a deux paliers : <strong>11,5 sacs/ha</strong> en moyenne sur 2004–2016, puis <strong>13,4</strong> sur 2017–2022. Les creux viennent de la météo de la floraison : 2011 (La Niña 2010, pluie toute l'année), 2014 (saison sèche 2013 trop humide), 2016 (sécheresse El Niño 2015).</p></li>
-    <li><span class="k">Météo</span><p>Au sud de Sumatra, le pire ennemi est la <strong>pluie pendant la saison sèche</strong>, au moment de la floraison. D'une année sur l'autre : −12 % puis −16 % en 2010/11 et 2011/12, −28 % en 2023/24, −9 % en 2026/27. La sécheresse El Niño coûte moins, sauf si elle est extrême (−12 % en 2016/17).</p></li>
-    <li><span class="k">2027/28</span><p>La saison sèche 2026 est plus sèche et plus longue que la normale avec un El Niño faible à modéré (prévision BMKG reprise par l'USDA en mai 2026). Si les pluies reviennent en octobre–novembre, c'est <strong>plutôt favorable</strong> à la floraison de la récolte 2027. Le risque est une sécheresse qui dure jusqu'en novembre.</p></li>
+    <li><span class="k">Météo</span><p>45 saisons de données NASA le montrent : la meilleure récolte suit une floraison <strong>moyennement sèche</strong> (pluie d'août à novembre à 40–80 % de la normale : +6 % en moyenne). Une floraison <strong>très humide</strong> (plus de 160 %) coûte −11 % en moyenne (2010 : −27 %, 2022 : −28 %), une <strong>sécheresse extrême</strong> (moins de 40 %) −5 % (1994 : −19 %).</p></li>
+    <li><span class="k">2027/28</span><p>La NOAA est en <strong>alerte El Niño</strong> : ONI à +1,8 en juin–août 2026 et 75 % de chances d'un épisode historique (au-delà de +2,5) d'octobre à décembre. Au Sumatra du Sud, juillet–septembre 2026 n'a reçu que <strong>35 à 52 % de la pluie normale</strong>. Si la sécheresse dure jusqu'en novembre, comme en 1997 et en 2015, attends une récolte 2027 proche de celle de 2026 ou un peu plus basse, et surtout <strong>retardée</strong>.</p></li>
   </ul>
 </section>
 
@@ -167,14 +185,53 @@ pre{background:var(--surface-2);border-radius:8px;padding:12px 14px;overflow-x:a
     </table>
   </div>
   <figure>
-    <figcaption><span class="t">Robusta contre palmier à huile, indice 2004 = 100</span><span class="s">Surface plantée en Robusta (ministère, ton tableau) et surface récoltée en palmier à huile (USDA PSD). Un indice commun remplace un double axe.</span></figcaption>
+    <figcaption><span class="t">Surfaces du Robusta et des cultures concurrentes, indice 2004 = 100</span><span class="s">Robusta : surface plantée (ministère, ton tableau). Cacao, palmier à huile, hévéa : surface récoltée (FAOSTAT). Un indice commun remplace un double axe ; les hectares sont dans le tableau plus bas.</span></figcaption>
     <div class="chart" id="c-area"></div>
-    <div class="legend"><span><i class="sw line" style="background:var(--accent)"></i>Robusta, surface plantée</span><span><i class="sw line" style="background:var(--dry)"></i>Palmier à huile, surface récoltée</span></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c1)"></i>Robusta</span><span><i class="sw line" style="background:var(--c2)"></i>Cacao</span><span><i class="sw line" style="background:var(--c3)"></i>Palmier à huile</span><span><i class="sw line" style="background:var(--c4)"></i>Hévéa</span></div>
   </figure>
   <div class="prose stack">
-    <p>Le palmier à huile triple (4,4 → 13,5 M ha) pendant que le Robusta perd un quart de sa surface. Ce graphique montre une concurrence pour la terre et le travail, pas une preuve parcelle par parcelle : le palmier pousse surtout en plaine (Riau, Jambi, Kalimantan). La preuve directe de conversion au sud de Sumatra vient des rapports USDA de 2009–2012.</p>
-    <p><strong>Ce qui manque :</strong> les séries de prix (Robusta, cacao, caoutchouc, huile de palme, urée) et les surfaces FAO de cacao et d'hévéa, pour montrer la marge relative année par année. Ces sites sont bloqués dans mon environnement (voir la fin de la note).</p>
+    <p>De 2004 à 2012, le palmier double (3,3 → 6,65 M ha), le cacao gagne 70 % (1,09 → 1,85 M ha) et l'hévéa 30 %, pendant que le Robusta perd 20 % de sa surface plantée. Ce graphique montre une concurrence pour la terre et le travail, pas une preuve parcelle par parcelle : le palmier pousse surtout en plaine (Riau, Jambi, Kalimantan). La preuve directe de conversion au sud de Sumatra vient des rapports USDA de 2009–2012.</p>
   </div>
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:12px">Les surfaces en hectares</h3>
+  <div class="tbl"><table><thead><tr><th>Millions d'hectares</th><th class="n">2000</th><th class="n">2004</th><th class="n">2009</th><th class="n">2010</th><th class="n">2011</th><th class="n">2012</th><th class="n">2014</th><th class="n">2018</th><th class="n">2024</th></tr></thead><tbody><tr><td>Robusta, surface plantée (ministère)</td><td class="n">–</td><td class="n">1,14</td><td class="n">0,95</td><td class="n">0,92</td><td class="n">0,90</td><td class="n">0,90</td><td class="n">0,86</td><td class="n">0,86</td><td class="n">0,90*</td></tr><tr><td>Café, toutes variétés (FAO)</td><td class="n">1,26</td><td class="n">1,30</td><td class="n">1,27</td><td class="n">1,27</td><td class="n">1,29</td><td class="n">1,23</td><td class="n">1,23</td><td class="n">1,25</td><td class="n">1,27</td></tr><tr><td>Cacao (FAO)</td><td class="n">0,75</td><td class="n">1,09</td><td class="n">1,59</td><td class="n">1,65</td><td class="n">1,73</td><td class="n">1,85</td><td class="n">1,73</td><td class="n">1,61</td><td class="n">1,39</td></tr><tr><td>Palmier à huile (FAO)</td><td class="n">2,01</td><td class="n">3,32</td><td class="n">5,00</td><td class="n">5,78</td><td class="n">6,17</td><td class="n">6,65</td><td class="n">8,15</td><td class="n">12,20</td><td class="n">14,32</td></tr><tr><td>Hévéa (FAO)</td><td class="n">2,40</td><td class="n">2,68</td><td class="n">3,44</td><td class="n">3,45</td><td class="n">3,46</td><td class="n">3,48</td><td class="n">3,61</td><td class="n">3,67</td><td class="n">3,15</td></tr></tbody></table></div>
+  <p class="meta">FAO : surface récoltée (FAOSTAT, fichier de décembre 2025). Ministère : surface plantée (ton tableau). * valeur 2023. Pour le palmier, l'USDA donne des chiffres plus élevés (4,4 M ha en 2004, 14,0 M en 2024), mais la FAO est utilisée ici pour comparer les cultures avec la même source.</p>
+  <div class="prose stack">
+    <p><strong>2009 → 2012, la période des conversions :</strong> le cacao gagne 266 000 ha (1,59 → 1,85 M ha, son pic historique), le palmier 1,65 M ha (5,0 → 6,65 M ha) et l'hévéa 49 000 ha, pendant que le Robusta perd 44 000 ha plantés (947 000 → 903 000 ha). Ensuite, le cacao recule (1,39 M ha en 2024) : maladies et vieux vergers font chuter son rendement de 510 à 400 kg/ha entre 2010 et 2012.</p>
+  </div>
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:12px">Ce que rapportait chaque culture par hectare</h3>
+  <figure>
+    <figcaption><span class="t">Revenu brut par hectare au prix producteur</span><span class="s">$ par hectare récolté = prix payé au producteur indonésien × rendement national (FAOSTAT). Café : toutes variétés, ~90 % de Robusta. Palmier : régimes frais. Années sans prix FAO complétées avec l'indice des prix producteur de la FAO.</span></figcaption>
+    <div class="chart" id="c-rev"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c1)"></i>Café</span><span><i class="sw line" style="background:var(--c2)"></i>Cacao</span><span><i class="sw line" style="background:var(--c3)"></i>Palmier à huile</span><span><i class="sw line" style="background:var(--c4)"></i>Hévéa</span></div>
+  </figure>
+  <figure>
+    <figcaption><span class="t">Si un planteur avait remplacé son Robusta en 2009</span><span class="s">Revenu brut cumulé par hectare de 2009 à 2024, $. Café : arbres adultes gardés. Autres cultures : années sans récolte puis montée en production (tableau ci-dessous), rendement et prix FAO de chaque année.</span></figcaption>
+    <div class="chart" id="c-switch"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c1)"></i>Garder le café</span><span><i class="sw line" style="background:var(--c2)"></i>Passer au cacao</span><span><i class="sw line" style="background:var(--c3)"></i>Passer au palmier</span><span><i class="sw line" style="background:var(--c4)"></i>Passer à l'hévéa</span></div>
+  </figure>
+  <div class="tbl"><table><thead><tr><th>Culture</th><th>Avant la 1re récolte</th><th>Montée en production (% du rendement adulte, années 3 à 7)</th><th>Travail</th></tr></thead><tbody>
+    <tr><td>Robusta (arbres adultes)</td><td>—</td><td>100 %</td><td>Élevé : récolte à la main, taille</td></tr>
+    <tr><td>Cacao</td><td>2 ans</td><td>20 · 50 · 80 · 100 %</td><td>Élevé : récolte des cabosses toute l'année, lutte contre les maladies</td></tr>
+    <tr><td>Palmier à huile</td><td>30–36 mois (règlement Permentan 131/2013)</td><td>30 · 60 · 80 · 100 %</td><td>Faible par hectare, mais beaucoup d'engrais</td></tr>
+    <tr><td>Hévéa</td><td>5 ans</td><td>0 · 0 · 0 · 50 · 80 %, puis 100 %</td><td>Moyen : saignée quotidienne</td></tr>
+  </tbody></table></div>
+  <div class="prose stack">
+    <p><strong>Le verdict des chiffres :</strong> en 2009–2012, un hectare de palmier rapportait 2 200 à 3 000 $ bruts au producteur, contre 730 à 980 $ pour le café, avec beaucoup moins de travail. Même avec 3 ans sans récolte, le planteur passé au palmier en 2009 rattrape celui qui a gardé son café dès 2014 et finit à 24 900 $/ha cumulés en 2024, contre 14 800 $. Le cacao, à égalité avec le café en 2010, a été un mauvais pari (9 300 $), comme l'hévéa après la chute du caoutchouc en 2012 (4 500 $). En 2025, les trois cultures se valent : environ 2 000 $/ha pour le café, le cacao et le palmier (prix FAO estimés avec l'indice).</p>
+    <p><strong>L'arabica :</strong> pas de rendement ni de prix producteur séparés dans FAOSTAT. L'USDA donne des prix bord champ : 26 000–29 000 IDR/kg contre 12 000–16 000 pour le Robusta en 2010, puis 50 000–60 000 contre 17 500–19 000 en 2011, soit 2 à 3 fois plus. Mais l'arabica ne pousse qu'en altitude, et l'USDA note un manque de main-d'œuvre dans ces zones. Il remplace le Robusta en altitude, pas en plaine.</p>
+    <p><strong>Limite :</strong> ce sont des revenus bruts, pas des marges nettes. Les coûts de production par hectare (main-d'œuvre, engrais) sont dans les publications du BPS et du ministère, bloquées depuis mon environnement. Le prix producteur FAO du caoutchouc (~500–900 $/t) est très inférieur au prix mondial : il porte probablement sur du caoutchouc brut humide, donc le revenu de l'hévéa est sous-estimé.</p>
+  </div>
+  <figure>
+    <figcaption><span class="t">Prix mondiaux des cultures concurrentes, indice 2000 = 100</span><span class="s">Moyennes annuelles en dollars courants, Banque mondiale (Pink Sheet, septembre 2026 ; 2026 = janvier–août). Robusta et arabica ($/kg), cacao ($/kg), huile de palme ($/t), caoutchouc RSS3 ($/kg).</span></figcaption>
+    <div class="chart" id="c-price"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c1)"></i>Robusta</span><span><i class="sw line" style="background:var(--c2)"></i>Cacao</span><span><i class="sw line" style="background:var(--c3)"></i>Huile de palme</span><span><i class="sw line" style="background:var(--c4)"></i>Caoutchouc</span><span><i class="sw line" style="background:var(--c5)"></i>Arabica</span></div>
+  </figure>
+  <div class="prose stack">
+    <p>De 2000 à 2011, pendant que le Robusta perdait ses surfaces, les prix des cultures concurrentes ont monté beaucoup plus vite : caoutchouc ×7,2, huile de palme ×3,8, cacao ×3,3, contre ×2,6 pour le Robusta, qui sortait de la crise du café (0,8–0,9 $/kg en 2000–2004). Ce sont aussi des cultures qui demandent moins de travail que le café. Après 2012, le caoutchouc et le palmier retombent, et la baisse de surface du Robusta s'arrête vers 2014. Depuis 2024, le Robusta (×5,3 en 2025) et surtout le cacao (×8,6) flambent, loin devant le palmier et le caoutchouc (×3,3). Les nouvelles plantations de café signalées par l'USDA en 2026 sont cohérentes avec ces prix.</p>
+  </div>
+  <figure>
+    <figcaption><span class="t">Pouvoir d'achat en engrais : kg d'urée payés par 1 kg de Robusta</span><span class="s">Prix mondial du Robusta ÷ prix mondial de l'urée (Banque mondiale). Plus c'est haut, plus l'engrais est abordable pour le planteur.</span></figcaption>
+    <div class="chart" id="c-urea"></div>
+  </figure>
 </section>
 
 <section id="rendement">
@@ -222,9 +279,9 @@ pre{background:var(--surface-2);border-radius:8px;padding:12px 14px;overflow-x:a
     <table>
       <thead><tr><th>Phénomène</th><th>Effet sur la pluie au sud de Sumatra</th><th>Effet sur la récolte suivante</th></tr></thead>
       <tbody id="enso-rules">
-        <tr><td><span class="pill dry">El Niño</span></td><td>Saison sèche plus sèche et plus longue, retour des pluies retardé (juillet–novembre).</td><td>Modéré : bon stress sec, mais floraison retardée ou étalée si la sécheresse dure. Pertes seulement en cas d'épisode extrême (2015 : −12 % sur un an). Récolte décalée (2024 : début mai–juin au lieu de mars–avril).</td></tr>
+        <tr><td><span class="pill dry">El Niño</span></td><td>Saison sèche plus sèche et plus longue : pluie d'août à novembre à ~55 % de la normale, maximales +1,4 °C (10 saisons, NASA POWER).</td><td>Modéré : bon stress sec, mais floraison retardée ou étalée si la sécheresse dure. Pertes seulement en cas d'épisode extrême (2015 : −12 % sur un an). Récolte décalée (2024 : début mai–juin au lieu de mars–avril).</td></tr>
         <tr><td><span class="pill dry">IOD positif</span></td><td>Renforce la sécheresse de septembre à novembre, en plein dans la floraison.</td><td>Avec El Niño (2015, 2019, 2023), c'est le scénario de sécheresse extrême.</td></tr>
-        <tr><td><span class="pill wet">La Niña</span></td><td>« Saison sèche humide » : pluies pendant la saison sèche.</td><td>Fort : pas de stress sec, fleurs lavées, pollinisation ratée. Les plus grosses pertes : 2011/12 et 2023/24, environ −27 % et −28 % par rapport aux récoltes voisines.</td></tr>
+        <tr><td><span class="pill wet">La Niña</span></td><td>« Saison sèche humide » : pluie d'août à novembre à ~128 % de la normale, maximales −0,9 °C (10 saisons).</td><td>Fort : pas de stress sec, fleurs lavées, pollinisation ratée. Les plus grosses pertes : 2011/12 et 2023/24, environ −27 % et −28 % par rapport aux récoltes voisines.</td></tr>
         <tr><td><span class="pill wet">IOD négatif</span></td><td>Pluies au-dessus de la normale de juillet à novembre.</td><td>Même effet que La Niña. 2016, 2022 et 2025 ont précédé des récoltes jugées mauvaises en altitude.</td></tr>
       </tbody>
     </table>
@@ -239,19 +296,57 @@ pre{background:var(--surface-2);border-radius:8px;padding:12px 14px;overflow-x:a
     <p>À noter : de 2017/18 à 2022/23, le chiffre officiel USDA ne bouge presque pas (9,3–9,5 M sacs), alors que l'attaché à Jakarta décrivait des variations régionales fortes. L'officiel USDA est lissé. Pour détecter tôt un choc, le chiffre de l'attaché (« Post ») publié en mai et en novembre–décembre est plus réactif.</p>
   </div>
 
-  <div class="note"><strong>Graphiques pluie et température NASA POWER.</strong> NASA POWER et NOAA sont bloqués dans mon environnement. J'ai préparé le script <code>research/indonesia/south_sumatra_weather.py</code> (poussé sur la branche). Il produit, sur ton PC comme <code>build_data.py</code> : la pluie mensuelle et la température maximale pour Pagar Alam, Lahat, Muaradua, Liwa et Kepahiang face à la normale 1991–2020 ; l'effet moyen d'El Niño, de La Niña et de l'IOD sur la pluie de chaque mois ; les mois dont la pluie explique le mieux la récolte USDA ; et le suivi 2026 mois par mois.</div>
-  <pre>python research/indonesia/south_sumatra_weather.py
-# → research/indonesia/output/south_sumatra_weather.html</pre>
+</section>
+
+<section id="meteo-data">
+  <span class="num">5 · MÉTÉO EN DONNÉES</span>
+  <h2 id="w-title">Ce qu'El Niño et La Niña changent, saison par saison</h2>
+  <div class="prose"><p>Chaque courbe est une saison de juillet à juin : la floraison (août–novembre), les cerises (décembre–mars), puis la récolte. Chaque saison est classée selon l'indice pendant la floraison, d'août à novembre (ONI ±0,5 pour ENSO, DMI ±0,4 °C pour l'IOD). Trait épais en pointillés : moyenne du groupe. Trait fin en pointillés : normale 1991–2020.</p></div>
+  <div class="controls">
+    <label class="ctl" for="w-town">Ville <select id="w-town"></select></label>
+    <div class="seg" role="group" aria-label="Indice climatique">
+      <button type="button" id="w-enso" aria-pressed="true">El Niño / La Niña</button>
+      <button type="button" id="w-iod" aria-pressed="false">Dipôle océan Indien</button>
+    </div>
+  </div>
+  <div class="note" id="w-missing" hidden><strong>Données météo pas encore chargées.</strong> Il manque le fichier <code>weather_data.js</code> (NASA POWER, ONI, DMI).</div>
+  <div class="panels" id="w-panels"></div>
+  <figure>
+    <figcaption><span class="t" id="w-buck-t">Ce qui fait la récolte : la pluie d'août à novembre</span><span class="s">Saisons 1981–2025 classées selon la pluie d'août à novembre, en % de la normale. Barre : écart moyen de la récolte USDA suivante par rapport aux récoltes voisines. Survole une barre pour voir les saisons.</span></figcaption>
+    <div class="chart" id="w-buck"></div>
+  </figure>
+  <figure>
+    <figcaption><span class="t" id="w-corr-t">Quels mois comptent</span><span class="s">Corrélation entre la pluie de chaque mois (% de la normale) et la récolte USDA suivante, saisons 1981–2025. Au-delà de ±0,29, le lien est significatif à 5 %. Négatif : plus de pluie ce mois-là, plus petite récolte.</span></figcaption>
+    <div class="chart" id="w-corr"></div>
+    <div class="legend"><span><i class="sw" style="background:var(--wet)"></i>La pluie fait baisser la récolte</span><span><i class="sw" style="background:var(--good)"></i>La pluie aide la récolte</span></div>
+  </figure>
+  <figure>
+    <figcaption><span class="t" id="w-anom-t">Pluie : écart moyen à la normale selon la phase</span><span class="s">% d'écart à la normale 1991–2020, mois par mois de juillet à juin, moyenne des saisons de chaque groupe.</span></figcaption>
+    <div class="chart" id="w-anom"></div>
+    <div class="legend" id="w-anom-leg"></div>
+  </figure>
+  <figure>
+    <figcaption><span class="t" id="w-imp-t">Impact : pluie de floraison et récolte USDA suivante</span><span class="s" id="w-imp-s"></span></figcaption>
+    <div class="chart" id="w-imp"></div>
+    <div class="legend" id="w-imp-leg"></div>
+  </figure>
+  <div class="tbl"><table><thead><tr><th>Groupe</th><th>Saisons</th><th>Pluie août–nov.</th><th>Récolte USDA suivante</th><th>Pire récolte</th></tr></thead><tbody id="w-sum"></tbody></table></div>
+  <figure>
+    <figcaption><span class="t" id="w-cur-t">Saison en cours</span><span class="s" id="w-cur-s"></span></figcaption>
+    <div class="chart" id="w-cur"></div>
+    <div class="legend" id="w-cur-leg"></div>
+  </figure>
+  <p class="meta" id="w-meta"></p>
 </section>
 
 <section id="prevision">
-  <span class="num">5 · CHAÎNE DE PRÉVISION</span>
+  <span class="num">6 · CHAÎNE DE PRÉVISION</span>
   <h2>Comment je prévoirais la récolte, étape par étape</h2>
   <ol class="chain">
     <li><div class="stack"><h3>Choisir la base de mesure</h3><p>Prévois dans l'unité du marché : sacs USDA, campagne avril–mars. Utilise la série du ministère pour la structure (surface, rendement, provinces), pas pour le niveau.</p></div></li>
     <li><div class="stack"><h3>Surface productive : presque fixe</h3><p>Environ 0,69 M ha productifs (ministère) et 1,2 M ha de café au total (USDA). Hypothèse de 0 à +1 % par an. Les nouvelles plantations de 2024–2026, dues aux prix records, n'entrent en production qu'après environ 3 ans, donc surtout à partir de 2027–2029.</p></div></li>
     <li><div class="stack"><h3>Récolte « météo normale » aux intrants actuels</h3><p>La moyenne de 2025/26 (11,0, bonne météo et plus d'engrais) et de 2026/27 (10,0, floraison trop humide) donne environ <strong>10,5 M sacs</strong>. C'est le point de départ avant météo.</p></div></li>
-    <li><div class="stack"><h3>Choc de floraison (juillet–novembre de l'année N−1)</h3><p>C'est le facteur n°1. Saison sèche humide (La Niña, IOD−) : −10 à −30 %. Saison sèche normale suivie de pluies à l'heure : 0 à +10 %. Sécheresse qui dure jusqu'en novembre (El Niño fort + IOD+) : −5 à −15 % et récolte décalée.</p></div></li>
+    <li><div class="stack"><h3>Choc de floraison (juillet–novembre de l'année N−1)</h3><p>C'est le facteur n°1. Mesure la pluie d'août à novembre en % de la normale (NASA POWER, Sumatra du Sud) et applique l'écart moyen observé sur 45 saisons : moins de 40 % → −5 % (et récolte retardée) ; 40–80 % → +6 % ; 80–120 % → +4 % ; 120–160 % → −1 % ; plus de 160 % → −11 %. Surveille aussi juin (une saison sèche qui démarre humide nuit à l'induction florale) et janvier (pluie sur les jeunes cerises).</p></div></li>
     <li><div class="stack"><h3>Choc de grossissement (décembre N−1 – mars N)</h3><p>Pluies très fortes et vent en altitude : −5 à −10 % (chute de cerises). Suivi mensuel avec NASA POWER et les prévisions BMKG.</p></div></li>
     <li><div class="stack"><h3>Ajustement économique</h3><p>Prix au producteur et marge, donc engrais, taille et entretien. Des prix élevés soutiennent le rendement l'année suivante (USDA 2025). Une baisse des prix fait l'inverse, surtout en altitude où le travail coûte plus cher.</p></div></li>
     <li><div class="stack"><h3>Vérifications de marché</h3><p>Exportations mensuelles (BPS) d'avril à septembre, prix bord champ au Lampung et à Palembang et différentiels, arrivées aux ports, chiffre de l'attaché USDA (mai et novembre–décembre), rapports des exportateurs (AEKI).</p></div></li>
@@ -259,21 +354,25 @@ pre{background:var(--surface-2);border-radius:8px;padding:12px 14px;overflow-x:a
 </section>
 
 <section id="scenarios">
-  <span class="num">6 · 2027/28</span>
+  <span class="num">7 · 2027/28</span>
   <h2>Ce qu'on peut attendre l'an prochain</h2>
   <div class="prose stack">
-    <p>La récolte 2027 (campagne USDA 2027/28) se décide en ce moment. D'après le BMKG, repris par l'USDA en mai 2026, la saison sèche 2026 au sud de Sumatra est plus sèche et plus longue que la normale, avec un pic en août et un El Niño faible qui devait devenir modéré au second semestre. Après une floraison 2025 trop humide et une récolte 2026 plus petite, les arbres ont en principe plus de réserves. Un vrai stress sec est ce qu'il faut pour une bonne floraison, à condition que les pluies reviennent en octobre–novembre.</p>
+    <p>La récolte 2027 (campagne USDA 2027/28) se décide en ce moment, pendant la floraison. Dans sa discussion de septembre 2026, la NOAA parle d'un El Niño qui se renforce : plus de 90 % de chances d'un épisode très fort cet automne–hiver, 75 % de chances d'un épisode historique d'octobre à décembre, et des pluies « supprimées sur l'Indonésie ». Au Sumatra du Sud, juillet 2026 a reçu 52 % de la pluie normale, août 50 %, et septembre 35 % au 19 du mois (moyenne de Pagar Alam, Lahat et Muaradua). À Liwa (Lampung), juillet et août sont sous 10 %.</p>
+    <p><strong>Les analogues.</strong> Les El Niño les plus forts pendant la floraison sont 1982, 1997, 2015 et 2023. La récolte USDA suivante a fini à −2 %, +6 %, −1 % et −2 % par rapport aux récoltes voisines. Pas d'effondrement, mais une récolte décalée (en 2024, début mai–juin au lieu de mars–avril). Le vrai risque est la sécheresse extrême qui dure jusqu'en décembre, comme en 1994 (−19 %) ou 2006 (−12 %). Autre signal baissier : en 2026, 1 kg de Robusta n'achète plus que ~7 kg d'urée, contre ~12 en 2025, donc moins d'engrais à prévoir.</p>
   </div>
   <div class="scen" id="scen">
-    <div><span class="p">Scénario bas · 25 %</span><span class="v">9,0–9,5 <small>M sacs</small></span><p>La sécheresse dure jusqu'en novembre (El Niño modéré + IOD positif), la floraison est tardive et étalée, puis de fortes pluies tombent de décembre à février.</p></div>
-    <div><span class="p">Scénario central · 50 %</span><span class="v">10,5–11,0 <small>M sacs</small></span><p>Saison sèche marquée, pluies de retour en octobre, bonne floraison. Les intrants restent soutenus par les prix.</p></div>
-    <div><span class="p">Scénario haut · 25 %</span><span class="v">11,5+ <small>M sacs</small></span><p>Le scénario central, sans pluie ni vent excessifs de décembre à mars, avec plus d'engrais et les premières jeunes plantations.</p></div>
+    <div><span class="p">Sécheresse jusqu'en décembre · 30 %</span><span class="v">8,8–9,6 <small>M sacs</small></span><p>El Niño historique et IOD positif : floraison tardive et étalée, feux possibles comme en 1997 et 2015, moins d'engrais. Récolte en mai–juillet 2027.</p></div>
+    <div><span class="p">Scénario central · 50 %</span><span class="v">9,8–10,5 <small>M sacs</small></span><p>Pluie d'août à novembre sous 40 % de la normale, pluies de retour en novembre–décembre. Récolte proche de 2026/27 mais retardée de 1 à 2 mois.</p></div>
+    <div><span class="p">Pluies de retour en octobre · 20 %</span><span class="v">10,8–11,5 <small>M sacs</small></span><p>Long stress sec puis pluies à l'heure : la classe 40–80 %, la meilleure historiquement (+6 %).</p></div>
   </div>
   <figure>
     <figcaption><span class="t">Récolte USDA de Robusta et fourchette 2027/28</span><span class="s">Millions de sacs. Historique USDA PSD, puis scénarios de cette note (le trait marque le scénario central).</span></figcaption>
     <div class="chart" id="c-scen"></div>
   </figure>
-  <div class="prose"><p>Les probabilités sont un jugement de trader, pas une sortie de modèle. À mettre à jour dès que tu as les pluies de juillet à octobre 2026 (script NASA POWER) et l'état de l'IOD pour octobre–novembre.</p></div>
+  <div class="prose stack">
+    <p><strong>Pour le trading :</strong> le signal le plus fiable n'est pas le volume mais le <strong>calendrier</strong>. Une floraison retardée décale les arrivées de Robusta indonésien du 2e au 3e trimestre 2027, et les différentiels du Lampung devraient rester fermes au printemps. Les points à suivre : la pluie d'octobre–novembre (graphique « Saison en cours »), l'IOD d'octobre–novembre (BoM), et les feux au Sumatra du Sud.</p>
+    <p>Les probabilités sont un jugement de trader construit sur les analogues, pas une sortie de modèle.</p>
+  </div>
 </section>
 
 <section id="sources">
@@ -302,11 +401,16 @@ pre{background:var(--surface-2);border-radius:8px;padding:12px 14px;overflow-x:a
       <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Annual_Jakarta_Indonesia_ID2025-0021.pdf">mai 2025</a> ·
       <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_ID2025-0039">déc. 2025</a> ·
       <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Annual_Jakarta_Indonesia_ID2026-0021.pdf">mai 2026</a>.</li>
-    <li>Bloqués dans mon environnement, à ajouter quand l'accès réseau sera ouvert : NASA POWER, indices ONI et IOD de la NOAA, FAOSTAT (surfaces cacao et hévéa), prix de la Banque mondiale, publications du ministère indonésien.</li>
+    <li><a href="https://power.larc.nasa.gov/">NASA POWER</a> : pluie (PRECTOTCORR) et température (T2M, T2M_MAX) quotidiennes, 1981 → 19 septembre 2026, pour Pagar Alam, Lahat, Muaradua, Liwa et Kepahiang.</li>
+    <li><a href="https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt">NOAA CPC, indice ONI</a> et <a href="https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.shtml">discussion ENSO de septembre 2026</a> ; <a href="https://psl.noaa.gov/gcos_wgsp/Timeseries/DMI/">NOAA PSL, indice DMI de l'IOD</a> (HadISST, jusqu'en mai 2026).</li>
+    <li><a href="https://www.worldbank.org/en/research/commodity-markets">Banque mondiale, Pink Sheet</a> (prix mensuels, mise à jour du 2 septembre 2026).</li>
+    <li><a href="https://www.fao.org/faostat/en/#data/QCL">FAOSTAT</a> : surfaces, production et rendements (QCL), prix producteur (PP), Indonésie, 1990–2024/2025.</li>
+    <li>Pas encore accessibles depuis mon environnement : les publications du BPS et du ministère indonésien (coûts de production par hectare, surfaces arabica/Robusta par province).</li>
   </ul>
 </section>
 </div>
 
+<script src="weather_data.js"></script>
 <script>
 (function(){
 const Y = [2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
@@ -329,7 +433,7 @@ const fr = (v,d=1) => v.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumF
 // Generic chart. cfg: {x:[labels], series:[{name,color,values,type:'line'|'bar',dash,dot:(i)=>color}], yMin, yMax, fmt, unit, refs:[{y,label}], band:{from,to,label}, labels:[{i,y,text,dy}] , tip:(i)=>html}
 function chart(id, cfg){
   const host=document.getElementById(id); host.innerHTML='';
-  const W=720, H=cfg.h||300, L=48, R=16, T=14, B=34, pw=W-L-R, ph=H-T-B;
+  const W=cfg.w||720, H=cfg.h||300, L=cfg.L||48, R=16, T=14, B=34, pw=W-L-R, ph=H-T-B;
   const n=cfg.x.length;
   let vals=[]; cfg.series.forEach(s=>s.values.forEach(v=>{ if(v!=null) vals.push(v); }));
   (cfg.refs||[]).forEach(r=>vals.push(r.y));
@@ -340,7 +444,7 @@ function chart(id, cfg){
   const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.aria||''},host);
   if(cfg.band){ const x0=L+pw*cfg.band.from/n, x1=L+pw*(cfg.band.to+1)/n; el('rect',{x:x0,y:T,width:x1-x0,height:ph,fill:css('--band'),opacity:.7},svg); const t=el('text',{x:(x0+x1)/2,y:T+14,'text-anchor':'middle',class:'ann'},svg); t.textContent=cfg.band.label; }
   ticks.forEach(t=>{ el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),class:'grid'},svg); const tx=el('text',{x:L-8,y:Yv(t)+4,'text-anchor':'end'},svg); tx.textContent=cfg.fmt?cfg.fmt(t):t; });
-  const every=Math.ceil(n/12);
+  const every=cfg.every||Math.ceil(n/12);
   cfg.x.forEach((lab,i)=>{ if(i%every===0||i===n-1){ const tx=el('text',{x:X(i),y:H-10,'text-anchor':'middle'},svg); tx.textContent=lab; } });
   const zero=Math.max(a,Math.min(b,0));
   el('line',{x1:L,x2:L+pw,y1:Yv(cfg.base!=null?cfg.base:zero),y2:Yv(cfg.base!=null?cfg.base:zero),class:'base'},svg);
@@ -354,7 +458,7 @@ function chart(id, cfg){
     } else {
       let d='', pen=false;
       s.values.forEach((v,i)=>{ if(v==null){pen=false;return;} d+=(pen?'L':'M')+X(i).toFixed(1)+','+Yv(v).toFixed(1); pen=true; });
-      el('path',{d,fill:'none',stroke:col,'stroke-width':2,'stroke-linejoin':'round','stroke-dasharray':s.dash?'6 4':'none'},svg);
+      el('path',{d,fill:'none',stroke:col,'stroke-width':s.width||2,'stroke-linejoin':'round','stroke-linecap':'round',opacity:s.opacity||1,'stroke-dasharray':s.dash===true?'6 4':(s.dash||'none')},svg);
       if(s.dot) s.values.forEach((v,i)=>{ if(v==null) return; el('circle',{cx:X(i),cy:Yv(v),r:5,fill:css(s.dot(i)),stroke:css('--surface'),'stroke-width':2},svg); });
     }
   });
@@ -378,14 +482,29 @@ function draw(){
     series:[{name:'Ministère',color:'--accent',values:minB},{name:'USDA',color:'--dry',values:usB}],
     labels:[{i:19,y:6.8,text:'2023/24 : 6,8',dy:18}],
     tip:i=>`<b>${Y[i]}</b>${row('Ministère',minB[i]==null?'–':fr(minB[i],2)+' M','--accent')}${row('USDA '+Y[i]+'/'+String(Y[i]+1).slice(2),fr(usB[i],2)+' M','--dry')}`});
-  // 2. area index
-  const pi=PLANTED.map(v=>100*v/PLANTED[0]).concat([null,null,null]);
-  const oi=PALM.map(v=>100*v/PALM[0]);
-  chart('c-area',{x:x1,aria:'Indice des surfaces',yMin:0,fmt:v=>fr(v,0),
-    series:[{name:'Robusta',color:'--accent',values:pi},{name:'Palmier',color:'--dry',values:oi}],
-    refs:[{y:100}],
-    labels:[{i:10,y:pi[10],text:'Robusta −24 % (2004→2014)',dy:24},{i:19,y:oi[19],text:'Palmier ×3',dy:-12}],
-    tip:i=>`<b>${Y[i]}</b>${row('Robusta planté',pi[i]==null?'–':fr(pi[i],0)+(i<PLANTED.length?' · '+(PLANTED[i]/1e6).toLocaleString('fr-FR',{maximumFractionDigits:3})+' M ha':''),'--accent')}${row('Palmier récolté',fr(oi[i],0)+' · '+fr(PALM[i]/1000,1)+' M ha','--dry')}`});
+  // 2. area index (2004=100): ministry robusta planted, FAO cocoa / palm / rubber
+  const FAO={"coffee": {"area": [1260687.0, 1313383.0, 1372184.0, 1381730.0, 1303943.0, 1255272.0, 1308732.0, 1295912.0, 1295111.0, 1266235.0, 1268476.0, 1293000.0, 1233900.0, 1241700.0, 1230500.0, 1230001.0, 1228512.0, 1238598.0, 1252826.0, 1245359.0, 1250452.0, 1279570.0, 1265961.0, 1266848.0, 1269354.0], "rev": [404, 331, 289, 317, 321, 336, 447, 629, 763, 727, 829, 883, 979, 861, 772, 743, 775, 1075, 1076, 923, 853, 865, 895, 1015, 1556], "price": [917.5, 762.8, 580.9, 660.8, 645.9, 658.0, 857.8, 1204.5, 1414.8, 1348.1, 1536.7, 1786.9, 1747.8, 1582.0, 1475.8, 1429.1, 1488.8, 1853.6, 1783.6, 1528.2, 1399.2, 1407.7, 1462.3, 1694.4, 2446.4], "yield": [0.44, 0.433, 0.497, 0.48, 0.496, 0.51, 0.521, 0.522, 0.539, 0.539, 0.539, 0.494, 0.56, 0.544, 0.523, 0.52, 0.52, 0.58, 0.604, 0.604, 0.61, 0.614, 0.612, 0.599, 0.636]}, "cocoa": {"area": [749917.0, 765405.0, 776901.0, 961107.0, 1090960.0, 1167046.0, 905730.0, 923968.0, 1425216.0, 1587136.0, 1651539.0, 1732600.0, 1852900.0, 1740600.0, 1727400.0, 1709284.0, 1701351.0, 1658421.0, 1611014.0, 1560945.0, 1508955.0, 1421014.0, 1421014.0, 1393390.0, 1386749.0], "rev": [471, 596, 748, 711, 635, 596, 824, 924, 821, 810, 1063, 903, 779, 755, 829, 605, 722, 572, 718, 626, 670, 671, 655, 705, 1360], "price": [839.0, 849.9, 938.3, 983.3, 1001.7, 928.5, 970.3, 1153.1, 1456.5, 1588.4, 2079.4, 2195.9, 1949.3, 1822.6, 1966.7, 1742.8, 1868.8, 1604.9, 1507.3, 1329.8, 1402.2, 1465.4, 1431.0, 1553.5, 2981.3], "yield": [0.562, 0.701, 0.797, 0.724, 0.634, 0.642, 0.85, 0.801, 0.564, 0.51, 0.511, 0.411, 0.4, 0.414, 0.422, 0.347, 0.386, 0.356, 0.476, 0.471, 0.478, 0.458, 0.458, 0.454, 0.456]}, "palm": {"area": [2014000.0, 2200000.0, 2790000.0, 3040000.0, 3320000.0, 3690000.0, 4110000.0, 4560000.0, 4980000.0, 5000000.0, 5780000.0, 6170000.0, 6650000.0, 7720000.0, 8150000.0, 8650000.0, 9720000.0, 11000000.0, 12200000.0, 12880000.0, 13250000.0, 13670000.0, 13940000.0, 14170000.0, 14320000.0], "rev": [381, 362, 389, 456, 1168, 1207, 1515, 1607, 1944, 2202, 2997, 2611, 2644, 2245, 2241, 1850, 1839, 1618, 1292, 1176, 1374, 2041, 2402, 2603, 2252], "price": [21.1, 19.5, 23.2, 26.3, 64.1, 63.6, 77.6, 94.0, 113.9, 122.3, 156.0, 137.7, 133.2, 122.9, 123.4, 101.3, 111.0, 92.2, 76.5, 69.8, 80.2, 110.7, 140.7, 153.7, 132.7], "yield": [18.064, 18.614, 16.774, 17.303, 18.223, 18.97, 19.526, 17.105, 17.068, 18.0, 19.204, 18.963, 19.85, 18.264, 18.16, 18.266, 16.564, 17.546, 16.885, 16.848, 17.132, 18.434, 17.073, 16.937, 16.969]}, "rubber": {"area": [2400000.0, 2599470.0, 2634720.0, 2675060.0, 2675060.0, 3279391.0, 2725858.0, 2775546.0, 3424217.0, 3435270.0, 3445121.0, 3456100.0, 3484100.0, 3555800.0, 3606245.0, 3621102.0, 3637264.0, 3659090.0, 3671387.0, 3683482.0, 3726173.0, 3776486.0, 3557092.0, 3152745.0, 3149277.0], "rev": [128, 160, 198, 251, 332, 335, 694, 686, 644, 398, 680, 829, 758, 683, 544, 438, 436, 553, 479, 440, 359, 435, 409, 345, 421], "price": [205.3, 258.0, 320.6, 375.0, 429.4, 483.8, 717.5, 691.0, 801.4, 560.5, 857.2, 958.6, 876.6, 781.9, 621.8, 503.8, 479.1, 549.7, 484.2, 470.1, 440.0, 539.9, 535.9, 485.6, 586.6], "yield": [0.626, 0.618, 0.619, 0.67, 0.772, 0.693, 0.968, 0.993, 0.803, 0.71, 0.794, 0.865, 0.865, 0.874, 0.874, 0.869, 0.909, 1.006, 0.989, 0.936, 0.815, 0.806, 0.764, 0.711, 0.718]}}; const FY=[]; for(let y=2000;y<=2024;y++) FY.push(y);
+  const X2=[]; for(let y=2004;y<=2024;y++) X2.push(y);
+  const fidx=(arr)=>{ const b=arr[FY.indexOf(2004)]; return X2.map(y=>{ const v=arr[FY.indexOf(y)]; return v==null?null:100*v/b; }); };
+  const robI=X2.map(y=>{ const i=Y.indexOf(y); return i>=0&&i<PLANTED.length?100*PLANTED[i]/PLANTED[0]:null; });
+  const aser=[['Robusta','--c1',robI,y=>{const i=Y.indexOf(y); return i>=0&&i<PLANTED.length?PLANTED[i]:null;}],['Cacao','--c2',fidx(FAO.cocoa.area),y=>FAO.cocoa.area[FY.indexOf(y)]],['Palmier à huile','--c3',fidx(FAO.palm.area),y=>FAO.palm.area[FY.indexOf(y)]],['Hévéa','--c4',fidx(FAO.rubber.area),y=>FAO.rubber.area[FY.indexOf(y)]]];
+  chart('c-area',{x:X2.map(String),aria:'Indice des surfaces',yMin:0,fmt:v=>fr(v,0),h:300,
+    series:aser.map(([n,c,a])=>({name:n,color:c,values:a})),refs:[{y:100}],
+    tip:i=>`<b>${X2[i]}</b>`+aser.map(([n,c,a,h])=>row(n,a[i]==null?'–':fr(a[i],0)+' · '+(h(X2[i])/1e6).toLocaleString('fr-FR',{maximumFractionDigits:2})+' M ha',c)).join('')});
+  // revenue per ha
+  const rser=[['Café','--c1',FAO.coffee],['Cacao','--c2',FAO.cocoa],['Palmier à huile','--c3',FAO.palm],['Hévéa','--c4',FAO.rubber]];
+  chart('c-rev',{x:FY.map(String),aria:'Revenu brut par hectare',yMin:0,fmt:v=>fr(v,0),h:300,
+    series:rser.map(([n,c,d])=>({name:n,color:c,values:d.rev})),
+    tip:i=>`<b>${FY[i]}</b>`+rser.map(([n,c,d])=>row(n,d.rev[i]==null?'–':fr(d.rev[i],0)+' $/ha',c)).join('')+`<div style="margin-top:4px;color:var(--ink-2)">Prix producteur × rendement FAO</div>`});
+  // switching backtest from 2009
+  const RAMP={coffee:Array(40).fill(1),cocoa:[0,0,.2,.5,.8].concat(Array(40).fill(1)),palm:[0,0,.3,.6,.8].concat(Array(40).fill(1)),rubber:[0,0,0,0,0,.5,.8].concat(Array(40).fill(1))};
+  const SY0=[]; for(let y=2009;y<=2024;y++) SY0.push(y);
+  const cum=k=>{ let c=0; return SY0.map((y,i)=>{ c+=FAO[k].rev[FY.indexOf(y)]*RAMP[k][i]; return c; }); };
+  const sw=[['Garder le café','--c1',cum('coffee')],['Passer au cacao','--c2',cum('cocoa')],['Passer au palmier','--c3',cum('palm')],['Passer à l\'hévéa','--c4',cum('rubber')]];
+  chart('c-switch',{x:SY0.map(String),aria:'Revenu cumulé après conversion',yMin:0,fmt:v=>fr(v/1000,0)+' k',h:300,
+    series:sw.map(([n,c,a])=>({name:n,color:c,values:a})),
+    labels:[{i:15,y:sw[2][2][15],text:fr(sw[2][2][15]/1000,1)+' k$',dy:-10,anchor:'end'},{i:15,y:sw[0][2][15],text:fr(sw[0][2][15]/1000,1)+' k$',dy:-10,anchor:'end'}],
+    tip:i=>`<b>${SY0[i]} (année ${i+1})</b>`+sw.map(([n,c,a])=>row(n,fr(a[i],0)+' $',c)).join('')});
   // 3. yield
   const yy=Y.slice(0,20).map(String);
   const cls=i=>{ const c=YCLASS[Y[i]]; return c==='wet'?'--wet':c==='dry'?'--dry':c==='good'?'--good':'--neutral'; };
@@ -408,17 +527,215 @@ function draw(){
     series:[{name:'Écart',type:'bar',color:'--neutral',values:an,dot:acol}],
     labels:[{i:11,y:an[11],text:'11/12 : La Niña 2010',dy:16},{i:23,y:an[23],text:'23/24',dy:16}],
     tip:i=>`<b>Campagne ${AY[i]}/${String(AY[i]+1).slice(2)}</b>${row('USDA',fr(USDA_ROB[AY[i]]/1000,2)+' M sacs')}${row('Écart voisins',(an[i]>0?'+':'')+fr(an[i],1)+' %',acol(i))}${anote[AY[i]]?`<div style="margin-top:4px;color:var(--ink-2)">Floraison ${AY[i]-1} : ${anote[AY[i]]}</div>`:''}`});
+  // prices
+  const PR={"rob": [0.913, 0.607, 0.662, 0.813, 0.793, 1.114, 1.488, 1.908, 2.321, 1.645, 1.736, 2.408, 2.266, 2.077, 2.216, 1.941, 1.954, 2.225, 1.869, 1.622, 1.516, 1.982, 2.286, 2.627, 4.413, 4.861, 3.897], "ara": [1.922, 1.373, 1.356, 1.416, 1.773, 2.533, 2.522, 2.724, 3.081, 3.171, 4.32, 5.977, 4.112, 3.077, 4.425, 3.526, 3.613, 3.324, 2.925, 2.88, 3.323, 4.511, 5.631, 4.541, 5.621, 8.47, 7.424], "coc": [0.907, 1.067, 1.778, 1.751, 1.55, 1.538, 1.593, 1.952, 2.577, 2.889, 3.134, 2.979, 2.392, 2.438, 3.062, 3.137, 2.891, 2.029, 2.292, 2.342, 2.371, 2.427, 2.393, 3.28, 7.33, 7.797, 4.415], "palm": [0.31, 0.288, 0.411, 0.477, 0.499, 0.451, 0.508, 0.817, 1.043, 0.741, 0.933, 1.193, 1.043, 0.871, 0.838, 0.663, 0.736, 0.751, 0.639, 0.601, 0.752, 1.13, 1.276, 0.887, 0.964, 1.007, 1.095], "rub": [0.667, 0.575, 0.764, 1.083, 1.281, 1.488, 2.078, 2.263, 2.587, 1.919, 3.654, 4.822, 3.377, 2.795, 1.952, 1.572, 1.605, 1.997, 1.566, 1.64, 1.728, 2.072, 1.81, 1.576, 2.275, 2.183, 2.545], "urea": [0.101, 0.096, 0.094, 0.138, 0.175, 0.217, 0.222, 0.307, 0.515, 0.251, 0.289, 0.399, 0.399, 0.34, 0.308, 0.278, 0.194, 0.214, 0.249, 0.245, 0.229, 0.483, 0.7, 0.358, 0.338, 0.423, 0.56]}; const PY=[]; for(let y=2000;y<=2026;y++) PY.push(y);
+  const i04=PY.indexOf(2000); const idx=a=>a.map(v=>v==null?null:100*v/a[i04]);
+  const pser=[['Robusta','--c1',PR.rob],['Cacao','--c2',PR.coc],['Huile de palme','--c3',PR.palm],['Caoutchouc','--c4',PR.rub],['Arabica','--c5',PR.ara]];
+  chart('c-price',{x:PY.map(String),aria:'Indice des prix',yMin:0,fmt:v=>fr(v,0),h:300,
+    series:pser.map(([n,c,a])=>({name:n,color:c,values:idx(a)})),refs:[{y:100}],
+    tip:i=>`<b>${PY[i]}${PY[i]===2026?' (janv.–août)':''}</b>`+pser.map(([n,c,a])=>row(n,fr(100*a[i]/a[i04],0)+' · '+(n==='Huile de palme'?fr(a[i]*1000,0)+' $/t':fr(a[i],2)+' $/kg'),c)).join('')});
+  const ur=PY.map((y,i)=>PR.rob[i]/PR.urea[i]);
+  chart('c-urea',{x:PY.map(String),aria:'Urée par kg de Robusta',yMin:0,fmt:v=>fr(v,0),h:240,
+    series:[{name:'kg urée / kg Robusta',color:'--accent',values:ur,dot:()=> '--accent'}],
+    labels:[{i:PY.indexOf(2024),y:ur[PY.indexOf(2024)],text:'2024 : '+fr(ur[PY.indexOf(2024)],1)},{i:26,y:ur[26],text:'2026 : '+fr(ur[26],1),dy:22,anchor:'end'}],
+    tip:i=>`<b>${PY[i]}</b>${row('Robusta',fr(PR.rob[i],2)+' $/kg')}${row('Urée',fr(PR.urea[i]*1000,0)+' $/t')}${row('kg d\'urée par kg',fr(ur[i],1),'--accent')}`});
   // 5. scenarios
   const SY=[2019,2020,2021,2022,2023,2024,2025,2026,2027];
   const sv=SY.map(y=>y<2027?USDA_ROB[y]/1000:null);
   chart('c-scen',{x:SY.map(y=>String(y).slice(2)+'/'+String(y+1).slice(2)),aria:'Scénarios 2027/28',yMin:0,yMax:12,nTicks:6,fmt:v=>fr(v,0),h:260,
-    series:[{name:'USDA',type:'bar',color:'--neutral',values:sv,range:[{i:8,lo:9.0,hi:11.5,mid:10.75,color:'--accent'}]}],
-    labels:[{i:8,y:11.5,text:'9,0–11,5',dy:-8}],
-    tip:i=>i<8?`<b>${SY[i]}/${String(SY[i]+1).slice(2)}</b>${row('USDA',fr(sv[i],2)+' M sacs')}`:`<b>2027/28 (scénarios)</b>${row('Bas','9,0–9,5')}${row('Central','10,5–11,0','--accent')}${row('Haut','11,5+')}`});
+    series:[{name:'USDA',type:'bar',color:'--neutral',values:sv,range:[{i:8,lo:8.8,hi:11.5,mid:10.15,color:'--accent'}]}],
+    labels:[{i:8,y:11.5,text:'8,8–11,5',dy:-8}],
+    tip:i=>i<8?`<b>${SY[i]}/${String(SY[i]+1).slice(2)}</b>${row('USDA',fr(sv[i],2)+' M sacs')}`:`<b>2027/28 (scénarios)</b>${row('Sécheresse longue','8,8–9,6')}${row('Central','9,8–10,5','--accent')}${row('Pluies en octobre','10,8–11,5')}`});
 }
-draw();
-try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw); }catch(e){}
-new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
-let rt; window.addEventListener('resize',()=>{clearTimeout(rt); rt=setTimeout(draw,150);});
+// ---------- NASA POWER / ENSO / IOD weather section ----------
+const WD = window.SUMATRA_WEATHER;
+const SM = ['J','A','S','O','N','D','J','F','M','A','M','J'];
+const SMF = ['juil.','août','sept.','oct.','nov.','déc.','janv.','févr.','mars','avr.','mai','juin'];
+const CAL = [7,8,9,10,11,12,1,2,3,4,5,6];
+let wState = {town:'pagar_alam', idx:'enso'};
+try{ const t=localStorage.getItem('w-town'); if(t) wState.town=t; const i=localStorage.getItem('w-idx'); if(i) wState.idx=i; }catch(e){}
+const key=(y,m)=>y+'-'+String(m).padStart(2,'0');
+function townMonthly(id){
+  if(id!=='ss_mean') return WD.monthly[id];
+  const ids=['pagar_alam','lahat','muaradua'].filter(t=>WD.monthly[t]);
+  const out={};
+  Object.keys(WD.monthly[ids[0]]).forEach(k=>{ const rows=ids.map(t=>WD.monthly[t][k]).filter(Boolean); if(rows.length!==ids.length) return;
+    const avg=j=>{const v=rows.map(r=>r[j]).filter(x=>x!=null); return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;};
+    out[k]=[avg(0),avg(1),avg(2),rows.every(r=>r[3])?1:0]; });
+  return out;
+}
+function weatherModel(){
+  const M=townMonthly(wState.town);
+  const normal={rain:[],temp:[]};
+  for(let m=1;m<=12;m++){ const r=[],t=[]; for(let y=1991;y<=2020;y++){ const v=M[key(y,m)]; if(v&&v[3]){ r.push(v[0]); if(v[1]!=null) t.push(v[1]); } }
+    normal.rain[m]=r.reduce((a,b)=>a+b,0)/r.length; normal.temp[m]=t.reduce((a,b)=>a+b,0)/t.length; }
+  const [ly,lm]=WD.last_month.split('-').map(Number);
+  const curS = lm>=7?ly:ly-1;
+  const idxSrc = wState.idx==='enso'?WD.oni:WD.dmi, thr = wState.idx==='enso'?0.5:0.4;
+  const seasons=[];
+  for(let S=1981; S<=curS; S++){
+    const rain=[],temp=[]; let complete=true;
+    CAL.forEach((m,i)=>{ const y=i<6?S:S+1; const v=M[key(y,m)]; if(v&&(v[3]||S===curS)){ rain.push(v[0]); temp.push(v[1]); } else { rain.push(null); temp.push(null); if(S!==curS) complete=false; } });
+    const iv=[8,9,10,11].map(m=>idxSrc[key(S,m)]).filter(v=>v!=null);
+    const ix=iv.length>=3?iv.reduce((a,b)=>a+b,0)/iv.length:null;
+    const grp=ix==null?null:ix>=thr?'pos':ix<=-thr?'neg':'neu';
+    seasons.push({S,label:S+'/'+String(S+1).slice(2),rain,temp,ix,grp,complete,current:S===curS});
+  }
+  return {M,normal,seasons,curS};
+}
+function usdaAnom(my){
+  const U=WD.usda_robusta; if(U[my]==null) return null;
+  const nb=Object.keys(U).map(Number).filter(x=>x!==my&&Math.abs(x-my)<=3).map(x=>U[x]).sort((a,b)=>a-b);
+  const m=nb.length>>1, med=nb.length%2?nb[m]:(nb[m-1]+nb[m])/2; return 100*(U[my]/med-1);
+}
+const GROUPS = () => wState.idx==='enso'
+  ? [{g:'pos',name:'El Niño',color:'--dry'},{g:'neg',name:'La Niña',color:'--wet'},{g:'neu',name:'Neutre',color:'--neutral'}]
+  : [{g:'pos',name:'IOD positif',color:'--dry'},{g:'neg',name:'IOD négatif',color:'--wet'},{g:'neu',name:'IOD neutre',color:'--neutral'}];
+const mean=a=>{const v=a.filter(x=>x!=null); return v.length?v.reduce((p,q)=>p+q,0)/v.length:null;};
+
+function scatter(id, pts, cfg){
+  const host=document.getElementById(id); host.innerHTML='';
+  const W=720,H=cfg.h||340,L=56,R=16,T=14,B=40,pw=W-L-R,ph=H-T-B;
+  const xs=nice(Math.min(...pts.map(p=>p.x)),Math.max(...pts.map(p=>p.x)),6), ys=nice(Math.min(0,...pts.map(p=>p.y)),Math.max(0,...pts.map(p=>p.y)),6);
+  const X=v=>L+pw*(v-xs.a)/(xs.b-xs.a), Yv=v=>T+ph*(1-(v-ys.a)/(ys.b-ys.a));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.aria||''},host);
+  ys.t.forEach(t=>{ el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),class:'grid'},svg); const tx=el('text',{x:L-8,y:Yv(t)+4,'text-anchor':'end'},svg); tx.textContent=(t>0?'+':'')+fr(t,0)+' %'; });
+  xs.t.forEach(t=>{ const tx=el('text',{x:X(t),y:H-18,'text-anchor':'middle'},svg); tx.textContent=fr(t,0)+' %'; });
+  const xl=el('text',{x:L+pw/2,y:H-2,'text-anchor':'middle'},svg); xl.textContent=cfg.xlab;
+  el('line',{x1:L,x2:L+pw,y1:Yv(0),y2:Yv(0),class:'base'},svg);
+  if(xs.a<=100&&xs.b>=100) el('line',{x1:X(100),x2:X(100),y1:T,y2:T+ph,stroke:css('--axis'),'stroke-dasharray':'4 4'},svg);
+  const tip=document.createElement('div'); tip.className='tip'; tip.hidden=true; host.appendChild(tip);
+  pts.forEach(p=>{
+    const c=el('circle',{cx:X(p.x),cy:Yv(p.y),r:6,fill:css(p.color),stroke:css('--surface'),'stroke-width':2},svg);
+    if(p.lab){ const t=el('text',{x:X(p.x)+9,y:Yv(p.y)+4,class:'ann'},svg); t.textContent=p.lab; }
+    const hit=el('circle',{cx:X(p.x),cy:Yv(p.y),r:14,fill:'transparent'},svg);
+    const show=ev=>{ tip.innerHTML=p.tip; tip.hidden=false; const hr=host.getBoundingClientRect(), r=svg.getBoundingClientRect(); let left=X(p.x)*r.width/W+(r.left-hr.left)+14; if(left+tip.offsetWidth>hr.width) left-=tip.offsetWidth+28; tip.style.left=Math.max(0,left)+'px'; tip.style.top=Math.max(0,Yv(p.y)*r.height/H-tip.offsetHeight-8)+'px'; };
+    hit.addEventListener('pointerenter',show); hit.addEventListener('pointerdown',show); hit.addEventListener('pointerleave',()=>{tip.hidden=true;});
+  });
+}
+const legend=(id,items)=>{ document.getElementById(id).innerHTML=items.map(it=>`<span><i class="sw${it.line?' line':''}" style="background:var(${it.color})${it.dash?';opacity:.7':''}"></i>${it.name}</span>`).join(''); };
+
+function drawWeather(){
+  const miss=document.getElementById('w-missing');
+  if(!WD){ miss.hidden=false; return; }
+  miss.hidden=true;
+  const sel=document.getElementById('w-town');
+  if(!sel.options.length){
+    [{id:'ss_mean',name:'Sumatra du Sud (moyenne Pagar Alam, Lahat, Muaradua)'}].concat(WD.towns).forEach(t=>{ const o=document.createElement('option'); o.value=t.id; o.textContent=t.prov?`${t.name} · ${t.prov}`:t.name; sel.appendChild(o); });
+    sel.addEventListener('change',()=>{ wState.town=sel.value; try{localStorage.setItem('w-town',sel.value);}catch(e){} drawWeather(); });
+    ['enso','iod'].forEach(k=>document.getElementById('w-'+k).addEventListener('click',()=>{ wState.idx=k; try{localStorage.setItem('w-idx',k);}catch(e){} drawWeather(); }));
+  }
+  if(!WD.monthly[wState.town]&&wState.town!=='ss_mean') wState.town=WD.towns[0].id;
+  sel.value=wState.town;
+  document.getElementById('w-enso').setAttribute('aria-pressed',wState.idx==='enso');
+  document.getElementById('w-iod').setAttribute('aria-pressed',wState.idx==='iod');
+  const townName=sel.options[sel.selectedIndex].textContent.split(' · ')[0];
+  const {normal,seasons,curS}=weatherModel();
+  const G=GROUPS();
+  document.getElementById('w-title').textContent=`${townName} : ce que ${wState.idx==='enso'?'El Niño et La Niña changent':'le dipôle de l\'océan Indien change'}, saison par saison`;
+  const nR=CAL.map(m=>normal.rain[m]), nT=CAL.map(m=>normal.temp[m]);
+  const done=seasons.filter(s=>s.complete&&s.grp&&s.S>=1991);
+  const doneAll=seasons.filter(s=>s.complete);
+  // shared scales across panels
+  const allR=done.flatMap(s=>s.rain).filter(v=>v!=null), allT=done.flatMap(s=>s.temp).filter(v=>v!=null);
+  const rMax=Math.max(...allR), tMin=Math.min(...allT), tMax=Math.max(...allT);
+  const P=document.getElementById('w-panels'); P.innerHTML='';
+  G.forEach(gr=>{
+    const ss=done.filter(s=>s.grp===gr.g);
+    const div=document.createElement('div'); div.className='panel';
+    div.innerHTML=`<h3><i class="sw" style="background:var(${gr.color})"></i>${gr.name} <span style="font:500 13px var(--body);color:var(--muted)">(${ss.length} saisons)</span></h3><div class="sub">Température moyenne, °C</div><div class="chart" id="w-t-${gr.g}"></div><div class="sub">Pluie mensuelle, mm</div><div class="chart" id="w-r-${gr.g}"></div><div style="font-size:12px;color:var(--muted);line-height:1.4">${ss.map(s=>s.label).join(' · ')||'aucune saison'}</div>`;
+    P.appendChild(div);
+    const avgR=CAL.map((m,i)=>mean(ss.map(s=>s.rain[i]))), avgT=CAL.map((m,i)=>mean(ss.map(s=>s.temp[i])));
+    const lines=(key)=>ss.map(s=>({name:s.label,color:gr.color,values:s[key],width:1.3,opacity:.45}));
+    const tipF=(key,avg,nrm,unit,d)=>i=>{ const vals=ss.map(s=>({l:s.label,v:s[key][i]})).filter(o=>o.v!=null).sort((a,b)=>b.v-a.v); if(!vals.length) return ''; return `<b>${SMF[i]}</b>${row('Moyenne '+gr.name,fr(avg[i],d)+unit,gr.color)}${row('Normale',fr(nrm[i],d)+unit)}${row('Max '+vals[0].l,fr(vals[0].v,d)+unit)}${row('Min '+vals[vals.length-1].l,fr(vals[vals.length-1].v,d)+unit)}`; };
+    chart('w-t-'+gr.g,{x:SM,w:360,h:190,L:34,every:1,yMin:Math.floor(tMin-0.3),yMax:Math.ceil(tMax+0.3),fmt:v=>fr(v,0),base:Math.floor(tMin-0.3),
+      series:lines('temp').concat([{name:'Normale',color:'--ink-2',values:nT,dash:'2 3',width:1.5},{name:'Moyenne',color:'--ink',values:avgT,dash:'7 4',width:2.6}]),
+      tip:tipF('temp',avgT,nT,' °C',1)});
+    chart('w-r-'+gr.g,{x:SM,w:360,h:190,L:34,every:1,yMin:0,yMax:Math.ceil(rMax/100)*100,fmt:v=>fr(v,0),
+      series:lines('rain').concat([{name:'Normale',color:'--ink-2',values:nR,dash:'2 3',width:1.5},{name:'Moyenne',color:'--ink',values:avgR,dash:'7 4',width:2.6}]),
+      tip:tipF('rain',avgR,nR,' mm',0)});
+  });
+  // rain-class buckets (Aug-Nov rain) vs next USDA crop
+  (function(){
+    const B=[{k:'<40 %',lo:-1,hi:40,c:'--dry'},{k:'40–80 %',lo:40,hi:80,c:'--dry-2'},{k:'80–120 %',lo:80,hi:120,c:'--neutral'},{k:'120–160 %',lo:120,hi:160,c:'--wet-2'},{k:'>160 %',lo:160,hi:1e9,c:'--wet'}];
+    const nf=[1,2,3,4].reduce((a,i)=>a+nR[i],0);
+    doneAll.forEach(s=>{ const fl=[1,2,3,4].map(i=>s.rain[i]); const an=usdaAnom(s.S+1); if(fl.some(v=>v==null)||an==null) return; const pct=100*fl.reduce((a,b)=>a+b,0)/nf; const b=B.find(b=>pct>=b.lo&&pct<b.hi); (b.items=b.items||[]).push({l:s.label.split('/')[0],pct,an}); });
+    B.forEach(b=>{ b.items=b.items||[]; b.mean=b.items.length?mean(b.items.map(x=>x.an)):null; });
+    chart('w-buck',{x:B.map(b=>b.k+' ('+b.items.length+')'),aria:'Récolte selon la pluie de floraison',fmt:v=>(v>0?'+':'')+fr(v,0)+' %',h:270,every:1,
+      series:[{name:'Écart',type:'bar',color:'--neutral',values:B.map(b=>b.mean),dot:i=>B[i].c}],
+      tip:i=>{ const b=B[i]; if(!b.items.length) return ''; const sorted=[...b.items].sort((p,q)=>p.an-q.an); return `<b>Pluie août–nov. ${b.k} de la normale</b>${row('Récolte suivante, moyenne',(b.mean>0?'+':'')+fr(b.mean,1)+' %',b.c)}${row('Saisons',b.items.length)}<div style="margin-top:4px;color:var(--ink-2);max-width:260px">${sorted.map(x=>`${x.l} → ${(x.an>0?'+':'')+fr(x.an,0)} %`).join(' · ')}</div>`; }});
+    document.getElementById('w-buck-t').textContent=`${townName} : la récolte selon la pluie d'août à novembre`;
+  })();
+  // month-by-month correlation, Jun..May
+  (function(){
+    const MO=[6,7,8,9,10,11,12,1,2,3,4,5], LAB=['juin','juil.','août','sept.','oct.','nov.','déc.','janv.','févr.','mars','avr.','mai'];
+    const M=townMonthly(wState.town);
+    const rs=MO.map(m=>{ const xs=[],ys=[]; for(let S=1981;S<curS;S++){ const y=m>=6?S:S+1; const v=M[key(y,m)]; const an=usdaAnom(S+1); if(v&&v[3]&&an!=null){ xs.push(100*v[0]/normal.rain[m]); ys.push(an);} }
+      const mx=mean(xs), my=mean(ys); const r=xs.reduce((a,x,i)=>a+(x-mx)*(ys[i]-my),0)/Math.sqrt(xs.reduce((a,x)=>a+(x-mx)**2,0)*ys.reduce((a,y)=>a+(y-my)**2,0)); return {r,n:xs.length}; });
+    chart('w-corr',{x:LAB,aria:'Corrélation mensuelle',yMin:-0.5,yMax:0.5,fmt:v=>Math.abs(v)<1e-9?'0':(v>0?'+':'')+fr(v,1),h:250,every:1,
+      series:[{name:'r',type:'bar',color:'--neutral',values:rs.map(o=>o.r),dot:i=>rs[i].r<0?'--wet':'--good'}],
+      refs:[{y:0.29,label:'+0,29'},{y:-0.29,label:'−0,29',dy:16}],
+      tip:i=>`<b>Pluie de ${LAB[i]} ${i<7?'(année de floraison)':'(année de récolte)'}</b>${row('Corrélation r',(rs[i].r>0?'+':'')+fr(rs[i].r,2),rs[i].r<0?'--wet':'--good')}${row('Saisons',rs[i].n)}`});
+    document.getElementById('w-corr-t').textContent=`${townName} : quels mois de pluie font la récolte`;
+  })();
+  // anomaly bars by group, drawn as grouped bars per month
+  const anomSeries=G.map(gr=>{ const ss=done.filter(s=>s.grp===gr.g); return {gr,vals:CAL.map((m,i)=>mean(ss.map(s=>s.rain[i]==null?null:100*(s.rain[i]/nR[i]-1))))}; });
+  (function(){
+    const host=document.getElementById('w-anom'); host.innerHTML='';
+    const W=720,H=280,L=52,R=16,T=14,B=34,pw=W-L-R,ph=H-T-B, n=12;
+    const all=anomSeries.flatMap(a=>a.vals).filter(v=>v!=null); const sc=nice(Math.min(0,...all),Math.max(0,...all),6);
+    const Yv=v=>T+ph*(1-(v-sc.a)/(sc.b-sc.a));
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Écart de pluie par phase'},host);
+    el('rect',{x:L+pw*1/n,y:T,width:pw*4/n,height:ph,fill:css('--band-2'),opacity:.8},svg);
+    const bl=el('text',{x:L+pw*3/n,y:T+14,'text-anchor':'middle',class:'ann'},svg); bl.textContent='floraison';
+    sc.t.forEach(t=>{ el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),class:'grid'},svg); const tx=el('text',{x:L-8,y:Yv(t)+4,'text-anchor':'end'},svg); tx.textContent=(t>0?'+':'')+fr(t,0)+' %'; });
+    const gw=pw/n, bw=gw*0.78/anomSeries.length;
+    anomSeries.forEach((a,k)=>a.vals.forEach((v,i)=>{ if(v==null) return; const x=L+gw*i+gw*0.11+k*bw; el('rect',{x:x+1,y:Math.min(Yv(0),Yv(v)),width:bw-2,height:Math.max(1,Math.abs(Yv(v)-Yv(0))),rx:2,fill:css(a.gr.color)},svg); }));
+    SMF.forEach((m,i)=>{ const t=el('text',{x:L+gw*(i+0.5),y:H-10,'text-anchor':'middle'},svg); t.textContent=m; });
+    el('line',{x1:L,x2:L+pw,y1:Yv(0),y2:Yv(0),class:'base'},svg);
+    const tip=document.createElement('div'); tip.className='tip'; tip.hidden=true; host.appendChild(tip);
+    const hit=el('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent'},svg);
+    const mv=ev=>{ const r=svg.getBoundingClientRect(); const i=Math.max(0,Math.min(11,Math.floor(((ev.clientX-r.left)*W/r.width-L)/gw))); tip.innerHTML=`<b>${SMF[i]}</b>`+anomSeries.map(a=>row(a.gr.name,a.vals[i]==null?'–':(a.vals[i]>0?'+':'')+fr(a.vals[i],0)+' %',a.gr.color)).join('')+row('Normale',fr(nR[i],0)+' mm'); tip.hidden=false; const hr=host.getBoundingClientRect(); let left=(L+gw*(i+1))*r.width/W+(r.left-hr.left)+6; if(left+tip.offsetWidth>hr.width) left-=tip.offsetWidth+gw*r.width/W+12; tip.style.left=Math.max(0,left)+'px'; tip.style.top='8px'; };
+    hit.addEventListener('pointermove',mv); hit.addEventListener('pointerdown',mv); hit.addEventListener('pointerleave',()=>{tip.hidden=true;});
+  })();
+  legend('w-anom-leg',G.map(g=>({name:g.name,color:g.color})));
+  document.getElementById('w-anom-t').textContent=`${townName} : écart de pluie moyen selon ${wState.idx==='enso'?'El Niño / La Niña':'l\'IOD'}`;
+  // impact scatter: Aug-Nov rain of season S vs USDA crop S+1
+  const pts=[]; const rows={};
+  seasons.forEach(s=>{
+    const fl=[1,2,3,4].map(i=>s.rain[i]); if(fl.some(v=>v==null)||!s.grp) return;
+    const pct=100*fl.reduce((a,b)=>a+b,0)/[1,2,3,4].reduce((a,i)=>a+nR[i],0);
+    const my=s.S+1, an=usdaAnom(my); if(an==null) return;
+    const gr=G.find(g=>g.g===s.grp);
+    const crop=my+'/'+String(my+1).slice(2);
+    pts.push({x:pct,y:an,color:gr.color,lab:(Math.abs(an)>=15||pct<25||pct>185)?crop:'',tip:`<b>Floraison ${s.label.split('/')[0]} → récolte ${crop}</b>${row(gr.name,(s.ix>0?'+':'')+fr(s.ix,2),gr.color)}${row('Pluie août–nov.',fr(pct,0)+' % normale')}${row('USDA '+crop,fr(WD.usda_robusta[my]/1000,2)+' M sacs')}${row('vs voisines',(an>0?'+':'')+fr(an,1)+' %')}`});
+    (rows[s.grp]=rows[s.grp]||[]).push({pct,an,crop});
+  });
+  const xsP=pts.map(p=>p.x), ysP=pts.map(p=>p.y), mx=mean(xsP), my_=mean(ysP);
+  const rr=xsP.reduce((a,x,i)=>a+(x-mx)*(ysP[i]-my_),0)/Math.sqrt(xsP.reduce((a,x)=>a+(x-mx)**2,0)*ysP.reduce((a,y)=>a+(y-my_)**2,0));
+  scatter('w-imp',pts,{aria:'Pluie de floraison et récolte',xlab:'Pluie d\'août à novembre, % de la normale (saison de floraison)'});
+  document.getElementById('w-imp-s').textContent=`Chaque point est une floraison (${townName}), avec la récolte USDA de l'année suivante, en écart aux récoltes voisines. Corrélation r = ${fr(rr,2)} sur ${pts.length} saisons.`;
+  legend('w-imp-leg',G.map(g=>({name:g.name,color:g.color})));
+  document.getElementById('w-sum').innerHTML=G.map(g=>{ const r=rows[g.g]||[]; if(!r.length) return `<tr><td>${g.name}</td><td class="n">0</td><td class="n">–</td><td class="n">–</td><td>–</td></tr>`; const w=r.reduce((a,b)=>b.an<a.an?b:a); return `<tr><td><i class="sw" style="background:var(${g.color})"></i> ${g.name}</td><td class="n">${r.length}</td><td class="n">${fr(mean(r.map(x=>x.pct)),0)} %</td><td class="n">${(mean(r.map(x=>x.an))>0?'+':'')+fr(mean(r.map(x=>x.an)),1)} %</td><td>${w.crop} (${(w.an>0?'+':'')+fr(w.an,0)} %)</td></tr>`; }).join('');
+  // current season
+  const cur=seasons.find(s=>s.current);
+  const cg=cur&&cur.grp?G.find(g=>g.g===cur.grp):null;
+  const tg=G[0];
+  const tgAvg=CAL.map((m,i)=>mean(done.filter(s=>s.grp===tg.g).map(s=>s.rain[i])));
+  chart('w-cur',{x:SMF,aria:'Saison en cours',yMin:0,fmt:v=>fr(v,0),h:280,
+    series:[{name:'Normale',color:'--ink-2',values:nR,dash:'2 3',width:1.5},{name:'Moyenne '+tg.name,color:tg.color,values:tgAvg,dash:'7 4',width:2.4},{name:cur.label,color:'--ink',values:cur.rain,width:3,dot:()=> '--ink'}],
+    tip:i=>`<b>${SMF[i]}</b>${row(cur.label,cur.rain[i]==null?'–':fr(cur.rain[i],0)+' mm','--ink')}${row('Normale',fr(nR[i],0)+' mm')}${row('Moyenne '+tg.name,tgAvg[i]==null?'–':fr(tgAvg[i],0)+' mm',tg.color)}`});
+  legend('w-cur-leg',[{name:'Saison '+cur.label+' (en cours)',color:'--ink',line:true},{name:'Moyenne des saisons '+tg.name,color:tg.color,line:true},{name:'Normale 1991–2020',color:'--ink-2',line:true}]);
+  const ixTxt=cur.ix==null?'indice août–novembre pas encore disponible':`indice août–nov. à ce jour : ${(cur.ix>0?'+':'')+fr(cur.ix,2)}${cg?' ('+cg.name+')':''}`;
+  document.getElementById('w-cur-t').textContent=`Saison ${cur.label} en cours à ${townName} : pluie mensuelle`;
+  document.getElementById('w-cur-s').textContent=`Mois disponibles jusqu'à ${WD.last_month} (le dernier mois peut être partiel) ; ${ixTxt}.`;
+  document.getElementById('w-meta').textContent=`NASA POWER (PRECTOTCORR, T2M), données quotidiennes agrégées par mois jusqu'à ${WD.last_month} · ONI : NOAA CPC · DMI : NOAA PSL (HadISST) · récolte : USDA PSD · généré le ${WD.generated}.`;
+}
+
+function drawAll(){ draw(); drawWeather(); }
+drawAll();
+try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',drawAll); }catch(e){}
+new MutationObserver(drawAll).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+let rt; window.addEventListener('resize',()=>{clearTimeout(rt); rt=setTimeout(drawAll,150);});
 })();
 </script>

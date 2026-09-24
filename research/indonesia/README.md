@@ -1,6 +1,8 @@
 # Indonesia robusta research
 
 - `robusta_indonesie.html`: analysis note in French (area, yield, weather, 2027/28 forecast chain). Charts are drawn inline with no external library. Data comes from the ministry table (Ditjenbun, 2004–2023), USDA PSD (July 2026) and the USDA FAS Jakarta coffee reports (2009–2026).
+- `build_weather_data.py`: turns the raw files in `raw/` (NASA POWER daily for 5 towns, ONI, DMI) plus USDA PSD into `weather_data.js`, which the note loads for its weather charts.
+- `raw/`: raw downloads (see `raw/FETCH_LOG.md` and `raw/areas/FETCH_LOG.md`): NASA POWER, NOAA ONI/DMI, CPC ENSO discussion, World Bank Pink Sheet, FAOSTAT Indonesia crops and producer prices.
 - `south_sumatra_weather.py`: NASA POWER rainfall and temperature for the southern Sumatra robusta towns (Pagar Alam, Lahat, Muaradua, Liwa, Kepahiang), compared with ENSO (ONI), the Indian Ocean Dipole (DMI) and the USDA robusta crop. Standard library only.
 
 ```
