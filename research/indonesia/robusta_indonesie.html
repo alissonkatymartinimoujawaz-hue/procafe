@@ -145,8 +145,8 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
     <li><span class="k">Surface</span><p>La surface de Robusta a baissé de <strong>24 % entre 2004 et 2014</strong> (1,14 → 0,86 M ha), puis elle est stable (+4 % jusqu'en 2023). Cette baisse ne vient pas du climat. Le Robusta rapportait moins : en 2009–2012, un hectare de palmier rapportait environ 3 fois plus au producteur qu'un hectare de café (FAO). L'arabica a aussi pris des terres en altitude, et les forêts protégées ont été fermées aux planteurs.</p></li>
     <li><span class="k">Ton tableau</span><p>Les 500 491 ha productifs de 2023 ne sont pas réels : c'est 6,8 M sacs (USDA) ÷ 13,59 sacs/ha (ministère). Les 1,2 M ha de 2024–2026 sont la surface de <strong>tout</strong> le café indonésien, arabica compris, selon l'USDA.</p></li>
     <li><span class="k">Rendement</span><p>Il y a deux paliers : <strong>11,5 sacs/ha</strong> en moyenne sur 2004–2016, puis <strong>13,4</strong> sur 2017–2022. Les creux viennent de la météo de la floraison : 2011 (La Niña 2010, pluie toute l'année), 2014 (saison sèche 2013 trop humide), 2016 (sécheresse El Niño 2015).</p></li>
-    <li><span class="k">Météo</span><p>45 saisons de données NASA le montrent : la meilleure récolte suit une floraison <strong>moyennement sèche</strong> (pluie d'août à novembre à 40–80 % de la normale : +6 % en moyenne). Une floraison <strong>très humide</strong> (plus de 160 %) coûte −11 % en moyenne (2010 : −27 %, 2022 : −28 %), une <strong>sécheresse extrême</strong> (moins de 40 %) −5 % (1994 : −19 %).</p></li>
-    <li><span class="k">2027/28</span><p>La NOAA est en <strong>alerte El Niño</strong> : ONI à +1,8 en juin–août 2026 et 75 % de chances d'un épisode historique (au-delà de +2,5) d'octobre à décembre. Au Sumatra du Sud, juillet–septembre 2026 n'a reçu que <strong>35 à 52 % de la pluie normale</strong>. Ma chaîne de prévision donne <strong>10,2 M sacs</strong> pour 2027/28 (fourchette 8,4–11,0), une récolte proche de 2026/27 mais <strong>retardée</strong>. Tout dépend du retour des pluies en novembre.</p></li>
+    <li><span class="k">Météo</span><p>Le caféier fleurit après un stress sec suivi d'une pluie. Sur 45 ans de données NASA, quand 3 à 5 des villes du Robusta ont eu cette « pluie de floraison » entre juin et octobre, la récolte suivante a fait <strong>+4 %</strong> par rapport aux récoltes voisines. Quand aucune ne l'a eue, <strong>−10 %</strong> (2010, 2022, 2025 trop humides ; 1994 trop sec). Corrélation r = 0,47, p = 0,002.</p></li>
+    <li><span class="k">2027/28</span><p>La NOAA annonce un El Niño historique, mais la sécheresse 2026 est surtout au Lampung et en OKU Selatan. En altitude, la pluie reste proche de la normale. Les pluies de floraison ont déjà eu lieu dans 4 villes sur 5 (22 juillet et 16 août). Ma chaîne donne <strong>≈ 10,6 M sacs</strong> (fourchette 9,5–11,2), en hausse sur 2026/27. Le risque : une sécheresse après la floraison, surtout au Lampung.</p></li>
   </ul>
 </section>
 
@@ -316,9 +316,9 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
     <div class="chart" id="w-buck"></div>
   </figure>
   <figure>
-    <figcaption><span class="t" id="w-corr-t">Quels mois comptent</span><span class="s">Corrélation entre la pluie de chaque mois (% de la normale) et la récolte USDA suivante, saisons 1981–2025. Au-delà de ±0,29, le lien est significatif à 5 %. Négatif : plus de pluie ce mois-là, plus petite récolte.</span></figcaption>
+    <figcaption><span class="t" id="w-corr-t">Quels mois comptent</span><span class="s">Corrélation entre la pluie de chaque mois (% de la normale) et la récolte USDA suivante, saisons 1981–2025, avec deux mesures de la récolte. Pointillés : ±0,29, seuil de significativité à 5 %. Un mois ne compte vraiment que si les deux barres vont dans le même sens. C'est le cas d'août à octobre (négatif), pas de juin.</span></figcaption>
     <div class="chart" id="w-corr"></div>
-    <div class="legend"><span><i class="sw" style="background:var(--wet)"></i>La pluie fait baisser la récolte</span><span><i class="sw" style="background:var(--good)"></i>La pluie aide la récolte</span></div>
+    <div class="legend"><span><i class="sw" style="background:var(--c1)"></i>Écart aux récoltes voisines</span><span><i class="sw" style="background:var(--c5)"></i>Variation sur un an</span></div>
   </figure>
   <figure>
     <figcaption><span class="t" id="w-anom-t">Pluie : écart moyen à la normale selon la phase</span><span class="s">% d'écart à la normale 1991–2020, mois par mois de juillet à juin, moyenne des saisons de chaque groupe.</span></figcaption>
@@ -339,6 +339,40 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   <p class="meta" id="w-meta"></p>
 </section>
 
+<section id="verif">
+  <span class="num">5 BIS · VÉRIFICATION DES DONNÉES</span>
+  <h2>Ville par ville, mois par mois : où il pleut vraiment</h2>
+  <div class="prose stack">
+    <p>Tu avais raison de douter : 2026 n'est pas une sécheresse partout. En altitude, à Pagar Alam et Kepahiang (versant ouest des Bukit Barisan), la saison sèche est un peu plus sèche que la normale, mais le bilan en eau reste proche de zéro et l'humidité de l'air est normale. La vraie sécheresse est à l'est et au sud : Muaradua (OKU Selatan) et Liwa (Lampung) ont reçu 8 à 10 % de la pluie normale en août, avec une humidité de l'air à 69–74 % contre 80–82 %, des maximales supérieures de 3 °C et 14–15 jours sans pluie. Septembre ramène un peu de pluie.</p>
+    <p><strong>Comment je juge l'humidité :</strong> pas avec la pluie seule. Je regarde le nombre de jours de pluie, l'humidité relative de l'air (NASA RH2M), et le bilan pluie − évapotranspiration (méthode de Thornthwaite, la même que pour tes graphiques du Brésil). Un bilan négatif veut dire que le sol se vide. Dans le tableau, un mois partiel est toujours comparé à la normale des mêmes jours.</p>
+  </div>
+  <div class="tbl"><table>
+      <thead><tr><th>Ville</th><th class="n">Juillet 2026<br>pluie / normale</th><th class="n">Août 2026</th><th class="n">1–19 sept. 2026<br>(normale des mêmes jours)</th><th class="n">Jours de pluie août<br>(normale)</th><th class="n">Humidité air août, %<br>(normale)</th><th class="n">T max août, °C<br>(normale)</th><th class="n">Pluie − évapotranspiration août, mm (normale)</th><th class="n">Plus longue période sèche juil.–août</th><th>Pluie de floraison 2026</th><th class="n">Août–nov. projeté si El Niño fort</th></tr></thead>
+      <tbody><tr><td><strong>Pagar Alam</strong><br><span style="color:var(--muted);font-size:13px">altitude, versant ouest</span></td><td class="n">98 / 151 mm<br><b>65 %</b></td><td class="n">112 / 149 mm<br><b>76 %</b></td><td class="n">59 / 93 mm<br><b>64 %</b></td><td class="n">9 (12,6)</td><td class="n">86,1 (85,2)</td><td class="n">28,4 (27,2)</td><td class="n">6 (53)</td><td class="n">10 j</td><td>16/08</td><td class="n">48 %</td></tr><tr><td><strong>Lahat</strong><br><span style="color:var(--muted);font-size:13px">piémont</span></td><td class="n">75 / 129 mm<br><b>58 %</b></td><td class="n">50 / 116 mm<br><b>43 %</b></td><td class="n">38 / 74 mm<br><b>52 %</b></td><td class="n">4 (12,5)</td><td class="n">84,4 (85,3)</td><td class="n">29,6 (28,3)</td><td class="n">-66 (14)</td><td class="n">14 j</td><td>22/07</td><td class="n">38 %</td></tr><tr><td><strong>Muaradua</strong><br><span style="color:var(--muted);font-size:13px">OKU Selatan, plaine–piémont</span></td><td class="n">26 / 99 mm<br><b>26 %</b></td><td class="n">7 / 74 mm<br><b>10 %</b></td><td class="n">34 / 48 mm<br><b>72 %</b></td><td class="n">3 (11,2)</td><td class="n">73,9 (81,7)</td><td class="n">32,6 (29,8)</td><td class="n">-135 (-39)</td><td class="n">14 j</td><td>22/07</td><td class="n">33 %</td></tr><tr><td><strong>Liwa</strong><br><span style="color:var(--muted);font-size:13px">Lampung Barat</span></td><td class="n">9 / 93 mm<br><b>10 %</b></td><td class="n">5 / 65 mm<br><b>8 %</b></td><td class="n">41 / 42 mm<br><b>97 %</b></td><td class="n">2 (10,0)</td><td class="n">69,3 (79,8)</td><td class="n">32,3 (28,7)</td><td class="n">-131 (-38)</td><td class="n">15 j</td><td><b>pas encore</b></td><td class="n">34 %</td></tr><tr><td><strong>Kepahiang</strong><br><span style="color:var(--muted);font-size:13px">Bengkulu, altitude</span></td><td class="n">117 / 147 mm<br><b>80 %</b></td><td class="n">171 / 155 mm<br><b>110 %</b></td><td class="n">73 / 92 mm<br><b>79 %</b></td><td class="n">10 (12,7)</td><td class="n">87,9 (86,8)</td><td class="n">27,9 (26,8)</td><td class="n">67 (62)</td><td class="n">10 j</td><td>16/08</td><td class="n">57 %</td></tr></tbody></table></div>
+  <p class="meta">NASA POWER quotidien (PRECTOTCORR, RH2M, T2M_MAX, T2M), normale 1991–2020. Projection : pluie déjà tombée d'août au 19 septembre, puis le reste de la saison au niveau moyen des El Niño forts (1982, 1997, 2015, 2023) pour la même ville.</p>
+
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:8px">La preuve : la pluie qui déclenche la floraison</h3>
+  <div class="prose stack">
+    <p>Le caféier ne fleurit qu'après un stress hydrique suivi d'une pluie (Alvim, <em>Science</em> 1960 ; Crisosto et al. 1992). La littérature donne un seuil : une journée de plus de 10 mm après au moins 11 jours à moins de 0,6 mm par jour. Chez le Robusta, les fleurs s'ouvrent 8 à 11 jours après. J'ai cherché ce signal dans les données quotidiennes de chaque ville, de juin à octobre, pour chaque année depuis 1981.</p>
+  </div>
+  <figure>
+    <figcaption><span class="t">Récolte USDA suivante selon le nombre de villes où la floraison a été déclenchée</span><span class="s">Barre : écart de la récolte USDA suivante aux récoltes voisines. Couleur : nombre de villes (sur 5) avec une pluie de floraison entre juin et octobre. En 2026 : 4 villes sur 5, récolte 2027/28 à venir (dernière colonne, vide).</span></figcaption>
+    <div class="chart" id="w-trig"></div>
+    <div class="legend"><span><i class="sw" style="background:var(--wet)"></i>0 ville</span><span><i class="sw" style="background:var(--neutral)"></i>1–2 villes</span><span><i class="sw" style="background:var(--good)"></i>3–5 villes</span></div>
+  </figure>
+  <div class="tbl"><table><thead><tr><th>Villes avec pluie de floraison (juin–oct.)</th><th class="n">Saisons</th><th class="n">Récolte suivante vs voisines</th><th class="n">Sur un an</th><th>Exemples</th></tr></thead><tbody>
+    <tr><td><i class="sw" style="background:var(--wet)"></i> 0 ville</td><td class="n">9</td><td class="n"><b>−9,9 %</b></td><td class="n">−9,3 %</td><td>2010, 2022, 2025 (trop humides : jamais 11 jours secs) ; 1994 (trop sec : pas de pluie avant novembre)</td></tr>
+    <tr><td><i class="sw" style="background:var(--neutral)"></i> 1–2 villes</td><td class="n">12</td><td class="n">−1,2 %</td><td class="n">+2,6 %</td><td>2006, 2023, 2024</td></tr>
+    <tr><td><i class="sw" style="background:var(--good)"></i> 3–5 villes</td><td class="n">24</td><td class="n"><b>+4,0 %</b></td><td class="n">+6,6 %</td><td>1997, 2015, 2019 (El Niño) ; 2012, 2014</td></tr>
+    <tr><td><strong>2026</strong></td><td class="n">—</td><td colspan="2">4 villes sur 5 (pas encore Liwa)</td><td>22/07 Lahat et Muaradua ; 16/08 Pagar Alam, Lahat et Kepahiang</td></tr>
+  </tbody></table></div>
+  <div class="prose stack">
+    <p>Corrélation entre la part de villes déclenchées et la récolte suivante : <strong>r = 0,47, p = 0,002</strong> (test de permutation, 45 saisons). C'est le signal le plus solide trouvé. Il capte les deux façons de rater une floraison : trop humide (pas de période sèche) et trop sec (pas de pluie après la période sèche).</p>
+    <p><strong>Ce qui ne tient pas :</strong> le « mois de juin humide » (r = −0,33) disparaît quand on mesure la récolte en variation sur un an (r = 0,00) : je le retire. Ce qui tient dans les 5 villes et avec les deux mesures : plus il pleut d'août à octobre, plus la récolte suivante est petite (r de −0,31 à −0,44 sur un an). Les classes de pluie d'août à novembre tiennent aussi : 40–80 % de la normale donne +4 à +8 %, avec un intervalle de confiance à 90 % au-dessus de 0 dans 4 villes sur 5.</p>
+    <p><strong>Engrais et marges :</strong> le rapport « kg d'urée payés par 1 kg de Robusta » mesure si l'engrais est bon marché par rapport au café. Il passe de 13 en 2024 à 11,5 en 2025, puis 7 en 2026. Mais testé année par année, il n'explique pas le rendement de l'année suivante (r = +0,13 à +0,25, non significatif ; p = 0,05 seulement avec le saut de 2017). L'effet des intrants reste une description de l'USDA, pas un résultat chiffré. Je le mets à 0 dans le scénario central.</p>
+  </div>
+</section>
+
 <section id="prevision">
   <span class="num">6 · CHAÎNE DE PRÉVISION</span>
   <h2>La chaîne logique 2027/28, maillon par maillon</h2>
@@ -346,20 +380,20 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   <div class="tbl"><table>
     <thead><tr><th>#</th><th>Maillon</th><th>Ce qu'on observe (septembre 2026)</th><th>Effet sur 2027/28</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td class="n">1</td><td><strong>Surface productive</strong></td><td>Environ 0,69 M ha de Robusta productif, stable depuis 2014. Les nouvelles plantations de 2024–2026 (prix records) sont surtout à Java et au Sulawesi, et n'entrent en production qu'après ~3 ans.</td><td class="n">+0,5 %</td><td>Ministère ; USDA mai 2026</td></tr>
-      <tr><td class="n">2</td><td><strong>Capacité « météo normale »</strong></td><td>2025/26 : 11,0 M sacs (bonne floraison et plus d'engrais). 2026/27 : 10,0 M (floraison trop humide). Point de départ : <strong>10,5 M sacs</strong>.</td><td class="n">base</td><td>USDA PSD</td></tr>
-      <tr><td class="n">3</td><td><strong>Intrants et marge</strong></td><td>Robusta à 3,90 $/kg en janvier–août 2026 (−20 % sur 2025), urée +33 %. 1 kg de Robusta ne paie plus que 7 kg d'urée, contre 12 en 2025. Moins d'engrais et d'entretien au second semestre 2026.</td><td class="n">−2,5 %</td><td>Banque mondiale ; coûts BPS par province à venir</td></tr>
-      <tr><td class="n">4</td><td><strong>État des arbres</strong></td><td>Petite récolte 2026 après la floraison 2025 trop humide : les arbres ont plus de réserves pour la floraison suivante.</td><td class="n">+1 %</td><td>USDA mai 2026 (jugement)</td></tr>
-      <tr><td class="n">5</td><td><strong>Induction florale</strong> (juin–sept. 2026)</td><td>Pluie à 52 % de la normale en juillet, 50 % en août, 35 % en septembre (au 19). Maximales d'août +1,75 °C. Le stress sec est franc : les boutons floraux sont bien préparés.</td><td class="n">favorable, compté au 6</td><td>NASA POWER</td></tr>
-      <tr><td class="n">6</td><td><strong>Floraison</strong> (oct.–nov. 2026), le maillon clé</td><td>ONI à +1,8 ; la NOAA donne plus de 90 % de chances d'un El Niño très fort et 75 % d'un épisode historique en octobre–décembre. Dans ces années, octobre reçoit 0–40 % et novembre 40–75 % de la normale : la pluie d'août à novembre finira vers 35–50 %. Tout se joue sur le retour des pluies en novembre.</td><td class="n">A (45 %) : −5 %<br>B (45 %) : +6 %<br>C (10 %) : −19 %<br><strong>espérance −1,5 %</strong></td><td>NASA POWER 1981–2025 ; NOAA CPC</td></tr>
-      <tr><td class="n">7</td><td><strong>Grossissement des cerises</strong> (déc. 2026 – mars 2027)</td><td>El Niño faiblit début 2027 et les pluies reviennent. Risque : un mois de janvier très pluvieux, le mois le plus lié à une petite récolte (r = −0,35).</td><td class="n">0 % (risque −3 %)</td><td>NASA POWER</td></tr>
-      <tr><td class="n">8</td><td><strong>Calendrier</strong></td><td>Floraison tardive, donc récolte décalée de 1 à 2 mois, comme en 2024 (début mai–juin au lieu de mars–avril).</td><td class="n">arrivées du 2e au 3e trim. 2027</td><td>USDA mai 2024</td></tr>
+      <tr><td class="n">1</td><td><strong>Surface productive</strong></td><td>Surface plantée +3,8 % de 2014 à 2023 (+0,4 % par an, ministère). Les plantations 2024–2026 produisent seulement 3 ans après plantation.</td><td class="n">+0,4 %</td><td>Ministère ; USDA mai 2026</td></tr>
+      <tr><td class="n">2</td><td><strong>Capacité « météo normale »</strong></td><td>2025/26 : 11,0 M sacs (bonne floraison). 2026/27 : 10,0 M (floraison 2025 trop humide). Point de départ : <strong>10,5 M sacs</strong>.</td><td class="n">base</td><td>USDA PSD</td></tr>
+      <tr><td class="n">3</td><td><strong>Intrants et marge</strong></td><td>1 kg de Robusta paie 7 kg d'urée en 2026, contre 11,5 en 2025. L'USDA lie les engrais aux marges, mais le test année par année ne montre pas d'effet sur le rendement (r = +0,13 à +0,25, non significatif).</td><td class="n">0 % (risque −2 %)</td><td>Banque mondiale ; test ci-dessus</td></tr>
+      <tr><td class="n">4</td><td><strong>Stress sec</strong> (juin–sept. 2026)</td><td>Pagar Alam : 65–76 % de la pluie normale, bilan en eau proche de 0. Kepahiang : normal. Lahat : 43–58 %. Muaradua et Liwa : 8–26 % en juillet–août, humidité de l'air −8 à −10 points, maximales +3 °C.</td><td class="n">stress suffisant partout</td><td>NASA POWER</td></tr>
+      <tr><td class="n">5</td><td><strong>Pluie de floraison</strong>, le maillon clé</td><td>Déjà eue dans 4 villes sur 5 : le 22 juillet à Lahat et Muaradua, le 16 août à Pagar Alam, Lahat et Kepahiang. Pas encore à Liwa (Lampung). Historiquement, 3 à 5 villes déclenchées → +4 %, p = 0,002.</td><td class="n">jusqu'à +4 %</td><td>NASA POWER ; Alvim 1960 ; Crisosto 1992</td></tr>
+      <tr><td class="n">6</td><td><strong>Après la floraison</strong> (sept.–nov. 2026)</td><td>ONI à +1,8 ; la NOAA donne 75 % de chances d'un épisode historique. Si la saison reste sèche, pluie d'août à novembre projetée vers 48–57 % en altitude et 33–38 % au Lampung, en OKU Selatan et à Lahat. Analogues El Niño fort avec floraison déclenchée (1982, 1997, 2015, 2019) : −2 %, +6 %, −1 %, 0 %.</td><td class="n">S1 25 % : +4 %<br>S2 55 % : +0,6 %<br>S3 20 % : −6 %<br><strong>espérance +0,1 %</strong></td><td>NASA POWER ; NOAA CPC</td></tr>
+      <tr><td class="n">7</td><td><strong>Grossissement des cerises</strong> (déc. 2026 – mars 2027)</td><td>El Niño faiblit début 2027. Risque : un mois de janvier très pluvieux (r = −0,19 à −0,40 selon la ville).</td><td class="n">0 % (risque −3 %)</td><td>NASA POWER</td></tr>
+      <tr><td class="n">8</td><td><strong>Calendrier</strong></td><td>Floraison déclenchée en juillet–août : récolte à l'heure, voire en avance, en altitude et à Muaradua. Au Lampung (Liwa), la floraison n'a pas encore eu lieu : risque de retard, comme en 1997 et 2006 (floraison mi-novembre).</td><td class="n">à l'heure, retard possible au Lampung</td><td>NASA POWER ; USDA mai 2024</td></tr>
     </tbody>
   </table></div>
-  <div class="note"><strong>Résultat :</strong> 10,5 × (1 + 0,005 − 0,025 + 0,01) × (1 − 0,015) ≈ <strong>10,2 M sacs</strong> pour la campagne USDA 2027/28, soit +2 % sur 2026/27. La fourchette va de 8,4 M (sécheresse extrême et feux) à 11,0 M (pluies de retour en novembre), avec un risque plutôt à la baisse et une récolte en retard.</div>
+  <div class="note"><strong>Résultat :</strong> 10,5 × 1,004 (surface) × 1,00 (intrants) × 1,001 (météo) ≈ <strong>10,6 M sacs</strong> pour la campagne USDA 2027/28, soit +5 % sur 2026/27. La fourchette va de 9,5 M (sécheresse après floraison et feux, floraison ratée au Lampung) à 11,2 M (pluies normales en octobre–novembre).</div>
   <div class="prose stack">
-    <p><strong>Les scénarios du maillon 6</strong> viennent des 45 saisons NASA POWER. A = pluie d'août à novembre sous 40 % de la normale, écart moyen de la récolte suivante −5 % (1982, 1994, 1997, 2006, 2019, 2023). B = 40–80 %, +6 % (1991, 2002, 2015…). C = sécheresse extrême avec feux, comme 1994 (−19 %). Les probabilités sont un jugement fondé sur la pluie déjà tombée et les prévisions de la NOAA.</p>
-    <p><strong>Calendrier des mises à jour :</strong> discussion ENSO de la NOAA le 8 octobre 2026 ; IOD du Bureau météo australien toutes les deux semaines ; pluie NASA POWER chaque semaine, avec le premier épisode de plus de 50 mm en 10 jours qui marque le retour des pluies ; points de feu au Sumatra du Sud ; rapport semestriel USDA de Jakarta (novembre–décembre 2026) ; puis exportations mensuelles BPS et prix bord champ au Lampung d'avril à août 2027.</p>
+    <p><strong>Les scénarios du maillon 6.</strong> S1 = floraison déclenchée puis pluies normales : la moyenne historique des saisons à 3–5 villes déclenchées (+4 %). S2 = floraison déclenchée mais El Niño sec jusqu'en novembre : la moyenne des analogues 1982, 1997, 2015 et 2019 (+0,6 %). S3 = sécheresse sévère après floraison avec feux, et floraison ratée au Lampung : −6 %, entre −12 % sur un an en 2016/17 et −12 % par rapport aux voisines en 2007/08. Les probabilités restent un jugement, fondé sur la prévision NOAA d'un El Niño historique.</p>
+    <p><strong>Calendrier des mises à jour :</strong> discussion ENSO de la NOAA le 8 octobre 2026 ; IOD du Bureau météo australien toutes les deux semaines ; pluie NASA POWER chaque semaine : à Liwa (Lampung), guetter la pluie de floraison (plus de 10 mm après 11 jours secs) ; partout, la pluie de septembre à novembre après la floraison ; points de feu au Sumatra du Sud ; rapport semestriel USDA de Jakarta (novembre–décembre 2026) ; puis exportations mensuelles BPS et prix bord champ au Lampung d'avril à août 2027.</p>
   </div>
 </section>
 
@@ -367,20 +401,20 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   <span class="num">7 · 2027/28</span>
   <h2>Ce qu'on peut attendre l'an prochain</h2>
   <div class="prose stack">
-    <p>La récolte 2027 (campagne USDA 2027/28) se décide en ce moment, pendant la floraison. Dans sa discussion de septembre 2026, la NOAA parle d'un El Niño qui se renforce : plus de 90 % de chances d'un épisode très fort cet automne–hiver, 75 % de chances d'un épisode historique d'octobre à décembre, et des pluies « supprimées sur l'Indonésie ». Au Sumatra du Sud, juillet 2026 a reçu 52 % de la pluie normale, août 50 %, et septembre 35 % au 19 du mois (moyenne de Pagar Alam, Lahat et Muaradua). À Liwa (Lampung), juillet et août sont sous 10 %.</p>
-    <p><strong>Les analogues.</strong> Les El Niño les plus forts pendant la floraison sont 1982, 1997, 2015 et 2023. La récolte USDA suivante a fini à −2 %, +6 %, −1 % et −2 % par rapport aux récoltes voisines. Pas d'effondrement, mais une récolte décalée (en 2024, début mai–juin au lieu de mars–avril). Le vrai risque est la sécheresse extrême qui dure jusqu'en décembre, comme en 1994 (−19 %) ou 2006 (−12 %). Autre signal baissier : en 2026, 1 kg de Robusta n'achète plus que ~7 kg d'urée, contre ~12 en 2025, donc moins d'engrais à prévoir.</p>
+    <p>La récolte 2027 (campagne USDA 2027/28) se décide en ce moment. La NOAA annonce un El Niño historique : plus de 90 % de chances d'un épisode très fort, 75 % au-delà de +2,5 en octobre–décembre. Mais les données ville par ville nuancent la sécheresse. En altitude (Pagar Alam, Kepahiang), la pluie de juillet à mi-septembre est à 70–98 % de la normale. Au Lampung et en OKU Selatan (Liwa, Muaradua), elle est à 9–19 % en juillet–août, puis revient un peu en septembre.</p>
+    <p><strong>Le fait nouveau :</strong> les pluies de floraison ont déjà eu lieu dans 4 villes sur 5 (22 juillet, 16 août). Historiquement, c'est le meilleur signal pour la récolte suivante. Le risque se déplace vers l'après-floraison : si septembre–novembre restent très secs, les jeunes fruits tombent, surtout au Lampung où la floraison n'a pas encore eu lieu. Signal baissier secondaire : 1 kg de Robusta ne paie plus que 7 kg d'urée en 2026, contre 11,5 en 2025. L'effet sur le rendement n'est pas prouvé.</p>
   </div>
   <div class="scen" id="scen">
-    <div><span class="p">C · Sécheresse extrême et feux · 10 %</span><span class="v">8,2–8,8 <small>M sacs</small></span><p>Pas de pluie avant décembre (El Niño historique et IOD positif), floraison ratée en altitude, feux comme en 1997 et 2015. Analogue : 1994 (−19 %).</p></div>
-    <div><span class="p">A · Sécheresse jusqu'en novembre · 45 %</span><span class="v">9,6–10,2 <small>M sacs</small></span><p>Pluie d'août à novembre sous 40 % de la normale, floraison tardive et étalée. Récolte proche de 2026/27, retardée à mai–juillet 2027.</p></div>
-    <div><span class="p">B · Pluies de retour en novembre · 45 %</span><span class="v">10,7–11,3 <small>M sacs</small></span><p>Long stress sec puis pluies à temps : la classe 40–80 %, historiquement la meilleure (+6 %).</p></div>
+    <div><span class="p">S3 · Sécheresse après floraison · 20 %</span><span class="v">9,5–10,1 <small>M sacs</small></span><p>El Niño historique et IOD positif : pas de pluie avant décembre, chute des jeunes fruits, floraison ratée au Lampung, feux comme en 1997 et 2015.</p></div>
+    <div><span class="p">S2 · Floraison faite, fin de saison sèche · 55 %</span><span class="v">10,3–10,9 <small>M sacs</small></span><p>Floraison déclenchée en juillet–août, puis saison sèche jusqu'en novembre. Analogues 1982, 1997, 2015 et 2019 : de −2 % à +6 %.</p></div>
+    <div><span class="p">S1 · Floraison faite, pluies normales · 25 %</span><span class="v">10,8–11,2 <small>M sacs</small></span><p>Floraison déclenchée, puis pluies normales en octobre–novembre : la moyenne historique des bonnes floraisons (+4 %).</p></div>
   </div>
   <figure>
-    <figcaption><span class="t">Récolte USDA de Robusta et fourchette 2027/28</span><span class="s">Millions de sacs. Historique USDA PSD, puis fourchette de la chaîne de prévision (le trait marque l'espérance, 10,2).</span></figcaption>
+    <figcaption><span class="t">Récolte USDA de Robusta et fourchette 2027/28</span><span class="s">Millions de sacs. Historique USDA PSD, puis fourchette de la chaîne de prévision (le trait marque l'espérance, 10,6).</span></figcaption>
     <div class="chart" id="c-scen"></div>
   </figure>
   <div class="prose stack">
-    <p><strong>Pour le trading :</strong> le signal le plus fiable n'est pas le volume mais le <strong>calendrier</strong>. Une floraison retardée décale les arrivées de Robusta indonésien du 2e au 3e trimestre 2027, et les différentiels du Lampung devraient rester fermes au printemps. Les points à suivre : la pluie d'octobre–novembre (graphique « Saison en cours »), l'IOD d'octobre–novembre (BoM), et les feux au Sumatra du Sud.</p>
+    <p><strong>Pour le trading :</strong> la récolte 2027 s'annonce plus grosse que 2026 et à l'heure en altitude. Les différentiels, montés à +160 $/t sur Londres fin juillet 2026 à cause de stocks serrés, devraient se détendre à l'approche de la récolte 2027. L'exception serait un scénario S3, ou une floraison tardive au Lampung, qui soutiendrait les primes du Lampung au 2e trimestre 2027. Les points à suivre : la pluie d'octobre–novembre (graphique « Saison en cours »), l'IOD d'octobre–novembre (BoM), et les feux au Sumatra du Sud.</p>
     <p>Les probabilités sont un jugement de trader construit sur les analogues, pas une sortie de modèle.</p>
   </div>
 </section>
@@ -455,7 +489,7 @@ function chart(id, cfg){
   if(cfg.band){ const x0=L+pw*cfg.band.from/n, x1=L+pw*(cfg.band.to+1)/n; el('rect',{x:x0,y:T,width:x1-x0,height:ph,fill:css('--band'),opacity:.7},svg); const t=el('text',{x:(x0+x1)/2,y:T+14,'text-anchor':'middle',class:'ann'},svg); t.textContent=cfg.band.label; }
   ticks.forEach(t=>{ el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),class:'grid'},svg); const tx=el('text',{x:L-8,y:Yv(t)+4,'text-anchor':'end'},svg); tx.textContent=cfg.fmt?cfg.fmt(t):t; });
   const every=cfg.every||Math.ceil(n/12);
-  cfg.x.forEach((lab,i)=>{ if(i%every===0||i===n-1){ const tx=el('text',{x:X(i),y:H-10,'text-anchor':'middle'},svg); tx.textContent=lab; } });
+  cfg.x.forEach((lab,i)=>{ if(i%every===0||(i===n-1&&(n-1)%every>=Math.ceil(every/2))){ const tx=el('text',{x:X(i),y:H-10,'text-anchor':'middle'},svg); tx.textContent=lab; } });
   const zero=Math.max(a,Math.min(b,0));
   el('line',{x1:L,x2:L+pw,y1:Yv(cfg.base!=null?cfg.base:zero),y2:Yv(cfg.base!=null?cfg.base:zero),class:'base'},svg);
   (cfg.refs||[]).forEach(r=>{ const x0=r.from!=null?X(r.from)-pw/n*0.4:L, x1=r.to!=null?X(r.to)+pw/n*0.4:L+pw; el('line',{x1:x0,x2:x1,y1:Yv(r.y),y2:Yv(r.y),stroke:css('--ink-2'),'stroke-width':1.5,'stroke-dasharray':'5 4'},svg); if(r.label){ const atStart=r.at==='start'; const t=el('text',{x:atStart?x0+2:x1-2,y:Yv(r.y)+(r.dy!=null?r.dy:-6),'text-anchor':atStart?'start':'end',class:'ann'},svg); t.textContent=r.label; } });
@@ -553,9 +587,9 @@ function draw(){
   const SY=[2019,2020,2021,2022,2023,2024,2025,2026,2027];
   const sv=SY.map(y=>y<2027?USDA_ROB[y]/1000:null);
   chart('c-scen',{x:SY.map(y=>String(y).slice(2)+'/'+String(y+1).slice(2)),aria:'Scénarios 2027/28',yMin:0,yMax:12,nTicks:6,fmt:v=>fr(v,0),h:260,
-    series:[{name:'USDA',type:'bar',color:'--neutral',values:sv,range:[{i:8,lo:8.4,hi:11.0,mid:10.2,color:'--accent'}]}],
-    labels:[{i:8,y:11.0,text:'8,4–11,0',dy:-8}],
-    tip:i=>i<8?`<b>${SY[i]}/${String(SY[i]+1).slice(2)}</b>${row('USDA',fr(sv[i],2)+' M sacs')}`:`<b>2027/28 (scénarios)</b>${row('C · Extrême (10 %)','8,2–8,8')}${row('A · Sec jusqu\'en nov. (45 %)','9,6–10,2')}${row('B · Pluies en nov. (45 %)','10,7–11,3')}${row('Espérance','10,2','--accent')}`});
+    series:[{name:'USDA',type:'bar',color:'--neutral',values:sv,range:[{i:8,lo:9.5,hi:11.2,mid:10.6,color:'--accent'}]}],
+    labels:[{i:8,y:11.2,text:'9,5–11,2',dy:-8}],
+    tip:i=>i<8?`<b>${SY[i]}/${String(SY[i]+1).slice(2)}</b>${row('USDA',fr(sv[i],2)+' M sacs')}`:`<b>2027/28 (scénarios)</b>${row('S3 · Sécheresse après floraison (20 %)','9,5–10,1')}${row('S2 · Floraison faite, sec (55 %)','10,3–10,9')}${row('S1 · Floraison faite, pluies (25 %)','10,8–11,2')}${row('Espérance','10,6','--accent')}`});
 }
 // ---------- NASA POWER / ENSO / IOD weather section ----------
 const WD = window.SUMATRA_WEATHER;
@@ -676,17 +710,38 @@ function drawWeather(){
       tip:i=>{ const b=B[i]; if(!b.items.length) return ''; const sorted=[...b.items].sort((p,q)=>p.an-q.an); return `<b>Pluie août–nov. ${b.k} de la normale</b>${row('Récolte suivante, moyenne',(b.mean>0?'+':'')+fr(b.mean,1)+' %',b.c)}${row('Saisons',b.items.length)}<div style="margin-top:4px;color:var(--ink-2);max-width:260px">${sorted.map(x=>`${x.l} → ${(x.an>0?'+':'')+fr(x.an,0)} %`).join(' · ')}</div>`; }});
     document.getElementById('w-buck-t').textContent=`${townName} : la récolte selon la pluie d'août à novembre`;
   })();
-  // month-by-month correlation, Jun..May
+  // month-by-month correlation, Jun..May, two crop measures
   (function(){
     const MO=[6,7,8,9,10,11,12,1,2,3,4,5], LAB=['juin','juil.','août','sept.','oct.','nov.','déc.','janv.','févr.','mars','avr.','mai'];
-    const M=townMonthly(wState.town);
-    const rs=MO.map(m=>{ const xs=[],ys=[]; for(let S=1981;S<curS;S++){ const y=m>=6?S:S+1; const v=M[key(y,m)]; const an=usdaAnom(S+1); if(v&&v[3]&&an!=null){ xs.push(100*v[0]/normal.rain[m]); ys.push(an);} }
-      const mx=mean(xs), my=mean(ys); const r=xs.reduce((a,x,i)=>a+(x-mx)*(ys[i]-my),0)/Math.sqrt(xs.reduce((a,x)=>a+(x-mx)**2,0)*ys.reduce((a,y)=>a+(y-my)**2,0)); return {r,n:xs.length}; });
-    chart('w-corr',{x:LAB,aria:'Corrélation mensuelle',yMin:-0.5,yMax:0.5,fmt:v=>Math.abs(v)<1e-9?'0':(v>0?'+':'')+fr(v,1),h:250,every:1,
-      series:[{name:'r',type:'bar',color:'--neutral',values:rs.map(o=>o.r),dot:i=>rs[i].r<0?'--wet':'--good'}],
-      refs:[{y:0.29,label:'+0,29'},{y:-0.29,label:'−0,29',dy:16}],
-      tip:i=>`<b>Pluie de ${LAB[i]} ${i<7?'(année de floraison)':'(année de récolte)'}</b>${row('Corrélation r',(rs[i].r>0?'+':'')+fr(rs[i].r,2),rs[i].r<0?'--wet':'--good')}${row('Saisons',rs[i].n)}`});
+    const M=townMonthly(wState.town); const U=WD.usda_robusta;
+    const pear=(x,y)=>{ const mx=mean(x), my=mean(y); return x.reduce((a,v,i)=>a+(v-mx)*(y[i]-my),0)/Math.sqrt(x.reduce((a,v)=>a+(v-mx)**2,0)*y.reduce((a,v)=>a+(v-my)**2,0)); };
+    const R=MO.map(m=>{ const xs=[],ya=[],yb=[]; for(let S=1981;S<curS;S++){ const y=m>=6?S:S+1; const v=M[key(y,m)]; const an=usdaAnom(S+1); if(v&&v[3]&&an!=null&&U[S]!=null){ xs.push(100*v[0]/normal.rain[m]); ya.push(an); yb.push(100*(U[S+1]/U[S]-1)); } } return {a:pear(xs,ya),b:pear(xs,yb),n:xs.length}; });
+    const host=document.getElementById('w-corr'); host.innerHTML='';
+    const W=720,H=260,L=52,Rr=16,T=14,B=34,pw=W-L-Rr,ph=H-T-B,n=12; const lo=-0.6,hi=0.6; const Yv=v=>T+ph*(1-(v-lo)/(hi-lo));
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Corrélation mensuelle'},host);
+    [-0.6,-0.4,-0.2,0,0.2,0.4,0.6].forEach(t=>{ el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),class:'grid'},svg); const tx=el('text',{x:L-8,y:Yv(t)+4,'text-anchor':'end'},svg); tx.textContent=t===0?'0':(t>0?'+':'')+fr(t,1); });
+    [0.29,-0.29].forEach(t=>el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),stroke:css('--ink-2'),'stroke-dasharray':'5 4'},svg));
+    const gw=pw/n, bw=gw*0.36;
+    R.forEach((o,i)=>{ [[o.a,'--c1',0],[o.b,'--c5',1]].forEach(([v,c,k])=>{ const x=L+gw*i+gw*0.14+k*bw; el('rect',{x:x+1,y:Math.min(Yv(0),Yv(v)),width:bw-2,height:Math.max(1,Math.abs(Yv(v)-Yv(0))),rx:2,fill:css(c)},svg); }); const t=el('text',{x:L+gw*(i+0.5),y:H-10,'text-anchor':'middle'},svg); t.textContent=LAB[i]; });
+    el('line',{x1:L,x2:L+pw,y1:Yv(0),y2:Yv(0),class:'base'},svg);
+    const tip=document.createElement('div'); tip.className='tip'; tip.hidden=true; host.appendChild(tip);
+    const hit=el('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent'},svg);
+    const mv=ev=>{ const r=svg.getBoundingClientRect(); const i=Math.max(0,Math.min(11,Math.floor(((ev.clientX-r.left)*W/r.width-L)/gw))); tip.innerHTML=`<b>Pluie de ${LAB[i]} ${i<7?'(année de floraison)':'(année de récolte)'}</b>${row('r, écart aux voisines',(R[i].a>0?'+':'')+fr(R[i].a,2),'--c1')}${row('r, variation sur un an',(R[i].b>0?'+':'')+fr(R[i].b,2),'--c5')}${row('Saisons',R[i].n)}`; tip.hidden=false; const hr=host.getBoundingClientRect(); let left=(L+gw*(i+1))*r.width/W+(r.left-hr.left)+6; if(left+tip.offsetWidth>hr.width) left-=tip.offsetWidth+gw*r.width/W+12; tip.style.left=Math.max(0,left)+'px'; tip.style.top='8px'; };
+    hit.addEventListener('pointermove',mv); hit.addEventListener('pointerdown',mv); hit.addEventListener('pointerleave',()=>{tip.hidden=true;});
     document.getElementById('w-corr-t').textContent=`${townName} : quels mois de pluie font la récolte`;
+  })();
+  // blossom-trigger evidence (5 towns, independent of the selected town)
+  (function(){
+    if(!WD.triggers) return;
+    const ids=Object.keys(WD.triggers); const Ys=[]; for(let S=1981;S<=curS;S++) Ys.push(S);
+    const cnt=Ys.map(S=>ids.filter(t=>WD.triggers[t][String(S)]).length);
+    const an=Ys.map(S=>usdaAnom(S+1));
+    const col=i=>cnt[i]===0?'--wet':cnt[i]<=2?'--neutral':'--good';
+    const last=Ys.length-1;
+    chart('w-trig',{x:Ys.map(S=>String(S).slice(2)),aria:'Déclencheur de floraison et récolte',fmt:v=>(v>0?'+':'')+fr(v,0)+' %',h:280,
+      series:[{name:'Écart',type:'bar',color:'--neutral',values:an,dot:col}],
+      labels:[{i:last,y:0,text:'2026 : '+cnt[last]+'/5 →',dy:-10,anchor:'end'}],
+      tip:i=>{ const S=Ys[i]; const tr=ids.map(t=>{ const d=WD.triggers[t][String(S)]; const nm=(WD.towns.find(x=>x.id===t)||{}).name||t; return row(nm,d?d.slice(8,10)+'/'+d.slice(5,7):'–'); }).join(''); return `<b>Floraison ${S} → récolte ${S+1}/${String(S+2).slice(2)}</b>${row('Villes déclenchées',cnt[i]+'/5',col(i))}${an[i]==null?row('Récolte USDA','à venir'):row('Récolte vs voisines',(an[i]>0?'+':'')+fr(an[i],1)+' %')}${tr}`; }});
   })();
   // anomaly bars by group, drawn as grouped bars per month
   const anomSeries=G.map(gr=>{ const ss=done.filter(s=>s.grp===gr.g); return {gr,vals:CAL.map((m,i)=>mean(ss.map(s=>s.rain[i]==null?null:100*(s.rain[i]/nR[i]-1))))}; });
@@ -731,14 +786,19 @@ function drawWeather(){
   const cur=seasons.find(s=>s.current);
   const cg=cur&&cur.grp?G.find(g=>g.g===cur.grp):null;
   const tg=G[0];
-  const tgAvg=CAL.map((m,i)=>mean(done.filter(s=>s.grp===tg.g).map(s=>s.rain[i])));
+  const DIMS={1:31,2:28,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31};
+  const Mcur=townMonthly(wState.town);
+  const partial=CAL.map((m,i)=>{ const y=i<6?curS:curS+1; const v=Mcur[key(y,m)]; return v&&!v[3]&&v[4]?v[4]/DIMS[m]:null; });
+  const nRc=nR.map((v,i)=>partial[i]?v*partial[i]:v);
+  const tgAvg=CAL.map((m,i)=>{ const a=mean(done.filter(s=>s.grp===tg.g).map(s=>s.rain[i])); return a==null?null:(partial[i]?a*partial[i]:a); });
   chart('w-cur',{x:SMF,aria:'Saison en cours',yMin:0,fmt:v=>fr(v,0),h:280,
-    series:[{name:'Normale',color:'--ink-2',values:nR,dash:'2 3',width:1.5},{name:'Moyenne '+tg.name,color:tg.color,values:tgAvg,dash:'7 4',width:2.4},{name:cur.label,color:'--ink',values:cur.rain,width:3,dot:()=> '--ink'}],
-    tip:i=>`<b>${SMF[i]}</b>${row(cur.label,cur.rain[i]==null?'–':fr(cur.rain[i],0)+' mm','--ink')}${row('Normale',fr(nR[i],0)+' mm')}${row('Moyenne '+tg.name,tgAvg[i]==null?'–':fr(tgAvg[i],0)+' mm',tg.color)}`});
+    series:[{name:'Normale',color:'--ink-2',values:nRc,dash:'2 3',width:1.5},{name:'Moyenne '+tg.name,color:tg.color,values:tgAvg,dash:'7 4',width:2.4},{name:cur.label,color:'--ink',values:cur.rain,width:3,dot:()=> '--ink'}],
+    tip:i=>`<b>${SMF[i]}${partial[i]?' (mois partiel, normale des mêmes jours)':''}</b>${row(cur.label,cur.rain[i]==null?'–':fr(cur.rain[i],0)+' mm','--ink')}${row('Normale',fr(nRc[i],0)+' mm')}${row('En % de la normale',cur.rain[i]==null?'–':fr(100*cur.rain[i]/nRc[i],0)+' %')}${row('Moyenne '+tg.name,tgAvg[i]==null?'–':fr(tgAvg[i],0)+' mm',tg.color)}`});
   legend('w-cur-leg',[{name:'Saison '+cur.label+' (en cours)',color:'--ink',line:true},{name:'Moyenne des saisons '+tg.name,color:tg.color,line:true},{name:'Normale 1991–2020',color:'--ink-2',line:true}]);
   const ixTxt=cur.ix==null?'indice août–novembre pas encore disponible':`indice août–nov. à ce jour : ${(cur.ix>0?'+':'')+fr(cur.ix,2)}${cg?' ('+cg.name+')':''}`;
   document.getElementById('w-cur-t').textContent=`Saison ${cur.label} en cours à ${townName} : pluie mensuelle`;
-  document.getElementById('w-cur-s').textContent=`Mois disponibles jusqu'à ${WD.last_month} (le dernier mois peut être partiel) ; ${ixTxt}.`;
+  const pIdx=partial.findIndex(v=>v);
+  document.getElementById('w-cur-s').textContent=`Mois disponibles jusqu'à ${WD.last_month}${pIdx>=0?' ; '+SMF[pIdx]+' est partiel ('+Math.round(partial[pIdx]*DIMS[CAL[pIdx]])+' jours) et comparé à la normale des mêmes jours':''} ; ${ixTxt}.`;
   document.getElementById('w-meta').textContent=`NASA POWER (PRECTOTCORR, T2M), données quotidiennes agrégées par mois jusqu'à ${WD.last_month} · ONI : NOAA CPC · DMI : NOAA PSL (HadISST) · récolte : USDA PSD · généré le ${WD.generated}.`;
 }
 
