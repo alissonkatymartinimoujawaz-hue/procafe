@@ -142,7 +142,7 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
 <section>
   <h2>L'essentiel</h2>
   <ul class="verdict">
-    <li><span class="k">Surface</span><p>La surface de Robusta a baissé de <strong>24 % entre 2004 et 2014</strong> (1,14 → 0,86 M ha), puis elle est stable (+4 % jusqu'en 2023). Cette baisse ne vient pas du climat. Le Robusta rapportait moins : en 2009–2012, un hectare de palmier rapportait environ 3 fois plus au producteur qu'un hectare de café (FAO). L'arabica a aussi pris des terres en altitude, et les forêts protégées ont été fermées aux planteurs.</p></li>
+    <li><span class="k">Surface</span><p>La surface de Robusta a baissé de <strong>24 % entre 2004 et 2014</strong> (1,14 → 0,86 M ha), puis elle est stable (+4 % jusqu'en 2023). Cette baisse ne vient pas du climat. Le café rapportait moins que ses concurrents : quand un hectare de café rapporte moins qu'un hectare de cacao l'année d'avant, la surface recule de <strong>2,5 % par an</strong> ; sinon, elle reste stable (partie 2 ter). En 2009–2012, un hectare de palmier rapportait même environ 3 fois plus qu'un hectare de café (FAO). L'arabica a aussi pris des terres en altitude, et les forêts protégées ont été fermées aux planteurs. En 2026, le café rapporte environ 1,4 fois le cacao : pas de recul de surface en vue.</p></li>
     <li><span class="k">Ton tableau</span><p>Les 500 491 ha productifs de 2023 ne sont pas réels : c'est 6,8 M sacs (USDA) ÷ 13,59 sacs/ha (ministère). Les 1,2 M ha de 2024–2026 sont la surface de <strong>tout</strong> le café indonésien, arabica compris, selon l'USDA.</p></li>
     <li><span class="k">Rendement</span><p>Il y a deux paliers : <strong>11,5 sacs/ha</strong> en moyenne sur 2004–2016, puis <strong>13,4</strong> sur 2017–2022. Les creux viennent de la météo de la floraison : 2011 (La Niña 2010, pluie toute l'année), 2014 (saison sèche 2013 trop humide), 2016 (sécheresse El Niño 2015).</p></li>
     <li><span class="k">Météo</span><p>Le caféier fleurit après un stress sec suivi d'une pluie. Sur 45 ans de données NASA, quand 3 à 5 des villes du Robusta ont eu cette « pluie de floraison » entre juin et octobre, la récolte suivante a fait <strong>+4 %</strong> par rapport aux récoltes voisines. Quand aucune ne l'a eue, <strong>−10 %</strong> (2010, 2022, 2025 trop humides ; 1994 trop sec). Corrélation r = 0,47, p = 0,002.</p></li>
@@ -238,7 +238,7 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
     <tr><td>Hévéa</td><td>5 ans</td><td>0 · 0 · 0 · 50 · 80 %, puis 100 %</td><td>Moyen : saignée quotidienne</td></tr>
   </tbody></table></div>
   <div class="prose stack">
-    <p><strong>Le verdict des chiffres :</strong> en 2009–2012, un hectare de palmier rapportait 2 200 à 3 000 $ bruts au producteur, contre 730 à 980 $ pour le café, avec beaucoup moins de travail. Même avec 3 ans sans récolte, le planteur passé au palmier en 2009 rattrape celui qui a gardé son café dès 2014 et finit à 24 900 $/ha cumulés en 2024, contre 14 800 $. Le cacao, à égalité avec le café en 2010, a été un mauvais pari (9 300 $), comme l'hévéa après la chute du caoutchouc en 2012 (4 500 $). En 2025, les trois cultures se valent : environ 2 000 $/ha pour le café, le cacao et le palmier (prix FAO estimés avec l'indice).</p>
+    <p><strong>Le verdict des chiffres :</strong> en 2009–2012, un hectare de palmier rapportait 2 200 à 3 000 $ bruts au producteur (prix FAO estimés avec l'indice en 2009–2010), contre 730 à 980 $ pour le café, avec beaucoup moins de travail. Même avec 3 ans sans récolte, le planteur passé au palmier en 2009 rattrape celui qui a gardé son café dès 2014 et finit à 24 900 $/ha cumulés en 2024, contre 14 800 $. Le cacao, qui rapportait encore un peu plus que le café en 2009–2011, a été un mauvais pari (9 300 $), comme l'hévéa après la chute du caoutchouc en 2012 (4 500 $). En 2025, les trois cultures se valent : environ 2 000 $/ha pour le café, le cacao et le palmier (prix FAO estimés avec l'indice). En 2026, avec les prix mondiaux de janvier à août, le café repasse nettement devant le cacao (environ 1 670 contre 1 150 $/ha), mais derrière le palmier (2 180 $/ha).</p>
     <p><strong>L'arabica :</strong> pas de rendement ni de prix producteur séparés dans FAOSTAT. L'USDA donne des prix bord champ : 26 000–29 000 IDR/kg contre 12 000–16 000 pour le Robusta en 2010, puis 50 000–60 000 contre 17 500–19 000 en 2011, soit 2 à 3 fois plus. Mais l'arabica ne pousse qu'en altitude, et l'USDA note un manque de main-d'œuvre dans ces zones. Il remplace le Robusta en altitude, pas en plaine.</p>
     <p><strong>Limite :</strong> ce sont des revenus bruts, pas des marges nettes. Les coûts de production par hectare (main-d'œuvre, engrais) sont dans les publications du BPS et du ministère, bloquées depuis mon environnement. Le prix producteur FAO du caoutchouc (~500–900 $/t) est très inférieur au prix mondial : il porte probablement sur du caoutchouc brut humide, donc le revenu de l'hévéa est sous-estimé.</p>
   </div>
@@ -325,6 +325,70 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   <p class="meta">Salaires : communiqués BPS (2015–2022) ; salaire minimum : province du Lampung. Plafonds d'engrais : règlements 49/2020, 10/2022, décision 1117/2025 (via Antara, Tempo, portail PSP du ministère). Prix bord champ : Bappebti, Kontan, Antara, Kompas, Bisnis, Detik, Kupas Tuntas. Études : Polinela, Unila, Unived, Undip et autres (liens dans le fichier de sources). « Chiffre cité » : le chiffre est lu dans le résumé de la source trouvée par recherche web ; les PDF originaux restent bloqués depuis mon environnement, et la répartition des coûts par poste (travail, engrais, pesticides) n'est pas encore disponible.</p>
   <div class="note" id="k-missing"><strong>Encore manquant pour la marge nette :</strong> le coût complet par hectare avec sa répartition (enquêtes BPS SEP 2024 et SOUT 2014, PDF des études), le salaire agricole national 2023–2026, les tarifs de cueillette et le loyer de la terre. Ils arriveront dès que l'accès réseau au BPS et aux universités sera ouvert.</div>
 
+</section>
+
+<section id="preuves">
+  <span class="num">2 TER · LES PREUVES</span>
+  <h2>Pourquoi on plante moins de café, puis de nouveau plus</h2>
+  <div class="prose stack">
+    <p>La logique du trader : un planteur garde son café tant qu'un hectare de café rapporte autant qu'un hectare de la meilleure autre culture possible sur sa terre. Quand un concurrent rapporte durablement plus, il convertit, avec un retard de 1 à 3 ans. Pour le vérifier, je compare la surface plantée en Robusta (ministère) au revenu brut par hectare de chaque culture (prix payé au producteur × rendement, FAOSTAT).</p>
+  </div>
+  <figure>
+    <figcaption><span class="t">Rendements des cultures concurrentes, indice 2004 = 100</span><span class="s">Rendement par hectare récolté (FAOSTAT) pour le café, le cacao, le palmier (régimes frais) et l'hévéa ; rendement par hectare productif du ministère pour le Robusta seul (2004–2023). Le pic du cacao en 2006–2007 vient d'une rupture de série : FAOSTAT y sous-estime la surface.</span></figcaption>
+    <div class="chart" id="q-yld"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c1)"></i>Café (FAO)</span><span><i class="sw line" style="background:var(--ink)"></i>Robusta (ministère)</span><span><i class="sw line" style="background:var(--c2)"></i>Cacao</span><span><i class="sw line" style="background:var(--c3)"></i>Palmier à huile</span><span><i class="sw line" style="background:var(--c4)"></i>Hévéa</span></div>
+  </figure>
+  <div class="prose stack">
+    <p><strong>Les rendements seuls n'expliquent pas tout.</strong> Depuis 2004, le rendement du café a gagné 28 % (FAO, 2024), celui du Robusta du ministère 24 % (2023). Le cacao a perdu 28 % (maladies, vieux vergers). Le palmier et l'hévéa finissent 7 % sous leur niveau de 2004. Ce qui décide, c'est le rendement multiplié par le prix : le revenu par hectare.</p>
+  </div>
+  <figure>
+    <figcaption><span class="t">Ce que rapporte un hectare de chaque concurrent, par rapport à un hectare de café</span><span class="s">Revenu brut par hectare de la culture ÷ revenu brut par hectare du café (FAOSTAT, prix producteur × rendement). Au-dessus de 1, le concurrent rapporte plus que le café. Pointillés : 2025 estimé avec l'indice FAO des prix producteur ; 2026 estimé avec les prix mondiaux de janvier à août (Banque mondiale). Palmier : pas de prix FAO fiable avant 2004.</span></figcaption>
+    <div class="chart" id="q-ratio"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c2)"></i>Cacao / café</span><span><i class="sw line" style="background:var(--c3)"></i>Palmier / café</span><span><i class="sw line" style="background:var(--c4)"></i>Hévéa / café</span></div>
+  </figure>
+  <figure>
+    <figcaption><span class="t">En face, la surface plantée en Robusta : variation d'une année sur l'autre</span><span class="s">% par an (ministère, ton tableau). Même axe des années que le graphique du dessus.</span></figcaption>
+    <div class="chart" id="q-area"></div>
+  </figure>
+  <figure>
+    <figcaption><span class="t">La preuve : surface de Robusta contre revenu relatif du café, un an plus tôt</span><span class="s">Chaque point est une année (2005–2023). En abscisse : revenu d'un hectare de café en % de la meilleure alternative l'année précédente (le cacao, chaque année devant l'hévéa). En ordonnée : variation de la surface plantée en Robusta cette année-là. Traits verticaux : où se situe le café en 2024, 2025 et 2026.</span></figcaption>
+    <div class="chart" id="q-sc1"></div>
+    <div class="legend"><span><i class="sw" style="background:var(--dry)"></i>2005–2014</span><span><i class="sw" style="background:var(--good)"></i>2015–2023</span><span><i class="sw line" style="background:var(--ink)"></i>Le café en 2024, 2025 et 2026 (estimé) : il décide de la surface de l'année suivante</span></div>
+  </figure>
+  <div class="prose stack">
+    <p><strong>La règle chiffrée.</strong> Quand un hectare de café rapportait moins que le cacao l'année d'avant (9 ans : 2005–2012 et 2015), la surface de Robusta a reculé de <strong>2,5 % par an</strong> en moyenne. Quand il rapportait autant ou plus (10 ans : 2013–2014 et 2016–2023), elle est restée <strong>stable</strong> (−0,1 % par an). Corrélation r = +0,64, p = 0,02 en tenant compte de l'inertie des séries. Si je corrige la rupture de la série FAO du cacao en 2006–2007, r = +0,57 (p = 0,045) et la règle ne change pas.</p>
+    <p><strong>Où on en est.</strong> Le café valait 114 % du cacao en 2024, et 102 % en 2025, au sommet du prix du cacao. De janvier à août 2026, le cacao vaut en moyenne 43 % de moins qu'en 2025 sur le marché mondial, et le Robusta 20 % de moins : le café remonte à environ 144 % du cacao (estimé). Le café est donc resté devant trois années de suite. La règle ne donne aucune raison de voir la surface reculer en 2026–2027.</p>
+  </div>
+  <figure>
+    <figcaption><span class="t">Même règle pour le cacao : sa surface suit ce qu'il rapporte face au café</span><span class="s">Ligne orange : revenu d'un hectare de cacao ÷ revenu d'un hectare de café (pointillés : 2025–2026 estimés). Ligne noire : surface de cacao ÷ surface de café (FAOSTAT). Zone beige : 2000–2011, le cacao rapporte plus que le café chaque année.</span></figcaption>
+    <div class="chart" id="q-coc"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--c2)"></i>Revenu par hectare, cacao ÷ café</span><span><i class="sw line" style="background:var(--ink)"></i>Surface, cacao ÷ café</span></div>
+  </figure>
+  <div class="prose stack">
+    <p><strong>Le cacao confirme la règle, dans l'autre sens.</strong> Quand un hectare de cacao rapportait plus qu'un hectare de café l'année d'avant (13 ans), la surface de cacao a gagné en moyenne 7 % par an sur celle du café (médiane +3,8 %). Quand il rapportait moins (11 ans), elle a perdu 2,8 % par an (p = 0,03). Sans les années de rupture de la série FAO (2003, 2006, 2008), c'est +5,7 % contre −2,8 %. Le cacao passe sous le café en 2012, l'année même où sa surface relative culmine. Ensuite, elle recule presque chaque année. Le pic de prix de 2024–2025 n'a ramené le cacao qu'à parité (0,98 × en 2025), et 2026 le renvoie à 0,69 ×.</p>
+  </div>
+  <h3 style="font:700 21px/1.25 var(--display);margin-top:8px">La chaîne du trader pour la surface</h3>
+  <ol class="chain">
+    <li><div><strong>Calculer le revenu par hectare</strong> du café et de chaque culture qui peut prendre sa terre : prix bord champ × rendement. Dans les données, le concurrent décisif est le cacao. L'hévéa rapporte aujourd'hui 3 à 4 fois moins que le café, et le palmier pousse surtout en plaine.</div></li>
+    <li><div><strong>Comparer le café à la meilleure alternative de l'année précédente.</strong> Au moins 100 % : surface stable. En dessous : recul d'environ 2,5 % par an.</div></li>
+    <li><div><strong>Vérifier que l'écart dure.</strong> Une seule mauvaise année ne fait pas arracher un verger. Le recul de 2005–2012 a suivi douze années de suite sous les 100 % (2000–2011).</div></li>
+    <li><div><strong>Vérifier la terre disponible.</strong> Parcs nationaux et forêts protégées au Lampung ; nouvelles terres au Sumatra du Sud.</div></li>
+    <li><div><strong>Passer à la surface productive.</strong> Un caféier planté aujourd'hui produit après 2 à 3 ans. Une hausse de surface en 2026 ne compte donc qu'à partir de la récolte 2028–2029.</div></li>
+  </ol>
+  <div class="tbl"><table><thead><tr><th>Critère</th><th>Moteur concurrent</th><th>Preuve dans les données</th><th>Lecture 2025–2026</th><th>Ce que ça implique</th></tr></thead><tbody>
+    <tr><td><strong>Surface</strong></td><td>Revenu/ha du café contre le cacao et l'hévéa, 1 à 3 ans avant</td><td><b>r = +0,64 à +0,79</b> ; p ≤ 0,02 même en tenant compte de l'inertie des séries (19 ans). Café sous le cacao : −2,5 %/an ; au-dessus : −0,1 %/an</td><td>Café en % du cacao : 114 % en 2024, 102 % en 2025, ~144 % en 2026 (estimé)</td><td>Pas de recul de surface attendu ; surface stable, nouvelles plantations visibles vers 2028–2029</td></tr>
+    <tr><td><strong>Surface</strong></td><td>Revenu/ha du café contre le palmier</td><td>r = +0,52 à +0,73 ; p = 0,01 à 0,07 (le plus fort avec 3 ans de retard). Le palmier s'étend quoi qu'il arrive, surtout via les grandes plantations et de nouvelles terres</td><td>2025 : palmier 0,96 × le café, une première depuis 2004 (début des prix FAO fiables). 2026 (estimé) : 1,31 ×, le palmier repasse devant</td><td>Pression en plaine seulement : le palmier pousse mal en altitude, où l'USDA situe 60 % de la production du sud de Sumatra</td></tr>
+    <tr><td><strong>Surface</strong></td><td>Revenu/ha de l'hévéa</td><td>L'hévéa rapporte 0,2 à 0,6 × le café depuis 2015 ; sa surface FAO passe de 3,78 M ha (2021) à 3,15 M ha (2024)</td><td>2026 (estimé) : 0,33 ×</td><td>L'hévéa ne menace plus le café</td></tr>
+    <tr><td><strong>Surface</strong></td><td>Prix arabica / Robusta (passage à l'arabica en altitude)</td><td>Aucun lien significatif (r de −0,38 à +0,35)</td><td>—</td><td>Ne pas l'utiliser comme moteur</td></tr>
+    <tr><td><strong>Surface</strong></td><td>Forêts protégées, parc national (expulsions)</td><td>Qualitatif : environ 21 000 ha de café plantés illégalement dans le parc de Bukit Barisan Selatan fin 2024 (presse) ; reprises de terres par l'État depuis 2025</td><td>Lampung : 162 000 → 152 000 ha de 2017 à 2024 ; Sumatra du Sud : +6,6 %</td><td>Risque de baisse au Lampung, compensé par le Sumatra du Sud</td></tr>
+    <tr><td><strong>Rendement</strong></td><td>Pluie de floraison (stress sec puis pluie)</td><td><b>r = +0,47 ; p = 0,002</b> (45 saisons)</td><td>2026 : 4 villes sur 5 déclenchées (pas encore Liwa)</td><td>Floraison 2027 favorable</td></tr>
+    <tr><td><strong>Rendement</strong></td><td>Pluie d'août à octobre (trop humide)</td><td>r = −0,31 à −0,44 sur un an (5 villes)</td><td>Du 1er août au 19 septembre 2026 : 34 à 98 % de la normale selon la ville</td><td>Pas de risque « floraison noyée » cette année</td></tr>
+    <tr><td><strong>Rendement</strong></td><td>Prix de l'engrais comparé au café</td><td>Non significatif (r = +0,13 à +0,25)</td><td>Facture d'engrais au prix du marché : 22 % du revenu en 2025, ~⅓ en 2026 (urée mondiale +33 %, Robusta −20 %). Engrais subventionné : −20 % depuis octobre 2025</td><td>Risque secondaire, non chiffré</td></tr>
+    <tr><td><strong>Contrôle</strong></td><td>Exportations (BPS)</td><td>2023 : −36 %, a confirmé la mauvaise récolte avant l'USDA</td><td>À suivre d'avril à septembre 2027</td><td>Valide ou invalide la prévision</td></tr>
+  </tbody></table></div>
+  <div class="prose stack">
+    <p><strong>La limite, honnêtement :</strong> le lien entre surface et revenu relatif tient sur les tendances de plusieurs années, pas d'une année sur l'autre (sur les variations annuelles, r = +0,17). C'est logique pour une culture pérenne : on n'arrache pas des caféiers pour une seule mauvaise année. Il manque aussi le coût par hectare de chaque culture (le café demande beaucoup plus de travail que le palmier), qui renforcerait encore l'avantage du palmier en 2004–2014. Les estimations 2025–2026 supposent que les prix bord champ suivent les prix mondiaux.</p>
+  </div>
 </section>
 
 <section id="rendement">
@@ -475,7 +539,7 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   <h3 style="font:700 21px/1.25 var(--display)">Étape A · La surface productive</h3>
   <div class="prose stack">
     <p><strong>Donnée :</strong> surface productive du ministère, 695 143 ha en 2022, le dernier chiffre fiable (celui de 2023 est l'artefact de calcul). <strong>Tendance :</strong> la surface plantée a pris +3,8 % de 2014 à 2023, soit +0,4 % par an ; la surface productive +0,9 % par an de 2017 à 2022. <strong>Formule :</strong> surface 2027 = 695 143 × 1,004<sup>5</sup> = <strong>709 000 ha</strong>. Sensibilité : à 0 % par an, 695 000 ha ; à +1 % par an, 731 000 ha, soit ±3 % sur la production.</p>
-    <p><strong>Pourquoi c'est presque fixe :</strong> la surface ne bouge qu'avec la marge relative, sur plusieurs années : −24 % de 2004 à 2014 quand le palmier rapportait 3 fois plus par hectare, stable depuis. Un arbre planté aujourd'hui ne produit que dans 3 ans.</p>
+    <p><strong>Pourquoi c'est presque fixe :</strong> la surface ne bouge qu'avec la marge relative, sur plusieurs années : −24 % de 2004 à 2014, quand le café rapportait moins que le cacao (et environ 3 fois moins que le palmier), stable depuis. Un arbre planté aujourd'hui ne produit que dans 3 ans.</p>
   </div>
   <h3 style="font:700 21px/1.25 var(--display)">Étape B · Le rendement</h3>
   <div class="prose stack">
@@ -516,7 +580,7 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   <span class="num">7 · 2027/28</span>
   <h2>Ce qu'on peut attendre l'an prochain</h2>
   <div class="prose stack">
-    <p>La récolte 2027 (campagne USDA 2027/28) se décide en ce moment. La NOAA annonce un El Niño historique : plus de 90 % de chances d'un épisode très fort, 75 % au-delà de +2,5 en octobre–décembre. Mais les données ville par ville nuancent la sécheresse. En altitude (Pagar Alam, Kepahiang), la pluie de juillet à mi-septembre est à 70–98 % de la normale. Au Lampung et en OKU Selatan (Liwa, Muaradua), elle est à 9–19 % en juillet–août, puis revient un peu en septembre.</p>
+    <p>La récolte 2027 (campagne USDA 2027/28) se décide en ce moment. La NOAA annonce un El Niño historique : plus de 90 % de chances d'un épisode très fort, 75 % au-delà de +2,5 en octobre–décembre. Mais les données ville par ville nuancent la sécheresse. En altitude (Pagar Alam, Kepahiang), la pluie de juillet à mi-septembre est à 69–91 % de la normale. Au Lampung et en OKU Selatan (Liwa, Muaradua), elle est à 9–19 % en juillet–août, puis revient un peu en septembre.</p>
     <p><strong>Le fait nouveau :</strong> les pluies de floraison ont déjà eu lieu dans 4 villes sur 5 (22 juillet, 16 août). Historiquement, c'est le meilleur signal pour la récolte suivante. Le risque se déplace vers l'après-floraison : si septembre–novembre restent très secs, les jeunes fruits tombent, surtout au Lampung où la floraison n'a pas encore eu lieu. Signal baissier secondaire : 1 kg de Robusta ne paie plus que 7 kg d'urée en 2026, contre 11,5 en 2025. L'effet sur le rendement n'est pas prouvé.</p>
   </div>
   <div class="scen" id="scen">
@@ -800,6 +864,45 @@ function draw(){
     })();
     document.getElementById('k-tbl').innerHTML=K.map((r,i)=>`<tr><td>${r.year}${r.price_est?' *':''}</td><td class="n">${r.price_idr_kg==null?'–':fr(r.price_idr_kg,0)}</td><td class="n">${r.yield_kg_ha==null?'–':fr(r.yield_kg_ha,0)}</td><td class="n">${r.revenue_m_idr_ha==null?'–':fr(r.revenue_m_idr_ha,1)}</td><td class="n">${sg(revYoY[i])}</td><td class="n">${fr(r.urea_usd_t,0)}</td><td class="n">${ureaIdr[i]==null?'–':fr(ureaIdr[i],0)+(r.urea_idr_kg==null?' *':'')}</td><td class="n">${sg(ureaYoY[i])}</td><td class="n">${r.fx!=null?fr(r.fx,0):(FXP[r.year]?'~'+fr(FXP[r.year],0)+' *':'–')}</td></tr>`).join('');
   })();
+  // proof section: competing crops
+  (function(){
+    const Q={"yrs":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026],"yld":{"coffee":[439.9,433.4,497.0,480.2,496.5,510.1,521.2,522.0,539.0,539.1,539.3,493.9,560.1,544.3,523.3,519.8,520.4,579.7,603.5,604.3,609.7,614.4,612.2,598.9,636.2,null,null],"cocoa":[561.6,701.3,797.0,723.5,634.0,641.6,849.5,800.9,563.8,510.1,511.4,411.1,399.6,414.2,421.7,347.1,386.1,356.2,476.3,470.7,477.6,457.9,457.9,453.7,456.2,null,null],"palm":[18063.6,18613.6,16774.2,17302.6,18222.9,18970.2,19525.5,17105.3,17068.3,18000.0,19204.2,18962.7,19849.6,18264.2,18159.5,18265.9,16563.8,17545.5,16885.2,16847.8,17132.1,18434.5,17073.2,16937.2,16969.3,null,null],"rubber":[625.6,618.4,618.8,670.0,772.3,692.5,967.5,992.7,803.5,710.4,793.8,865.2,864.6,873.9,874.4,868.6,909.2,1005.8,988.8,936.3,815.1,806.4,763.8,710.8,718.3,null,null]},"area":{"coffee":[1260687.0,1313383.0,1372184.0,1381730.0,1303943.0,1255272.0,1308732.0,1295912.0,1295111.0,1266235.0,1268476.0,1293000.0,1233900.0,1241700.0,1230500.0,1230001.0,1228512.0,1238598.0,1252826.0,1245359.0,1250452.0,1279570.0,1265961.0,1266848.0,1269354.0,null,null],"cocoa":[749917.0,765405.0,776901.0,961107.0,1090960.0,1167046.0,905730.0,923968.0,1425216.0,1587136.0,1651539.0,1732600.0,1852900.0,1740600.0,1727400.0,1709284.0,1701351.0,1658421.0,1611014.0,1560945.0,1508955.0,1421014.0,1421014.0,1393390.0,1386749.0,null,null],"palm":[2014000.0,2200000.0,2790000.0,3040000.0,3320000.0,3690000.0,4110000.0,4560000.0,4980000.0,5000000.0,5780000.0,6170000.0,6650000.0,7720000.0,8150000.0,8650000.0,9720000.0,11000000.0,12200000.0,12880000.0,13250000.0,13670000.0,13940000.0,14170000.0,14320000.0,null,null],"rubber":[2400000.0,2599470.0,2634720.0,2675060.0,2675060.0,3279391.0,2725858.0,2775546.0,3424217.0,3435270.0,3445121.0,3456100.0,3484100.0,3555800.0,3606245.0,3621102.0,3637264.0,3659090.0,3671387.0,3683482.0,3726173.0,3776486.0,3557092.0,3152745.0,3149277.0,null,null]},"rob_yld":[null,null,null,null,659,669,684,686,716,722,740,688,700,723,677,662,673,758,788,800,817,817,825,815,null,null,null],"planted":[null,null,null,null,1135114,1112597,1089951,1018573,970677,946791,920790,902341,902548,879117,863731,863626,871648,859547,860094,860438,860777,890427,890065,896285,null,null,null],"rev":{"coffee":[404,331,289,317,321,336,447,629,763,727,829,883,979,861,772,743,775,1075,1076,923,853,865,895,1015,1556,2077,1665],"cocoa":[471,596,748,711,635,596,824,924,821,810,1063,903,779,755,829,605,722,572,718,626,670,671,655,705,1360,2038,1154],"palm":[null,null,null,null,1168,1207,1515,1607,1944,2202,2997,2611,2644,2245,2241,1850,1839,1618,1292,1176,1374,2041,2402,2603,2252,2002,2177],"rubber":[128,160,198,251,332,335,694,686,644,398,680,829,758,683,544,438,436,553,479,440,359,435,409,345,421,477,556]}};
+    const Ys=Q.yrs, R=Q.rev, i04=Ys.indexOf(2004);
+    const estTag=y=>y===2025?' (estimé)':y===2026?' (estimé, prix mondiaux janv.–août)':'';
+    const solid=a=>a.map((v,i)=>Ys[i]<=2024?v:null), est=a=>a.map((v,i)=>Ys[i]>=2024?v:null);
+    const idx=(a,b)=>a.map(v=>v==null||b==null?null:100*v/b);
+    const Y2=Ys.filter(y=>y>=2004&&y<=2024); const sl=a=>Y2.map(y=>a[Ys.indexOf(y)]);
+    const ys=[['Café (FAO)','--c1',sl(idx(Q.yld.coffee,Q.yld.coffee[i04])),'kg/ha',sl(Q.yld.coffee),1],['Robusta (ministère)','--ink',sl(idx(Q.rob_yld,Q.rob_yld[i04])),'kg/ha',sl(Q.rob_yld),1],['Cacao','--c2',sl(idx(Q.yld.cocoa,Q.yld.cocoa[i04])),'kg/ha',sl(Q.yld.cocoa),1],['Palmier (régimes)','--c3',sl(idx(Q.yld.palm,Q.yld.palm[i04])),'t/ha',sl(Q.yld.palm).map(v=>v==null?null:v/1000),2],['Hévéa','--c4',sl(idx(Q.yld.rubber,Q.yld.rubber[i04])),'kg/ha',sl(Q.yld.rubber),1]];
+    chart('q-yld',{x:Y2.map(String),aria:'Rendements concurrents',yMin:50,fmt:v=>fr(v,0),h:280,refs:[{y:100}],
+      series:ys.map(([n,c,a])=>({name:n,color:c,values:a,width:n.startsWith('Robusta')?2.6:2})),
+      tip:i=>`<b>${Y2[i]}</b>`+ys.map(([n,c,a,u,lv,d])=>row(n,a[i]==null?'–':fr(a[i],0)+' · '+fr(lv[i],d===2?1:0)+' '+u,c)).join('')});
+    // revenue per ha of each competitor divided by coffee's; 2025-2026 estimated (dashed)
+    const ratio=k=>Ys.map((y,i)=>R[k][i]!=null&&R.coffee[i]?R[k][i]/R.coffee[i]:null);
+    const rs=[['Cacao / café','--c2',ratio('cocoa'),'cocoa'],['Palmier / café','--c3',ratio('palm'),'palm'],['Hévéa / café','--c4',ratio('rubber'),'rubber']];
+    chart('q-ratio',{x:Ys.map(String),aria:'Revenu relatif par hectare',yMin:0,fmt:v=>fr(v,1),h:280,refs:[{y:1}],
+      band:{from:Ys.indexOf(2004),to:Ys.indexOf(2014),label:'Robusta −2,7 %/an'},
+      series:rs.flatMap(([n,c,a])=>[{name:n,color:c,values:solid(a)},{name:n,color:c,values:est(a),dash:true}]),
+      tip:i=>`<b>${Ys[i]}${estTag(Ys[i])}</b>`+row('Café',fr(R.coffee[i],0)+' $/ha','--c1')+rs.map(([n,c,a,k])=>row(n,a[i]==null?'–':'× '+fr(a[i],2)+' ('+fr(R[k][i],0)+' $/ha)',c)).join('')});
+    const g=Ys.map((y,i)=>i>0&&Q.planted[i]!=null&&Q.planted[i-1]!=null?100*(Q.planted[i]/Q.planted[i-1]-1):null);
+    chart('q-area',{x:Ys.map(String),aria:'Variation de la surface de Robusta',fmt:v=>(v>0?'+':'')+fr(v,0)+' %',h:200,
+      series:[{name:'Surface',type:'bar',color:'--neutral',values:g,dot:i=>g[i]==null?'--neutral':g[i]<0?'--dry':'--good'}],
+      tip:i=>g[i]==null?'':`<b>${Ys[i]}</b>${row('Surface plantée',fr(Q.planted[i],0)+' ha')}${row('Sur un an',(g[i]>0?'+':'')+fr(g[i],1)+' %',g[i]<0?'--dry':'--good')}`});
+    // scatter 1: robusta area growth (t) vs coffee revenue as % of the best alternative (t-1)
+    const xrel=j=>100*R.coffee[j]/Math.max(R.cocoa[j],R.rubber[j]);
+    const pts=[];
+    Ys.forEach((y,i)=>{ if(y<2005||y>2023||g[i]==null) return; const j=i-1, x=xrel(j);
+      pts.push({x,y:g[i],color:y<=2014?'--dry':'--good',lab:String(y),tip:`<b>${y}</b>${row('Café en % de la meilleure alternative ('+(y-1)+')',fr(x,0)+' %')}${row('Meilleure alternative',R.cocoa[j]>=R.rubber[j]?'cacao':'hévéa')}${row('Surface Robusta '+y,(g[i]>0?'+':'')+fr(g[i],1)+' %')}`}); });
+    scatter('q-sc1',pts,{aria:'Surface contre revenu relatif',xlab:"Revenu d'un hectare de café en % de la meilleure alternative, l'année précédente",h:340,
+      marks:[2024,2025,2026].map(y=>({x:xrel(Ys.indexOf(y)),label:y===2026?'2026 est.':String(y)}))});
+    // cocoa against coffee: relative revenue and relative area
+    const rr=ratio('cocoa'), ar=Ys.map((y,i)=>Q.area.cocoa[i]!=null&&Q.area.coffee[i]?Q.area.cocoa[i]/Q.area.coffee[i]:null);
+    const i12=Ys.indexOf(2012), i06=Ys.indexOf(2006);
+    chart('q-coc',{x:Ys.map(String),aria:'Cacao contre café : revenu et surface',yMin:0,fmt:v=>fr(v,1),h:280,refs:[{y:1}],
+      band:{from:0,to:Ys.indexOf(2011),label:'le cacao rapporte plus que le café'},
+      series:[{name:'Revenu',color:'--c2',values:solid(rr)},{name:'Revenu',color:'--c2',values:est(rr),dash:true},{name:'Surface',color:'--ink',values:ar,width:2.6}],
+      labels:[{i:i12,y:ar[i12],text:'sommet en 2012',dy:-12},{i:i06,y:ar[i06],text:'rupture FAO',dy:22}],
+      tip:i=>`<b>${Ys[i]}${estTag(Ys[i])}</b>`+row('Revenu/ha cacao ÷ café',rr[i]==null?'–':'× '+fr(rr[i],2),'--c2')+row('Surface cacao ÷ café',ar[i]==null?'–':'× '+fr(ar[i],2),'--ink')});
+  })();
   // 5. scenarios
   const SY=[2019,2020,2021,2022,2023,2024,2025,2026,2027];
   const sv=SY.map(y=>y<2027?USDA_ROB[y]/1000:null);
@@ -857,7 +960,8 @@ const mean=a=>{const v=a.filter(x=>x!=null); return v.length?v.reduce((p,q)=>p+q
 function scatter(id, pts, cfg){
   const host=document.getElementById(id); host.innerHTML='';
   const W=720,H=cfg.h||340,L=56,R=16,T=14,B=40,pw=W-L-R,ph=H-T-B;
-  const xs=nice(Math.min(...pts.map(p=>p.x)),Math.max(...pts.map(p=>p.x)),6), ys=nice(Math.min(0,...pts.map(p=>p.y)),Math.max(0,...pts.map(p=>p.y)),6);
+  const mk=cfg.marks||[], xv=pts.map(p=>p.x).concat(mk.map(m=>m.x));
+  const xs=nice(Math.min(...xv),Math.max(...xv),6), ys=nice(Math.min(0,...pts.map(p=>p.y)),Math.max(0,...pts.map(p=>p.y)),6);
   const X=v=>L+pw*(v-xs.a)/(xs.b-xs.a), Yv=v=>T+ph*(1-(v-ys.a)/(ys.b-ys.a));
   const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.aria||''},host);
   ys.t.forEach(t=>{ el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),class:'grid'},svg); const tx=el('text',{x:L-8,y:Yv(t)+4,'text-anchor':'end'},svg); tx.textContent=(t>0?'+':'')+fr(t,0)+' %'; });
@@ -865,10 +969,19 @@ function scatter(id, pts, cfg){
   const xl=el('text',{x:L+pw/2,y:H-2,'text-anchor':'middle'},svg); xl.textContent=cfg.xlab;
   el('line',{x1:L,x2:L+pw,y1:Yv(0),y2:Yv(0),class:'base'},svg);
   if(xs.a<=100&&xs.b>=100) el('line',{x1:X(100),x2:X(100),y1:T,y2:T+ph,stroke:css('--axis'),'stroke-dasharray':'4 4'},svg);
+  // labels never overlap points or each other; a label with no free spot is left to the tooltip
+  const boxes=pts.map(p=>[X(p.x)-7,Yv(p.y)-7,X(p.x)+7,Yv(p.y)+7]);
+  const free=b=>b[0]>=L&&b[2]<=L+pw&&b[1]>=T&&b[3]<=T+ph&&!boxes.some(o=>b[0]<o[2]&&b[2]>o[0]&&b[1]<o[3]&&b[3]>o[1]);
+  const label=(txt,cands,style)=>{ const w=txt.length*7.4+2;
+    for(const [tx,ty,an] of cands){ const x0=an==='start'?tx:an==='end'?tx-w:tx-w/2, b=[x0,ty-11,x0+w,ty+2];
+      if(free(b)){ boxes.push(b); const t=el('text',{x:tx,y:ty,'text-anchor':an,class:'ann',style:style||''},svg); t.textContent=txt; return; } } };
+  mk.forEach(m=>{ const x=X(m.x); el('line',{x1:x,x2:x,y1:T,y2:T+ph,stroke:css('--ink'),'stroke-width':1.5,'stroke-dasharray':'3 3'},svg);
+    label(m.label,[0,1,2].flatMap(r=>[[x,T+12+r*15,'middle'],[x+4,T+12+r*15,'start'],[x-4,T+12+r*15,'end']]),`fill:${css('--ink')}`); });
+  pts.forEach(p=>el('circle',{cx:X(p.x),cy:Yv(p.y),r:6,fill:css(p.color),stroke:css('--surface'),'stroke-width':2},svg));
+  pts.forEach(p=>{ if(!p.lab) return; const cx=X(p.x), cy=Yv(p.y);
+    label(p.lab,[[cx+9,cy+4,'start'],[cx-9,cy+4,'end'],[cx,cy-10,'middle'],[cx,cy+19,'middle'],[cx+8,cy-8,'start'],[cx+8,cy+16,'start'],[cx-8,cy-8,'end'],[cx-8,cy+16,'end']]); });
   const tip=document.createElement('div'); tip.className='tip'; tip.hidden=true; host.appendChild(tip);
   pts.forEach(p=>{
-    const c=el('circle',{cx:X(p.x),cy:Yv(p.y),r:6,fill:css(p.color),stroke:css('--surface'),'stroke-width':2},svg);
-    if(p.lab){ const t=el('text',{x:X(p.x)+9,y:Yv(p.y)+4,class:'ann'},svg); t.textContent=p.lab; }
     const hit=el('circle',{cx:X(p.x),cy:Yv(p.y),r:14,fill:'transparent'},svg);
     const show=ev=>{ tip.innerHTML=p.tip; tip.hidden=false; const hr=host.getBoundingClientRect(), r=svg.getBoundingClientRect(); let left=X(p.x)*r.width/W+(r.left-hr.left)+14; if(left+tip.offsetWidth>hr.width) left-=tip.offsetWidth+28; tip.style.left=Math.max(0,left)+'px'; tip.style.top=Math.max(0,Yv(p.y)*r.height/H-tip.offsetHeight-8)+'px'; };
     hit.addEventListener('pointerenter',show); hit.addEventListener('pointerdown',show); hit.addEventListener('pointerleave',()=>{tip.hidden=true;});
