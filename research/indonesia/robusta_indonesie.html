@@ -146,7 +146,7 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
     <li><span class="k">Ton tableau</span><p>Les 500 491 ha productifs de 2023 ne sont pas réels : c'est 6,8 M sacs (USDA) ÷ 13,59 sacs/ha (ministère). Les 1,2 M ha de 2024–2026 sont la surface de <strong>tout</strong> le café indonésien, arabica compris, selon l'USDA.</p></li>
     <li><span class="k">Rendement</span><p>Il y a deux paliers : <strong>11,5 sacs/ha</strong> en moyenne sur 2004–2016, puis <strong>13,4</strong> sur 2017–2022. Les creux viennent de la météo de la floraison : 2011 (La Niña 2010, pluie toute l'année), 2014 (saison sèche 2013 trop humide), 2016 (sécheresse El Niño 2015).</p></li>
     <li><span class="k">Météo</span><p>45 saisons de données NASA le montrent : la meilleure récolte suit une floraison <strong>moyennement sèche</strong> (pluie d'août à novembre à 40–80 % de la normale : +6 % en moyenne). Une floraison <strong>très humide</strong> (plus de 160 %) coûte −11 % en moyenne (2010 : −27 %, 2022 : −28 %), une <strong>sécheresse extrême</strong> (moins de 40 %) −5 % (1994 : −19 %).</p></li>
-    <li><span class="k">2027/28</span><p>La NOAA est en <strong>alerte El Niño</strong> : ONI à +1,8 en juin–août 2026 et 75 % de chances d'un épisode historique (au-delà de +2,5) d'octobre à décembre. Au Sumatra du Sud, juillet–septembre 2026 n'a reçu que <strong>35 à 52 % de la pluie normale</strong>. Si la sécheresse dure jusqu'en novembre, comme en 1997 et en 2015, attends une récolte 2027 proche de celle de 2026 ou un peu plus basse, et surtout <strong>retardée</strong>.</p></li>
+    <li><span class="k">2027/28</span><p>La NOAA est en <strong>alerte El Niño</strong> : ONI à +1,8 en juin–août 2026 et 75 % de chances d'un épisode historique (au-delà de +2,5) d'octobre à décembre. Au Sumatra du Sud, juillet–septembre 2026 n'a reçu que <strong>35 à 52 % de la pluie normale</strong>. Ma chaîne de prévision donne <strong>10,2 M sacs</strong> pour 2027/28 (fourchette 8,4–11,0), une récolte proche de 2026/27 mais <strong>retardée</strong>. Tout dépend du retour des pluies en novembre.</p></li>
   </ul>
 </section>
 
@@ -341,16 +341,26 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
 
 <section id="prevision">
   <span class="num">6 · CHAÎNE DE PRÉVISION</span>
-  <h2>Comment je prévoirais la récolte, étape par étape</h2>
-  <ol class="chain">
-    <li><div class="stack"><h3>Choisir la base de mesure</h3><p>Prévois dans l'unité du marché : sacs USDA, campagne avril–mars. Utilise la série du ministère pour la structure (surface, rendement, provinces), pas pour le niveau.</p></div></li>
-    <li><div class="stack"><h3>Surface productive : presque fixe</h3><p>Environ 0,69 M ha productifs (ministère) et 1,2 M ha de café au total (USDA). Hypothèse de 0 à +1 % par an. Les nouvelles plantations de 2024–2026, dues aux prix records, n'entrent en production qu'après environ 3 ans, donc surtout à partir de 2027–2029.</p></div></li>
-    <li><div class="stack"><h3>Récolte « météo normale » aux intrants actuels</h3><p>La moyenne de 2025/26 (11,0, bonne météo et plus d'engrais) et de 2026/27 (10,0, floraison trop humide) donne environ <strong>10,5 M sacs</strong>. C'est le point de départ avant météo.</p></div></li>
-    <li><div class="stack"><h3>Choc de floraison (juillet–novembre de l'année N−1)</h3><p>C'est le facteur n°1. Mesure la pluie d'août à novembre en % de la normale (NASA POWER, Sumatra du Sud) et applique l'écart moyen observé sur 45 saisons : moins de 40 % → −5 % (et récolte retardée) ; 40–80 % → +6 % ; 80–120 % → +4 % ; 120–160 % → −1 % ; plus de 160 % → −11 %. Surveille aussi juin (une saison sèche qui démarre humide nuit à l'induction florale) et janvier (pluie sur les jeunes cerises).</p></div></li>
-    <li><div class="stack"><h3>Choc de grossissement (décembre N−1 – mars N)</h3><p>Pluies très fortes et vent en altitude : −5 à −10 % (chute de cerises). Suivi mensuel avec NASA POWER et les prévisions BMKG.</p></div></li>
-    <li><div class="stack"><h3>Ajustement économique</h3><p>Prix au producteur et marge, donc engrais, taille et entretien. Des prix élevés soutiennent le rendement l'année suivante (USDA 2025). Une baisse des prix fait l'inverse, surtout en altitude où le travail coûte plus cher.</p></div></li>
-    <li><div class="stack"><h3>Vérifications de marché</h3><p>Exportations mensuelles (BPS) d'avril à septembre, prix bord champ au Lampung et à Palembang et différentiels, arrivées aux ports, chiffre de l'attaché USDA (mai et novembre–décembre), rapports des exportateurs (AEKI).</p></div></li>
-  </ol>
+  <h2>La chaîne logique 2027/28, maillon par maillon</h2>
+  <div class="prose"><p>Chaque maillon part d'une donnée observée, lui donne un effet chiffré sur la récolte USDA 2027/28 (récolte d'avril à août 2027), puis passe au suivant. Le résultat final est un chiffre, avec une fourchette.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>#</th><th>Maillon</th><th>Ce qu'on observe (septembre 2026)</th><th>Effet sur 2027/28</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td><strong>Surface productive</strong></td><td>Environ 0,69 M ha de Robusta productif, stable depuis 2014. Les nouvelles plantations de 2024–2026 (prix records) sont surtout à Java et au Sulawesi, et n'entrent en production qu'après ~3 ans.</td><td class="n">+0,5 %</td><td>Ministère ; USDA mai 2026</td></tr>
+      <tr><td class="n">2</td><td><strong>Capacité « météo normale »</strong></td><td>2025/26 : 11,0 M sacs (bonne floraison et plus d'engrais). 2026/27 : 10,0 M (floraison trop humide). Point de départ : <strong>10,5 M sacs</strong>.</td><td class="n">base</td><td>USDA PSD</td></tr>
+      <tr><td class="n">3</td><td><strong>Intrants et marge</strong></td><td>Robusta à 3,90 $/kg en janvier–août 2026 (−20 % sur 2025), urée +33 %. 1 kg de Robusta ne paie plus que 7 kg d'urée, contre 12 en 2025. Moins d'engrais et d'entretien au second semestre 2026.</td><td class="n">−2,5 %</td><td>Banque mondiale ; coûts BPS par province à venir</td></tr>
+      <tr><td class="n">4</td><td><strong>État des arbres</strong></td><td>Petite récolte 2026 après la floraison 2025 trop humide : les arbres ont plus de réserves pour la floraison suivante.</td><td class="n">+1 %</td><td>USDA mai 2026 (jugement)</td></tr>
+      <tr><td class="n">5</td><td><strong>Induction florale</strong> (juin–sept. 2026)</td><td>Pluie à 52 % de la normale en juillet, 50 % en août, 35 % en septembre (au 19). Maximales d'août +1,75 °C. Le stress sec est franc : les boutons floraux sont bien préparés.</td><td class="n">favorable, compté au 6</td><td>NASA POWER</td></tr>
+      <tr><td class="n">6</td><td><strong>Floraison</strong> (oct.–nov. 2026), le maillon clé</td><td>ONI à +1,8 ; la NOAA donne plus de 90 % de chances d'un El Niño très fort et 75 % d'un épisode historique en octobre–décembre. Dans ces années, octobre reçoit 0–40 % et novembre 40–75 % de la normale : la pluie d'août à novembre finira vers 35–50 %. Tout se joue sur le retour des pluies en novembre.</td><td class="n">A (45 %) : −5 %<br>B (45 %) : +6 %<br>C (10 %) : −19 %<br><strong>espérance −1,5 %</strong></td><td>NASA POWER 1981–2025 ; NOAA CPC</td></tr>
+      <tr><td class="n">7</td><td><strong>Grossissement des cerises</strong> (déc. 2026 – mars 2027)</td><td>El Niño faiblit début 2027 et les pluies reviennent. Risque : un mois de janvier très pluvieux, le mois le plus lié à une petite récolte (r = −0,35).</td><td class="n">0 % (risque −3 %)</td><td>NASA POWER</td></tr>
+      <tr><td class="n">8</td><td><strong>Calendrier</strong></td><td>Floraison tardive, donc récolte décalée de 1 à 2 mois, comme en 2024 (début mai–juin au lieu de mars–avril).</td><td class="n">arrivées du 2e au 3e trim. 2027</td><td>USDA mai 2024</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><strong>Résultat :</strong> 10,5 × (1 + 0,005 − 0,025 + 0,01) × (1 − 0,015) ≈ <strong>10,2 M sacs</strong> pour la campagne USDA 2027/28, soit +2 % sur 2026/27. La fourchette va de 8,4 M (sécheresse extrême et feux) à 11,0 M (pluies de retour en novembre), avec un risque plutôt à la baisse et une récolte en retard.</div>
+  <div class="prose stack">
+    <p><strong>Les scénarios du maillon 6</strong> viennent des 45 saisons NASA POWER. A = pluie d'août à novembre sous 40 % de la normale, écart moyen de la récolte suivante −5 % (1982, 1994, 1997, 2006, 2019, 2023). B = 40–80 %, +6 % (1991, 2002, 2015…). C = sécheresse extrême avec feux, comme 1994 (−19 %). Les probabilités sont un jugement fondé sur la pluie déjà tombée et les prévisions de la NOAA.</p>
+    <p><strong>Calendrier des mises à jour :</strong> discussion ENSO de la NOAA le 8 octobre 2026 ; IOD du Bureau météo australien toutes les deux semaines ; pluie NASA POWER chaque semaine, avec le premier épisode de plus de 50 mm en 10 jours qui marque le retour des pluies ; points de feu au Sumatra du Sud ; rapport semestriel USDA de Jakarta (novembre–décembre 2026) ; puis exportations mensuelles BPS et prix bord champ au Lampung d'avril à août 2027.</p>
+  </div>
 </section>
 
 <section id="scenarios">
@@ -361,12 +371,12 @@ select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
     <p><strong>Les analogues.</strong> Les El Niño les plus forts pendant la floraison sont 1982, 1997, 2015 et 2023. La récolte USDA suivante a fini à −2 %, +6 %, −1 % et −2 % par rapport aux récoltes voisines. Pas d'effondrement, mais une récolte décalée (en 2024, début mai–juin au lieu de mars–avril). Le vrai risque est la sécheresse extrême qui dure jusqu'en décembre, comme en 1994 (−19 %) ou 2006 (−12 %). Autre signal baissier : en 2026, 1 kg de Robusta n'achète plus que ~7 kg d'urée, contre ~12 en 2025, donc moins d'engrais à prévoir.</p>
   </div>
   <div class="scen" id="scen">
-    <div><span class="p">Sécheresse jusqu'en décembre · 30 %</span><span class="v">8,8–9,6 <small>M sacs</small></span><p>El Niño historique et IOD positif : floraison tardive et étalée, feux possibles comme en 1997 et 2015, moins d'engrais. Récolte en mai–juillet 2027.</p></div>
-    <div><span class="p">Scénario central · 50 %</span><span class="v">9,8–10,5 <small>M sacs</small></span><p>Pluie d'août à novembre sous 40 % de la normale, pluies de retour en novembre–décembre. Récolte proche de 2026/27 mais retardée de 1 à 2 mois.</p></div>
-    <div><span class="p">Pluies de retour en octobre · 20 %</span><span class="v">10,8–11,5 <small>M sacs</small></span><p>Long stress sec puis pluies à l'heure : la classe 40–80 %, la meilleure historiquement (+6 %).</p></div>
+    <div><span class="p">C · Sécheresse extrême et feux · 10 %</span><span class="v">8,2–8,8 <small>M sacs</small></span><p>Pas de pluie avant décembre (El Niño historique et IOD positif), floraison ratée en altitude, feux comme en 1997 et 2015. Analogue : 1994 (−19 %).</p></div>
+    <div><span class="p">A · Sécheresse jusqu'en novembre · 45 %</span><span class="v">9,6–10,2 <small>M sacs</small></span><p>Pluie d'août à novembre sous 40 % de la normale, floraison tardive et étalée. Récolte proche de 2026/27, retardée à mai–juillet 2027.</p></div>
+    <div><span class="p">B · Pluies de retour en novembre · 45 %</span><span class="v">10,7–11,3 <small>M sacs</small></span><p>Long stress sec puis pluies à temps : la classe 40–80 %, historiquement la meilleure (+6 %).</p></div>
   </div>
   <figure>
-    <figcaption><span class="t">Récolte USDA de Robusta et fourchette 2027/28</span><span class="s">Millions de sacs. Historique USDA PSD, puis scénarios de cette note (le trait marque le scénario central).</span></figcaption>
+    <figcaption><span class="t">Récolte USDA de Robusta et fourchette 2027/28</span><span class="s">Millions de sacs. Historique USDA PSD, puis fourchette de la chaîne de prévision (le trait marque l'espérance, 10,2).</span></figcaption>
     <div class="chart" id="c-scen"></div>
   </figure>
   <div class="prose stack">
@@ -543,9 +553,9 @@ function draw(){
   const SY=[2019,2020,2021,2022,2023,2024,2025,2026,2027];
   const sv=SY.map(y=>y<2027?USDA_ROB[y]/1000:null);
   chart('c-scen',{x:SY.map(y=>String(y).slice(2)+'/'+String(y+1).slice(2)),aria:'Scénarios 2027/28',yMin:0,yMax:12,nTicks:6,fmt:v=>fr(v,0),h:260,
-    series:[{name:'USDA',type:'bar',color:'--neutral',values:sv,range:[{i:8,lo:8.8,hi:11.5,mid:10.15,color:'--accent'}]}],
-    labels:[{i:8,y:11.5,text:'8,8–11,5',dy:-8}],
-    tip:i=>i<8?`<b>${SY[i]}/${String(SY[i]+1).slice(2)}</b>${row('USDA',fr(sv[i],2)+' M sacs')}`:`<b>2027/28 (scénarios)</b>${row('Sécheresse longue','8,8–9,6')}${row('Central','9,8–10,5','--accent')}${row('Pluies en octobre','10,8–11,5')}`});
+    series:[{name:'USDA',type:'bar',color:'--neutral',values:sv,range:[{i:8,lo:8.4,hi:11.0,mid:10.2,color:'--accent'}]}],
+    labels:[{i:8,y:11.0,text:'8,4–11,0',dy:-8}],
+    tip:i=>i<8?`<b>${SY[i]}/${String(SY[i]+1).slice(2)}</b>${row('USDA',fr(sv[i],2)+' M sacs')}`:`<b>2027/28 (scénarios)</b>${row('C · Extrême (10 %)','8,2–8,8')}${row('A · Sec jusqu\'en nov. (45 %)','9,6–10,2')}${row('B · Pluies en nov. (45 %)','10,7–11,3')}${row('Espérance','10,2','--accent')}`});
 }
 // ---------- NASA POWER / ENSO / IOD weather section ----------
 const WD = window.SUMATRA_WEATHER;
