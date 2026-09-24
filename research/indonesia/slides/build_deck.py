@@ -102,37 +102,72 @@ s.chart(0.35, 3.05, 12.6, 4.05, multi_line(cats, [
     mn=-2.0, mx=2.5, unit=0.5, fmt='0.0', skip=12, legend=True, legend_sz=8))
 slides.append(s)
 
-# ---------------- 2. yield impact ----------------
-def anom(my):
-    nb = sorted(U[x] for x in U if x != my and abs(x - my) <= 3)
-    m = len(nb) // 2
-    med = nb[m] if len(nb) % 2 else (nb[m - 1] + nb[m]) / 2
-    return 100 * (U[my] / med - 1)
+# ---------------- 2. yield: year over year and vs trend (house style) ----------------
+import csv
+from ooxml import yield_chart, solid, hatch
+FD = list(csv.DictReader(open(BASE + 'forecast_dataset.csv')))
+YLD = {int(r['recolte_annee_N']): float(r['rendement_usda_sacs_par_ha']) for r in FD if r['rendement_usda_sacs_par_ha']}
+PHN = {int(r['recolte_annee_N']): {'El Niño': 'pos', 'La Niña': 'neg', 'Neutre': 'neu'}[r['phase_enso']] for r in FD if r['phase_enso']}
+YLD[2027] = 14.3
+PHN[2027] = 'pos'
+YRS = list(range(2008, 2028))
+CATS = ['%s/%s' % (str(y)[2:], str(y + 1)[2:]) for y in YRS]
+CATS[-1] += 'F'
+def trend(y):
+    return st.median(YLD[x] for x in YLD if x != y and abs(x - y) <= 3 and x <= 2026)
+YOY = [round(100 * (YLD[y] / YLD[y - 1] - 1), 1) for y in YRS]
+DEV = [round(100 * (YLD[y] / trend(y) - 1), 1) for y in YRS]
+LAB_COL = {'pos': 'C00000', 'neg': '2E75B6', 'neu': '262626'}
 
-mys2 = list(range(2006, 2027))
-cats2 = ['%d/%s' % (y, str(y + 1)[2:]) for y in mys2]
-ph2 = [phase(y - 1) for y in mys2]
-an = [anom(y) for y in mys2]
-yy = [100 * (U[y] / U[y - 1] - 1) for y in mys2]
-allph = {'pos': [], 'neg': [], 'neu': []}
-for my in range(1991, 2027):
-    allph[phase(my - 1)].append(anom(my))
-avg = {k: st.mean(v) for k, v in allph.items()}
+def style1(sl, x, y, w, h, vals, mn, mx, unit):
+    n = len(YRS)
+    bars = []
+    for k in ('pos', 'neg', 'neu'):
+        v = [vals[i] if PHN[YRS[i]] == k else None for i in range(n)]
+        fills = [hatch(PH_COL[k]) if (YRS[i] == 2027 and PHN[YRS[i]] == k) else None for i in range(n)]
+        bars.append({'name': PH_NAME[k], 'color': PH_COL[k], 'values': v, 'fills': fills, 'lfmt': '+0.0"%";-0.0"%";0.0"%"'})
+    act = [(vals[i], PHN[YRS[i]]) for i in range(n) if YRS[i] <= 2026]
+    avg = {k: st.mean(v for v, p in act if p == k) for k in ('pos', 'neg')}
+    hi = 'pos' if avg['pos'] >= avg['neg'] else 'neg'
+    li = YRS.index(2019)
+    lines = [{'name': 'Average El Niño', 'values': [round(avg['pos'], 2)] * n, 'color': EN, 'label': {'idx': li, 'text': 'Average El Niño: %s%%' % fr(avg['pos'], 1, True), 'pos': 't' if hi == 'pos' else 'b'}},
+             {'name': 'Average La Niña', 'values': [round(avg['neg'], 2)] * n, 'color': LN, 'label': {'idx': li, 'text': 'Average La Niña: %s%%' % fr(avg['neg'], 1, True), 'pos': 't' if hi == 'neg' else 'b'}}]
+    sl.chart(x, y, w, h, yield_chart(CATS, bars, lines, mn=mn, mx=mx, unit=unit, fmt='0.0', label_sz=7, hide_legend_idx=(3, 4)))
+    return avg
+
+def style2(sl, x, y, w, h, vals, mn, mx, unit, title):
+    n = len(YRS)
+    lay = (0.08, 0.1, 0.9, 0.74)
+    sl.text(x, y - 0.02, w, 0.3, [para(run(title, 11, True, color='404040'), algn='ctr')])
+    fills = [hatch('8EB4E3') if YRS[i] == 2027 else None for i in range(n)]
+    sl.chart(x, y, w, h, yield_chart(CATS, [{'name': 'Yield', 'color': '8EB4E3', 'values': vals, 'fills': fills, 'lfmt': '+0.00"%";-0.00"%";0.00"%"'}],
+                                    mn=mn, mx=mx, unit=unit, fmt='+0%;-0%;0%', label_sz=6.5, legend=False, layout=lay, cat_labels=False, overlap=0, gap=45))
+    for i, yr in enumerate(YRS):
+        cx = x + w * (lay[0] + lay[2] * (i + 0.5) / n)
+        sl.text(cx - 0.3, y + h * (lay[1] + lay[3]) + 0.03, 0.6, 0.22, [para(run(CATS[i], 7, True, color=LAB_COL[PHN[yr]]), algn='ctr')])
+    ly = y + h * (lay[1] + lay[3]) + 0.3
+    sl.text(x, ly, w, 0.28, [para(run('El Niño', 10, True, color=LAB_COL['pos']) + run('          La Niña', 10, True, color=LAB_COL['neg']) + run('          Neutral', 10, True, color=LAB_COL['neu']), algn='ctr')])
+
+SRC_Y = ('Yield = USDA robusta production ÷ productive area (ministry; 2023–2027 area extrapolated). Colour = ENSO phase of the flowering year (ONI Aug–Nov, ±0.5), '
+         'i.e. the year before the harvest. 2027/28F (hatched) = 14.3 bags/ha forecast. Averages over 2008/09–2026/27.')
 s = Slide()
-header(s, 'Indonesia Crop Year 2027/28: Yield', [
-    'Δ yield, average impact vs neighbouring crops (1991–2026): El Niño %s %%, La Niña %s %%, Neutral %s %%' % (fr(avg['pos'], 1, True), fr(avg['neg'], 1, True), fr(avg['neu'], 1, True)),
-    'ENSO alone explains little; what matters is the flowering rain: 3–5 towns with a flowering trigger → +4 %; none → −10 % (r = 0.47, p = 0.002)',
-    '2026 flowering: trigger rain in 4 of 5 towns (not yet Liwa) → no La Niña-type washout; risk = drought after flowering in Lampung'],
-    'Robusta production (USDA PSD) with area ~stable, used as a yield proxy. Colour = ENSO phase of the flowering year (ONI Aug–Nov). Neighbouring crops = median of the crops within ±3 years.')
-def split(vals):
-    return [{'name': PH_NAME[k], 'color': PH_COL[k], 'values': [round(v, 1) if p == k else None for v, p in zip(vals, ph2)]} for k in ('pos', 'neg', 'neu')]
-s.text(0.45, 1.75, 6.2, 0.3, [para(run('Production vs neighbouring crops (%)', 12, True, color=NAVY))])
-s.chart(0.35, 2.02, 6.35, 5.05, combo_bar(cats2, split(an), lines=[
-    {'name': 'Average El Niño: %s %%' % fr(avg['pos'], 1, True), 'values': [round(avg['pos'], 2)] * len(cats2), 'color': EN, 'width': 1.5},
-    {'name': 'Average La Niña: %s %%' % fr(avg['neg'], 1, True), 'values': [round(avg['neg'], 2)] * len(cats2), 'color': LN, 'width': 1.5}],
-    mn=-30, mx=25, unit=10, fmt='0', label_fmt='+0;-0;0', overlap=100, gap=40, skip=2))
-s.text(6.85, 1.75, 6.2, 0.3, [para(run('Production, year-over-year change (%)', 12, True, color=NAVY))])
-s.chart(6.75, 2.02, 6.35, 5.05, combo_bar(cats2, split(yy), mn=-30, mx=50, unit=10, fmt='0', label_fmt='+0;-0;0', overlap=100, gap=40, skip=2))
+avg_y = {k: st.mean(YOY[i] for i in range(len(YRS)) if YRS[i] <= 2026 and PHN[YRS[i]] == k) for k in ('pos', 'neg', 'neu')}
+header(s, 'Indonesia Crop Year 2027/28: Yield, year over year', [
+    'Δ yield, average year-over-year: El Niño %s %%, La Niña %s %%, Neutral %s %%. Distorted by rebounds (2012/13 +47 %% after the 2011/12 collapse)' % (fr(avg_y['pos'], 1, True), fr(avg_y['neg'], 1, True), fr(avg_y['neu'], 1, True)),
+    'The two worst crops followed La Niña flowering years: 2011/12 −14 % and 2023/24 −29 %',
+    '2027/28F (El Niño 2026 flowering, trigger rain in 4 of 5 towns): 14.3 bags/ha, +1.0 % → ≈ 10.2 M bags'], SRC_Y)
+style1(s, 0.3, 1.75, 6.45, 5.3, YOY, -40, 50, 10)
+style2(s, 6.85, 1.75, 6.2, 4.75, YOY, -40, 50, 10, 'Indonesia — Yield year-over-year change (%)')
+slides.append(s)
+s = Slide()
+avg_d = {k: st.mean(DEV[i] for i in range(len(YRS)) if YRS[i] <= 2026 and PHN[YRS[i]] == k) for k in ('pos', 'neg', 'neu')}
+header(s, 'Indonesia Crop Year 2027/28: Yield vs trend', [
+    'Δ yield vs trend, average impact: El Niño %s %%, La Niña %s %%, Neutral %s %%' % (fr(avg_d['pos'], 1, True), fr(avg_d['neg'], 1, True), fr(avg_d['neu'], 1, True)),
+    'La Niña does the most damage: 2011/12 −27 % and 2023/24 −30 % below trend. El Niño costs little: even after the extreme 2015 drought, 2016/17 was −1 %',
+    '2027/28F: 14.3 bags/ha ≈ +1 % vs trend'],
+    SRC_Y + ' Trend = median yield of the 3 crops before and the 3 after (excluding the year itself), robust to the 2012 step up.')
+style1(s, 0.3, 1.75, 6.45, 5.3, DEV, -35, 25, 5)
+style2(s, 6.85, 1.75, 6.2, 4.75, DEV, -35, 25, 5, 'Indonesia — Yield vs trend (%)')
 slides.append(s)
 
 # ---------------- 3. monthly anomalies by ENSO state ----------------

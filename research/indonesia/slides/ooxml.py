@@ -332,3 +332,57 @@ def multi_line(cats, series, mn=None, mx=None, unit=None, fmt='0', skip=None, le
     plot = ('<c:lineChart><c:grouping val="standard"/><c:varyColors val="0"/>%s<c:marker val="1"/><c:axId val="60010"/><c:axId val="60020"/></c:lineChart>' % ser) + \
         _ax_cat(60010, 60020, skip) + _ax_val(60020, 60010, 'l', mn, mx, unit, fmt, True, None)
     return _wrap(plot, legend, legend_pos, legend_sz)
+
+
+def yield_chart(cats, bars, lines=(), mn=-20, mx=20, unit=5, fmt='0.0', label_sz=8, legend=True, layout=(0.07, 0.05, 0.91, 0.78),
+                cat_labels=True, overlap=100, gap=35, hide_legend_idx=()):
+    """Bars (series may carry 'fills': per-point fill xml or None, and 'lfmt' label format) + labelled reference lines.
+    Plot area uses a manual inner layout so text boxes can be aligned with categories."""
+    k = 0
+    ser = ''
+    for b in bars:
+        dpts = ''
+        for j, f in enumerate(b.get('fills') or []):
+            if f:
+                dpts += '<c:dPt><c:idx val="%d"/><c:invertIfNegative val="0"/><c:bubble3D val="0"/><c:spPr>%s</c:spPr></c:dPt>' % (j, f)
+        ser += ('<c:ser><c:idx val="%d"/><c:order val="%d"/><c:tx>%s</c:tx><c:spPr><a:solidFill><a:srgbClr val="%s"/></a:solidFill></c:spPr><c:invertIfNegative val="0"/>%s%s'
+                '<c:cat>%s</c:cat><c:val>%s</c:val></c:ser>') % (
+            k, k, _strcache('Sheet1!$%s$1' % _col(k + 1), [b['name']]), b['color'], dpts, _dlbls('outEnd', label_sz, '262626', b.get('lfmt', fmt)),
+            _strcache('Sheet1!$A$2:$A$%d' % (len(cats) + 1), cats), _numref('Sheet1!$%s$2:$%s$%d' % (_col(k + 1), _col(k + 1), len(cats) + 1), b['values']))
+        k += 1
+    plot = '<c:barChart><c:barDir val="col"/><c:grouping val="clustered"/><c:varyColors val="0"/>%s<c:gapWidth val="%d"/><c:overlap val="%d"/><c:axId val="50010"/><c:axId val="50020"/></c:barChart>' % (ser, gap, overlap)
+    if lines:
+        lser = ''
+        for l in lines:
+            lab = ''
+            if l.get('label'):
+                li = l['label']
+                lab = ('<c:dLbls><c:dLbl><c:idx val="%d"/><c:tx><c:rich><a:bodyPr wrap="none"/><a:lstStyle/><a:p><a:pPr><a:defRPr sz="%d" b="1"/></a:pPr><a:r><a:rPr lang="en-GB" sz="%d" b="1"><a:solidFill><a:srgbClr val="%s"/></a:solidFill><a:latin typeface="Arial"/></a:rPr><a:t>%s</a:t></a:r></a:p></c:rich></c:tx>'
+                       '<c:spPr><a:noFill/><a:ln><a:noFill/></a:ln></c:spPr><c:dLblPos val="%s"/><c:showLegendKey val="0"/><c:showVal val="1"/><c:showCatName val="0"/><c:showSerName val="0"/><c:showPercent val="0"/><c:showBubbleSize val="0"/></c:dLbl>'
+                       '<c:showLegendKey val="0"/><c:showVal val="0"/><c:showCatName val="0"/><c:showSerName val="0"/><c:showPercent val="0"/><c:showBubbleSize val="0"/></c:dLbls>') % (
+                    li['idx'], int(li.get('sz', 9) * 100), int(li.get('sz', 9) * 100), l['color'], esc(li['text']), li.get('pos', 't'))
+            lser += ('<c:ser><c:idx val="%d"/><c:order val="%d"/><c:tx>%s</c:tx><c:spPr><a:ln w="%d" cap="rnd"><a:solidFill><a:srgbClr val="%s"/></a:solidFill><a:prstDash val="%s"/><a:round/></a:ln></c:spPr><c:marker><c:symbol val="none"/></c:marker>%s'
+                     '<c:cat>%s</c:cat><c:val>%s</c:val><c:smooth val="0"/></c:ser>') % (
+                k, k, _strcache('Sheet1!$%s$1' % _col(k + 1), [l['name']]), int(l.get('width', 1.75) * 12700), l['color'], l.get('dash', 'dash'), lab,
+                _strcache('Sheet1!$A$2:$A$%d' % (len(cats) + 1), cats), _numref('Sheet1!$%s$2:$%s$%d' % (_col(k + 1), _col(k + 1), len(cats) + 1), l['values']))
+            k += 1
+        plot += '<c:lineChart><c:grouping val="standard"/><c:varyColors val="0"/>%s<c:marker val="1"/><c:axId val="50010"/><c:axId val="50020"/></c:lineChart>' % lser
+    cat = _ax_cat(50010, 50020)
+    if not cat_labels:
+        cat = cat.replace('<c:tickLblPos val="low"/>', '<c:tickLblPos val="none"/>')
+    plot += cat + _ax_val(50020, 50010, 'l', mn, mx, unit, fmt, True, None)
+    x, y, w, h = layout
+    lay = ('<c:layout><c:manualLayout><c:layoutTarget val="inner"/><c:xMode val="edge"/><c:yMode val="edge"/><c:x val="%s"/><c:y val="%s"/><c:w val="%s"/><c:h val="%s"/></c:manualLayout></c:layout>' % (x, y, w, h))
+    xml = _wrap(plot, legend, 'b', 9)
+    xml = xml.replace('<c:plotArea><c:layout/>', '<c:plotArea>' + lay, 1)
+    if hide_legend_idx:
+        xml = xml.replace('<c:legendPos val="b"/>', '<c:legendPos val="b"/>' + ''.join('<c:legendEntry><c:idx val="%d"/><c:delete val="1"/></c:legendEntry>' % i for i in hide_legend_idx), 1)
+    return xml
+
+
+def solid(c):
+    return '<a:solidFill><a:srgbClr val="%s"/></a:solidFill>' % c
+
+
+def hatch(c):
+    return '<a:pattFill prst="wdUpDiag"><a:fgClr><a:srgbClr val="%s"/></a:fgClr><a:bgClr><a:srgbClr val="FFFFFF"/></a:bgClr></a:pattFill><a:ln w="12700"><a:solidFill><a:srgbClr val="%s"/></a:solidFill></a:ln>' % (c, c)
