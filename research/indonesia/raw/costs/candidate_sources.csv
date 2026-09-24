@@ -1,0 +1,21 @@
+title,url,host_status,source_of_url,priority_note
+"Karang Agung, Way Tenong, Lampung Barat (JFA 4094)",https://jurnal.polinela.ac.id/index.php/JFA/article/download/4094/2656/19254,blocked,task brief,Lampung Barat robusta
+"JPPT article 3494",https://jurnal.polinela.ac.id/jppt/article/download/3494/2255/14688,blocked,task brief,
+"Penentuan Harga Pokok Produksi dan Pendapatan Usahatani Kopi di Kecamatan Bulok Kabupaten Tanggamus (Prasmatiwi et al.)",http://repository.lppm.unila.ac.id/15435/1/Naskah%20Fembriarti%20Erry%20Prasmatiwi-Seminar%20Lahan%20Kering.pdf,blocked,task brief + WebSearch,harga pokok; also ResearchGate 343668136
+"Analisis pendapatan dan efisiensi usahatani kopi robusta (Kepahiang, Bengkulu; Agritepa)",https://jurnal.unived.ac.id/index.php/agritepa/article/download/6870/5243/,blocked,task brief + WebSearch,Bengkulu
+"Sustainable Production of Lampung Robusta Coffee: A Cost-Benefit Analysis",https://www.researchgate.net/publication/340247564_Sustainable_Production_of_Lampung_Robusta_Coffee_A_Cost-Benefit_Analysis,blocked,task brief + WebSearch,
+"Usahatani, pendapatan dan kesejahteraan petani kopi di Lampung Barat",https://www.researchgate.net/publication/338252614,blocked,task brief,
+"Anker Research Institute: Living Income and Living Wage Report and 2025 Update, Rural Lampung",https://www.ankerresearchinstitute.org/indonesia-benchmark/livingwage-nonmetroargentina-2020-emhn8-6k6ew-59zrl-bpbkr-gr7r6-x8622-nzd3d-58wfp-lz5gw-d26te-fjan8-xtc8d,blocked (curl + WebFetch),WebSearch,living income benchmark
+"Analisis Penentuan Biaya Pokok Produksi Olahan Kopi Robusta di Koperasi Tirto Kencono, Tanggamus (JFA 1550)",https://jurnal.polinela.ac.id/JFA/article/view/1550,blocked,WebSearch,processing cost not farm budget; mirror http://repository.lppm.unila.ac.id/20630/1/1550
+"Keragaan dan Pengembangan Agribisnis Kopi Robusta di Provinsi Lampung (Tanggamus) (JFA 1649)",https://jurnal.polinela.ac.id/JFA/article/download/1649/1199,blocked,WebSearch,
+"Analisis Usaha Tani dan Rantai Tata Niaga Kopi Robusta di Bengkulu",https://www.researchgate.net/publication/326442460_Analisis_Usaha_Tani_dan_Rantai_Tata_Niaga_Kopi_Robusta_di_Bengkulu,blocked,WebSearch,Bengkulu
+"Faktor-faktor yang mempengaruhi pendapatan usahatani kopi robusta (Kabawetan, Kepahiang)",https://www.researchgate.net/publication/399252303,blocked,WebSearch,Bengkulu
+"Strategi pengembangan usahatani kopi (Societa, UM Palembang)",https://jurnal.um-palembang.ac.id/societa/article/download/4295/2786,blocked,WebSearch,South Sumatra
+"Analisis kelayakan usahatani kopi robusta (AFP, UTP)",https://ejournal.utp.ac.id/index.php/AFP/article/download/3114/520522048/,blocked,WebSearch,location unverified
+"Sistem pemasaran kopi robusta di Kota Pagar Alam (JAGBI 12(1) 2024)",https://journal.ipb.ac.id/jagbi/article/download/48329/28432,blocked,WebSearch,marketing margins Pagar Alam
+"Analisis usahatani kopi robusta di Desa Sungai Medang",https://repository.uir.ac.id/16454/1/174210464.pdf,blocked,WebSearch,Riau; lower priority
+"Analisis efisiensi usahatani kopi robusta, Purwabakti, Pamijahan, Bogor (IJAREE)",https://journal.ipb.ac.id/index.php/ijaree/article/view/40137,blocked,WebSearch,Java
+"Analisis pendapatan usahatani kopi robusta, Sucen, Gemawang, Temanggung (Agroforetech)",https://jurnal.instiperjogja.ac.id/index.php/JOM/article/view/1869,blocked (not individually tested),WebSearch,Java
+"Analisis pendapatan usahatani kopi robusta, Sipirok, Tapanuli Selatan",https://repository.ipb.ac.id/handle/123456789/96349,blocked,WebSearch,North Sumatra
+"Analisis keuntungan dan nilai tambah pengolahan biji kopi menjadi kopi bubuk, Way Tenong, Lampung Barat",https://jurnal.polbangtanmanokwari.ac.id/index.php/prosiding/article/view/346,blocked,WebSearch,processing
+"USDA FAS GAIN Coffee Semi-annual Jakarta ID2025-0039",https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_ID2025-0039,blocked,WebSearch,context on farmgate prices
