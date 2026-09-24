@@ -1,0 +1,424 @@
+<title>Robusta indonésien 2027/28</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f3f5f1; --surface:#ffffff; --surface-2:#eaeee8;
+  --ink:#16201a; --ink-2:#46534a; --muted:#77837b; --line:#d9dfd7; --axis:#b7c0b8;
+  --accent:#0f6b55; --accent-soft:#dcebe5;
+  --wet:#2a78d6; --dry:#eb6834; --good:#1baf7a; --neutral:#9aa29b; --s4:#4a3aa7;
+  --band:#ece6d6; --band-2:#dfece4;
+  --warn-bg:#fff4dc; --warn-ink:#6b4a00;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0f1311; --surface:#171c19; --surface-2:#1f2622;
+    --ink:#eef2ee; --ink-2:#bcc6bf; --muted:#8a958d; --line:#2b332e; --axis:#46504a;
+    --accent:#45b894; --accent-soft:#1d3a31;
+    --wet:#3987e5; --dry:#d95926; --good:#199e70; --neutral:#7d857f; --s4:#9085e9;
+    --band:#2b2a22; --band-2:#1f3029;
+    --warn-bg:#3a2f12; --warn-ink:#f3d58a;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0f1311; --surface:#171c19; --surface-2:#1f2622;
+  --ink:#eef2ee; --ink-2:#bcc6bf; --muted:#8a958d; --line:#2b332e; --axis:#46504a;
+  --accent:#45b894; --accent-soft:#1d3a31;
+  --wet:#3987e5; --dry:#d95926; --good:#199e70; --neutral:#7d857f; --s4:#9085e9;
+  --band:#2b2a22; --band-2:#1f3029;
+  --warn-bg:#3a2f12; --warn-ink:#f3d58a;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 var(--body);margin:0}
+.wrap{max-width:980px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+.prose{max-width:720px}
+header.top{display:grid;gap:10px;padding-block:8px 20px;border-bottom:1px solid var(--line)}
+.eyebrow{font:500 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font:700 clamp(30px,5vw,46px)/1.08 var(--display);letter-spacing:-.01em;margin:0;text-wrap:balance}
+h2{font:700 26px/1.2 var(--display);margin:0;text-wrap:balance}
+h3{font:600 18px/1.3 var(--body);margin:0}
+.lead{font-size:19px;color:var(--ink-2);margin:0;max-width:720px}
+.meta{font:13px/1.5 var(--mono);color:var(--muted)}
+section{display:grid;gap:16px;padding-block:36px 8px}
+section > .num{font:500 12px var(--mono);color:var(--muted);letter-spacing:.08em}
+p{margin:0}
+.stack{display:grid;gap:14px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+strong{font-weight:700}
+.verdict{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.verdict li{display:grid;grid-template-columns:150px 1fr;gap:18px;padding-block:14px;border-bottom:1px solid var(--line)}
+.verdict .k{font:600 13px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent);padding-top:3px}
+@media (max-width:620px){.verdict li{grid-template-columns:1fr;gap:4px}}
+.note{background:var(--warn-bg);color:var(--warn-ink);border-radius:8px;padding:14px 16px;font-size:16px}
+.note strong{color:inherit}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px}
+figcaption{display:grid;gap:2px;margin-bottom:8px}
+figcaption .t{font:600 16px/1.35 var(--body)}
+figcaption .s{font-size:14px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--ink-2);margin-top:6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.sw.line{height:3px;border-radius:2px;width:16px}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font:12px var(--body);fill:var(--muted)}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .base{stroke:var(--axis);stroke-width:1}
+.chart .ann{font:600 12px var(--body);fill:var(--ink-2)}
+.tip{position:absolute;pointer-events:none;background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:0 4px 18px rgba(0,0,0,.12);border-radius:8px;padding:8px 10px;font:13px/1.45 var(--body);min-width:150px;z-index:2}
+.tip b{font-weight:700}
+.tip .r{display:flex;justify-content:space-between;gap:14px;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:9px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font:600 12px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.pill{display:inline-block;font:600 12px/1 var(--mono);padding:5px 8px;border-radius:999px;white-space:nowrap}
+.pill.yes{background:var(--accent-soft);color:var(--accent)}
+.pill.part{background:var(--band);color:var(--ink-2)}
+.pill.no{background:var(--surface-2);color:var(--muted)}
+.pill.wet{background:color-mix(in srgb,var(--wet) 16%,transparent);color:var(--wet)}
+.pill.dry{background:color-mix(in srgb,var(--dry) 18%,transparent);color:var(--dry)}
+.cal{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:12px}
+.cal-grid{display:grid;grid-template-columns:170px repeat(12,minmax(38px,1fr));gap:4px;min-width:680px;font-size:13px;align-items:center}
+.cal-grid .h{font:500 11px var(--mono);color:var(--muted);text-align:center;text-transform:uppercase}
+.cal-grid .lab{color:var(--ink-2);font-weight:600}
+.bar{height:22px;border-radius:5px;font:600 11px/22px var(--body);color:#fff;padding-inline:8px;white-space:nowrap;overflow:hidden}
+.b-wet{background:color-mix(in srgb,var(--wet) 30%,var(--surface));color:var(--ink)}
+.b-dry{background:var(--band);color:var(--ink)}
+.b-flo{background:var(--good)}
+.b-dev{background:var(--s4)}
+.b-har{background:var(--dry)}
+ol.chain{margin:0;padding:0;list-style:none;display:grid;gap:0;counter-reset:c;border-top:1px solid var(--line)}
+ol.chain li{counter-increment:c;display:grid;grid-template-columns:44px 1fr;gap:14px;padding-block:14px;border-bottom:1px solid var(--line)}
+ol.chain li::before{content:counter(c);font:700 22px/1 var(--display);color:var(--accent);padding-top:2px}
+.scen{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.scen{grid-template-columns:1fr}}
+.scen > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+.scen .v{font:700 30px/1.1 var(--display);font-variant-numeric:tabular-nums}
+.scen .v small{font:500 14px var(--body);color:var(--muted)}
+.scen .p{font:500 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.src{font-size:14px;color:var(--ink-2)}
+.src li{margin-block:4px}
+code,.mono{font-family:var(--mono);font-size:.88em}
+pre{background:var(--surface-2);border-radius:8px;padding:12px 14px;overflow-x:auto;font:13px/1.5 var(--mono);margin:0}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Note d'analyse · Robusta Indonésie · 24 septembre 2026</div>
+  <h1>Robusta indonésien : surface, rendement, météo et prévision 2027/28</h1>
+  <p class="lead">Pourquoi la surface a reculé, d'où viennent les creux de rendement, ce qu'El Niño fait au sud de Sumatra et comment prévoir la récolte d'avril à août 2027.</p>
+  <p class="meta">Sources : ton tableau (ministère de l'Agriculture, Ditjenbun), base USDA PSD (juillet 2026), 21 rapports de l'attaché agricole USDA à Jakarta (2009–2026).</p>
+</header>
+
+<section>
+  <h2>L'essentiel</h2>
+  <ul class="verdict">
+    <li><span class="k">Surface</span><p>La surface de Robusta a baissé de <strong>24 % entre 2004 et 2014</strong> (1,14 → 0,86 M ha), puis elle est stable (+4 % jusqu'en 2023). Cette baisse ne vient pas du climat. Le Robusta rapportait moins que le cacao, l'hévéa et le palmier à huile, l'arabica a pris des terres en altitude et les forêts protégées ont été fermées aux planteurs.</p></li>
+    <li><span class="k">Ton tableau</span><p>Les 500 491 ha productifs de 2023 ne sont pas réels : c'est 6,8 M sacs (USDA) ÷ 13,59 sacs/ha (ministère). Les 1,2 M ha de 2024–2026 sont la surface de <strong>tout</strong> le café indonésien, arabica compris, selon l'USDA.</p></li>
+    <li><span class="k">Rendement</span><p>Il y a deux paliers : <strong>11,5 sacs/ha</strong> en moyenne sur 2004–2016, puis <strong>13,4</strong> sur 2017–2022. Les creux viennent de la météo de la floraison : 2011 (La Niña 2010, pluie toute l'année), 2014 (saison sèche 2013 trop humide), 2016 (sécheresse El Niño 2015).</p></li>
+    <li><span class="k">Météo</span><p>Au sud de Sumatra, le pire ennemi est la <strong>pluie pendant la saison sèche</strong>, au moment de la floraison. D'une année sur l'autre : −12 % puis −16 % en 2010/11 et 2011/12, −28 % en 2023/24, −9 % en 2026/27. La sécheresse El Niño coûte moins, sauf si elle est extrême (−12 % en 2016/17).</p></li>
+    <li><span class="k">2027/28</span><p>La saison sèche 2026 est plus sèche et plus longue que la normale avec un El Niño faible à modéré (prévision BMKG reprise par l'USDA en mai 2026). Si les pluies reviennent en octobre–novembre, c'est <strong>plutôt favorable</strong> à la floraison de la récolte 2027. Le risque est une sécheresse qui dure jusqu'en novembre.</p></li>
+  </ul>
+</section>
+
+<section id="donnees">
+  <span class="num">1 · TES DONNÉES</span>
+  <h2>Deux sources à ne pas mélanger</h2>
+  <div class="prose stack">
+    <p>Ton tableau prend la production du ministère jusqu'en 2022, puis celle de l'USDA à partir de 2023. Les deux séries ne mesurent pas la même chose. Le ministère compte par année civile, à partir des surfaces et de rendements estimés par les districts. L'USDA compte par campagne d'avril à mars, à partir du terrain, des exportateurs et des flux commerciaux. En 2015 et 2017 elles vont même dans des sens opposés.</p>
+  </div>
+  <figure>
+    <figcaption><span class="t">Production de Robusta, ministère contre USDA</span><span class="s">Millions de sacs de 60 kg. Ministère : année civile (ton tableau, 2004–2022). USDA : campagne avril–mars (PSD, juillet 2026).</span></figcaption>
+    <div class="chart" id="c-prod"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--accent)"></i>Ministère (Ditjenbun)</span><span><i class="sw line" style="background:var(--dry)"></i>USDA officiel</span></div>
+  </figure>
+  <div class="note"><strong>Correction de 2023.</strong> 6 800 000 ÷ 13,59 = 500 368 ha, soit ta valeur de 500 491 ha à l'arrondi près. La surface productive a été recalculée à partir de la production USDA. Avec la surface du ministère (~695 000 ha) et son rendement publié (13,59), la production 2023 du ministère serait d'environ 9,45 M sacs. La mauvaise récolte 2023/24 est un choc de <strong>rendement</strong> (météo), pas une perte de surface.</div>
+  <div class="prose"><p><strong>Ce que je te conseille :</strong> garde deux séries séparées. Utilise la série du ministère pour la structure (surface, surface productive, rendement, provinces) et la série USDA pour la prévision de marché. Si tu veux une seule ligne, convertis tout sur la base USDA et note la rupture.</p></div>
+</section>
+
+<section id="surface">
+  <span class="num">2 · SURFACE</span>
+  <h2>Pourquoi la surface a baissé</h2>
+  <div class="prose"><p>J'ai vérifié chaque cause possible dans les rapports de l'attaché USDA à Jakarta, qui décrivent le terrain chaque année depuis 2009. Le tableau résume le verdict, avec la preuve et la source.</p></div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Cause</th><th>Verdict</th><th>Preuve</th></tr></thead>
+      <tbody>
+        <tr><td>Marge / prix du Robusta</td><td><span class="pill yes">Oui, cause n°1</span></td><td>2009 : surface en baisse « surtout dans les régions Robusta », à cause des prix bas ; des planteurs du Lampung passent au cacao. 2010 : Robusta payé 12 000–16 000 IDR/kg au producteur contre 26 000–29 000 pour l'arabica. 2012 : au Lampung, à Bengkulu et au Sumatra du Sud, conversions actives vers « le cacao, l'hévéa et le palmier à huile, plus rentables ».</td></tr>
+        <tr><td>Remplacement par une autre culture</td><td><span class="pill yes">Oui, 2004–2012</span></td><td>Cacao, hévéa, palmier (voir ci-dessus). Depuis 2018, l'USDA note que les conversions sont devenues rares. Aujourd'hui, c'est même le café qui reprend des parcelles de cacao, touchées par les maladies.</td></tr>
+        <tr><td>Passage à l'arabica</td><td><span class="pill yes">Oui</span></td><td>Programmes de l'État depuis 2008–2012 pour étendre l'arabica et rajeunir le Robusta (143 milliards d'IDR en 2012). La production d'arabica USDA passe de 0,95 M sacs (2004/05) à environ 1,4 M (2024–2026).</td></tr>
+        <tr><td>Terre : disponibilité, forêts protégées</td><td><span class="pill part">Partiel</span></td><td>2010 : planter du café en forêt protégée est de plus en plus interdit. 2012 : le terrain difficile et l'empiètement sur les forêts limitent l'expansion. 2014 : pression industrielle et résidentielle sur les terres agricoles.</td></tr>
+        <tr><td>Vieillissement des arbres</td><td><span class="pill part">Partiel</span></td><td>2014 : environ 26 % de la surface plantée est composée de vieux arbres. Cela pèse surtout sur la surface productive et le rendement.</td></tr>
+        <tr><td>Coût des engrais</td><td><span class="pill part">Faible pour la surface</span></td><td>La plupart des petits planteurs mettent très peu d'intrants (USDA 2018, 2024). Le coût des engrais joue sur le rendement, peu sur la surface.</td></tr>
+        <tr><td>Culture associée (intercropping)</td><td><span class="pill no">N'explique pas la baisse</span></td><td>Pratique courante (bananier, poivrier, arbres d'ombrage), mais l'USDA la présente comme un complément de revenu, pas comme un remplacement.</td></tr>
+        <tr><td>Climat</td><td><span class="pill no">Non pour la surface</span></td><td>Le climat fait varier le rendement d'une année sur l'autre, pas la surface. Exception locale : les inondations d'Aceh en 2025, qui touchent l'arabica.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figure>
+    <figcaption><span class="t">Robusta contre palmier à huile, indice 2004 = 100</span><span class="s">Surface plantée en Robusta (ministère, ton tableau) et surface récoltée en palmier à huile (USDA PSD). Un indice commun remplace un double axe.</span></figcaption>
+    <div class="chart" id="c-area"></div>
+    <div class="legend"><span><i class="sw line" style="background:var(--accent)"></i>Robusta, surface plantée</span><span><i class="sw line" style="background:var(--dry)"></i>Palmier à huile, surface récoltée</span></div>
+  </figure>
+  <div class="prose stack">
+    <p>Le palmier à huile triple (4,4 → 13,5 M ha) pendant que le Robusta perd un quart de sa surface. Ce graphique montre une concurrence pour la terre et le travail, pas une preuve parcelle par parcelle : le palmier pousse surtout en plaine (Riau, Jambi, Kalimantan). La preuve directe de conversion au sud de Sumatra vient des rapports USDA de 2009–2012.</p>
+    <p><strong>Ce qui manque :</strong> les séries de prix (Robusta, cacao, caoutchouc, huile de palme, urée) et les surfaces FAO de cacao et d'hévéa, pour montrer la marge relative année par année. Ces sites sont bloqués dans mon environnement (voir la fin de la note).</p>
+  </div>
+</section>
+
+<section id="rendement">
+  <span class="num">3 · RENDEMENT</span>
+  <h2>Les creux viennent de la météo, la hausse des prix et du travail</h2>
+  <figure>
+    <figcaption><span class="t">Rendement du Robusta, sacs de 60 kg par hectare productif</span><span class="s">Ministère (ton tableau). Chaque point est coloré selon la météo de la floraison de l'année précédente décrite par l'USDA. Lignes pointillées : moyenne de chaque palier.</span></figcaption>
+    <div class="chart" id="c-yield"></div>
+    <div class="legend"><span><i class="sw" style="background:var(--wet)"></i>Floraison trop humide</span><span><i class="sw" style="background:var(--dry)"></i>Floraison trop sèche (El Niño)</span><span><i class="sw" style="background:var(--good)"></i>Floraison favorable</span><span><i class="sw" style="background:var(--neutral)"></i>Pas de signal net</span></div>
+  </figure>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Creux</th><th>Cause</th><th>Ce qu'en dit l'USDA</th></tr></thead>
+      <tbody>
+        <tr><td class="n">2011</td><td><span class="pill wet">La Niña 2010</span></td><td>« Hausse spectaculaire des pluies dans toute l'Indonésie en 2010 » : floraison ratée, pertes au séchage, scolytes. −20 % au niveau national, −30 % dans les plantations d'État de Java. La récolte USDA 2011/12 est à −27 % par rapport aux récoltes voisines.</td></tr>
+        <tr><td class="n">2014</td><td><span class="pill wet">Saison sèche 2013 humide</span></td><td>« Pluies excessives pendant la floraison de la saison sèche 2013 » : pollinisation insuffisante, récolte 2014/15 en baisse de 6 %.</td></tr>
+        <tr><td class="n">2015–2016</td><td><span class="pill dry">El Niño 2015</span></td><td>Sécheresse forte de juillet à novembre 2015 (incendies au Sumatra du Sud) : floraison et maturation perturbées, récolte 2016/17 à −12 %. Pour 2015, l'USDA voit au contraire une bonne récolte (+15 %) : le creux du ministère cette année-là ne se retrouve pas chez l'USDA.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prose stack">
+    <p><strong>Pourquoi le rendement remonte après 2017.</strong> L'USDA cite trois moteurs. En 2021, de jeunes planteurs revenus au village pendant la pandémie apportent du travail et de meilleures pratiques. En 2024–2025, les prix records augmentent les marges : plus d'engrais, remise en production de parcelles abandonnées, meilleure taille. Enfin, les programmes de rajeunissement de l'État jouent à la marge. Le saut de +13 % en une seule année (2016 → 2017), alors que l'USDA ne voit rien bouger, peut aussi venir d'une révision statistique du ministère : à vérifier dans la note méthodologique de l'Outlook Kopi.</p>
+    <p><strong>Plus productif ne veut pas dire plus résistant.</strong> Presque toutes les parcelles sont pluviales, sans irrigation, et le niveau d'intrants reste faible (864 kg/ha en moyenne au sud de Sumatra en 2020, selon l'USDA). La récolte perd encore 28 % quand la floraison est ratée, comme en 2023/24. Pour prévoir, traite le rendement comme <em>un palier structurel plus un choc météo</em>, pas comme une droite de régression.</p>
+  </div>
+</section>
+
+<section id="meteo">
+  <span class="num">4 · MÉTÉO</span>
+  <h2>Ce qu'El Niño et La Niña font à la récolte</h2>
+  <div class="prose"><p>Tout se joue l'année <strong>avant</strong> la récolte. Le caféier a besoin d'un vrai stress sec pendant la saison sèche (juin–septembre) pour préparer ses boutons, puis de pluies qui reviennent pour les faire éclore (septembre–novembre). La cerise grossit ensuite pendant la saison des pluies et se récolte à partir de mars en plaine, de juin en altitude.</p></div>
+  <div class="cal" role="img" aria-label="Calendrier du Robusta au sud de Sumatra">
+    <div class="cal-grid">
+      <div></div><div class="h">Jan</div><div class="h">Fév</div><div class="h">Mar</div><div class="h">Avr</div><div class="h">Mai</div><div class="h">Juin</div><div class="h">Juil</div><div class="h">Août</div><div class="h">Sep</div><div class="h">Oct</div><div class="h">Nov</div><div class="h">Déc</div>
+      <div class="lab">Saisons</div><div class="bar b-wet" style="grid-column:span 4">Pluies</div><div class="bar b-dry" style="grid-column:span 5;opacity:.6">transition</div><div class="bar b-wet" style="grid-column:span 3">Pluies</div>
+      <div class="lab">Saison sèche</div><div style="grid-column:span 5"></div><div class="bar b-dry" style="grid-column:span 4">Stress sec = induction florale</div><div style="grid-column:span 3"></div>
+      <div class="lab">Floraison (année N−1)</div><div style="grid-column:span 8"></div><div class="bar b-flo" style="grid-column:span 3">Floraison</div><div></div>
+      <div class="lab">Grossissement cerise</div><div class="bar b-dev" style="grid-column:span 3">Cerises (N)</div><div style="grid-column:span 8"></div><div class="bar b-dev">N</div>
+      <div class="lab">Récolte plaine (40 %)</div><div style="grid-column:span 2"></div><div class="bar b-har" style="grid-column:span 3">Récolte</div><div style="grid-column:span 7"></div>
+      <div class="lab">Récolte altitude (60 %)</div><div style="grid-column:span 5"></div><div class="bar b-har" style="grid-column:span 3">Récolte</div><div style="grid-column:span 4"></div>
+    </div>
+  </div>
+  <p class="meta">Calendrier : rapports USDA Jakarta 2014, 2017, 2021, 2025 (récolte en plaine de fin mars à mai, en altitude de juin à août ; floraison citée en octobre–novembre 2016 et 2024). La récolte de l'année N correspond à la campagne USDA N/N+1.</p>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Phénomène</th><th>Effet sur la pluie au sud de Sumatra</th><th>Effet sur la récolte suivante</th></tr></thead>
+      <tbody id="enso-rules">
+        <tr><td><span class="pill dry">El Niño</span></td><td>Saison sèche plus sèche et plus longue, retour des pluies retardé (juillet–novembre).</td><td>Modéré : bon stress sec, mais floraison retardée ou étalée si la sécheresse dure. Pertes seulement en cas d'épisode extrême (2015 : −12 % sur un an). Récolte décalée (2024 : début mai–juin au lieu de mars–avril).</td></tr>
+        <tr><td><span class="pill dry">IOD positif</span></td><td>Renforce la sécheresse de septembre à novembre, en plein dans la floraison.</td><td>Avec El Niño (2015, 2019, 2023), c'est le scénario de sécheresse extrême.</td></tr>
+        <tr><td><span class="pill wet">La Niña</span></td><td>« Saison sèche humide » : pluies pendant la saison sèche.</td><td>Fort : pas de stress sec, fleurs lavées, pollinisation ratée. Les plus grosses pertes : 2011/12 et 2023/24, environ −27 % et −28 % par rapport aux récoltes voisines.</td></tr>
+        <tr><td><span class="pill wet">IOD négatif</span></td><td>Pluies au-dessus de la normale de juillet à novembre.</td><td>Même effet que La Niña. 2016, 2022 et 2025 ont précédé des récoltes jugées mauvaises en altitude.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure>
+    <figcaption><span class="t">Récolte USDA de Robusta : écart par rapport aux récoltes voisines</span><span class="s">% d'écart entre chaque campagne et la médiane des 6 campagnes voisines (USDA PSD). Couleur : météo de l'année précédente (floraison et cerises) telle que la décrivent les rapports USDA de Jakarta, disponibles depuis 2009.</span></figcaption>
+    <div class="chart" id="c-anom"></div>
+    <div class="legend"><span><i class="sw" style="background:var(--wet)"></i>Trop humide</span><span><i class="sw" style="background:var(--dry)"></i>Trop sec (El Niño)</span><span><i class="sw" style="background:var(--good)"></i>Favorable</span><span><i class="sw" style="background:var(--neutral)"></i>Mixte ou pas de rapport USDA</span></div>
+  </figure>
+  <div class="prose stack">
+    <p>À noter : de 2017/18 à 2022/23, le chiffre officiel USDA ne bouge presque pas (9,3–9,5 M sacs), alors que l'attaché à Jakarta décrivait des variations régionales fortes. L'officiel USDA est lissé. Pour détecter tôt un choc, le chiffre de l'attaché (« Post ») publié en mai et en novembre–décembre est plus réactif.</p>
+  </div>
+
+  <div class="note"><strong>Graphiques pluie et température NASA POWER.</strong> NASA POWER et NOAA sont bloqués dans mon environnement. J'ai préparé le script <code>research/indonesia/south_sumatra_weather.py</code> (poussé sur la branche). Il produit, sur ton PC comme <code>build_data.py</code> : la pluie mensuelle et la température maximale pour Pagar Alam, Lahat, Muaradua, Liwa et Kepahiang face à la normale 1991–2020 ; l'effet moyen d'El Niño, de La Niña et de l'IOD sur la pluie de chaque mois ; les mois dont la pluie explique le mieux la récolte USDA ; et le suivi 2026 mois par mois.</div>
+  <pre>python research/indonesia/south_sumatra_weather.py
+# → research/indonesia/output/south_sumatra_weather.html</pre>
+</section>
+
+<section id="prevision">
+  <span class="num">5 · CHAÎNE DE PRÉVISION</span>
+  <h2>Comment je prévoirais la récolte, étape par étape</h2>
+  <ol class="chain">
+    <li><div class="stack"><h3>Choisir la base de mesure</h3><p>Prévois dans l'unité du marché : sacs USDA, campagne avril–mars. Utilise la série du ministère pour la structure (surface, rendement, provinces), pas pour le niveau.</p></div></li>
+    <li><div class="stack"><h3>Surface productive : presque fixe</h3><p>Environ 0,69 M ha productifs (ministère) et 1,2 M ha de café au total (USDA). Hypothèse de 0 à +1 % par an. Les nouvelles plantations de 2024–2026, dues aux prix records, n'entrent en production qu'après environ 3 ans, donc surtout à partir de 2027–2029.</p></div></li>
+    <li><div class="stack"><h3>Récolte « météo normale » aux intrants actuels</h3><p>La moyenne de 2025/26 (11,0, bonne météo et plus d'engrais) et de 2026/27 (10,0, floraison trop humide) donne environ <strong>10,5 M sacs</strong>. C'est le point de départ avant météo.</p></div></li>
+    <li><div class="stack"><h3>Choc de floraison (juillet–novembre de l'année N−1)</h3><p>C'est le facteur n°1. Saison sèche humide (La Niña, IOD−) : −10 à −30 %. Saison sèche normale suivie de pluies à l'heure : 0 à +10 %. Sécheresse qui dure jusqu'en novembre (El Niño fort + IOD+) : −5 à −15 % et récolte décalée.</p></div></li>
+    <li><div class="stack"><h3>Choc de grossissement (décembre N−1 – mars N)</h3><p>Pluies très fortes et vent en altitude : −5 à −10 % (chute de cerises). Suivi mensuel avec NASA POWER et les prévisions BMKG.</p></div></li>
+    <li><div class="stack"><h3>Ajustement économique</h3><p>Prix au producteur et marge, donc engrais, taille et entretien. Des prix élevés soutiennent le rendement l'année suivante (USDA 2025). Une baisse des prix fait l'inverse, surtout en altitude où le travail coûte plus cher.</p></div></li>
+    <li><div class="stack"><h3>Vérifications de marché</h3><p>Exportations mensuelles (BPS) d'avril à septembre, prix bord champ au Lampung et à Palembang et différentiels, arrivées aux ports, chiffre de l'attaché USDA (mai et novembre–décembre), rapports des exportateurs (AEKI).</p></div></li>
+  </ol>
+</section>
+
+<section id="scenarios">
+  <span class="num">6 · 2027/28</span>
+  <h2>Ce qu'on peut attendre l'an prochain</h2>
+  <div class="prose stack">
+    <p>La récolte 2027 (campagne USDA 2027/28) se décide en ce moment. D'après le BMKG, repris par l'USDA en mai 2026, la saison sèche 2026 au sud de Sumatra est plus sèche et plus longue que la normale, avec un pic en août et un El Niño faible qui devait devenir modéré au second semestre. Après une floraison 2025 trop humide et une récolte 2026 plus petite, les arbres ont en principe plus de réserves. Un vrai stress sec est ce qu'il faut pour une bonne floraison, à condition que les pluies reviennent en octobre–novembre.</p>
+  </div>
+  <div class="scen" id="scen">
+    <div><span class="p">Scénario bas · 25 %</span><span class="v">9,0–9,5 <small>M sacs</small></span><p>La sécheresse dure jusqu'en novembre (El Niño modéré + IOD positif), la floraison est tardive et étalée, puis de fortes pluies tombent de décembre à février.</p></div>
+    <div><span class="p">Scénario central · 50 %</span><span class="v">10,5–11,0 <small>M sacs</small></span><p>Saison sèche marquée, pluies de retour en octobre, bonne floraison. Les intrants restent soutenus par les prix.</p></div>
+    <div><span class="p">Scénario haut · 25 %</span><span class="v">11,5+ <small>M sacs</small></span><p>Le scénario central, sans pluie ni vent excessifs de décembre à mars, avec plus d'engrais et les premières jeunes plantations.</p></div>
+  </div>
+  <figure>
+    <figcaption><span class="t">Récolte USDA de Robusta et fourchette 2027/28</span><span class="s">Millions de sacs. Historique USDA PSD, puis scénarios de cette note (le trait marque le scénario central).</span></figcaption>
+    <div class="chart" id="c-scen"></div>
+  </figure>
+  <div class="prose"><p>Les probabilités sont un jugement de trader, pas une sortie de modèle. À mettre à jour dès que tu as les pluies de juillet à octobre 2026 (script NASA POWER) et l'état de l'IOD pour octobre–novembre.</p></div>
+</section>
+
+<section id="sources">
+  <span class="num">SOURCES</span>
+  <h2>D'où viennent les chiffres</h2>
+  <ul class="src" id="src-list">
+    <li>Ton tableau : surface plantée, surface productive, production et rendement du Robusta, ministère indonésien de l'Agriculture (Ditjenbun / Outlook Kopi), 2004–2023.</li>
+    <li><a href="https://apps.fas.usda.gov/psdonline/downloads/psd_coffee_csv.zip">USDA PSD, café</a> (Robusta et arabica, Indonésie) et <a href="https://apps.fas.usda.gov/psdonline/downloads/psd_oilseeds_csv.zip">USDA PSD, oléagineux</a> (surface récoltée en palmier à huile), publication de juillet 2026.</li>
+    <li>Rapports de l'attaché agricole USDA à Jakarta (GAIN), café, Indonésie :
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_12-10-2009.pdf">déc. 2009</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Annual_Jakarta_Indonesia_5-18-2010.pdf">mai 2010</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_11-15-2010.pdf">nov. 2010</a> ·
+      ID1124 mai 2011 ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_12-6-2011.pdf">déc. 2011</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Annual_Jakarta_Indonesia_5-31-2012.pdf">mai 2012</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_11-27-2012.pdf">nov. 2012</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_11-22-2013.pdf">nov. 2013</a> ·
+      ID1416 mai 2014 · ID1537 nov. 2015 ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_11-14-2016.pdf">nov. 2016</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Annual_Jakarta_Indonesia_5-15-2017.pdf">mai 2017</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_11-14-2017.pdf">nov. 2017</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Annual_Jakarta_Indonesia_5-17-2018.pdf">mai 2018</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Annual_Jakarta_Indonesia_05-15-2021">mai 2021</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_ID2023-0026.pdf">nov. 2023</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Annual_Jakarta_Indonesia_ID2024-0016.pdf">mai 2024</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Annual_Jakarta_Indonesia_ID2025-0021.pdf">mai 2025</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Semi-annual_Jakarta_Indonesia_ID2025-0039">déc. 2025</a> ·
+      <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+Annual_Jakarta_Indonesia_ID2026-0021.pdf">mai 2026</a>.</li>
+    <li>Bloqués dans mon environnement, à ajouter quand l'accès réseau sera ouvert : NASA POWER, indices ONI et IOD de la NOAA, FAOSTAT (surfaces cacao et hévéa), prix de la Banque mondiale, publications du ministère indonésien.</li>
+  </ul>
+</section>
+</div>
+
+<script>
+(function(){
+const Y = [2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
+// Ministry (user's table) 2004-2023
+const PLANTED = [1135114,1112597,1089951,1018573,970677,946791,920790,902341,902548,879117,863731,863626,871648,859547,860094,860438,860777,890427,890065,896285];
+const PROD_MIN = [9485067,9349650,9420567,8866833,8829900,8536850,8623283,7867033,8094817,8107017,7500850,7367300,7492267,8389750,8838417,8969517,9172117,9451433,9559833];
+const YIELD = [10.99,11.15,11.40,11.44,11.94,12.04,12.34,11.47,11.66,12.05,11.28,11.03,11.22,12.64,13.13,13.34,13.62,13.62,13.75,13.59];
+// USDA PSD, market year N = Apr N - Mar N+1 (1000 bags)
+const USDA_ROB = {1998:6465,1999:6200,2000:6040,2001:5665,2002:6250,2003:6600,2004:7500,2005:8400,2006:6600,2007:7200,2008:8700,2009:9000,2010:7950,2011:6670,2012:9900,2013:10000,2014:9200,2015:10600,2016:9300,2017:9400,2018:9400,2019:9450,2020:9400,2021:9300,2022:9500,2023:6800,2024:9300,2025:11000,2026:10000};
+const PALM = [4383,4886,5236,5586,6063,6498,7256,8064,8430,8958,9523,10300,11100,11700,11900,12100,12200,12500,13500,13500,14000,14000,14000];
+// weather of the flowering year (N-1) for the crop of year N, from USDA Jakarta narratives
+const YCLASS = {2011:'wet',2014:'wet',2016:'dry',2012:'good',2013:'good',2015:'good',2017:'wet',2021:'wet',2023:'wet',2019:'good'};
+
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent){ const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; }
+function nice(lo,hi,n){ n=n||5; if(hi===lo) hi=lo+1; const raw=(hi-lo)/n, mag=Math.pow(10,Math.floor(Math.log10(raw))); const step=[1,2,2.5,5,10].map(s=>s*mag).find(s=>s>=raw); const a=Math.floor(lo/step)*step, b=Math.ceil(hi/step)*step; const t=[]; for(let v=a; v<=b+step/2; v+=step) t.push(+v.toFixed(6)); return {a,b,t}; }
+const fr = (v,d=1) => v.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});
+
+// Generic chart. cfg: {x:[labels], series:[{name,color,values,type:'line'|'bar',dash,dot:(i)=>color}], yMin, yMax, fmt, unit, refs:[{y,label}], band:{from,to,label}, labels:[{i,y,text,dy}] , tip:(i)=>html}
+function chart(id, cfg){
+  const host=document.getElementById(id); host.innerHTML='';
+  const W=720, H=cfg.h||300, L=48, R=16, T=14, B=34, pw=W-L-R, ph=H-T-B;
+  const n=cfg.x.length;
+  let vals=[]; cfg.series.forEach(s=>s.values.forEach(v=>{ if(v!=null) vals.push(v); }));
+  (cfg.refs||[]).forEach(r=>vals.push(r.y));
+  let lo=cfg.yMin!=null?cfg.yMin:Math.min(...vals), hi=cfg.yMax!=null?cfg.yMax:Math.max(...vals);
+  const sc=nice(lo,hi,cfg.nTicks||5); const a=cfg.yMin!=null?cfg.yMin:sc.a, b=cfg.yMax!=null?cfg.yMax:sc.b;
+  const ticks=sc.t.filter(t=>t>=a-1e-9&&t<=b+1e-9);
+  const X=i=>L+pw*(i+0.5)/n, Yv=v=>T+ph*(1-(v-a)/(b-a));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cfg.aria||''},host);
+  if(cfg.band){ const x0=L+pw*cfg.band.from/n, x1=L+pw*(cfg.band.to+1)/n; el('rect',{x:x0,y:T,width:x1-x0,height:ph,fill:css('--band'),opacity:.7},svg); const t=el('text',{x:(x0+x1)/2,y:T+14,'text-anchor':'middle',class:'ann'},svg); t.textContent=cfg.band.label; }
+  ticks.forEach(t=>{ el('line',{x1:L,x2:L+pw,y1:Yv(t),y2:Yv(t),class:'grid'},svg); const tx=el('text',{x:L-8,y:Yv(t)+4,'text-anchor':'end'},svg); tx.textContent=cfg.fmt?cfg.fmt(t):t; });
+  const every=Math.ceil(n/12);
+  cfg.x.forEach((lab,i)=>{ if(i%every===0||i===n-1){ const tx=el('text',{x:X(i),y:H-10,'text-anchor':'middle'},svg); tx.textContent=lab; } });
+  const zero=Math.max(a,Math.min(b,0));
+  el('line',{x1:L,x2:L+pw,y1:Yv(cfg.base!=null?cfg.base:zero),y2:Yv(cfg.base!=null?cfg.base:zero),class:'base'},svg);
+  (cfg.refs||[]).forEach(r=>{ const x0=r.from!=null?X(r.from)-pw/n*0.4:L, x1=r.to!=null?X(r.to)+pw/n*0.4:L+pw; el('line',{x1:x0,x2:x1,y1:Yv(r.y),y2:Yv(r.y),stroke:css('--ink-2'),'stroke-width':1.5,'stroke-dasharray':'5 4'},svg); if(r.label){ const atStart=r.at==='start'; const t=el('text',{x:atStart?x0+2:x1-2,y:Yv(r.y)+(r.dy!=null?r.dy:-6),'text-anchor':atStart?'start':'end',class:'ann'},svg); t.textContent=r.label; } });
+  cfg.series.forEach(s=>{
+    const col=css(s.color);
+    if(s.type==='bar'){
+      const bw=pw/n*0.66;
+      s.values.forEach((v,i)=>{ if(v==null) return; const y0=Yv(cfg.base!=null?cfg.base:zero), y1=Yv(v); const c=s.dot?css(s.dot(i)):col; el('rect',{x:X(i)-bw/2,y:Math.min(y0,y1),width:bw,height:Math.max(1,Math.abs(y1-y0)),rx:3,fill:c},svg); });
+      if(s.range) s.range.forEach(r=>{ const bw2=pw/n*0.66; el('rect',{x:X(r.i)-bw2/2,y:Yv(r.hi),width:bw2,height:Yv(r.lo)-Yv(r.hi),rx:3,fill:css(r.color),opacity:.35},svg); el('line',{x1:X(r.i)-bw2/2,x2:X(r.i)+bw2/2,y1:Yv(r.mid),y2:Yv(r.mid),stroke:css(r.color),'stroke-width':2.5},svg); });
+    } else {
+      let d='', pen=false;
+      s.values.forEach((v,i)=>{ if(v==null){pen=false;return;} d+=(pen?'L':'M')+X(i).toFixed(1)+','+Yv(v).toFixed(1); pen=true; });
+      el('path',{d,fill:'none',stroke:col,'stroke-width':2,'stroke-linejoin':'round','stroke-dasharray':s.dash?'6 4':'none'},svg);
+      if(s.dot) s.values.forEach((v,i)=>{ if(v==null) return; el('circle',{cx:X(i),cy:Yv(v),r:5,fill:css(s.dot(i)),stroke:css('--surface'),'stroke-width':2},svg); });
+    }
+  });
+  (cfg.labels||[]).forEach(l=>{ const t=el('text',{x:X(l.i),y:Yv(l.y)+(l.dy||-12),'text-anchor':l.anchor||'middle',class:'ann'},svg); t.textContent=l.text; });
+  // hover
+  const tip=document.createElement('div'); tip.className='tip'; tip.hidden=true; host.appendChild(tip);
+  const cross=el('line',{y1:T,y2:T+ph,stroke:css('--axis'),'stroke-width':1,visibility:'hidden'},svg);
+  const hit=el('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent'},svg);
+  function move(ev){ const r=svg.getBoundingClientRect(); const px=(ev.clientX-r.left)*W/r.width; let i=Math.floor((px-L)/pw*n); i=Math.max(0,Math.min(n-1,i)); const html=cfg.tip(i); if(!html){ tip.hidden=true; cross.setAttribute('visibility','hidden'); return; } cross.setAttribute('x1',X(i)); cross.setAttribute('x2',X(i)); cross.setAttribute('visibility','visible'); tip.innerHTML=html; tip.hidden=false; const hr=host.getBoundingClientRect(); let left=(X(i)*r.width/W)+(r.left-hr.left)+12; if(left+tip.offsetWidth>hr.width) left=left-tip.offsetWidth-24; tip.style.left=Math.max(0,left)+'px'; tip.style.top=((ev.clientY-hr.top)-tip.offsetHeight-10<0?(ev.clientY-hr.top)+14:(ev.clientY-hr.top)-tip.offsetHeight-10)+'px'; }
+  hit.addEventListener('pointermove',move); hit.addEventListener('pointerdown',move);
+  hit.addEventListener('pointerleave',()=>{ tip.hidden=true; cross.setAttribute('visibility','hidden'); });
+}
+const row=(k,v,c)=>`<div class="r"><span>${c?`<i class="sw" style="background:var(${c})"></i> `:''}${k}</span><b>${v}</b></div>`;
+
+function draw(){
+  // 1. production ministry vs USDA
+  const x1=Y.map(String);
+  const minB=Y.map((y,i)=>i<PROD_MIN.length?PROD_MIN[i]/1e6:null);
+  const usB=Y.map(y=>USDA_ROB[y]/1000);
+  chart('c-prod',{x:x1,aria:'Production ministère contre USDA',yMin:6,fmt:v=>fr(v,0),
+    series:[{name:'Ministère',color:'--accent',values:minB},{name:'USDA',color:'--dry',values:usB}],
+    labels:[{i:19,y:6.8,text:'2023/24 : 6,8',dy:18}],
+    tip:i=>`<b>${Y[i]}</b>${row('Ministère',minB[i]==null?'–':fr(minB[i],2)+' M','--accent')}${row('USDA '+Y[i]+'/'+String(Y[i]+1).slice(2),fr(usB[i],2)+' M','--dry')}`});
+  // 2. area index
+  const pi=PLANTED.map(v=>100*v/PLANTED[0]).concat([null,null,null]);
+  const oi=PALM.map(v=>100*v/PALM[0]);
+  chart('c-area',{x:x1,aria:'Indice des surfaces',yMin:0,fmt:v=>fr(v,0),
+    series:[{name:'Robusta',color:'--accent',values:pi},{name:'Palmier',color:'--dry',values:oi}],
+    refs:[{y:100}],
+    labels:[{i:10,y:pi[10],text:'Robusta −24 % (2004→2014)',dy:24},{i:19,y:oi[19],text:'Palmier ×3',dy:-12}],
+    tip:i=>`<b>${Y[i]}</b>${row('Robusta planté',pi[i]==null?'–':fr(pi[i],0)+(i<PLANTED.length?' · '+(PLANTED[i]/1e6).toLocaleString('fr-FR',{maximumFractionDigits:3})+' M ha':''),'--accent')}${row('Palmier récolté',fr(oi[i],0)+' · '+fr(PALM[i]/1000,1)+' M ha','--dry')}`});
+  // 3. yield
+  const yy=Y.slice(0,20).map(String);
+  const cls=i=>{ const c=YCLASS[Y[i]]; return c==='wet'?'--wet':c==='dry'?'--dry':c==='good'?'--good':'--neutral'; };
+  const why={2011:'Floraison 2010 : pluie toute l\'année (La Niña)',2014:'Floraison 2013 : saison sèche trop humide',2016:'Floraison 2015 : sécheresse El Niño',2017:'Floraison 2016 : trop humide en altitude (USDA)',2021:'Fin 2020 : fortes pluies (La Niña)',2023:'2022 : météo sévère, récolte USDA −28 %',2012:'Floraison 2011 : météo favorable',2013:'Floraison 2012 : bonne météo',2015:'Floraison 2014 : favorable (USDA)',2019:'Plaine favorable (USDA)'};
+  chart('c-yield',{x:yy,aria:'Rendement Robusta',yMin:10,yMax:14.5,fmt:v=>fr(v,1),h:320,
+    series:[{name:'Rendement',color:'--ink-2',values:YIELD,dot:cls}],
+    refs:[{y:11.54,from:0,to:12,label:'Moyenne 2004–2016 : 11,5',at:'start',dy:-8},{y:13.35,from:13,to:18,label:'Moyenne 2017–2022 : 13,4',dy:18}],
+    labels:[{i:7,y:11.47,text:'2011',dy:22},{i:10,y:11.28,text:'2014',dy:22},{i:11,y:11.03,text:'2015',dy:22},{i:12,y:11.22,text:'2016',dy:22}],
+    tip:i=>`<b>${Y[i]}</b>${row('Rendement',fr(YIELD[i],2)+' sacs/ha',cls(i))}${why[Y[i]]?`<div style="margin-top:4px;color:var(--ink-2)">${why[Y[i]]}</div>`:''}`});
+  // 4. anomaly bars
+  const AY=[]; for(let y=2000;y<=2026;y++) AY.push(y);
+  const ys=Object.keys(USDA_ROB).map(Number).sort((a,b)=>a-b);
+  const med=a=>{const s=[...a].sort((p,q)=>p-q), m=s.length>>1; return s.length%2?s[m]:(s[m-1]+s[m])/2;};
+  const an=AY.map(y=>{ const nb=ys.filter(x=>x!==y&&Math.abs(x-y)<=3).map(x=>USDA_ROB[x]); return 100*(USDA_ROB[y]/med(nb)-1); });
+  // crop year N -> weather of flowering / cherry season N-1, as written in the USDA Jakarta reports
+  const ACLASS={2010:'wet',2011:'wet',2012:'good',2013:'mixed',2014:'wet',2015:'good',2016:'dry',2017:'wet',2018:'mixed',2021:'wet',2023:'wet',2024:'dry',2025:'good',2026:'wet'};
+  const anote={2010:'2009 normal, puis récolte 2010 noyée par La Niña',2011:'2010, pluie toute l\'année (La Niña)',2012:'2011, météo favorable',2013:'2012, sec à la floraison puis pluie sur les cerises',2014:'2013, saison sèche trop humide',2015:'2014, floraison favorable',2016:'2015, sécheresse El Niño',2017:'2016, trop humide en altitude',2018:'2017, humide et venteux en altitude, bon en plaine',2021:'2020, fortes pluies fin 2020 (La Niña)',2023:'2022, météo sévère sur les cerises',2024:'2023, sécheresse El Niño, récolte retardée',2025:'2024, floraison favorable (oct.–nov.)',2026:'2025, pluie excessive à la floraison'};
+  const acol=i=>{ const c=ACLASS[AY[i]]; return c==='wet'?'--wet':c==='dry'?'--dry':c==='good'?'--good':'--neutral'; };
+  chart('c-anom',{x:AY.map(y=>String(y).slice(2)+'/'+String(y+1).slice(2)),aria:'Écart des récoltes USDA',fmt:v=>(v>0?'+':'')+fr(v,0)+' %',h:300,
+    series:[{name:'Écart',type:'bar',color:'--neutral',values:an,dot:acol}],
+    labels:[{i:11,y:an[11],text:'11/12 : La Niña 2010',dy:16},{i:23,y:an[23],text:'23/24',dy:16}],
+    tip:i=>`<b>Campagne ${AY[i]}/${String(AY[i]+1).slice(2)}</b>${row('USDA',fr(USDA_ROB[AY[i]]/1000,2)+' M sacs')}${row('Écart voisins',(an[i]>0?'+':'')+fr(an[i],1)+' %',acol(i))}${anote[AY[i]]?`<div style="margin-top:4px;color:var(--ink-2)">Floraison ${AY[i]-1} : ${anote[AY[i]]}</div>`:''}`});
+  // 5. scenarios
+  const SY=[2019,2020,2021,2022,2023,2024,2025,2026,2027];
+  const sv=SY.map(y=>y<2027?USDA_ROB[y]/1000:null);
+  chart('c-scen',{x:SY.map(y=>String(y).slice(2)+'/'+String(y+1).slice(2)),aria:'Scénarios 2027/28',yMin:0,yMax:12,nTicks:6,fmt:v=>fr(v,0),h:260,
+    series:[{name:'USDA',type:'bar',color:'--neutral',values:sv,range:[{i:8,lo:9.0,hi:11.5,mid:10.75,color:'--accent'}]}],
+    labels:[{i:8,y:11.5,text:'9,0–11,5',dy:-8}],
+    tip:i=>i<8?`<b>${SY[i]}/${String(SY[i]+1).slice(2)}</b>${row('USDA',fr(sv[i],2)+' M sacs')}`:`<b>2027/28 (scénarios)</b>${row('Bas','9,0–9,5')}${row('Central','10,5–11,0','--accent')}${row('Haut','11,5+')}`});
+}
+draw();
+try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw); }catch(e){}
+new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+let rt; window.addEventListener('resize',()=>{clearTimeout(rt); rt=setTimeout(draw,150);});
+})();
+</script>
