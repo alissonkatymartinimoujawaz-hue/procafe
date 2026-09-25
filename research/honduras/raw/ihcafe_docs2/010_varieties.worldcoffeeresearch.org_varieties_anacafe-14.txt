@@ -15,7 +15,7 @@ Home/
 Arabica/
 Varieties/
 Anacafe 14
-Very high yield­ing vari­ety, with rust resis­tance and good qual­i­ty at ele­va­tions above 1300 meters. Vari­ety not uniform.
+Very high yielding variety, with rust resistance and good quality at elevations above 1300 meters. Variety not uniform.
 Stature
 Close
 Stature
@@ -25,57 +25,57 @@ Dwarf/Compact
 Leaf tip color
 Close
 Leaf tip color
-What col­or are the tips of new leaves?
+What color are the tips of new leaves?
 Green, Bronze, Green or Bronze, Light Bronze, Dark Bronze, Unknown, Not applicable
 Green
 Bean Size
 Close
 Bean Size
-How big are the cof­fee beans? For Ara­bi­ca ref­er­ence, Catur­ra = Aver­age, SL28 = Large, and Mar­a­gogipe = Very Large.
-Below Aver­age, Aver­age, Large, Very Large, Unknown, Not applicable
+How big are the coffee beans? For Arabica reference, Caturra = Average, SL28 = Large, and Maragogipe = Very Large.
+Below Average, Average, Large, Very Large, Unknown, Not applicable
 Very Large
 Yield Potential
 Close
 Yield Potential
-How much fruit will the cof­fee tree pro­duce? For ref­er­ence, Catur­ra, Bour­bon, and K7 = Medi­um, and SL28 = Low
-Low, Medi­um, High, Very High, Unknown, Not applicable
+How much fruit will the coffee tree produce? For reference, Caturra, Bourbon, and K7 = Medium, and SL28 = Low
+Low, Medium, High, Very High, Unknown, Not applicable
 High
 Low
 Very High
 Quality potential at high altitude
 Close
 Quality potential at high altitude
-What is the poten­tial for qual­i­ty of this vari­ety when grown at high­er altitudes?
-Very Low, Low, Good, Very Good, Excep­tion­al, Unknown, Not applicable
+What is the potential for quality of this variety when grown at higher altitudes?
+Very Low, Low, Good, Very Good, Exceptional, Unknown, Not applicable
 Good
 Very Low
 Exceptional
 Optimal Altitude
 Close
 Optimal Altitude
-What is the alti­tude at which qual­i­ty and agro­nom­ic per­for­mance poten­tial is max­i­mized? This espe­cial­ly takes into account the variety’s expect­ed cup qual­i­ty and tol­er­ance to cof­fee leaf rust and cof­fee berry dis­ease. Opti­mal alti­tude depends on a far­m’s lat­i­tude — farms locat­ed close to the equa­tor will have high­er opti­mal alti­tudes than those far­ther north or south of the equator.
-First, locate your cor­rect lat­i­tude, then find the cor­re­spond­ing opti­mal altitude.
-Lat­i­tude 5°N to 5°S
+What is the altitude at which quality and agronomic performance potential is maximized? This especially takes into account the variety’s expected cup quality and tolerance to coffee leaf rust and coffee berry disease. Optimal altitude depends on a farm’s latitude — farms located close to the equator will have higher optimal altitudes than those farther north or south of the equator.
+First, locate your correct latitude, then find the corresponding optimal altitude.
+Latitude 5°N to 5°S
 Low: 1000 – 1200m
-Low-medi­um: 1000 – 1600m
-Medi­um: 1200 – 1600m
-Medi­um-high: >1200m
+Low-medium: 1000 – 1600m
+Medium: 1200 – 1600m
+Medium-high: >1200m
 High: >1600m
-Low-Medi­um-High: >1000m
-Lat­i­tude 5 – 15°N or 5 – 15°S
+Low-Medium-High: >1000m
+Latitude 5 – 15°N or 5 – 15°S
 Low: 700 – 900m
-Low-medi­um: 700 – 1300m
-Medi­um: 900 – 1300m
-Medi­um-high: >900m
+Low-medium: 700 – 1300m
+Medium: 900 – 1300m
+Medium-high: >900m
 High: >1300m
-Low-Medi­um-High: >700m
-Lat­i­tude >15°S or >15°N
+Low-Medium-High: >700m
+Latitude >15°S or >15°N
 Low: 400 – 700m
-Low-medi­um: 400 – 1000m
-Medi­um: 700 – 1000m
-Medi­um-high: >700m
+Low-medium: 400 – 1000m
+Medium: 700 – 1000m
+Medium-high: >700m
 High: >1000m
-Low-Medi­um-High: >400m
+Low-Medium-High: >400m
 Medium, High
 5°N to 5°S: >1200m
 5–15°N and 5–15°S: >900m
@@ -83,9 +83,9 @@ Medium, High
 Coffee leaf rust
 Close
 Coffee leaf rust
-Is the plant sus­cep­ti­ble to leaf rust?
-Cof­fee rust is a foliar dis­ease of cof­fee caused by the fun­gus Hemileia vas­ta­trix that caus­es defo­li­a­tion and may result in severe crop loss­es. Plant dis­eases are con­stant­ly evolv­ing. Note: A vari­ety that is resis­tant to a dis­ease today may not be resis­tant tomorrow.
-High­ly resis­tant, Inter­me­di­ate resis­tance, Low resistance/​Susceptible, Unknown, Not applicable
+Is the plant susceptible to leaf rust?
+Coffee rust is a foliar disease of coffee caused by the fungus Hemileia vastatrix that causes defoliation and may result in severe crop losses. Plant diseases are constantly evolving. Note: A variety that is resistant to a disease today may not be resistant tomorrow.
+Highly resistant, Intermediate resistance, Low resistance/​Susceptible, Unknown, Not applicable
 Intermediate resistance
 Low resistance/susceptible
 Low resistance/susceptible
@@ -95,8 +95,8 @@ Highly resistant
 Nematode
 Close
 Nematode
-Is the plant sus­cep­ti­ble to nema­todes (specif­i­cal­ly the species Meloidog­y­ne spp. and/​or Praty­lenchus spp.)? Nema­todes are micro­scop­ic ani­mals which infect the plant roots and can cause wilt­ing and death of the plant.
-Resis­tant, Tol­er­ant, Sus­cep­ti­ble, Unknown, Not applicable
+Is the plant susceptible to nematodes (specifically the species Meloidogyne spp. and/​or Pratylenchus spp.)? Nematodes are microscopic animals which infect the plant roots and can cause wilting and death of the plant.
+Resistant, Tolerant, Susceptible, Unknown, Not applicable
 Susceptible
 Susceptible
 Susceptible
@@ -106,9 +106,9 @@ Resistant
 Coffee Berry Disease
 Close
 Coffee Berry Disease
-Is the plant sus­cep­ti­ble to CBD?
-CBD is a cof­fee dis­ease that affects the fruit. It is caused by the fun­gus, Col­letotrichum kahawe. Cur­rent­ly, CBD is not present in Cen­tral Amer­i­ca, but it is a con­cern that the dis­ease will spread. Note: Plant dis­eases are con­stant­ly evolv­ing. A vari­ety that is resis­tant to a dis­ease today may not be resis­tant tomorrow.
-Resis­tant, Tol­er­ant, Sus­cep­ti­ble, Unknown, Not applicable
+Is the plant susceptible to CBD?
+CBD is a coffee disease that affects the fruit. It is caused by the fungus, Colletotrichum kahawe. Currently, CBD is not present in Central America, but it is a concern that the disease will spread. Note: Plant diseases are constantly evolving. A variety that is resistant to a disease today may not be resistant tomorrow.
+Resistant, Tolerant, Susceptible, Unknown, Not applicable
 Susceptible
 Susceptible
 Susceptible
@@ -119,39 +119,39 @@ Agronomics
 Year of first production
 Close
 Year of first production
-When will the tree pro­duce its first fruit?
+When will the tree produce its first fruit?
 Year 2, Year 3, Year 4, Unknown, Not applicable
 Year 2
 Nutrition requirement
 Close
 Nutrition requirement
-What lev­el of nutri­tion (e.g., com­post, fer­til­iz­er) does this plant require?
-Very High, High, Medi­um, Low, Unknown, Not applicable
+What level of nutrition (e.g., compost, fertilizer) does this plant require?
+Very High, High, Medium, Low, Unknown, Not applicable
 High
 Ripening of fruit
 Close
 Ripening of fruit
-At what time in the har­vest sea­son will the tree fruit ripen?
-For Ara­bi­ca ref­er­ence, Catur­ra = Aver­age. No Robus­ta reference.
-Ear­ly, Aver­age, Late, Very late, Unknown, Not applicable
+At what time in the harvest season will the tree fruit ripen?
+For Arabica reference, Caturra = Average. No Robusta reference.
+Early, Average, Late, Very late, Unknown, Not applicable
 Late
 Cherry to green bean outturn
 Close
 Cherry to green bean outturn
-What is the size of the bean in rela­tion to the fruit? For Ara­bi­ca ref­er­ence, Catur­ra = Aver­age, SL28 = High.
-Low, Aver­age, High, Very High, Unknown, Not applicable
+What is the size of the bean in relation to the fruit? For Arabica reference, Caturra = Average, SL28 = High.
+Low, Average, High, Very High, Unknown, Not applicable
 High
 Planting density
 Close
 Planting density
-What spac­ing should you use for plant­i­ng this vari­ety? Note: In Cen­tral Amer­i­ca, trees are typ­i­cal­ly pruned to have one main stem. In Africa, it is typ­i­cal to prune trees for mul­ti­ple (2−3) stems per tree. So, while tree plant­i­ng den­si­ties typ­i­cal­ly are much low­er in Africa, each tree is fruit­ing rel­a­tive­ly more because there are mul­ti­ple main stems.
-1000 – 2000 per ha (using mul­ti­ple-stem prun­ing)
-2000 – 3000 per ha (using mul­ti­ple-stem prun­ing)
-3000 – 4000 per ha (using sin­gle-stem prun­ing)
-5000 – 6000 per ha (using sin­gle-stem prun­ing)
-4000 – 5000 per ha (using sin­gle-stem prun­ing)
+What spacing should you use for planting this variety? Note: In Central America, trees are typically pruned to have one main stem. In Africa, it is typical to prune trees for multiple (2−3) stems per tree. So, while tree planting densities typically are much lower in Africa, each tree is fruiting relatively more because there are multiple main stems.
+1000 – 2000 per ha (using multiple-stem pruning)
+2000 – 3000 per ha (using multiple-stem pruning)
+3000 – 4000 per ha (using single-stem pruning)
+5000 – 6000 per ha (using single-stem pruning)
+4000 – 5000 per ha (using single-stem pruning)
 Unknown
-Not applic­a­ble
+Not applicable
 4000-5000 plants/ha (using single-stem pruning)
 Additional agronomic information
 Close
@@ -161,27 +161,27 @@ Background
 Genetic Description
 Close
 Genetic Description
-To which genet­ic group of Ara­bi­ca does this vari­ety belong?
-Bour­bon-Typ­i­ca group (Typ­i­ca relat­ed)
-Bour­bon-Typ­i­ca group (Bour­bon relat­ed)
-Bour­bon-Typ­i­ca group (Typ­i­ca and Bour­bon relat­ed)
-Ethiopi­an lan­drace
-Intro­gressed (Cati­mor relat­ed)
-Intro­gressed (Sarchi­mor relat­ed)
-Intro­gressed (Oth­er)
-F1 hybrid (intro­gressed)
-F1 hybrid (not intro­gressed)
+To which genetic group of Arabica does this variety belong?
+Bourbon-Typica group (Typica related)
+Bourbon-Typica group (Bourbon related)
+Bourbon-Typica group (Typica and Bourbon related)
+Ethiopian landrace
+Introgressed (Catimor related)
+Introgressed (Sarchimor related)
+Introgressed (Other)
+F1 hybrid (introgressed)
+F1 hybrid (not introgressed)
 Unknown
 Introgressed (Catimor related)
 Lineage
 Close
 Lineage
-What are the par­ents of this vari­ety (when known) or what is its genet­ic lineage?
+What are the parents of this variety (when known) or what is its genetic lineage?
 (Timor Hybrid 832/1 x Caturra) x Pacamara
 Breeder
 Close
 Breeder
-If the vari­ety was cre­at­ed by a breed­er, what is the name of the breeder?
+If the variety was created by a breeder, what is the name of the breeder?
 National Coffee Association of Guatemala (ANACAFÉ)
 History
 Close

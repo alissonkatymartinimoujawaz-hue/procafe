@@ -39,7 +39,7 @@ for path in sys.argv[1:]:
         except Exception:
             pass
     p = P(); p.feed(s)
-    t = re.sub(r'[ \t\xa0]+', ' ', ''.join(p.out))
+    t = re.sub(r'[ \t\xa0]+', ' ', ''.join(p.out).replace('\xad', ''))
     t = re.sub(r'\s*\n\s*', '\n', t).strip()
     open(re.sub(r'\.html$', '', path) + '.txt', 'w', encoding='utf-8').write('\n'.join(extra) + '\n\n' + t + '\n')
     print(len(t), path)
