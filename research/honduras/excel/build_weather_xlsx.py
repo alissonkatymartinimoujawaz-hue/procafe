@@ -72,6 +72,24 @@ for t in DAY:
             x = DAY[t][v][d.strftime('%Y%m%d')]
             assert x != -999.0, (t, v, d)
 
+# Copán: the CPC cell loses its gauge in January 2024 (CPC 49 % and 41 % of normal in 2024 and 2025, while GPCC says 92 % and 103 %
+# and NASA 122 % and 75 %). From that month on, Copán rain = GPCC monthly x (CPC / GPCC ratio of the same calendar month, 2005-2019),
+# which keeps the series on the CPC level. Daily sheet keeps the raw CPC values.
+GPC = collections.defaultdict(dict)
+for row in csv.DictReader(open(RAW + 'rain_check/gpcc_1981_2026_monthly.csv')):
+    GPC[row['town']][(int(row['year']), int(row['month']))] = float(row['rain_mm'])
+GSRC = {(int(row['year']), int(row['month'])): row['source'] for row in csv.DictReader(open(RAW + 'rain_check/gpcc_1981_2026_monthly.csv'))}
+REPL_FROM = {'copan': (2024, 1)}
+KCP = {}
+for t in REPL_FROM:
+    cm = collections.defaultdict(float)
+    for k, v in DAY[t]['RAIN_CPC'].items():
+        if '2005' <= k[:4] <= '2019':
+            cm[(int(k[:4]), int(k[4:6]))] += v
+    KCP[t] = {m: sum(cm[(y, m)] for y in range(2005, 2020)) / sum(GPC[t][(y, m)] for y in range(2005, 2020)) for m in range(1, 13)}
+REPLACED = {}  # (town, 'YYYY-MM') -> (raw CPC, GPCC, factor, value used)
+REPLS = Style(fmt='0.0', color='0000FF', fill='FFF2CC')
+
 oni = []  # [key, year, centre month, code, anom]
 for line in open(ONI_FILE).read().splitlines()[1:]:
     if not line.strip():
@@ -332,7 +350,12 @@ for i, (y, m) in enumerate(months):
             dc = col_letter(DCOL[(t, v)])
             rng = 'Daily!${0}${1}:${0}${2}'.format(dc, D0, D1)
             crit = 'Daily!$B${0}:$B${1},$A{2}'.format(D0, D1, r)
-            if v in RAIN:
+            if v == 'RAIN_CPC' and t in REPL_FROM and (y, m) >= REPL_FROM[t] and (y, m) in GPC[t] and comp == 'complete':
+                raw_ = round(sum(xs), 6)
+                val = GPC[t][(y, m)] * KCP[t][m]
+                REPLACED[(t, key)] = (raw_, GPC[t][(y, m)], KCP[t][m], val)
+                mon.set(r, MCOL[(t, v)], val, REPLS)
+            elif v in RAIN:
                 val = round(sum(xs), 6)
                 mon.set(r, MCOL[(t, v)], val, N1, 'SUMIFS(%s,%s)' % (rng, crit))
             else:
@@ -490,6 +513,89 @@ for y in range(2005, 2026):
     TANN[y] = (nas, gh, cp)
 
 
+# ---------------- Rain anomaly ----------------
+ano = wb.add('Rain_anomaly')
+PCTS = Style(fmt='0%', halign='center')
+PCTB = Style(fmt='0%', halign='center', bold=True, fill='BDD7EE')
+PCTR = Style(fmt='0%', halign='center', bold=True, fill='F8CBAD')
+INP = Style(fmt='0%', halign='center', color='0000FF')
+ano.set(1, 1, 'Rain as % of normal (CPC gauges): the wet and dry years that the ENSO-season charts do not show', TITLE)
+ano.set(2, 1, 'Normal = average of the same calendar month over 2005–2019 (Jan–Jun: 2006–2019, as the file starts in July 2005). 100 % = normal, 200 % = twice the normal. '
+              'The ENSO-season charts compare La Niña seasons with other La Niña seasons; La Niña is wet in Honduras, so a very wet La Niña year does not stand out there.', SUB)
+LOCN = [(t, nm) for t, nm, _ in TOWNS] + [('SS3', 'Mean of 3 towns')]
+MSET = set(months)
+# normals (needed by the two tables below)
+NR0 = 30
+ano.set(NR0 - 1, 1, 'Monthly normals, mm (average 2005–2019 of the Monthly sheet)', B)
+ano.row(NR0, 1, ['Month', 'Month no.'] + [nm for _, nm in LOCN], H)
+NORM = {}
+for m in range(1, 13):
+    r = NR0 + m
+    ano.set(r, 1, MNAME[m - 1], B)
+    ano.set(r, 2, m, C)
+    for j, (lid, _) in enumerate(LOCN):
+        mc = col_letter(MCOL[(lid, 'RAIN_CPC')])
+        vals = [MV[(lid, 'RAIN_CPC', '%d-%02d' % (y, m))] for y in range(2005, 2020) if (y, m) in MSET]
+        NORM[(lid, m)] = sum(vals) / len(vals)
+        ano.set(r, 3 + j, NORM[(lid, m)], N1, 'AVERAGEIFS(Monthly!$%s:$%s,Monthly!$C:$C,$B%d,Monthly!$B:$B,">=2005",Monthly!$B:$B,"<=2019")' % (mc, mc, r))
+r = NR0 + 13
+ano.set(r, 1, 'Year', B)
+for j, (lid, _) in enumerate(LOCN):
+    cl = col_letter(3 + j)
+    ano.set(r, 3 + j, sum(NORM[(lid, m)] for m in range(1, 13)), N0, 'SUM(%s%d:%s%d)' % (cl, NR0 + 1, cl, NR0 + 12))
+NYEAR = r
+# annual table
+AR0 = 4
+ano.set(AR0 - 1, 1, 'Calendar year: rain as % of normal. CPC = gauge grid 0.5° used in this file; GPCC = independent gauge analysis 1° (blue, for comparison, normal 2005–2019 of GPCC itself)', B)
+hdr = ['Year', 'ENSO phase of the season starting in July']
+for _, nm in LOCN:
+    hdr += [nm + ' rain (mm)', nm + ' % of normal (CPC)']
+hdr += [nm + ' % of normal (GPCC)' for _, nm in LOCN[:3]]
+ano.row(AR0, 1, hdr, H)
+GN = {t: {m: st.mean(GPC[t][(y, m)] for y in range(2005, 2020)) for m in range(1, 13)} for t in SS3}
+YRS = [y for y in range(2006, END.year) if all((y, m) in MSET for m in range(1, 13))]
+for i, y in enumerate(YRS):
+    r = AR0 + 1 + i
+    ano.set(r, 1, y, C)
+    ph = season_phase(y) if y in PHOTO + EXTRA else ''
+    ano.set(r, 2, ph, phs(ph) if ph else C)
+    for j, (lid, _) in enumerate(LOCN):
+        mc = col_letter(MCOL[(lid, 'RAIN_CPC')])
+        tot = sum(MV[(lid, 'RAIN_CPC', '%d-%02d' % (y, m))] for m in range(1, 13))
+        ano.set(r, 3 + 2 * j, tot, N0, 'SUMIFS(Monthly!$%s:$%s,Monthly!$B:$B,$A%d)' % (mc, mc, r))
+        p_ = tot / sum(NORM[(lid, m)] for m in range(1, 13))
+        ano.set(r, 4 + 2 * j, p_, PCTB if p_ >= 1.2 else PCTR if p_ <= 0.8 else PCTS, '%s%d/%s$%d' % (col_letter(3 + 2 * j), r, col_letter(3 + j), NYEAR))
+    for j, t in enumerate(SS3):
+        g = sum(GPC[t][(y, m)] for m in range(1, 13)) / sum(GN[t].values())
+        ano.set(r, 3 + 2 * len(LOCN) + j, g, INP)
+AEND = AR0 + len(YRS)
+ano.set(AEND + 1, 1, 'Blue fill = at least 120 % of normal; red fill = 80 % or less. 2010 and 2011 are the wet years before the 2012–13 rust epidemic (La Niña).', SUB)
+# monthly table
+MR0 = NYEAR + 4
+ano.set(MR0 - 1, 1, 'Month by month: rain, normal and % of normal', B)
+hdr = ['Month key', 'Coffee season', 'Phase of the season']
+for _, nm in LOCN:
+    hdr += [nm + ' rain (mm)', nm + ' normal (mm)', nm + ' % of normal']
+ano.row(MR0, 1, hdr, H)
+for i, (y, m) in enumerate(months):
+    r = MR0 + 1 + i
+    key = '%d-%02d' % (y, m)
+    ano.set(r, 1, key, C)
+    ano.set(r, 2, slabel(season_of(y, m)), C)
+    ph = season_phase(season_of(y, m)) if season_of(y, m) in PHOTO + EXTRA else ''
+    ano.set(r, 3, ph, phs(ph) if ph else C)
+    for j, (lid, _) in enumerate(LOCN):
+        mc = col_letter(MCOL[(lid, 'RAIN_CPC')])
+        c0 = 4 + 3 * j
+        v = MV[(lid, 'RAIN_CPC', key)]
+        n_ = NORM[(lid, m)]
+        ano.set(r, c0, v, N1, 'INDEX(Monthly!$%s:$%s,MATCH($A%d,Monthly!$A:$A,0))' % (mc, mc, r))
+        ano.set(r, c0 + 1, n_, N1, 'INDEX(%s$%d:%s$%d,%d)' % (col_letter(3 + j), NR0 + 1, col_letter(3 + j), NR0 + 12, m))
+        p_ = v / n_ if n_ else 0
+        ano.set(r, c0 + 2, p_, PCTB if p_ >= 1.5 else PCTR if p_ <= 0.5 else PCTS, 'IF(%s%d>0,%s%d/%s%d,0)' % (col_letter(c0 + 1), r, col_letter(c0), r, col_letter(c0 + 1), r))
+ano.widths = {1: 11, 2: 22, 3: 12, **{c: 11 for c in range(4, 4 + 3 * len(LOCN) + 3)}}
+ano.freeze = (MR0 + 1, 2)
+
 # ---------------- Checks ----------------
 chk.row(1, 1, ['Check', 'Result', 'Expected', 'OK?', 'How'], H)
 rows = []
@@ -502,6 +608,14 @@ rows.append(('Complete months in Monthly', ncomp, 'COUNTIF(Monthly!$K$%d:$K$%d,"
 for t, nm, _ in TOWNS:
     rc, dc = col_letter(MCOL[(t, 'RAIN_CPC')]), col_letter(DCOL[(t, 'RAIN_CPC')])
     tot = sum(MV[(t, 'RAIN_CPC', '%d-%02d' % k)] for k in months)
+    if t in REPL_FROM:
+        ry, rm = REPL_FROM[t]
+        ml = months.index((ry - 1, 12) if rm == 1 else (ry, rm - 1))
+        dl = dates.index(datetime.date(ry, rm, 1)) - 1
+        rows.append(('Rain %s: sum of monthly − sum of daily (mm), up to %d-%02d' % (nm, *months[ml]), 0.0,
+                     'ROUND(SUM(Monthly!$%s$%d:$%s$%d)-SUM(Daily!$%s$%d:$%s$%d),6)' % (rc, M0, rc, M0 + ml, dc, D0, dc, D0 + dl), 0.0,
+                     'From %d-%02d Copán rain is the adjusted GPCC value (CPC gauge lost), see "Rain breaks" below' % (ry, rm)))
+        continue
     rows.append(('Rain %s: sum of monthly − sum of daily (mm)' % nm, 0.0,
                  'ROUND(SUM(Monthly!$%s$%d:$%s$%d)-SUM(Daily!$%s$%d:$%s$%d),6)' % (rc, M0, rc, M0 + len(months) - 1, dc, D0, dc, D1), 0.0, 'Monthly totals add up to the daily data'))
 for ph, n in (('El Niño', 7), ('La Niña', 9), ('Neutral', 4)):
@@ -556,6 +670,46 @@ chk.set(r, 1, 'GHCN_CAMS drops 0.8 °C in one step in 2014 and stays low while t
         'NASA shows cool La Niña years (2008, 2011–2012, 2021–2022) and warm El Niño years (2015, 2019, 2023–2024): it is the most consistent of the three. '
         'Caution: from March 2025, NASA temperatures step down against the station grids (seen in all 5 Indonesian towns too, about −0.4 °C there), so 2025/26 and 2026/27 may read cool.', WRAP)
 r += 1
+r += 2
+chk.set(r, 1, 'Rain breaks found in the September 2026 review: each product as % of its own 2005–2019 normal (same months)', B)
+r += 1
+chk.row(r, 1, ['Town, year', 'CPC (raw)', 'GPCC', 'NASA', 'Reading'], H)
+r += 1
+def _msum(dct, t, y, m):
+    return sum(v for k, v in dct.items() if k.startswith('%d%02d' % (y, m)) and v >= 0)
+for t, nm, _ in TOWNS:
+    cpcm = {(y, m): _msum(DAY[t]['RAIN_CPC'], t, y, m) for y in range(2005, 2027) for m in range(1, 13)}
+    nasm = {(y, m): _msum(DAY[t]['PRECTOTCORR'], t, y, m) for y in range(2005, 2027) for m in range(1, 13)}
+    for y in range(2018, END.year + 1):
+        ms = [m for m in range(1, 13) if (y, m) in GPC[t] and (y, m) in MSET and MV[('complete', '%d-%02d' % (y, m))]]
+        if not ms:
+            continue
+        def pc(D):
+            return sum(D[(y, m)] for m in ms) / sum(st.mean(D[(yy, m)] for yy in range(2005, 2020)) for m in ms)
+        c_, g_, n_ = pc(cpcm), pc(GPC[t]), pc(nasm)
+        bad = c_ < 0.6 * g_ and c_ < 0.6 * n_
+        note = 'CPC far below both others: gauge lost, replaced' if (t in REPL_FROM and (y, 1) >= REPL_FROM[t]) else ('CPC far below both others' if bad else '')
+        if y == END.year:
+            note = (note + '; ' if note else '') + '%d months' % len(ms)
+        chk.row(r, 1, ['%s %d' % (nm, y), round(c_, 2), round(g_, 2), round(n_, 2), note], RED if bad else None)
+        r += 1
+r += 1
+chk.set(r, 1, 'Copán months replaced (Monthly sheet, blue on yellow): value used = GPCC × (CPC ÷ GPCC of the same calendar month, 2005–2019)', B)
+r += 1
+chk.row(r, 1, ['Month', 'CPC raw (mm)', 'GPCC (mm)', 'Factor', 'Value used (mm)'], H)
+r += 1
+for (t, key), (raw_, g_, f_, v_) in sorted(REPLACED.items()):
+    chk.row(r, 1, ['%s %s' % (t.capitalize(), key), round(raw_, 1), round(g_, 1), round(f_, 3), round(v_, 1)])
+    r += 1
+chk.set(r, 1, 'GPCC source by month: Full v2020 to 2019, Monitoring v2020 after, First Guess for 2026 (1° cell). Ocotepeque CPC also reads low in 2024 (0.81 of GPCC) and 2026, '
+        'but stays inside its 2005–2023 range (0.78–1.33), so it is kept.', WRAP)
+r += 2
+c455 = DAY['comayagua']['RAIN_CPC'].get('20260406')
+if c455 and c455 > 200:
+    chk.set(r, 1, 'Suspect day: Comayagua 6 April 2026, CPC %.0f mm in one day (NASA %.0f mm the same day; GPCC first guess %.0f mm for the whole month). '
+            'Kept as delivered by CPC; it only affects the 2025/26 season, which is outside the 20-season charts.' % (
+                c455, DAY['comayagua']['PRECTOTCORR']['20260406'], GPC['comayagua'].get((2026, 4), float('nan'))), RED)
+    r += 1
 chk.widths = {1: 58, 2: 38, 3: 12, 4: 14, 5: 60}
 
 # ---------------- README ----------------
@@ -571,6 +725,8 @@ lines = [
     ('ENSO_seasons et ENSO_monthly : exactement la même table ONI (NOAA CPC) et le même calcul que pour l\'Indonésie, donc les mêmes saisons El Niño / La Niña / Neutre.', WRAP),
     ('Monthly : les valeurs mensuelles, calculées par formule à partir de Daily. Daily : les données jour par jour, 3 lieux × 5 variables (pluie des pluviomètres, 3 températures, pluie NASA pour comparaison), 1er juillet 2005 → %s.' % END, WRAP),
     ('Checks : les contrôles (jours manquants, totaux, nombre de saisons par phase), et pourquoi la pluie vient des pluviomètres et la température de la NASA.', WRAP),
+    ('Rain_anomaly : pluie en % de la normale (moyenne 2005–2019 du même mois), par année civile et par mois, pour les 3 villes et leur moyenne, avec GPCC en comparaison. C\'est là qu\'on voit les années humides 2008, 2010 et 2011 (La Niña) avant la rouille de 2012–2013 : les graphiques par phase ENSO comparent des années La Niña entre elles et ne les font pas ressortir.', WRAP),
+    ('CORRECTION (septembre 2026) : à Copán, la maille CPC perd son pluviomètre en janvier 2024 (49 % puis 41 % de la normale en 2024 et 2025, alors que GPCC donne 92 % et 103 %). De janvier 2024 à août 2026, la pluie de Copán est donc la valeur GPCC ajustée au niveau CPC (cellules bleues sur fond jaune dans Monthly, détail dans Checks). La feuille Daily garde les valeurs CPC brutes.', Style(wrap=True, bold=True, color='C00000')),
     ('', None),
     ('LES SAISONS : LES MÊMES QUE TA PHOTO ET QUE LE FICHIER INDONÉSIE', B),
     ('20 saisons, 2005/06 à 2024/25 : 7 El Niño, 9 La Niña, 4 neutres (règle officielle NOAA).', WRAP),
