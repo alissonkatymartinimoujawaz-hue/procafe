@@ -209,6 +209,23 @@ if WX:
 else:
     rw.set(2, 1, 'Station data not yet added.', SUB)
 
+# ---------------- Production since 1960 ----------------
+pl = wb.add('Production_1960_2026')
+PF = {int(k): v for k, v in A['psd_full']['Arabica Production'].items()}
+EX = {int(k): v for k, v in A['psd_full']['Bean Exports'].items()}
+pl.row(1, 1, ['Marketing year (Oct N – Sep N+1)', 'Year N', 'Production (1000 bags 60 kg)', 'Change on the year before', 'Bean exports (1000 bags)'], H)
+for k, y in enumerate(sorted(PF)):
+    r = 2 + k
+    pl.set(r, 1, '%d/%s' % (y, str(y + 1)[2:]), C)
+    pl.set(r, 2, y, C)
+    pl.set(r, 3, PF[y], IN0)
+    if k:
+        pl.set(r, 4, PF[y] / PF[y - 1] - 1 if PF[y - 1] else None, FPC, 'IF(C%d=0,"",C%d/C%d-1)' % (r - 1, r, r - 1))
+    pl.set(r, 5, EX.get(y), IN0)
+pl.set(2 + len(PF) + 1, 1, A['psd_note'] + '. 2025/26 and 2026/27 are USDA estimates and forecasts.', SUB)
+pl.widths = {1: 16, 2: 8, 3: 16, 4: 14, 5: 14}
+pl.freeze = (2, 1)
+
 # ---------------- USDA quotes ----------------
 QUOTES = [
     ('May 2011', 'Land', 'Higher prices are motivating landholders with other crops or in other professions to convert larger portions of their lands to coffee growing.', 'Coffee Annual 4-18-2011'),
@@ -244,6 +261,7 @@ lines = [
     ('Margin : marge indicative par quintal et par hectare. C\'est une estimation : le coût vient de quelques chiffres datés (IHCAFE, presse, non vérifiés). Modifie les cellules bleues.', WRAP),
     ('Rust_2012 : la météo de 2011–2013 dans les 3 zones (pluie des pluviomètres GPCC, températures des stations), pour voir ce qui a favorisé la rouille.', WRAP),
     ('USDA_quotes : ce que disent les rapports de l\'attaché USDA, année par année (rouille, rénovation, terres, main-d\'œuvre, variétés, engrais).', WRAP),
+    ('Production_1960_2026 : la production USDA du Honduras depuis 1960/61, avec la variation d\'une année sur l\'autre.', WRAP),
     ('', None),
     ('À SAVOIR AVANT D\'INTERPRÉTER', B),
     ('Les nombres d\'arbres de l\'USDA sont des estimations : 1 049 millions chaque année de 2006 à 2010, puis une densité fixe d\'environ 4 250 arbres/ha jusqu\'en 2017, et 6 400/ha depuis 2023. Depuis 2020, les deux tiers de la hausse des arbres viennent de cette densité, pas de nouvelles surfaces.', RED),
