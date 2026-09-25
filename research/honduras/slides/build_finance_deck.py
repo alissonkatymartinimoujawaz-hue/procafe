@@ -127,25 +127,28 @@ def slide_cost():
 
 def slide_varieties():
     p = Page()
-    p.title('Only 3 rust-resistant varieties from 1990 to 2004, then none until 2024; Lempira broke in 2017')
+    AMBER, PALE = 'ED7D31', 'A9D18E'
+    oct17 = [a for a in FV.ADOPTION if a['when'] == 'Oct 2017'][0]
+    p.title('IHCAFE bred 3 rust-resistant varieties (1990–2004), none new until 2024; Lempira failed by 2017')
     p.bullets([
-        'IHCAFE 90 (1990s), Lempira (1997–98), Parainema (2004), all with Timor Hybrid resistance; next: 3 varieties in Feb 2024 (Ihcatú 75, Anacafé 14, Obatá), 4 announced',
-        'Use: 50 % of the area resistant in 2013, 60 % of producers and 62 % of farms in 2014. Then Lempira broke (April 2017); 4 new rust strains in 2018, 16 in 2019',
-        'Productivity: no official yield by variety found. PAPP replanting aimed at 5 → 45 qq/manzana; USDA 2025–26 credits Parainema for the area growth'])
+        'IHCAFE 90 (1990s), Lempira (1997–98 ⚠), Parainema (2004 ⚠), all with Timor Hybrid resistance. Feb 2024: Ihcatú 75, Anacafé 14, Obatá, bred abroad, released by IHCAFE ⚠',
+        'Planted: 50 % of the AREA resistant in 2013, 60 % of PRODUCERS in 2014 (two measures, not a trend). Lempira weakened from 2015 ⚠, loss confirmed April 2017',
+        'After Lempira: ≈ %s %% of monitored farms kept a resistant variety (IHCAFE, Oct 2017 ⚠). Parainema last called resistant in May 2021 (USDA). No yield by variety found'
+        % fr(oct17['resistant'], 0)])
     x0, x1, yT = 0.45, 8.45, 2.0           # timeline 1988 -> 2027
     Y0, Y1 = 1988, 2027
     T = lambda y: x0 + 2.0 + (x1 - x0 - 2.0) * (y - Y0) / (Y1 - Y0)
-    # year axis
     for y in range(1990, 2027, 5):
         p.vline(T(y), yT + 0.35, yT + 4.05, 'E3E8EB', 0.012)
         p.text(T(y) - 0.3, yT + 4.07, 0.6, 0.2, [str(y)], sz=8, color=GREY, algn='ctr')
     p.band(T(2012), T(2014), yT + 0.35, yT + 4.05, 'FCE4D6')
     p.text(T(2013) - 0.6, yT + 0.12, 1.2, 0.2, [('rust 2012–13', dict(b=True, color=ORANGE))], sz=7.5, algn='ctr')
-    rows = [('IHCAFE 90', 'Catimor', 1990, [(1990, 2019, GREEN), (2019, 2026.7, 'BFBFBF')], '1990s', 'resistant in 2018; not listed as resistant in 2020'),
-            ('Lempira', 'Catimor', 1998, [(1998, 2017.3, GREEN), (2017.3, 2026.7, RED)], '1997–98', 'resistance lost, April 2017'),
-            ('Parainema', 'Sarchimor', 2004, [(2004, 2026.7, GREEN)], '2004', 'still resistant (IHCAFE, 2020–21)'),
-            ('Ihcatú 75, Anacafé 14, Obatá', '3 varieties', 2024, [(2024.1, 2026.7, GREEN)], 'Feb 2024', 'seed for ≥ 1 500 manzanas in 2024 ⚠'),
-            ('4 more varieties', 'announced', 2026, [(2026.2, 2026.7, 'BFBFBF')], '', 'in preparation ⚠')]
+    E = 2026.7
+    rows = [('IHCAFE 90', 'Catimor', 1990, [(1990, 2017.3, GREEN), (2017.3, E, AMBER)], '1990s', 'resistant per IHCAFE in 2018; ~80 % vs the new strain (2017 ⚠)'),
+            ('Lempira', 'Catimor', 1998, [(1998, 2015, GREEN), (2015, 2017.3, AMBER), (2017.3, E, RED)], '1997–98 ⚠', 'weakening from 2015 ⚠; loss confirmed April 2017'),
+            ('Parainema', 'Sarchimor', 2004, [(2004, 2021.4, GREEN), (2021.4, E, PALE)], '2004 ⚠', 'resistant per IHCAFE until May 2021; not re-confirmed since'),
+            ('Ihcatú 75, Anacafé 14, Obatá', 'bred in Brazil / Guatemala', 2024, [(2024.1, E, GREEN)], '2024 ⚠', 'seed for ≥ 1 500 manzanas in 2024 ⚠'),
+            ('2 more varieties', 'in release process', 2026, [(2026.2, E, 'BFBFBF')], '', 'announced early 2026 ⚠')]
     for k, (nm, fam, ry, segs, rtxt, note) in enumerate(rows):
         yy = yT + 0.55 + k * 0.7
         p.text(x0, yy - 0.05, 2.0, 0.4, [(nm, dict(b=True)), (fam, dict(color=GREY, sz=7.5))], sz=8.5)
@@ -153,27 +156,28 @@ def slide_varieties():
             p.rect(T(a), yy + 0.02, T(b) - T(a), 0.2, c)
         if rtxt:
             p.text(T(ry) - 0.55, yy + 0.24, 1.1, 0.18, [rtxt], sz=7, color=GREY, algn='ctr')
-        p.text(T(ry) if ry < 2020 else T(2026.7) - 3.2, yy - 0.21, 3.2, 0.2, [note], sz=7.5, color=INK, algn='l' if ry < 2020 else 'r')
+        p.text(T(ry) if ry < 2020 else T(E) - 3.4, yy - 0.21, 3.4, 0.2, [note], sz=7.5, color=INK, algn='l' if ry < 2020 else 'r')
     for y in (2018.3, 2019.3):
         p.vline(T(y), yT + 0.35, yT + 4.05, '8497B0', 0.012)
     p.text(T(2018.3) - 1.75, yT + 3.62, 1.7, 0.4, [('Apr 2018: 4 new strains', dict(color=NAVY, b=True)), ('Apr 2019: 16 new strains', dict(color=NAVY, b=True))], sz=7.5, algn='r')
-    p.legend(x0 + 2.0, yT + 4.35, [(GREEN, 'resistant', 'box'), (RED, 'resistance broken', 'box'), ('BFBFBF', 'not confirmed / pending', 'box')], sz=8)
-    # adoption table
+    p.legend(x0 + 0.2, yT + 4.35, [(GREEN, 'resistant', 'box'), (AMBER, 'weakening / partial', 'box'), (RED, 'broken', 'box'),
+                                   (PALE, 'not re-confirmed', 'box'), ('BFBFBF', 'pending', 'box')], sz=8)
     rows = [['When', 'Share with resistant varieties', 'Source']]
     for a in FV.ADOPTION:
-        if a.get('resistant') is not None:
-            what = {'Jun 2013': 'of the coffee area', '2013': '(200 000 of 400 000 manzanas)', 'Apr 2014': 'of producers (national)', '2014': 'of farms, 5 departments',
-                    'Aug 2017': 'of the park; seed: 65 % Lempira', '~2020': 'of cultivation'}[a['when']]
-            rows.append([a['when'], '%d %% %s' % (a['resistant'], what), ('✔ ' if a['status'] == 'USDA' else '⚠ ') + a['src'].split(' (')[0].replace('GAIN', 'USDA')])
+        what = {'Jun 2013': '%d %% of the coffee area', '2013': '%d %% (200 000 of 400 000 manzanas)', 'Apr 2014': '%d %% of producers (national)',
+                '2014': '%d %% of farms, 5 departments', 'Aug 2017': '%d %% of the park; seed: 65 % Lempira', '~2020': '%d %% of cultivation'}
+        if a['when'] == 'Oct 2017':
+            txt = 'Lempira = %s %% of monitored farms → still resistant ≈ %s %%' % (fr(a['lempira'], 0), fr(a['resistant'], 0))
         else:
-            rows.append([a['when'], 'Lempira alone = %s %% of sampled farms' % fr(a['lempira']), '⚠ ' + a['src'].split(' (')[0]])
+            txt = what[a['when']].replace('%d', str(a['resistant']), 1).replace('%%', '%')
+        rows.append([a['when'], txt, ('✔ ' if a['status'] == 'USDA' else '⚠ ') + a['src'].split(' (')[0].replace('GAIN', 'USDA')])
     yb = p.table(8.75, 2.05, [0.75, 2.3, 1.3], [0.32] + [0.4] * (len(rows) - 1), rows, sz=7.5)
-    p.text(8.75, yb + 0.08, 4.35, 1.2, [('Count of releases', dict(b=True, color=NAVY)),
-                                        ('1990–2004: 3 (IHCAFE 90, Lempira, Parainema)', {}), ('2005–2023: 0', {}), ('2024: 3 · announced: 4 more ⚠', {}),
-                                        ('Still called resistant by IHCAFE in 2020: Parainema only', dict(b=True)),
-                                        ('After Lempira broke: ≈ 3–4 % of the park still resistant ⚠', dict(b=True, color=RED))], sz=8)
-    p.source('Sources: USDA FAS Coffee Annual Honduras 2013, 2014, 2017, 2018, 2020, 2021, 2025 (resistance status, adoption, strains, PAPP); release years 1997–98 (Lempira) and 2004 (Parainema), '
-             'the 2024 releases and the 56 % Lempira share (IHCAFE SAT bulletin No 8, Oct 2017) come from web-search extracts (⚠): the IHCAFE, WCR and press pages could not be opened from here.')
+    p.text(8.75, yb + 0.08, 4.35, 1.2, [('Count of IHCAFE releases', dict(b=True, color=NAVY)),
+                                        ('1990–2004: 3 bred by IHCAFE (IHCAFE 90, Lempira, Parainema)', {}), ('2005–2023: none found', {}),
+                                        ('2024: 3 bred abroad ⚠ · 2026: 2 in release process ⚠', {}),
+                                        ('USDA 2020–21 names only Parainema as still resistant', dict(b=True))], sz=8)
+    p.source('✔ USDA FAS Coffee Annual Honduras 2013–2025. ⚠ web extracts (pages blocked here): release years; Lempira weakening from 2015 (PROMECAFE 2019); IHCAFE 90 at 80 % (La Prensa 2017); '
+             'IHCAFE SAT bulletin No 8, Oct 2017: Lempira = 56,08 % of monitored farms and 67,74 % of susceptible ones → susceptible 82,8 %, resistant 17,2 %; 2024 and 2026 releases.')
     return p
 
 

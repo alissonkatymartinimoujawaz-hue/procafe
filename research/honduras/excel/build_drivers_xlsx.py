@@ -268,14 +268,14 @@ for a_ in FV.ADOPTION:
     y_ = 2020 if a_['when'] == '~2020' else int(a_['when'][-4:])
     OBS.setdefault(y_, []).append(a_)
 EVENTS = {2012: 'Rust epidemic starts (Central America)', 2013: 'Rust: 25 % of area hit (71 000 ha); emergency credit; 50 % of area still susceptible',
-          2014: 'April survey: national incidence 12 %; early-warning system (SAT) set up', 2015: 'PAPP / PEPP replanting for ~23 000 small producers (1 manzana, no interest)',
+          2014: 'April survey: national incidence 12 %; early-warning system (SAT) set up', 2015: 'PAPP / PEPP replanting for ~23 000 small producers (1 manzana, no interest); Lempira resistance weakening in IHCAFE monitoring ⚠',
           2016: 'Renovated plots start bearing', 2017: 'April: IHCAFE confirms Lempira has lost its resistance (3 % of Lempira plants infected)',
           2018: 'April: 4 new rust strains; Parainema and IHCAFE 90 still resistant', 2019: 'April: 16 new rust strains identified',
-          2020: 'USDA: only Parainema named as still resistant', 2021: 'Eta and Iota: 15–25 % incidence in 5 departments (end 2020)',
+          2020: 'USDA 2020 and 2021: only Parainema named as still resistant (last explicit statement May 2021)', 2021: 'Eta and Iota: 15–25 % incidence in 5 departments (end 2020)',
           2023: 'IHCAFE renovation programme 2023–2027: 33 000 producers, 250 000 manzanas (63 % of the park)',
           2024: 'Feb: 3 new varieties (Ihcatú 75, Anacafé 14 SHN, Obatá SHN) ⚠; seed for ≥ 1 500 manzanas',
-          2025: 'USDA: area growth "driven by the introduction of the Parainema variety"; ≥ 4 more varieties announced ⚠',
-          2026: 'March: national incidence 8.44 %, highest reported since 2014'}
+          2025: 'USDA: area growth "driven by the introduction of the Parainema variety"',
+          2026: 'March: national incidence 8.44 %, highest reported since 2014; 2 more varieties in release process ⚠'}
 VR0 = 5
 for i, y in enumerate(Y):
     r = VR0 + i
@@ -303,27 +303,30 @@ for v in FV.VARIETIES:
     r += 1
     vt.row(r, 1, [v['name'], v['family'], v['released'], '', v['resistance'], TAGV[v['year_status']][0], v['broke'] or '', v['src']], WRAP)
 r += 2
-vt.set(r, 1, 'After April 2017: how much of the park still resists? (order of magnitude, from two web extracts; edit the blue cells)', B)
+vt.set(r, 1, 'After April 2017: how many farms still had a resistant variety? (one source: IHCAFE early-warning bulletin No 8, Oct 2017, web extract ⚠; edit the blue cells)', B)
 E0 = r + 1
-est = [('Share of the park in "resistant" varieties, Aug 2017 (La Prensa ⚠)', 60, None, IN0),
-       ('Lempira share of the farms monitored by the early-warning system, Oct 2017 (IHCAFE bulletin No 8 ⚠)', 56.08, None, IN2),
-       ('Other resistant varieties (IHCAFE 90, Parainema): difference', 60 - 56.08, 'MAX(0,B%d-B%d)' % (E0, E0 + 1), F1),
-       ('Resistance of IHCAFE 90 to the new strain, % (IHCAFE via La Prensa ⚠)', 80, None, IN0),
+est = [('Lempira, % of all monitored farms', 56.08, None, IN2),
+       ('Lempira, % of the monitored farms classed as "susceptible varieties" (Lempira counted as susceptible after April 2017)', 67.74, None, IN2),
+       ('Farms with susceptible varieties, % of all monitored farms', 56.08 / 67.74 * 100, 'B%d/B%d*100' % (E0, E0 + 1), F1),
+       ('Farms still with a resistant variety (IHCAFE 90, Parainema, others), %', 100 - 56.08 / 67.74 * 100, '100-B%d' % (E0 + 2), F1),
+       ('Same farms before Lempira failed (Lempira + other resistant), %', 56.08 + 100 - 56.08 / 67.74 * 100, 'B%d+B%d' % (E0, E0 + 3), F1),
+       ('For comparison: share of the whole park in "resistant" varieties, Aug 2017 (La Prensa ⚠)', 60, None, IN0),
+       ('Resistance of IHCAFE 90 to the new strain, % (IHCAFE via La Prensa, Aug 2017 ⚠)', 80, None, IN0),
        ('Resistance of Parainema to the new strain, % (same source ⚠)', 100, None, IN0),
-       ('Share of the park still resistant after April 2017, low (all IHCAFE 90)', (60 - 56.08) * 0.8, 'B%d*B%d/100' % (E0 + 2, E0 + 3), F1),
-       ('Share of the park still resistant after April 2017, high (all Parainema)', (60 - 56.08) * 1.0, 'B%d*B%d/100' % (E0 + 2, E0 + 4), F1),
        ('Seed demand 2017: Lempira, % (La Prensa ⚠)', 65, None, IN0),
        ('Seed demand 2017: other varieties (not Catuaí), %', 10, None, IN0),
-       ('Lempira share of resistant seed sold in 2017, at least', 65 / 75, 'B%d/(B%d+B%d)' % (E0 + 7, E0 + 7, E0 + 8), Style(fmt='0.0%'))]
+       ('Lempira share of the resistant seed sold in 2017, at least', 65 / 75, 'B%d/(B%d+B%d)' % (E0 + 8, E0 + 8, E0 + 9), Style(fmt='0.0%'))]
 for k, (lab, val, f, st_) in enumerate(est):
     vt.set(E0 + k, 1, lab, WRAP)
     vt.set(E0 + k, 2, val, st_, f)
 r = E0 + len(est) + 1
-for t in ['Reading: in 2013–2020 about 60 % of the park was planted with varieties called resistant, but most of it was Lempira. When Lempira broke in April 2017, '
-          'the share that still resisted fell to a few percent (IHCAFE 90 and Parainema), which is why the 2023–2027 renovation targets 63 % of the park.',
-          'Caution: the two main inputs come from different samples (whole park vs farms monitored for rust) and could not be opened here. Treat the result as an order of magnitude.',
-          'Not found anywhere we could reach: a yearly series of area by variety. IHCAFE publishes it in its statistical reports and coffee census (ihcafe.hn, blocked by the network policy).']:
-    vt.set(r, 1, t, RED if t.startswith('Reading') else WRAP)
+for t in ['Reading: in the farms IHCAFE monitored, about 73 % had a variety sold as resistant before 2017, but 56 points of it were Lempira. When Lempira failed, '
+          'about 17 % were left with a variety that still resisted (IHCAFE 90 partly, Parainema). This is why the 2023–2027 renovation targets 63 % of the park.',
+          'Correction: an earlier version of this sheet gave "3–4 %" by subtracting the bulletin figure (56 %) from the park figure (60 %). Those two numbers come from different '
+          'samples; the 17 % above uses the bulletin alone and is the consistent figure.',
+          'Caution: the bulletin covers farms monitored for rust, not the whole park, and could not be opened here (ihcafe.hn is blocked by the network policy). Order of magnitude only.',
+          'Not found anywhere we could reach: a yearly series of area by variety. IHCAFE keeps it in its farm registry and statistical reports (ihcafe.hn).']:
+    vt.set(r, 1, t, RED if t.startswith(('Reading', 'Correction')) else WRAP)
     r += 1
 vt.widths = {1: 64, 2: 12, 3: 12, 4: 12, 5: 45, 6: 24, 7: 11, 8: 60, 9: 45}
 vt.freeze = (5, 2)

@@ -147,7 +147,7 @@ for i, v in enumerate(FV.VARIETIES, 5):
     va.row(i, 1, [v['name'], v['family'], v['released'], TAG[v['year_status']][0], v['resistance'], v['broke'] or '', v['src'], v['note']], WRAP)
     va.set(i, 1, v['name'], B)
 va.set(11, 1, 'Count', B)
-va.set(12, 1, '1990-2004: 3 releases (IHCAFE 90, Lempira, Parainema). 2005-2023: none. Feb 2024: 3 (Ihcatú 75, Anacafé 14 SHN, Obatá SHN, ⚠). Announced: 4 more (⚠).')
+va.set(12, 1, '1990-2004: 3 varieties bred by IHCAFE (IHCAFE 90, Lempira, Parainema). 2005-2023: none found. 2024: 3 bred abroad and released by IHCAFE (Ihcatú 75, Anacafé 14 SHN, Obatá SHN, ⚠). 2026: 2 more in release process (⚠).')
 va.set(13, 1, 'Yield by variety: no official figure found. Web extract: Obatá about 20 % more productive than Caturra (⚠). PAPP target 5 → 45 qq per manzana (USDA 2017).')
 va.widths = {1: 30, 2: 30, 3: 11, 4: 24, 5: 55, 6: 10, 7: 55, 8: 55}
 
