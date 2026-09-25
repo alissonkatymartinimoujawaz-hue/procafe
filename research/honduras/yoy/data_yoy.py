@@ -132,6 +132,20 @@ BONO = [
 PRODUCERS = [dict(year=2018, value=130000, registered=110000, status='DOC', src='El Heraldo 5 Sep 2018 (read)'),
              dict(year=2022, value=100000, registered=None, status='DOC', src='La Prensa / EFE 1 Nov 2022 (read): "mas de 100,000 productores"')]
 
+# ---------------------------------------------------------------- BCH bank credit to agriculture (all farming, coffee not separated)
+# "Prestamos de las Otras Sociedades de Depositos al Sector Privado por Actividad", millions of lempiras (raw/ihcafe_docs5)
+BCH_AGRI = {}
+for r in csv.DictReader(open(HN + 'raw/ihcafe_docs5/bch_prestamos_agropecuaria.csv')):
+    BCH_AGRI[(r['sheet'], r['date'][:7])] = (float(r['agropecuaria_mill_L']), float(r['total_mill_L']))
+CREDIT = []
+for y in range(2017, 2026):
+    s_, n_ = BCH_AGRI[('Pres sobre saldos', '%d-12' % y)], BCH_AGRI[('Pres Nuevos', '%d-12' % y)]
+    CREDIT.append(dict(year=y, label='%d (Dec)' % y, stock=s_[0], stock_total=s_[1], new=n_[0], new_total=n_[1]))
+s_, n_ = BCH_AGRI[('Pres sobre saldos', '2026-07')], BCH_AGRI[('Pres Nuevos', '2026-07')]
+n25 = BCH_AGRI[('Pres Nuevos', '2025-07')]
+s25 = BCH_AGRI[('Pres sobre saldos', '2025-07')]
+CREDIT_2026 = dict(stock=s_[0], stock_total=s_[1], new=n_[0], new_total=n_[1], new_jul25=n25[0], stock_jul25=s25[0])
+
 # ---------------------------------------------------------------- heat (coffee zones) for context
 RB = json.load(open(HN + 'yield_drivers/robustness.json'))
 HEAT = {int(k): v for k, v in RB['coffee_zone_tmax']['sep_oct'].items()}

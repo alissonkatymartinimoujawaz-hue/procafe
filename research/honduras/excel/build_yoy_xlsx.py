@@ -45,7 +45,7 @@ lines = [
     ('Fertiliser: FAOSTAT nitrogen / phosphate / potash use, urea imports, urea price in US$ and in lempiras, kg of urea bought by 1 kg of coffee, Bono Cafetalero.', None),
     ('Disease: every rust (roya) figure found, by year, and the USDA remarks on rust, berry borer, drought and fertiliser.', None),
     ('Varieties: resistant varieties released, and every figure on the share planted.', None),
-    ('Finance: state and bank programmes by year, debt, Bono Cafetalero.', None),
+    ('Finance: state and bank programmes by year, debt, Bono Cafetalero, BCH bank credit to agriculture 2017-2026.', None),
     ('FX: lempiras per US$ (BCH daily reference rate, annual mean), coffee and urea prices in lempiras.', None),
     ('', None),
     ('Crop year t = October t to September t+1 (label t/t+1). Calendar-year series (FAOSTAT, World Bank, BCH) are put on the crop year that starts in that year.', None),
@@ -335,6 +335,34 @@ fi.set(r, 4, FV.DEBT['lps_m'], IN0)
 fi.set(r, 3, FV.DEBT['lps_m'] / D.FX[2021], F1, 'D%d/YoY!%s%d' % (r, C('fx'), rowof(2021)))
 fi.set(r, 7, *TAG[FV.DEBT['status']])
 fi.set(r, 8, FV.DEBT['src'])
+r += 3
+fi.set(r, 1, 'Bank credit to agriculture (BCH, all farming: coffee is not separated), millions of lempiras', B)
+fi.row(r + 1, 1, ['Year', 'Loans outstanding, December', 'change', 'New loans in the year', 'change', 'Share of all new loans', 'Loans outstanding in US$ M', 'Source'], H)
+c0 = r + 2
+for k, cr in enumerate(D.CREDIT):
+    rr = c0 + k
+    fi.set(rr, 1, cr['year'])
+    fi.set(rr, 2, cr['stock'], IN0)
+    fi.set(rr, 4, cr['new'], IN0)
+    if k:
+        fi.set(rr, 3, cr['stock'] / D.CREDIT[k - 1]['stock'] - 1, PCT, 'B%d/B%d-1' % (rr, rr - 1))
+        fi.set(rr, 5, cr['new'] / D.CREDIT[k - 1]['new'] - 1, PCT, 'D%d/D%d-1' % (rr, rr - 1))
+    fi.set(rr, 6, cr['new'] / cr['new_total'], Style(fmt='0.0%'))
+    fi.set(rr, 7, cr['stock'] / D.FX[cr['year']], F0, 'B%d/YoY!%s%d' % (rr, C('fx'), rowof(cr['year'])))
+    fi.set(rr, 8, 'BCH, Prestamos de las Otras Sociedades de Depositos por Actividad (xlsx read, raw/ihcafe_docs5)', OK)
+rr = c0 + len(D.CREDIT)
+c26 = D.CREDIT_2026
+fi.set(rr, 1, '2026 Jan-Jul')
+fi.set(rr, 2, c26['stock'], IN0)
+fi.set(rr + 1, 1, '2025 Jan-Jul')
+fi.set(rr + 1, 2, c26['stock_jul25'], IN0)
+fi.set(rr, 3, c26['stock'] / c26['stock_jul25'] - 1, PCT, 'B%d/B%d-1' % (rr, rr + 1))
+fi.set(rr, 4, c26['new'], IN0)
+fi.set(rr + 1, 4, c26['new_jul25'], IN0)
+fi.set(rr, 5, c26['new'] / c26['new_jul25'] - 1, PCT, 'D%d/D%d-1' % (rr, rr + 1))
+fi.set(rr + 3, 1, 'Reading: credit to agriculture grew slower than total credit (its share of new loans fell from 6.1 % in 2018 to 3.4 % in 2024) and fell in 2020 (-8 %). '
+                  'It picked up in 2024-2025 (+11 %, +12 % new loans) and jumped in 2026: new loans Jan-Jul +84 % on Jan-Jul 2025, with average lending rates down 3.8 points (BCH communique, June 2026). '
+                  'Coffee is not separated in BCH data.', WRAP)
 fi.widths = {1: 7, 2: 60, 3: 9, 4: 11, 5: 40, 6: 60, 7: 24, 8: 50}
 FIN_LAST = r
 

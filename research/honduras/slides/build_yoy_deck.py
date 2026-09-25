@@ -15,6 +15,7 @@ yld = lambda t: R[t]['prod_kbags'] / R[t]['bear_kha']
 kgt = lambda t: R[t]['prod_kbags'] * 60 / R[t]['trees_m'] / 1000
 ureaL = lambda t: R[t]['urea_wb'] * R[t]['fx']
 avg = lambda f, ys: sum(f(t) for t in ys) / len(ys)
+sp = lambda v: format(round(v), ',').replace(',', ' ')
 P0, P1 = (2016, 2017, 2018), (2022, 2023, 2024)
 
 
@@ -114,7 +115,8 @@ def slide_finance():
              'Fondo para el Sector Cafetero (BANHPROVI)': ('BANHPROVI guarantee fund for coffee', 'backs refinancing of growers\' debt'),
              'Bono Cafetalero (PCM 030-2020): free fertiliser': ('Bono Cafetalero: free fertiliser', '25 188 t to 91 778 growers'),
              'Bono Cafetalero extension (PCM 031-2021)': ('Bono Cafetalero extension', 'fertiliser; state credit at 5 % and guarantees'),
-             'IHCAFE renovation programme 2023–2027': ('IHCAFE renovation programme 2023–2027', 'target 7,0–7,5 M qq of production')}
+             'IHCAFE renovation programme 2023–2027': ('IHCAFE renovation programme 2023–2027', 'target 7,0–7,5 M qq of production'),
+             'Bono Cafetalero 2025': ('Bono Cafetalero 2025', '300 000 qq of fertiliser (read, El Heraldo 2026); L350 M not verified')}
     for f in FV.FINANCE:
         usd = f.get('usd_m') or ((f['lps_m'] / D.FX[f['year']]) if f.get('lps_m') and f.get('conv') else None)
         st = 'read' if f['status'] in ('USDA', 'DOC') else '⚠ extract'
@@ -122,9 +124,13 @@ def slide_finance():
         rows.append([str(f['year']), nm, fr(usd, 0) if usd else '–', fr(f['lps_m'], 0) if f.get('lps_m') else '–', terms, [(st, dict(color=GREEN if st == 'read' else RED, b=True))]])
     rows.append(['2021', 'Debt of growers to banks, cooperatives and IHCAFE', fr(FV.DEBT['lps_m'] / D.FX[2021], 0), fr(FV.DEBT['lps_m'], 0), 'stock of debt, June 2021', [('⚠ extract', dict(color=RED, b=True))]])
     yy = p.table(0.45, 1.2, [0.55, 4.6, 0.7, 0.75, 5.0, 0.85], 0.36, rows, sz=7.8)
-    p.text(0.45, yy + 0.1, 12.45, 0.8, ['Pattern: money arrives after the damage (2002 price crisis, 2013 rust, 2018 low prices, 2020–21 Covid and hurricanes, 2025 Bono) and mostly as fertiliser or refinancing. '
-                                        'In 2013 only L335 M of L1 715 M offered was taken by April 2014: credit on offer is not credit used. A yearly BCH series of bank loans to coffee was not reachable.'], sz=8.5, fill='F2F5F8')
-    p.source('USDA FAS Coffee Annual Honduras 2011–2021; El Heraldo 7 Apr 2014 and 29 Aug 2018 (read); Decreto 93-2018; La Tribuna 25 Jun 2021 (debt, search summary). Lempiras converted at the BCH yearly mean rate.', y=6.95)
+    cr = D.CREDIT
+    c26 = D.CREDIT_2026
+    p.text(0.45, yy + 0.1, 12.45, 0.8, ['Pattern: money arrives after the damage (2002 price crisis, 2013 rust, 2018 low prices, 2020–21 Covid and hurricanes, 2025 Bono) and mostly as fertiliser or refinancing; '
+                                        'in 2013 only L335 M of L1 715 M offered was taken. Bank credit to all agriculture (BCH; coffee not separated): new loans L%s M in 2018, L%s M in 2020 (−8 %%), L%s M in 2025 (+12 %%); '
+                                        'Jan–Jul 2026 L%s M, +%s %% on Jan–Jul 2025.' % (sp(cr[1]['new']), sp(cr[3]['new']), sp(cr[8]['new']), sp(c26['new']), fr(100 * (c26['new'] / c26['new_jul25'] - 1), 0))],
+           sz=8.3, fill='F2F5F8')
+    p.source('USDA FAS Coffee Annual Honduras 2011–2021; El Heraldo 7 Apr 2014 and 29 Aug 2018 (read); Decreto 93-2018; La Tribuna 25 Jun 2021 (debt, search summary); BCH loans by activity (xlsx, read). Lempiras converted at the BCH yearly mean rate.', y=6.95)
     return p
 
 
