@@ -46,6 +46,7 @@ rg = wb.add('Regimes')
 mg = wb.add('Margin')
 rw = wb.add('Rust_2012')
 qt = wb.add('USDA_quotes')
+vt = wb.add('Varieties')
 
 # ---------------- Annual ----------------
 cols = [('Year (MY start)', None), ('Marketing year', None), ('Bearing area (1000 ha)', 'bear'), ('Non-bearing area (1000 ha)', 'nonb'),
@@ -252,6 +253,81 @@ for k, q in enumerate(QUOTES):
 qt.widths = {1: 10, 2: 11, 3: 110, 4: 28}
 
 # ---------------- README ----------------
+# ---------------- Varieties ----------------
+sys.path.insert(0, DATA)
+import finance_varieties as FV
+OKS, WARNS = Style(bold=True, color='2E7D32'), Style(bold=True, color='C00000')
+TAGV = {'USDA': ('✔ USDA report (read)', OKS), 'PRESS': ('⚠ web extract, not verified', WARNS)}
+vt.set(1, 1, 'Rust-resistant varieties: what is planted, what still resists (2005–2026)', TITLE)
+vt.set(2, 1, 'One row per marketing year. Areas come from the Annual sheet (formulas). Resistant share = only the survey figures found, never interpolated. '
+             '✔ = read in a USDA report; ⚠ = web-search extract, page blocked here, to be checked.', SUB)
+vt.row(4, 1, ['Year (MY start)', 'Bearing area (1000 ha)', 'Non-bearing area (1000 ha)', 'Resistant share (%)', 'What the % measures', 'Status',
+              'Lempira share (%)', 'Event that year', 'Source'], H)
+OBS = {}
+for a_ in FV.ADOPTION:
+    y_ = 2020 if a_['when'] == '~2020' else int(a_['when'][-4:])
+    OBS.setdefault(y_, []).append(a_)
+EVENTS = {2012: 'Rust epidemic starts (Central America)', 2013: 'Rust: 25 % of area hit (71 000 ha); emergency credit; 50 % of area still susceptible',
+          2014: 'April survey: national incidence 12 %; early-warning system (SAT) set up', 2015: 'PAPP / PEPP replanting for ~23 000 small producers (1 manzana, no interest)',
+          2016: 'Renovated plots start bearing', 2017: 'April: IHCAFE confirms Lempira has lost its resistance (3 % of Lempira plants infected)',
+          2018: 'April: 4 new rust strains; Parainema and IHCAFE 90 still resistant', 2019: 'April: 16 new rust strains identified',
+          2020: 'USDA: only Parainema named as still resistant', 2021: 'Eta and Iota: 15–25 % incidence in 5 departments (end 2020)',
+          2023: 'IHCAFE renovation programme 2023–2027: 33 000 producers, 250 000 manzanas (63 % of the park)',
+          2024: 'Feb: 3 new varieties (Ihcatú 75, Anacafé 14 SHN, Obatá SHN) ⚠; seed for ≥ 1 500 manzanas',
+          2025: 'USDA: area growth "driven by the introduction of the Parainema variety"; ≥ 4 more varieties announced ⚠',
+          2026: 'March: national incidence 8.44 %, highest reported since 2014'}
+VR0 = 5
+for i, y in enumerate(Y):
+    r = VR0 + i
+    ra = R0 + i
+    vt.set(r, 1, y, C)
+    vt.set(r, 2, A['bearing_kha'][i], F0, 'Annual!%s%d' % (col_letter(CI['bear']), ra))
+    vt.set(r, 3, A['nonbearing_kha'][i], F0, 'Annual!%s%d' % (col_letter(CI['nonb']), ra))
+    obs = OBS.get(y, [])
+    main = [o for o in obs if o.get('resistant') is not None]
+    if main:
+        o = sorted(main, key=lambda o: o['status'] != 'USDA')[0]
+        vt.set(r, 4, o['resistant'], IN0)
+        vt.set(r, 5, '; '.join('%s: %d %% of %s' % (x['when'], x['resistant'], x['scope']) for x in main), WRAP)
+        vt.set(r, 6, TAGV[o['status']][0], TAGV[o['status']][1])
+        vt.set(r, 9, '; '.join(x['src'] for x in main), WRAP)
+    lem = [o for o in obs if o.get('lempira')]
+    if lem:
+        vt.set(r, 7, lem[0]['lempira'], IN2)
+    vt.set(r, 8, EVENTS.get(y, ''), WRAP)
+r = VR0 + len(Y) + 1
+vt.set(r, 1, 'Varieties released by IHCAFE', B)
+r += 1
+vt.row(r, 1, ['Variety', 'Family', 'Released', '', 'Resistance status', 'Release year status', 'Year resistance lost', 'Source'], H)
+for v in FV.VARIETIES:
+    r += 1
+    vt.row(r, 1, [v['name'], v['family'], v['released'], '', v['resistance'], TAGV[v['year_status']][0], v['broke'] or '', v['src']], WRAP)
+r += 2
+vt.set(r, 1, 'After April 2017: how much of the park still resists? (order of magnitude, from two web extracts; edit the blue cells)', B)
+E0 = r + 1
+est = [('Share of the park in "resistant" varieties, Aug 2017 (La Prensa ⚠)', 60, None, IN0),
+       ('Lempira share of the farms monitored by the early-warning system, Oct 2017 (IHCAFE bulletin No 8 ⚠)', 56.08, None, IN2),
+       ('Other resistant varieties (IHCAFE 90, Parainema): difference', 60 - 56.08, 'MAX(0,B%d-B%d)' % (E0, E0 + 1), F1),
+       ('Resistance of IHCAFE 90 to the new strain, % (IHCAFE via La Prensa ⚠)', 80, None, IN0),
+       ('Resistance of Parainema to the new strain, % (same source ⚠)', 100, None, IN0),
+       ('Share of the park still resistant after April 2017, low (all IHCAFE 90)', (60 - 56.08) * 0.8, 'B%d*B%d/100' % (E0 + 2, E0 + 3), F1),
+       ('Share of the park still resistant after April 2017, high (all Parainema)', (60 - 56.08) * 1.0, 'B%d*B%d/100' % (E0 + 2, E0 + 4), F1),
+       ('Seed demand 2017: Lempira, % (La Prensa ⚠)', 65, None, IN0),
+       ('Seed demand 2017: other varieties (not Catuaí), %', 10, None, IN0),
+       ('Lempira share of resistant seed sold in 2017, at least', 65 / 75, 'B%d/(B%d+B%d)' % (E0 + 7, E0 + 7, E0 + 8), Style(fmt='0.0%'))]
+for k, (lab, val, f, st_) in enumerate(est):
+    vt.set(E0 + k, 1, lab, WRAP)
+    vt.set(E0 + k, 2, val, st_, f)
+r = E0 + len(est) + 1
+for t in ['Reading: in 2013–2020 about 60 % of the park was planted with varieties called resistant, but most of it was Lempira. When Lempira broke in April 2017, '
+          'the share that still resisted fell to a few percent (IHCAFE 90 and Parainema), which is why the 2023–2027 renovation targets 63 % of the park.',
+          'Caution: the two main inputs come from different samples (whole park vs farms monitored for rust) and could not be opened here. Treat the result as an order of magnitude.',
+          'Not found anywhere we could reach: a yearly series of area by variety. IHCAFE publishes it in its statistical reports and coffee census (ihcafe.hn, blocked by the network policy).']:
+    vt.set(r, 1, t, RED if t.startswith('Reading') else WRAP)
+    r += 1
+vt.widths = {1: 64, 2: 12, 3: 12, 4: 12, 5: 45, 6: 24, 7: 11, 8: 60, 9: 45}
+vt.freeze = (5, 2)
+
 lines = [
     ('Honduras arabica : ce qui fait bouger la surface et les arbres (2005–2026)', TITLE),
     ('Une ligne par campagne (octobre N – septembre N+1). Chiffres en bleu = copiés des sources ; en noir = formules. Les feuilles se recalculent dans Excel.', SUB),
@@ -262,6 +338,7 @@ lines = [
     ('Rust_2012 : la météo de 2011–2013 dans les 3 zones (pluie des pluviomètres GPCC, températures des stations), pour voir ce qui a favorisé la rouille.', WRAP),
     ('USDA_quotes : ce que disent les rapports de l\'attaché USDA, année par année (rouille, rénovation, terres, main-d\'œuvre, variétés, engrais).', WRAP),
     ('Production_1960_2026 : la production USDA du Honduras depuis 1960/61, avec la variation d\'une année sur l\'autre.', WRAP),
+    ('Varieties : variétés résistantes à la rouille (IHCAFE 90, Lempira, Parainema, sorties 2024), part du parc en variétés résistantes (enquêtes 2013, 2014, 2017, 2020), événements année par année, et estimation de la part encore réellement résistante après la perte de résistance de Lempira (avril 2017).', WRAP),
     ('', None),
     ('À SAVOIR AVANT D\'INTERPRÉTER', B),
     ('Les nombres d\'arbres de l\'USDA sont des estimations : 1 049 millions chaque année de 2006 à 2010, puis une densité fixe d\'environ 4 250 arbres/ha jusqu\'en 2017, et 6 400/ha depuis 2023. Depuis 2020, les deux tiers de la hausse des arbres viennent de cette densité, pas de nouvelles surfaces.', RED),

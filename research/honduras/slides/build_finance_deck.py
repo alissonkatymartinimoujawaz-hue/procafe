@@ -162,14 +162,16 @@ def slide_varieties():
     rows = [['When', 'Share with resistant varieties', 'Source']]
     for a in FV.ADOPTION:
         if a.get('resistant') is not None:
-            what = {'Jun 2013': 'of the coffee area', '2013': '(200 000 of 400 000 manzanas)', 'Apr 2014': 'of producers (national)', '2014': 'of farms, 5 departments'}[a['when']]
+            what = {'Jun 2013': 'of the coffee area', '2013': '(200 000 of 400 000 manzanas)', 'Apr 2014': 'of producers (national)', '2014': 'of farms, 5 departments',
+                    'Aug 2017': 'of the park; seed: 65 % Lempira', '~2020': 'of cultivation'}[a['when']]
             rows.append([a['when'], '%d %% %s' % (a['resistant'], what), ('✔ ' if a['status'] == 'USDA' else '⚠ ') + a['src'].split(' (')[0].replace('GAIN', 'USDA')])
         else:
             rows.append([a['when'], 'Lempira alone = %s %% of sampled farms' % fr(a['lempira']), '⚠ ' + a['src'].split(' (')[0]])
-    yb = p.table(8.75, 2.05, [0.75, 2.3, 1.3], [0.32] + [0.5] * (len(rows) - 1), rows, sz=7.5)
+    yb = p.table(8.75, 2.05, [0.75, 2.3, 1.3], [0.32] + [0.4] * (len(rows) - 1), rows, sz=7.5)
     p.text(8.75, yb + 0.08, 4.35, 1.2, [('Count of releases', dict(b=True, color=NAVY)),
                                         ('1990–2004: 3 (IHCAFE 90, Lempira, Parainema)', {}), ('2005–2023: 0', {}), ('2024: 3 · announced: 4 more ⚠', {}),
-                                        ('Still called resistant by IHCAFE in 2020: Parainema only', dict(b=True))], sz=8)
+                                        ('Still called resistant by IHCAFE in 2020: Parainema only', dict(b=True)),
+                                        ('After Lempira broke: ≈ 3–4 % of the park still resistant ⚠', dict(b=True, color=RED))], sz=8)
     p.source('Sources: USDA FAS Coffee Annual Honduras 2013, 2014, 2017, 2018, 2020, 2021, 2025 (resistance status, adoption, strains, PAPP); release years 1997–98 (Lempira) and 2004 (Parainema), '
              'the 2024 releases and the 56 % Lempira share (IHCAFE SAT bulletin No 8, Oct 2017) come from web-search extracts (⚠): the IHCAFE, WCR and press pages could not be opened from here.')
     return p

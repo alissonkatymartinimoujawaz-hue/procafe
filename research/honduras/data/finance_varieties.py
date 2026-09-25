@@ -69,9 +69,21 @@ ADOPTION = [
          quote='the number of coffee producers, growing coffee rust resistant varieties, is moving up to 60 percent and 40 percent of them are still using non-resistant types.'),
     dict(when='2014', scope='5 departments (60 % of area), % of FARMS', resistant=62, status='USDA', src='GAIN 2014 (USDA/TechnoServe baseline)',
          quote='62 percent of the coffee farms had resistant varieties to coffee leaf rust and 38 percent had varieties susceptible'),
+    dict(when='Aug 2017', scope='national coffee park (plants)', resistant=60, status='PRESS', src='La Prensa, 25 Aug 2017 (search extract)',
+         quote='60 % of the national coffee park is improved plants resistant to rust; national seed demand: 65 % Lempira, 25 % Catuaí, 10 % other varieties',
+         seed=dict(Lempira=65, Catuai=25, other=10)),
     dict(when='Oct 2017', scope='farms sampled by the rust early-warning system', resistant=None, lempira=56.08, status='PRESS',
          src='IHCAFE SAT bulletin No 8 (search snippet)', quote='Lempira = 56.08 % of sampled farms, 67.74 % of farms classed as susceptible'),
+    dict(when='~2020', scope='national, % of cultivation', resistant=60, status='PRESS', src='Perfect Daily Grind, Mar 2020 (search extract)',
+         quote='about 60 % of Honduran coffee is planted with resistant varieties (Lempira, IHCAFE 90, Parainema)'),
 ]
+# Resistance of the three IHCAFE varieties to the new rust strain (IHCAFE via La Prensa, Aug 2017; search extract)
+NEW_STRAIN_RESISTANCE = dict(when='Aug 2017', status='PRESS', src='La Prensa, 25 Aug 2017 (search extract)',
+                             values={'Lempira': 0, 'IHCAFE 90': 80, 'Parainema': 100},
+                             quote='Lempira is not immune to the new rust strain; IHCAFE 90 has 80 % resistance to it and Parainema 100 %')
+RENOVATION_VARIETIES = dict(when='2024-2026', status='PRESS', src='La Prensa / El Heraldo, IHCAFE seed programme (search extract)',
+                            varieties=['Parainema', 'Obatá SHN', 'Ihcatú 75', 'IHCAFE 90', 'Anacafé 14 SHN'],
+                            quote='varieties distributed for renovation: Parainema, Obatá, IHCATU 75, IHCAFE 90 and Anacafé 14')
 
 # ---------------------------------------------------------------- rust surveys
 RUST = [
