@@ -25,7 +25,7 @@ F0, F1, F2, F3 = (Style(fmt=f) for f in ('#,##0', '#,##0.0', '0.00', '0.000'))
 PCT = Style(fmt='0.0%')
 OK = Style(color='2E7D32', bold=True)
 WARN = Style(color='C00000', bold=True)
-TAG = {'USDA': ('✔ USDA report (read)', OK), 'FAO': ('✔ FAOSTAT (read)', OK), 'PRESS': ('⚠ web extract, NOT verified', WARN)}
+TAG = {'USDA': ('✔ USDA report (read)', OK), 'FAO': ('✔ FAOSTAT (read)', OK), 'DOC': ('✔ document read (ihcafe_docs2)', OK), 'PRESS': ('⚠ web extract, NOT verified', WARN)}
 
 wb = Workbook('Arial')
 
@@ -147,8 +147,8 @@ for i, v in enumerate(FV.VARIETIES, 5):
     va.row(i, 1, [v['name'], v['family'], v['released'], TAG[v['year_status']][0], v['resistance'], v['broke'] or '', v['src'], v['note']], WRAP)
     va.set(i, 1, v['name'], B)
 va.set(11, 1, 'Count', B)
-va.set(12, 1, '1990-2004: 3 varieties bred by IHCAFE (IHCAFE 90, Lempira, Parainema). 2005-2023: none found. 2024: 3 bred abroad and released by IHCAFE (Ihcatú 75, Anacafé 14 SHN, Obatá SHN, ⚠). 2026: 2 more in release process (⚠).')
-va.set(13, 1, 'Yield by variety: no official figure found. Web extract: Obatá about 20 % more productive than Caturra (⚠). PAPP target 5 → 45 qq per manzana (USDA 2017).')
+va.set(12, 1, 'Releases: IHCAFE 90 (1990), Lempira (1998), Parainema (2004), bred by IHCAFE; none 2005–2023; 29 Feb 2024: Ihcatú 75, Anacafé 14 SHN, Obatá SHN, bred abroad and released by IHCAFE (Sep 2023: at least 4 announced).')
+va.set(13, 1, 'Yield by variety: no official figure found. IHCAFE (2019): the change to resistant varieties raised productivity. PAPP target 5 → 45 qq per manzana (USDA 2017).')
 va.widths = {1: 30, 2: 30, 3: 11, 4: 24, 5: 55, 6: 10, 7: 55, 8: 55}
 
 ad = wb.add('Adoption')

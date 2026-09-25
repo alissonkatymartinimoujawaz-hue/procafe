@@ -257,7 +257,7 @@ qt.widths = {1: 10, 2: 11, 3: 110, 4: 28}
 sys.path.insert(0, DATA)
 import finance_varieties as FV
 OKS, WARNS = Style(bold=True, color='2E7D32'), Style(bold=True, color='C00000')
-TAGV = {'USDA': ('✔ USDA report (read)', OKS), 'PRESS': ('⚠ web extract, not verified', WARNS)}
+TAGV = {'USDA': ('✔ USDA report (read)', OKS), 'DOC': ('✔ document read', OKS), 'PRESS': ('⚠ web extract, not verified', WARNS)}
 vt.set(1, 1, 'Rust-resistant varieties: what is planted, what still resists (2005–2026)', TITLE)
 vt.set(2, 1, 'One row per marketing year. Areas come from the Annual sheet (formulas). Resistant share = only the survey figures found, never interpolated. '
              '✔ = read in a USDA report; ⚠ = web-search extract, page blocked here, to be checked.', SUB)
@@ -267,15 +267,15 @@ OBS = {}
 for a_ in FV.ADOPTION:
     y_ = 2020 if a_['when'] == '~2020' else int(a_['when'][-4:])
     OBS.setdefault(y_, []).append(a_)
-EVENTS = {2012: 'Rust epidemic starts (Central America)', 2013: 'Rust: 25 % of area hit (71 000 ha); emergency credit; 50 % of area still susceptible',
-          2014: 'April survey: national incidence 12 %; early-warning system (SAT) set up', 2015: 'PAPP / PEPP replanting for ~23 000 small producers (1 manzana, no interest); Lempira resistance weakening in IHCAFE monitoring ⚠',
-          2016: 'Renovated plots start bearing', 2017: 'April: IHCAFE confirms Lempira has lost its resistance (3 % of Lempira plants infected)',
-          2018: 'April: 4 new rust strains; Parainema and IHCAFE 90 still resistant', 2019: 'April: 16 new rust strains identified',
+EVENTS = {2007: 'Rust already on all Lempira plants in IHCAFE seed plots (low severity): resistance weakening (IHCAFE 2019)', 2012: 'Rust epidemic starts (Central America); resistant varieties = 65 % of the area, mostly Lempira (IHCAFE 2019)', 2013: 'Rust: 25 % of area hit (71 000 ha); emergency credit; 50 % of area still susceptible',
+          2014: 'April survey: national incidence 12 %; early-warning system (SAT) set up', 2015: 'PAPP / PEPP replanting for ~23 000 small producers (1 manzana, no interest); March: Lempira mother plants 100 % infected (IHCAFE)',
+          2016: 'Lempira becomes susceptible (Olancho, full defoliation); ~20 % of IHCAFE 90 and Obatá plants susceptible (IHCAFE 2019); renovated plots start bearing', 2017: 'April: IHCAFE confirms Lempira has lost its resistance (3 % of Lempira plants infected)',
+          2018: 'April: 4 new rust strains; Parainema and IHCAFE 90 still resistant', 2019: 'April: 16 new rust strains; the Lempira-breaking rust has spread from Olancho to Copán (2017–2019); Parainema still resistant (IHCAFE)',
           2020: 'USDA 2020 and 2021: only Parainema named as still resistant (last explicit statement May 2021)', 2021: 'Eta and Iota: 15–25 % incidence in 5 departments (end 2020)',
-          2023: 'IHCAFE renovation programme 2023–2027: 33 000 producers, 250 000 manzanas (63 % of the park)',
-          2024: 'Feb: 3 new varieties (Ihcatú 75, Anacafé 14 SHN, Obatá SHN) ⚠; seed for ≥ 1 500 manzanas',
+          2023: 'IHCAFE renovation programme 2023–2027: 33 000 producers, 250 000 manzanas (63 % of the park); Sep: at least 4 varieties announced for 2024',
+          2024: '29 Feb: IHCAFE presents Ihcatú 75, Anacafé 14 SHN, Obatá SHN (bred abroad; seed for ≥ 1 500 manzanas), 20 years after Parainema',
           2025: 'USDA: area growth "driven by the introduction of the Parainema variety"',
-          2026: 'March: national incidence 8.44 %, highest reported since 2014; 2 more varieties in release process ⚠'}
+          2026: 'March: national incidence 8.44 %, highest reported since 2014'}
 VR0 = 5
 for i, y in enumerate(Y):
     r = VR0 + i
