@@ -1,0 +1,66 @@
+{
+ "base_usda": 5530.0,
+ "base_exports": 6045.456080660701,
+ "exports_q": {
+  "lo": 7143390.59,
+  "hi": 7343920,
+  "mid": 7243655.295
+ },
+ "balance": 5933.469059499999,
+ "ratio": 6157.443101821404,
+ "heat": {
+  "mild": 0.8501333333333333,
+  "central": 1.4424999999999997,
+  "hot": 2.034866666666666
+ },
+ "methods": {
+  "USDA (May 2026)": {
+   "usda_base": 6030,
+   "export_base": null,
+   "mape": 0.116
+  },
+  "A. Average of last 2 years": {
+   "usda_base": 5362.462121078339,
+   "export_base": 5606.814748093221,
+   "mape": 0.12134963724505327
+  },
+  "B. Model: mean reversion + price + Dec-Mar rain": {
+   "usda_base": 6072.458882057531,
+   "export_base": 6390.205830556369,
+   "mape": 0.12464334157694348
+  },
+  "C. Model B + Sep-Oct heat, mild scenario": {
+   "usda_base": 5470.915226378551,
+   "export_base": 5778.898675116597,
+   "mape": 0.1052795508947989
+  },
+  "C. Model B + Sep-Oct heat, central scenario": {
+   "usda_base": 5184.020286944209,
+   "export_base": 5475.853075469783,
+   "mape": 0.1052795508947989
+  },
+  "C. Model B + Sep-Oct heat, hot scenario": {
+   "usda_base": 4912.170125735671,
+   "export_base": 5188.699195098259,
+   "mape": 0.1052795508947989
+  },
+  "Combination A and C central": {
+   "usda_base": 5272.486360687904,
+   "export_base": 5540.947011291085,
+   "mape": 0.10877187188279278
+  },
+  "Last year (random walk)": {
+   "usda_base": 5530.0,
+   "export_base": 6045.456080660701,
+   "mape": 0.14511296645774238
+  }
+ },
+ "central": 5540.947011291085,
+ "lo": 4938.247832869587,
+ "hi": 6143.646189712583,
+ "mape": 0.10877187188279278,
+ "no_heat": {
+  "model": 6390.205830556369,
+  "comb": 5985.708002744098
+ }
+}

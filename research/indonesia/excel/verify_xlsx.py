@@ -262,6 +262,15 @@ def ev(n, sh, r, keep_range=False):
         return excel_round(ev(args[0], sh, r), ev(args[1], sh, r))
     if name == 'ABS':
         return abs(ev(args[0], sh, r))
+    if name in ('LN', 'EXP', 'SQRT'):
+        return {'LN': math.log, 'EXP': math.exp, 'SQRT': math.sqrt}[name](ev(args[0], sh, r))
+    if name == 'CORREL':
+        # Excel drops a pair when either cell is empty or text
+        a, b = rvals(ev(args[0], sh, r, True)), rvals(ev(args[1], sh, r, True))
+        pr = [(x, y) for x, y in zip(a, b) if isinstance(x, float) and isinstance(y, float) and not isinstance(x, bool) and not isinstance(y, bool)]
+        mx, my = sum(x for x, _ in pr) / len(pr), sum(y for _, y in pr) / len(pr)
+        sxy = sum((x - mx) * (y - my) for x, y in pr)
+        return sxy / math.sqrt(sum((x - mx) ** 2 for x, _ in pr) * sum((y - my) ** 2 for _, y in pr))
     if name == 'LEFT':
         return str(ev(args[0], sh, r))[:int(ev(args[1], sh, r))]
     if name == 'ROW':

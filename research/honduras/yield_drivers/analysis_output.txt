@@ -1,0 +1,81 @@
+== screen_exports_1982_2020
+   N fertiliser use change (FAO, all crops)           n=16 r=+0.69 p=0.0020
+   biennial: last year's change                       n=39 r=-0.41 p=0.0090
+   price change, year t vs t-1 (flowering year)       n=39 r=+0.34 p=0.0384
+   rain, dry season Dec-Mar                           n=39 r=+0.31 p=0.0600
+   coffee/urea ratio change, t vs t-1                 n=39 r=+0.30 p=0.0626
+   rain, rainy season Jun-Oct                         n=39 r=+0.25 p=0.1192
+   coffee/urea ratio, year t (log, vs 5y mean)        n=39 r=+0.24 p=0.1374
+   ENSO, ONI Jun-Aug                                  n=39 r=-0.21 p=0.1912
+   Tmax anomaly Mar-May (NASA)                        n=39 r=+0.20 p=0.2124
+   rain, flowering Apr-May                            n=39 r=-0.20 p=0.2126
+   price change, year t-1 vs t-2                      n=39 r=-0.05 p=0.7794
+   ENSO, ONI Dec-Feb before flowering                 n=39 r=-0.03 p=0.8536
+   price level, year t-1 (log, detrended 5y)          n=39 r=-0.02 p=0.9036
+   rain, previous rainy season May-Oct t-1            n=39 r=+0.01 p=0.9326
+== screen_yield_2006_2025
+   biennial: last year's change                       n=19 r=-0.57 p=0.0118
+   N fertiliser use change (FAO, all crops)           n=19 r=+0.56 p=0.0136
+   rain, dry season Dec-Mar                           n=20 r=+0.44 p=0.0628
+   coffee/urea ratio, year t (log, vs 5y mean)        n=20 r=+0.41 p=0.0748
+   coffee/urea ratio change, t vs t-1                 n=20 r=+0.41 p=0.0764
+   ENSO, ONI Jun-Aug                                  n=20 r=-0.35 p=0.1240
+   rain, rainy season Jun-Oct                         n=20 r=+0.33 p=0.1502
+   price change, year t vs t-1 (flowering year)       n=20 r=+0.31 p=0.1958
+   Tmax anomaly Mar-May (NASA)                        n=20 r=+0.27 p=0.2693
+   price change, year t-1 vs t-2                      n=20 r=-0.23 p=0.3283
+   ENSO, ONI Dec-Feb before flowering                 n=20 r=+0.20 p=0.3931
+   price level, year t-1 (log, detrended 5y)          n=20 r=-0.17 p=0.4891
+   rain, previous rainy season May-Oct t-1            n=20 r=-0.08 p=0.7383
+   rain, flowering Apr-May                            n=20 r=-0.04 p=0.8682
+== screen_psd_production_1982_2025
+   N fertiliser use change (FAO, all crops)           n=20 r=+0.75 p=0.0004
+   biennial: last year's change                       n=44 r=-0.52 p=0.0006
+   coffee/urea ratio change, t vs t-1                 n=44 r=+0.37 p=0.0130
+   rain, dry season Dec-Mar                           n=44 r=+0.34 p=0.0196
+   price change, year t vs t-1 (flowering year)       n=44 r=+0.33 p=0.0290
+   coffee/urea ratio, year t (log, vs 5y mean)        n=44 r=+0.32 p=0.0362
+   Tmax anomaly Mar-May (NASA)                        n=44 r=+0.20 p=0.1962
+   rain, flowering Apr-May                            n=44 r=-0.10 p=0.5043
+   rain, rainy season Jun-Oct                         n=44 r=+0.10 p=0.5147
+   price change, year t-1 vs t-2                      n=44 r=-0.08 p=0.6157
+   rain, previous rainy season May-Oct t-1            n=44 r=-0.07 p=0.6441
+   price level, year t-1 (log, detrended 5y)          n=44 r=-0.03 p=0.8572
+   ENSO, ONI Jun-Aug                                  n=44 r=-0.01 p=0.9470
+   ENSO, ONI Dec-Feb before flowering                 n=44 r=-0.01 p=0.9590
+== model_exports_1982_2020_M1 biennial only
+   R2=0.17  LOO-R2=0.09  sign hits=56%  n=39  {'intercept': 0.0652, "biennial: last year's change": -0.4057}
+== model_exports_1982_2020_M2 biennial + price
+   R2=0.22  LOO-R2=0.07  sign hits=62%  n=39  {'intercept': 0.0617, "biennial: last year's change": -0.3377, 'price change, year t vs t-1 (flowering year)': 0.1523}
+== model_exports_1982_2020_M3 biennial + price + coffee/urea
+   R2=0.23  LOO-R2=0.03  sign hits=59%  n=39  {'intercept': 0.0617, "biennial: last year's change": -0.3303, 'price change, year t vs t-1 (flowering year)': 0.1049, 'coffee/urea ratio change, t vs t-1': 0.0537}
+== model_exports_1982_2020_M4 M2 + rainy-season rain
+   R2=0.29  LOO-R2=0.11  sign hits=62%  n=39  {'intercept': 0.0698, "biennial: last year's change": -0.3681, 'price change, year t vs t-1 (flowering year)': 0.1385, 'rain, rainy season Jun-Oct': 0.2961}
+== model_exports_1982_2020_M5 M2 + dry-season rain
+   R2=0.28  LOO-R2=0.09  sign hits=62%  n=39  {'intercept': 0.0632, "biennial: last year's change": -0.3083, 'price change, year t vs t-1 (flowering year)': 0.1446, 'rain, dry season Dec-Mar': 0.2067}
+== model_exports_1982_2020_M6 weather only
+   R2=0.21  LOO-R2=0.00  sign hits=62%  n=39  {'intercept': 0.0472, 'rain, dry season Dec-Mar': 0.255, 'rain, flowering Apr-May': -0.132, 'rain, rainy season Jun-Oct': 0.2765}
+== model_yield_2006_2025_M1 biennial only
+   R2=0.33  LOO-R2=0.20  sign hits=74%  n=19  {'intercept': 0.0088, "biennial: last year's change": -0.5605}
+== model_yield_2006_2025_M2 biennial + price
+   R2=0.39  LOO-R2=0.18  sign hits=68%  n=19  {'intercept': -0.0021, "biennial: last year's change": -0.5356, 'price change, year t vs t-1 (flowering year)': 0.1721}
+== model_yield_2006_2025_M3 biennial + price + coffee/urea
+   R2=0.46  LOO-R2=0.21  sign hits=84%  n=19  {'intercept': -0.0038, "biennial: last year's change": -0.4961, 'price change, year t vs t-1 (flowering year)': 0.132, 'coffee/urea ratio change, t vs t-1': 0.1429}
+== model_yield_2006_2025_M4 M2 + rainy-season rain
+   R2=0.43  LOO-R2=0.10  sign hits=79%  n=19  {'intercept': 0.0002, "biennial: last year's change": -0.5329, 'price change, year t vs t-1 (flowering year)': 0.1053, 'rain, rainy season Jun-Oct': 0.2005}
+== model_yield_2006_2025_M5 M2 + dry-season rain
+   R2=0.63  LOO-R2=0.39  sign hits=79%  n=19  {'intercept': 0.0095, "biennial: last year's change": -0.6318, 'price change, year t vs t-1 (flowering year)': 0.1478, 'rain, dry season Dec-Mar': 0.3865}
+== model_yield_2006_2025_M6 weather only
+   R2=0.29  LOO-R2=-0.11  sign hits=50%  n=20  {'intercept': 0.0073, 'rain, dry season Dec-Mar': 0.2998, 'rain, flowering Apr-May': -0.0782, 'rain, rainy season Jun-Oct': 0.272}
+== model_psd_1982_2025_M1 biennial only
+   R2=0.27  LOO-R2=0.21  sign hits=73%  n=44  {'intercept': 0.0514, "biennial: last year's change": -0.5192}
+== model_psd_1982_2025_M2 biennial + price
+   R2=0.30  LOO-R2=0.20  sign hits=70%  n=44  {'intercept': 0.0467, "biennial: last year's change": -0.4604, 'price change, year t vs t-1 (flowering year)': 0.1127}
+== model_psd_1982_2025_M3 biennial + price + coffee/urea
+   R2=0.31  LOO-R2=0.18  sign hits=68%  n=44  {'intercept': 0.0465, "biennial: last year's change": -0.4283, 'price change, year t vs t-1 (flowering year)': 0.0612, 'coffee/urea ratio change, t vs t-1': 0.079}
+== model_psd_1982_2025_M4 M2 + rainy-season rain
+   R2=0.31  LOO-R2=0.16  sign hits=70%  n=44  {'intercept': 0.0499, "biennial: last year's change": -0.468, 'price change, year t vs t-1 (flowering year)': 0.1035, 'rain, rainy season Jun-Oct': 0.1068}
+== model_psd_1982_2025_M5 M2 + dry-season rain
+   R2=0.37  LOO-R2=0.23  sign hits=75%  n=44  {'intercept': 0.0529, "biennial: last year's change": -0.4277, 'price change, year t vs t-1 (flowering year)': 0.1091, 'rain, dry season Dec-Mar': 0.2288}
+== model_psd_1982_2025_M6 weather only
+   R2=0.15  LOO-R2=-0.02  sign hits=64%  n=44  {'intercept': 0.0367, 'rain, dry season Dec-Mar': 0.2985, 'rain, flowering Apr-May': -0.0855, 'rain, rainy season Jun-Oct': 0.0838}

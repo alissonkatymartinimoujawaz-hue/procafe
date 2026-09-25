@@ -1,0 +1,35 @@
+IHCAFE exports 1970/71-2020/21                n=49 r=-0.45 phi=+0.11 iid band [-0.68,-0.28] flips 65%
+USDA production 1980/81-2025/26               n=44 r=-0.52 phi=-0.04 iid band [-0.67,-0.27] flips 66%
+USDA yield per bearing ha 2005/06-2025/26     n=19 r=-0.57 phi=-0.15 iid band [-0.76,-0.11] flips 68%
+var dY 0.0264 dP 0.0309 dA 0.0072 -2cov -0.0117
+N use change vs output change, same crop year                          n=18 r=+0.75 p=0.000
+N use change vs output change of the crop before (income)              n=18 r=-0.07 p=0.791
+N use change vs world arabica price change, same calendar year         n=18 r=+0.28 p=0.247
+N use change vs coffee/urea price ratio change                         n=18 r=+0.23 p=0.369
+N use change vs urea price change                                      n=18 r=-0.03 p=0.915
+N use change vs IHCAFE export price change of the crop before          n=17 r=+0.47 p=0.057
+drop-one min r 0.69
+exports_1982_2020 [('N fertiliser use change (FAO, ', 0.0044, 0.062), ("biennial: last year's change", 0.0102, 0.133), ('price change, year t vs t-1 (f', 0.0342, 0.41), ('rain, dry season Dec-Mar', 0.0576, 0.634)]
+psd_1982_2025 [('N fertiliser use change (FAO, ', 0.0004, 0.006), ("biennial: last year's change", 0.0008, 0.01), ('coffee/urea ratio change, t vs', 0.015, 0.18), ('rain, dry season Dec-Mar', 0.0228, 0.251)]
+yield_2006_2025 [("biennial: last year's change", 0.0124, 0.174), ('N fertiliser use change (FAO, ', 0.0124, 0.174), ('rain, dry season Dec-Mar', 0.0572, 0.686), ('coffee/urea ratio, year t (log', 0.0776, 0.854)]
+zone Tmax Dec-Feb                 USDA production  n=44 r=-0.15 p=0.338
+zone Tmax Dec-Feb                 IHCAFE exports   n=39 r=-0.12 p=0.472
+zone Tmax Mar-May (flowering)     USDA production  n=44 r=+0.16 p=0.285
+zone Tmax Mar-May (flowering)     IHCAFE exports   n=39 r=+0.27 p=0.110
+zone Tmax Jun-Aug (fruit fill)    USDA production  n=44 r=-0.30 p=0.053
+zone Tmax Jun-Aug (fruit fill)    IHCAFE exports   n=39 r=-0.13 p=0.428
+zone Tmax Sep-Oct                 USDA production  n=44 r=-0.45 p=0.003
+zone Tmax Sep-Oct                 IHCAFE exports   n=39 r=-0.39 p=0.015
+zone Tmax anomalies 2026 {'Tmax Dec-Feb': -0.869477777777778, 'Tmax Mar-May (flowering)': -0.25039999999999907, 'Tmax Jun-Aug (fruit fill)': 0.8501333333333333} hottest Jun-Aug [{'year': 2019, 'anom': 1.7754666666666676, 'dP_t': -0.31143615845988804}, {'year': 2023, 'anom': 1.3728000000000005, 'dP_t': -0.12107793155323604}, {'year': 1994, 'anom': 0.9241333333333337, 'dP_t': 0.10802686071101882}, {'year': 2026, 'anom': 0.8501333333333333, 'dP_t': None}, {'year': 2014, 'anom': 0.5841333333333338, 'dP_t': 0.14763599880606468}, {'year': 2021, 'anom': 0.4861333333333337, 'dP_t': -0.30318625898774615}]
+GPCC rain 2026 {'dry Dec-Mar': 42.71299839334364, 'flowering Apr-May': -10.145456585935564, 'Jun-Aug': -45.337658418884686}
+Model + Sep-Oct heat (coffee zones)                  MAPE 10.5% bias  -0.5% dir  73% 2026/27 needs Sep-Oct 2026
+Combination: last 2 years and model + heat           MAPE 10.9% bias  -1.5% dir  69% 2026/27 needs Sep-Oct 2026
+Combination: mean of (last 2 years) and the model    MAPE 11.3% bias  +0.2% dir  62% 2026/27  5688
+Average of last 2 years                              MAPE 12.1% bias  -2.4% dir  62% 2026/27  5362
+Model: mean reversion + price + dry-season rain      MAPE 12.5% bias  +2.9% dir  65% 2026/27  6033
+Average of last 3 years                              MAPE 13.1% bias  -3.3% dir  65% 2026/27  5256
+Average of last 4 years                              MAPE 13.4% bias  -4.7% dir  62% 2026/27  5364
+Linear trend, last 8 years                           MAPE 14.1% bias  +3.7% dir  54% 2026/27  4933
+Last year (random walk)                              MAPE 14.5% bias  -0.8% dir  38% 2026/27  5530
+Average of last 4 years + price + dry-season rain    MAPE 14.8% bias  +6.5% dir  65% 2026/27  6397
+USDA May forecast n=11 MAPE 11.6% dir 73% {'Last year (random walk)': 15.6, 'Average of last 2 years': 14.6, 'Average of last 3 years': 15.0, 'Average of last 4 years': 17.2, 'Linear trend, last 8 years': 16.2, 'Model: mean reversion + price + dry-season rain': 15.3, 'Average of last 4 years + price + dry-season rain': 17.0, 'Combination: mean of (last 2 years) and the model': 14.1, 'Model + Sep-Oct heat (coffee zones)': 13.2, 'Combination: last 2 years and model + heat': 13.8}
