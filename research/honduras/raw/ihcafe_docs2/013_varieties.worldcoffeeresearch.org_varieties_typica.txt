@@ -1,0 +1,203 @@
+[meta] Typica
+[meta] typica
+[meta] Typica
+[ld+json headline] typica
+[ld+json datePublished] 2023-04-06T16:18:00+01:00
+
+World Coffee Research | typica
+Varieties Catalog
+English
+Español
+Search Catalog
+Typica
+Home/
+Arabica/
+Varieties/
+Typica
+One of the most cul­tur­al­ly and genet­i­cal­ly impor­tant C. ara­bi­ca cof­fees in the world, with high qual­i­ty in Cen­tral Amer­i­ca. Very high sus­cep­ti­bil­i­ty to cof­fee leaf rust, well-adapt­ed to the cold­est conditions.
+Stature
+Close
+Stature
+What is the growth habit of the plant (e.g., is the plant tall or compact)?
+Dwarf, Tall, Unknown, Not applicable
+Tall
+Leaf tip color
+Close
+Leaf tip color
+What col­or are the tips of new leaves?
+Green, Bronze, Green or Bronze, Light Bronze, Dark Bronze, Unknown, Not applicable
+Bronze
+Bean Size
+Close
+Bean Size
+How big are the cof­fee beans? For Ara­bi­ca ref­er­ence, Catur­ra = Aver­age, SL28 = Large, and Mar­a­gogipe = Very Large.
+Below Aver­age, Aver­age, Large, Very Large, Unknown, Not applicable
+Large
+Yield Potential
+Close
+Yield Potential
+How much fruit will the cof­fee tree pro­duce? For ref­er­ence, Catur­ra, Bour­bon, and K7 = Medi­um, and SL28 = Low
+Low, Medi­um, High, Very High, Unknown, Not applicable
+Low
+Low
+Very High
+Quality potential at high altitude
+Close
+Quality potential at high altitude
+What is the poten­tial for qual­i­ty of this vari­ety when grown at high­er altitudes?
+Very Low, Low, Good, Very Good, Excep­tion­al, Unknown, Not applicable
+Very Good
+Very Low
+Exceptional
+Optimal Altitude
+Close
+Optimal Altitude
+What is the alti­tude at which qual­i­ty and agro­nom­ic per­for­mance poten­tial is max­i­mized? This espe­cial­ly takes into account the variety’s expect­ed cup qual­i­ty and tol­er­ance to cof­fee leaf rust and cof­fee berry dis­ease. Opti­mal alti­tude depends on a far­m’s lat­i­tude — farms locat­ed close to the equa­tor will have high­er opti­mal alti­tudes than those far­ther north or south of the equator.
+First, locate your cor­rect lat­i­tude, then find the cor­re­spond­ing opti­mal altitude.
+Lat­i­tude 5°N to 5°S
+Low: 1000 – 1200m
+Low-medi­um: 1000 – 1600m
+Medi­um: 1200 – 1600m
+Medi­um-high: >1200m
+High: >1600m
+Low-Medi­um-High: >1000m
+Lat­i­tude 5 – 15°N or 5 – 15°S
+Low: 700 – 900m
+Low-medi­um: 700 – 1300m
+Medi­um: 900 – 1300m
+Medi­um-high: >900m
+High: >1300m
+Low-Medi­um-High: >700m
+Lat­i­tude >15°S or >15°N
+Low: 400 – 700m
+Low-medi­um: 400 – 1000m
+Medi­um: 700 – 1000m
+Medi­um-high: >700m
+High: >1000m
+Low-Medi­um-High: >400m
+High
+Coffee leaf rust
+Close
+Coffee leaf rust
+Is the plant sus­cep­ti­ble to leaf rust?
+Cof­fee rust is a foliar dis­ease of cof­fee caused by the fun­gus Hemileia vas­ta­trix that caus­es defo­li­a­tion and may result in severe crop loss­es. Plant dis­eases are con­stant­ly evolv­ing. Note: A vari­ety that is resis­tant to a dis­ease today may not be resis­tant tomorrow.
+High­ly resis­tant, Inter­me­di­ate resis­tance, Low resistance/​Susceptible, Unknown, Not applicable
+Low resistance/susceptible
+Low resistance/susceptible
+Low resistance/susceptible
+Intermediate resistance
+Highly resistant
+Highly resistant
+Nematode
+Close
+Nematode
+Is the plant sus­cep­ti­ble to nema­todes (specif­i­cal­ly the species Meloidog­y­ne spp. and/​or Praty­lenchus spp.)? Nema­todes are micro­scop­ic ani­mals which infect the plant roots and can cause wilt­ing and death of the plant.
+Resis­tant, Tol­er­ant, Sus­cep­ti­ble, Unknown, Not applicable
+Susceptible
+Susceptible
+Susceptible
+Tolerant
+Resistant
+Resistant
+Coffee Berry Disease
+Close
+Coffee Berry Disease
+Is the plant sus­cep­ti­ble to CBD?
+CBD is a cof­fee dis­ease that affects the fruit. It is caused by the fun­gus, Col­letotrichum kahawe. Cur­rent­ly, CBD is not present in Cen­tral Amer­i­ca, but it is a con­cern that the dis­ease will spread. Note: Plant dis­eases are con­stant­ly evolv­ing. A vari­ety that is resis­tant to a dis­ease today may not be resis­tant tomorrow.
+Resis­tant, Tol­er­ant, Sus­cep­ti­ble, Unknown, Not applicable
+Susceptible
+Susceptible
+Susceptible
+Tolerant
+Resistant
+Resistant
+Agronomics
+Year of first production
+Close
+Year of first production
+When will the tree pro­duce its first fruit?
+Year 2, Year 3, Year 4, Unknown, Not applicable
+Year 4
+Nutrition requirement
+Close
+Nutrition requirement
+What lev­el of nutri­tion (e.g., com­post, fer­til­iz­er) does this plant require?
+Very High, High, Medi­um, Low, Unknown, Not applicable
+Medium
+Ripening of fruit
+Close
+Ripening of fruit
+At what time in the har­vest sea­son will the tree fruit ripen?
+For Ara­bi­ca ref­er­ence, Catur­ra = Aver­age. No Robus­ta reference.
+Ear­ly, Aver­age, Late, Very late, Unknown, Not applicable
+Average
+Cherry to green bean outturn
+Close
+Cherry to green bean outturn
+What is the size of the bean in rela­tion to the fruit? For Ara­bi­ca ref­er­ence, Catur­ra = Aver­age, SL28 = High.
+Low, Aver­age, High, Very High, Unknown, Not applicable
+Average
+Planting density
+Close
+Planting density
+What spac­ing should you use for plant­i­ng this vari­ety? Note: In Cen­tral Amer­i­ca, trees are typ­i­cal­ly pruned to have one main stem. In Africa, it is typ­i­cal to prune trees for mul­ti­ple (2−3) stems per tree. So, while tree plant­i­ng den­si­ties typ­i­cal­ly are much low­er in Africa, each tree is fruit­ing rel­a­tive­ly more because there are mul­ti­ple main stems.
+1000 – 2000 per ha (using mul­ti­ple-stem prun­ing)
+2000 – 3000 per ha (using mul­ti­ple-stem prun­ing)
+3000 – 4000 per ha (using sin­gle-stem prun­ing)
+5000 – 6000 per ha (using sin­gle-stem prun­ing)
+4000 – 5000 per ha (using sin­gle-stem prun­ing)
+Unknown
+Not applic­a­ble
+3000-4000 plants/ha (using single-stem pruning)
+Additional agronomic information
+Close
+Additional agronomic information
+-
+Background
+Genetic Description
+Close
+Genetic Description
+To which genet­ic group of Ara­bi­ca does this vari­ety belong?
+Bour­bon-Typ­i­ca group (Typ­i­ca relat­ed)
+Bour­bon-Typ­i­ca group (Bour­bon relat­ed)
+Bour­bon-Typ­i­ca group (Typ­i­ca and Bour­bon relat­ed)
+Ethiopi­an lan­drace
+Intro­gressed (Cati­mor relat­ed)
+Intro­gressed (Sarchi­mor relat­ed)
+Intro­gressed (Oth­er)
+F1 hybrid (intro­gressed)
+F1 hybrid (not intro­gressed)
+Unknown
+Bourbon-Typica group (Typica related)
+Lineage
+Close
+Lineage
+What are the par­ents of this vari­ety (when known) or what is its genet­ic lineage?
+Also called Criollo (Creole), Indio (Indian), Arábigo (Arabica), Plume Hidalgo, Blue Mountain, and Sumatra.
+Breeder
+Close
+Breeder
+If the vari­ety was cre­at­ed by a breed­er, what is the name of the breeder?
+None
+History
+Close
+History
+Typica is the most famous of the Typica-descended varieties. It is a tall variety characterized by very low production, susceptibility to the major diseases, and good cup quality.The Typica group, like all Arabica coffee, is supposed to have originated in southwestern Ethiopia. Sometime in the 15th or 16th century, it was taken to Yemen. By 1700, seeds from Yemen were being cultivated in India. In 1696 and 1699, coffee seeds were sent from the Malabar coast of India to the island of Batavia (today called Java in Indonesia). These few seeds were the ones to give rise to what we now know as the distinct Typica variety. In 1706 a single Typica coffee plant was taken from Java to Amsterdam and given a home in the botanical gardens; from there, a plant was shared with France in 1714.From the Netherlands, Typica was sent in 1719 on colonial trade routes to Dutch Guiana (now Suriname) and then on to Cayenne (French Guiana) in 1722, and from there to the northern part of Brazil in 1727. It reached southern Brazil between 1760 and 1770. From Paris, plants were sent to to Martinique in the West Indies in 1723. The English introduced Typica coffee from Martinique to Jamaica in 1730. It reached Santo Domingo in 1735. From Santo Domingo, seeds were sent to Cuba in 1748. Later on, Costa Rica (1779) and El Salvador (1840) received seeds from Cuba.In the late eighteenth century, cultivation spread to the Caribbean (Cuba, Puerto Rico, Santo Domingo), Mexico and Colombia, and from there across Central America (it was grown in El Salvador as early as 1740). Until the 1940s, the majority of coffee plantations in South and Central America were planted with Typica. Because Typica is both low yielding and highly susceptible to major coffee diseases, it has gradually been replaced across much of the Americas, but is still widely planted in Peru, the Dominican Republic, and Jamaica, where it is called Jamaica Blue Mountain.
+Additional Images
+Close
+View all
+Explore
+Related Varieties
+BPL10
+Java
+Rust-tolerant with high vigor; limited cultivation in Java.
+Caripe
+Criollo Cogollo Verde, Buonaffina
+Very good cup quality with large beans. An important regional variety in Monagas state in northeastern Venezuela.
+SL34
+Exceptional cup quality but highly susceptible to coffee berry disease. Found mostly in Kenya.
+World Coffee Research
+World Coffee Research is a 501 (c)(5) non-profit, collaborative research and development program of the global coffee industry to grow, protect, and enhance supplies of quality coffee while improving the livelihoods of the families who produce it.
+Are you a coffee farmer?
+We've created a printable version of our coffee variety catalog specifically for farmers. Available in English and Spanish.
+Learn more

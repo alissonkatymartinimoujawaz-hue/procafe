@@ -1,0 +1,200 @@
+[meta] Pacamara 
+[meta] pacamara 
+[meta] Pacamara 
+[ld+json headline] pacamara 
+[ld+json datePublished] 2023-04-13T11:27:00+01:00
+
+World Coffee Research | pacamara
+Varieties Catalog
+English
+Español
+Search Catalog
+Pacamara
+Home/
+Arabica/
+Varieties/
+Pacamara
+Capa­ble of pro­duc­ing excep­tion­al cup qual­i­ty. Very high sus­cep­ti­bil­i­ty to cof­fee leaf rust. Vari­ety not uni­form; plants are not sta­ble from one gen­er­a­tion to the next.
+Stature
+Close
+Stature
+What is the growth habit of the plant (e.g., is the plant tall or compact)?
+Dwarf, Tall, Unknown, Not applicable
+Dwarf/Compact
+Leaf tip color
+Close
+Leaf tip color
+What col­or are the tips of new leaves?
+Green, Bronze, Green or Bronze, Light Bronze, Dark Bronze, Unknown, Not applicable
+Green or Bronze
+Bean Size
+Close
+Bean Size
+How big are the cof­fee beans? For Ara­bi­ca ref­er­ence, Catur­ra = Aver­age, SL28 = Large, and Mar­a­gogipe = Very Large.
+Below Aver­age, Aver­age, Large, Very Large, Unknown, Not applicable
+Very Large
+Yield Potential
+Close
+Yield Potential
+How much fruit will the cof­fee tree pro­duce? For ref­er­ence, Catur­ra, Bour­bon, and K7 = Medi­um, and SL28 = Low
+Low, Medi­um, High, Very High, Unknown, Not applicable
+Low
+Low
+Very High
+Quality potential at high altitude
+Close
+Quality potential at high altitude
+What is the poten­tial for qual­i­ty of this vari­ety when grown at high­er altitudes?
+Very Low, Low, Good, Very Good, Excep­tion­al, Unknown, Not applicable
+Exceptional
+Very Low
+Exceptional
+Optimal Altitude
+Close
+Optimal Altitude
+What is the alti­tude at which qual­i­ty and agro­nom­ic per­for­mance poten­tial is max­i­mized? This espe­cial­ly takes into account the variety’s expect­ed cup qual­i­ty and tol­er­ance to cof­fee leaf rust and cof­fee berry dis­ease. Opti­mal alti­tude depends on a far­m’s lat­i­tude — farms locat­ed close to the equa­tor will have high­er opti­mal alti­tudes than those far­ther north or south of the equator.
+First, locate your cor­rect lat­i­tude, then find the cor­re­spond­ing opti­mal altitude.
+Lat­i­tude 5°N to 5°S
+Low: 1000 – 1200m
+Low-medi­um: 1000 – 1600m
+Medi­um: 1200 – 1600m
+Medi­um-high: >1200m
+High: >1600m
+Low-Medi­um-High: >1000m
+Lat­i­tude 5 – 15°N or 5 – 15°S
+Low: 700 – 900m
+Low-medi­um: 700 – 1300m
+Medi­um: 900 – 1300m
+Medi­um-high: >900m
+High: >1300m
+Low-Medi­um-High: >700m
+Lat­i­tude >15°S or >15°N
+Low: 400 – 700m
+Low-medi­um: 400 – 1000m
+Medi­um: 700 – 1000m
+Medi­um-high: >700m
+High: >1000m
+Low-Medi­um-High: >400m
+High
+Coffee leaf rust
+Close
+Coffee leaf rust
+Is the plant sus­cep­ti­ble to leaf rust?
+Cof­fee rust is a foliar dis­ease of cof­fee caused by the fun­gus Hemileia vas­ta­trix that caus­es defo­li­a­tion and may result in severe crop loss­es. Plant dis­eases are con­stant­ly evolv­ing. Note: A vari­ety that is resis­tant to a dis­ease today may not be resis­tant tomorrow.
+High­ly resis­tant, Inter­me­di­ate resis­tance, Low resistance/​Susceptible, Unknown, Not applicable
+Low resistance/susceptible
+Low resistance/susceptible
+Low resistance/susceptible
+Intermediate resistance
+Highly resistant
+Highly resistant
+Nematode
+Close
+Nematode
+Is the plant sus­cep­ti­ble to nema­todes (specif­i­cal­ly the species Meloidog­y­ne spp. and/​or Praty­lenchus spp.)? Nema­todes are micro­scop­ic ani­mals which infect the plant roots and can cause wilt­ing and death of the plant.
+Resis­tant, Tol­er­ant, Sus­cep­ti­ble, Unknown, Not applicable
+Susceptible
+Susceptible
+Susceptible
+Tolerant
+Resistant
+Resistant
+Coffee Berry Disease
+Close
+Coffee Berry Disease
+Is the plant sus­cep­ti­ble to CBD?
+CBD is a cof­fee dis­ease that affects the fruit. It is caused by the fun­gus, Col­letotrichum kahawe. Cur­rent­ly, CBD is not present in Cen­tral Amer­i­ca, but it is a con­cern that the dis­ease will spread. Note: Plant dis­eases are con­stant­ly evolv­ing. A vari­ety that is resis­tant to a dis­ease today may not be resis­tant tomorrow.
+Resis­tant, Tol­er­ant, Sus­cep­ti­ble, Unknown, Not applicable
+Susceptible
+Susceptible
+Susceptible
+Tolerant
+Resistant
+Resistant
+Agronomics
+Year of first production
+Close
+Year of first production
+When will the tree pro­duce its first fruit?
+Year 2, Year 3, Year 4, Unknown, Not applicable
+Year 3
+Nutrition requirement
+Close
+Nutrition requirement
+What lev­el of nutri­tion (e.g., com­post, fer­til­iz­er) does this plant require?
+Very High, High, Medi­um, Low, Unknown, Not applicable
+Medium
+Ripening of fruit
+Close
+Ripening of fruit
+At what time in the har­vest sea­son will the tree fruit ripen?
+For Ara­bi­ca ref­er­ence, Catur­ra = Aver­age. No Robus­ta reference.
+Ear­ly, Aver­age, Late, Very late, Unknown, Not applicable
+Average
+Cherry to green bean outturn
+Close
+Cherry to green bean outturn
+What is the size of the bean in rela­tion to the fruit? For Ara­bi­ca ref­er­ence, Catur­ra = Aver­age, SL28 = High.
+Low, Aver­age, High, Very High, Unknown, Not applicable
+Average
+Planting density
+Close
+Planting density
+What spac­ing should you use for plant­i­ng this vari­ety? Note: In Cen­tral Amer­i­ca, trees are typ­i­cal­ly pruned to have one main stem. In Africa, it is typ­i­cal to prune trees for mul­ti­ple (2−3) stems per tree. So, while tree plant­i­ng den­si­ties typ­i­cal­ly are much low­er in Africa, each tree is fruit­ing rel­a­tive­ly more because there are mul­ti­ple main stems.
+1000 – 2000 per ha (using mul­ti­ple-stem prun­ing)
+2000 – 3000 per ha (using mul­ti­ple-stem prun­ing)
+3000 – 4000 per ha (using sin­gle-stem prun­ing)
+5000 – 6000 per ha (using sin­gle-stem prun­ing)
+4000 – 5000 per ha (using sin­gle-stem prun­ing)
+Unknown
+Not applic­a­ble
+5000-6000 plants/ha (using single-stem pruning)
+Additional agronomic information
+Close
+Additional agronomic information
+Highly susceptible to the Ojo de Gallo disease. Pacamara is not homogeneous; plants are not stable from one generation to the next.
+Yield and rust resistance for this variety were globally evaluated at 23 sites in 15 countries as part of WCR’s International Multilocation Variety Trial. A variety's local performance may vary based on which races of rust are present in the environment.
+Background
+Genetic Description
+Close
+Genetic Description
+To which genet­ic group of Ara­bi­ca does this vari­ety belong?
+Bour­bon-Typ­i­ca group (Typ­i­ca relat­ed)
+Bour­bon-Typ­i­ca group (Bour­bon relat­ed)
+Bour­bon-Typ­i­ca group (Typ­i­ca and Bour­bon relat­ed)
+Ethiopi­an lan­drace
+Intro­gressed (Cati­mor relat­ed)
+Intro­gressed (Sarchi­mor relat­ed)
+Intro­gressed (Oth­er)
+F1 hybrid (intro­gressed)
+F1 hybrid (not intro­gressed)
+Unknown
+Bourbon-Typica group (Typica and Bourbon related)
+Lineage
+Close
+Lineage
+What are the par­ents of this vari­ety (when known) or what is its genet­ic lineage?
+Pacas x Maragogipe
+Breeder
+Close
+Breeder
+If the vari­ety was cre­at­ed by a breed­er, what is the name of the breeder?
+Instituto Salvadoreño de Investigaciones del Café (ISIC)
+History
+Close
+History
+Originated from a cross between Pacas and Maragogipe. An incomplete pedigree selection was conducted by the Salvadoran Institute of Coffee Research (ISIC). Grown primarily in El Salvador, where it is frequently dominates Cup of Excellence competitions for high cup quality.A similar variety, Maracaturra, likely originated from a natural cross between Caturra x Maragogipe in Nicaragua. Initial selections were made by the Nicaraguan Institute of Agricultural Technology (INTA) in 1976, which were never completed following the Sandinista revolution. Further selections were made by private producers in Central America, but the variety has never been stabilized.
+Additional Images
+Close
+View all
+Explore
+Related Varieties
+Mundo Novo
+A vigorous and productive plant with good quality cup but susceptible to major diseases. Grown widely in South America, but rarely in Central America and the Caribbean.
+Catuai
+A compact plant with high yielding potential of standard quality in Central America. Very high susceptibility to coffee leaf rust.
+World Coffee Research
+World Coffee Research is a 501 (c)(5) non-profit, collaborative research and development program of the global coffee industry to grow, protect, and enhance supplies of quality coffee while improving the livelihoods of the families who produce it.
+Are you a coffee farmer?
+We've created a printable version of our coffee variety catalog specifically for farmers. Available in English and Spanish.
+Learn more

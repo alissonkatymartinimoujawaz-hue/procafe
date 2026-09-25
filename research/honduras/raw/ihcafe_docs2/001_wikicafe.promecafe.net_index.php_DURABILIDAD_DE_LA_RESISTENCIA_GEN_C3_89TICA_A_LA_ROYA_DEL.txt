@@ -1,0 +1,198 @@
+
+
+DURABILIDAD DE LA RESISTENCIA GENÉTICA A LA ROYA DEL CAFÉ (HEMILEIA VASTATRIX) EN VARIEDADES MEJORADAS EN HONDURAS AL 2019 - WikiCafe
+Anónimo
+No has accedido
+español
+Acceder
+WikiCafe
+Buscar
+DURABILIDAD DE LA RESISTENCIA GENÉTICA A LA ROYA DEL CAFÉ (HEMILEIA VASTATRIX) EN VARIEDADES MEJORADAS EN HONDURAS AL 2019
+De WikiCafe
+Espacios de nombres
+Página
+Discusión
+Más
+Más
+Idiomas
+Acciones de página
+Leer
+Ver código
+Historial
+Sumario
+1 AUTORES
+2 RESUMEN
+3 I. INTRODUCCIÓN
+4 II. OBJETIVO GENERAL
+5 III. MATERIALES Y MÉTODOS
+5.1 3.1 Monitoreo anual de resistencia genética de campo en variedades mejoradas. Reporte presencia o ausencia de roya
+5.2 3.2. Verificación de Campo.
+5.3 3.3. Determinación de incidencia en plantas y severidad en hojas
+5.4 3.4. Recolección de muestra masal e inoculación para prueba de virulencia y resistencia
+5.5 3.5. Durabilidad de resistencia a roya en variedades mejoradas
+6 IV. RESULTADOS
+6.1 4.1. Monitoreo anual de resistencia genética de campo en variedades mejoradas
+6.2 4.2. Recolección de muestra masal para prueba de virulencia y resistencia
+6.3 4.3. Durabilidad de resistencia a roya en variedades mejoradas
+7 V. CONCLUSIONES
+8 VII. RECOMENDACIONES
+9 VIII. BIBLIOGRAFÍA
+AUTORES[editar | editar código]
+Yonis A. Morales Reyes,
+Rolando Grajeda Majano
+Instituto Hondureño del Café (IHCAFE)
+RESUMEN[editar | editar código]
+La roya del café (Hemileia vastatrix) como la principal enfermedad del cultivo a alcanzado pérdidas de producción entre 25 a 30% registradas en la epidemias de 2012 en Honduras y países de la región centroamericana. Para afrontar esta enfermedad se han hecho varios esfuerzos de investigación que han derivado en el descubrimiento de 9 genes de resistencia y 9 de virulencia e identificación de los híbridos de Timor 832/1 y 832/2 de donde Honduras liberó el IHCAFE 90 (1990), Lempira (1998) y Parainema (2004). Estos materiales resistentes reemplazaron los susceptibles y constituyen el 65% del área cultivada desde 2012 dominada por Lempira. El cambio de variedad incrementó la productividad y la vulnerabilidad a epidemias emergentes por uniformidad genética en campo. Para minimizar el riesgo el programa de mejoramiento genético del IHCAFE monitorea la presencia de roya en plantas madres, ensayos multilocales y fincas de productores, logrando en 2007 identificar la pérdida progresiva de la resistencia en Lempira, hasta volverse susceptible en 2015 junto con el F1 Milenio, Icatu 48 e Icatu 75. El estudio de esta población de roya reveló 5 nuevos genes de virulencia (V1,4,6,7 y 9) y genotipos que afectan 20 % del IHCAFE 90 y que el H27, Parainema, Centroameri- cano, Anacafe 14 y Batian son resistentes hasta 2018 y 2019 donde el H27 y el Centroamericano se vuelven susceptibles. Por lo antes documentado, la resistencia a la roya dura entre 8 y 25 años en Honduras pero es imposible predecir el tiempo exacto, por lo que es necesario reducir al mínimo los tiempos de liberación, incrementar la diversidad genética de resistencia incorporando genes como el SH3 y los no descritos en híbridos de Timor, cruces intergenéricos, inducir mutaciones y liberar variedades según cruces de prueba con evaluación de progenies F2 para reducir frecuencia de eventos epidémicos nacionales y regionales.
+Palabras clave: Plantas diferenciadoras, gen SH3, cruces intergenéricos.
+I. INTRODUCCIÓN[editar | editar código]
+Según el origen de la variedad Lempira y por estudios realizados en el Centro de Investigación de la Roya del Café (CIFC) en Oeiras Portugal. Esta variedad fue clasificada como resistente a la roya del café en 90% de su progenie, con un 10% de plantas del grupo Fisiológicos 1, 2 y 3 que pueden ser afectadas por las razas de roya XXIX XXX y XXXI que aún no están presentes o identificadas en Honduras ya que hasta 1997 el CIFC solo ha identificado las razas 1 y 2 en el país y por el bajo porcentaje de plantas susceptibles que presenta la variedad no representaría un problema considerable, debido a que el Hibrido de Timor 832/1 padre del Lempira está evaluado y catalogado como resistentes a todas las razas de roya presentes y evaluadas por el CIFC desde el 1955. Esta estrategia de manejo de la enfermedad enfocada en el uso de la resistencia genética es altamente eficiente por su independencia de interacción entre la variedad y el ambiente. Pero es de tener presente que no es una alternativa de carácter permanente ya que sea documentado que con el pasar del tiempo (años) las variedades mejoradas pueden ser afectadas por nuevos genotipos virulentos del patógeno surgidos de forma espontánea por la alta capacidad de mutación que tiene el hongo favorecida por la cantidad de uredosporas producidas en cada ciclo reproductivo y entre otros factores como el transporte de genotipos por el viento y la recombinación de genotipos simples que originan combinaciones genéticas más complejas y completarias capaces de superar los genes de resistencia presentes en la variedad mejorada. Tal como lo ocurrido con la variedad Kent en Etiopía que tiene los genes de resistencia (SH2SH5) seleccionada inicialmente por su mayor resistencia a la roya raza II (v5) en comparación a las variedades tradicionales (SH5) que luego de su adopción y cultivo se volvió susceptible, similar a la pérdida de resistencia en la variedad Geisha identificada con los genes de resistencia SH1SH5 considerada como una de las primeras opciones de resistencia para el cultivo en Centroamérica donde las plantaciones de café son afectadas por poblaciones de roya de raza II imperante en toda la región. Después de estos materiales 100% Coffea arabica se identificaron en la isla de Timor nuevos genotipos con genes mayores de resistencia conocidos como los híbridos de Timor 832/1 y 832/2 que son producto de hibridación natural entre la especie Coffea arabica y Coffea canephora y de donde por cruzamiento con la variedad Caturra y Villa Sarchi se derivan la mayor cantidad de variedades mejoradas desde Brasil hasta México. Pese a que las nuevas variedades poseen una combinación de genes más compleja no están exentas de tornarse susceptibles después de una tiempo de cultivo comercial como sus predecesoras 100% arábicas, lo cual ha sido constatado en variedades brasileñas que luego de 4 años de cultivo se volvieron susceptibles (J Avelino 2013). Por lo que en países como Honduras este escenario puede afectar significativamente las economías en más del 95% productores debido a la carencia de recursos económicos para cubrir los costos del manejo de la enfermedad mediante la aplicación de productos químicos y el manejo tardío por el desconocimiento de que nuevas poblaciones de roya afectan las variedades resistentes. Por lo antes descrito el presente trabajo presenta las investigaciones de campo y laboratorio que fueron necesarias para estimar un rango potencial la durabilidad de la resistencia genética a la roya del café en variedades mejoradas cultivadas en el país. Determinando a la vez las causas de esta pérdida progresiva de resistencia genética, identificación de otros materiales potencialmente susceptibles y resistentes como alternativa de cultivo y mejoramiento de futuras variedades además de identificar cómo podemos hacer más eficiente nuestros programas de mejoramiento genético enfocados en el desarrollo de materiales con resistencia genética durable.
+II. OBJETIVO GENERAL[editar | editar código]
+Conocer y documentar los mecanismos de la pérdida progresiva de resistencia genética a la roya del café en variedades mejoradas mediante estudios de campo y laboratorio para estimar y sustentar un rango de tiempo en años potenciales de resistencia en búsqueda de optimizar e incrementar la durabilidad de la resistencia en campo promoviendo cambios en estrategias de mejoramiento genético del cultivo.
+III. MATERIALES Y MÉTODOS[editar | editar código]
+3.1 Monitoreo anual de resistencia genética de campo en variedades mejoradas. Reporte presencia o ausencia de roya[editar | editar código]
+Para poder definir el periodo de duración de la resistencia genética de campo de una variedad mejorada es necesario realizar un monitoreo anual donde se informa de forma oportuna la presencia o ausencia de esta enfermedad registrando el porcentaje de incidencia y grado de afectación en términos de severidad del daño como la defoliación y pérdida de cosecha. Para este fin se consideró la inspección anual de parcelas de producción de semilla y ensayos de investigación del programa de mejoramiento genético establecidos en todos los centros de investigación del IHCAFE cuyos resultados pueden ser complementados por los reportes de muestreos de roya mensuales en fincas de productores representativas de todas las regiones cafetaleras del país, considerando a la vez reportes por productores independientes, los cuales son sujetos a verificación de campo por especialistas del programa de mejoramiento genético. Este seguimiento del comportamiento de las nuevas variedades resistentes es una de las actividades más relevantes después de su liberación comercial, debido a que es expuesta a una mayor cantidad de condiciones agroecológicas y geográficas donde de forma espontánea o con el paso del tiempo pueden llegar a surgir poblaciones de roya diferentes a las que estuvieron presente durante el desarrollo y selección del material original. Estas nuevas poblaciones de roya en algunas regiones pueden ser de baja virulencia incapaz de causar daños económicos pero en otras los daños pueden ser severos causando defoliación completa, pérdidas de cosecha y muerte de la planta con potenciales riesgos de epidemias nacionales o regionales, por lo que es indispensable poder identificar de forma oportuna los nuevos brotes de roya.
+3.2. Verificación de Campo.[editar | editar código]
+Identificación de la variedad y su pureza genética
+Una vez que se reporta la presencia de roya en una variedad catalogada como resistente se procede a realizar la verificación en campo, donde se identifica la procedencia de la semilla y se complementa corroborando la concordancia de los descriptores morfológicos característicos de la variedad, tales como altura de planta, forma y tamaño de hojas, forma y tamaño de fruto entre otros, principalmente cuando el reporte de presencia de roya procede de fincas de productores donde se desconoce cómo fue la adquisición de semilla y el proceso de siembra en campo definitivo. Para este fin consideramos tres muestras de 100 plantas distribuidas en dos surcos de 50 plantas donde se registran todas las plantas normales a la variedad y aquellas fuera de tipo por efectos de mutaciones espontáneas o cruzamiento natural con otras variedades, esto con el objetivo de evaluar la presencia de roya (incidencia y severidad) únicamente en el porcentaje de plantas que corresponden a la variedad que generalmente supera el 90%.
+3.3. Determinación de incidencia en plantas y severidad en hojas[editar | editar código]
+En Honduras debido a que el 100% de las variedades cultivadas pertenecen a la especie Coffea arábica se caracteriza por ser una planta autógama con un rango aceptable de 2 a 5% de polinización cursada más las mutaciones espontáneas y segregación intrínseca de la variedad en el caso de variedades genéticamente heterogéneas. Esto debido a que es muy fácil caer en falsas alarmas al registrar roya en una variedad resistente sin percatarse de que esas plantas corresponden al porcentaje de plantas producto del cruzamiento natural con variedades susceptibles en progenies F2 en adelante o porcentajes de plantas susceptibles dentro de los parámetros descritos en su liberación comercial. Una vez que se ha identificado la pureza genética de la variedad se procede a la determinación del porcentaje de incidencia de plantas con roya mediante la evaluación de tres grupos de 100 plantas seleccionando de forma aleatoria dos surcos de 50 plantas para tener una mayor representatividad de la parcela afectada. De preferencia estos muestreos se realizan tres veces por año (el primero en el mes de abril, el segundo en julio y el tercero en septiembre) considerando 30 días entre la incubación y esporulación más 30 días para la colonización del área foliar, esto con el objetivo de ver el potencial epidémico en función de observar si el porcentaje de plantas con roya y su severidad del área foliar afectada es estable o va en aumento hasta alcanzar el 100% de plantas afectadas con el pasar del tiempo donde la severidad produce defoliación total de la planta, momento en el cual la variedad es catalogada como susceptible a las nuevas poblaciones de roya emergentes. El incremento progresivo de incidencia y severidad indica que la nueva población de roya fue identificada en su periodo inicial de adaptación y colonización dentro de una finca de donde se va expandiendo a fincas vecinas, avanzando a regiones hasta estar presente en todo el país. Este comportamiento es muy común cuando la variedad bajo estudio presenta 100% de uniformidad genética para resistencia donde si una roya es capaz de afectar una planta y multiplicarse puede llegar a colonizar toda la plantación a medida que se incrementa el inóculo inicial mediante ciclos reproductivos sucesivos.
+3.4. Recolección de muestra masal e inoculación para prueba de virulencia y resistencia[editar | editar código]
+Cuando la identificación de la variedad con reportes de susceptibilidad a la roya en campo no es concluyente se procede a la recolección de una muestra masal compuesta por al menos 200 hojas con roya recolectas al azar entre 50 plantas afectadas (2 hojas/planta), con el cuidado de seleccionar solo hojas que estén libres de otros hogos hiperparásitos como Lecanicilium lecanii ya que impide el crecimiento de la muestra de roya en estudios posteriores de crecimiento en hojas de la variedad procedentes de plantas madres presentes en los bancos de germoplasma del IHCAFE y en 12 planta diferenciadoras utilizadas para identificar la diversidad de genes presentes en la nueva población de roya (Figura 1), todo es te proceso de inoculación fue realizado según la técnica de D’Oliveira (1958) complementado con condiciones de incubación de roya en el laboratorio de fitopatología donde se controla que la humedad relativa este en valores superiores al 60% hasta un máximo de 90% con una temperatura entre 18 y 22 grados centígrados para favorecer el crecimiento de la roya en ge- notipos susceptibles (modificado de Zambolim y Chaves, 1974). En este tipo de pruebas se incluye la variedad caturra como testigo susceptible acompañando la variedad reportada como susceptible y los otros genotipos considerados resistentes a nivel de país los que son puestos en observación durante un período máximo de 60 días (D’Oliveira y Rodrigues Jr. (1960)). Todo esto en búsqueda de identificar variedades resistentes que son potencialmente susceptibles y variedades resistentes que mantienen su resistentes ante esta nueva población de roya, mismas que puede servir como alternativa de cultivo a la variedad que perdió resistencia o como progenitor para el desarrollo de nuevas variedades mejoradas.
+Figura 1. Recolección de muestra masal inoculadada para pruebas de resistencia en plantas diferenciales y variedades cultivadas en Honduras.
+(a) Muestra masal de roya (b) Inoculación de esporas en discos de hojas (c) cámaras de crecimiento de roya.
+3.5. Durabilidad de resistencia a roya en variedades mejoradas[editar | editar código]
+Después de que las pruebas de laboratorio validan que la variedad en cuestión perdió su resistencia ante una nueva población de roya se procede a estimar cuántos años permaneció esta resistencia partiendo de la fecha que fue liberada comercialmente en el país, reflejando el tiempo en que la variedad representó una alternativa efectiva para el control natural de la roya del café. Misma esti- mación se aplica tanto a variedades comerciales como a genotipos promisorios que han perdido su resistencia aun estando en el proceso de selección y liberación en el programa de mejoramiento genético ya que representa una información valiosa para poder hacer ajustes en las metodologías y estrategias de mejoramiento para el desarrollo de las futuras variedades.
+IV. RESULTADOS[editar | editar código]
+4.1. Monitoreo anual de resistencia genética de campo en variedades mejoradas[editar | editar código]
+Como parte del seguimiento anual de la resistencia a la roya en las variedades mejoradas y después de determinar que su pureza genética en campo es de 96 a 98% se logró identificar en julio de 2007 que la variedad Lempira ya presentaba 100% incidencia de plantas con roya con baja severidad en parcelas de fundación de semilla ubicadas en el CIC-JAP la Fé Peña Blanca Cortes, la cual se mantiene estable hasta 2019, pero en marzo de 2015 en evaluaciones de campo de las líneas madres del Lempiras ubicadas en el Centro de Investigación José Virgilio Enamorado (CIC-JVE) del IHCAFE, ubicado en Los Linderos, Santa Bárbara, se observó un 100% de las plantas con presencia de roya con una severidad entre el 15 al 25% del área foliar afectada sin causar defoliación ni problemas en la cosechas. La roya en esta localidad se presenta con una mancha necrótica seca rodeada de un halo o anillo anaranjado posiblemente por una respuesta de hipersensibilidad de la planta que termina en la muerte de tejidos para reducir la proliferación de la roya además de presentar Fleck (Figura 2). Este escenario se tornó más grave cuando en 2016 en la comunidad de Las Vegas de Jalan, Juticalpa, Olancho, se reporta y verifica en campo que la variedad Lempiras se volvió susceptible a la roya presentando 100% de defoliación y muerte de plantas en el mes de marzo posterior a la cosecha, misma condición de susceptibilidad fue verificada en el híbrido F1 Milenio en el CIC-JVE y en las líneas Icatu 48 y 75 en el centro de investigación Las Laguas, Marcala, La Paz, estos genotipos aún se encuentran en su fase de evaluación de estabilidad previo a su liberación.
+Figura 2. Comportamiento regional de la roya en Lempira del 2016 al 2017.
+(a) Roya en Lempira en CIC-JVE, (b) Roya en Lempira en Las Vegas de Jalan y Campamento Olancho.
+Este comportamiento contrastante entre una localidad y otra se debe a que la variedad está expuesta a diferentes poblaciones, donde la roya identificada en Olancho es la más agresiva y de mayor potencial epidémico, hipótesis que fue corroborada en los años 2017 y 2019 por su avance desde el departamento de Olancho hacia El Paraíso hasta llegar a Corquín, Copán, en el occidente del país, en término de dos años cubriendo la totalidad del territorio nacional.
+4.2. Recolección de muestra masal para prueba de virulencia y resistencia[editar | editar código]
+El estudio de la muestra masal de roya colectada en parcelas de producción de semilla de Lempira evaluada en plantas diferenciales de genes de virulencia específico de roya permitó identificar que esta nueva población de roya capaz de afectar la variedad Lempira posee al menos de siete genes de virulencia (v 1,2,4,5,6,7,9) (Figura 3). Además de identificar otras variedades susceptibles como el Ruiru II y variedades parcialmente afectadas como IHCAFE-90 y Obatá donde solo el 80% de su progenie es susceptible, y genotipos completamente resistentes como la variedad Parainema, híbrido F1 centroamericano, H27, Batian. 832/1, 832/2, entre otros genotipos, con el gen SH3.
+Figura 3. Confirmación de resistencia y susceptibilidad al término de 30 a 60 días de evaluación contínua en plantas diferenciales y variedades cultivadas en Honduras.
+Esta técnica de muestreo masal complementada con un testigo susceptible permitió identificar variedades susceptibles por la presencia de esporulaciones en menor o igual medida del testigo (lado izquierdo de la figura), especialmente las variedades y genotipos altamente resistentes representados por discos de hojas libres de roya ubicados en la parte derecha de la figura.
+4.3. Durabilidad de resistencia a roya en variedades mejoradas[editar | editar código]
+Después de verificar en campo y laboratorio permanencia de resistencia o cambio a susceptibilidad a la roya en las principales variedades cultivadas en Honduras, y luego de tomar en cuenta la fecha de su liberación o adopción comercial, se logró identificar que el rango de tiempo efectivo en años donde una variedad o híbrido puede estar libre de roya va desde los ocho como en el híbrido F1, liberado en 2007 y reportado como susceptible en 2016, hasta los 25 años documentado en la variedad IHCAFE 90. La diversidad de genotipos evaluados pone en evidencia que el cambio de resistente a susceptible puede ocurrir de forma espontánea cambiando de un año a otro en ciertos genotipos como el Icatu 48. Pero otros como la variedad Lempira experimentan una colonización progresiva pasando de resistente a susceptible, y finalmente pasa a ser completamente susceptible en un período de tiempo de 17 años después de ser liberado (Ver Cuadro).
+Cuadro. Durabilidad de resistencia a roya en variedades mejoradas.
+|
+Variedad
+|
+Liberada
+| Resistente a roya
+| Tolerante a roya
+| Susceptible a razas emergentes
+| Resistencia Efectiva (años)
+| IHCAFE 90
+| 1990
+| 1990-2015
+|
+| 2016 (20%)
+| 25
+| Lempira
+| 1998
+| 1998-2001
+| 2002-2015
+| 2016
+| 17
+| Parainema*
+| 2004
+| 2004-2019
+|
+|
+| +15
+| F1 Milenio
+| 2007
+| 2007-2015
+|
+| 2016
+| 8
+| Icatu 48
+| 2007
+| 2007-2015
+|
+| 2016
+| 8
+| Icatu 75
+| 2007
+| 2007-2015
+|
+| 2016
+| 8
+| Centroamericano
+| 2007
+| 2007-2018
+|
+| 2019
+| 11
+| H27**
+|
+| 2000-2017
+|
+| 2018
+| 17
+| Obatá**
+|
+| 2006-2015
+|
+| 2016 (20%)
+| 9
+* Variedades mejoradas que aún conservan su resistencia.
+** Variedades de adopción regional sin liberación oficial por el IHCAFE.
+V. CONCLUSIONES[editar | editar código]
+Según las observaciones de susceptibilidad a la roya realizadas en campo validadas con pruebas de laboratorio para evaluar resistencia y virulencia (caso de Lempira), la pérdida de resistencia se debe al surgimiento de nuevas poblaciones de roya que surgen en forma espontánea o progresiva dando períodos de pérdida de resistencia muy variables que van de 8 a 25 años, con un promedio de 13 años efectivos, dificultando predecir el tiempo exacto donde una variedad mejorada estará libre de la enfermedad.
+Entre más diferente sea el componente genético de resistencia de cada variedad mayor será la diferencia en el período de tiempo en el cual se pierde la resistencia.
+VII. RECOMENDACIONES[editar | editar código]
+Por la naturaleza cambiante de las formas virulentas del hogo de la roya es necesario mantener un programa de monitoría permanente de las variedades mejoradas para detectar la pérdida de resistencia de forma temprana para prevenir y capacitar a los productores en el manejo preventivo evitando epidemias potenciales.
+La diversidad genética en las variedades cultivadas es fundamental para evitar la pérdida de resistencia en toda el área cultivada en el país, por lo que es indispensable el cultivo de dos o más variedades por productor creadas con diferentes progenitores de resistencia a la roya.
+Por la alta resistencia mostrada en los ensayos de virulencia en los híbridos de Timor 832/1, 832/2, Batían y genotipos que tienen el gen SH3 estos pueden ser considerados como fuentes estratégicas de mejoramiento para la generación de nuevas variedades, misma condición es aplicable para géneros de la familia rubiaceae libres de la enfermedad.
+VIII. BIBLIOGRAFÍA[editar | editar código]
+D’Oliveira B (1958). As Ferrugens do cafeiro. Revista do Café Protugués. Separata N° 3, Oeiras- Portugal. P. 39-61.
+D’ Oliveira B, Rodrigues Jr (1960). O Problema das ferrugens do cafeeiro. Determinacao da resistencia a Hemileia vastatrix em Coffea arabica. Revista do Café Protugués 8: 5-87.
+Jacques Avelino, Galileo Rivas. La roya anaranjada del cafeto. 2013. ffhal-01071036f
+Zambolin L, Chaves GM (1974). Efeito de baixas temperaturas e do binomio temperatura-umidade relativa sobre a viabilidade dos uredosporos de Hemileia vastatrix Berk. Et Br. E Uromyces phaseoli Typica. Arth. Experientiae 17: 151-184.
+Obtenido de «https://wikicafe.promecafe.net/index.php?title=DURABILIDAD_DE_LA_RESISTENCIA_GENÉTICA_A_LA_ROYA_DEL_CAFÉ_(HEMILEIA_VASTATRIX)_EN_VARIEDADES_MEJORADAS_EN_HONDURAS_AL_2019&oldid=1056»
+Categoría:
+XXIV SIMPOSIO LATINOAMERICANO DE CAFICULTURA
+Navegación
+Navegación
+Página principal
+Cambios recientes
+Página aleatoria
+Ayuda sobre MediaWiki
+Herramientas wiki
+Herramientas wiki
+Páginas especiales
+Herramientas de página
+Herramientas de página
+Herramientas de página de usuario
+Más
+Lo que enlaza aquí
+Cambios relacionados
+Versión para imprimir
+Enlace permanente
+Información de la página
+Registros de página
+Categorías
+Categorías
+XXIV SIMPOSIO LATINOAMERICANO DE CAFICULTURA
+Esta página se editó por última vez el 10 ago 2021 a las 22:40.
+Política de privacidad
+Acerca de WikiCafe
+Exoneraciones
+Si desea contribuir en esta biblioteca, solicitar cambios o conocer más, escribanos a: info@promecafe.net; + 502 2386 5900
+Con el soporte y mantenimiento de: Bidea Digital © 2021
+Gracias al apoyo de:
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
