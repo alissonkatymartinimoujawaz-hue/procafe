@@ -3,7 +3,8 @@ BASE = "https://psl.noaa.gov/thredds/dodsC/Datasets/gpcc/"
 TOWNS = [("comayagua",14.4500,-87.6333),("ocotepeque",14.4333,-89.1833),("copan",14.7667,-88.7833)]
 DSETS = [("gpcc_full_v2020","full_v2020/precip.mon.total.0.25x0.25.v2020.nc","GPCC Full Data Monthly v2020 0.25deg (PSL)",60),
          ("gpcc_monitor_v2020","monitor/precip.monitor.mon.total.1x1.v2020.nc","GPCC Monitoring Product v2020 1deg (PSL)",120),
-         ("gpcc_first_guess","first_guess/precip.first.mon.total.1x1.nc","GPCC First Guess Monthly 1deg (PSL)",120)]
+         ("gpcc_first_guess","first_guess/precip.first.mon.total.1x1.nc","GPCC First Guess Monthly 1deg (PSL)",120),
+         ("gpcc_combined_v2020","combined/precip.comb.v2020to2019-v2020monitorafter.total.nc","GPCC Full v2020 to 2019 + Monitoring v2020 after, 1deg (PSL)",120)]
 only = sys.argv[2:] or [d[0] for d in DSETS]
 LOGF = open(sys.argv[1], "a")
 def log(**k): LOGF.write(json.dumps(k) + "\n"); LOGF.flush()

@@ -28,3 +28,15 @@ Notes:
 - The monitoring product's time axis on PSL runs from 1982-01 to 2025-12. For all 3 towns, the 56 months from 2021-05 to 2025-12 are missing values, so those months have no CSV rows. The monitoring series really ends at 2021-04.
 - On the 1° grids, Comayagua, Ocotepeque and Copán all fall in the 14.5°N row. Ocotepeque and Copán are in neighbouring columns.
 - The CSV rows are the nearest grid cell to each town. No interpolation was applied.
+
+## Added 2026-09-25: continuous monthly rainfall 1981 to 2026
+
+| File (in rain_check/) | Source | HTTP | Size (bytes) | Rows | First | Last |
+|---|---|---|---|---|---|---|
+| gpcc_combined_v2020_monthly.csv | combined/precip.comb.v2020to2019-v2020monitorafter.total.nc (PSL, 1°): Full v2020 to 2019, then Monitoring v2020 | 200 (15 requests) | 157,993 | 1,620 (540 per town, 0 missing) | 1981-01 | 2025-12 |
+| gpcc_1981_2026_monthly.csv | The combined file above, plus First Guess for 2026-01 to 2026-08 (built locally, no new download) | – | 159,673 | 1,644 (548 per town) | 1981-01 | 2026-08 |
+
+- The combined file was fetched with `python3 fetch_gpcc.py log.jsonl gpcc_combined_v2020` after adding it to `DSETS` in `fetch_gpcc.py`. Its grid cells are the same as the other 1° files.
+- The combined file has values after 2021-04, unlike the standalone monitoring file on PSL, which leaves those months empty.
+- The combined file and First Guess agree closely over 2021-2025 (60 months per town). The correlation is 0.996 for Comayagua, 0.976 for Ocotepeque and 0.997 for Copán, and the mean monthly rain differs by 0.1, 0.5 and 2.8 mm.
+- The 2026 months are First Guess, which GPCC calls a preliminary product built from fewer stations. For example, Ocotepeque 2026-08 = 3.5 mm looks too low and should be checked against a later release.
