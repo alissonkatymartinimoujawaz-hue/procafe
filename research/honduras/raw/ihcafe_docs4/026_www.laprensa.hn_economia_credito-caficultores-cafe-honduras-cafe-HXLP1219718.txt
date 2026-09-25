@@ -1,0 +1,84 @@
+[meta] &lt;div id=&#039;DTElementID-688925&#039; class=&#039;QuickRead&#039;&gt;Omar Fúnez, gerente técnico del Ihcafé, manifestó que están en la etapa de consulta y análisis de riesgos con los préstamos&lt;/div&gt;
+[meta] &lt;div id=&#039;DTElementID-688925&#039; class=&#039;QuickRead&#039;&gt;Omar Fúnez, gerente técnico del Ihcafé, manifestó que están en la etapa de consulta y análisis de riesgos con los préstamos&lt;/div&gt;
+[meta] Crédito para caficultores estará listo en dos meses
+[ld+json headline] Crédito para caficultores estará listo en dos meses
+[ld+json datePublished] 2018-09-25T00:00:00-06:00
+[ld+json articleBody] &lt;div id=&#039;DTElementID-650978&#039; class=&#039;WebText&#039;&lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;&lt;strongTegucigalpa, Honduras&lt;/strong &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;El cr&amp;eacute;dito de 1,900 millones de lempiras para los caficultores est&amp;aacute; en la fase de negociaci&amp;oacute;n. &lt;table style=&#039;width: auto!important; float: right;&#039; cellpadding=&#039;4&#039; &lt;tbody &lt;tr &lt;td &lt;div class=&#039;microformato microbasica&#039; &lt;div class=&#039;head&#039;200&lt;/div &lt;div class=&#039;content&#039;lempiras ser&amp;aacute;n prestados a los cafetaleros, afiliados al Ihcaf&amp;eacute;, por cada quintal de caf&amp;eacute; producido.&lt;/div &lt;/div &lt;/td &lt;/tr &lt;/tbody &lt;/table &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;Dos bancos presentaron sus propuestas para manejar el financiamiento, el cual ser&amp;aacute; bajo la modalidad de cr&amp;eacute;dito sindicado. Esto significa que varias instituciones prestar&amp;aacute;n fondos, pero un solo banco lo manejar&amp;aacute; y establecer&amp;aacute; las condiciones. &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;Omar F&amp;uacute;nez, gerente t&amp;eacute;cnico del Instituto Hondure&amp;ntilde;o del &lt;strongCaf&amp;eacute;&lt;/strong (Ihcaf&amp;eacute;), inform&amp;oacute; que est&amp;aacute;n en la etapa de consulta y an&amp;aacute;lisis de los riesgos y las condiciones del pr&amp;eacute;stamo. &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;Una vez que se llegue a un acuerdo con alguno de los bancos, que se prev&amp;eacute; de cuatro a seis semanas, el dinero estar&amp;aacute; disponible para los productores. Es decir que posiblemente en noviembre los productores podr&amp;aacute;n acceder a los fondos. &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;A la fecha, el decreto aprobado en el Congreso Nacional a finales de agosto no ha sido publicado en el diario oficial La Gaceta. &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;“Esperamos que pronto se tengan buenas noticias para los productores, eso pasar&amp;aacute; por las condiciones que den los bancos”, coment&amp;oacute; F&amp;uacute;nez. &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;Asimismo, garantiz&amp;oacute; que el “Ihcaf&amp;eacute; va a buscar las mejores condiciones, porque si un banco quiere financiar, pero le va a salir una tasa al productor por encima de la tasa comercial no se puede, lo que se busca es una tasa competitiva a un plazo razonable”, apunt&amp;oacute; el entrevistado. &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;&lt;strongEl decreto aprobado&lt;/strong &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;El decreto autoriza al Ihcaf&amp;eacute; para que gestione y obtenga un cr&amp;eacute;dito por 1,900 millones de lempiras, del cual le prestar&amp;aacute; a los productores 200 lempiras por cada quintal (46 kilos) de caf&amp;eacute; producido en la cosecha anterior. &lt;table style=&#039;width: auto!important; float: right;&#039; cellpadding=&#039;4&#039; &lt;tbody &lt;tr &lt;td &lt;div class=&#039;microformato microbasica&#039; &lt;div class=&#039;head&#039;Proyecto de ley&lt;/div &lt;div class=&#039;content&#039;El proyecto fue presentado ante el Congreso Nacional por el diputado Samuel Reyes para apoyar a los caficultores que se est&amp;aacute;n viendo afectados por la crisis de precios bajos y fue aprobado el 29 de agosto.&lt;/div &lt;/div &lt;/td &lt;/tr &lt;/tbody &lt;/table &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;Para definir el monto del cr&amp;eacute;dito se tom&amp;oacute; en cuenta la cifra de quintales de la cosecha anterior, la que fue de 9.5 millones de quintales. &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;Los productores que quieran acceder a los fondos deben haber registrado la cosecha en el Ihcaf&amp;eacute;. El productor pagar&amp;aacute; el pr&amp;eacute;stamo en cerca de 12 a&amp;ntilde;os a trav&amp;eacute;s de una retenci&amp;oacute;n de 1.50 d&amp;oacute;lares (36 lempiras a cambio actual) por quintal (46 kilos) producido y exportado. &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;El caficultor que no se endeude recibir&amp;aacute; el reembolso de la retenci&amp;oacute;n que le realizar&amp;aacute;n. &lt;p class=&#039;LP-Periodico-LP-Texto Principal&#039;Tambi&amp;eacute;n se aprob&amp;oacute; que el Banco Hondure&amp;ntilde;o para la Producci&amp;oacute;n y la Vivienda (Banhprovi) aporte 300 millones de lempiras a la sociedad de garant&amp;iacute;a rec&amp;iacute;proca Confianza S. A para que esta instituci&amp;oacute;n avale los pr&amp;eacute;stamos que los caficultores soliciten a los bancos, cooperativas o financieras a nivel nacional.&lt;/div
+
+Crédito para caficultores estará listo en dos meses
+INICIO
+MENTE SANA
+PREMIUM
+HONDURAS
+SAN PEDRO
+SUCESOS
+MUNDO
+DEPORTES
+ESPECTÁCULOS
+SUSCRÍBASE
+viernes , 25 septiembre 2026
+Economía
+25/09/2026
+06:47 AM
+Crédito para caficultores estará listo en dos meses
+Actualizado: 25 septiembre 2018 /
+Danilo David Pérez
+Autor marcado para seguir
+25 septiembre 2018
+Omar Fúnez, gerente técnico del Ihcafé, manifestó que están en la etapa de consulta y análisis de riesgos con los préstamos
+Tegucigalpa, Honduras
+El crédito de 1,900 millones de lempiras para los caficultores está en la fase de negociación.
+|
+200
+lempiras serán prestados a los cafetaleros, afiliados al Ihcafé, por cada quintal de café producido.
+Dos bancos presentaron sus propuestas para manejar el financiamiento, el cual será bajo la modalidad de crédito sindicado. Esto significa que varias instituciones prestarán fondos, pero un solo banco lo manejará y establecerá las condiciones.
+Omar Fúnez, gerente técnico del Instituto Hondureño del Café (Ihcafé), informó que están en la etapa de consulta y análisis de los riesgos y las condiciones del préstamo.
+Una vez que se llegue a un acuerdo con alguno de los bancos, que se prevé de cuatro a seis semanas, el dinero estará disponible para los productores. Es decir que posiblemente en noviembre los productores podrán acceder a los fondos.
+A la fecha, el decreto aprobado en el Congreso Nacional a finales de agosto no ha sido publicado en el diario oficial La Gaceta.
+“Esperamos que pronto se tengan buenas noticias para los productores, eso pasará por las condiciones que den los bancos”, comentó Fúnez.
+Asimismo, garantizó que el “Ihcafé va a buscar las mejores condiciones, porque si un banco quiere financiar, pero le va a salir una tasa al productor por encima de la tasa comercial no se puede, lo que se busca es una tasa competitiva a un plazo razonable”, apuntó el entrevistado.
+El decreto aprobado
+El decreto autoriza al Ihcafé para que gestione y obtenga un crédito por 1,900 millones de lempiras, del cual le prestará a los productores 200 lempiras por cada quintal (46 kilos) de café producido en la cosecha anterior.
+|
+Proyecto de ley
+El proyecto fue presentado ante el Congreso Nacional por el diputado Samuel Reyes para apoyar a los caficultores que se están viendo afectados por la crisis de precios bajos y fue aprobado el 29 de agosto.
+Para definir el monto del crédito se tomó en cuenta la cifra de quintales de la cosecha anterior, la que fue de 9.5 millones de quintales.
+Los productores que quieran acceder a los fondos deben haber registrado la cosecha en el Ihcafé. El productor pagará el préstamo en cerca de 12 años a través de una retención de 1.50 dólares (36 lempiras a cambio actual) por quintal (46 kilos) producido y exportado.
+El caficultor que no se endeude recibirá el reembolso de la retención que le realizarán.
+También se aprobó que el Banco Hondureño para la Producción y la Vivienda (Banhprovi) aporte 300 millones de lempiras a la sociedad de garantía recíproca Confianza S. A para que esta institución avale los préstamos que los caficultores soliciten a los bancos, cooperativas o financieras a nivel nacional.
+Unirme al canal de noticias
+Danilo David Pérez
+VIDEOS RECOMENDADOS
+Economía
+Precios de combustibles seguirán subiendo
+Economía
+Cloik, la innovadora propuesta de videocurrículums, destaca en premios Innovate
+Economía
+Garantizar seguridad a la inversión extranjera, reto de CA
+Marketing & empresas
+El aceite de oliva extra virgen protege contra el cáncer de mama
+MIS TEMAS PREFERIDOS
+LA PRENSA VIDEOS
+¡A hacer llover! Honduras alista avión para sembrar nubes
+Últimos Videos
+¿Azul turquí? Proponen cambiar el color de la bandera
+Descartan cierre de las Escuelas Normales Bilingües
+EN PORTADA
+00:30 AM Duros ataques a Costa Rica y piden cabeza del culpable ante Curazao: 'Chepe Bomba' dispara
+21:34 PM Ridículo de Costa Rica: ganaba 3-0 y pasó lo impensado ante Curazao en la Nations League
+20:39 PM Honduras con novedades: el 11 titular para debutar ante Surinam en Nations League
+20:31 PM “Quebranta Huesos” y “Monki”, los dos abatidos durante operativo contra el Cártel del Diablo
+19:40 PM Copeco: dos municipios bajo alerta amarilla y 12 departamentos en alerta verde
+Más recientes
+Más leídas
+Amiga
+El reto de convivir con personas difíciles
+Amiga
+Complementos alimenticios: los riesgos de consumirlos sin orientación médica
+Amiga
+Spa capilares: dictan la pauta para un mejor cuidado capilar
+Amiga
+Traduciendo la jerga digital de nuestros hijos
+Amiga
+Semana de la Moda de Londres arranca con el regreso de McQueen
+Amiga
