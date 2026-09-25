@@ -18,7 +18,7 @@ Standard-library Python. Run in this order:
 Crop year t runs from October t to September t+1. Harvest is November t to March t+1, flowering February–April t, and fertiliser and fruit fill May–October t. The 2026/27 USDA figure is a forecast, so it is kept out of every test.
 
 Limits:
-- FAOSTAT nitrogen covers all crops and stops in 2022.
+- FAOSTAT nitrogen covers all crops and runs to 2024; FAO imputed the 2022 value.
 - The heat window (Sep–Oct) was chosen after trying four windows.
 - The 2026 ERA5-Land values are preliminary and stop on 18 September.
 - Open-Meteo returned no ERA5-Land rain.

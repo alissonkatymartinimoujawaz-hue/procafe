@@ -63,7 +63,7 @@ OUT['psd_vs_exports'] = dict(r_changes=pearson([DEP_P[t] for t in c], [DEP_E[t] 
                              rows=[dict(year=t, psd_kbags=PSD[t], exports_60kg_k=EXP[t] * 46 / 60 / 1000) for t in range(2000, 2021)])
 
 # ---------------------------------------------------------------- 4. fertiliser chain
-ny = [t for t in range(2005, 2023) if NUSE.get(t) and NUSE.get(t - 1)]
+ny = [t for t in range(2005, 2026) if NUSE.get(t) and NUSE.get(t - 1)]      # FAOSTAT to 2024 (2022 imputed by FAO)
 dN = {t: math.log(NUSE[t] / NUSE[t - 1]) for t in ny}
 EV = {t: EXP[t] * EXPPRICE[t] for t in EXP}
 chain = []

@@ -117,7 +117,7 @@ for t in range(Y0, Y1 + 1):
 da.set(rowof(Y1) + 2, 1, 'Notes', B)
 notes = ['2026/27: USDA production and area are the USDA forecast (May 2026); arabica, urea = Jan-Aug 2026 mean; rain Jun-Oct 2026 not complete (see Weather).',
          'IHCAFE exports stop at 2020/21 in the IHCAFE report read; 2021/22 = 6 131 226 bags of 46 kg (bulletin 07-02-2023, not used in the tests).',
-         'FAO nitrogen use is for all crops (coffee is not separated) and stops in 2022.']
+         'FAO nitrogen use is for all crops (coffee is not separated); it runs to 2024 and the 2022 value is imputed by FAO (flag I).']
 for i, n in enumerate(notes):
     da.set(rowof(Y1) + 3 + i, 1, n)
 da.widths = {1: 10, 2: 6, **{c: 14 for c in range(3, 19)}}
@@ -305,7 +305,7 @@ for k, t in enumerate(['Reading: nitrogen and output rise and fall together, in 
                        'Nitrogen does not follow the world price of the same year; it follows (weakly) the export price received for the previous crop (cash in hand), and state programmes: '
                        'Bono Cafetalero 2020 = 25 188 t of fertiliser to 91 778 producers (USDA 2021), the year nitrogen use jumped 49 %.',
                        'Caution: part of the link can run the other way - growers fertilise more when flowering promises a big crop. For forecasting both readings point the same way: '
-                       'fertiliser bought Apr-Sep is a leading signal of the crop harvested from November. FAOSTAT stops in 2022: track fertiliser imports and urea prices instead.']):
+                       'fertiliser bought Apr-Sep is a leading signal of the crop harvested from November. FAOSTAT stops in 2024 (2022 imputed): for 2025-26 track fertiliser imports and urea prices instead.']):
     fe.set(r + k, 1, t, WRAP)
 fe.widths = {1: 62, 2: 10, 3: 12, 4: 16, 5: 12, 6: 10}
 

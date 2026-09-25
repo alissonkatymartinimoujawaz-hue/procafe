@@ -114,7 +114,7 @@ def slide_answer():
         p.text(x0, yy, w0, 0.78, [(hd, dict(b=True, sz=9.5, color=NAVY)), (tx, dict(sz=8.8))], fill=fill)
         yy += 0.86
     p.source('Tests: research/honduras/yield_drivers/analysis.py and robustness.py. r = Pearson correlation of year-on-year log changes; p = 5 000 random shuffles; Holm = correction for 14 tests. '
-             + SRC_PSD + 'FAOSTAT nitrogen use (all crops, 2004–2022); World Bank Pink Sheet; GPCC rain at 3 coffee towns; NOAA ONI; NASA POWER; ERA5-Land max. temperature at 10 coffee points. Bono: USDA GAIN 2021.', y=6.95)
+             + SRC_PSD + 'FAOSTAT nitrogen use (all crops, 2004–2024); World Bank Pink Sheet; GPCC rain at 3 coffee towns; NOAA ONI; NASA POWER; ERA5-Land max. temperature at 10 coffee points. Bono: USDA GAIN 2021.', y=6.95)
     return p
 
 
@@ -220,7 +220,7 @@ def slide_fert():
           -40, 80, 20, suffix=' %')
     p.legend(0.95, 6.35, [('7F9F3F', 'nitrogen use change (FAOSTAT, calendar year t)', 'box'), (NAVY, 'production change, crop t', 'box')], sz=9)
     x0, w0 = 8.95, 3.95
-    p.text(x0, 1.3, w0, 0.3, [('What moves nitrogen use? (2005–2022)', dict(b=True, color=NAVY))], sz=10.5)
+    p.text(x0, 1.3, w0, 0.3, [('What moves nitrogen use? (2005–2024)', dict(b=True, color=NAVY))], sz=10.5)
     short = {'N use change vs output change, same crop year': 'Output, same crop year', 'N use change vs output change of the crop before (income)': 'Output of the crop before',
              'N use change vs world arabica price change, same calendar year': 'World arabica price, same year', 'N use change vs coffee/urea price ratio change': 'Coffee / urea price ratio',
              'N use change vs urea price change': 'Urea price', 'N use change vs IHCAFE export price change of the crop before': 'Export price of the crop before'}
@@ -228,7 +228,7 @@ def slide_fert():
     yy = p.table(x0, 1.68, [2.55, 0.7, 0.7], 0.33, tr, sz=8.5)
     p.text(x0, yy + 0.12, w0, 2.4, ['Nitrogen does not track the world price of the year; it follows (weakly) the price received for the previous crop, i.e. cash in hand, and state help (Bono 2020: nitrogen +49 %).',
                                     'Part of the link can run backwards: growers fertilise more when the flowering promises a big crop. Either way fertiliser bought Apr–Sep is a leading sign of the crop.',
-                                    ('FAOSTAT stops in 2022: for 2026 watch fertiliser imports and the urea price (+33 % in Jan–Aug 2026).', dict(b=True))], sz=8.8, fill='F2F5F8')
+                                    ('FAOSTAT runs to 2024 (2022 imputed): for 2025–26 watch fertiliser imports and the urea price (+33 % in Jan–Aug 2026).', dict(b=True))], sz=8.8, fill='F2F5F8')
     p.source('FAOSTAT Inputs/Fertilizers by nutrient (nitrogen, t N, all crops: coffee not separated). ' + SRC_PSD + 'World Bank Pink Sheet (arabica, urea). IHCAFE export price: Resumen Informe 2020-2021. '
              'Smallest r with any one year left out: ' + fr(F['drop_one_min_r'], 2) + '.', y=6.95)
     return p

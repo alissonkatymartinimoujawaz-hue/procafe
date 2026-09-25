@@ -271,42 +271,42 @@
   "tests": [
    {
     "test": "N use change vs output change, same crop year",
-    "n": 18,
-    "r": 0.7532522388489884,
+    "n": 20,
+    "r": 0.7509896692236512,
     "p": 0.0003999200159968006
    },
    {
     "test": "N use change vs output change of the crop before (income)",
-    "n": 18,
-    "r": -0.06605295740219877,
-    "p": 0.7908418316336733
+    "n": 20,
+    "r": -0.06822334122020131,
+    "p": 0.769246150769846
    },
    {
     "test": "N use change vs world arabica price change, same calendar year",
-    "n": 18,
-    "r": 0.2803703387486554,
-    "p": 0.2465506898620276
+    "n": 20,
+    "r": 0.2782930148974867,
+    "p": 0.2435512897420516
    },
    {
     "test": "N use change vs coffee/urea price ratio change",
-    "n": 18,
-    "r": 0.22692652676931513,
-    "p": 0.3693261347730454
+    "n": 20,
+    "r": 0.1761195848332071,
+    "p": 0.4513097380523895
    },
    {
     "test": "N use change vs urea price change",
-    "n": 18,
-    "r": -0.026533683105172953,
-    "p": 0.9154169166166767
+    "n": 20,
+    "r": 0.016437183302314213,
+    "p": 0.9498100379924015
    },
    {
     "test": "N use change vs IHCAFE export price change of the crop before",
     "n": 17,
     "r": 0.46848608577687656,
-    "p": 0.05658868226354729
+    "p": 0.05538892221555689
    }
   ],
-  "drop_one_min_r": 0.6900174039113661,
+  "drop_one_min_r": 0.6924765127343235,
   "rows": [
    {
     "year": 2005,
@@ -451,6 +451,22 @@
     "dP": 0.17185025692665923,
     "arabica": 5.630833333333334,
     "urea": 700.0333333333334
+   },
+   {
+    "year": 2023,
+    "n_use_t": 104427.0,
+    "dN": -0.004185545930430453,
+    "dP": -0.12107793155323604,
+    "arabica": 4.540833333333333,
+    "urea": 358.0083333333334
+   },
+   {
+    "year": 2024,
+    "n_use_t": 106830.0,
+    "dN": 0.022750523256168362,
+    "dP": 0.029270382300113237,
+    "arabica": 5.620833333333333,
+    "urea": 338.28333333333336
    }
   ]
  },
@@ -682,56 +698,56 @@
     "dep": "USDA production",
     "n": 44,
     "r": -0.14597005532086774,
-    "p": 0.33813237352529496
+    "p": 0.35552889422115574
    },
    {
     "window": "Tmax Dec-Feb",
     "dep": "IHCAFE exports",
     "n": 39,
     "r": -0.12102380613795989,
-    "p": 0.47230553889222154
+    "p": 0.4549090181963607
    },
    {
     "window": "Tmax Mar-May (flowering)",
     "dep": "USDA production",
     "n": 44,
     "r": 0.16206242211528962,
-    "p": 0.28514297140571887
+    "p": 0.3027394521095781
    },
    {
     "window": "Tmax Mar-May (flowering)",
     "dep": "IHCAFE exports",
     "n": 39,
     "r": 0.2652774445033983,
-    "p": 0.10997800439912017
+    "p": 0.10137972405518897
    },
    {
     "window": "Tmax Jun-Aug (fruit fill)",
     "dep": "USDA production",
     "n": 44,
     "r": -0.295079173656936,
-    "p": 0.052589482103579284
+    "p": 0.04839032193561288
    },
    {
     "window": "Tmax Jun-Aug (fruit fill)",
     "dep": "IHCAFE exports",
     "n": 39,
     "r": -0.13150030305448143,
-    "p": 0.4277144571085783
+    "p": 0.4257148570285943
    },
    {
     "window": "Tmax Sep-Oct",
     "dep": "USDA production",
     "n": 44,
     "r": -0.45284158573931876,
-    "p": 0.002599480103979204
+    "p": 0.0015996800639872025
    },
    {
     "window": "Tmax Sep-Oct",
     "dep": "IHCAFE exports",
     "n": 39,
     "r": -0.386901950622252,
-    "p": 0.014997000599880024
+    "p": 0.015396920615876825
    }
   ],
   "anom_2026": {
@@ -827,21 +843,21 @@
     "dep": "USDA production",
     "n": 35,
     "r": -0.44034735086320853,
-    "p": 0.0057988402319536095
+    "p": 0.008798240351929614
    },
    {
     "window": "Tmax Sep-Oct, change on the year before",
     "dep": "USDA production",
     "n": 43,
     "r": -0.5281885471493315,
-    "p": 0.0005998800239952009
+    "p": 0.0001999600079984003
    },
    {
     "window": "Rain Sep-Oct (GPCC)",
     "dep": "USDA production",
     "n": 44,
     "r": 0.0457120796264875,
-    "p": 0.7624475104979004
+    "p": 0.7676464707058588
    }
   ],
   "sep_oct": {
@@ -931,98 +947,98 @@
     "driver": "N fertiliser use change (FAO, all crops)",
     "n": 16,
     "r": 0.691,
-    "p": 0.0044,
-    "p_holm": 0.0616
+    "p": 0.0034,
+    "p_holm": 0.047599999999999996
    },
    {
     "driver": "biennial: last year's change",
     "n": 39,
     "r": -0.411,
-    "p": 0.0102,
-    "p_holm": 0.1326
+    "p": 0.0098,
+    "p_holm": 0.12739999999999999
    },
    {
     "driver": "price change, year t vs t-1 (flowering year)",
     "n": 39,
     "r": 0.335,
-    "p": 0.0342,
-    "p_holm": 0.4104
+    "p": 0.0398,
+    "p_holm": 0.4776
    },
    {
     "driver": "rain, dry season Dec-Mar",
     "n": 39,
     "r": 0.308,
-    "p": 0.0576,
-    "p_holm": 0.6335999999999999
+    "p": 0.0532,
+    "p_holm": 0.5851999999999999
    },
    {
     "driver": "coffee/urea ratio change, t vs t-1",
     "n": 39,
     "r": 0.305,
-    "p": 0.0616,
-    "p_holm": 0.6335999999999999
+    "p": 0.0586,
+    "p_holm": 0.586
    },
    {
     "driver": "rain, rainy season Jun-Oct",
     "n": 39,
     "r": 0.247,
-    "p": 0.125,
+    "p": 0.129,
     "p_holm": 1
    },
    {
     "driver": "coffee/urea ratio, year t (log, vs 5y mean)",
     "n": 39,
     "r": 0.245,
-    "p": 0.146,
+    "p": 0.1312,
     "p_holm": 1
    },
    {
     "driver": "ENSO, ONI Jun-Aug",
     "n": 39,
     "r": -0.211,
-    "p": 0.1964,
-    "p_holm": 1
-   },
-   {
-    "driver": "Tmax anomaly Mar-May (NASA)",
-    "n": 39,
-    "r": 0.205,
-    "p": 0.2046,
+    "p": 0.1986,
     "p_holm": 1
    },
    {
     "driver": "rain, flowering Apr-May",
     "n": 39,
     "r": -0.204,
-    "p": 0.2108,
+    "p": 0.208,
+    "p_holm": 1
+   },
+   {
+    "driver": "Tmax anomaly Mar-May (NASA)",
+    "n": 39,
+    "r": 0.205,
+    "p": 0.2124,
     "p_holm": 1
    },
    {
     "driver": "price change, year t-1 vs t-2",
     "n": 39,
     "r": -0.046,
-    "p": 0.7822,
+    "p": 0.7806,
     "p_holm": 1
    },
    {
     "driver": "ENSO, ONI Dec-Feb before flowering",
     "n": 39,
     "r": -0.03,
-    "p": 0.845,
+    "p": 0.8582,
     "p_holm": 1
    },
    {
     "driver": "price level, year t-1 (log, detrended 5y)",
     "n": 39,
     "r": -0.02,
-    "p": 0.905,
+    "p": 0.8902,
     "p_holm": 1
    },
    {
     "driver": "rain, previous rainy season May-Oct t-1",
     "n": 39,
     "r": 0.014,
-    "p": 0.9348,
+    "p": 0.9324,
     "p_holm": 1
    }
   ],
@@ -1031,15 +1047,15 @@
     "driver": "N fertiliser use change (FAO, all crops)",
     "n": 20,
     "r": 0.751,
-    "p": 0.0004,
-    "p_holm": 0.0056
+    "p": 0.0002,
+    "p_holm": 0.0028
    },
    {
     "driver": "biennial: last year's change",
     "n": 44,
     "r": -0.521,
-    "p": 0.0008,
-    "p_holm": 0.010400000000000001
+    "p": 0.0004,
+    "p_holm": 0.005200000000000001
    },
    {
     "driver": "coffee/urea ratio change, t vs t-1",
@@ -1052,77 +1068,77 @@
     "driver": "rain, dry season Dec-Mar",
     "n": 44,
     "r": 0.344,
-    "p": 0.0228,
-    "p_holm": 0.2508
+    "p": 0.0234,
+    "p_holm": 0.2574
    },
    {
     "driver": "price change, year t vs t-1 (flowering year)",
     "n": 44,
     "r": 0.33,
-    "p": 0.03,
-    "p_holm": 0.3
+    "p": 0.0268,
+    "p_holm": 0.268
    },
    {
     "driver": "coffee/urea ratio, year t (log, vs 5y mean)",
     "n": 44,
     "r": 0.32,
-    "p": 0.0358,
-    "p_holm": 0.3222
+    "p": 0.0342,
+    "p_holm": 0.3078
    },
    {
     "driver": "Tmax anomaly Mar-May (NASA)",
     "n": 44,
     "r": 0.199,
-    "p": 0.1998,
-    "p_holm": 1
-   },
-   {
-    "driver": "rain, rainy season Jun-Oct",
-    "n": 44,
-    "r": 0.101,
-    "p": 0.5065,
+    "p": 0.201,
     "p_holm": 1
    },
    {
     "driver": "rain, flowering Apr-May",
     "n": 44,
     "r": -0.103,
-    "p": 0.5089,
+    "p": 0.5087,
+    "p_holm": 1
+   },
+   {
+    "driver": "rain, rainy season Jun-Oct",
+    "n": 44,
+    "r": 0.101,
+    "p": 0.5173,
     "p_holm": 1
    },
    {
     "driver": "price change, year t-1 vs t-2",
     "n": 44,
     "r": -0.078,
-    "p": 0.6279,
+    "p": 0.6219,
     "p_holm": 1
    },
    {
     "driver": "rain, previous rainy season May-Oct t-1",
     "n": 44,
     "r": -0.07,
-    "p": 0.6515,
+    "p": 0.6441,
     "p_holm": 1
    },
    {
     "driver": "price level, year t-1 (log, detrended 5y)",
     "n": 44,
     "r": -0.028,
-    "p": 0.8594,
+    "p": 0.8548,
     "p_holm": 1
    },
    {
     "driver": "ENSO, ONI Jun-Aug",
     "n": 44,
     "r": -0.01,
-    "p": 0.951,
+    "p": 0.9436,
     "p_holm": 1
    },
    {
     "driver": "ENSO, ONI Dec-Feb before flowering",
     "n": 44,
     "r": -0.009,
-    "p": 0.955,
+    "p": 0.9582,
     "p_holm": 1
    }
   ],
@@ -1131,91 +1147,91 @@
     "driver": "biennial: last year's change",
     "n": 19,
     "r": -0.573,
-    "p": 0.0124,
-    "p_holm": 0.1736
+    "p": 0.0108,
+    "p_holm": 0.1512
    },
    {
     "driver": "N fertiliser use change (FAO, all crops)",
     "n": 19,
     "r": 0.557,
-    "p": 0.0124,
-    "p_holm": 0.1736
+    "p": 0.0136,
+    "p_holm": 0.17679999999999998
    },
    {
     "driver": "rain, dry season Dec-Mar",
     "n": 20,
     "r": 0.437,
-    "p": 0.0572,
-    "p_holm": 0.6864
+    "p": 0.0578,
+    "p_holm": 0.6936
    },
    {
     "driver": "coffee/urea ratio, year t (log, vs 5y mean)",
     "n": 20,
     "r": 0.407,
-    "p": 0.0776,
-    "p_holm": 0.8536
+    "p": 0.0736,
+    "p_holm": 0.8096
    },
    {
     "driver": "coffee/urea ratio change, t vs t-1",
     "n": 20,
     "r": 0.406,
-    "p": 0.0784,
-    "p_holm": 0.8536
+    "p": 0.0752,
+    "p_holm": 0.8096
    },
    {
     "driver": "ENSO, ONI Jun-Aug",
     "n": 20,
     "r": -0.355,
-    "p": 0.12,
+    "p": 0.1248,
     "p_holm": 1
    },
    {
     "driver": "rain, rainy season Jun-Oct",
     "n": 20,
     "r": 0.334,
-    "p": 0.1494,
+    "p": 0.1468,
     "p_holm": 1
    },
    {
     "driver": "price change, year t vs t-1 (flowering year)",
     "n": 20,
     "r": 0.306,
-    "p": 0.1938,
+    "p": 0.1902,
     "p_holm": 1
    },
    {
     "driver": "Tmax anomaly Mar-May (NASA)",
     "n": 20,
     "r": 0.265,
-    "p": 0.2635,
+    "p": 0.2613,
     "p_holm": 1
    },
    {
     "driver": "price change, year t-1 vs t-2",
     "n": 20,
     "r": -0.232,
-    "p": 0.3301,
+    "p": 0.3287,
     "p_holm": 1
    },
    {
     "driver": "ENSO, ONI Dec-Feb before flowering",
     "n": 20,
     "r": 0.2,
-    "p": 0.3883,
+    "p": 0.3999,
     "p_holm": 1
    },
    {
     "driver": "price level, year t-1 (log, detrended 5y)",
     "n": 20,
     "r": -0.166,
-    "p": 0.4945,
+    "p": 0.4805,
     "p_holm": 1
    },
    {
     "driver": "rain, previous rainy season May-Oct t-1",
     "n": 20,
     "r": -0.08,
-    "p": 0.7353,
+    "p": 0.7355,
     "p_holm": 1
    },
    {
