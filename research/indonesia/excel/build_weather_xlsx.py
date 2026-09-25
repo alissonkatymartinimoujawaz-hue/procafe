@@ -1,7 +1,7 @@
 """Sumatra robusta belt: monthly temperature and rainfall by ENSO season (July-June), for the São Mateus-style panels.
 Daily NASA POWER data -> monthly values (SUMIFS / AVERAGEIFS formulas, cached values written too) -> one chart sheet per location.
 Seasons classified with NOAA CPC's official rule on the ONI table. Standard library only."""
-import json, os, sys, datetime, statistics as st, decimal
+import json, os, sys, datetime, statistics as st, decimal, csv, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from xlsxw import Workbook, Style, ref, col_letter
 
@@ -505,7 +505,34 @@ for a, b_, c_ in static:
     chk.set(r, 2, b_, WRAP)
     chk.set(r, 5, c_, WRAP)
     r += 1
-chk.widths = {1: 58, 2: 38, 3: 10, 4: 8, 5: 60}
+# station check of NASA temperatures (CPC daily Tmax/Tmin and GHCN_CAMS monthly, NOAA PSL)
+CT = collections.defaultdict(lambda: collections.defaultdict(list))
+for fn, var in (('cpc_tmax_daily.csv', 'tmax_c'), ('cpc_tmin_daily.csv', 'tmin_c')):
+    for row in csv.DictReader(open(RAW + 'independent/' + fn)):
+        if row[var]:
+            CT[(row['town'], var)][(int(row['date'][:4]), int(row['date'][5:7]))].append(float(row[var]))
+def nasa_m(t, var, k):
+    return st.mean(v for kk, v in DAY[t][var].items() if kk.startswith('%d%02d' % k))
+PRE = [(y, m) for y in range(2015, 2025) for m in range(1, 13)] + [(2025, 1), (2025, 2)]
+POST = [(2025, m) for m in range(3, 13)] + [(2026, m) for m in range(1, 9)]
+STEP = {}
+for t, nm, _ in TOWNS:
+    dm = lambda k: nasa_m(t, 'T2M', k) - (st.mean(CT[(t, 'tmax_c')][k]) + st.mean(CT[(t, 'tmin_c')][k])) / 2
+    dx = lambda k: nasa_m(t, 'T2M_MAX', k) - st.mean(CT[(t, 'tmax_c')][k])
+    STEP[t] = (st.mean(dm(k) for k in POST) - st.mean(dm(k) for k in PRE), st.mean(dx(k) for k in POST) - st.mean(dx(k) for k in PRE))
+r += 1
+chk.set(r, 1, 'Temperature check against station grids (NOAA CPC daily Tmax/Tmin, 0.5°)', B)
+r += 1
+chk.row(r, 1, ['Town', 'Mean temp step from Mar 2025 (°C)', 'Max temp step from Mar 2025 (°C)'], H)
+r += 1
+for t, nm, _ in TOWNS:
+    chk.row(r, 1, [nm, round(STEP[t][0], 2), round(STEP[t][1], 2)], Style(bold=True, color='C00000'))
+    r += 1
+chk.set(r, 1, 'Step = mean(NASA − CPC) from March 2025 to August 2026 minus mean(NASA − CPC) from 2015 to February 2025. NASA POWER appends GEOS-IT to MERRA-2 for recent data; '
+        'from March 2025 NASA reads cooler than the stations in all 5 towns. Months from March 2025 (end of 2024/25, 2025/26, 2026/27) are likely too cool by about this much. '
+        'Rainfall has no such step here: NASA ÷ CPC rain is 0.92–1.11 before 2020 and 1.00–1.09 after.', WRAP)
+r += 1
+chk.widths = {1: 58, 2: 38, 3: 16, 4: 8, 5: 60}
 
 # ---------------- README ----------------
 lines = [
@@ -542,6 +569,7 @@ lines = [
     ('Mois = somme (pluie) ou moyenne (température) des jours du mois civil. Seuls les mois complets entrent dans les graphiques : septembre 2026 s\'arrête au 19 et en est exclu.', WRAP),
     ('Contrôle de la pluie : sur juin–octobre 1981–2019, les totaux NASA suivent les pluviomètres GPCC (r = 0,85 à 0,93 selon la ville). Les niveaux absolus diffèrent selon le lieu (voir Checks).', WRAP),
     ('La température est celle de la maille NASA (altitude moyenne de la maille, voir Checks). Une ville plus basse que sa maille est un peu plus chaude en réalité ; les variations d\'un mois ou d\'une année à l\'autre sont fiables.', WRAP),
+    ('ATTENTION (ajouté le 25/09/2026) : comparée aux stations météo (NOAA CPC), la température NASA baisse d\'environ %.1f à %.1f °C à partir de mars 2025 dans les 5 villes (changement de source des données récentes). Les mois depuis mars 2025 (fin de 2024/25, 2025/26 et 2026/27) sont donc probablement trop frais d\'autant : l\'août 2026 record est en réalité encore plus chaud. La pluie n\'a pas ce défaut.' % (-max(v[0] for v in STEP.values()), -min(v[0] for v in STEP.values())), Style(wrap=True, bold=True, color='C00000')),
     ('', None),
     ('POUR REFAIRE LE GRAPHIQUE', B),
     ('Pour chaque phase (El Niño, La Niña, Neutre) : un graphique en lignes de la température (une ligne par saison, Jul → Jun) et un de la pluie, plus la ligne Average en noir pointillé. Les valeurs sont dans les feuilles Chart_…, ou dans Chart_long (filtre Location, Phase, In photo window = yes).', WRAP),

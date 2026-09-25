@@ -2,7 +2,7 @@
 same seasons, months, ENSO rule and checks as research/indonesia/excel/build_weather_xlsx.py.
 Daily NASA POWER data -> monthly values (SUMIFS / AVERAGEIFS formulas, cached values written too) -> one chart sheet per location.
 Seasons classified with NOAA CPC's official rule on the ONI table. Standard library only."""
-import json, os, sys, datetime, statistics as st, decimal, csv, math
+import json, os, sys, datetime, statistics as st, decimal, csv, math, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)) + '/../../indonesia/excel')
 from xlsxw import Workbook, Style, ref, col_letter
 
@@ -15,7 +15,8 @@ TOWNS = [('comayagua', 'Comayagua', 'Comayagua department, town of Comayagua'), 
          ('copan', 'Copán', 'Copán department, town of Santa Rosa de Copán')]
 SS3 = ['comayagua', 'ocotepeque', 'copan']
 NT = len(TOWNS)
-VARS = [('PRECTOTCORR', 'Rain (mm)'), ('T2M', 'Mean temp (°C)'), ('T2M_MAX', 'Max temp (°C)'), ('T2M_MIN', 'Min temp (°C)')]
+VARS = [('RAIN_CPC', 'Rain, CPC gauges (mm)'), ('T2M', 'Mean temp (°C)'), ('T2M_MAX', 'Max temp (°C)'), ('T2M_MIN', 'Min temp (°C)'), ('PRECTOTCORR', 'NASA rain, not used (mm)')]
+RAIN = {'RAIN_CPC', 'PRECTOTCORR'}
 START = datetime.date(2005, 7, 1)
 PHOTO = list(range(2005, 2025))           # seasons 2005/06 ... 2024/25, the 20 seasons of the São Mateus chart
 EXTRA = [2025, 2026]                       # after the photo window
@@ -44,7 +45,21 @@ for t, _, _ in TOWNS:
     DAY[t] = j['properties']['parameter']
     GEO[t] = j['geometry']['coordinates']
     HDR = j['header']
-LASTDAY = min(max(DAY[t]['T2M']) for t in DAY)
+# rain: CPC Global Unified Gauge-Based daily analysis (NOAA PSL), nearest 0.5° cell; NASA PRECTOTCORR drifts +34-42 % after 2020 here
+CPC_FILLED = []
+for t in DAY:
+    DAY[t]['RAIN_CPC'] = {}
+for row in csv.DictReader(open(RAW + 'independent/cpc_precip_daily.csv')):
+    k = row['date'].replace('-', '')
+    if row['precip_mm'] == '':
+        continue
+    DAY[row['town']]['RAIN_CPC'][k] = float(row['precip_mm'])
+for t in DAY:
+    for k in DAY[t]['PRECTOTCORR']:
+        if k >= '20050101' and k not in DAY[t]['RAIN_CPC'] and k <= max(DAY[t]['RAIN_CPC']):
+            DAY[t]['RAIN_CPC'][k] = DAY[t]['PRECTOTCORR'][k]
+            CPC_FILLED.append((t, k))
+LASTDAY = min(min(max(DAY[t]['T2M']) for t in DAY), min(max(DAY[t]['RAIN_CPC']) for t in DAY))
 END = datetime.date(int(LASTDAY[:4]), int(LASTDAY[4:6]), int(LASTDAY[6:]))
 dates = []
 d = START
@@ -109,6 +124,7 @@ C = Style(halign='center')
 N1 = Style(fmt='0.0')
 N2 = Style(fmt='0.00')
 N0 = Style(fmt='0')
+RED = Style(bold=True, color='C00000')
 PH_FILL = {'El Niño': 'FCE4D6', 'La Niña': 'DDEBF7', 'Neutral': 'EDEDED'}
 PH_FONT = {'El Niño': 'C00000', 'La Niña': '2E75B6', 'Neutral': '404040'}
 
@@ -316,7 +332,7 @@ for i, (y, m) in enumerate(months):
             dc = col_letter(DCOL[(t, v)])
             rng = 'Daily!${0}${1}:${0}${2}'.format(dc, D0, D1)
             crit = 'Daily!$B${0}:$B${1},$A{2}'.format(D0, D1, r)
-            if v == 'PRECTOTCORR':
+            if v in RAIN:
                 val = round(sum(xs), 6)
                 mon.set(r, MCOL[(t, v)], val, N1, 'SUMIFS(%s,%s)' % (rng, crit))
             else:
@@ -327,10 +343,10 @@ for i, (y, m) in enumerate(months):
         for v, _ in VARS:
             val = sum(MV[(t, v, key)] for t in towns) / len(towns)
             MV[(lid, v, key)] = val
-            mon.set(r, MCOL[(lid, v)], val, N1 if v == 'PRECTOTCORR' else N2, 'AVERAGE(%s)' % ','.join(ref(r, MCOL[(t, v)]) for t in towns))
+            mon.set(r, MCOL[(lid, v)], val, N1 if v in RAIN else N2, 'AVERAGE(%s)' % ','.join(ref(r, MCOL[(t, v)]) for t in towns))
     MV[('complete', key)] = comp == 'complete'
 PARTIAL = [k for k in MROW if not MV[('complete', k)]]
-mon.set(M0 + len(months) + 1, 1, 'Rain = sum of daily PRECTOTCORR (mm); temperatures = mean of daily T2M, T2M_MAX, T2M_MIN (°C). Mean of 3 towns = simple average. '
+mon.set(M0 + len(months) + 1, 1, 'Rain = sum of daily CPC gauge rainfall (mm); NASA rain shown for reference only. Temperatures = mean of daily NASA T2M, T2M_MAX, T2M_MIN (°C). Mean of 3 towns = simple average. '
         'Partial month(s) %s (data end %s) are left out of the chart sheets.' % (', '.join(PARTIAL) or 'none', END), SUB)
 mon.widths = {1: 9, 2: 6, 3: 6, 4: 6, 5: 9, 6: 9, 7: 11, 8: 11, 9: 7, 10: 7, 11: 11, 12: 11, 13: 7, 14: 16, 15: 12, **{cc: 9 for cc in range(16, c)}}
 mon.freeze = (3, 2)
@@ -342,13 +358,13 @@ def loc_col(lid, v):
 
 def chart_sheet(sh, lid, title):
     sh.set(1, 1, '%s | Temperature and rainfall by ENSO season' % title, TITLE)
-    sh.set(2, 1, 'NASA POWER daily data (MERRA-2 based, grid cell of each town), July–June seasons 2005/06–2024/25 as in the São Mateus chart. '
+    sh.set(2, 1, 'Rain: NOAA CPC gauge analysis (daily, 0.5°). Temperature: NASA POWER daily (grid cell of each town). July–June seasons 2005/06–2024/25 as in the São Mateus chart. '
               'Season phase = official NOAA ENSO episode at its Nov–Jan peak (sheet ENSO_seasons). Average rows = mean of the seasons of that phase in the photo window.', SUB)
     sh.set(3, 1, 'Seasons after the photo window are listed below each block, outside the averages. 2026/27: complete months only (data end %s).' % END, SUB)
     row = 5
     out = {}
     for v, lab, fmt, agg in (('T2M', 'Mean temperature (°C) — monthly mean of daily T2M', '0.00', 'Season mean'),
-                              ('PRECTOTCORR', 'Monthly rainfall (mm) — sum of daily PRECTOTCORR', '0.0', 'Season total')):
+                              ('RAIN_CPC', 'Monthly rainfall (mm) — sum of daily rainfall from rain gauges (NOAA CPC)', '0.0', 'Season total')):
         sh.set(row, 1, lab, Style(bold=True, size=12, color='1F3864'))
         row += 1
         sh.row(row, 1, ['Season', 'Phase'] + MONTHS + [agg], H)
@@ -419,9 +435,9 @@ for lid, sname, title in LOCS:
             if key not in MROW or not MV[('complete', key)]:
                 continue
             clong.row(r, 1, [title, slabel(Y), ph + (' (in progress)' if Y == 2026 else ''), 'yes' if Y in PHOTO else 'no', MONTHS[i], i + 1, yy, key])
-            tc, rc = loc_col(lid, 'T2M'), loc_col(lid, 'PRECTOTCORR')
+            tc, rc = loc_col(lid, 'T2M'), loc_col(lid, 'RAIN_CPC')
             clong.set(r, 9, MV[(lid, 'T2M', key)], N2, 'INDEX(Monthly!$%s:$%s,MATCH(H%d,Monthly!$A:$A,0))' % (tc, tc, r))
-            clong.set(r, 10, MV[(lid, 'PRECTOTCORR', key)], N1, 'INDEX(Monthly!$%s:$%s,MATCH(H%d,Monthly!$A:$A,0))' % (rc, rc, r))
+            clong.set(r, 10, MV[(lid, 'RAIN_CPC', key)], N1, 'INDEX(Monthly!$%s:$%s,MATCH(H%d,Monthly!$A:$A,0))' % (rc, rc, r))
             r += 1
 CL_LAST = r - 1
 clong.widths = {1: 44, 2: 9, 3: 20, 4: 10, 5: 7, 6: 10, 7: 9, 8: 9, 9: 12, 10: 11}
@@ -433,52 +449,59 @@ def pearson(a, b):
     return sum((x - ma) * (y - mb) for x, y in zip(a, b)) / math.sqrt(sum((x - ma) ** 2 for x in a) * sum((y - mb) ** 2 for y in b))
 
 
-def nasa_month(t, y, m):
-    xs = [v for k, v in DAY[t]['PRECTOTCORR'].items() if k.startswith('%d%02d' % (y, m))]
-    return sum(xs) if len(xs) >= 28 else None
+def monthly_sum(src, t):
+    acc = collections.defaultdict(list)
+    for k, v in DAY[t][src].items():
+        if k >= '20050101':
+            acc[(int(k[:4]), int(k[4:6]))].append(v)
+    return {k: sum(v) for k, v in acc.items() if len(v) >= 28}
 
 
-GP = {}
-for fn in ('gpcc_full_v2020', 'gpcc_first_guess'):
-    GP[fn] = {}
-    for row in csv.DictReader(open(RAW + 'rain_check/%s_monthly.csv' % fn)):
-        GP[fn][(row['town'], int(row['year']), int(row['month']))] = float(row['rain_mm'])
+GPC = collections.defaultdict(dict)
+for row in csv.DictReader(open(RAW + 'rain_check/gpcc_1981_2026_monthly.csv')):
+    GPC[row['town']][(int(row['year']), int(row['month']))] = float(row['rain_mm'])
 
 
-def gauge_check(fn, y0, y1):
-    out = {}
-    for t in SS3 + ['mean']:
-        towns = SS3 if t == 'mean' else [t]
-        rs, sn, sg, mn_n, mn_g, same = [], [], [], [], [], 0
-        yrs = [y for y in range(y0, y1 + 1) if all((tt, y, m) in GP[fn] and nasa_month(tt, y, m) is not None for tt in towns for m in range(1, 13))]
-        for y in yrs:
-            n = [st.mean(nasa_month(tt, y, m) for tt in towns) for m in range(1, 13)]
-            g = [st.mean(GP[fn][(tt, y, m)] for tt in towns) for m in range(1, 13)]
-            sn.append(sum(n[4:10]))  # May-Oct rainy season
-            sg.append(sum(g[4:10]))
-            mn_n.append(sum(n))
-            mn_g.append(sum(g))
-        a, b = st.mean(sn), st.mean(sg)
-        same = sum(1 for x, y in zip(sn, sg) if (x - a) * (y - b) > 0)
-        out[t] = dict(r=pearson(sn, sg), n=len(yrs), same=same, nasa=st.mean(mn_n), gpcc=st.mean(mn_g), first=yrs[0], last=yrs[-1])
-    return out
+def rain_cmp(a, b, y0, y1):
+    ks = sorted(k for k in a if k in b and y0 <= k[0] <= y1)
+    xa, xb = [a[k] for k in ks], [b[k] for k in ks]
+    return sum(xa) / sum(xb), pearson(xa, xb), len(ks)
 
 
-GC_FULL = gauge_check('gpcc_full_v2020', 1981, 2019)
-GC_FG = gauge_check('gpcc_first_guess', 2012, 2025)
+RC = {}
+for t, nm, _ in TOWNS:
+    cpc, nas = monthly_sum('RAIN_CPC', t), monthly_sum('PRECTOTCORR', t)
+    for lab, (x, yv) in (('CPC ÷ GPCC', (cpc, GPC[t])), ('NASA ÷ GPCC', (nas, GPC[t])), ('NASA ÷ CPC', (nas, cpc))):
+        RC[(t, lab)] = (rain_cmp(x, yv, 2005, 2019), rain_cmp(x, yv, 2020, 2026))
+GH = collections.defaultdict(dict)
+for row in csv.DictReader(open(RAW + 'independent/ghcncams_tmean_monthly.csv')):
+    if row['tmean_c']:
+        GH[row['town']][(int(row['year']), int(row['month']))] = float(row['tmean_c'])
+CT = collections.defaultdict(lambda: collections.defaultdict(list))
+for fn, var in (('cpc_tmax_daily.csv', 'tmax_c'), ('cpc_tmin_daily.csv', 'tmin_c')):
+    for row in csv.DictReader(open(RAW + 'independent/' + fn)):
+        if row[var]:
+            CT[(row['town'], var)][(int(row['date'][:4]), int(row['date'][5:7]))].append(float(row[var]))
+TANN = {}
+for y in range(2005, 2026):
+    nas = st.mean(st.mean(v for k, v in DAY[t]['T2M'].items() if k.startswith(str(y))) for t in SS3)
+    gh = st.mean(st.mean(GH[t][(y, m)] for m in range(1, 13)) for t in SS3)
+    cp = st.mean(st.mean((st.mean(CT[(t, 'tmax_c')][(y, m)]) + st.mean(CT[(t, 'tmin_c')][(y, m)])) / 2 for m in range(1, 13)) for t in SS3)
+    TANN[y] = (nas, gh, cp)
+
 
 # ---------------- Checks ----------------
 chk.row(1, 1, ['Check', 'Result', 'Expected', 'OK?', 'How'], H)
 rows = []
 ndays = len(dates)
 rows.append(('Days in the Daily sheet', ndays, 'COUNT(Daily!$A$%d:$A$%d)' % (D0, D1), ndays, 'Every day from %s to %s, no gap' % (START, END)))
-rows.append(('Missing values (NASA fill value −999) in Daily', 0, 'COUNTIF(Daily!$D$%d:$%s$%d,-999)' % (D0, col_letter(3 + NT * len(VARS)), D1), 0, 'All 3 towns × 4 variables'))
+rows.append(('Missing values (NASA fill value −999) in Daily', 0, 'COUNTIF(Daily!$D$%d:$%s$%d,-999)' % (D0, col_letter(3 + NT * len(VARS)), D1), 0, 'All 3 towns × 5 variables'))
 rows.append(('Empty cells in Daily data', 0, 'COUNTBLANK(Daily!$D$%d:$%s$%d)' % (D0, col_letter(3 + NT * len(VARS)), D1), 0, ''))
 ncomp = sum(1 for (y, m) in months if MV[('complete', '%d-%02d' % (y, m))])
 rows.append(('Complete months in Monthly', ncomp, 'COUNTIF(Monthly!$K$%d:$K$%d,"complete")' % (M0, M0 + len(months) - 1), len(months) - len(PARTIAL), 'Partial: %s (data end %s)' % (', '.join(PARTIAL) or 'none', END)))
 for t, nm, _ in TOWNS:
-    rc, dc = col_letter(MCOL[(t, 'PRECTOTCORR')]), col_letter(DCOL[(t, 'PRECTOTCORR')])
-    tot = sum(MV[(t, 'PRECTOTCORR', '%d-%02d' % k)] for k in months)
+    rc, dc = col_letter(MCOL[(t, 'RAIN_CPC')]), col_letter(DCOL[(t, 'RAIN_CPC')])
+    tot = sum(MV[(t, 'RAIN_CPC', '%d-%02d' % k)] for k in months)
     rows.append(('Rain %s: sum of monthly − sum of daily (mm)' % nm, 0.0,
                  'ROUND(SUM(Monthly!$%s$%d:$%s$%d)-SUM(Daily!$%s$%d:$%s$%d),6)' % (rc, M0, rc, M0 + len(months) - 1, dc, D0, dc, D1), 0.0, 'Monthly totals add up to the daily data'))
 for ph, n in (('El Niño', 7), ('La Niña', 9), ('Neutral', 4)):
@@ -497,27 +520,46 @@ for name, val, f, exp, how in rows:
 r += 1
 chk.set(r, 1, 'Independent checks (computed outside the workbook)', B)
 r += 1
-NMS = dict([(t, nm) for t, nm, _ in TOWNS] + [('mean', 'mean of 3')])
-def gc_txt(G):
-    return '; '.join('%s r = %.2f (%d of %d years same sign)' % (NMS[t], G[t]['r'], G[t]['same'], G[t]['n']) for t in SS3 + ['mean'])
-static = [('Rainfall vs rain gauges: GPCC full data 0.25°, May–October totals %d–%d' % (GC_FULL['mean']['first'], GC_FULL['mean']['last']), gc_txt(GC_FULL),
-           'GPCC via NOAA PSL (raw/rain_check); r = year-to-year correlation of the rainy-season totals'),
-          ('Rainfall vs GPCC first guess (1°), May–October totals %d–%d' % (GC_FG['mean']['first'], GC_FG['mean']['last']), gc_txt(GC_FG), 'Same, coarser grid, recent years'),
-          ('Absolute level of rainfall (mean annual total, GPCC full data years)', '; '.join('%s NASA %.0f mm vs GPCC %.0f mm' % (NMS[t], GC_FULL[t]['nasa'], GC_FULL[t]['gpcc']) for t in SS3 + ['mean']),
-           'Year-to-year changes are what the charts compare; levels can differ by site'),
-          ('All formulas recomputed by a separate script (verify_xlsx.py, same folder of the repository)',
-           '0 differences with the stored values', 'Proves each formula points to the right month, town and variable'),
+static = [('All formulas recomputed by a separate script (verify_xlsx.py, research/indonesia/excel)', '0 differences with the stored values',
+           'Proves each formula points to the right month, town and variable'),
+          ('Missing CPC rain days filled with the NASA value of that day', '%d cells (%s)' % (len(CPC_FILLED), ', '.join(sorted(set(k for _, k in CPC_FILLED)))),
+           'Fill value in the CPC source file; NASA rain agrees with the gauges before 2020'),
           ('Temperature level', 'NASA values are for the grid cell mean elevation (%s)' % ', '.join('%s cell %.0f m' % (nm, GEO[t][2]) for t, nm, _ in TOWNS),
-           'A town below its cell is warmer than shown; month-to-month and year-to-year changes are reliable')]
+           'A town below its cell is warmer than shown; month-to-month and year-to-year changes are more reliable than levels')]
 for a, b_, c_ in static:
     chk.set(r, 1, a, WRAP)
     chk.set(r, 2, b_, WRAP)
     chk.set(r, 5, c_, WRAP)
     r += 1
-chk.widths = {1: 58, 2: 38, 3: 10, 4: 8, 5: 60}
+r += 1
+chk.set(r, 1, 'Why rain comes from rain gauges (NOAA CPC) and not from NASA: monthly totals compared, total ratio and correlation', B)
+r += 1
+chk.row(r, 1, ['Town, comparison', '2005–2019 ratio', '2005–2019 r', '2020–2026 ratio', '2020–2026 r'], H)
+r += 1
+for t, nm, _ in TOWNS:
+    for lab in ('CPC ÷ GPCC', 'NASA ÷ GPCC', 'NASA ÷ CPC'):
+        (r1, c1, n1), (r2, c2, n2) = RC[(t, lab)]
+        bad = lab.startswith('NASA') and r2 > 1.15
+        chk.row(r, 1, ['%s, %s' % (nm, lab), round(r1, 2), round(c1, 2), round(r2, 2), round(c2, 2)], RED if bad else None)
+        r += 1
+chk.set(r, 1, 'GPCC = gauge analysis, 1° (Full v2020 to 2019, Monitoring after; First Guess for 2026). CPC = gauge analysis, 0.5°, daily. Two independent gauge products agree with each other in both periods; NASA agrees with them until 2019, then reads 30–40 % wetter with a weaker correlation. NASA POWER appends GEOS-IT to MERRA-2 for recent data.', WRAP)
+r += 2
+chk.set(r, 1, 'Why temperature stays NASA: annual mean of the 3 towns (°C) in three products', B)
+r += 1
+chk.row(r, 1, ['Year', 'NASA T2M (used)', 'GHCN_CAMS stations', 'CPC stations (Tmax+Tmin)/2', 'ONI Nov–Jan'], H)
+r += 1
+for y in range(2005, 2026):
+    k = '%d-12' % y
+    chk.row(r, 1, [y, round(TANN[y][0], 2), round(TANN[y][1], 2), round(TANN[y][2], 2), round(ONI[k][0], 2) if k in ONI else ''])
+    r += 1
+chk.set(r, 1, 'GHCN_CAMS drops 0.8 °C in one step in 2014 and stays low while the region warms; CPC rises 2 °C in ten years. Both follow changes in the few stations of western Honduras. '
+        'NASA shows cool La Niña years (2008, 2011–2012, 2021–2022) and warm El Niño years (2015, 2019, 2023–2024): it is the most consistent of the three. '
+        'Caution: from March 2025, NASA temperatures step down against the station grids (seen in all 5 Indonesian towns too, about −0.4 °C there), so 2025/26 and 2026/27 may read cool.', WRAP)
+r += 1
+chk.widths = {1: 58, 2: 38, 3: 12, 4: 14, 5: 60}
 
 # ---------------- README ----------------
-FULLm, FGm = GC_FULL['mean'], GC_FG['mean']
+MR = {lab: (st.mean(RC[(t, lab)][0][0] for t in SS3), st.mean(RC[(t, lab)][1][0] for t in SS3)) for lab in ('CPC ÷ GPCC', 'NASA ÷ GPCC', 'NASA ÷ CPC')}
 lines = [
     ('Météo des zones caféières du Honduras (Comayagua, Ocotepeque, Copán) par saison ENSO (juillet–juin), pour refaire les graphiques du type « São Mateus »', TITLE),
     ('Même méthode, mêmes saisons, mêmes mois et même classement El Niño / La Niña que le fichier du Sumatra du Sud. Données météo jusqu\'au %s, ONI jusqu\'à JJA 2026.' % END, SUB),
@@ -527,8 +569,8 @@ lines = [
     ('Dans chaque feuille Chart : bloc température moyenne (°C) puis bloc pluie mensuelle (mm). Lignes = saisons juillet–juin, colonnes = Jul … Jun, groupées El Niño / La Niña / Neutre, avec la ligne « Average » de chaque groupe (la ligne noire en pointillés du graphique).', WRAP),
     ('Chart_long : les mêmes chiffres en format long (une ligne par lieu × saison × mois), le plus simple pour ChatGPT ou un graphique croisé.', WRAP),
     ('ENSO_seasons et ENSO_monthly : exactement la même table ONI (NOAA CPC) et le même calcul que pour l\'Indonésie, donc les mêmes saisons El Niño / La Niña / Neutre.', WRAP),
-    ('Monthly : les valeurs mensuelles, calculées par formule à partir de Daily. Daily : les données jour par jour, 3 lieux × 4 variables, 1er juillet 2005 → %s.' % END, WRAP),
-    ('Checks : les contrôles (jours manquants, totaux, nombre de saisons par phase, comparaison avec les pluviomètres GPCC).', WRAP),
+    ('Monthly : les valeurs mensuelles, calculées par formule à partir de Daily. Daily : les données jour par jour, 3 lieux × 5 variables (pluie des pluviomètres, 3 températures, pluie NASA pour comparaison), 1er juillet 2005 → %s.' % END, WRAP),
+    ('Checks : les contrôles (jours manquants, totaux, nombre de saisons par phase), et pourquoi la pluie vient des pluviomètres et la température de la NASA.', WRAP),
     ('', None),
     ('LES SAISONS : LES MÊMES QUE TA PHOTO ET QUE LE FICHIER INDONÉSIE', B),
     ('20 saisons, 2005/06 à 2024/25 : 7 El Niño, 9 La Niña, 4 neutres (règle officielle NOAA).', WRAP),
@@ -546,10 +588,11 @@ lines = [
     ('Cas limites expliqués dans ENSO_seasons : 2016/17, 2024/25 et 2025/26 sont neutres (le seuil La Niña n\'a pas tenu 5 périodes) ; 2026/27 est El Niño en cours.', WRAP),
     ('', None),
     ('LES DONNÉES MÉTÉO', B),
-    ('Source : NASA POWER, API quotidienne (« Source Native Resolution », MERRA-2 / GEOS-IT), heure solaire locale. Pluie = PRECTOTCORR (mm/jour, corrigée), température = T2M (moyenne journalière), plus T2M_MAX et T2M_MIN.', WRAP),
+    ('PLUIE = pluviomètres, analyse quotidienne NOAA CPC (Global Unified Gauge-Based, 0,5°), maille la plus proche de chaque lieu. Pas la NASA : au Honduras, la pluie NASA suit les pluviomètres jusqu\'en 2019 (ratio %.2f), puis lit %.0f %% plus humide depuis 2020, avec une corrélation qui chute (détail dans Checks). Les deux produits de pluviomètres (CPC et GPCC) concordent entre eux sur toute la période.' % (MR['NASA ÷ GPCC'][0], 100 * (MR['NASA ÷ GPCC'][1] - 1)), Style(wrap=True, bold=True, color='C00000')),
+    ('TEMPÉRATURE = NASA POWER (MERRA-2 puis GEOS-IT), T2M moyenne journalière, plus T2M_MAX et T2M_MIN. Les deux grilles de stations ont des ruptures au Honduras (GHCN_CAMS −0,8 °C en 2014, CPC +2 °C en dix ans) ; la NASA est la plus cohérente (années La Niña fraîches, El Niño chaudes). Attention : depuis mars 2025 la NASA baisse d\'environ 0,4 °C face aux stations (vu aussi en Indonésie), donc 2025/26 et 2026/27 peuvent lire trop frais.', WRAP),
     ('Points utilisés (latitude, longitude, altitude de la maille NASA) : ' + ' ; '.join('%s %.3f, %.3f, %.0f m' % (nm, GEO[t][1], GEO[t][0], GEO[t][2]) for t, nm, _ in TOWNS) + '. Copán = Santa Rosa de Copán, chef-lieu du département.', WRAP),
     ('Mois = somme (pluie) ou moyenne (température) des jours du mois civil. Seuls les mois complets entrent dans les graphiques.', WRAP),
-    ('Contrôle de la pluie : totaux de mai–octobre %d–%d, NASA contre pluviomètres GPCC : r = %.2f pour la moyenne des 3 lieux (détail par lieu dans Checks).' % (FULLm['first'], FULLm['last'], FULLm['r']), WRAP),
+    ('Contrôle de la pluie retenue : CPC ÷ GPCC = %.2f en 2005–2019 et %.2f en 2020–2026 (moyenne des 3 lieux) : pas de rupture.' % MR['CPC ÷ GPCC'], WRAP),
     ('La température est celle de la maille NASA (altitude moyenne de la maille). Un lieu plus bas que sa maille est plus chaud en réalité ; les variations d\'un mois ou d\'une année à l\'autre sont fiables.', WRAP),
     ('', None),
     ('POUR REFAIRE LE GRAPHIQUE', B),
@@ -563,6 +606,5 @@ readme.widths = {1: 150}
 wb.save(OUT)
 print('saved', OUT)
 print('photo seasons', {ph: [slabel(Y) for Y in PHOTO if season_phase(Y) == ph] for ph in ('El Niño', 'La Niña', 'Neutral')})
-print('gauge check full', {k: (round(v['r'], 2), v['same'], v['n'], round(v['nasa']), round(v['gpcc'])) for k, v in GC_FULL.items()})
-print('gauge check first guess', {k: (round(v['r'], 2), v['same'], v['n'], round(v['nasa']), round(v['gpcc'])) for k, v in GC_FG.items()})
+print('rain ratios', MR, 'filled', CPC_FILLED)
 print('end', END, 'partial', PARTIAL, 'days', ndays, 'months', len(months), 'long rows', CL_LAST, 'grid', GEO)
