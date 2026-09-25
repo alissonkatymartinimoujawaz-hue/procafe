@@ -260,7 +260,7 @@ fe.freeze = (5, 2)
 # ------------------------------------------------------------------ Disease
 di = wb.add('Disease')
 di.set(1, 1, 'Rust (roya) and other problems, every figure found', TITLE)
-di.set(2, 1, 'There is no published yearly series in the files we could reach: IHCAFE early-warning bulletins (monthly, about 1 200 farms) are behind the blocked ihcafe.hn host. Figures below are those printed by USDA or the press.', SUB)
+di.set(2, 1, 'There is no published yearly series in the files we could reach: IHCAFE early-warning bulletins (monthly, about 1 200 farms) are no longer served by ihcafe.hn (old links return the home page; checked 25 Sep 2026). Figures below are those printed by USDA or the press.', SUB)
 di.row(4, 1, ['Year', 'When', 'Value (%)', 'What it measures', 'Status', 'Source'], H)
 for k, d in enumerate(D.RUST):
     r = 5 + k

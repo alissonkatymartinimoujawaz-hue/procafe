@@ -85,7 +85,7 @@ def slide_rust():
         rows.append([str(d['year']), d['when'], [(v + (' ⚠' if d['status'] == 'PRESS' else ''), dict(b=True, color=RED if d['status'] == 'PRESS' else INK))],
                      d['measure'], d['src'].replace('web search summary', 'search summary')])
     yy = p.table(0.45, 1.15, [0.55, 1.0, 0.75, 5.8, 1.7], [0.34] + [0.325] * (len(rows) - 1), rows, sz=7.3)
-    p.text(0.45, yy + 0.08, 9.8, 0.55, ['IHCAFE rule: rust damage of 15 % ≈ 20 % less production (USDA 2017). Thresholds: 0–5 % low, 5–20 % medium. The monthly IHCAFE early-warning bulletins (about 1 200 farms) sit on ihcafe.hn, blocked here.'], sz=8.2)
+    p.text(0.45, yy + 0.08, 9.8, 0.55, ['IHCAFE rule: rust damage of 15 % ≈ 20 % less production (USDA 2017). Thresholds: 0–5 % low, 5–20 % medium. The monthly IHCAFE early-warning bulletins (about 1 200 farms) are no longer on ihcafe.hn: old links return the home page.'], sz=8.2)
     x0, w0 = 10.45, 2.45
     lines = [('Resistant varieties', dict(b=True, color=NAVY, sz=10)),
              ('Released by IHCAFE', dict(b=True, sz=8.8)),

@@ -90,6 +90,8 @@ RUST = [
     dict(year=2012, when='2012/13 crop', value=25.0, measure='% of coffee AREA affected (71 000 ha)', status='USDA', src='GAIN 2013, 2014'),
     dict(year=2014, when='Apr 2014', value=12.0, measure='national average incidence (first national survey)', status='USDA', src='GAIN 2014'),
     dict(year=2017, when='Apr 2017', value=3.0, measure='% of LEMPIRA plants with rust (Lempira lost its resistance in 2016/17)', status='USDA', src='GAIN 2017, 2018'),
+    dict(year=2017, when='Aug 2017', value=None, measure='IHCAFE SAT bulletin No 6: rust on susceptible varieties green alert (low risk); on resistant varieties and berry borer blue alert (minimal risk)',
+         status='DOC', src='IHCAFE SAT page (image, read)'),
     dict(year=2020, when='end 2020', value=20.0, lo=15, hi=25, measure='incidence in 5 departments after hurricanes Eta and Iota', status='USDA', src='GAIN 2021'),
     dict(year=2020, when='Nov 2020', value=None, measure='Eta and Iota: > 4 200 ha of coffee farms hit, > 150 000 qq lost', status='DOC', src='La Prensa / EFE 1 Nov 2022 (read)'),
     dict(year=2022, when='2022/23 crop', value=20.0, measure='% of PRODUCTION affected by rust (IHCAFE director)', status='DOC', src='La Prensa / EFE 1 Nov 2022 (read)'),
