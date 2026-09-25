@@ -161,7 +161,7 @@ def slide_varieties():
                                    (PALE, 'no statement after 2021', 'box')], sz=8)
     rows = [['When', 'Share with resistant varieties', 'Source']]
     what = {'Jun 2013': '%d %% of the coffee area', 'since 2012': '%d %% of the area, mostly Lempira', 'Apr 2014': '%d %% of producers (national)',
-            '2014': '%d %% of farms, 5 departments', 'Aug 2017': '%d %% of the park; seed: 65 %% Lempira', '~2020': '%d %% of cultivation'}
+            '2014': '%d %% of farms, 5 departments', '24 Aug 2017': '%d %% of the park (IHCAFE adviser)', '~2020': '%d %% of cultivation'}
     for a in FV.ADOPTION:
         if a['when'] == 'Oct 2017':
             txt = 'Lempira = %s %% of monitored farms → still resistant ≈ %s %%' % (fr(a['lempira'], 0), fr(a['resistant'], 0))
@@ -173,9 +173,9 @@ def slide_varieties():
     p.text(8.75, yb + 0.08, 4.35, 1.1, [('Count of releases', dict(b=True, color=NAVY)),
                                         ('Bred by IHCAFE: 1990, 1998, 2004 · none 2005–2023', {}),
                                         ('Sep 2023: "at least 4" announced → Feb 2024: 3 presented (bred abroad)', {}),
-                                        ('⚠ = pages not downloadable (IHCAFE bulletin, 2017 and 2020 articles)', dict(color=GREY, sz=7))], sz=8)
+                                        ('⚠ = page not downloadable (IHCAFE bulletin Oct 2017, 2020 article)', dict(color=GREY, sz=7))], sz=8)
     p.source('✔ Morales & Grajeda (IHCAFE), "Durabilidad de la resistencia genética a la roya … al 2019", PROMECAFE symposium 2019; World Coffee Research variety pages; '
-             'El Heraldo 29 Feb 2024; La Prensa 29 Sep 2023; USDA Coffee Annual 2013–2021. The IHCAFE study also lists the Icatu 75 line as susceptible since 2016 and Obatá as 20 % susceptible.')
+             'El Heraldo 29 Feb 2024; La Prensa 24 Aug 2017 and 29 Sep 2023; USDA Coffee Annual 2013–2021. The IHCAFE study also lists the Icatu 75 line as susceptible since 2016 and Obatá as 20 % susceptible.')
     return p
 
 

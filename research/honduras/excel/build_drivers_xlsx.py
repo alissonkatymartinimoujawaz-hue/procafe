@@ -310,12 +310,9 @@ est = [('Lempira, % of all monitored farms', 56.08, None, IN2),
        ('Farms with susceptible varieties, % of all monitored farms', 56.08 / 67.74 * 100, 'B%d/B%d*100' % (E0, E0 + 1), F1),
        ('Farms still with a resistant variety (IHCAFE 90, Parainema, others), %', 100 - 56.08 / 67.74 * 100, '100-B%d' % (E0 + 2), F1),
        ('Same farms before Lempira failed (Lempira + other resistant), %', 56.08 + 100 - 56.08 / 67.74 * 100, 'B%d+B%d' % (E0, E0 + 3), F1),
-       ('For comparison: share of the whole park in "resistant" varieties, Aug 2017 (La Prensa ⚠)', 60, None, IN0),
-       ('Resistance of IHCAFE 90 to the new strain, % (IHCAFE via La Prensa, Aug 2017 ⚠)', 80, None, IN0),
-       ('Resistance of Parainema to the new strain, % (same source ⚠)', 100, None, IN0),
-       ('Seed demand 2017: Lempira, % (La Prensa ⚠)', 65, None, IN0),
-       ('Seed demand 2017: other varieties (not Catuaí), %', 10, None, IN0),
-       ('Lempira share of the resistant seed sold in 2017, at least', 65 / 75, 'B%d/(B%d+B%d)' % (E0 + 8, E0 + 8, E0 + 9), Style(fmt='0.0%'))]
+       ('For comparison: share of the whole park in "resistant" varieties, 24 Aug 2017 (La Prensa, read)', 60, None, IN0),
+       ('Resistance of IHCAFE 90 to the new strain, % (IHCAFE via La Prensa, 24 Aug 2017, read)', 80, None, IN0),
+       ('Resistance of Parainema to the new strain, % (same source, read)', 100, None, IN0)]
 for k, (lab, val, f, st_) in enumerate(est):
     vt.set(E0 + k, 1, lab, WRAP)
     vt.set(E0 + k, 2, val, st_, f)

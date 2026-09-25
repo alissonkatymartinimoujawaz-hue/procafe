@@ -42,7 +42,7 @@ def farmgate():
 # ---------------------------------------------------------------- varieties (rust-resistant releases by IHCAFE)
 VARIETIES = [
     dict(name='IHCAFE 90', family='Catimor (Timor Hybrid 832/1 × Caturra)', released='1990', year=1990, year_status='DOC',
-         resistance='Resistant 1990–2015; from 2016 about 20 % of plants susceptible to the new rust races (IHCAFE, 2019). USDA 2018: still resistant. World Coffee Research: "recently confirmed susceptible in Honduras"',
+         resistance='Resistant 1990–2015; from 2016 about 20 % of plants susceptible to the new rust races (IHCAFE, 2019); 80 % resistance to the new strain (IHCAFE via La Prensa, 24 Aug 2017). USDA 2018: still resistant. World Coffee Research: "recently confirmed susceptible in Honduras"',
          broke=None, partial=2016,
          src='Morales & Grajeda (IHCAFE), PROMECAFE 24th symposium 2019, table "Durabilidad de resistencia"; GAIN 2018; WCR variety page',
          note='Effective resistance 25 years (IHCAFE).', status='DOC'),
@@ -72,9 +72,8 @@ ADOPTION = [
          quote='the number of coffee producers, growing coffee rust resistant varieties, is moving up to 60 percent and 40 percent of them are still using non-resistant types.'),
     dict(when='2014', scope='5 departments (60 % of area), % of FARMS', resistant=62, status='USDA', src='GAIN 2014 (USDA/TechnoServe baseline)',
          quote='62 percent of the coffee farms had resistant varieties to coffee leaf rust and 38 percent had varieties susceptible'),
-    dict(when='Aug 2017', scope='national coffee park (plants)', resistant=60, status='PRESS', src='La Prensa, 25 Aug 2017 (search extract)',
-         quote='60 % of the national coffee park is improved plants resistant to rust; national seed demand: 65 % Lempira, 25 % Catuaí, 10 % other varieties',
-         seed=dict(Lempira=65, Catuai=25, other=10)),
+    dict(when='24 Aug 2017', scope='national coffee park (plants)', resistant=60, status='DOC', src='La Prensa, 24 Aug 2017 (read, ihcafe_docs3)',
+         quote='En la actualidad, el 60% del parque cafetalero nacional está conformado por plantas mejoradas y resistentes a la roya y otras enfermedades.'),
     dict(when='Oct 2017', scope='farms sampled by the rust early-warning system', resistant=round(100 - 56.08 / 67.74 * 100, 1), lempira=56.08,
          lempira_of_susceptible=67.74, status='PRESS',
          src='IHCAFE SAT bulletin No 8 (search snippet)', quote='Lempira = 56.08 % of sampled farms, 67.74 % of farms classed as susceptible'),
@@ -82,9 +81,9 @@ ADOPTION = [
          quote='about 60 % of Honduran coffee is planted with resistant varieties (Lempira, IHCAFE 90, Parainema)'),
 ]
 # Resistance of the three IHCAFE varieties to the new rust strain (IHCAFE via La Prensa, Aug 2017; search extract)
-NEW_STRAIN_RESISTANCE = dict(when='Aug 2017', status='PRESS', src='La Prensa, 25 Aug 2017 (search extract)',
+NEW_STRAIN_RESISTANCE = dict(when='24 Aug 2017', status='DOC', src='La Prensa, 24 Aug 2017 (read, ihcafe_docs3)',
                              values={'Lempira': 0, 'IHCAFE 90': 80, 'Parainema': 100},
-                             quote='Lempira is not immune to the new rust strain; IHCAFE 90 has 80 % resistance to it and Parainema 100 %')
+                             quote='se descubrió que la Lempira no es inmune a la nueva roya ... mientras que el Ihcafé-90 tiene un 80% de resistencia a la nueva cepa y el Parainema, un 100%.')
 RENOVATION_VARIETIES = dict(when='2024-2026', status='PRESS', src='La Prensa / El Heraldo, IHCAFE seed programme (search extract)',
                             varieties=['Parainema', 'Obatá SHN', 'Ihcatú 75', 'IHCAFE 90', 'Anacafé 14 SHN'],
                             quote='varieties distributed for renovation: Parainema, Obatá, IHCATU 75, IHCAFE 90 and Anacafé 14')
