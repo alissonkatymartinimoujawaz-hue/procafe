@@ -1,0 +1,19 @@
+DONE 2026-09-26: national coffee statistics collection finished. Details in README.md and notes_*.md.
+
+Obtained:
+- faostat.csv: all 5 countries, 1998-2024, area harvested, production and yield (green coffee). Complete.
+- mexico_siap.csv: SIAP café cereza (cherry basis), 2004/05-2023/24, planted and harvested area, production and yield, taken from FIRA and SIAP publications. Some years are missing.
+- peru_midagri.csv: MIDAGRI café pergamino (parchment basis). Production 2000-2025, harvested area 2010-2024, yield 2010-2023.
+- uganda_ucda.csv: UCDA/MAAIF production in 60-kg bags, 1998/99-2024/25, with robusta/arabica up to 2019/20. Area, trees, yield and households only for scattered years. The series switches from procurement to total estimates in 2018/19 and from coffee year to fiscal year in 2015/16.
+- indonesia_bps.csv: BPS national area and production for 2024-2025, and the ownership split for 2021-2025, in thousand ha and thousand t.
+
+Blocked (header-only files):
+- ethiopia_ess.csv: the ESS/CSA and ECTA hosts are not on the egress allowlist.
+- indonesia_kementan.csv: the Ditjenbun and satudata sites return Cloudflare 403.
+
+Main gaps:
+- Ethiopia: all years.
+- Indonesia: TBM/TM/TTM split, yield, and data before 2021.
+- Mexico: 1998-2003/04 and area_damaged.
+- Peru: area before 2010 and bearing area.
+- Uganda: area and tree time series.
