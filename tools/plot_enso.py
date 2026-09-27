@@ -66,10 +66,11 @@ def plot_region():
                     fontsize=13, fontweight="bold", color=NAVY)
 
     rain_src = "CHIRPS v3" if wb.BEST["rain"] == "CHIRPS" else wb.BEST["rain"]
+    adjusted = " and ".join(n for v, n in (("tmin", "min"), ("tmax", "max")) if wb.BEST[v] == wb.OMC) + " temperatures"
     note = ("Seasons Jul–Jun. ENSO phase: NOAA ONI (Dec–Feb) ≥ +0.5 El Niño, ≤ −0.5 La Niña. Region = average of "
             f"{town_names}.\nSources (closest to INMET stations): "
             f"rainfall {rain_src}; temperatures, humidity, soil moisture Open-Meteo ERA5-Land (0.1°, altitude-corrected; "
-            f"min/max temperatures adjusted to INMET stations). Data through {last_month}. 2026/27 = season in progress, "
+            f"{adjusted} adjusted to INMET stations). Data through {last_month}. 2026/27 = season in progress, "
             f"El Niño developing (provisional).")
 
     # --- full dashboard
