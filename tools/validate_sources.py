@@ -101,6 +101,34 @@ def against_reports(ch, nasa, om):
     return {f"{src}|{var}": stats(p, var == "rain") for (src, var), p in pairs.items()}
 
 
+def station_correction(truth, om, results):
+    """Monthly offsets (station − Open-Meteo, per calendar month, 6 MG stations) for
+    Tmin/Tmax: models smooth the daily extremes. Tested leave-one-station-out: the
+    offsets applied to a station are computed without it. Adds the corrected source
+    to results and returns the offsets from all stations (used by the workbook)."""
+    if not om:
+        return {}
+    offsets = {}
+    for var in ("tmin", "tmax"):
+        mon = {c: {m: (s, t) for m, t in monthly(truth[c][var], "mean").items()
+                   for s in [monthly(om[c][var], "mean").get(m)] if s is not None} for c in MG}
+        def off(excl):
+            out = {}
+            for mm in range(1, 13):
+                d = [t - s for o in MG if o != excl for m, (s, t) in mon[o].items() if int(m[5:]) == mm]
+                out[mm] = sum(d) / len(d)
+            return out
+        pooled = []
+        for c in MG:
+            o = off(c)
+            pooled += [(s + o[int(m[5:])], t) for m, (s, t) in mon[c].items()]
+        label = "Open-Meteo ERA5-Land + INMET correction"
+        results["by_var"][var][label] = {"stations": {}, "mg_monthly": stats(pooled), "mg_yearly": None,
+                                         "mg_daily": None, "note": "leave-one-station-out"}
+        offsets[var] = {str(k): round(v, 3) for k, v in off(None).items()}
+    return offsets
+
+
 def main():
     obs = {c: json.load(open(os.path.join(V, "stations", c + ".json"), encoding="utf-8")) for c in STATIONS}
     nasa, om, bm, ch = load("nasa"), load("om_stations"), load("om_best_match"), load("chirps")
@@ -166,6 +194,7 @@ def main():
                           "mg_daily": stats(all_d, var == "rain") if all_d else None}
         results["by_var"][var] = res
 
+    results["correction"] = station_correction(truth, src.get("Open-Meteo ERA5-Land"), results)
     results["reports"] = against_reports(ch, nasa, load("om_towns"))
     with open(os.path.join(V, "metrics.json"), "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=1)

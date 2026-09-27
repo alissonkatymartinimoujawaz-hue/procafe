@@ -41,11 +41,17 @@ VARS = {
 SHEET = {"tmean": "Mean temp", "tmin": "Min temp", "tmax": "Max temp", "rain": "Rainfall",
          "rh": "Humidity", "soil": "Soil moisture"}
 # Chosen source per variable — see validation/metrics.json and the Validation sheet
-BEST = {"tmean": "Open-Meteo", "tmin": "Open-Meteo", "tmax": "Open-Meteo", "rain": "CHIRPS",
+OMC = "Open-Meteo + INMET correction"
+BEST = {"tmean": "Open-Meteo", "tmin": OMC, "tmax": OMC, "rain": "CHIRPS",
         "rh": "Open-Meteo", "soil": "Open-Meteo", "soil_top": "Open-Meteo"}
+# label of the chosen source in the Validation sheet
+CHOSEN = {"rain": "CHIRPS v3", "tmean": "Open-Meteo ERA5-Land", "tmin": "Open-Meteo ERA5-Land + INMET correction",
+          "tmax": "Open-Meteo ERA5-Land + INMET correction", "rh": "Open-Meteo ERA5-Land"}
 SOURCE_NAMES = {
     "CHIRPS": "CHIRPS v3.0 (UCSB Climate Hazards Center), 0.05° satellite + rain gauges",
     "Open-Meteo": "Open-Meteo, ERA5-Land 0.1° (models=era5_seamless), downscaled to town altitude",
+    OMC: "Open-Meteo ERA5-Land, altitude-downscaled, + monthly offsets measured at 6 INMET stations "
+         "(models smooth the daily extremes)",
     "NASA POWER": "NASA POWER (MERRA-2 / GEOS), 0.5° x 0.625°",
 }
 
@@ -97,6 +103,11 @@ def region_series():
             per_town["Open-Meteo"]["soil"][t] = monthly(om["start"], root, "mean")
             top = [None if v is None else 100 * v for v in s["soil_moisture_0_to_7cm"]]
             per_town["Open-Meteo"]["soil_top"][t] = monthly(om["start"], top, "mean")
+        corr = json.load(open(os.path.join(V, "metrics.json"), encoding="utf-8")).get("correction", {})
+        for var, off in corr.items():                 # Tmin/Tmax: add station-measured monthly offsets
+            for t in ids:
+                per_town[OMC][var][t] = {m: v + off[str(int(m[5:]))]
+                                         for m, v in per_town["Open-Meteo"][var][t].items()}
     nasa = load("nasa")
     if nasa:
         p = nasa["towns"]
@@ -393,7 +404,7 @@ def build():
     cmp_ = wb.create_sheet("Sources compared")
     title(cmp_, "Region monthly averages from every source (for comparison)",
           "Soil moisture: Open-Meteo = volumetric water (% vol.); NASA POWER = relative wetness GWETROOT/GWETTOP (%), not the same unit.")
-    pairs = [(v, s) for v in VARS for s in ("CHIRPS", "Open-Meteo", "NASA POWER") if v in region.get(s, {})]
+    pairs = [(v, s) for v in VARS for s in ("CHIRPS", "Open-Meteo", OMC, "NASA POWER") if v in region.get(s, {})]
     cmp_.cell(4, 1, "Month")
     for k, (v, s) in enumerate(pairs):
         cmp_.cell(4, 2 + k, f"{VARS[v][0]} ({VARS[v][1]}) — {s}")
@@ -430,7 +441,7 @@ def build():
             row = [vnames[var], src, m["n"], m["bias"], m["mae"], m.get("mae_pct"), m["r"],
                    y.get("mae_pct") if (y and var == "rain") else None,
                    dd["mae"] if dd else None, dd["r"] if dd else None]
-            chosen = src.startswith(BEST[var]) and ("best_match" not in src)
+            chosen = src == CHOSEN[var]
             row.append("✔" if chosen else "")
             for c, x in enumerate(row, 1):
                 cell = val.cell(r, c, x)
@@ -462,12 +473,27 @@ def build():
         "Bias = source − station (positive = source too high). Mean absolute error: lower is better. r: closer to 1 is better.",
         "Rainfall: CHIRPS blends satellite data with rain gauges (possibly including some of these stations), which is why it is closest.",
         "Temperatures: Open-Meteo is corrected to the real altitude of each point; NASA POWER uses a 50 km grid cell at its mean altitude.",
+        "Min/max temperatures: reanalyses smooth the daily extremes (max too cold, min too warm). Monthly offsets measured at the "
+        "stations are added (table below); the corrected row is tested leave-one-station-out (offsets computed without the tested station).",
         "Soil moisture: no station in the region measures it, so it cannot be verified here. ERA5-Land (Open-Meteo, 0.1°) is used: finer "
         "grid and forced by the same weather that validates best above; NASA POWER GWETROOT is in 'Sources compared'.",
         "Open-Meteo best_match (IFS 9 km blend, 2017+ only) is shown for information; the site/workbook use one consistent model (ERA5-Land).",
     ]
     for k, t in enumerate(notes):
         val.cell(r + 1 + k, 1, t).font = F(size=9, italic=True)
+    corr = metrics.get("correction", {})
+    if corr:
+        r0 = r + 2 + len(notes)
+        val.cell(r0, 1, "Monthly offsets added to Open-Meteo min/max temperatures (°C) — mean of station − model, "
+                        "6 INMET stations, 2007-2026").font = F(bold=True, color=NAVY)
+        for c, h in enumerate(["Month", "Tmin offset", "Tmax offset"], 1):
+            val.cell(r0 + 1, c, h)
+        style_header(val, r0 + 1, 3, 22)
+        for mm in range(1, 13):
+            val.cell(r0 + 1 + mm, 1, date(2000, mm, 1).strftime("%b"))
+            for c, var in ((2, "tmin"), (3, "tmax")):
+                if var in corr:
+                    val.cell(r0 + 1 + mm, c, corr[var][str(mm)]).number_format = "+0.00;-0.00;0.00"
     for c, w in zip("ABCDEFGHIJK", (24, 24, 10, 11, 13, 10, 12, 12, 10, 9, 8)):
         val.column_dimensions[c].width = w
 
@@ -485,7 +511,10 @@ def build():
         ("Sources retenues (les plus proches des vraies mesures)", "h2"),
         ("Chaque source a été comparée aux stations automatiques INMET (mesures réelles, 2007–2026) : voir l'onglet Validation.", ""),
         ("• Pluie : CHIRPS v3.0 (UCSB) — satellite + pluviomètres, grille 0,05° (~5 km).", ""),
-        ("• Température moyenne, minimale, maximale et humidité de l'air : Open-Meteo ERA5-Land (0,1°), corrigé à l'altitude de chaque ville.", ""),
+        ("• Température moyenne et humidité de l'air : Open-Meteo ERA5-Land (0,1°), corrigé à l'altitude de chaque ville.", ""),
+        ("• Températures minimale et maximale : Open-Meteo ERA5-Land + correction mensuelle mesurée sur 6 stations INMET "
+         "(les modèles lissent les extrêmes : maximales trop froides d'environ 2 °C, minimales trop chaudes d'environ 1 °C). "
+         "Correction testée sur une station exclue du calcul à chaque fois (voir Validation).", ""),
         ("• Humidité du sol (0–100 cm et surface 0–7 cm) : Open-Meteo ERA5-Land, en % du volume de sol. "
          "Aucune station ne la mesure dans la région : c'est une estimation de modèle, non vérifiable localement.", ""),
         ("", ""),

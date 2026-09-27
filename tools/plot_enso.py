@@ -63,11 +63,11 @@ def main():
             ax.text(0.0, 1.22, f"{ph} ({len(done[ph])} seasons)", transform=ax.transAxes,
                     fontsize=13, fontweight="bold", color=NAVY)
 
-    src = {v: wb.BEST[v] for v, _, _ in ROWS}
     note = ("Seasons Jul–Jun. ENSO phase: NOAA ONI (Dec–Feb) ≥ +0.5 El Niño, ≤ −0.5 La Niña. Region = average of "
             "Varginha, Carmo de Minas, Boa Esperança, Guapé, Muzambinho.\nSources (closest to INMET stations): "
-            f"rainfall {src['rain']} v3; temperatures, humidity, soil moisture {src['tmean']} ERA5-Land (0.1°, "
-            f"altitude-corrected). Data through {last_month}. 2026/27 = season in progress, El Niño developing (provisional).")
+            f"rainfall CHIRPS v3; temperatures, humidity, soil moisture Open-Meteo ERA5-Land (0.1°, altitude-corrected; "
+            f"min/max temperatures adjusted to INMET stations). Data through {last_month}. 2026/27 = season in progress, "
+            f"El Niño developing (provisional).")
 
     # --- full dashboard
     fig, axes = plt.subplots(len(ROWS), 3, figsize=(17, 4.0 * len(ROWS) + 2.2))
