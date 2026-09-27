@@ -24,6 +24,28 @@ Les modèles lissent les extrêmes du jour : maximales trop froides (~2 °C), mi
 chaudes (~1–2 °C). La correction ajoute, mois par mois, l'écart moyen mesuré aux 6 stations
 (tableau dans l'onglet *Validation*) ; testée en excluant chaque fois la station évaluée.
 
+### Espírito Santo (conilon)
+
+Moyenne de Jaguaré, Vila Valério, Sooretama, Nova Venécia et São Mateus ; validé sur
+4 stations INMET de la zone du conilon (São Mateus A616, Linhares A614, Marilândia A632,
+Ecoporanga A631), lues directement dans les archives officielles (`tools/fetch_inmet.py`).
+
+| Variable | Meilleure source | Erreur mensuelle moyenne (4 stations) | Autres |
+|---|---|---|---|
+| Pluie | **CHIRPS v3** | 29,6 %, r = 0,90 | NASA 31,7 % ; Open-Meteo 39 % |
+| Température moyenne | **Open-Meteo ERA5-Land** | 0,33 °C | NASA 0,63 °C |
+| Température minimale | **Open-Meteo ERA5-Land** (brut) | 0,71 °C | NASA 0,73 °C ; corrigé 0,85 °C (la correction n'aide pas ici) |
+| Température maximale | **Open-Meteo + correction INMET (ES)** | 0,46 °C | NASA 1,07 °C ; brut 1,61 °C |
+| Humidité de l'air | **Open-Meteo ERA5-Land** | 3,0 % | NASA 4,3 % |
+
+## Exports
+
+`exports/SulDeMinas_ENSO_2006-2026.xlsx`, `exports/EspiritoSanto_ENSO_2006-2026.xlsx` (+ images
+`*_ENSO_charts.png` et une image par variable), construits par le workflow *Build Excel export*
+(`tools/build_enso_workbook.py`, `tools/plot_enso.py`, recalcul LibreOffice `tools/lo_recalc.py`).
+Saisons juillet → juin ; phase ENSO = ONI NOAA de décembre-janvier-février (≥ +0,5 El Niño,
+≤ −0,5 La Niña).
+
 ## CHIRPS v3 — `chirps.py`
 
 * CHIRPS v2 s'arrête fin 2026 : on lit **v3.0** directement sur
