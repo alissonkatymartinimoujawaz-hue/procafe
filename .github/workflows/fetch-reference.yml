@@ -1,0 +1,43 @@
+name: Fetch reference grids (NASA POWER + Open-Meteo)
+
+# Each matrix job runs on its own runner (own IP, own Open-Meteo quota) and
+# commits its JSON to validation/grids/ on the branch that triggered it.
+on:
+  push:
+    paths:
+      - tools/fetch_reference.py
+      - .github/workflows/fetch-reference.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        job: [om_stations, om_towns, om_best_match, nasa]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch ${{ matrix.job }}
+        run: python tools/fetch_reference.py --job ${{ matrix.job }}
+      - name: Commit results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/grids
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Reference grids: ${{ matrix.job }}"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            sleep $((i * 7))
+          done
+          exit 1
