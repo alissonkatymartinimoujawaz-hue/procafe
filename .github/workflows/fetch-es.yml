@@ -1,0 +1,53 @@
+name: Fetch Espirito Santo data (parallel)
+
+# INMET stations of the conilon belt + NASA POWER + Open-Meteo (one point per
+# runner). Parts land in validation/; merge Open-Meteo parts with
+# python tools/fetch_reference.py --job om_merge
+on:
+  push:
+    paths:
+      - .github/workflows/fetch-es.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {name: inmet, cmd: "python tools/fetch_inmet.py A614 A632 A631"}
+          - {name: nasa, cmd: "python tools/fetch_reference.py --job nasa_es"}
+          - {name: A614, cmd: "python tools/fetch_reference.py --job om_point --set es_stations --point A614"}
+          - {name: A632, cmd: "python tools/fetch_reference.py --job om_point --set es_stations --point A632"}
+          - {name: A631, cmd: "python tools/fetch_reference.py --job om_point --set es_stations --point A631"}
+          - {name: jaguare, cmd: "python tools/fetch_reference.py --job om_point --set es_towns --point jaguare"}
+          - {name: vila_valerio, cmd: "python tools/fetch_reference.py --job om_point --set es_towns --point vila_valerio"}
+          - {name: sooretama, cmd: "python tools/fetch_reference.py --job om_point --set es_towns --point sooretama"}
+          - {name: nova_venecia, cmd: "python tools/fetch_reference.py --job om_point --set es_towns --point nova_venecia"}
+          - {name: sao_mateus, cmd: "python tools/fetch_reference.py --job om_point --set es_towns --point sao_mateus"}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch ${{ matrix.name }}
+        run: ${{ matrix.cmd }}
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Espirito Santo data: ${{ matrix.name }}"
+          for i in $(seq 1 12); do
+            git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            sleep $((RANDOM % 20 + 5))
+          done
+          exit 1

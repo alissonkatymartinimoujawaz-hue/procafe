@@ -29,8 +29,29 @@ STATIONS = [
 ]
 
 
+# Espírito Santo: INMET stations of the conilon belt (São Mateus A616 is in STATIONS)
+STATIONS_ES = [
+    ("A614", "Linhares",   -19.35694444, -40.06888888, 40.0),
+    ("A632", "Marilândia", -19.40666666, -40.54000000, 95.0),
+    ("A631", "Ecoporanga", -18.29111111, -40.73583333, 224.0),
+]
+# Main conilon (robusta) municipalities — not a site region yet, so listed here.
+# Altitude left to Open-Meteo's 90 m terrain model.
+EXTRA_REGIONS = {
+    "espirito_santo": [
+        ("jaguare",      "Jaguaré",      -18.907, -40.075, None),
+        ("vila_valerio", "Vila Valério", -18.996, -40.386, None),
+        ("sooretama",    "Sooretama",    -19.190, -40.098, None),
+        ("nova_venecia", "Nova Venécia", -18.711, -40.405, None),
+        ("sao_mateus",   "São Mateus",   -18.716, -39.859, None),
+    ],
+}
+
+
 def towns(region="sul_de_minas"):
     """Towns of a region from config.js (single source of truth for the site)."""
+    if region in EXTRA_REGIONS:
+        return EXTRA_REGIONS[region]
     src = open(os.path.join(ROOT, "config.js"), encoding="utf-8").read()
     block = src[src.index(f'id: "{region}"'):]
     block = block[:block.index("]")]
@@ -171,8 +192,9 @@ def oni():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--job", required=True,
-                    choices=["om_stations", "om_towns", "om_best_match", "nasa", "om_point", "om_merge"])
-    ap.add_argument("--set", choices=["stations", "towns"], help="om_point: which set the point belongs to")
+                    choices=["om_stations", "om_towns", "om_best_match", "nasa", "nasa_es", "om_point", "om_merge"])
+    ap.add_argument("--set", choices=["stations", "towns", "es_stations", "es_towns"],
+                    help="om_point: which set the point belongs to")
     ap.add_argument("--point", help="om_point: station code or town id")
     ap.add_argument("--force", action="store_true", help="download again even if the file exists")
     args = ap.parse_args()
@@ -182,14 +204,16 @@ def main():
     tw_start = date(2006, 7, 1)
     sul = towns("sul_de_minas")
 
+    es = towns("espirito_santo")
+    sets = {"stations": STATIONS, "towns": sul, "es_stations": STATIONS_ES, "es_towns": es}
     if job == "om_point":                     # one point per runner: Open-Meteo answers slowly
-        pts = STATIONS if args.set == "stations" else sul
-        pt = [p for p in pts if p[0] == args.point]
-        s, e, tz = (st_start, st_end, "GMT") if args.set == "stations" else (tw_start, yesterday, "America/Sao_Paulo")
+        pt = [p for p in sets[args.set] if p[0] == args.point]
+        s, e, tz = ((st_start, st_end, "GMT") if args.set.endswith("stations")
+                    else (tw_start, yesterday, "America/Sao_Paulo"))
         open_meteo(f"parts/om_{args.set}_{args.point}", pt, s, e, "era5_seamless", tz)
         return
     if job == "om_merge":                     # parts/om_<set>_<id>.json -> om_<set>.json
-        for name, pts in (("stations", STATIONS), ("towns", sul)):
+        for name, pts in sets.items():
             parts = [os.path.join(OUT, "parts", f"om_{name}_{p[0]}.json") for p in pts]
             if not all(os.path.exists(f) for f in parts):
                 print(f"om_{name}: {sum(os.path.exists(f) for f in parts)}/{len(parts)} parts, not merged")
@@ -202,6 +226,17 @@ def main():
         return
     if os.path.exists(os.path.join(OUT, job + ".json")) and not args.force:
         print(f"{job}.json already present — skipped (use --force to refresh)")
+        return
+
+    if job == "nasa_es":
+        s_series, s_meta = nasa(STATIONS_ES, st_start, st_end)
+        t_series, t_meta = nasa(es, tw_start, yesterday)
+        save(job, {
+            "source": "NASA POWER daily point API, community AG (MERRA-2 / GEOS)",
+            "retrieved_utc": datetime.now(timezone.utc).isoformat(), "vars": NASA_PARAMS,
+            "stations": {"start": st_start.isoformat(), "end": st_end.isoformat(), "points": s_meta, "series": s_series},
+            "towns": {"start": tw_start.isoformat(), "end": yesterday.isoformat(), "points": t_meta, "series": t_series},
+        })
         return
 
     if job == "om_stations":
