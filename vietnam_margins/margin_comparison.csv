@@ -1,0 +1,14 @@
+crop,period,price_vnd_per_kg,cost_vnd_per_kg,yield_kg_per_ha,revenue_mvnd_per_ha,cost_mvnd_per_ha,net_margin_mvnd_per_ha,net_margin_pct,inputs,status
+robusta,"2020 (FAO price, no sourced cost)",31705,,2766,87.7,,,,price FAOSTAT PP 2020; yield FAOSTAT 2020,DERIVED; margin not computable (no sourced cost)
+robusta,MY2023/24,94000,40000,2934,275.8,117.4,158.4,57,price USDA GAIN; cost vietnamnet (~40k); yield FAOSTAT 2023,"DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
+robusta,MY2024/25,118000,40000,2970,350.5,118.8,231.7,66,price USDA/DCN; cost ~40k; yield FAOSTAT 2024,"DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
+robusta,Sept 2026 spot,92600,40000,2970,275.0,118.8,156.2,57,price giacaphe 27/09/2026; cost ~40k; yield FAOSTAT 2024,"DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
+pepper,2020,63834,50000,2367,151.1,118.3,32.7,22,price FAOSTAT PP 2020; cost 50k (vietnam.vn); yield FAOSTAT 2020,"DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
+pepper,2024 (FAO price),105304,75000,2659,280.0,199.4,80.6,29,price FAOSTAT PP 2024; cost 70-80k midpoint; yield FAOSTAT 2024,"DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
+pepper,2026,152500,75000,2659,405.5,199.4,206.1,51,price 145-160k midpoint; cost 70-80k midpoint; yield FAOSTAT 2024,"DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
+cashew,2026,35500,,1079,38.3,,,,price 35-36k (cropgpt); NO sourced cost found; yield FAOSTAT 2024,DERIVED; margin not computable (no sourced cost)
+durian Ri6,2024,61000,26000,15000,915.0,390.0,525.0,57,"price 60-62k; cost 25-27k; yield 15 t/ha (conservative, range 14-20)","DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
+durian Monthong,2024,103500,26000,15000,1552.5,390.0,1162.5,75,price 102-105k; cost 25-27k; yield 15 t/ha,"DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
+durian Ri6,May 2025,37500,26000,15000,562.5,390.0,172.5,31,price 35-40k; cost 25-27k; yield 15 t/ha,"DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
+durian Monthong,May 2025,65000,26000,15000,975.0,390.0,585.0,60,price 60-70k; cost 25-27k; yield 15 t/ha,"DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
+durian Ri6,May 2026,22500,26000,15000,337.5,390.0,-52.5,-16,price 15-30k; cost 25-27k; yield 15 t/ha,"DERIVED = (price - cost) x yield; midpoints of ranges; mature orchard, excl. land and establishment cost"
