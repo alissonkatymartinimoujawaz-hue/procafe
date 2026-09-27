@@ -11,11 +11,18 @@ source lue au point exact de la station, plus un second contrôle contre les tab
 des rapports mensuels du site. Détail : `validation/metrics.json` et l'onglet
 *Validation* de l'Excel.
 
-| Variable | Meilleure source | Pourquoi |
-|---|---|---|
-| Pluie (mois, année) | **CHIRPS v3** | erreur mensuelle 21 % (NASA 29 %), erreur annuelle 7 % (NASA 25 %), r = 0,95 ; −4 % seulement face aux rapports (NASA −27 %) |
-| Températures moy./min./max., humidité de l'air | voir `validation/metrics.json` | NASA POWER est trop chaud (+0,9 °C en moyenne, +1,1 °C sur les minimales) : sa maille de 50 km est plus basse que les villes |
-| Humidité du sol | **Open-Meteo ERA5-Land** (non vérifiable) | aucune station ne la mesure dans la région ; ERA5-Land est plus fin (0,1°) et en % de volume réel |
+| Variable | Meilleure source | Erreur mensuelle moyenne (6 stations) | Autres |
+|---|---|---|---|
+| Pluie (mois, année) | **CHIRPS v3** | 21 % (année : 7 %), r = 0,95 ; −3,5 % face aux rapports | NASA 29 % (année 25 %, −27 % face aux rapports) ; Open-Meteo 30 % |
+| Température moyenne | **Open-Meteo ERA5-Land** (corrigé à l'altitude) | 0,58 °C, r = 0,97 ; −0,03 °C face aux rapports | NASA 1,02 °C (+0,9 °C, trop chaud) |
+| Température minimale | **Open-Meteo + correction INMET** | 0,93 °C (testé station exclue) | NASA 1,11 °C ; Open-Meteo brut 1,48 °C |
+| Température maximale | **Open-Meteo + correction INMET** | 0,47 °C (testé station exclue) | NASA 1,30 °C ; Open-Meteo brut 1,85 °C |
+| Humidité de l'air | **Open-Meteo ERA5-Land** | 3,2 %, r = 0,88 | NASA 3,7 % |
+| Humidité du sol | **Open-Meteo ERA5-Land** (non vérifiable) | — aucune station ne la mesure | NASA GWETROOT (humidité relative, autre unité) |
+
+Les modèles lissent les extrêmes du jour : maximales trop froides (~2 °C), minimales trop
+chaudes (~1–2 °C). La correction ajoute, mois par mois, l'écart moyen mesuré aux 6 stations
+(tableau dans l'onglet *Validation*) ; testée en excluant chaque fois la station évaluée.
 
 ## CHIRPS v3 — `chirps.py`
 
