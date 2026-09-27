@@ -7,9 +7,10 @@ CHIRPS (Climate Hazards Center, UCSB) is a 0.05° (~5.5 km) satellite + rain-gau
 grid, 1981 to near-real time. CHIRPS v2.0 production ends after December 2026, so
 this reads v3.0. We read the "latam" (Mexico -> South America) GeoTIFFs straight
 from the CHC server with HTTP Range requests: every file stores one image row per
-LZW-compressed strip, so a few towns cost ~70 KB per file instead of ~4 MB.
+LZW-compressed strip, so the rows of our towns cost ~0.3 MB per file instead of ~4 MB.
 
 Products (https://data.chc.ucsb.edu/products/CHIRPS/v3.0/):
+  monthly/latam/tifs/chirps-v3.0.YYYY.MM.tif          FINAL monthly totals
   dekads/latam/tifs/chirps-v3.0.YYYY.MM.D.tif         FINAL 10-day totals, D = 1..3
                                                       (days 1-10, 11-20, 21-end),
                                                       published ~3rd week of next month
@@ -20,13 +21,13 @@ Dekad D = pentads 2D-1 + 2D, so prelim pentads extend the final dekads to ~2 day
 Cache: cache/chirps/*.json keeps every value already read (keyed by grid pixel),
 so a re-run only downloads new or re-published files.
 """
-import json, math, os, re, struct, time, zlib
-import urllib.error, urllib.request
-from concurrent.futures import ThreadPoolExecutor
+import http.client, json, math, os, re, struct, threading, time, urllib.parse, zlib
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 BASE = "https://data.chc.ucsb.edu/products/CHIRPS/v3.0"
 PRODUCTS = {
     # name: (directory, filename regex -> (year, month, index))
+    "monthly": (BASE + "/monthly/latam/tifs/", r"chirps-v3\.0\.(\d{4})\.(\d{2})()\.tif"),
     "dekads": (BASE + "/dekads/latam/tifs/", r"chirps-v3\.0\.(\d{4})\.(\d{2})\.([1-3])\.tif"),
     "prelim_pentads": (BASE + "/prelim/pentads/latam/tifs/", r"chirps-v3\.0\.(\d{4})\.(\d{2})\.([1-6])\.tif"),
 }
@@ -34,7 +35,7 @@ PRODUCTS = {
 GRID_X0, GRID_Y0, GRID_RES = -120.0, 35.0, 0.05
 HEADERS = {"User-Agent": "procafe-weather/1.0 (CHIRPS point reader)"}
 TAIL = 24576            # latam files keep their IFD + strip tables in the last ~16 KB
-WORKERS = 6             # parallel downloads (be polite to the CHC server)
+WORKERS = 2             # parallel downloads (be gentle with the CHC server)
 
 
 def pixel_of(lat, lon):
@@ -44,48 +45,56 @@ def pixel_of(lat, lon):
 
 
 # ---------------------------------------------------------------- HTTP ------
-def _http(url, ranges=None, tries=6):
-    """GET (optionally several byte ranges). Returns (status, headers, body)."""
+_local = threading.local()                          # one keep-alive connection per thread
+
+
+def _connection(host):
+    conn = getattr(_local, "conn", None)
+    if conn is None:
+        proxy = os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy")
+        if proxy:                                   # tunnel through the proxy (CONNECT)
+            pu = urllib.parse.urlparse(proxy if "://" in proxy else "http://" + proxy)
+            conn = http.client.HTTPSConnection(pu.hostname, pu.port or 8080, timeout=90)
+            conn.set_tunnel(host, 443)
+        else:
+            conn = http.client.HTTPSConnection(host, 443, timeout=90)
+        _local.conn = conn
+    return conn
+
+
+def _http(url, rng=None, tries=6):
+    """GET over a reused connection, optionally one byte range ("a-b" or "-n").
+    Returns (start, bytes, file size). Single ranges only and few new connections:
+    the CHC server stops answering multi-range requests and bursts of handshakes."""
+    u = urllib.parse.urlparse(url)
     headers = dict(HEADERS)
-    if ranges:
-        headers["Range"] = "bytes=" + ",".join(ranges)
+    if rng:
+        headers["Range"] = "bytes=" + rng
     last = None
     for k in range(tries):
+        conn = _connection(u.hostname)
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=90) as r:
-                return r.status, r.headers, r.read()
-        except urllib.error.HTTPError as e:
-            if e.code == 404:
+            conn.request("GET", u.path, headers=headers)
+            r = conn.getresponse()
+            body = r.read()
+            if r.status == 404:
                 raise FileNotFoundError(url)
-            last = e
-            if e.code < 500 and e.code != 429:
+            if r.status == 200:                     # server ignored Range: whole file
+                return 0, body, len(body)
+            if r.status == 206:
+                m = re.match(r"bytes (\d+)-(\d+)/(\d+)", r.getheader("Content-Range", ""))
+                return int(m.group(1)), body, int(m.group(3))
+            last = f"HTTP {r.status}"
+            if r.status < 500 and r.status != 429:
                 break
+        except FileNotFoundError:
+            raise
         except Exception as e:                      # timeouts, resets, proxy hiccups
             last = e
+            conn.close()
+            _local.conn = None
         time.sleep(min(30, 2 ** k))
     raise RuntimeError(f"CHIRPS download failed: {url}: {last!r}")
-
-
-def _parts(status, headers, body):
-    """Split a (multi)range response into [(start, bytes)] and the file size."""
-    if status == 200:                               # server ignored Range: whole file
-        return [(0, body)], len(body)
-    ctype = headers.get("Content-Type", "")
-    if ctype.startswith("multipart/byteranges"):
-        m = re.search(r'boundary="?([^";]+)"?', ctype)
-        delim, parts, pos, total = b"--" + m.group(1).encode(), [], 0, None
-        while True:
-            i = body.find(delim, pos)
-            if i < 0 or body[i + len(delim):i + len(delim) + 2] == b"--":
-                break
-            h_end = body.find(b"\r\n\r\n", i)
-            cr = re.search(rb"content-range:\s*bytes\s+(\d+)-(\d+)/(\d+)", body[i:h_end], re.I)
-            a, b, total = int(cr.group(1)), int(cr.group(2)), int(cr.group(3))
-            parts.append((a, body[h_end + 4:h_end + 4 + b - a + 1]))
-            pos = h_end + 4 + b - a + 1
-        return parts, total
-    m = re.match(r"bytes (\d+)-(\d+)/(\d+)", headers.get("Content-Range", ""))
-    return [(int(m.group(1)), body)], int(m.group(3))
 
 
 # ---------------------------------------------------------------- TIFF ------
@@ -145,9 +154,9 @@ class _RemoteTiff:
 
     def __init__(self, url):
         self.url = url
-        parts, self.size = _parts(*_http(url, ["0-15", f"-{TAIL}"]))
-        self.segs = parts
-        head = self._read(0, 16)
+        a, head, self.size = _http(url, "0-15")
+        b, tail, _ = _http(url, f"-{TAIL}")
+        self.segs = [(a, head), (b, tail)]
         self.bo = "<" if head[:2] == b"II" else ">"
         self.big = struct.unpack(self.bo + "H", head[2:4])[0] == 43
         ifd = struct.unpack(self.bo + ("Q" if self.big else "I"), head[8:16] if self.big else head[4:8])[0]
@@ -157,8 +166,8 @@ class _RemoteTiff:
         for a, data in self.segs:
             if a <= off and off + n <= a + len(data):
                 return data[off - a:off - a + n]
-        parts, _ = _parts(*_http(self.url, [f"{off}-{off + n - 1}"]))
-        self.segs += parts
+        a, data, _ = _http(self.url, f"{off}-{off + n - 1}")
+        self.segs.append((a, data))
         return self._read(off, n)
 
     def _ifd(self, off):
@@ -204,17 +213,18 @@ class _RemoteTiff:
             rps = t.get(278, (height,))[0]
             offs, cnts, bw = t[273], t[279], width
             loc = {rc: (rc[0] // rps, (rc[0] % rps) * width + rc[1]) for rc in rowcols}
-        blocks = sorted({b for b, _ in loc.values()})
-        parts, _ = _parts(*_http(self.url, [f"{offs[b]}-{offs[b] + cnts[b] - 1}" for b in blocks]))
-        raw = {}
-        for a, data in parts:                         # map returned byte ranges back to blocks
-            for b in blocks:
-                if a <= offs[b] and offs[b] + cnts[b] <= a + len(data):
-                    raw[b] = data[offs[b] - a:offs[b] - a + cnts[b]]
+        blocks = sorted({b for b, _ in loc.values()}, key=lambda b: offs[b])
+        spans = []                                    # merge nearby blocks into one request
+        for b in blocks:
+            if spans and offs[b] - spans[-1][1] < 512 * 1024:
+                spans[-1][1] = max(spans[-1][1], offs[b] + cnts[b])
+            else:
+                spans.append([offs[b], offs[b] + cnts[b]])
+        for a, z in spans:
+            self._read(a, z - a)
+        raw = {b: self._read(offs[b], cnts[b]) for b in blocks}
         decoded = {}
         for b in blocks:
-            if b not in raw:
-                raw[b] = self._read(offs[b], cnts[b])
             if comp == 1:
                 buf = raw[b]
             elif comp == 5:
@@ -245,12 +255,12 @@ def read_points(url, rowcols):
 def list_files(product):
     """[(name, (year, month, index), stamp)] from the server's directory listing."""
     url, pattern = PRODUCTS[product]
-    _, _, body = _http(url)
+    _, body, _ = _http(url)
     html = body.decode("utf-8", "replace")
     rows = re.findall(r'href="(' + pattern[:-len(r"\.tif")] + r'\.tif)".*?class="date">([^<]+)<', html)
     out = []
     for name, y, m, i, stamp in rows:
-        out.append((name, (int(y), int(m), int(i)), stamp.strip()))
+        out.append((name, (int(y), int(m), int(i or 0)), stamp.strip()))
     return sorted(out, key=lambda r: r[1])
 
 
@@ -271,13 +281,15 @@ def _save(path, data):
     os.replace(tmp, path)
 
 
-def fetch_product(product, rowcols, cache_dir, first_year=1981, log=print):
-    """Read every file of `product` (from first_year) at the given pixels.
+def fetch_product(product, rowcols, cache_dir, first_year=1981, log=print, after=None):
+    """Read every file of `product` (from first_year, or only periods > `after`
+    as (year, month)) at the given pixels.
     Returns {(year, month, index): {"row,col": mm}} and uses/updates the cache."""
     path = os.path.join(cache_dir, product + ".json")
     cache = _load(path)
     keys = [f"{r},{c}" for r, c in rowcols]
-    files = [f for f in list_files(product) if f[1][0] >= first_year]
+    files = [f for f in list_files(product)
+             if f[1][0] >= first_year and (after is None or f[1][:2] > after)]
     todo = [f for f in files
             if f[0] not in cache or cache[f[0]]["stamp"] != f[2]
             or any(k not in cache[f[0]]["v"] for k in keys)]
@@ -290,7 +302,8 @@ def fetch_product(product, rowcols, cache_dir, first_year=1981, log=print):
 
     done = 0
     with ThreadPoolExecutor(WORKERS) as pool:
-        for name, stamp, vals in pool.map(job, todo):
+        for fut in as_completed([pool.submit(job, f) for f in todo]):
+            name, stamp, vals = fut.result()
             entry = cache.get(name) if cache.get(name, {}).get("stamp") == stamp else None
             cache[name] = {"stamp": stamp, "v": {**(entry or {}).get("v", {}), **vals}}
             done += 1
@@ -321,7 +334,8 @@ def dekads_at(points, cache_dir, first_year=1981, log=print):
             "prelim_through": None, "partial": []}
 
     # prelim pentads strictly after the last final dekad
-    prelim = fetch_product("prelim_pentads", rowcols, cache_dir, last_final[0], log)
+    prelim = fetch_product("prelim_pentads", rowcols, cache_dir, last_final[0], log,
+                           after=last_final[:2] if last_final[2] == 3 else (last_final[0], last_final[1] - 1))
     groups = {}
     for (y, m, p), vals in prelim.items():
         d = (p + 1) // 2
@@ -335,4 +349,34 @@ def dekads_at(points, cache_dir, first_year=1981, log=print):
             vs = [pv.get(f"{r},{c}") for pv in pents.values()]
             out[pid][key] = None if any(v is None for v in vs) else round(sum(vs), 2)
         info["prelim_through"] = "%d-%02d-%d" % (y, m, max(pents))
+    return out, info
+
+
+def months_at(points, cache_dir, first_year=1981, log=print):
+    """Monthly rainfall for each point: final monthly files, then the current
+    months from prelim pentads (a month with fewer than 6 pentads is partial).
+
+    Returns ({point_id: {"YYYY-MM": mm}}, {"final_through", "prelim_through", "partial"})"""
+    px = {pid: pixel_of(lat, lon) for pid, (lat, lon) in points.items()}
+    rowcols = sorted(set(px.values()))
+    final = fetch_product("monthly", rowcols, cache_dir, first_year, log)
+    out = {pid: {} for pid in points}
+    for (y, m, _), vals in final.items():
+        for pid, (r, c) in px.items():
+            out[pid]["%d-%02d" % (y, m)] = vals.get(f"{r},{c}")
+    last_final = max(final)[:2] if final else (first_year, 0)
+    info = {"final_through": "%d-%02d" % last_final if final else None, "prelim_through": None, "partial": []}
+    prelim = fetch_product("prelim_pentads", rowcols, cache_dir, last_final[0], log, after=last_final)
+    groups = {}
+    for (y, m, p), vals in prelim.items():
+        if (y, m) > last_final:
+            groups.setdefault((y, m), {})[p] = vals
+    for (y, m), pents in sorted(groups.items()):
+        key = "%d-%02d" % (y, m)
+        if len(pents) < 6:
+            info["partial"].append(key)
+        for pid, (r, c) in px.items():
+            vs = [pv.get(f"{r},{c}") for pv in pents.values()]
+            out[pid][key] = None if any(v is None for v in vs) else round(sum(vs), 2)
+        info["prelim_through"] = "%d-%02d pentad %d" % (y, m, max(pents))
     return out, info
