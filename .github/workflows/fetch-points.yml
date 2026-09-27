@@ -1,0 +1,55 @@
+name: Fetch Open-Meteo per point (parallel)
+
+# Open-Meteo answers a year of hourly soil moisture/humidity in 20-40 s, so each
+# station/town gets its own runner. Parts land in validation/grids/parts/ and are
+# merged with: python tools/fetch_reference.py --job om_merge
+on:
+  push:
+    paths:
+      - .github/workflows/fetch-points.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {set: stations, point: A515}
+          - {set: stations, point: A531}
+          - {set: stations, point: A529}
+          - {set: stations, point: A524}
+          - {set: stations, point: A523}
+          - {set: stations, point: A556}
+          - {set: stations, point: A616}
+          - {set: towns, point: varginha}
+          - {set: towns, point: carmo_de_minas}
+          - {set: towns, point: boa_esperanca}
+          - {set: towns, point: guape}
+          - {set: towns, point: muzambinho}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch ${{ matrix.set }} ${{ matrix.point }}
+        run: python tools/fetch_reference.py --job om_point --set ${{ matrix.set }} --point ${{ matrix.point }}
+      - name: Commit part
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add validation/grids/parts
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Open-Meteo part: ${{ matrix.set }} ${{ matrix.point }}"
+          for i in $(seq 1 12); do
+            git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            sleep $((RANDOM % 20 + 5))
+          done
+          exit 1

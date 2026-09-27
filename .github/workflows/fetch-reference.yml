@@ -3,10 +3,6 @@ name: Fetch reference grids (NASA POWER + Open-Meteo)
 # Each matrix job runs on its own runner (own IP, own Open-Meteo quota) and
 # commits its JSON to validation/grids/ on the branch that triggered it.
 on:
-  push:
-    paths:
-      - tools/fetch_reference.py
-      - .github/workflows/fetch-reference.yml
   workflow_dispatch:
 
 permissions:

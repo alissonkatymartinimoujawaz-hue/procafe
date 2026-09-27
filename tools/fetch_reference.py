@@ -43,8 +43,9 @@ def towns(region="sul_de_minas"):
 
 
 def save(name, payload):
-    os.makedirs(OUT, exist_ok=True)
-    with open(os.path.join(OUT, name + ".json"), "w", encoding="utf-8") as f:
+    path = os.path.join(OUT, name + ".json")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, separators=(",", ":"))
     print("wrote", name, flush=True)
 
@@ -169,17 +170,39 @@ def oni():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--job", required=True, choices=["om_stations", "om_towns", "om_best_match", "nasa"])
+    ap.add_argument("--job", required=True,
+                    choices=["om_stations", "om_towns", "om_best_match", "nasa", "om_point", "om_merge"])
+    ap.add_argument("--set", choices=["stations", "towns"], help="om_point: which set the point belongs to")
+    ap.add_argument("--point", help="om_point: station code or town id")
     ap.add_argument("--force", action="store_true", help="download again even if the file exists")
     args = ap.parse_args()
     job = args.job
-    if os.path.exists(os.path.join(OUT, job + ".json")) and not args.force:
-        print(f"{job}.json already present — skipped (use --force to refresh)")
-        return
     yesterday = date.today() - timedelta(days=1)
     st_start, st_end = date(2007, 1, 1), date(2026, 8, 31)
     tw_start = date(2006, 7, 1)
     sul = towns("sul_de_minas")
+
+    if job == "om_point":                     # one point per runner: Open-Meteo answers slowly
+        pts = STATIONS if args.set == "stations" else sul
+        pt = [p for p in pts if p[0] == args.point]
+        s, e, tz = (st_start, st_end, "GMT") if args.set == "stations" else (tw_start, yesterday, "America/Sao_Paulo")
+        open_meteo(f"parts/om_{args.set}_{args.point}", pt, s, e, "era5_seamless", tz)
+        return
+    if job == "om_merge":                     # parts/om_<set>_<id>.json -> om_<set>.json
+        for name, pts in (("stations", STATIONS), ("towns", sul)):
+            parts = [os.path.join(OUT, "parts", f"om_{name}_{p[0]}.json") for p in pts]
+            if not all(os.path.exists(f) for f in parts):
+                print(f"om_{name}: {sum(os.path.exists(f) for f in parts)}/{len(parts)} parts, not merged")
+                continue
+            docs = [json.load(open(f, encoding="utf-8")) for f in parts]
+            merged = {**docs[0], "points": [pp for d in docs for pp in d["points"]],
+                      "series": {k: v for d in docs for k, v in d["series"].items()},
+                      "notes": [n for d in docs for n in d["notes"]]}
+            save(f"om_{name}", merged)
+        return
+    if os.path.exists(os.path.join(OUT, job + ".json")) and not args.force:
+        print(f"{job}.json already present — skipped (use --force to refresh)")
+        return
 
     if job == "om_stations":
         open_meteo(job, STATIONS, st_start, st_end, "era5_seamless", "GMT")
