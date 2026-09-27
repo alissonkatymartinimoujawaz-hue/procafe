@@ -4,10 +4,10 @@
 Chart images in the style of the "Sul de Minas | Temperature and rainfall" slide:
 one column per ENSO phase, one line per coffee season (Jul -> Jun), dotted line =
 average of the phase. Same data as the Excel workbook (tools/build_enso_workbook.py).
-    python tools/plot_enso.py  ->  exports/SulDeMinas_ENSO_charts.png (+ one PNG per variable)
+    python tools/plot_enso.py [--region ...|all]  ->  exports/<Region>_ENSO_charts.png (+ one per variable)
 Needs matplotlib.
 """
-import os, sys
+import argparse, os, sys
 
 import matplotlib
 matplotlib.use("Agg")
@@ -27,8 +27,10 @@ plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9, "axes.edgecol
                      "axes.titleweight": "bold", "axes.titlecolor": NAVY})
 
 
-def main():
+def plot_region():
     region, phases, oni, best, last_month, months, seasons, s_label = wb.prepare()
+    name, prefix = wb.R["name"], wb.R["file"]
+    town_names = ", ".join(t[1] for t in wb.towns(wb.RID))
     by_phase = {ph: [y for y in seasons if phases.get(y, (0, ""))[1].rstrip("*") == ph] for ph in PHASES}
     done = {ph: [y for y in ys if not phases[y][1].endswith("*")] for ph, ys in by_phase.items()}
     x = list(range(12))
@@ -63,9 +65,10 @@ def main():
             ax.text(0.0, 1.22, f"{ph} ({len(done[ph])} seasons)", transform=ax.transAxes,
                     fontsize=13, fontweight="bold", color=NAVY)
 
+    rain_src = "CHIRPS v3" if wb.BEST["rain"] == "CHIRPS" else wb.BEST["rain"]
     note = ("Seasons Jul–Jun. ENSO phase: NOAA ONI (Dec–Feb) ≥ +0.5 El Niño, ≤ −0.5 La Niña. Region = average of "
-            "Varginha, Carmo de Minas, Boa Esperança, Guapé, Muzambinho.\nSources (closest to INMET stations): "
-            f"rainfall CHIRPS v3; temperatures, humidity, soil moisture Open-Meteo ERA5-Land (0.1°, altitude-corrected; "
+            f"{town_names}.\nSources (closest to INMET stations): "
+            f"rainfall {rain_src}; temperatures, humidity, soil moisture Open-Meteo ERA5-Land (0.1°, altitude-corrected; "
             f"min/max temperatures adjusted to INMET stations). Data through {last_month}. 2026/27 = season in progress, "
             f"El Niño developing (provisional).")
 
@@ -77,12 +80,12 @@ def main():
     for j, ph in enumerate(PHASES):
         h, l = axes[-1][j].get_legend_handles_labels()
         axes[-1][j].legend(h, l, loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=3, frameon=False, fontsize=9)
-    fig.suptitle("Sul de Minas | Temperature, rainfall, humidity and soil moisture by ENSO phase",
+    fig.suptitle(f"{name} | Temperature, rainfall, humidity and soil moisture by ENSO phase",
                  x=0.01, ha="left", fontsize=17, fontweight="bold", color=NAVY)
     fig.text(0.01, 0.005, note, fontsize=8.5, color="#444444", va="bottom")
     fig.tight_layout(rect=(0, 0.035, 1, 0.975), h_pad=3.2)
     os.makedirs(OUT, exist_ok=True)
-    fig.savefig(os.path.join(OUT, "SulDeMinas_ENSO_charts.png"), dpi=110)
+    fig.savefig(os.path.join(OUT, f"{prefix}_ENSO_charts.png"), dpi=110)
     plt.close(fig)
 
     # --- one image per variable (readable on a phone)
@@ -92,12 +95,24 @@ def main():
             panel(axes[j], var, ph, unit, label, True)
             h, l = axes[j].get_legend_handles_labels()
             axes[j].legend(h, l, loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=3, frameon=False, fontsize=9)
-        fig.suptitle(f"Sul de Minas | {label} by ENSO phase", x=0.01, ha="left", fontsize=15,
+        fig.suptitle(f"{name} | {label} by ENSO phase", x=0.01, ha="left", fontsize=15,
                      fontweight="bold", color=NAVY)
         fig.tight_layout(rect=(0, 0, 1, 0.93))
-        fig.savefig(os.path.join(OUT, f"SulDeMinas_ENSO_{var}.png"), dpi=110)
+        fig.savefig(os.path.join(OUT, f"{prefix}_ENSO_{var}.png"), dpi=110)
         plt.close(fig)
     print("charts written to", OUT)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--region", default="all", choices=["all"] + list(wb.REGIONS))
+    a = ap.parse_args().region
+    for rid in (list(wb.REGIONS) if a == "all" else [a]):
+        if not wb.ready(rid):
+            print(f"{rid}: data not complete yet — skipped")
+            continue
+        wb.set_region(rid)
+        plot_region()
 
 
 if __name__ == "__main__":

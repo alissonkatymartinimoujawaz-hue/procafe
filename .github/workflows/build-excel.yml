@@ -8,6 +8,7 @@ on:
     paths:
       - tools/build_enso_workbook.py
       - tools/plot_enso.py
+      - validation/grids/om_es_towns.json
       - tools/lo_recalc.py
       - validation/metrics.json
       - .github/workflows/build-excel.yml
@@ -47,7 +48,9 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq --no-install-recommends libreoffice-calc-nogui python3-uno > /dev/null
-          /usr/bin/python3 tools/lo_recalc.py exports/SulDeMinas_ENSO_2006-2026.xlsx exports/preview
+          for f in exports/*_ENSO_2006-2026.xlsx; do
+            /usr/bin/python3 tools/lo_recalc.py "$f" "exports/preview/$(basename "$f" _ENSO_2006-2026.xlsx)"
+          done
       - name: Commit exports
         if: steps.inputs.outputs.ready == 'true'
         run: |

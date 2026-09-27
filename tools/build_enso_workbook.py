@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Sul de Minas weather by coffee season (Jul -> Jun) and ENSO phase, 2006/07 onward,
+Weather of a coffee region by season (Jul -> Jun) and ENSO phase, 2006/07 onward,
 as an Excel workbook with native charts laid out like the "Temperature and
 rainfall" El Niño / La Niña / Neutral panels.
 
-Each variable comes from the source measured closest to the INMET stations
-(tools/validate_sources.py -> validation/metrics.json). Region = mean of the
-Sul de Minas towns in config.js.
-    python tools/build_enso_workbook.py  ->  exports/SulDeMinas_ENSO_2006-2026.xlsx
+Each variable comes from the source measured closest to the INMET stations of the
+region (tools/validate_sources.py -> validation/metrics.json). Region = mean of its towns.
+    python tools/build_enso_workbook.py [--region sul_de_minas|espirito_santo|all]
+        ->  exports/<Region>_ENSO_2006-2026.xlsx
 """
-import json, os, sys
+import argparse, json, os, sys
 from collections import defaultdict
 from datetime import date, datetime, timedelta, timezone
 
@@ -24,7 +24,6 @@ sys.path.insert(0, os.path.join(ROOT, "tools"))
 from fetch_reference import towns  # noqa: E402
 
 V = os.path.join(ROOT, "validation")
-OUT = os.path.join(ROOT, "exports", "SulDeMinas_ENSO_2006-2026.xlsx")
 MONTHS = ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun"]
 FIRST_SEASON = 2006
 
@@ -40,18 +39,49 @@ VARS = {
 }
 SHEET = {"tmean": "Mean temp", "tmin": "Min temp", "tmax": "Max temp", "rain": "Rainfall",
          "rh": "Humidity", "soil": "Soil moisture"}
-# Chosen source per variable — see validation/metrics.json and the Validation sheet
 OMC = "Open-Meteo + INMET correction"
-BEST = {"tmean": "Open-Meteo", "tmin": OMC, "tmax": OMC, "rain": "CHIRPS",
-        "rh": "Open-Meteo", "soil": "Open-Meteo", "soil_top": "Open-Meteo"}
-# label of the chosen source in the Validation sheet
-CHOSEN = {"rain": "CHIRPS v3", "tmean": "Open-Meteo ERA5-Land", "tmin": "Open-Meteo ERA5-Land + INMET correction",
-          "tmax": "Open-Meteo ERA5-Land + INMET correction", "rh": "Open-Meteo ERA5-Land"}
+# label of each source in validation/metrics.json
+VALIDATION_LABEL = {"CHIRPS": "CHIRPS v3", "Open-Meteo": "Open-Meteo ERA5-Land", "NASA POWER": "NASA POWER",
+                    OMC: "Open-Meteo ERA5-Land + INMET correction"}
+# Region settings. BEST = chosen source per variable (see the Validation sheet).
+REGIONS = {
+    "sul_de_minas": {
+        "name": "Sul de Minas", "file": "SulDeMinas", "om": "om_towns", "nasa": "nasa", "group": "mg",
+        "stations_sheet": ["A515", "A531", "A529", "A524"], "reports": True,
+        "towns_note": "mêmes coordonnées et altitudes que le site",
+        "best": {"tmean": "Open-Meteo", "tmin": OMC, "tmax": OMC, "rain": "CHIRPS",
+                 "rh": "Open-Meteo", "soil": "Open-Meteo", "soil_top": "Open-Meteo"},
+    },
+    "espirito_santo": {
+        "name": "Espírito Santo (conilon)", "file": "EspiritoSanto", "om": "om_es_towns", "nasa": "nasa_es",
+        "group": "es", "stations_sheet": ["A616", "A614", "A632", "A631"], "reports": False,
+        "towns_note": "principales communes du conilon ; altitude du modèle de terrain à 90 m",
+        "best": {"tmean": "Open-Meteo", "tmin": OMC, "tmax": OMC, "rain": "CHIRPS",
+                 "rh": "Open-Meteo", "soil": "Open-Meteo", "soil_top": "Open-Meteo"},
+    },
+}
+RID, R, BEST, OUT = None, None, None, None
+
+
+def set_region(rid):
+    """Select the region every function below works on."""
+    global RID, R, BEST, OUT
+    RID, R = rid, REGIONS[rid]
+    BEST = R["best"]
+    OUT = os.path.join(ROOT, "exports", f"{R['file']}_ENSO_2006-2026.xlsx")
+
+
+def ready(rid):
+    """True when the data files and the validation of the region exist."""
+    r = REGIONS[rid]
+    m = os.path.join(V, "metrics.json")
+    return (all(os.path.exists(os.path.join(V, "grids", f + ".json")) for f in (r["om"], r["nasa"], "chirps", "nasa"))
+            and os.path.exists(m) and r["group"] in json.load(open(m, encoding="utf-8")))
 SOURCE_NAMES = {
     "CHIRPS": "CHIRPS v3.0 (UCSB Climate Hazards Center), 0.05° satellite + rain gauges",
     "Open-Meteo": "Open-Meteo, ERA5-Land 0.1° (models=era5_seamless), downscaled to town altitude",
-    OMC: "Open-Meteo ERA5-Land, altitude-downscaled, + monthly offsets measured at 6 INMET stations "
-         "(models smooth the daily extremes)",
+    OMC: "Open-Meteo ERA5-Land, altitude-downscaled, + monthly offsets measured at the INMET stations "
+         "of the region (models smooth the daily extremes)",
     "NASA POWER": "NASA POWER (MERRA-2 / GEOS), 0.5° x 0.625°",
 }
 
@@ -87,9 +117,9 @@ def monthly(start, values, how):
 
 def region_series():
     """{source: {var: {YYYY-MM: region mean}}} and per-town values."""
-    ids = [t[0] for t in towns("sul_de_minas")]
+    ids = [t[0] for t in towns(RID)]
     per_town = defaultdict(lambda: defaultdict(dict))        # source -> var -> town -> {month: v}
-    om = load("om_towns")
+    om = load(R["om"])
     if om:
         for t in ids:
             s = om["series"][t]
@@ -103,12 +133,12 @@ def region_series():
             per_town["Open-Meteo"]["soil"][t] = monthly(om["start"], root, "mean")
             top = [None if v is None else 100 * v for v in s["soil_moisture_0_to_7cm"]]
             per_town["Open-Meteo"]["soil_top"][t] = monthly(om["start"], top, "mean")
-        corr = json.load(open(os.path.join(V, "metrics.json"), encoding="utf-8")).get("correction", {})
+        corr = json.load(open(os.path.join(V, "metrics.json"), encoding="utf-8"))[R["group"]].get("correction", {})
         for var, off in corr.items():                 # Tmin/Tmax: add station-measured monthly offsets
             for t in ids:
                 per_town[OMC][var][t] = {m: v + off[str(int(m[5:]))]
                                          for m, v in per_town["Open-Meteo"][var][t].items()}
-    nasa = load("nasa")
+    nasa = load(R["nasa"])
     if nasa:
         p = nasa["towns"]
         for t in ids:
@@ -174,6 +204,20 @@ def title(ws, text, sub=None):
         ws["A2"].font = F(italic=True, size=9, color="555555")
 
 
+def chart_title(ch, text, size=1100):
+    """Chart title in 11 pt bold navy (the default is large enough to wrap)."""
+    from openpyxl.chart.title import title_maker
+    from openpyxl.drawing.text import CharacterProperties
+    t = title_maker(text)
+    props = CharacterProperties(sz=size, b=True, solidFill=NAVY)
+    for para in t.tx.rich.p:
+        if para.pPr is not None:
+            para.pPr.defRPr = props
+        for run in para.r or []:
+            run.rPr = props
+    ch.title = t
+
+
 def prepare():
     """Everything the workbook and the chart images need."""
     region, per_town, town_ids = region_series()
@@ -234,8 +278,8 @@ def build():
         ens.column_dimensions[c].width = w
 
     # ---- Monthly data (values; phase looked up in ENSO)
-    title(mon, "Sul de Minas — monthly data (average of the towns), best source per variable",
-          "Towns: " + ", ".join(t[1] for t in towns("sul_de_minas")) + ". Complete months only.")
+    title(mon, f"{R['name']} — monthly data (average of the towns), best source per variable",
+          "Towns: " + ", ".join(t[1] for t in towns(RID)) + ". Complete months only.")
     cols = ["Month", "Season", "ENSO phase"] + [f"{VARS[v][0]} ({VARS[v][1]})" for v in VARS]
     for c, h in enumerate(cols, 1):
         mon.cell(4, c, h)
@@ -273,7 +317,7 @@ def build():
         ws = wb.create_sheet(sheet_name)
         var_sheet[v] = ws
         label, unit, fmt, how = VARS[v]
-        title(ws, f"Sul de Minas — {label} ({unit}) by coffee season",
+        title(ws, f"{R['name']} — {label} ({unit}) by coffee season",
               f"Source: {SOURCE_NAMES[BEST[v]]}. Values link to 'Monthly data'.")
         hdr = ["Season", "ENSO phase"] + MONTHS + ["Season total" if how == "sum" else "Season mean"]
         for c, h in enumerate(hdr, 1):
@@ -321,7 +365,7 @@ def build():
         ws.column_dimensions["O"].width = 12
 
     # ---- Charts: 3 phases x variables, like the reference slide
-    title(charts, "Sul de Minas | Temperature, rainfall, humidity and soil moisture by ENSO phase",
+    title(charts, f"{R['name']} | Temperature, rainfall, humidity and soil moisture by ENSO phase",
           f"Coffee seasons Jul-Jun, {s_label[seasons[0]]} to {s_label[seasons[-1]]}. Dotted line = average "
           "of the phase. Best-validated source per variable (see Validation).")
     ranges = {}
@@ -338,7 +382,7 @@ def build():
             rows = [(y, 5 + seasons.index(y)) for y in seasons if phases.get(y, (0, ""))[1].rstrip("*") == ph]
             n_done = sum(1 for y, _ in rows if not phases[y][1].endswith("*"))
             ch = LineChart()
-            ch.title = f"{ph} ({n_done} seasons) — {VARS[v][0]}"
+            chart_title(ch, f"{ph} ({n_done} seasons) — {VARS[v][0]}")
             ch.y_axis.title = VARS[v][1]
             ch.height, ch.width = 8.2, 15.5
             ch.legend.position = "b"
@@ -350,9 +394,11 @@ def build():
             ch.x_axis.delete = False
             ch.y_axis.delete = False
             for k, (y, r) in enumerate(rows):
-                s = Series(Reference(ws, min_col=3, max_col=14, min_row=r), title=s_label[y] + (" *" if phases[y][1].endswith("*") else ""))
-                s.graphicalProperties.line.solidFill = PALETTE[k % len(PALETTE)]
-                s.graphicalProperties.line.width = 19050
+                current = phases[y][1].endswith("*")
+                s = Series(Reference(ws, min_col=3, max_col=14, min_row=r),
+                           title=s_label[y] + (" (in progress)" if current else ""))
+                s.graphicalProperties.line.solidFill = "D62728" if current else PALETTE[k % len(PALETTE)]
+                s.graphicalProperties.line.width = 34925 if current else 19050
                 s.marker.symbol = "none"
                 s.smooth = False
                 ch.series.append(s)
@@ -372,14 +418,15 @@ def build():
     ins = wb.create_sheet("INMET stations")
     title(ins, "INMET automatic stations — observed monthly values (complete months only)",
           "portal.inmet.gov.br/dadoshistoricos (hourly archive, UTC days). Point measurements, not region averages.")
-    st_ids = ["A515", "A531", "A529", "A524"]
+    st_ids = R["stations_sheet"]
     st = {c: json.load(open(os.path.join(V, "stations", c + ".json"), encoding="utf-8")) for c in st_ids}
     fields = [("rain", "Rain mm", "sum", "0"), ("tmean", "Tmean °C", "mean", "0.0"), ("tmin", "Tmin °C", "mean", "0.0"),
               ("tmax", "Tmax °C", "mean", "0.0"), ("rh", "RH %", "mean", "0")]
     ins.cell(4, 1, "Month")
     c = 2
     for sid in st_ids:
-        ins.cell(3, c, f"{sid} {st[sid]['name'].title()} ({st[sid]['elev']:.0f} m)").font = F(bold=True, color=NAVY)
+        elev = f" ({st[sid]['elev']:.0f} m)" if st[sid].get("elev") is not None else ""
+        ins.cell(3, c, f"{sid} {st[sid]['name'].title()}{elev}").font = F(bold=True, color=NAVY)
         for _, lab, _, _ in fields:
             ins.cell(4, c, lab)
             c += 1
@@ -423,9 +470,9 @@ def build():
 
     # ---- Validation
     val = wb.create_sheet("Validation")
+    G = metrics[R["group"]]
     title(val, "Which source is closest to reality? — comparison with INMET stations",
-          metrics["period"] + ". 6 automatic stations in Minas Gerais coffee areas (Varginha, Maria da Fé, "
-          "Passa Quatro, Formiga, Patrocínio, Manhuaçu), each source read at the station point.")
+          f"{metrics['period']}. {G['title']} ({', '.join(G['stations'])}), each source read at the station point.")
     hdr = ["Variable", "Source", "Months compared", "Bias (monthly)", "Mean abs. error (monthly)",
            "Error % (rain)", "Correlation r (monthly)", "Yearly error (rain, %)", "Daily MAE", "Daily r", "Chosen"]
     for c, h in enumerate(hdr, 1):
@@ -435,13 +482,13 @@ def build():
     vnames = {"rain": "Rainfall (mm/month)", "tmean": "Mean temperature (°C)", "tmin": "Min temperature (°C)",
               "tmax": "Max temperature (°C)", "rh": "Relative humidity (%)"}
     for var in ("rain", "tmean", "tmin", "tmax", "rh"):
-        res = metrics["by_var"][var]
-        for src, rr in sorted(res.items(), key=lambda kv: (kv[1]["mg_monthly"] or {}).get("mae", 1e9)):
-            m, y, dd = rr["mg_monthly"], rr["mg_yearly"], rr["mg_daily"]
+        res = G["by_var"][var]
+        for src, rr in sorted(res.items(), key=lambda kv: (kv[1]["pooled_monthly"] or {}).get("mae", 1e9)):
+            m, y, dd = rr["pooled_monthly"], rr["pooled_yearly"], rr["pooled_daily"]
             row = [vnames[var], src, m["n"], m["bias"], m["mae"], m.get("mae_pct"), m["r"],
                    y.get("mae_pct") if (y and var == "rain") else None,
                    dd["mae"] if dd else None, dd["r"] if dd else None]
-            chosen = src == CHOSEN[var]
+            chosen = src == VALIDATION_LABEL[BEST[var]]
             row.append("✔" if chosen else "")
             for c, x in enumerate(row, 1):
                 cell = val.cell(r, c, x)
@@ -453,7 +500,7 @@ def build():
                     cell.font = F(bold=True, color="1B5E20")
             r += 1
         r += 1
-    rep = metrics.get("reports", {})
+    rep = metrics.get("reports", {}) if R["reports"] else {}
     if rep:
         val.cell(r, 1, "Second check — the monthly report tables of the site (towns of Sul de Minas and Cerrado)").font = F(bold=True, color=NAVY)
         r += 1
@@ -471,7 +518,8 @@ def build():
         r += 1
     notes = [
         "Bias = source − station (positive = source too high). Mean absolute error: lower is better. r: closer to 1 is better.",
-        "Rainfall: CHIRPS blends satellite data with rain gauges (possibly including some of these stations), which is why it is closest.",
+        ("Rainfall: CHIRPS blends satellite data with rain gauges (possibly including some of these stations)."
+         if BEST["rain"] == "CHIRPS" else "Rainfall: the source with the lowest error at the stations of this region is used."),
         "Temperatures: Open-Meteo is corrected to the real altitude of each point; NASA POWER uses a 50 km grid cell at its mean altitude.",
         "Min/max temperatures: reanalyses smooth the daily extremes (max too cold, min too warm). Monthly offsets measured at the "
         "stations are added (table below); the corrected row is tested leave-one-station-out (offsets computed without the tested station).",
@@ -481,11 +529,11 @@ def build():
     ]
     for k, t in enumerate(notes):
         val.cell(r + 1 + k, 1, t).font = F(size=9, italic=True)
-    corr = metrics.get("correction", {})
+    corr = G.get("correction", {})
     if corr:
         r0 = r + 2 + len(notes)
         val.cell(r0, 1, "Monthly offsets added to Open-Meteo min/max temperatures (°C) — mean of station − model, "
-                        "6 INMET stations, 2007-2026").font = F(bold=True, color=NAVY)
+                        f"{len(G['stations'])} INMET stations, 2007-2026").font = F(bold=True, color=NAVY)
         for c, h in enumerate(["Month", "Tmin offset", "Tmax offset"], 1):
             val.cell(r0 + 1, c, h)
         style_header(val, r0 + 1, 3, 22)
@@ -501,19 +549,21 @@ def build():
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     info = load("chirps")["info"] if load("chirps") else {}
     lines = [
-        ("Sul de Minas — météo par saison caféière (juillet → juin) et phase ENSO", "h1"),
+        (f"{R['name']} — météo par saison caféière (juillet → juin) et phase ENSO", "h1"),
         (f"Fichier généré le {ts}. Données mensuelles de juillet {FIRST_SEASON} à {date(int(last_month[:4]), int(last_month[5:]), 1).strftime('%B %Y')} (mois complets uniquement).", ""),
         ("", ""),
         ("Zone", "h2"),
-        ("Moyenne de 5 villes du Sul de Minas : " + ", ".join(t[1] for t in towns("sul_de_minas")) +
-         " (mêmes coordonnées et altitudes que le site).", ""),
+        (f"Moyenne de {len(towns(RID))} villes : " + ", ".join(t[1] for t in towns(RID)) + f" ({R['towns_note']}).", ""),
         ("", ""),
         ("Sources retenues (les plus proches des vraies mesures)", "h2"),
-        ("Chaque source a été comparée aux stations automatiques INMET (mesures réelles, 2007–2026) : voir l'onglet Validation.", ""),
-        ("• Pluie : CHIRPS v3.0 (UCSB) — satellite + pluviomètres, grille 0,05° (~5 km).", ""),
+        (f"Chaque source a été comparée aux stations automatiques INMET de la région ({', '.join(metrics[R['group']]['stations'])}, "
+         "mesures réelles 2007–2026) : voir l'onglet Validation.", ""),
+        ("• Pluie : CHIRPS v3.0 (UCSB) — satellite + pluviomètres, grille 0,05° (~5 km)." if BEST["rain"] == "CHIRPS"
+         else f"• Pluie : {BEST['rain']} (plus proche des stations de cette région que CHIRPS).", ""),
         ("• Température moyenne et humidité de l'air : Open-Meteo ERA5-Land (0,1°), corrigé à l'altitude de chaque ville.", ""),
-        ("• Températures minimale et maximale : Open-Meteo ERA5-Land + correction mensuelle mesurée sur 6 stations INMET "
-         "(les modèles lissent les extrêmes : maximales trop froides d'environ 2 °C, minimales trop chaudes d'environ 1 °C). "
+        (f"• Températures minimale et maximale : Open-Meteo ERA5-Land + correction mensuelle mesurée sur les "
+         f"{len(metrics[R['group']]['stations'])} stations INMET de la région "
+         "(les modèles lissent les extrêmes : maximales trop froides, minimales trop chaudes). "
          "Correction testée sur une station exclue du calcul à chaque fois (voir Validation).", ""),
         ("• Humidité du sol (0–100 cm et surface 0–7 cm) : Open-Meteo ERA5-Land, en % du volume de sol. "
          "Aucune station ne la mesure dans la région : c'est une estimation de modèle, non vérifiable localement.", ""),
@@ -528,7 +578,7 @@ def build():
         ("Charts : graphiques par phase (comme le modèle), une ligne par saison, pointillés = moyenne de la phase.", ""),
         ("Monthly data : toutes les valeurs mensuelles. Mean temp … Soil moisture : tableaux saison × mois (formules liées à Monthly data) "
          "et moyennes par phase.", ""),
-        ("INMET stations : mesures réelles de 4 stations (Varginha, Maria da Fé, Passa Quatro, Formiga). "
+        ("INMET stations : mesures réelles des stations de la région. "
          "Sources compared : les 3 sources côte à côte. Validation : précision de chaque source. ENSO : indice par saison.", ""),
         ("", ""),
         ("Fraîcheur des données", "h2"),
@@ -557,5 +607,17 @@ def build():
     return region, best, months, seasons, phases
 
 
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--region", default="all", choices=["all"] + list(REGIONS))
+    todo = list(REGIONS) if ap.parse_args().region == "all" else [ap.parse_args().region]
+    for rid in todo:
+        if not ready(rid):
+            print(f"{rid}: data not complete yet — skipped")
+            continue
+        set_region(rid)
+        build()
+
+
 if __name__ == "__main__":
-    build()
+    main()

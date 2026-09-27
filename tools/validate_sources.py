@@ -16,7 +16,7 @@ from datetime import date, timedelta
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 V = os.path.join(ROOT, "validation")
-STATIONS = ["A515", "A531", "A529", "A524", "A523", "A556", "A616"]
+STATIONS = ["A515", "A531", "A529", "A524", "A523", "A556", "A616", "A614", "A632", "A631"]
 MG = ["A515", "A531", "A529", "A524", "A523", "A556"]          # Minas Gerais coffee areas
 
 
@@ -101,68 +101,72 @@ def against_reports(ch, nasa, om):
     return {f"{src}|{var}": stats(p, var == "rain") for (src, var), p in pairs.items()}
 
 
-def station_correction(truth, om, results):
-    """Monthly offsets (station − Open-Meteo, per calendar month, 6 MG stations) for
-    Tmin/Tmax: models smooth the daily extremes. Tested leave-one-station-out: the
-    offsets applied to a station are computed without it. Adds the corrected source
-    to results and returns the offsets from all stations (used by the workbook)."""
-    if not om:
+def station_correction(truth, om, by_var, group):
+    """Monthly offsets (station − Open-Meteo, per calendar month) for Tmin/Tmax: models
+    smooth the daily extremes. Tested leave-one-station-out: the offsets applied to a
+    station are computed without it. Adds the corrected source to by_var and returns
+    the offsets from all stations of the group (used by the workbook)."""
+    if not om or not all(c in om for c in group):
         return {}
     offsets = {}
     for var in ("tmin", "tmax"):
         mon = {c: {m: (s, t) for m, t in monthly(truth[c][var], "mean").items()
-                   for s in [monthly(om[c][var], "mean").get(m)] if s is not None} for c in MG}
+                   for s in [monthly(om[c][var], "mean").get(m)] if s is not None} for c in group}
+
         def off(excl):
             out = {}
             for mm in range(1, 13):
-                d = [t - s for o in MG if o != excl for m, (s, t) in mon[o].items() if int(m[5:]) == mm]
+                d = [t - s for o in group if o != excl for m, (s, t) in mon[o].items() if int(m[5:]) == mm]
                 out[mm] = sum(d) / len(d)
             return out
         pooled = []
-        for c in MG:
+        for c in group:
             o = off(c)
             pooled += [(s + o[int(m[5:])], t) for m, (s, t) in mon[c].items()]
-        label = "Open-Meteo ERA5-Land + INMET correction"
-        results["by_var"][var][label] = {"stations": {}, "mg_monthly": stats(pooled), "mg_yearly": None,
-                                         "mg_daily": None, "note": "leave-one-station-out"}
+        by_var[var]["Open-Meteo ERA5-Land + INMET correction"] = {
+            "stations": {}, "pooled_monthly": stats(pooled), "pooled_yearly": None, "pooled_daily": None,
+            "note": "leave-one-station-out"}
         offsets[var] = {str(k): round(v, 3) for k, v in off(None).items()}
     return offsets
 
 
-def main():
-    obs = {c: json.load(open(os.path.join(V, "stations", c + ".json"), encoding="utf-8")) for c in STATIONS}
-    nasa, om, bm, ch = load("nasa"), load("om_stations"), load("om_best_match"), load("chirps")
-
-    # source -> station -> variable -> daily dict  (CHIRPS: monthly dict)
+def sources(stations):
+    """{label: {station: {var: daily dict}}} for every gridded source available."""
     src = defaultdict(lambda: defaultdict(dict))
-    if nasa:
-        p = nasa["stations"]
-        for c in STATIONS:
-            s = p["series"][c]
-            for var, key in (("rain", "PRECTOTCORR"), ("tmean", "T2M"), ("tmin", "T2M_MIN"),
-                             ("tmax", "T2M_MAX"), ("rh", "RH2M")):
-                src["NASA POWER"][c][var] = daily(p["start"], s[key])
-    for label, g in (("Open-Meteo ERA5-Land", om), ("Open-Meteo best_match", bm)):
+    for name in ("nasa", "nasa_es"):
+        g = load(name)
         if not g:
             continue
-        for c in STATIONS:
-            s = g["series"][c]
-            for var, key in (("rain", "precipitation_sum"), ("tmean", "temperature_2m_mean"),
-                             ("tmin", "temperature_2m_min"), ("tmax", "temperature_2m_max"),
-                             ("rh", "relative_humidity_2m")):
-                src[label][c][var] = daily(g["start"], s[key])
+        p = g["stations"]
+        for c in stations:
+            if c in p["series"]:
+                for var, key in (("rain", "PRECTOTCORR"), ("tmean", "T2M"), ("tmin", "T2M_MIN"),
+                                 ("tmax", "T2M_MAX"), ("rh", "RH2M")):
+                    src["NASA POWER"][c][var] = daily(p["start"], p["series"][c][key])
+    for label, name in (("Open-Meteo ERA5-Land", "om_stations"), ("Open-Meteo ERA5-Land", "om_es_stations"),
+                        ("Open-Meteo best_match", "om_best_match")):
+        g = load(name)
+        if not g:
+            continue
+        for c in stations:
+            if c in g["series"]:
+                for var, key in (("rain", "precipitation_sum"), ("tmean", "temperature_2m_mean"),
+                                 ("tmin", "temperature_2m_min"), ("tmax", "temperature_2m_max"),
+                                 ("rh", "relative_humidity_2m")):
+                    src[label][c][var] = daily(g["start"], g["series"][c][key])
+    return src
 
-    truth = {c: {var: daily(obs[c]["start"], obs[c]["series"][var])
-                 for var in ("rain", "tmean", "tmin", "tmax", "rh")} for c in STATIONS}
 
-    results = {"period": "2007-01..2026-08 (best_match: 2017-01..2026-08)", "by_var": {}}
+def evaluate(group, truth, src, ch):
+    """Pooled and per-station scores of every source over a group of stations."""
+    by_var = {}
     for var in ("rain", "tmean", "tmin", "tmax", "rh"):
         how = "sum" if var == "rain" else "mean"
         res = {}
-        labels = list(src) + (["CHIRPS v3"] if (ch and var == "rain") else [])
+        labels = [l for l in src if all(c in src[l] for c in group)] + (["CHIRPS v3"] if (ch and var == "rain") else [])
         for label in labels:
             per_station, all_m, all_d, all_y = {}, [], [], []
-            for c in STATIONS:
+            for c in group:
                 t_days = truth[c][var]
                 t_mon = monthly(t_days, how)
                 if label == "CHIRPS v3":
@@ -173,8 +177,7 @@ def main():
                     s_mon = monthly(s_days, how)
                 pm = [(s_mon[m], t_mon[m]) for m in sorted(t_mon) if m in s_mon]
                 pd = [(s_days[d], t_days[d]) for d in t_days if d in s_days]
-                # calendar years with 12 complete months
-                years = defaultdict(list)
+                years = defaultdict(list)                  # calendar years with 12 complete months
                 for m in t_mon:
                     if m in s_mon:
                         years[m[:4]].append(m)
@@ -184,34 +187,57 @@ def main():
                 per_station[c] = {"monthly": stats(pm, var == "rain"),
                                   "yearly": stats(py, var == "rain") if len(py) >= 3 else None,
                                   "daily": stats(pd, var == "rain") if pd else None}
-                if c in MG:
-                    all_m += pm
-                    all_d += pd
-                    all_y += py
+                all_m += pm
+                all_d += pd
+                all_y += py
             res[label] = {"stations": per_station,
-                          "mg_monthly": stats(all_m, var == "rain"),
-                          "mg_yearly": stats(all_y, var == "rain") if len(all_y) >= 12 else None,
-                          "mg_daily": stats(all_d, var == "rain") if all_d else None}
-        results["by_var"][var] = res
+                          "pooled_monthly": stats(all_m, var == "rain"),
+                          "pooled_yearly": stats(all_y, var == "rain") if len(all_y) >= 12 else None,
+                          "pooled_daily": stats(all_d, var == "rain") if all_d else None}
+        by_var[var] = res
+    return by_var
 
-    results["correction"] = station_correction(truth, src.get("Open-Meteo ERA5-Land"), results)
-    results["reports"] = against_reports(ch, nasa, load("om_towns"))
+
+GROUPS = {
+    "mg": {"stations": MG, "title": "6 INMET stations in Minas Gerais coffee areas"},
+    "es": {"stations": ["A616", "A614", "A632", "A631"], "title": "4 INMET stations in the Espírito Santo conilon belt"},
+}
+
+
+def main():
+    ch = load("chirps")
+    results = {"period": "2007-01..2026-08 (best_match: 2017-01..2026-08)"}
+    for gid, g in GROUPS.items():
+        group = [c for c in g["stations"] if os.path.exists(os.path.join(V, "stations", c + ".json"))]
+        if len(group) < len(g["stations"]):
+            print(f"{gid}: station files missing, skipped")
+            continue
+        obs = {c: json.load(open(os.path.join(V, "stations", c + ".json"), encoding="utf-8")) for c in group}
+        truth = {c: {var: daily(obs[c]["start"], obs[c]["series"][var])
+                     for var in ("rain", "tmean", "tmin", "tmax", "rh")} for c in group}
+        src = sources(group)
+        by_var = evaluate(group, truth, src, ch)
+        correction = station_correction(truth, src.get("Open-Meteo ERA5-Land"), by_var, group)
+        results[gid] = {"title": g["title"], "stations": group, "by_var": by_var, "correction": correction}
+        print(f"\n######## {g['title']}")
+        report(by_var)
+    results["reports"] = against_reports(ch, load("nasa"), load("om_towns"))
     with open(os.path.join(V, "metrics.json"), "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=1)
 
+
+def report(by_var):
     names = {"rain": "Rainfall (monthly totals)", "tmean": "Mean temperature", "tmin": "Min temperature",
              "tmax": "Max temperature", "rh": "Relative humidity"}
-    for var, res in results["by_var"].items():
-        print(f"\n== {names[var]} — 6 MG stations pooled ==")
-        for label, r in sorted(res.items(), key=lambda kv: (kv[1]["mg_monthly"] or {}).get("mae", 1e9)):
-            m, y, d = r["mg_monthly"], r["mg_yearly"], r["mg_daily"]
-            line = f"  {label:24s} monthly: n={m['n']:4d} bias={m['bias']:+7.2f} MAE={m['mae']:6.2f} r={m['r']:.3f}"
+    for var, res in by_var.items():
+        print(f"== {names[var]}")
+        for label, r in sorted(res.items(), key=lambda kv: (kv[1]["pooled_monthly"] or {}).get("mae", 1e9)):
+            m, y, d = r["pooled_monthly"], r["pooled_yearly"], r["pooled_daily"]
+            line = f"  {label:40s} monthly: n={m['n']:4d} bias={m['bias']:+7.2f} MAE={m['mae']:6.2f} r={m['r']:.3f}"
             if var == "rain":
-                line += f" bias%={m['bias_pct']:+5.1f} MAE%={m['mae_pct']:4.1f} KGE={m['kge']:.3f}"
+                line += f" bias%={m['bias_pct']:+5.1f} MAE%={m['mae_pct']:4.1f}"
             if y:
-                line += f" | yearly MAE={y['mae']:.1f}" + (f" ({y['mae_pct']:.1f}%) r={y['r']:.2f}" if var == "rain" else f" r={y['r']:.2f}")
-            if d:
-                line += f" | daily MAE={d['mae']:.2f} r={d['r']:.3f}"
+                line += f" | yearly MAE={y['mae']:.1f}" + (f" ({y['mae_pct']:.1f}%)" if var == "rain" else "")
             print(line)
 
 
