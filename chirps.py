@@ -198,7 +198,7 @@ class _RemoteTiff:
             raise ValueError(f"unexpected CHIRPS grid in {self.url}: origin {x0},{y0} res {sx},{sy}")
 
     def pixels(self, rowcols):
-        """{(row, col): mm or None} — one multi-range request for all needed strips/tiles."""
+        """{(row, col): mm or None} — one plain range request per group of nearby strips/tiles."""
         t = self.tags
         width, height = t[256][0], t[257][0]
         if t[258][0] != 32 or t.get(339, (1,))[0] != 3 or t.get(277, (1,))[0] != 1:

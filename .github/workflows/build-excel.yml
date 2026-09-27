@@ -1,0 +1,63 @@
+name: Build Excel export
+
+# openpyxl / matplotlib / LibreOffice Calc are not available on every machine this
+# repo is worked from, so the workbook and chart images are built here and
+# committed back to the branch that triggered the run.
+on:
+  push:
+    paths:
+      - tools/build_enso_workbook.py
+      - tools/plot_enso.py
+      - tools/lo_recalc.py
+      - validation/metrics.json
+      - .github/workflows/build-excel.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check inputs
+        id: inputs
+        run: |
+          for f in validation/grids/om_towns.json validation/grids/nasa.json validation/grids/chirps.json validation/metrics.json; do
+            if [ ! -f "$f" ]; then echo "missing $f — nothing to build yet"; echo "ready=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          done
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-python@v5
+        if: steps.inputs.outputs.ready == 'true'
+        with:
+          python-version: '3.12'
+      - if: steps.inputs.outputs.ready == 'true'
+        run: pip install openpyxl==3.1.5 matplotlib==3.9.2
+      - name: Build workbook and chart images
+        if: steps.inputs.outputs.ready == 'true'
+        run: |
+          python tools/build_enso_workbook.py
+          python tools/plot_enso.py
+      - name: Recalculate formulas with LibreOffice (cached values, zero errors)
+        if: steps.inputs.outputs.ready == 'true'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends libreoffice-calc-nogui python3-uno > /dev/null
+          /usr/bin/python3 tools/lo_recalc.py exports/SulDeMinas_ENSO_2006-2026.xlsx exports/preview
+      - name: Commit exports
+        if: steps.inputs.outputs.ready == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add exports
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Excel export + charts: Sul de Minas by ENSO season"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            sleep $((i * 7))
+          done
+          exit 1

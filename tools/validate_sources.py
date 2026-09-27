@@ -64,6 +64,43 @@ def stats(pairs, rel=False):
     return out
 
 
+def report_rows():
+    """{(town, YYYY-MM): (temp_cur, prec_cur)} from the monthly report tables of the site."""
+    import re
+    out = {}
+    for name in ("sul_de_minas.js", "cerrado.js"):
+        src = open(os.path.join(ROOT, "data", name), encoding="utf-8").read()
+        for m in re.finditer(r'"(\d{4}-\d{2})":\s*\{(.*?)\n\s*\}', src, re.S):
+            for r in re.finditer(r'city:\s*"(\w+)".*?temp_cur:\s*([\d.]+).*?prec_cur:\s*([\d.]+)', m.group(2)):
+                out[(r.group(1), m.group(1))] = (float(r.group(2)), float(r.group(3)))
+    return out
+
+
+def against_reports(ch, nasa, om):
+    """Second check: the station values printed in the site's monthly reports."""
+    rep = report_rows()
+    town_month = {}
+    if nasa:
+        p = nasa["towns"]
+        for t, s in p["series"].items():
+            town_month[("NASA POWER", t, "rain")] = monthly(daily(p["start"], s["PRECTOTCORR"]), "sum", "2006-07")
+            town_month[("NASA POWER", t, "tmean")] = monthly(daily(p["start"], s["T2M"]), "mean", "2006-07")
+    if om:
+        for t, s in om["series"].items():
+            town_month[("Open-Meteo ERA5-Land", t, "rain")] = monthly(daily(om["start"], s["precipitation_sum"]), "sum", "2006-07")
+            town_month[("Open-Meteo ERA5-Land", t, "tmean")] = monthly(daily(om["start"], s["temperature_2m_mean"]), "mean", "2006-07")
+    pairs = defaultdict(list)
+    for (t, m), (temp, rain) in rep.items():
+        if ch and ch["series"].get(t, {}).get(m) is not None:
+            pairs[("CHIRPS v3", "rain")].append((ch["series"][t][m], rain))
+        for src in ("NASA POWER", "Open-Meteo ERA5-Land"):
+            for var, obs_v in (("rain", rain), ("tmean", temp)):
+                v = town_month.get((src, t, var), {}).get(m)
+                if v is not None:
+                    pairs[(src, var)].append((v, obs_v))
+    return {f"{src}|{var}": stats(p, var == "rain") for (src, var), p in pairs.items()}
+
+
 def main():
     obs = {c: json.load(open(os.path.join(V, "stations", c + ".json"), encoding="utf-8")) for c in STATIONS}
     nasa, om, bm, ch = load("nasa"), load("om_stations"), load("om_best_match"), load("chirps")
@@ -129,6 +166,7 @@ def main():
                           "mg_daily": stats(all_d, var == "rain") if all_d else None}
         results["by_var"][var] = res
 
+    results["reports"] = against_reports(ch, nasa, load("om_towns"))
     with open(os.path.join(V, "metrics.json"), "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=1)
 
