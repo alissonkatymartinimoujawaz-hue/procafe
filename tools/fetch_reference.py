@@ -72,6 +72,23 @@ OM_HOURLY = ["relative_humidity_2m", "soil_moisture_0_to_7cm", "soil_moisture_7_
 def open_meteo(job, points, start, end, model, tz):
     client = openmeteo.Client(per_hour=4700)
     series, grids, notes = {}, {}, []
+    try:
+        _open_meteo_points(client, points, start, end, model, tz, series, grids, notes)
+    except openmeteo.QuotaExceeded as e:             # keep what was received
+        notes.append(f"stopped early: {e}")
+        print("  ", e, flush=True)
+    save(job, {
+        "source": f"Open-Meteo Historical Weather API, models={model}",
+        "url": openmeteo.ARCHIVE, "timezone": tz, "elevation": "station/town altitude (downscaling)",
+        "retrieved_utc": datetime.now(timezone.utc).isoformat(), "notes": notes,
+        "start": start.isoformat(), "end": end.isoformat(), "vars": OM_DAILY + OM_HOURLY,
+        "points": [{"id": p[0], "name": p[1], "lat": p[2], "lon": p[3], "elev": p[4], "grid": grids.get(p[0])}
+                   for p in points if p[0] in series],
+        "series": series,
+    })
+
+
+def _open_meteo_points(client, points, start, end, model, tz, series, grids, notes):
     for pid, name, lat, lon, elev in points:          # one point per request: a failure loses little
         print(f"  {model} {pid} {name} {start}..{end}", flush=True)
         pt = [{"lat": lat, "lon": lon, "elevation": elev}]
@@ -91,15 +108,6 @@ def open_meteo(job, points, start, end, model, tz):
         series[pid] = columns(days[0], start, end, OM_DAILY + OM_HOURLY)
         grids[pid] = grid[0]
         print(f"    calls used so far: {client.used:.0f}", flush=True)
-    save(job, {
-        "source": f"Open-Meteo Historical Weather API, models={model}",
-        "url": openmeteo.ARCHIVE, "timezone": tz, "elevation": "station/town altitude (downscaling)",
-        "retrieved_utc": datetime.now(timezone.utc).isoformat(), "notes": notes,
-        "start": start.isoformat(), "end": end.isoformat(), "vars": OM_DAILY + OM_HOURLY,
-        "points": [{"id": p[0], "name": p[1], "lat": p[2], "lon": p[3], "elev": p[4], "grid": grids[p[0]]}
-                   for p in points],
-        "series": series,
-    })
 
 
 # ------------------------------------------------------------ NASA POWER ----
@@ -162,7 +170,12 @@ def oni():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--job", required=True, choices=["om_stations", "om_towns", "om_best_match", "nasa"])
-    job = ap.parse_args().job
+    ap.add_argument("--force", action="store_true", help="download again even if the file exists")
+    args = ap.parse_args()
+    job = args.job
+    if os.path.exists(os.path.join(OUT, job + ".json")) and not args.force:
+        print(f"{job}.json already present — skipped (use --force to refresh)")
+        return
     yesterday = date.today() - timedelta(days=1)
     st_start, st_end = date(2007, 1, 1), date(2026, 8, 31)
     tw_start = date(2006, 7, 1)
