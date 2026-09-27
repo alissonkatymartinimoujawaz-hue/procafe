@@ -2334,6 +2334,123 @@
       "kge": 0.502
      }
     },
+    "Open-Meteo ERA5-Land": {
+     "stations": {
+      "A616": {
+       "monthly": {
+        "n": 156,
+        "bias": -17.056,
+        "mae": 40.754,
+        "rmse": 57.038,
+        "r": 0.801,
+        "bias_pct": -16.8,
+        "mae_pct": 40.2,
+        "kge": 0.731
+       },
+       "yearly": null,
+       "daily": {
+        "n": 6713,
+        "bias": -0.496,
+        "mae": 2.994,
+        "rmse": 7.984,
+        "r": 0.578,
+        "bias_pct": -15.0,
+        "mae_pct": 90.3,
+        "kge": 0.466
+       }
+      },
+      "A614": {
+       "monthly": {
+        "n": 173,
+        "bias": -14.217,
+        "mae": 37.84,
+        "rmse": 55.018,
+        "r": 0.827,
+        "bias_pct": -14.6,
+        "mae_pct": 38.8,
+        "kge": 0.726
+       },
+       "yearly": null,
+       "daily": {
+        "n": 6584,
+        "bias": -0.465,
+        "mae": 3.01,
+        "rmse": 8.263,
+        "r": 0.559,
+        "bias_pct": -14.5,
+        "mae_pct": 93.9,
+        "kge": 0.451
+       }
+      },
+      "A632": {
+       "monthly": {
+        "n": 41,
+        "bias": -6.215,
+        "mae": 26.059,
+        "rmse": 38.099,
+        "r": 0.9,
+        "bias_pct": -8.2,
+        "mae_pct": 34.5,
+        "kge": 0.867
+       },
+       "yearly": null,
+       "daily": {
+        "n": 2643,
+        "bias": -0.092,
+        "mae": 2.738,
+        "rmse": 8.466,
+        "r": 0.517,
+        "bias_pct": -3.2,
+        "mae_pct": 93.8,
+        "kge": 0.511
+       }
+      },
+      "A631": {
+       "monthly": {
+        "n": 30,
+        "bias": -8.147,
+        "mae": 27.847,
+        "rmse": 39.757,
+        "r": 0.819,
+        "bias_pct": -12.0,
+        "mae_pct": 41.2,
+        "kge": 0.782
+       },
+       "yearly": null,
+       "daily": {
+        "n": 1970,
+        "bias": -0.336,
+        "mae": 2.476,
+        "rmse": 7.19,
+        "r": 0.586,
+        "bias_pct": -12.2,
+        "mae_pct": 89.8,
+        "kge": 0.529
+       }
+      }
+     },
+     "pooled_monthly": {
+      "n": 400,
+      "bias": -14.048,
+      "mae": 37.019,
+      "rmse": 53.341,
+      "r": 0.823,
+      "bias_pct": -14.9,
+      "mae_pct": 39.2,
+      "kge": 0.749
+     },
+     "pooled_yearly": null,
+     "pooled_daily": {
+      "n": 17910,
+      "bias": -0.407,
+      "mae": 2.906,
+      "rmse": 8.078,
+      "r": 0.559,
+      "bias_pct": -12.9,
+      "mae_pct": 92.1,
+      "kge": 0.477
+     }
+    },
     "CHIRPS v3": {
      "stations": {
       "A616": {
@@ -2494,6 +2611,93 @@
       "rmse": 0.983,
       "r": 0.935
      }
+    },
+    "Open-Meteo ERA5-Land": {
+     "stations": {
+      "A616": {
+       "monthly": {
+        "n": 164,
+        "bias": 0.176,
+        "mae": 0.294,
+        "rmse": 0.361,
+        "r": 0.991
+       },
+       "yearly": null,
+       "daily": {
+        "n": 6930,
+        "bias": 0.167,
+        "mae": 0.49,
+        "rmse": 0.622,
+        "r": 0.964
+       }
+      },
+      "A614": {
+       "monthly": {
+        "n": 172,
+        "bias": -0.288,
+        "mae": 0.341,
+        "rmse": 0.402,
+        "r": 0.989
+       },
+       "yearly": null,
+       "daily": {
+        "n": 6589,
+        "bias": -0.278,
+        "mae": 0.517,
+        "rmse": 0.636,
+        "r": 0.968
+       }
+      },
+      "A632": {
+       "monthly": {
+        "n": 44,
+        "bias": 0.006,
+        "mae": 0.403,
+        "rmse": 0.482,
+        "r": 0.992
+       },
+       "yearly": null,
+       "daily": {
+        "n": 2683,
+        "bias": -0.052,
+        "mae": 0.636,
+        "rmse": 0.791,
+        "r": 0.963
+       }
+      },
+      "A631": {
+       "monthly": {
+        "n": 30,
+        "bias": -0.021,
+        "mae": 0.35,
+        "rmse": 0.413,
+        "r": 0.979
+       },
+       "yearly": null,
+       "daily": {
+        "n": 1972,
+        "bias": -0.062,
+        "mae": 0.596,
+        "rmse": 0.752,
+        "r": 0.949
+       }
+      }
+     },
+     "pooled_monthly": {
+      "n": 410,
+      "bias": -0.052,
+      "mae": 0.329,
+      "rmse": 0.397,
+      "r": 0.982
+     },
+     "pooled_yearly": null,
+     "pooled_daily": {
+      "n": 18174,
+      "bias": -0.052,
+      "mae": 0.533,
+      "rmse": 0.67,
+      "r": 0.959
+     }
     }
    },
    "tmin": {
@@ -2583,6 +2787,106 @@
       "rmse": 1.235,
       "r": 0.904
      }
+    },
+    "Open-Meteo ERA5-Land": {
+     "stations": {
+      "A616": {
+       "monthly": {
+        "n": 162,
+        "bias": 1.069,
+        "mae": 1.069,
+        "rmse": 1.151,
+        "r": 0.982
+       },
+       "yearly": null,
+       "daily": {
+        "n": 6924,
+        "bias": 1.055,
+        "mae": 1.172,
+        "rmse": 1.438,
+        "r": 0.913
+       }
+      },
+      "A614": {
+       "monthly": {
+        "n": 171,
+        "bias": -0.005,
+        "mae": 0.265,
+        "rmse": 0.331,
+        "r": 0.985
+       },
+       "yearly": null,
+       "daily": {
+        "n": 6579,
+        "bias": 0.006,
+        "mae": 0.717,
+        "rmse": 0.922,
+        "r": 0.921
+       }
+      },
+      "A632": {
+       "monthly": {
+        "n": 43,
+        "bias": 1.221,
+        "mae": 1.221,
+        "rmse": 1.293,
+        "r": 0.992
+       },
+       "yearly": null,
+       "daily": {
+        "n": 2657,
+        "bias": 1.136,
+        "mae": 1.267,
+        "rmse": 1.575,
+        "r": 0.93
+       }
+      },
+      "A631": {
+       "monthly": {
+        "n": 28,
+        "bias": 0.586,
+        "mae": 0.612,
+        "rmse": 0.716,
+        "r": 0.98
+       },
+       "yearly": null,
+       "daily": {
+        "n": 1970,
+        "bias": 0.537,
+        "mae": 0.883,
+        "rmse": 1.142,
+        "r": 0.916
+       }
+      }
+     },
+     "pooled_monthly": {
+      "n": 404,
+      "bias": 0.597,
+      "mae": 0.713,
+      "rmse": 0.889,
+      "r": 0.948
+     },
+     "pooled_yearly": null,
+     "pooled_daily": {
+      "n": 18130,
+      "bias": 0.63,
+      "mae": 0.989,
+      "rmse": 1.266,
+      "r": 0.898
+     }
+    },
+    "Open-Meteo ERA5-Land + INMET correction": {
+     "stations": {},
+     "pooled_monthly": {
+      "n": 404,
+      "bias": -0.041,
+      "mae": 0.852,
+      "rmse": 0.953,
+      "r": 0.892
+     },
+     "pooled_yearly": null,
+     "pooled_daily": null,
+     "note": "leave-one-station-out"
     }
    },
    "tmax": {
@@ -2672,6 +2976,106 @@
       "rmse": 1.869,
       "r": 0.802
      }
+    },
+    "Open-Meteo ERA5-Land": {
+     "stations": {
+      "A616": {
+       "monthly": {
+        "n": 162,
+        "bias": -1.342,
+        "mae": 1.347,
+        "rmse": 1.433,
+        "r": 0.963
+       },
+       "yearly": null,
+       "daily": {
+        "n": 6924,
+        "bias": -1.328,
+        "mae": 1.467,
+        "rmse": 1.706,
+        "r": 0.915
+       }
+      },
+      "A614": {
+       "monthly": {
+        "n": 171,
+        "bias": -1.618,
+        "mae": 1.618,
+        "rmse": 1.699,
+        "r": 0.971
+       },
+       "yearly": null,
+       "daily": {
+        "n": 6580,
+        "bias": -1.575,
+        "mae": 1.728,
+        "rmse": 1.987,
+        "r": 0.92
+       }
+      },
+      "A632": {
+       "monthly": {
+        "n": 43,
+        "bias": -2.365,
+        "mae": 2.365,
+        "rmse": 2.444,
+        "r": 0.972
+       },
+       "yearly": null,
+       "daily": {
+        "n": 2661,
+        "bias": -2.3,
+        "mae": 2.43,
+        "rmse": 2.704,
+        "r": 0.913
+       }
+      },
+      "A631": {
+       "monthly": {
+        "n": 28,
+        "bias": -1.924,
+        "mae": 1.924,
+        "rmse": 2.199,
+        "r": 0.896
+       },
+       "yearly": null,
+       "daily": {
+        "n": 1970,
+        "bias": -1.84,
+        "mae": 2.049,
+        "rmse": 2.479,
+        "r": 0.877
+       }
+      }
+     },
+     "pooled_monthly": {
+      "n": 404,
+      "bias": -1.608,
+      "mae": 1.61,
+      "rmse": 1.737,
+      "r": 0.956
+     },
+     "pooled_yearly": null,
+     "pooled_daily": {
+      "n": 18135,
+      "bias": -1.616,
+      "mae": 1.766,
+      "rmse": 2.07,
+      "r": 0.908
+     }
+    },
+    "Open-Meteo ERA5-Land + INMET correction": {
+     "stations": {},
+     "pooled_monthly": {
+      "n": 404,
+      "bias": 0.043,
+      "mae": 0.458,
+      "rmse": 0.596,
+      "r": 0.961
+     },
+     "pooled_yearly": null,
+     "pooled_daily": null,
+     "note": "leave-one-station-out"
     }
    },
    "rh": {
@@ -2761,10 +3165,126 @@
       "rmse": 6.46,
       "r": 0.606
      }
+    },
+    "Open-Meteo ERA5-Land": {
+     "stations": {
+      "A616": {
+       "monthly": {
+        "n": 146,
+        "bias": -2.473,
+        "mae": 2.994,
+        "rmse": 3.674,
+        "r": 0.625
+       },
+       "yearly": null,
+       "daily": {
+        "n": 6474,
+        "bias": -2.588,
+        "mae": 3.999,
+        "rmse": 5.134,
+        "r": 0.746
+       }
+      },
+      "A614": {
+       "monthly": {
+        "n": 131,
+        "bias": 2.524,
+        "mae": 2.972,
+        "rmse": 3.616,
+        "r": 0.715
+       },
+       "yearly": null,
+       "daily": {
+        "n": 6062,
+        "bias": 2.358,
+        "mae": 3.989,
+        "rmse": 4.939,
+        "r": 0.764
+       }
+      },
+      "A632": {
+       "monthly": {
+        "n": 41,
+        "bias": -0.402,
+        "mae": 2.747,
+        "rmse": 3.315,
+        "r": 0.606
+       },
+       "yearly": null,
+       "daily": {
+        "n": 2662,
+        "bias": -0.127,
+        "mae": 3.952,
+        "rmse": 4.944,
+        "r": 0.778
+       }
+      },
+      "A631": {
+       "monthly": {
+        "n": 30,
+        "bias": -3.632,
+        "mae": 3.808,
+        "rmse": 4.339,
+        "r": 0.838
+       },
+       "yearly": null,
+       "daily": {
+        "n": 1972,
+        "bias": -3.281,
+        "mae": 4.323,
+        "rmse": 5.461,
+        "r": 0.861
+       }
+      }
+     },
+     "pooled_monthly": {
+      "n": 348,
+      "bias": -0.448,
+      "mae": 3.027,
+      "rmse": 3.674,
+      "r": 0.598
+     },
+     "pooled_yearly": null,
+     "pooled_daily": {
+      "n": 17170,
+      "bias": -0.54,
+      "mae": 4.026,
+      "rmse": 5.076,
+      "r": 0.732
+     }
     }
    }
   },
-  "correction": {}
+  "correction": {
+   "tmin": {
+    "1": -0.483,
+    "2": -0.443,
+    "3": -0.28,
+    "4": -0.449,
+    "5": -0.562,
+    "6": -0.802,
+    "7": -0.87,
+    "8": -0.769,
+    "9": -0.881,
+    "10": -0.788,
+    "11": -0.471,
+    "12": -0.43
+   },
+   "tmax": {
+    "1": 2.024,
+    "2": 2.015,
+    "3": 1.943,
+    "4": 2.006,
+    "5": 1.707,
+    "6": 1.707,
+    "7": 1.538,
+    "8": 1.362,
+    "9": 1.038,
+    "10": 0.753,
+    "11": 1.129,
+    "12": 1.635
+   }
+  }
  },
  "reports": {
   "CHIRPS v3|rain": {

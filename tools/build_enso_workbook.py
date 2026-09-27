@@ -56,7 +56,8 @@ REGIONS = {
         "name": "Espírito Santo (conilon)", "file": "EspiritoSanto", "om": "om_es_towns", "nasa": "nasa_es",
         "group": "es", "stations_sheet": ["A616", "A614", "A632", "A631"], "reports": False,
         "towns_note": "principales communes du conilon ; altitude du modèle de terrain à 90 m",
-        "best": {"tmean": "Open-Meteo", "tmin": OMC, "tmax": OMC, "rain": "CHIRPS",
+        # Tmin: the station correction does not help here (0.85 vs 0.71 C raw, leave-one-station-out)
+        "best": {"tmean": "Open-Meteo", "tmin": "Open-Meteo", "tmax": OMC, "rain": "CHIRPS",
                  "rh": "Open-Meteo", "soil": "Open-Meteo", "soil_top": "Open-Meteo"},
     },
 }
@@ -560,11 +561,14 @@ def build():
          "mesures réelles 2007–2026) : voir l'onglet Validation.", ""),
         ("• Pluie : CHIRPS v3.0 (UCSB) — satellite + pluviomètres, grille 0,05° (~5 km)." if BEST["rain"] == "CHIRPS"
          else f"• Pluie : {BEST['rain']} (plus proche des stations de cette région que CHIRPS).", ""),
-        ("• Température moyenne et humidité de l'air : Open-Meteo ERA5-Land (0,1°), corrigé à l'altitude de chaque ville.", ""),
-        (f"• Températures minimale et maximale : Open-Meteo ERA5-Land + correction mensuelle mesurée sur les "
-         f"{len(metrics[R['group']]['stations'])} stations INMET de la région "
-         "(les modèles lissent les extrêmes : maximales trop froides, minimales trop chaudes). "
-         "Correction testée sur une station exclue du calcul à chaque fois (voir Validation).", ""),
+        ("• " + " et ".join(n for v, n in (("tmean", "Température moyenne"), ("tmin", "température minimale"),
+                                            ("tmax", "température maximale"), ("rh", "humidité de l'air"))
+                           if BEST[v] == "Open-Meteo") + " : Open-Meteo ERA5-Land (0,1°), corrigé à l'altitude de chaque ville.", ""),
+        ("• " + " et ".join(n for v, n in (("tmin", "Température minimale"), ("tmax", "Température maximale"))
+                           if BEST[v] == OMC)
+         + f" : Open-Meteo ERA5-Land + correction mensuelle mesurée sur les {len(metrics[R['group']]['stations'])} "
+         "stations INMET de la région (les modèles lissent les extrêmes du jour). Correction testée en excluant à chaque "
+         "fois la station évaluée ; appliquée seulement là où elle réduit l'erreur (voir Validation).", ""),
         ("• Humidité du sol (0–100 cm et surface 0–7 cm) : Open-Meteo ERA5-Land, en % du volume de sol. "
          "Aucune station ne la mesure dans la région : c'est une estimation de modèle, non vérifiable localement.", ""),
         ("", ""),
