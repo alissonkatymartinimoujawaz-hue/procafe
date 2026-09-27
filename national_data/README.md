@@ -68,3 +68,9 @@ Detailed per-source notes are in `notes_<source>.md`: every URL tried and used, 
 - `tools/pdfimages.py` extracts images embedded in a PDF.
 - `tools/xls_biff.py` reads old .xls (BIFF) files.
 - `raw/mexico_siap/forms.py` and `raw/mexico_siap/decrypt.py` are helpers for the SIAP Escenario form tables and the encrypted Planeación PDF.
+
+## `faostat_coffee_all_countries.csv` – FAOSTAT "Coffee, green" (item 656), 1998-2024
+- Source: FAOSTAT bulk file `Production_Crops_Livestock_E_All_Data_(Normalized).zip` (bulks-faostat.fao.org, dated 2025-12-23, downloaded 2026-09-27).
+- Elements: Area harvested (5312, ha), Production (5510, t), Yield (5412, kg/ha – already kg/ha in the bulk file, no conversion); all areas incl. FAO aggregates.
+- Columns: `area_code,m49,area,is_aggregate,element,unit,year,value,flag`; `is_aggregate`=1 for Area Code >= 5000 (World, regions, groupings); M49 leading `'` stripped.
+- Values and flags kept exactly as published, one row per value, sorted by area, element, year (8,524 rows, 85 countries + 26 aggregates).
