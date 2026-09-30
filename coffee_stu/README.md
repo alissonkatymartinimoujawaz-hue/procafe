@@ -43,3 +43,10 @@
 - **CSV files:**
   - `ice_prix_mensuels_ico.csv`: the monthly prices, with the source report for each month.
   - `stu_series.csv`: all ratio series and the price averages.
+
+## Production, stocks and certified stocks vs price
+
+- `production_stocks_prix.html`: the page that answers whether price follows production or stocks, in French. It shows production, consumption, exports, STU, ending stocks and ICE certified stocks against KC and DF, plus the role of each country.
+- `ice_stocks_certifies_ico.csv`: ICE certified stocks in million bags, June 2012 to August 2026.
+  - New York (arabica) and London (robusta), from ICO Coffee Market Report Table 5.
+  - The table's columns are the consecutive months ending in the report month. Where months overlap between reports, the latest report is kept.
