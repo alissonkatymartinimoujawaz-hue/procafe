@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Stock-to-use et prix du café</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: one reading column (max 72rem) under a sticky section bar; charts span the column; wide tables scroll inside their own box */
+:root{
+  --bg:#F3F5F2; --surface:#FFFFFF; --ink:#16201B; --muted:#56635C; --line:#D3DAD4; --grid:#E3E8E4; --chip:#E8EDE9;
+  --accent:#7A4424; --accent-soft:#F1E6DE;
+  --c-stu:#3B5B8C; --c-ara:#8B5530; --c-rob:#3D7A55; --c-kc:#C8372D; --c-df:#D98A1A;
+  --c-br:#2F6DB5; --c-co:#C9A21A; --c-vn:#3D7A55; --c-imp:#5E7497; --c-curve:#56635C;
+  --heat-lo:#E4816F; --heat-mid:#F6F4EC; --heat-hi:#6FB98D;
+  --font-display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-data:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1411; --surface:#161C18; --ink:#E5EBE7; --muted:#9BA8A1; --line:#29322D; --grid:#222A25; --chip:#1E2621;
+    --accent:#DDA27A; --accent-soft:#2A1F18;
+    --c-stu:#86A6D8; --c-ara:#D39A6E; --c-rob:#74C396; --c-kc:#F2766B; --c-df:#F2B24A;
+    --c-br:#7DB0E8; --c-co:#E3C44E; --c-vn:#74C396; --c-imp:#9FB2D0; --c-curve:#9BA8A1;
+    --heat-lo:#8C3A31; --heat-mid:#1A201C; --heat-hi:#2C7550;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1411; --surface:#161C18; --ink:#E5EBE7; --muted:#9BA8A1; --line:#29322D; --grid:#222A25; --chip:#1E2621;
+  --accent:#DDA27A; --accent-soft:#2A1F18;
+  --c-stu:#86A6D8; --c-ara:#D39A6E; --c-rob:#74C396; --c-kc:#F2766B; --c-df:#F2B24A;
+  --c-br:#7DB0E8; --c-co:#E3C44E; --c-vn:#74C396; --c-imp:#9FB2D0; --c-curve:#9BA8A1;
+  --heat-lo:#8C3A31; --heat-mid:#1A201C; --heat-hi:#2C7550;
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:72rem;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;letter-spacing:-.005em}
+h1{font-size:clamp(2rem,4.6vw,3.1rem);line-height:1.02;font-weight:750;font-stretch:82%;margin:.35rem 0 .6rem}
+h2{font-size:clamp(1.5rem,2.8vw,2rem);font-weight:720;font-stretch:88%;margin:0 0 .4rem;line-height:1.1}
+h3{font-size:1.18rem;font-weight:680;font-stretch:92%;margin:0 0 .35rem;line-height:1.2}
+p{margin:0 0 .8rem;max-width:68ch}
+.eyebrow{font-family:var(--font-data);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+.dek{font-size:1.12rem;color:var(--ink);max-width:62ch}
+header.top{padding-block:2.2rem 1.4rem;border-bottom:1px solid var(--line)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:1.4rem 0 0;border-top:2px solid var(--ink)}
+.facts div{padding:.8rem 1rem .4rem 0;min-width:0}
+.facts div+div{padding-left:1rem;border-left:1px solid var(--line)}
+.facts dt{font-family:var(--font-display);font-stretch:85%;font-weight:720;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.05;font-variant-numeric:tabular-nums}
+.facts dd{margin:.3rem 0 0;font-size:.86rem;color:var(--muted);line-height:1.4}
+@media (max-width:760px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.facts div:nth-child(3){padding-left:0;border-left:0}.facts div:nth-child(n+3){border-top:1px solid var(--line)}}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav.toc ul{display:flex;gap:1.3rem;list-style:none;margin:0;padding-block:.6rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+nav.toc a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500}
+nav.toc a:hover{color:var(--ink)}
+section{padding-block:2.6rem 1rem;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem 1rem;margin-bottom:1rem}
+.sec-head p{color:var(--muted);margin:0}
+.qa{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr));gap:1.6rem 2.2rem}
+.qa article{border-top:2px solid var(--ink);padding-top:.7rem;min-width:0}
+.qa .q{font-family:var(--font-data);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.qa p{font-size:.97rem}
+.drivers{counter-reset:d;list-style:none;padding:0;margin:.2rem 0 .8rem;display:grid;gap:.5rem}
+.drivers li{counter-increment:d;display:grid;grid-template-columns:1.6rem 1fr;gap:.3rem;font-size:.97rem}
+.drivers li::before{content:counter(d);font-family:var(--font-display);font-weight:760;font-size:1.15rem;color:var(--accent);line-height:1.3}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0 1rem;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.86rem;font-variant-numeric:tabular-nums}
+th,td{padding:.42rem .6rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--font-data);font-size:.72rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--chip)}
+td.num,th.num{text-align:right;white-space:nowrap}
+tr:last-child>*{border-bottom:0}
+.band{color:var(--muted);font-size:.8rem;margin-left:.25rem}
+tr.hl>*{background:var(--accent-soft)}
+tr.mkt>*{font-style:italic}
+.chart-block{padding-block:1.4rem .6rem;border-top:1px dashed var(--line)}
+.chart-block:first-of-type{border-top:0}
+.chart-block .read{color:var(--ink);font-size:.95rem;max-width:74ch}
+.pair{display:grid;gap:1.6rem}
+.legend{display:flex;flex-wrap:wrap;gap:.35rem 1.1rem;margin:.4rem 0 .2rem;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.legend i{display:inline-block;width:.8rem;height:.8rem;border-radius:2px}
+.legend i.l{height:3px;width:1.2rem;border-radius:2px}
+.chart{position:relative;min-height:300px;width:100%}
+.chart svg{display:block;overflow:visible}
+.chart .grid{stroke:var(--grid);stroke-width:1}
+.chart .zero{stroke:var(--muted);stroke-width:1}
+.chart .ax{fill:var(--muted);font-family:var(--font-data);font-size:10.5px}
+.chart .unit{fill:var(--muted);font-family:var(--font-body);font-size:11px;font-weight:600}
+.chart .lab{fill:var(--ink);font-family:var(--font-data);font-size:9.5px;paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+.chart .ptlab{fill:var(--muted);font-family:var(--font-data);font-size:10px;paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+.chart .ln{fill:none;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.chart .curve{fill:none;stroke:var(--c-curve);stroke-width:1.6;stroke-dasharray:5 4}
+.chart .pt{stroke:var(--surface);stroke-width:1.2}
+.chart .bar.proj{fill-opacity:.45}
+.chart .hover{fill:var(--ink);opacity:0}
+.chart .hover.on{opacity:.06}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:.4rem .55rem;font-size:.78rem;line-height:1.35;box-shadow:0 4px 14px rgba(0,0,0,.12);white-space:nowrap;z-index:2}
+.tip b{font-family:var(--font-data);font-weight:500}
+.tip .row{display:flex;align-items:center;gap:.4rem}
+.tip i{display:inline-block;width:.6rem;height:.6rem;border-radius:2px}
+.heat td.v{text-align:right;white-space:nowrap;font-family:var(--font-data);font-size:.76rem;padding:.34rem .45rem}
+.heat th.l{white-space:nowrap;font-weight:500}
+.heat td.d{color:var(--muted);font-size:.76rem;white-space:nowrap}
+.heat tr.sec th{background:var(--chip);font-family:var(--font-data);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.heat th.l.b{font-weight:650}
+.heat thead th.p{color:var(--accent)}
+.note{font-size:.84rem;color:var(--muted);max-width:74ch}
+.callout{border-left:3px solid var(--accent);padding:.2rem 0 .2rem 1rem;margin:1rem 0}
+.steps{list-style:none;counter-reset:s;padding:0;margin:.4rem 0 1rem;display:grid;gap:.7rem}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2rem 1fr;gap:.4rem;max-width:74ch}
+.steps li::before{content:counter(s);font-family:var(--font-data);font-size:.8rem;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:1.5rem;height:1.5rem;display:grid;place-items:center;margin-top:.1rem}
+.watch{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:.8rem 1.6rem;margin:.6rem 0 1rem}
+.watch div{min-width:0;border-top:1px solid var(--line);padding-top:.5rem}
+.watch b{display:block;font-family:var(--font-data);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:.15rem}
+.watch p{font-size:.9rem;margin:0}
+footer{padding-block:2rem 3rem;color:var(--muted);font-size:.82rem}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+section[id],article[id]{scroll-margin-top:3.2rem}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">Note de recherche café · USDA PSD juillet 2026 · prix ICE via l'ICO, oct. 2010 → août 2026</p>
+    <h1>Stock-to-use et prix du café, 2010/11 → 2026/27</h1>
+    <p class="dek">Le prix suit les stocks, mais pas en ligne droite. Depuis 2012, tant que le stock-to-use mondial est resté au-dessus de 20&nbsp;%, le KC est resté entre 105 et 160&nbsp;c/lb environ. Sous 15&nbsp;%, il a doublé. Le Brésil fournit l'essentiel des chocs d'offre ; le niveau des stocks décide de leur effet sur le prix.</p>
+    <dl class="facts">
+      <div><dt>14,6 %</dt><dd>STU mondial 2026/27 (USDA, juin 2026), contre 12,8 % en 2024/25</dd></div>
+      <div><dt>≈&nbsp;236&nbsp;c/lb</dt><dd>KC1 « de courbe » pour ce STU ; le marché cotait 313&nbsp;c/lb en août 2026 (+33&nbsp;%)</dd></div>
+      <div><dt>83&nbsp;%</dt><dd>part du Brésil dans la volatilité de la production mondiale, 2011-2026</dd></div>
+      <div><dt>−0,83</dt><dd>corrélation entre le STU des pays consommateurs et le DF1 : le meilleur thermomètre</dd></div>
+    </dl>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap"><ul>
+    <li><a href="#essentiel">L'essentiel</a></li>
+    <li><a href="#graphiques">Graphiques</a></li>
+    <li><a href="#tableau">Tableau</a></li>
+    <li><a href="#analyse">Analyse</a></li>
+    <li><a href="#prevoir">Prévoir le prix</a></li>
+    <li><a href="#methode">Méthode</a></li>
+  </ul></div>
+</nav>
+
+<main class="wrap">
+
+<section id="essentiel">
+  <div class="sec-head"><h2>L'essentiel</h2><p>Les réponses courtes à tes questions ; le détail suit.</p></div>
+  <div class="qa">
+    <article>
+      <div class="q">Définition</div>
+      <h3>Stocks ÷ consommation, ou ÷ (conso + exportations) ?</h3>
+      <p>Les deux, selon le périmètre. Pour un <b>pays exportateur</b> : stocks de fin ÷ (consommation domestique + exportations), car ses exportations font partie de l'utilisation de son café. C'est la ligne « Stocks / Use Domestic + Exports » de ton bilan maïs.</p>
+      <p>Pour le <b>monde</b> : stocks de fin ÷ consommation, la définition de l'USDA et de l'ICO. Ajouter les exportations compterait deux fois les mêmes sacs : l'export du Brésil est l'import de l'Europe. Les deux séries mondiales ont la même forme (corrélation 1,00) ; seul le niveau change : 14,6 % contre 7,8 % en 2026/27.</p>
+    </article>
+    <article>
+      <div class="q">Pattern</div>
+      <h3>Oui : un cycle de stocks</h3>
+      <p>Les années de surplus (2012/13-2014/15, +17,4&nbsp;M sacs de stocks) portent le STU mondial à 25-29&nbsp;% et le prix reste bas. Puis une série de déficits le vide : quatre campagnes de suite de 2021/22 à 2024/25, −15,5&nbsp;M sacs. Le STU passe de 23,1 % à 12,8 %, le KC est multiplié par 2.9 (113 → 333&nbsp;c/lb) et le DF par 3.6 (1 306 → 4 702&nbsp;$/t).</p>
+      <p>Le retour au surplus en 2025/26 et 2026/27 fait remonter le STU (14,0 %, puis 14,6 %) et le prix recule. À l'intérieur de ce grand cycle tourne le cycle bisannuel de l'arabica brésilien.</p>
+    </article>
+    <article>
+      <div class="q">Seuils</div>
+      <h3>À quoi s'attendre selon le niveau de STU</h3>
+      <p>La relation est convexe. À 25&nbsp;% de STU mondial, un point de moins vaut environ 3 % sur le KC ; à 13&nbsp;%, environ 13 %. Au-dessus de 20&nbsp;%, le prix est fixé par le coût de production en dollars. Sous 15&nbsp;%, c'est le prix qui doit rationner la demande.</p>
+      <p>Les quatre zones observées depuis 2010 sont détaillées plus bas (tableau des régimes).</p>
+    </article>
+    <article>
+      <div class="q">Pays</div>
+      <h3>Un pays fait-il bouger le prix ?</h3>
+      <p>Oui, le Brésil : 83&nbsp;% de la volatilité de la production mondiale et 82&nbsp;% de celle de l'arabica. Pour le robusta, trois pays se partagent les chocs : Vietnam 40&nbsp;%, Brésil (conilon) 39&nbsp;%, Indonésie 17&nbsp;%.</p>
+      <p>Le STU d'un pays seul explique mal le prix (Brésil : corrélation −0,30 avec le KC ; Vietnam : −0,32 avec le DF). Ce qui compte est le coussin global, et d'abord les stocks des pays consommateurs (UE, États-Unis, Japon) : −0,68 avec le KC, −0,83 avec le DF.</p>
+    </article>
+    <article>
+      <div class="q">Moteurs</div>
+      <h3>Les trois moteurs du prix</h3>
+      <ol class="drivers">
+        <li><span><b>La production du Brésil</b>, et la météo qui la fait : c'est le choc.</span></li>
+        <li><span><b>Le niveau des stocks, donc le STU</b> : il ne crée pas le choc, il en fixe l'amplitude sur le prix.</span></li>
+        <li><span><b>L'offre de robusta</b>, Vietnam en tête, avec le conilon brésilien et l'Indonésie : elle fait le DF et, par les assemblages, soutient ou pèse sur le KC.</span></li>
+      </ol>
+      <p>La consommation n'est pas un moteur de court terme (+1,8 % par an, très régulière) ; c'est la pente que la production doit suivre. Le surplus annuel est la variation du STU : il accompagne le mouvement de l'année, il ne l'annonce pas. Hors de ces données mais décisif : le real brésilien.</p>
+    </article>
+    <article>
+      <div class="q">Prévision</div>
+      <h3>Comment s'en servir pour prévoir</h3>
+      <p>Comme un outil de valorisation, pas de timing. Projeter le bilan de la campagne suivante, en tirer le STU, lire le prix « de courbe », comparer au marché, puis trader les révisions.</p>
+      <p>Pour 2026/27 : un STU de 14,6 % donne un KC autour de 236&nbsp;c/lb et un DF autour de 3 102&nbsp;$/t, contre 313&nbsp;c/lb et 3 696&nbsp;$/t en août 2026. Le marché garde une prime de +33&nbsp;% sur l'arabica et +19&nbsp;% sur le robusta.</p>
+    </article>
+  </div>
+</section>
+
+<section id="graphiques">
+  <div class="sec-head"><h2>Graphiques</h2><p>Colonnes : stock-to-use (axe gauche). Courbes : prix moyen de la campagne octobre-septembre (axe droit). 2026/27 est une prévision USDA, sans prix pour l'instant.</p></div>
+
+  <article class="chart-block" id="v1">
+    <h3>1 · Monde : stocks ÷ consommation, avec KC1 et DF1</h3>
+    <p class="read">Les deux creux de STU, 18,0&nbsp;% en 2011/12 et 12,8 % en 2024/25, coïncident avec les deux périodes de prix hauts (2010/11-2011/12 et 2023/24-2025/26) ; les sommets de 2013/14-2014/15 (28-29&nbsp;%) vont avec un KC autour de 150-160&nbsp;c/lb. Ici, les deux prix sont en US c/lb pour partager l'axe.</p>
+    <div class="legend" data-legend="v1"></div>
+    <div class="chart" data-chart="v1"></div>
+  </article>
+
+  <article class="chart-block" id="v2">
+    <h3>2 · Arabica et robusta, total des 47 pays producteurs</h3>
+    <p class="read">L'USDA ne ventile pas stocks et consommation par espèce : chaque pays est pondéré par la part arabica ou robusta de sa production. Arabica : de 15,1 % (2013/14) à 6,3 % (2024/25). Robusta : de 16,0 % (2014/15) à 3,2 % en 2023/24 et 2024/25, quand le DF a triplé.</p>
+    <div class="pair">
+      <div><div class="legend" data-legend="v2a"></div><div class="chart" data-chart="v2a"></div></div>
+      <div><div class="legend" data-legend="v2b"></div><div class="chart" data-chart="v2b"></div></div>
+    </div>
+  </article>
+
+  <article class="chart-block" id="v3">
+    <h3>3 · En additionnant les pays : arabica 8 pays, robusta 4 pays</h3>
+    <p class="read">Arabica : Brésil, Colombie, Honduras, Éthiopie, Pérou, Mexique, Guatemala, Costa Rica, de 13,6 % en 2013/14 à 2,1 % en 2021/22. Robusta : Brésil, Vietnam, Indonésie, Ouganda, de 17,3 % en 2014/15 à 3,2 % en 2024/25. Le Brésil, présent dans les deux listes, est réparti selon sa part arabica / conilon de l'année.</p>
+    <div class="pair">
+      <div><div class="legend" data-legend="v3a"></div><div class="chart" data-chart="v3a"></div></div>
+      <div><div class="legend" data-legend="v3b"></div><div class="chart" data-chart="v3b"></div></div>
+    </div>
+  </article>
+
+  <article class="chart-block" id="v4">
+    <h3>4 · Deux colonnes par an : Brésil + Colombie, Vietnam + Brésil</h3>
+    <p class="read">La Colombie garde un STU bas en permanence (1-8&nbsp;%) : elle exporte ce qu'elle produit. Le Brésil fait les grands mouvements. Le Vietnam passe de 26,6 % en 2014/15 à 0,8 % en 2017/18 et reste sous 4&nbsp;% depuis 2022/23.</p>
+    <div class="pair">
+      <div><div class="legend" data-legend="v4a"></div><div class="chart" data-chart="v4a"></div></div>
+      <div><div class="legend" data-legend="v4b"></div><div class="chart" data-chart="v4b"></div></div>
+    </div>
+  </article>
+
+  <article class="chart-block" id="v5">
+    <h3>5 · Un seul pays : Brésil avec le KC1, Vietnam avec le DF1</h3>
+    <p class="read">Brésil : 22,0 % en 2013/14, 0,9 % en 2021/22 (année du gel), 1,4 % en 2024/25. Vietnam : stocks quasi vides depuis 2022/23 ; le robusta n'y a plus de coussin. Les stocks USDA d'un pays producteur sont une estimation résiduelle, d'où une relation plus bruitée qu'au niveau mondial.</p>
+    <div class="pair">
+      <div><div class="legend" data-legend="v5a"></div><div class="chart" data-chart="v5a"></div></div>
+      <div><div class="legend" data-legend="v5b"></div><div class="chart" data-chart="v5b"></div></div>
+    </div>
+  </article>
+
+  <article class="chart-block" id="v6">
+    <h3>6 · Le surplus à la place des stocks USDA</h3>
+    <p class="read">Surplus = production + importations − consommation − exportations : ce qui reste de l'offre de l'année, divisé par (conso + export). Brésil : 13,5 % en 2012/13 (KC −29&nbsp;%), -12,3 % en 2015/16, -6,2 % en 2021/22. Arabica 6 pays : Brésil, Colombie, Honduras, Mexique, Pérou, Nicaragua. Robusta 4 pays : Vietnam, Brésil, Ouganda, Indonésie.</p>
+    <div class="pair">
+      <div><div class="legend" data-legend="v6a"></div><div class="chart" data-chart="v6a"></div></div>
+      <div><div class="legend" data-legend="v6b"></div><div class="chart" data-chart="v6b"></div></div>
+      <div><div class="legend" data-legend="v6c"></div><div class="chart" data-chart="v6c"></div></div>
+      <div><div class="legend" data-legend="v6d"></div><div class="chart" data-chart="v6d"></div></div>
+    </div>
+    <p class="note">Pour un seul pays, répartir arabica et robusta ne change pas le ratio : « Brésil arabica » = ratio Brésil total, idem pour le Vietnam.</p>
+  </article>
+</section>
+
+<section id="tableau">
+  <div class="sec-head"><h2>Tableau : stock-to-use par pays et par campagne</h2><p>Couleurs par ligne : rouge = bas pour ce pays (tendu), vert = haut (confortable).</p></div>
+  <div class="tbl-wrap"><table class="heat" id="heat"></table></div>
+  <p class="note">p = prévision USDA de juin 2026. Prix : moyenne octobre-septembre ; 2025/26 = octobre 2025 à août 2026.</p>
+</section>
+
+<section id="analyse">
+  <div class="sec-head"><h2>Analyse</h2><p>Lecture d'un desk café : ce que les 16 campagnes disent, et ce qu'elles ne disent pas.</p></div>
+
+  <h3>Le cycle des stocks depuis 2012</h3>
+  <p><b>2012/13-2014/15, l'excédent.</b> Trois grosses récoltes brésiliennes et l'essor du conilon ajoutent 17,4&nbsp;M sacs aux stocks mondiaux. Le STU monte à 29&nbsp;% et le KC tombe autour de 140-160&nbsp;c/lb. La sécheresse brésilienne de 2014 déclenche un rallye, qui s'éteint parce que le coussin est plein.</p>
+  <p><b>2015/16-2020/21, le prix bas malgré des déficits.</b> Le STU reste entre 20 et 23&nbsp;%, et le KC touche 94,9&nbsp;c/lb en mai 2019. Le real brésilien passe d'environ 2,4 à plus de 5 R$/US$ sur la période : le coût de production en dollars s'effondre et le producteur brésilien vend. C'est la période où le prix se situe le plus nettement sous la courbe STU.</p>
+  <p><b>2021/22-2024/25, la vidange.</b> Sécheresse 2020 et gel de juillet 2021 au Brésil, chaleur 2023-24, puis sécheresse au Vietnam et récolte ratée en Indonésie (8,2&nbsp;M sacs en 2023/24 contre 10,7). Quatre déficits de suite retirent 15,5&nbsp;M sacs. Le KC atteint 388&nbsp;c/lb et le DF 5 588&nbsp;$/t en févr. 2025 (moyennes mensuelles).</p>
+  <p><b>2025/26-2026/27, la reconstitution.</b> Récolte brésilienne record de 71,9&nbsp;M sacs en 2026/27 selon l'USDA, Vietnam à 32,5&nbsp;M. Le STU remonte à 14,6 % et le prix recule, sans revenir sur la courbe.</p>
+
+  <article class="chart-block" id="x-imp">
+    <h3>Le thermomètre : les stocks des pays consommateurs</h3>
+    <p class="read">Les stocks de l'UE, des États-Unis et du Japon sont mesurés (stocks portuaires, entrepôts certifiés) et visibles par le marché, contrairement aux stocks estimés des pays producteurs. Leur STU a chuté de 20,1 % en 2021/22 à 11,4 % en 2025/26 ; les stocks de l'UE sont passés de 14,0 à 7,5&nbsp;M sacs. C'est la série la plus corrélée au prix : −0,68 avec le KC, −0,83 avec le DF.</p>
+    <div class="legend" data-legend="ximp"></div>
+    <div class="chart" data-chart="ximp"></div>
+  </article>
+
+  <h3>Une relation convexe</h3>
+  <p>Le meilleur ajustement n'est pas une droite. Avec ln(prix) = a + b ÷ STU, le STU mondial explique 50&nbsp;% des variations du KC et 70&nbsp;% de celles du DF. La raison est économique. Quand les stocks sont abondants, le prix tombe vers le coût de production et y reste. Quand ils manquent, il doit monter assez pour faire reculer la demande : chaque sac compte, et la même révision de récolte fait un mouvement bien plus grand.</p>
+  <div class="pair">
+    <article class="chart-block" id="x-sc1">
+      <h3>KC1 selon le STU mondial</h3>
+      <div class="legend" data-legend="sc1"></div>
+      <div class="chart" data-chart="sc1"></div>
+    </article>
+    <article class="chart-block" id="x-sc2">
+      <h3>DF1 selon le STU mondial</h3>
+      <div class="legend" data-legend="sc2"></div>
+      <div class="chart" data-chart="sc2"></div>
+    </article>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>STU mondial</th><th class="num">KC1 « de courbe » (c/lb)</th><th class="num">DF1 « de courbe » ($/t)</th><th class="num">Effet de −1 pt de STU sur le KC</th></tr></thead>
+    <tbody><tr><th scope="row">11 %</th><td class="num">358</td><td class="num">5 111</td><td class="num">+18,3 %</td></tr><tr><th scope="row">12 %</th><td class="num">311</td><td class="num">4 321</td><td class="num">+15,1 %</td></tr><tr><th scope="row">13 %</th><td class="num">276</td><td class="num">3 748</td><td class="num">+12,6 %</td></tr><tr class="hl"><th scope="row">14 %</th><td class="num">249</td><td class="num">3 318</td><td class="num">+10,7 %</td></tr><tr class="hl"><th scope="row">15 %</th><td class="num">228</td><td class="num">2 986</td><td class="num">+9,2 %</td></tr><tr><th scope="row">16 %</th><td class="num">211</td><td class="num">2 723</td><td class="num">+8,0 %</td></tr><tr><th scope="row">18 %</th><td class="num">186</td><td class="num">2 334</td><td class="num">+6,2 %</td></tr><tr><th scope="row">20 %</th><td class="num">168</td><td class="num">2 064</td><td class="num">+5,0 %</td></tr><tr><th scope="row">22 %</th><td class="num">154</td><td class="num">1 866</td><td class="num">+4,1 %</td></tr><tr><th scope="row">25 %</th><td class="num">139</td><td class="num">1 653</td><td class="num">+3,1 %</td></tr><tr><th scope="row">28 %</th><td class="num">129</td><td class="num">1 504</td><td class="num">+2,5 %</td></tr></tbody>
+  </table></div>
+  <p class="note">Zone à ±1 écart-type des résidus : de −22 % à +29&nbsp;% autour de la courbe pour le KC, de −18 % à +22&nbsp;% pour le DF. La courbe donne une zone de prix, pas un prix exact. Même choc de −3 points de STU : +11&nbsp;% sur le KC s'il part de 25&nbsp;%, +31&nbsp;% s'il part de 16&nbsp;%.</p>
+
+  <h3>Régimes de prix observés</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>STU mondial</th><th>Campagnes</th><th class="num">KC1 moyen</th><th class="num">KC1 min-max</th><th class="num">DF1 moyen ($/t)</th><th>Comportement</th></tr></thead>
+    <tbody><tr><th scope="row">< 15 %</th><td>2023/24, 2024/25, 2025/26</td><td class="num">283</td><td class="num">204–333</td><td class="num">3 998</td><td>Pénurie : prix ~2× la moyenne, forte volatilité, backwardation ; c'est le prix qui rationne la demande.</td></tr><tr><th scope="row">15–20 %</th><td>2011/12, 2017/18, 2021/22, 2022/23</td><td class="num">178</td><td class="num">121–224</td><td class="num">2 027</td><td>Transition : un choc météo fait +50 % (gel 2021) ; sans choc, le prix retombe vite (2022/23).</td></tr><tr><th scope="row">20–24 %</th><td>2010/11, 2015/16, 2016/17, 2018/19, 2019/20, 2020/21</td><td class="num">148</td><td class="num">105–250</td><td class="num">1 714</td><td>Confortable : prix plafonnés, fixés par le coût de production en dollars (donc par le BRL). 2010/11 = exception (voir analyse).</td></tr><tr><th scope="row">> 24 %</th><td>2012/13, 2013/14, 2014/15</td><td class="num">152</td><td class="num">141–161</td><td class="num">1 898</td><td>Excédent : prix bas ; les rallyes (sécheresse 2014) s'essoufflent vite.</td></tr></tbody>
+  </table></div>
+  <p class="note">2010/11 fait exception : STU mondial de 21,1 % mais KC à 250&nbsp;c/lb. Les stocks des pays producteurs étaient bas (7,4 %), la Colombie sortait d'une crise de production et le real était fort (environ 1,7 R$/US$).</p>
+
+  <h3>Qui fait bouger l'offre</h3>
+  <p>Part de chaque pays dans la variance des variations annuelles de production, 2011-2026. Production totale : Brésil 83 %, Colombie 7 %, Honduras 5 %, Indonésie 4 %. Arabica : Brésil 82 %, Colombie 8 %, Honduras 5 %, Éthiopie 2 %. Robusta : Vietnam 40 %, Brésil 39 %, Indonésie 17 %, Côte d'Ivoire 5 %.</p>
+  <article class="chart-block" id="x-br">
+    <h3>Brésil : arabica, conilon et KC1</h3>
+    <p class="read">Le cycle bisannuel de l'arabica se voit à l'œil nu : la corrélation entre deux variations annuelles successives est de −0,68, une hausse est suivie d'une baisse. Il se casse lors des chocs climatiques (2014, 2021). Le marché anticipe l'année basse : une hausse de la récolte arabica est suivie d'une hausse du KC l'année suivante (corrélation 0,52). Le conilon, lui, a presque doublé depuis 2010.</p>
+    <div class="legend" data-legend="xbr"></div>
+    <div class="chart" data-chart="xbr"></div>
+  </article>
+
+  <h3>Les trois moteurs, en détail</h3>
+  <ol class="drivers">
+    <li><span><b>La production brésilienne.</b> 83&nbsp;% de la volatilité de l'offre mondiale. Les signaux à suivre sont le cycle haut / bas, la floraison de septembre à novembre, les pluies d'octobre à mars et le risque de gel de juin à août. C'est le premier moteur, pour l'arabica comme pour le robusta via le conilon.</span></li>
+    <li><span><b>Les stocks, résumés par le STU.</b> Ils ne créent pas le choc, ils décident de son prix. Le même choc de −3 points de STU fait +11&nbsp;% sur le KC s'il part de 25&nbsp;%, et +31&nbsp;% s'il part de 16&nbsp;%. Les stocks visibles comptent plus que les stocks estimés : stocks des pays consommateurs et stocks certifiés ICE.</span></li>
+    <li><span><b>Le robusta, Vietnam d'abord.</b> Le robusta est passé de 38 % à 44 % de la production mondiale. Il a mené la jambe 2023/24 : DF de 2 217 à 3 504&nbsp;$/t (+58&nbsp;%), KC de 171 à 204&nbsp;c/lb (+19&nbsp;%). Une récolte vietnamienne plus faible est suivie d'un KC plus haut l'année suivante (corrélation −0,52) : les torréfacteurs basculent entre espèces dans leurs assemblages.</span></li>
+  </ol>
+  <p><b>Ce qui n'est pas un moteur à court terme.</b> La consommation progresse de 1,8 % par an (de 135,5 à 179,7&nbsp;M sacs) avec très peu d'à-coups : elle ne fait pas le prix d'une année, mais une année sans hausse de production coûte environ 3&nbsp;M sacs de stocks. Aux prix extrêmes, elle plie (l'ICO estime la consommation 2025/26 en baisse de 0,8&nbsp;%). Le surplus annuel accompagne la variation de prix de l'année (corrélation −0,36 pour l'arabica 6 pays, −0,34 pour le Brésil) mais ne prédit pas l'année suivante ; c'est son cumul sur deux ou trois ans, donc le STU, qui fixe le niveau.</p>
+  <p><b>Ce que ces données ne mesurent pas.</b> Le real brésilien, qui explique pourquoi 2015-2020 est resté sous la courbe. Le positionnement des fonds. La logistique et la politique : mer Rouge en 2024, règlement européen EUDR, droits de douane américains. En juillet 2026, la taxe de 25&nbsp;% sur les importations brésiliennes exempte le café vert.</p>
+
+  <h3>Les cycles à surveiller</h3>
+  <p><b>Le cycle bisannuel brésilien</b> : l'année haute 2026/27 (71,9&nbsp;M sacs) appelle une année plus basse en 2027/28, à floraison égale.</p>
+  <p><b>Le cycle des stocks</b> : 3 à 6 ans de surplus, puis 2 à 4 ans de déficit. Les pics de prix de 2011, 2022 et 2025 ont tous été précédés d'une baisse du STU et des stocks des pays consommateurs.</p>
+  <p><b>El Niño</b> : le fort épisode de 2015/16 a touché le robusta la campagne suivante. Le conilon brésilien est passé de 13,3 à 10,5&nbsp;M sacs, le Vietnam de 28,9 à 26,7, l'Indonésie de 12,1 à 10,6, et le DF de 1 633 à 2 097&nbsp;$/t. Le 13 août 2026, la NOAA a donné plus de 90&nbsp;% de probabilité à un El Niño très fort cet automne-hiver. L'analogue historique désigne le robusta 2027/28 (saison sèche au Vietnam et en Indonésie) et la floraison brésilienne comme les points de risque.</p>
+</section>
+
+<section id="prevoir">
+  <div class="sec-head"><h2>Prévoir le prix avec le STU</h2><p>Une méthode de valorisation ; le timing vient d'ailleurs.</p></div>
+  <ol class="steps">
+    <li><span><b>Projeter le bilan de la campagne suivante.</b> Brésil d'abord (USDA, CONAB, floraison, pluies), puis Vietnam, Indonésie, Colombie. Consommation : tendance de +1,5 à +2&nbsp;% par an, moins si les prix restent extrêmes.</span></li>
+    <li><span><b>En tirer le STU mondial</b> (stocks ÷ conso) et, si possible, les stocks des pays consommateurs, le meilleur thermomètre.</span></li>
+    <li><span><b>Lire le prix « de courbe »</b> et sa zone : à ±1 écart-type, de −22 % à +29&nbsp;% autour de la courbe pour le KC, de −18 % à +22&nbsp;% pour le DF.</span></li>
+    <li><span><b>Comparer au marché et expliquer l'écart.</b> Au-dessus de la courbe, le marché paie un risque : stocks certifiés bas, météo, BRL fort. Cette prime fond quand les stocks visibles se reconstituent. En dessous, le marché est trop confiant.</span></li>
+    <li><span><b>Trader les révisions, pas le niveau.</b> Le prix bouge quand le STU attendu change (rapports USDA de juin et décembre, CONAB, météo). À 13-15&nbsp;% de STU, un point vaut environ 9 à 13&nbsp;% sur le KC.</span></li>
+  </ol>
+  <h3>Application à 2026/27</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Scénario</th><th class="num">STU mondial</th><th class="num">KC1 c/lb (zone)</th><th class="num">DF1 $/t (zone)</th></tr></thead>
+    <tbody><tr><th scope="row">USDA juin 2026</th><td class="num">14,6 %</td><td class="num"><b>236</b> <span class="band">183–303</span></td><td class="num"><b>3 102</b> <span class="band">2 540–3 788</span></td></tr><tr><th scope="row">Stocks +5 M sacs (surplus reconstitue les stocks)</th><td class="num">17,4 %</td><td class="num"><b>193</b> <span class="band">150–248</span></td><td class="num"><b>2 435</b> <span class="band">1 994–2 973</span></td></tr><tr><th scope="row">Stocks −4 M sacs (El Niño / floraison ratée)</th><td class="num">12,4 %</td><td class="num"><b>296</b> <span class="band">230–381</span></td><td class="num"><b>4 072</b> <span class="band">3 335–4 972</span></td></tr><tr class="mkt"><th scope="row">Marché, moyenne d'août 2026</th><td class="num">–</td><td class="num"><b>313</b></td><td class="num"><b>3 696</b></td></tr></tbody>
+  </table></div>
+  <div class="callout">
+    <p><b>Lecture.</b> À 313&nbsp;c/lb, le KC d'août 2026 est au-dessus du haut de la zone du scénario USDA (303). Le marché valorise un STU plus proche de 12-13&nbsp;% que de 14,6&nbsp;%. Il ne croit pas encore à la reconstitution, et il a des raisons : stocks certifiés ICE arabica à 223&nbsp;976 sacs fin août, plus bas depuis 1999 ; récolte brésilienne lente à se commercialiser ; courbe en backwardation ; risque El Niño.</p>
+    <p>Le DF, à 3 696&nbsp;$/t, est dans sa zone (3 788 en haut) : moins de prime à dégonfler. L'arbitrage New York-Londres est à 146&nbsp;c/lb contre 79 en moyenne depuis 2010. Si les surplus annoncés (Marex +10,5&nbsp;M sacs, Rabobank +8,9&nbsp;M) remplissent les stocks visibles, c'est d'abord l'arabica et cet arbitrage qui ont de la place pour se détendre. Le risque de queue reste haussier tant que la floraison 2027/28 n'est pas acquise.</p>
+  </div>
+  <h3>Le calendrier du trader</h3>
+  <div class="watch">
+    <div><b>Sept.-nov.</b><p>Floraison au Brésil (arabica 2027/28) ; risque El Niño.</p></div>
+    <div><b>Oct.-janv.</b><p>Récolte vietnamienne ; rythme d'export.</p></div>
+    <div><b>Mensuel</b><p>Stocks certifiés ICE, stocks ECF (UE) et GCA (É.-U.), exportations Cecafé.</p></div>
+    <div><b>Juin et décembre</b><p>Bilans USDA : recalculer le STU et relire la courbe.</p></div>
+    <div><b>Juin-août</b><p>Gel au Brésil : risque sur la récolte suivante.</p></div>
+    <div><b>En continu</b><p>BRL, positions des fonds, fret et politique commerciale.</p></div>
+  </div>
+</section>
+
+<section id="methode">
+  <div class="sec-head"><h2>Méthode et sources</h2></div>
+  <p><b>Volumes</b> : USDA FAS, PSD Online, fichier café de juillet 2026, en milliers de sacs de 60&nbsp;kg ; 2026/27 = prévision USDA de juin 2026. Campagnes locales de chaque pays (Brésil juillet-juin, Vietnam octobre-septembre).</p>
+  <p><b>Prix</b> : ICO, Coffee Market Report, tableau 1, moyennes mensuelles ICE New York (arabica) et ICE Londres (robusta, converti en c/lb par l'ICO), moyenne des 2<sup>e</sup> et 3<sup>e</sup> positions. J'ai téléchargé 81 rapports mensuels sur ico.org ; 62 contiennent le tableau de prix exploitable et couvrent chaque mois d'octobre 2010 à août 2026, avec des recoupements entre éditions. C'est un proxy de KC1 et DF1 : sur une moyenne annuelle, l'écart avec la 1<sup>re</sup> position est de quelques %. Les moyennes calendaires 2011, 2012 et 2013 recalculées retombent exactement sur celles publiées par l'ICO. DF en $/t = c/lb × 22,0462.</p>
+  <p><b>Arabica et robusta</b> : chaque pays pondéré par la part de l'espèce dans sa production de l'année ; les stocks des pays importateurs ne sont pas ventilables et restent hors des séries par espèce. <b>Corrélations</b> : 16 campagnes (2010/11-2025/26), sur le logarithme des prix : des ordres de grandeur, pas des lois. Prix non corrigés de l'inflation.</p>
+  <p><b>Classeur Excel</b> : <code>coffee_stu/Cafe_STU_vs_Prix_2010-2026.xlsx</code> dans le dépôt procafe. Il contient les 13 graphiques natifs, le tableau, l'onglet Analyse, les 191 prix mensuels et les données des 93 pays. Toutes les formules sont vivantes.</p>
+</section>
+</main>
+<footer><div class="wrap">Sources : USDA FAS PSD Online (juillet 2026) · ICO Coffee Market Reports (oct. 2010 → août 2026). Analyse du 30 septembre 2026. Ce n'est pas un conseil d'investissement.</div></footer>
+
+<script>
+(function(){
+"use strict";
+const D = {"labels":["2010/11","2011/12","2012/13","2013/14","2014/15","2015/16","2016/17","2017/18","2018/19","2019/20","2020/21","2021/22","2022/23","2023/24","2024/25","2025/26","2026/27"],"world":[0.21135,0.18027,0.24662,0.28624,0.29309,0.22816,0.23502,0.19891,0.22256,0.22055,0.23131,0.19026,0.15961,0.14103,0.12814,0.14049,0.14623],"world_ce":[0.11343,0.0987,0.13263,0.15078,0.15905,0.12177,0.12626,0.10838,0.11942,0.11882,0.12212,0.10255,0.08876,0.07521,0.06889,0.0763,0.07762],"imp_stu":[0.2141,0.16441,0.18417,0.20845,0.20259,0.19811,0.21813,0.19724,0.20893,0.22119,0.2026,0.201,0.13655,0.13595,0.12198,0.11363,0.13113],"prod_stu":[0.07424,0.07244,0.11395,0.13112,0.14387,0.09455,0.09355,0.07536,0.0879,0.0832,0.09576,0.06816,0.07193,0.05516,0.05117,0.06487,0.06066],"ara_total":[0.07952,0.08403,0.1281,0.15133,0.13412,0.09504,0.10308,0.09509,0.09687,0.0856,0.0948,0.07217,0.09001,0.07034,0.06306,0.08244,0.07759],"rob_total":[0.0642,0.05306,0.09076,0.09867,0.1597,0.09383,0.07622,0.04321,0.07244,0.07954,0.09731,0.06265,0.04758,0.03161,0.03183,0.04073,0.03517],"ara_sel":[0.04064,0.03927,0.1094,0.13607,0.09961,0.04756,0.05438,0.05283,0.05144,0.04057,0.05747,0.02091,0.05706,0.02797,0.02227,0.04779,0.04711],"rob_sel":[0.04537,0.04344,0.08821,0.09742,0.17312,0.08287,0.06846,0.03127,0.07106,0.08006,0.10421,0.07097,0.04866,0.03361,0.03193,0.04263,0.03818],"br":[0.05339,0.04488,0.17861,0.21977,0.16327,0.04206,0.06997,0.05891,0.07823,0.03752,0.0646,0.00871,0.07885,0.03026,0.01431,0.06475,0.06192],"co":[0.01042,0.02889,0.07668,0.07788,0.04855,0.08193,0.05827,0.07729,0.03552,0.05765,0.08325,0.05238,0.06936,0.04773,0.05938,0.05769,0.04295],"vn":[0.04005,0.04167,0.07352,0.0703,0.2664,0.13254,0.09175,0.00775,0.01779,0.07001,0.13062,0.11115,0.0266,0.03141,0.0363,0.02063,0.0144],"s_br":[0.00129,-0.0134,0.13453,0.05295,-0.04634,-0.12293,0.02661,-0.01348,0.03003,-0.04242,0.02968,-0.06207,0.06963,-0.03679,-0.01694,0.04888,0.00742],"s_ara6":[-0.0048,-0.00269,0.08392,0.03748,-0.03027,-0.06508,0.0119,-0.00246,0.00628,-0.02028,0.02303,-0.0429,0.04134,-0.02485,-0.00687,0.028,0.00547],"s_vn":[-0.01061,0.01109,0.03234,0.00607,0.17684,-0.06736,-0.05202,-0.07402,0.00966,0.05173,0.0546,-0.00248,-0.08691,0.00177,0.00667,-0.01198,-0.00589],"s_rob4":[-0.03507,0.00069,0.04778,0.01621,0.05887,-0.06574,-0.02299,-0.03352,0.03977,0.00959,0.02403,-0.02846,-0.02392,-0.01537,-0.00037,0.01284,-0.00118],"kc":[249.66,197.84,140.7,161.47,154.02,131.83,143.77,120.6,104.98,113.24,143.75,224.09,171.19,204.0,333.06,312.21,null],"dfc":[100.66,91.38,88.48,85.87,83.91,74.07,95.12,78.29,67.53,59.22,69.9,97.53,100.56,158.95,213.27,171.84,null],"dft":[2219.1,2014.7,1950.7,1893.2,1849.9,1632.9,2097.1,1725.9,1488.8,1305.6,1541.0,2150.1,2217.1,3504.2,4701.7,3788.5,null],"br_ara":[41.8,34.7,42.1,41.8,37.3,36.1,45.6,39.5,49.7,42.0,49.7,36.4,39.8,44.9,44.5,38.0,47.5],"br_rob":[12.7,14.5,15.5,15.4,17.0,13.3,10.5,12.6,16.8,18.5,20.2,21.7,22.8,21.4,21.0,25.0,24.4],"vn_prod":[19.41,26.0,26.5,29.83,27.4,28.93,26.7,29.3,30.4,31.3,29.0,31.58,28.3,27.55,29.0,31.7,32.5],"model":{"kc":{"a":4.197246651764575,"b":0.18509026449187177},"df":{"a":6.5239636804775705,"b":0.22165998835056183}},"proj":{"stu":0.14623113900387236,"kc":235.80008404326108,"df":3101.940054277868,"kc_last":313.2,"df_last":3695.6},"table":[{"sec":"Agrégats"},{"l":"Monde","d":"stocks ÷ conso","v":[0.21135,0.18027,0.24662,0.28624,0.29309,0.22816,0.23502,0.19891,0.22256,0.22055,0.23131,0.19026,0.15961,0.14103,0.12814,0.14049,0.14623],"k":"pct","b":1},{"l":"Monde","d":"stocks ÷ (conso + export)","v":[0.11343,0.0987,0.13263,0.15078,0.15905,0.12177,0.12626,0.10838,0.11942,0.11882,0.12212,0.10255,0.08876,0.07521,0.06889,0.0763,0.07762],"k":"pct"},{"l":"Pays producteurs (47)","d":"stocks ÷ (conso + export)","v":[0.07424,0.07244,0.11395,0.13112,0.14387,0.09455,0.09355,0.07536,0.0879,0.0832,0.09576,0.06816,0.07193,0.05516,0.05117,0.06487,0.06066],"k":"pct"},{"l":"Pays importateurs (46)","d":"stocks ÷ conso","v":[0.2141,0.16441,0.18417,0.20845,0.20259,0.19811,0.21813,0.19724,0.20893,0.22119,0.2026,0.201,0.13655,0.13595,0.12198,0.11363,0.13113],"k":"pct","b":1},{"l":"Arabica, total producteurs","d":"pondéré par espèce","v":[0.07952,0.08403,0.1281,0.15133,0.13412,0.09504,0.10308,0.09509,0.09687,0.0856,0.0948,0.07217,0.09001,0.07034,0.06306,0.08244,0.07759],"k":"pct","b":1},{"l":"Robusta, total producteurs","d":"pondéré par espèce","v":[0.0642,0.05306,0.09076,0.09867,0.1597,0.09383,0.07622,0.04321,0.07244,0.07954,0.09731,0.06265,0.04758,0.03161,0.03183,0.04073,0.03517],"k":"pct","b":1},{"l":"Arabica, 8 pays","d":"Brésil réparti","v":[0.04064,0.03927,0.1094,0.13607,0.09961,0.04756,0.05438,0.05283,0.05144,0.04057,0.05747,0.02091,0.05706,0.02797,0.02227,0.04779,0.04711],"k":"pct"},{"l":"Robusta, 4 pays","d":"Brésil réparti","v":[0.04537,0.04344,0.08821,0.09742,0.17312,0.08287,0.06846,0.03127,0.07106,0.08006,0.10421,0.07097,0.04866,0.03361,0.03193,0.04263,0.03818],"k":"pct"},{"sec":"Pays : stocks ÷ (conso + export)"},{"l":"Brésil","d":"","v":[0.05339,0.04488,0.17861,0.21977,0.16327,0.04206,0.06997,0.05891,0.07823,0.03752,0.0646,0.00871,0.07885,0.03026,0.01431,0.06475,0.06192],"k":"pct","b":1},{"l":"Vietnam","d":"","v":[0.04005,0.04167,0.07352,0.0703,0.2664,0.13254,0.09175,0.00775,0.01779,0.07001,0.13062,0.11115,0.0266,0.03141,0.0363,0.02063,0.0144],"k":"pct","b":1},{"l":"Colombie","d":"","v":[0.01042,0.02889,0.07668,0.07788,0.04855,0.08193,0.05827,0.07729,0.03552,0.05765,0.08325,0.05238,0.06936,0.04773,0.05938,0.05769,0.04295],"k":"pct","b":0},{"l":"Indonésie","d":"","v":[0.00729,0.00949,0.00746,0.00372,0.00456,0.00352,0.00105,0.05125,0.23148,0.19067,0.13545,0.08671,0.03967,0.04738,0.05116,0.05501,0.0521],"k":"pct","b":0},{"l":"Éthiopie","d":"","v":[0.01641,0.03716,0.01508,0.00625,0.00463,0.00384,0.00216,0.00383,0.00136,0.02887,0.01759,0.01098,0.00681,0.00548,0.007,0.01526,0.01195],"k":"pct","b":0},{"l":"Ouganda","d":"","v":[0.18576,0.17079,0.09616,0.10288,0.08743,0.08817,0.06969,0.08527,0.07191,0.06661,0.0573,0.07598,0.0716,0.03683,0.0403,0.04751,0.04592],"k":"pct","b":0},{"l":"Honduras","d":"","v":[0.00717,0.0162,0.02985,0.07051,0.06693,0.05893,0.03974,0.04276,0.02227,0.02355,0.04217,0.01334,0.01973,0.02827,0.03362,0.08041,0.11947],"k":"pct","b":0},{"l":"Inde","d":"","v":[0.25823,0.23048,0.33266,0.32767,0.42498,0.38096,0.25455,0.1695,0.13247,0.15311,0.13063,0.02066,0.06489,0.02967,0.04416,0.06381,0.0277],"k":"pct","b":0},{"l":"Pérou","d":"","v":[0.03062,0.00264,0.0103,0.00562,0.00137,0.01272,0.01788,0.01947,0.00269,0.03206,0.02396,0.02204,0.02665,0.00653,0.00548,0.00433,0.00535],"k":"pct","b":0},{"l":"Mexique","d":"","v":[0.01718,0.01097,0.01054,0.03098,0.02552,0.04502,0.03108,0.03318,0.00457,0.01766,0.00304,0.01712,0.01411,0.00293,0.00305,0.00303,0.00075],"k":"pct","b":0},{"l":"Guatemala","d":"","v":[0.05711,0.08716,0.04851,0.05769,0.0042,0.00748,0.00951,0.02684,0.00634,0.03113,0.02581,0.00528,0.00608,0.00383,0.00156,0.00285,0.0039],"k":"pct","b":0},{"l":"Nicaragua","d":"","v":[0.01219,0.13228,0.00776,0.01089,0.04916,0.01667,0.02738,0.05289,0.04949,0.0128,0.01383,0.0087,0.00956,0.06272,0.02752,0.02132,0.03527],"k":"pct","b":0},{"l":"Costa Rica","d":"","v":[0.11786,0.13158,0.10674,0.07558,0.07229,0.19688,0.14967,0.16131,0.14967,0.18653,0.1703,0.16507,0.13022,0.12632,0.1362,0.09925,0.04928],"k":"pct","b":0},{"sec":"Surplus ÷ (conso + export)"},{"l":"Arabica, Brésil","d":"prod + import − conso − export","v":[0.00129,-0.0134,0.13453,0.05295,-0.04634,-0.12293,0.02661,-0.01348,0.03003,-0.04242,0.02968,-0.06207,0.06963,-0.03679,-0.01694,0.04888,0.00742],"k":"pct"},{"l":"Arabica, 6 pays","d":"idem","v":[-0.0048,-0.00269,0.08392,0.03748,-0.03027,-0.06508,0.0119,-0.00246,0.00628,-0.02028,0.02303,-0.0429,0.04134,-0.02485,-0.00687,0.028,0.00547],"k":"pct"},{"l":"Robusta, Vietnam","d":"idem","v":[-0.01061,0.01109,0.03234,0.00607,0.17684,-0.06736,-0.05202,-0.07402,0.00966,0.05173,0.0546,-0.00248,-0.08691,0.00177,0.00667,-0.01198,-0.00589],"k":"pct"},{"l":"Robusta, 4 pays","d":"idem","v":[-0.03507,0.00069,0.04778,0.01621,0.05887,-0.06574,-0.02299,-0.03352,0.03977,0.00959,0.02403,-0.02846,-0.02392,-0.01537,-0.00037,0.01284,-0.00118],"k":"pct"},{"sec":"Prix moyen de campagne (oct.–sept.)"},{"l":"KC1, ICE New York","d":"US c/lb","v":[249.66,197.84,140.7,161.47,154.02,131.83,143.77,120.6,104.98,113.24,143.75,224.09,171.19,204.0,333.06,312.21,null],"k":"c","h":0},{"l":"DF1, ICE Londres","d":"US c/lb","v":[100.66,91.38,88.48,85.87,83.91,74.07,95.12,78.29,67.53,59.22,69.9,97.53,100.56,158.95,213.27,171.84,null],"k":"c","h":0},{"l":"DF1, ICE Londres","d":"US$/t","v":[2219.1,2014.7,1950.7,1893.2,1849.9,1632.9,2097.1,1725.9,1488.8,1305.6,1541.0,2150.1,2217.1,3504.2,4701.7,3788.5,null],"k":"t","h":0}]};
+const NB = " ";
+const fmt = {
+  pct: (v, d) => (v * 100).toFixed(d == null ? 1 : d).replace(".", ",").replace("-", "−") + NB + "%",
+  c: v => Math.round(v).toString(),
+  t: v => Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, NB),
+  m: v => v.toFixed(1).replace(".", ",")
+};
+const SVGNS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(SVGNS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function text(parent, x, y, s, cls, anchor) {
+  const t = el("text", {x: x, y: y, class: cls, "text-anchor": anchor || "middle"}, parent);
+  t.textContent = s;
+  return t;
+}
+function nice(lo, hi, n) {
+  const span = (hi - lo) || 1, raw = span / n, p = Math.pow(10, Math.floor(Math.log10(raw))), q = raw / p;
+  const step = (q <= 1 ? 1 : q <= 2 ? 2 : q <= 2.5 ? 2.5 : q <= 5 ? 5 : 10) * p;
+  const min = Math.floor(lo / step + 1e-9) * step, max = Math.ceil(hi / step - 1e-9) * step, ticks = [];
+  for (let v = min; v <= max + step / 2; v += step) ticks.push(+v.toFixed(10));
+  return {min: min, max: max, ticks: ticks, step: step};
+}
+const UNIT = {pct: "%", c: "US c/lb", t: "US$/t", m: "M sacs"};
+function legend(key, spec) {
+  const box = document.querySelector('[data-legend="' + key + '"]');
+  if (!box) return;
+  box.innerHTML = "";
+  (spec.bars || []).forEach(s => {
+    const sp = document.createElement("span");
+    sp.innerHTML = '<i style="background:var(' + s.c + ')"></i>' + s.n;
+    box.appendChild(sp);
+  });
+  (spec.lines || []).forEach(s => {
+    const sp = document.createElement("span");
+    sp.innerHTML = '<i class="l" style="background:var(' + s.c + ')"></i>' + s.n + " · axe droit";
+    box.appendChild(sp);
+  });
+}
+function tipBox(host) {
+  let t = host.querySelector(".tip");
+  if (!t) { t = document.createElement("div"); t.className = "tip"; t.hidden = true; host.appendChild(t); }
+  return t;
+}
+function combo(host, spec) {
+  host.querySelectorAll("svg").forEach(s => s.remove());
+  const Wd = Math.max(280, Math.floor(host.clientWidth));
+  const narrow = Wd < 620;
+  const H = narrow ? 290 : 350;
+  const M = {l: narrow ? 40 : 50, r: narrow ? 42 : 56, t: 22, b: 0};
+  const n = D.labels.length;
+  const band0 = (Wd - M.l - M.r) / n;
+  const rot = band0 < 50;
+  M.b = rot ? 46 : 26;
+  const pw = Wd - M.l - M.r, ph = H - M.t - M.b, band = pw / n;
+  const f1 = spec.y1 || "pct", f2 = spec.y2;
+  const bv = [].concat.apply([], spec.bars.map(s => s.v)).filter(v => v != null);
+  const lo = Math.min(0, Math.min.apply(null, bv)), hi = Math.max(0, Math.max.apply(null, bv));
+  const pad = (hi - lo) * 0.13;
+  const y1 = nice(lo < 0 ? lo - pad * 0.5 : 0, hi + pad, narrow ? 4 : 5);
+  const lv = [].concat.apply([], spec.lines.map(s => s.v)).filter(v => v != null);
+  const y2 = nice(0, Math.max.apply(null, lv) * 1.04, narrow ? 4 : 5);
+  const Y1 = v => M.t + ph - (v - y1.min) / (y1.max - y1.min) * ph;
+  const Y2 = v => M.t + ph - (v - y2.min) / (y2.max - y2.min) * ph;
+  const X = i => M.l + band * (i + 0.5);
+  const svg = el("svg", {viewBox: "0 0 " + Wd + " " + H, width: Wd, height: H, role: "img", "aria-label": spec.aria}, null);
+  host.insertBefore(svg, host.firstChild);
+  const lab1 = v => f1 === "pct" ? fmt.pct(v, Math.abs(y1.step) < 0.02 ? 1 : 0) : fmt[f1](v);
+  y1.ticks.forEach(t => {
+    el("line", {x1: M.l, x2: M.l + pw, y1: Y1(t), y2: Y1(t), class: Math.abs(t) < 1e-12 ? "zero" : "grid"}, svg);
+    text(svg, M.l - 6, Y1(t) + 3.5, lab1(t), "ax", "end");
+  });
+  y2.ticks.forEach(t => text(svg, M.l + pw + 6, Y2(t) + 3.5, fmt[f2](t), "ax", "start"));
+  text(svg, M.l - 6, 12, spec.u1 || UNIT[f1], "unit", "end");
+  text(svg, Wd - 1, 12, UNIT[f2], "unit", "end");
+  const ns = spec.bars.length, gw = band * (ns > 1 ? 0.8 : 0.62), bw = gw / ns, labs = [];
+  spec.bars.forEach((s, k) => s.v.forEach((v, i) => {
+    if (v == null) return;
+    const x = X(i) - gw / 2 + k * bw, y0 = Y1(0), y = Y1(v);
+    el("rect", {x: (x + 0.5).toFixed(1), y: Math.min(y, y0).toFixed(1), width: Math.max(1, bw - 1).toFixed(1),
+      height: Math.max(0.6, Math.abs(y0 - y)).toFixed(1), style: "fill:var(" + s.c + ")", class: "bar" + (i === n - 1 ? " proj" : "")}, svg);
+    if (ns === 1 && band >= 34 && spec.labels !== false)
+      labs.push([X(i), v >= 0 ? y - 4 : y + 11, f1 === "pct" ? fmt.pct(v, 1) : fmt[f1](v)]);
+  }));
+  spec.lines.forEach(s => {
+    let d = "", pen = false;
+    s.v.forEach((v, i) => {
+      if (v == null) { pen = false; return; }
+      d += (pen ? "L" : "M") + X(i).toFixed(1) + " " + Y2(v).toFixed(1);
+      pen = true;
+    });
+    el("path", {d: d, class: "ln", style: "stroke:var(" + s.c + ")"}, svg);
+    s.v.forEach((v, i) => { if (v != null) el("circle", {cx: X(i).toFixed(1), cy: Y2(v).toFixed(1), r: narrow ? 2.6 : 3.3, class: "pt", style: "fill:var(" + s.c + ")"}, svg); });
+  });
+  labs.forEach(a => text(svg, a[0], a[1], a[2], "lab", "middle"));
+  D.labels.forEach((c, i) => {
+    const s = (narrow ? c.slice(2) : c) + (i === n - 1 ? " p" : "");
+    if (rot) {
+      const x = X(i) + 3, y = M.t + ph + 10;
+      const t = text(svg, x, y, s, "ax", "end");
+      t.setAttribute("transform", "rotate(-45 " + x.toFixed(1) + " " + y + ")");
+    } else text(svg, X(i), M.t + ph + 16, s, "ax", "middle");
+  });
+  const hover = el("rect", {x: 0, y: M.t, width: band, height: ph, class: "hover"}, svg);
+  const tip = tipBox(host);
+  function show(ev) {
+    const r = svg.getBoundingClientRect();
+    const px = (ev.clientX - r.left) * (Wd / r.width);
+    const i = Math.floor((px - M.l) / band);
+    if (i < 0 || i >= n) { hide(); return; }
+    hover.setAttribute("x", (M.l + band * i).toFixed(1));
+    hover.classList.add("on");
+    let h = "<div><b>" + D.labels[i] + (i === n - 1 ? " (prévision)" : "") + "</b></div>";
+    spec.bars.forEach(s => { if (s.v[i] != null) h += '<div class="row"><i style="background:var(' + s.c + ')"></i>' + s.n + " : <b>" + (f1 === "pct" ? fmt.pct(s.v[i], 1) : fmt[f1](s.v[i])) + "</b></div>"; });
+    spec.lines.forEach(s => { if (s.v[i] != null) h += '<div class="row"><i style="background:var(' + s.c + ')"></i>' + s.n + " : <b>" + fmt[f2](s.v[i]) + "</b></div>"; });
+    tip.innerHTML = h;
+    tip.hidden = false;
+    const hx = (M.l + band * (i + 0.5)) * (r.width / Wd);
+    const tw = tip.offsetWidth;
+    tip.style.left = Math.max(0, Math.min(r.width - tw, hx + 12 > r.width - tw ? hx - tw - 12 : hx + 12)) + "px";
+    tip.style.top = "8px";
+  }
+  function hide() { hover.classList.remove("on"); tip.hidden = true; }
+  svg.addEventListener("pointermove", show);
+  svg.addEventListener("pointerdown", show);
+  svg.addEventListener("pointerleave", hide);
+}
+function scatter(host, spec) {
+  host.querySelectorAll("svg").forEach(s => s.remove());
+  const Wd = Math.max(280, Math.floor(host.clientWidth));
+  const narrow = Wd < 480;
+  const H = narrow ? 280 : 320;
+  const M = {l: narrow ? 42 : 50, r: 14, t: 22, b: 34};
+  const pw = Wd - M.l - M.r, ph = H - M.t - M.b;
+  const xs = D.world.slice(0, 16), ys = spec.y.slice(0, 16);
+  const cf = x => Math.exp(spec.m.a + spec.m.b / x);
+  const x0 = 0.10, x1 = 0.30;
+  const ymax = Math.max(Math.max.apply(null, ys), cf(0.11), spec.last) * 1.06;
+  const yv = nice(0, ymax, narrow ? 4 : 5);
+  const X = v => M.l + (v - x0) / (x1 - x0) * pw, Y = v => M.t + ph - (v - yv.min) / (yv.max - yv.min) * ph;
+  const svg = el("svg", {viewBox: "0 0 " + Wd + " " + H, width: Wd, height: H, role: "img", "aria-label": spec.aria}, null);
+  host.insertBefore(svg, host.firstChild);
+  yv.ticks.forEach(t => { el("line", {x1: M.l, x2: M.l + pw, y1: Y(t), y2: Y(t), class: t === 0 ? "zero" : "grid"}, svg); text(svg, M.l - 6, Y(t) + 3.5, fmt[spec.f](t), "ax", "end"); });
+  for (let v = 0.10; v <= 0.3001; v += 0.05) { el("line", {x1: X(v), x2: X(v), y1: M.t, y2: M.t + ph, class: "grid"}, svg); text(svg, X(v), M.t + ph + 16, fmt.pct(v, 0), "ax", "middle"); }
+  text(svg, M.l - 6, 12, UNIT[spec.f], "unit", "end");
+  text(svg, M.l + pw, M.t + ph + 30, "STU mondial (stocks ÷ conso)", "unit", "end");
+  let d = "";
+  for (let k = 0; k <= 60; k++) { const x = 0.105 + k * (0.30 - 0.105) / 60; d += (k ? "L" : "M") + X(x).toFixed(1) + " " + Y(cf(x)).toFixed(1); }
+  el("path", {d: d, class: "curve"}, svg);
+  const placed = [];
+  const pts = xs.map((x, i) => ({x: X(x), y: Y(ys[i])}));
+  const hit = b => b.x1 < M.l || b.x2 > M.l + pw || b.y1 < M.t - 4 || b.y2 > M.t + ph ||
+    placed.some(o => !(b.x2 < o.x1 || b.x1 > o.x2 || b.y2 < o.y1 || b.y1 > o.y2));
+  function label(p, s, r) {
+    const w = s.length * 6.1, cands = [[p.x + r + 3, p.y + 3.5, "start"], [p.x - r - 3, p.y + 3.5, "end"], [p.x, p.y - r - 4, "middle"], [p.x, p.y + r + 11, "middle"]];
+    for (const c of cands) {
+      const x1 = c[2] === "start" ? c[0] : c[2] === "end" ? c[0] - w : c[0] - w / 2;
+      const b = {x1: x1, y1: c[1] - 9, x2: x1 + w, y2: c[1] + 2};
+      if (!hit(b)) { text(svg, c[0], c[1], s, "ptlab", c[2]); placed.push(b); return; }
+    }
+  }
+  pts.forEach(p => placed.push({x1: p.x - 4.5, y1: p.y - 4.5, x2: p.x + 4.5, y2: p.y + 4.5}));
+  const px = X(D.proj.stu), pc = {x: px, y: Y(cf(D.proj.stu))}, pm = {x: px, y: Y(spec.last)};
+  placed.push({x1: pc.x - 6, y1: pc.y - 6, x2: pc.x + 6, y2: pc.y + 6}, {x1: pm.x - 7, y1: pm.y - 7, x2: pm.x + 7, y2: pm.y + 7});
+  pts.forEach((p, i) => el("circle", {cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: 4.2, class: "pt", style: "fill:var(" + spec.c + ")"}, svg));
+  el("circle", {cx: pc.x.toFixed(1), cy: pc.y.toFixed(1), r: 5, style: "fill:var(--surface);stroke:var(" + spec.c + ");stroke-width:2"}, svg);
+  el("rect", {x: (pm.x - 4.5).toFixed(1), y: (pm.y - 4.5).toFixed(1), width: 9, height: 9, transform: "rotate(45 " + pm.x.toFixed(1) + " " + pm.y.toFixed(1) + ")", style: "fill:var(--c-kc)"}, svg);
+  label(pm, "août 2026", 7);
+  label(pc, "26/27 courbe", 6);
+  spec.labels.forEach(i => label(pts[i], D.labels[i].slice(2), 4.5));
+}
+function legendScatter(key, c) {
+  const box = document.querySelector('[data-legend="' + key + '"]');
+  box.innerHTML = '<span><i style="background:var(' + c + ');border-radius:50%"></i>campagnes 2010/11-2025/26</span>' +
+    '<span><i class="l" style="background:var(--c-curve)"></i>courbe ln(prix) = a + b ÷ STU</span>' +
+    '<span><i style="background:var(--c-kc);transform:rotate(45deg);width:.6rem;height:.6rem"></i>prix d’août 2026</span>';
+}
+const kc = {n: "KC1 arabica NY", v: D.kc, c: "--c-kc"};
+const dfc = {n: "DF1 robusta Londres", v: D.dfc, c: "--c-df"};
+const dft = {n: "DF1 robusta Londres", v: D.dft, c: "--c-df"};
+const SPECS = {
+  v1: {bars: [{n: "STU monde (stocks ÷ conso)", v: D.world, c: "--c-stu"}], lines: [kc, dfc], y2: "c", aria: "STU mondial et prix KC1 et DF1, 2010/11 à 2026/27"},
+  v2a: {bars: [{n: "STU arabica (47 producteurs)", v: D.ara_total, c: "--c-ara"}], lines: [kc], y2: "c", aria: "STU arabica et KC1"},
+  v2b: {bars: [{n: "STU robusta (47 producteurs)", v: D.rob_total, c: "--c-rob"}], lines: [dft], y2: "t", aria: "STU robusta et DF1"},
+  v3a: {bars: [{n: "STU arabica 8 pays", v: D.ara_sel, c: "--c-ara"}], lines: [kc], y2: "c", aria: "STU arabica 8 pays et KC1"},
+  v3b: {bars: [{n: "STU robusta 4 pays", v: D.rob_sel, c: "--c-rob"}], lines: [dft], y2: "t", aria: "STU robusta 4 pays et DF1"},
+  v4a: {bars: [{n: "STU Brésil", v: D.br, c: "--c-br"}, {n: "STU Colombie", v: D.co, c: "--c-co"}], lines: [kc], y2: "c", aria: "STU Brésil et Colombie avec KC1"},
+  v4b: {bars: [{n: "STU Vietnam", v: D.vn, c: "--c-vn"}, {n: "STU Brésil", v: D.br, c: "--c-br"}], lines: [dft], y2: "t", aria: "STU Vietnam et Brésil avec DF1"},
+  v5a: {bars: [{n: "STU Brésil", v: D.br, c: "--c-br"}], lines: [kc], y2: "c", aria: "STU Brésil et KC1"},
+  v5b: {bars: [{n: "STU Vietnam", v: D.vn, c: "--c-vn"}], lines: [dft], y2: "t", aria: "STU Vietnam et DF1"},
+  v6a: {bars: [{n: "Surplus Brésil (arabica)", v: D.s_br, c: "--c-ara"}], lines: [kc], y2: "c", aria: "Surplus Brésil et KC1"},
+  v6b: {bars: [{n: "Surplus arabica 6 pays", v: D.s_ara6, c: "--c-ara"}], lines: [kc], y2: "c", aria: "Surplus arabica 6 pays et KC1"},
+  v6c: {bars: [{n: "Surplus Vietnam (robusta)", v: D.s_vn, c: "--c-rob"}], lines: [dft], y2: "t", aria: "Surplus Vietnam et DF1"},
+  v6d: {bars: [{n: "Surplus robusta 4 pays", v: D.s_rob4, c: "--c-rob"}], lines: [dft], y2: "t", aria: "Surplus robusta 4 pays et DF1"},
+  ximp: {bars: [{n: "STU pays consommateurs (stocks ÷ conso)", v: D.imp_stu, c: "--c-imp"}], lines: [kc, dfc], y2: "c", aria: "STU des pays importateurs et prix"},
+  xbr: {bars: [{n: "Brésil arabica", v: D.br_ara, c: "--c-ara"}, {n: "Brésil conilon", v: D.br_rob, c: "--c-rob"}], lines: [kc], y1: "m", y2: "c", aria: "Production du Brésil et KC1"}
+};
+const SCAT = {
+  sc1: {y: D.kc, m: D.model.kc, f: "c", c: "--c-ara", last: D.proj.kc_last, labels: [0, 1, 3, 4, 8, 9, 11, 12, 13, 14, 15], aria: "KC1 selon le STU mondial"},
+  sc2: {y: D.dft, m: D.model.df, f: "t", c: "--c-rob", last: D.proj.df_last, labels: [0, 1, 3, 4, 9, 11, 12, 13, 14, 15], aria: "DF1 selon le STU mondial"}
+};
+function renderAll() {
+  document.querySelectorAll("[data-chart]").forEach(h => {
+    const k = h.getAttribute("data-chart");
+    if (SPECS[k]) combo(h, SPECS[k]); else if (SCAT[k]) scatter(h, SCAT[k]);
+  });
+}
+Object.keys(SPECS).forEach(k => legend(k, SPECS[k]));
+legendScatter("sc1", "--c-ara");
+legendScatter("sc2", "--c-rob");
+function heat() {
+  const t = document.getElementById("heat");
+  let h = "<thead><tr><th>Série</th><th>Définition</th>";
+  D.labels.forEach((l, i) => { h += '<th class="num' + (i === D.labels.length - 1 ? ' p' : '') + '">' + l.slice(2) + (i === D.labels.length - 1 ? " p" : "") + "</th>"; });
+  h += "</tr></thead><tbody>";
+  D.table.forEach(r => {
+    if (r.sec) { h += '<tr class="sec"><th colspan="' + (D.labels.length + 2) + '">' + r.sec + "</th></tr>"; return; }
+    const vals = r.v.filter(v => v != null), mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals);
+    h += '<tr><th scope="row" class="l' + (r.b ? " b" : "") + '">' + r.l + '</th><td class="d">' + (r.d || "") + "</td>";
+    r.v.forEach(v => {
+      if (v == null) { h += '<td class="v">–</td>'; return; }
+      let style = "";
+      if (r.h !== 0) {
+        const x = mx > mn ? (v - mn) / (mx - mn) : 0.5;
+        style = x < 0.5 ? "background:color-mix(in oklab, var(--heat-lo) " + Math.round((1 - 2 * x) * 100) + "%, var(--heat-mid))"
+                        : "background:color-mix(in oklab, var(--heat-hi) " + Math.round((2 * x - 1) * 100) + "%, var(--heat-mid))";
+      }
+      const s = r.k === "pct" ? fmt.pct(v, 1).replace(NB + "%", "") : r.k === "t" ? fmt.t(v) : v.toFixed(0);
+      h += '<td class="v" style="' + style + '">' + s + "</td>";
+    });
+    h += "</tr>";
+  });
+  t.innerHTML = h + "</tbody>";
+}
+heat();
+renderAll();
+let raf = 0, lastW = window.innerWidth;
+window.addEventListener("resize", () => {
+  if (window.innerWidth === lastW) return;
+  lastW = window.innerWidth;
+  cancelAnimationFrame(raf);
+  raf = requestAnimationFrame(renderAll);
+});
+})();
+</script>
+
+</body>
+</html>
