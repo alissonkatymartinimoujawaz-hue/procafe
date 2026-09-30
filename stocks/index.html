@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coffee Stock-to-Use Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (research note) with full-width chart cards; analysis prose between chart groups. */
+:root {
+  --bg: #f6f7f5;
+  --card: #ffffff;
+  --ink: #16181a;
+  --ink-2: #4a4f54;
+  --ink-3: #7b8187;
+  --rule: #dfe2e0;
+  --grid: #eceeec;
+  --bar-1: #2a78d6;
+  --bar-2: #eb6834;
+  --kc: #4a3aa7;
+  --rc: #008300;
+  --pos: #2a78d6;
+  --neg: #e34948;
+  --hi: #fff4d6;
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121416; --card: #1b1e21; --ink: #f2f3f1; --ink-2: #c3c6c2; --ink-3: #8e948f;
+    --rule: #30353a; --grid: #262a2e; --bar-1: #3987e5; --bar-2: #d95926; --kc: #9085e9;
+    --rc: #2fa84f; --pos: #3987e5; --neg: #e66767; --hi: #3a3322; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121416; --card: #1b1e21; --ink: #f2f3f1; --ink-2: #c3c6c2; --ink-3: #8e948f;
+  --rule: #30353a; --grid: #262a2e; --bar-1: #3987e5; --bar-2: #d95926; --kc: #9085e9;
+  --rc: #2fa84f; --pos: #3987e5; --neg: #e66767; --hi: #3a3322; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.6 var(--font-body); }
+.page { max-width: 1060px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 64px; display: grid; gap: 28px; }
+header.top { display: grid; gap: 8px; border-bottom: 1px solid var(--rule); padding-bottom: 20px; }
+.crumb a { color: var(--ink-2); text-decoration: none; font-size: 13px; }
+.crumb a:hover { text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(28px, 4.2vw, 40px); line-height: 1.1; }
+h2 { font-size: 26px; line-height: 1.2; }
+h3 { font-size: 19px; line-height: 1.3; }
+.eyebrow { font: 500 11px/1.4 var(--font-data); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
+.lede { color: var(--ink-2); max-width: 70ch; margin: 0; }
+.note { font-size: 13px; color: var(--ink-2); background: var(--hi); border-radius: 6px; padding: 10px 14px; max-width: 80ch; }
+.note b { color: var(--ink); }
+section.block { display: grid; gap: 14px; }
+section.block > p, .prose p, .prose li { max-width: 72ch; }
+.prose { display: grid; gap: 10px; }
+.prose p, .prose ul, .prose ol { margin: 0; }
+.prose li + li { margin-top: 6px; }
+.card { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 16px 10px; min-width: 0; display: grid; gap: 6px; }
+.card .sub { font-size: 13px; color: var(--ink-2); margin: 0; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 16px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.sw.line { height: 3px; border-radius: 2px; width: 16px; }
+.chart { position: relative; width: 100%; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--font-data); font-size: 11px; fill: var(--ink-3); }
+.chart .lab { fill: var(--ink-2); }
+.tip { position: absolute; pointer-events: none; background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; font: 12px/1.5 var(--font-data); color: var(--ink); box-shadow: 0 4px 14px rgba(0,0,0,.12); white-space: nowrap; z-index: 5; }
+.tip b { font-family: var(--font-body); }
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; font: 12px/1.4 var(--font-data); font-variant-numeric: tabular-nums; width: 100%; }
+th, td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; font-family: var(--font-body); font-weight: 500; position: sticky; left: 0; background: var(--card); }
+thead th { color: var(--ink-3); font-weight: 500; }
+td.heat { color: var(--ink); }
+.drivers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.driver { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; }
+.driver .rank { font: 500 11px var(--font-data); color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; }
+.driver p { margin: 0; font-size: 14px; color: var(--ink-2); }
+code { font-family: var(--font-data); font-size: 13px; }
+footer { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule); padding-top: 16px; display: grid; gap: 6px; }
+a { color: var(--bar-1); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="top">
+  <div class="crumb"><a href="../index.html">← Brazil regions</a></div>
+  <div class="eyebrow">Supply &amp; demand · USDA PSD basis · 2010/11 → 2026/27</div>
+  <h1>Coffee stock-to-use vs KC1 &amp; DF1</h1>
+  <p class="lede">Stock-to-use ratio (bars, %, left axis) against front-month arabica (KC1, ICE New York) and robusta (DF1/RC1, ICE London) prices (lines, right axis). Robusta is converted from US$/t to US¢/lb (÷ 22.05) so both prices share one axis; the tooltip gives the $/t figure too.</p>
+  <p class="note" id="src-note"></p>
+</header>
+
+<section class="block prose">
+  <h2>Definitions used</h2>
+  <ul>
+    <li><b>World stock-to-use</b> = world ending stocks ÷ world domestic consumption. At world level you do <i>not</i> add exports: every exported bag is drunk in an importing country, so consumption + exports would count it twice.</li>
+    <li><b>Origin (country) stock-to-use</b> = ending stocks ÷ (domestic consumption + exports). This is the right denominator for a producer. It measures how much of the origin's total offtake sits in its warehouses.</li>
+    <li><b>Surplus / use</b> = the year's stock build (+) or draw (−) ÷ (domestic consumption + exports). This is the flow version, and it explains price <i>moves</i> better than the stock level does.</li>
+    <li>USDA does not split stocks, consumption or exports into arabica and robusta. So the “total arabica” and “total robusta” ratios (your versions 2 and 3) are built bottom-up from the producing countries you listed. Brazil is split pro-rata to USDA's arabica/robusta production shares. A side effect is that Brazil's arabica ratio and robusta ratio are the same number.</li>
+    <li>Prices are coffee-year averages (Oct → Sep), matched to the marketing year that starts in the same autumn. For 2026/27 the price is the spot on 30 Sep 2026.</li>
+  </ul>
+</section>
+
+<section class="block">
+  <div class="eyebrow">Version 1</div>
+  <h2>World stock-to-use, with KC1 and DF1</h2>
+  <div class="card" id="c-world"></div>
+</section>
+
+<section class="block">
+  <div class="eyebrow">Versions 2 &amp; 3</div>
+  <h2>Arabica and robusta stock-to-use, summed country by country</h2>
+  <p>Arabica = Brazil (arabica part), Colombia, Honduras, Ethiopia, Peru, Mexico, Guatemala and Costa Rica, plus Nicaragua. Robusta = Brazil (conilon part), Vietnam, Indonesia and Uganda. For each year, ending stocks are added up, consumption + exports are added up, then the two totals are divided.</p>
+  <div class="grid2">
+    <div class="card" id="c-arab"></div>
+    <div class="card" id="c-rob"></div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="eyebrow">Version 4</div>
+  <h2>The two largest origins side by side</h2>
+  <div class="grid2">
+    <div class="card" id="c-arab2"></div>
+    <div class="card" id="c-rob2"></div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="eyebrow">Version 5</div>
+  <h2>Brazil alone and Vietnam alone</h2>
+  <div class="grid2">
+    <div class="card" id="c-br"></div>
+    <div class="card" id="c-vn"></div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="eyebrow">Table</div>
+  <h2>Stock-to-use by country, year over year (%)</h2>
+  <div class="card"><p class="sub">Ending stocks ÷ (domestic consumption + exports). Darker cells mean more stock relative to offtake. Scroll sideways on a phone.</p><div class="tbl-wrap" id="t-heat"></div></div>
+</section>
+
+<section class="block">
+  <div class="eyebrow">Versions 6 &amp; 7</div>
+  <h2>Surplus stocks ÷ (consumption + exports)</h2>
+  <p>Blue bars are years when the origin built stocks. Red bars are years when it drew them down. Arabica: Brazil alone, then Brazil + Colombia + Honduras + Mexico + Peru + Nicaragua. Robusta: Vietnam alone, then Vietnam + Brazil + Uganda + Indonesia.</p>
+  <div class="grid2">
+    <div class="card" id="c-s-br"></div>
+    <div class="card" id="c-s-ab"></div>
+    <div class="card" id="c-s-vn"></div>
+    <div class="card" id="c-s-rb"></div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="eyebrow">Price vs stock-to-use</div>
+  <h2>Where each year sat on the curve</h2>
+  <div class="grid2">
+    <div class="card" id="c-sc-kc"></div>
+    <div class="card" id="c-sc-rc"></div>
+  </div>
+</section>
+
+<section class="block prose" id="analysis">
+  <div class="eyebrow">Trader's read</div>
+  <h2>What the charts say</h2>
+
+  <h3>1. The price does not follow stocks in a straight line. It follows a curve.</h3>
+  <p>From 2010/11 to 2020/21, world stock-to-use stayed in a 21–25 % band. Inside that band KC traded anywhere from 100 to 250 ¢/lb, and the stock level explained little. Brazil weather decided the year. From 2021/22 the ratio broke below 20 % for the first time in the series (18.8 → 16.4 → 14.1 → 12.4 %). The price regime changed with it:</p>
+  <div class="card"><div class="tbl-wrap" id="t-regimes"></div></div>
+  <p>This is the core of the study. Above about 20 % the market has a buffer, and a 5-million-bag weather scare moves KC 20–30 %. Below about 16 % there is no buffer, and the same shock moves it 50–100 % (2023/24 to 2024/25). The fit below puts a number on it: each point of world stock-to-use lost is worth about +7 % on KC and +8 % on robusta. The real curve is steeper than that at the low end.</p>
+
+  <h3>2. Brazil triggers the moves, and Vietnam has become the second trigger</h3>
+  <ul>
+    <li><b>Brazil's stock level on its own explains little</b> (correlation ≈ −0.24 with KC). Brazil's stocks are pipeline stocks, turned over every year. Brazil moves the price through <i>production shocks and expectations</i>: the 2014 drought, the July 2021 frost, the 2023–24 heat and drought. The market prices these 6–12 months before the bags exist.</li>
+    <li><b>Brazil production follows price with a lag.</b> High price this year goes with a bigger Brazil crop 1–2 years later (correlation ≈ +0.6). That is the supply response: more fertiliser, less stumping, new planting. It is also what ends each bull cycle (2012–13, 2015–19, and now 2026/27 at a record 71.9 M bags).</li>
+    <li><b>Vietnam's stock-to-use is the single best origin indicator</b>: ≈ −0.82 with robusta and even ≈ −0.70 with arabica. Vietnamese farmers and traders hold the world's swing stocks. When those fell from about 10 % to 2 % of offtake in 2023/24, robusta more than doubled. Roasters then moved blends toward arabica, which pulled KC up too. Since 2023, robusta tightness has been an arabica driver.</li>
+    <li><b>Colombia</b> matters when its crop falls under about 12 M bags (2011–12 leaf rust, 2022–23 heavy rains). That shows up first in washed-arabica differentials, then in KC.</li>
+    <li><b>The smaller origins</b> (Honduras, Peru, Mexico, Guatemala, Ethiopia, Costa Rica, Nicaragua) hold small stocks. Their ratios move <i>with</i> the price, not ahead of it, so they take the price rather than set it.</li>
+  </ul>
+
+  <h3>3. Stock level sets the price level. Stock change sets the price move.</h3>
+  <p>The surplus charts show this. Years with a stock draw line up with rising prices, and years with a stock build line up with falling prices. Vietnam: a −7.9 % draw in 2023/24 came with robusta +53 %, and the correlation of Vietnam's surplus with that year's price move is ≈ −0.66. Brazil: the 2014/15 draw (−7.9 %) and the 2021/22 draw (−5.7 %) came with rallies. The +8.6 % build in 2012/13 came with a 30 % fall. Use the level to judge whether the price is cheap or expensive. Use the expected build or draw to judge the direction.</p>
+
+  <h3>4. Consumption is the slow force</h3>
+  <p>World consumption rises about 1.7 % a year, from 136 M bags in 2010/11 to 180 M in 2026/27. It almost never triggers a move. It sets the multi-year direction of stock-to-use instead. In 2021–2024 production stalled at about 167–172 M while consumption kept adding 2–3 M bags a year, and that alone drained the buffer. The market was already fragile before the weather hit it.</p>
+
+  <h3>5. The cycle</h3>
+  <p>The pattern repeats every 3–4 years on arabica: a weather shock in Brazil (or Vietnam) meets a thin buffer, and price spikes. High prices fund inputs and planting, and production responds 2–3 years later (new trees take 2–3 years to bear). Stocks rebuild, stock-to-use climbs back and price falls. Low prices then cut investment, which sets up the next shock. The peaks in the series are 2010/11, 2014, 2021/22 and 2024/25. The troughs are 2012/13 and 2018/19. The 2026/27 USDA numbers (record 189.7 M world crop, stocks rebuilding to 26.3 M, stock-to-use back to about 14.6 %) put the market in the <i>rebuild</i> phase of the cycle.</p>
+
+  <h2>The three drivers of the price</h2>
+  <div class="drivers">
+    <div class="driver"><span class="rank">Driver 1 · trigger</span><h3>Brazil production</h3><p>Weather at flowering (Oct–Nov) and during filling, frost risk (Jun–Aug), and the on/off biennial cycle. The largest single source of arabica price variance.</p></div>
+    <div class="driver"><span class="rank">Driver 2 · trigger</span><h3>Vietnam production and stocks</h3><p>Sets robusta. Through blend substitution it has also moved arabica since 2023. Watch the Central Highlands dry season (Jan–Apr) and farmer selling behaviour.</p></div>
+    <div class="driver"><span class="rank">Driver 3 · amplifier</span><h3>World stock-to-use</h3><p>The buffer. It does not start moves, but it decides their size. Above 20 % shocks fade; below 16 % they explode. Consumption growth, the slow force, is what drains it.</p></div>
+  </div>
+  <p>Outside supply and demand, three things change the timing and the size of moves: the real (BRL/USD) for Brazilian farmer selling, fund positioning (COT), and ICE certified stocks, which are the deliverable part of “surplus stocks”. Trade policy, such as the 2025 US tariffs on Brazilian goods, also counts. None of these are in the charts above.</p>
+
+  <h2>How to use stock-to-use to forecast the price</h2>
+  <ol>
+    <li><b>Project next season's balance.</b> World production (Brazil crop from CONAB/USDA plus Vietnam, then the rest) minus consumption (last year + 1.5–2 %). That gives ending stocks and so stock-to-use.</li>
+    <li><b>Read the fair-value band</b> from the fitted curve:
+      <div class="card" style="margin-top:8px"><div class="tbl-wrap" id="t-fit"></div></div>
+    </li>
+    <li><b>Adjust for direction.</b> If stock-to-use is <i>rising</i>, price tends to trade down toward the band over 6–12 months. If it is <i>falling</i>, price overshoots above the band, because the market prices the next shortage.</li>
+    <li><b>Check the swing holders.</b> Brazil or Vietnam under about 3 % of offtake means squeeze risk: backwardation widens and certified stocks draw. Both above about 8 % puts a ceiling on rallies.</li>
+    <li><b>Put a weather premium on top.</b> The curve gives you the base. Brazil flowering and frost windows, and Vietnam's dry season, add or remove the premium.</li>
+  </ol>
+  <h3>Where we are now (30 Sep 2026)</h3>
+  <p>2026/27 world stock-to-use is ≈ 14.6 %, up from 12.4–12.9 %. At that level the curve gives <b>≈ 250 ¢/lb KC</b> and <b>≈ 3,370 $/t robusta</b>. Spot is 295 ¢ and 3,865 $/t. Both still carry a premium, and the ratio is rising, so the bias is lower. If 2027/28 rebuilds stock-to-use to 16–17 %, the curve points to about 210–230 ¢ KC and 2,800–3,000 $/t robusta. What would break that view: a poor Brazil flowering now (Oct–Nov 2026), La Niña dryness, or Brazil stocks staying thin (≈ 6 % of offtake is still low next to 2012–13).</p>
+</section>
+
+<section class="block">
+  <div class="eyebrow">Correlations</div>
+  <h2>Correlation of each ratio with price</h2>
+  <div class="card"><p class="sub">Pearson r against log price, 2010/11 → 2025/26. “Level”: same year. “Next yr”: this year's ratio vs next year's price. “Price move”: this year's ratio vs this year's % price change. Negative means more stock goes with lower price.</p><div class="tbl-wrap" id="t-corr"></div></div>
+</section>
+
+<footer>
+  <div>Supply &amp; demand: USDA FAS PSD (Coffee, Green; 1000 × 60-kg bags), rebuilt with <code>build_stocks.py</code>. Prices: ICE KC front month (¢/lb), ICE London robusta front month ($/t), coffee-year averages.</div>
+  <div>To refresh with exact USDA numbers, download <code>psd_coffee_csv.zip</code> from PSD Online, unzip <code>psd_coffee.csv</code> next to <code>build_stocks.py</code>, and run <code>python build_stocks.py</code>.</div>
+</footer>
+</div>
+
+<script src="../data/stocks_to_use.js"></script>
+<script>
+(function () {
+  const D = window.STOCKS_TO_USE;
+  const Y = D.years;
+  const kc = D.prices.kc1;
+  const rcT = D.prices.rc1;
+  const rc = rcT.map(v => v / 22.0462);
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const NS = 'http://www.w3.org/2000/svg';
+  const fmt1 = v => (v == null ? '–' : v.toFixed(1));
+  const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+  document.getElementById('src-note').innerHTML = D.source.indexOf('fallback') === 0
+    ? '<b>Data status:</b> this build uses the embedded fallback table. This session could not reach USDA PSD Online, so the balances were rebuilt from published USDA reports. The world totals and the Brazil/Vietnam figures for recent years are anchored on USDA releases. The other years and the small origins are approximate. Re-run <code>build_stocks.py</code> with the PSD CSV (see footer) before trading on the exact levels. The patterns below hold on either dataset.'
+    : '<b>Data status:</b> built from ' + esc(D.source) + '.';
+
+  function el(tag, attrs, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function niceMax(v, steps) {
+    const raw = v / steps;
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const n = [1, 2, 2.5, 5, 10].find(m => m * mag >= raw) * mag;
+    return n * steps;
+  }
+
+  // Combo chart: grouped bars (left axis, %) + price lines (right axis, US¢/lb).
+  function combo(host, o) {
+    host.innerHTML = '';
+    const h = document.createElement('h3'); h.textContent = o.title; host.appendChild(h);
+    if (o.sub) { const p = document.createElement('p'); p.className = 'sub'; p.textContent = o.sub; host.appendChild(p); }
+    const lg = document.createElement('div'); lg.className = 'legend';
+    o.bars.forEach(b => lg.insertAdjacentHTML('beforeend', `<span><i class="sw" style="background:var(${b.color})"></i>${esc(b.name)}</span>`));
+    if (o.diverging) lg.insertAdjacentHTML('beforeend', `<span><i class="sw" style="background:var(--neg)"></i>Draw (deficit)</span>`);
+    o.lines.forEach(l => lg.insertAdjacentHTML('beforeend', `<span><i class="sw line" style="background:var(${l.color})"></i>${esc(l.name)}</span>`));
+    host.appendChild(lg);
+    const wrap = document.createElement('div'); wrap.className = 'chart'; host.appendChild(wrap);
+
+    const W = 760, H = 360, mL = 48, mR = 52, mT = 14, mB = 44;
+    const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': o.title }, wrap);
+    const n = Y.length, pw = W - mL - mR, ph = H - mT - mB, slot = pw / n;
+    const allB = o.bars.flatMap(b => b.values);
+    let bMax = niceMax(Math.max(...allB.map(v => Math.max(v, 0))) || 1, 5);
+    let bMin = Math.min(0, ...allB);
+    if (bMin < 0) { const m = niceMax(Math.max(Math.abs(bMin), bMax), 4); bMax = m; bMin = -m; }
+    const pMax = niceMax(Math.max(...o.lines.flatMap(l => l.values)), 5);
+    const yb = v => mT + ph * (bMax - v) / (bMax - bMin);
+    const yp = v => mT + ph * (1 - v / pMax);
+
+    const ticks = bMin < 0 ? 4 : 5;
+    for (let i = 0; i <= ticks; i++) {
+      const v = bMin + (bMax - bMin) * i / ticks, y = yb(v);
+      el('line', { x1: mL, x2: W - mR, y1: y, y2: y, stroke: css('--grid'), 'stroke-width': 1 }, svg);
+      el('text', { x: mL - 6, y: y + 4, 'text-anchor': 'end' }, svg).textContent = (Math.round(v * 10) / 10) + '%';
+      const pv = pMax * (v - bMin) / (bMax - bMin);
+      el('text', { x: W - mR + 6, y: y + 4 }, svg).textContent = Math.round(pv);
+    }
+    el('line', { x1: mL, x2: W - mR, y1: yb(0), y2: yb(0), stroke: css('--ink-3'), 'stroke-width': 1 }, svg);
+    el('text', { x: mL - 6, y: H - 6, 'text-anchor': 'start', class: 'lab' }, svg).textContent = o.leftLabel || 'stock-to-use %';
+    el('text', { x: W - 4, y: H - 6, 'text-anchor': 'end', class: 'lab' }, svg).textContent = 'price, US¢/lb';
+
+    const gb = o.bars.length, gap = 2, bw = Math.min(26, (slot * 0.72 - gap * (gb - 1)) / gb);
+    const groupW = bw * gb + gap * (gb - 1);
+    Y.forEach((lab, i) => {
+      const cx = mL + slot * (i + 0.5);
+      o.bars.forEach((b, j) => {
+        const v = b.values[i]; if (v == null) return;
+        const x = cx - groupW / 2 + j * (bw + gap);
+        const y0 = yb(0), y1 = yb(v);
+        const top = Math.min(y0, y1), hgt = Math.max(1, Math.abs(y1 - y0));
+        const color = o.diverging && v < 0 ? css('--neg') : css(b.color);
+        const r = Math.min(4, bw / 2, hgt);
+        const d = v >= 0
+          ? `M${x},${y0} V${top + r} Q${x},${top} ${x + r},${top} H${x + bw - r} Q${x + bw},${top} ${x + bw},${top + r} V${y0} Z`
+          : `M${x},${y0} V${top + hgt - r} Q${x},${top + hgt} ${x + r},${top + hgt} H${x + bw - r} Q${x + bw},${top + hgt} ${x + bw},${top + hgt - r} V${y0} Z`;
+        el('path', { d, fill: color, opacity: i === n - 1 ? 0.55 : 1 }, svg);
+      });
+      if (i % (window.innerWidth < 560 ? 2 : 1) === 0)
+        el('text', { x: cx, y: H - mB + 16, 'text-anchor': 'middle' }, svg).textContent = lab.replace(/^20/, '');
+    });
+    o.lines.forEach(l => {
+      const pts = l.values.map((v, i) => [mL + slot * (i + 0.5), yp(v)]);
+      el('path', { d: 'M' + pts.map(p => p.join(',')).join(' L'), fill: 'none', stroke: css(l.color), 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
+      pts.forEach(([x, y], i) => el('circle', { cx: x, cy: y, r: i === pts.length - 1 ? 4 : 2.5, fill: css(l.color), stroke: css('--card'), 'stroke-width': 1.5 }, svg));
+      const [lx, ly] = pts[pts.length - 1];
+      el('text', { x: lx, y: ly - 9, 'text-anchor': 'middle', class: 'lab' }, svg).textContent = l.short;
+    });
+
+    // hover layer
+    const cross = el('line', { y1: mT, y2: mT + ph, stroke: css('--ink-3'), 'stroke-dasharray': '3 3', visibility: 'hidden' }, svg);
+    const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; wrap.appendChild(tip);
+    Y.forEach((lab, i) => {
+      const r = el('rect', { x: mL + slot * i, y: mT, width: slot, height: ph, fill: 'transparent' }, svg);
+      const show = () => {
+        const cx = mL + slot * (i + 0.5);
+        cross.setAttribute('x1', cx); cross.setAttribute('x2', cx); cross.setAttribute('visibility', 'visible');
+        let html = `<b>${lab}${i === n - 1 ? ' (forecast / spot)' : ''}</b>`;
+        o.bars.forEach(b => html += `<br>${esc(b.name)}: ${fmt1(b.values[i])}%`);
+        o.lines.forEach(l => html += `<br>${esc(l.name)}: ${l.tip(i)}`);
+        tip.innerHTML = html; tip.hidden = false;
+        const box = wrap.getBoundingClientRect(), sx = box.width / W;
+        let left = cx * sx + 12; if (left + tip.offsetWidth > box.width) left = cx * sx - tip.offsetWidth - 12;
+        tip.style.left = Math.max(0, left) + 'px'; tip.style.top = (mT * sx) + 'px';
+      };
+      r.addEventListener('mouseenter', show); r.addEventListener('click', show);
+    });
+    svg.addEventListener('mouseleave', () => { tip.hidden = true; cross.setAttribute('visibility', 'hidden'); });
+  }
+
+  const KC = { name: 'KC1 arabica (¢/lb)', short: 'KC1', color: '--kc', values: kc, tip: i => kc[i] + ' ¢/lb' };
+  const RC = { name: 'DF1 robusta (¢/lb eq.)', short: 'DF1', color: '--rc', values: rc, tip: i => Math.round(rc[i]) + ' ¢/lb · ' + rcT[i].toLocaleString('en-US') + ' $/t' };
+  const C = D.countries;
+
+  combo(document.getElementById('c-world'), { title: 'World ending stocks ÷ world consumption', sub: 'Bars: stock-to-use, %. Lines: KC1 and DF1, coffee-year average. The pale last bar is the USDA 2026/27 forecast.', bars: [{ name: 'World stock-to-use', color: '--bar-1', values: D.world.sur }], lines: [KC, RC] });
+  combo(document.getElementById('c-arab'), { title: 'Arabica stock-to-use (9 origins)', sub: D.arabica_basket.countries.join(', ') + ' (Brazil arabica part)', bars: [{ name: 'Arabica stock-to-use', color: '--bar-1', values: D.arabica_basket.sur }], lines: [KC] });
+  combo(document.getElementById('c-rob'), { title: 'Robusta stock-to-use (4 origins)', sub: D.robusta_basket.countries.join(', ') + ' (Brazil conilon part)', bars: [{ name: 'Robusta stock-to-use', color: '--bar-1', values: D.robusta_basket.sur }], lines: [RC] });
+  combo(document.getElementById('c-arab2'), { title: 'Arabica: Brazil vs Colombia', bars: [{ name: 'Brazil', color: '--bar-1', values: C.Brazil.sur }, { name: 'Colombia', color: '--bar-2', values: C.Colombia.sur }], lines: [KC] });
+  combo(document.getElementById('c-rob2'), { title: 'Robusta: Vietnam vs Brazil', bars: [{ name: 'Vietnam', color: '--bar-1', values: C.Vietnam.sur }, { name: 'Brazil', color: '--bar-2', values: C.Brazil.sur }], lines: [RC] });
+  combo(document.getElementById('c-br'), { title: 'Brazil stock-to-use with KC1', bars: [{ name: 'Brazil', color: '--bar-1', values: C.Brazil.sur }], lines: [KC] });
+  combo(document.getElementById('c-vn'), { title: 'Vietnam stock-to-use with DF1', bars: [{ name: 'Vietnam', color: '--bar-1', values: C.Vietnam.sur }], lines: [RC] });
+  const S = D.surplus;
+  combo(document.getElementById('c-s-br'), { title: 'Arabica surplus ÷ Brazil consumption + exports', diverging: true, leftLabel: 'build / draw, %', bars: [{ name: 'Build (surplus)', color: '--pos', values: S.arabica_brazil }], lines: [KC] });
+  combo(document.getElementById('c-s-ab'), { title: 'Arabica surplus ÷ 6-origin consumption + exports', sub: S.arabica_basket_countries.join(', '), diverging: true, leftLabel: 'build / draw, %', bars: [{ name: 'Build (surplus)', color: '--pos', values: S.arabica_basket }], lines: [KC] });
+  combo(document.getElementById('c-s-vn'), { title: 'Robusta surplus ÷ Vietnam consumption + exports', diverging: true, leftLabel: 'build / draw, %', bars: [{ name: 'Build (surplus)', color: '--pos', values: S.robusta_vietnam }], lines: [RC] });
+  combo(document.getElementById('c-s-rb'), { title: 'Robusta surplus ÷ 4-origin consumption + exports', sub: S.robusta_basket_countries.join(', '), diverging: true, leftLabel: 'build / draw, %', bars: [{ name: 'Build (surplus)', color: '--pos', values: S.robusta_basket }], lines: [RC] });
+
+  // Heat table: countries (rows) x years (columns)
+  (function () {
+    const rows = [['World (stocks ÷ consumption)', D.world.sur], ['Arabica, 9 origins', D.arabica_basket.sur], ['Robusta, 4 origins', D.robusta_basket.sur]]
+      .concat(Object.keys(C).map(k => [k, C[k].sur]));
+    const max = Math.max(...rows.slice(3).flatMap(r => r[1]));
+    const bar = css('--bar-1');
+    let h = '<table><thead><tr><th>Country</th>' + Y.map(y => `<th>${y}</th>`).join('') + '</tr></thead><tbody>';
+    rows.forEach(([name, vals], ri) => {
+      const m = ri === 0 ? Math.max(...vals) : max;
+      h += `<tr><td>${esc(name)}</td>` + vals.map(v => `<td class="heat" style="background:color-mix(in srgb, ${bar} ${Math.round(8 + 50 * v / m)}%, transparent)">${fmt1(v)}</td>`).join('') + '</tr>';
+    });
+    document.getElementById('t-heat').innerHTML = h + '</tbody></table>';
+  })();
+
+  // Scatter: world SUR vs price, with fitted curve
+  function scatter(host, title, xs, ys, fit, unit, color) {
+    host.innerHTML = `<h3>${title}</h3><p class="sub">Each dot is a marketing year. The curve is the log-linear fit (2010/11–2025/26). Hover a dot to see the year.</p>`;
+    const wrap = document.createElement('div'); wrap.className = 'chart'; host.appendChild(wrap);
+    const W = 520, H = 340, mL = 54, mR = 16, mT = 12, mB = 40;
+    const svg = el('svg', { viewBox: `0 0 ${W} ${H}` }, wrap);
+    const x0 = 10, x1 = 26, yMax = niceMax(Math.max(...ys) * 1.05, 5);
+    const X = v => mL + (W - mL - mR) * (v - x0) / (x1 - x0), Yp = v => mT + (H - mT - mB) * (1 - v / yMax);
+    for (let i = 0; i <= 5; i++) {
+      const v = yMax * i / 5;
+      el('line', { x1: mL, x2: W - mR, y1: Yp(v), y2: Yp(v), stroke: css('--grid') }, svg);
+      el('text', { x: mL - 6, y: Yp(v) + 4, 'text-anchor': 'end' }, svg).textContent = Math.round(v).toLocaleString('en-US');
+    }
+    for (let v = x0; v <= x1; v += 2) el('text', { x: X(v), y: H - mB + 16, 'text-anchor': 'middle' }, svg).textContent = v + '%';
+    el('text', { x: (W + mL) / 2, y: H - 4, 'text-anchor': 'middle', class: 'lab' }, svg).textContent = 'world stock-to-use';
+    el('text', { x: mL - 6, y: mT - 2, 'text-anchor': 'start', class: 'lab' }, svg);
+    let d = '';
+    for (let v = x0; v <= x1; v += 0.25) { const p = Math.exp(fit.a + fit.b * v); d += (d ? ' L' : 'M') + X(v) + ',' + Yp(Math.min(p, yMax)); }
+    el('path', { d, fill: 'none', stroke: css('--ink-3'), 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+    const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; wrap.appendChild(tip);
+    xs.forEach((x, i) => {
+      const cx = X(x), cy = Yp(ys[i]);
+      el('circle', { cx, cy, r: 5, fill: css(color), stroke: css('--card'), 'stroke-width': 2, opacity: i === xs.length - 1 ? 0.5 : 1 }, svg);
+      if (['2010/11', '2013/14', '2018/19', '2021/22', '2024/25', '2026/27'].includes(Y[i]))
+        el('text', { x: cx + 8, y: cy - 6, class: 'lab' }, svg).textContent = Y[i].slice(2);
+      const hit = el('circle', { cx, cy, r: 12, fill: 'transparent' }, svg);
+      const show = () => {
+        tip.innerHTML = `<b>${Y[i]}</b><br>stock-to-use ${fmt1(x)}%<br>${Math.round(ys[i]).toLocaleString('en-US')} ${unit}<br>fit ${Math.round(Math.exp(fit.a + fit.b * x)).toLocaleString('en-US')} ${unit}`;
+        tip.hidden = false;
+        const box = wrap.getBoundingClientRect(), s = box.width / W;
+        let left = cx * s + 12; if (left + tip.offsetWidth > box.width) left = cx * s - tip.offsetWidth - 12;
+        tip.style.left = Math.max(0, left) + 'px'; tip.style.top = Math.max(0, cy * s - 30) + 'px';
+      };
+      hit.addEventListener('mouseenter', show); hit.addEventListener('click', show);
+      hit.addEventListener('mouseleave', () => tip.hidden = true);
+    });
+  }
+  scatter(document.getElementById('c-sc-kc'), 'KC1 (¢/lb) vs world stock-to-use', D.world.sur, kc, D.fit.kc, '¢/lb', '--kc');
+  scatter(document.getElementById('c-sc-rc'), 'Robusta ($/t) vs world stock-to-use', D.world.sur, rcT, D.fit.rc, '$/t', '--rc');
+
+  // Regime table
+  document.getElementById('t-regimes').innerHTML = '<table><thead><tr><th>World stock-to-use</th><th>Years</th><th>Avg KC1 ¢/lb</th><th>Avg robusta $/t</th></tr></thead><tbody>' +
+    D.stats.regimes.slice().reverse().map(r => `<tr><td>${r.hi >= 30 ? '≥ ' + r.lo : r.lo === 0 ? '< ' + r.hi : r.lo + '–' + r.hi} %</td><td style="text-align:left;white-space:normal">${r.years.join(', ')}</td><td>${r.kc}</td><td>${r.rc.toLocaleString('en-US')}</td></tr>`).join('') + '</tbody></table>';
+
+  // Fit table
+  document.getElementById('t-fit').innerHTML = '<table><thead><tr><th>World stock-to-use</th>' + D.fit.kc_table.map(r => `<th>${r[0]} %</th>`).join('') + '</tr></thead><tbody>' +
+    '<tr><td>KC1 fair value, ¢/lb</td>' + D.fit.kc_table.map(r => `<td>${r[1]}</td>`).join('') + '</tr>' +
+    '<tr><td>Robusta fair value, $/t</td>' + D.fit.rc_table.map(r => `<td>${r[1].toLocaleString('en-US')}</td>`).join('') + '</tr></tbody></table>';
+
+  // Correlation table
+  const nice = {
+    world_vs_kc: 'World stock-to-use → KC1', world_vs_rc: 'World stock-to-use → robusta',
+    arabica_basket_vs_kc: 'Arabica 9 origins → KC1', robusta_basket_vs_rc: 'Robusta 4 origins → robusta',
+    Brazil_vs_kc: 'Brazil → KC1', Colombia_vs_kc: 'Colombia → KC1', Vietnam_vs_kc: 'Vietnam → KC1', Vietnam_vs_rc: 'Vietnam → robusta',
+    Honduras_vs_kc: 'Honduras → KC1', Ethiopia_vs_kc: 'Ethiopia → KC1', Peru_vs_kc: 'Peru → KC1', Mexico_vs_kc: 'Mexico → KC1', Guatemala_vs_kc: 'Guatemala → KC1',
+    Indonesia_vs_rc: 'Indonesia → robusta', Uganda_vs_rc: 'Uganda → robusta', Brazil_vs_rc: 'Brazil → robusta',
+    brazil_prod_vs_kc: 'Brazil production (bags) → KC1', brazil_surplus_vs_kc: 'Brazil surplus ÷ use → KC1', arabica_surplus_vs_kc: 'Arabica 6-origin surplus → KC1',
+    vietnam_surplus_vs_rc: 'Vietnam surplus ÷ use → robusta', robusta_surplus_vs_rc: 'Robusta 4-origin surplus → robusta',
+    world_cons_vs_kc: 'World consumption → KC1'
+  };
+  const cell = v => `<td style="background:color-mix(in srgb, var(${v < 0 ? '--bar-1' : '--bar-2'}) ${Math.round(Math.abs(v) * 45)}%, transparent)">${v.toFixed(2)}</td>`;
+  document.getElementById('t-corr').innerHTML = '<table><thead><tr><th>Series</th><th>Level</th><th>Next yr</th><th>Price move</th></tr></thead><tbody>' +
+    Object.keys(nice).filter(k => D.stats[k]).map(k => { const s = D.stats[k]; return `<tr><td>${nice[k]}</td>${cell(s.level)}${cell(s.lead)}${cell(s.vs_move)}</tr>`; }).join('') + '</tbody></table>';
+})();
+</script>
+</body>
+</html>
