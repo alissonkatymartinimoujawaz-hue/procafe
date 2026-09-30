@@ -50,3 +50,9 @@
 - `ice_stocks_certifies_ico.csv`: ICE certified stocks in million bags, June 2012 to August 2026.
   - New York (arabica) and London (robusta), from ICO Coffee Market Report Table 5.
   - The table's columns are the consecutive months ending in the report month. Where months overlap between reports, the latest report is kept.
+
+- `arabica_production_stocks_certifies.html`: three aligned arabica charts, each with KC.
+  - Arabica production.
+  - Ending-stock STU.
+  - New York certified stocks ÷ (domestic consumption + exports).
+  - Also EU / US / Japan STU against price.

@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Arabica : production, stocks et KC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: one reading column (max 72rem) under a sticky section bar; charts span the column; wide tables scroll inside their own box */
+:root{
+  --bg:#F3F5F2; --surface:#FFFFFF; --ink:#16201B; --muted:#56635C; --line:#D3DAD4; --grid:#E3E8E4; --chip:#E8EDE9;
+  --accent:#7A4424; --accent-soft:#F1E6DE;
+  --c-stu:#3B5B8C; --c-ara:#8B5530; --c-rob:#3D7A55; --c-kc:#C8372D; --c-df:#D98A1A;
+  --c-br:#2F6DB5; --c-co:#C9A21A; --c-vn:#3D7A55; --c-imp:#5E7497; --c-curve:#56635C;
+  --heat-lo:#E4816F; --heat-mid:#F6F4EC; --heat-hi:#6FB98D;
+  --font-display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-data:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1411; --surface:#161C18; --ink:#E5EBE7; --muted:#9BA8A1; --line:#29322D; --grid:#222A25; --chip:#1E2621;
+    --accent:#DDA27A; --accent-soft:#2A1F18;
+    --c-stu:#86A6D8; --c-ara:#D39A6E; --c-rob:#74C396; --c-kc:#F2766B; --c-df:#F2B24A;
+    --c-br:#7DB0E8; --c-co:#E3C44E; --c-vn:#74C396; --c-imp:#9FB2D0; --c-curve:#9BA8A1;
+    --heat-lo:#8C3A31; --heat-mid:#1A201C; --heat-hi:#2C7550;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1411; --surface:#161C18; --ink:#E5EBE7; --muted:#9BA8A1; --line:#29322D; --grid:#222A25; --chip:#1E2621;
+  --accent:#DDA27A; --accent-soft:#2A1F18;
+  --c-stu:#86A6D8; --c-ara:#D39A6E; --c-rob:#74C396; --c-kc:#F2766B; --c-df:#F2B24A;
+  --c-br:#7DB0E8; --c-co:#E3C44E; --c-vn:#74C396; --c-imp:#9FB2D0; --c-curve:#9BA8A1;
+  --heat-lo:#8C3A31; --heat-mid:#1A201C; --heat-hi:#2C7550;
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:72rem;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;letter-spacing:-.005em}
+h1{font-size:clamp(2rem,4.6vw,3.1rem);line-height:1.02;font-weight:750;font-stretch:82%;margin:.35rem 0 .6rem}
+h2{font-size:clamp(1.5rem,2.8vw,2rem);font-weight:720;font-stretch:88%;margin:0 0 .4rem;line-height:1.1}
+h3{font-size:1.18rem;font-weight:680;font-stretch:92%;margin:0 0 .35rem;line-height:1.2}
+p{margin:0 0 .8rem;max-width:68ch}
+.eyebrow{font-family:var(--font-data);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+.dek{font-size:1.12rem;color:var(--ink);max-width:62ch}
+header.top{padding-block:2.2rem 1.4rem;border-bottom:1px solid var(--line)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:1.4rem 0 0;border-top:2px solid var(--ink)}
+.facts div{padding:.8rem 1rem .4rem 0;min-width:0}
+.facts div+div{padding-left:1rem;border-left:1px solid var(--line)}
+.facts dt{font-family:var(--font-display);font-stretch:85%;font-weight:720;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.05;font-variant-numeric:tabular-nums}
+.facts dd{margin:.3rem 0 0;font-size:.86rem;color:var(--muted);line-height:1.4}
+@media (max-width:760px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.facts div:nth-child(3){padding-left:0;border-left:0}.facts div:nth-child(n+3){border-top:1px solid var(--line)}}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav.toc ul{display:flex;gap:1.3rem;list-style:none;margin:0;padding-block:.6rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+nav.toc a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500}
+nav.toc a:hover{color:var(--ink)}
+section{padding-block:2.6rem 1rem;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem 1rem;margin-bottom:1rem}
+.sec-head p{color:var(--muted);margin:0}
+.qa{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr));gap:1.6rem 2.2rem}
+.qa article{border-top:2px solid var(--ink);padding-top:.7rem;min-width:0}
+.qa .q{font-family:var(--font-data);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.qa p{font-size:.97rem}
+.drivers{counter-reset:d;list-style:none;padding:0;margin:.2rem 0 .8rem;display:grid;gap:.5rem}
+.drivers li{counter-increment:d;display:grid;grid-template-columns:1.6rem 1fr;gap:.3rem;font-size:.97rem}
+.drivers li::before{content:counter(d);font-family:var(--font-display);font-weight:760;font-size:1.15rem;color:var(--accent);line-height:1.3}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0 1rem;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.86rem;font-variant-numeric:tabular-nums}
+th,td{padding:.42rem .6rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--font-data);font-size:.72rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--chip)}
+td.num,th.num{text-align:right;white-space:nowrap}
+tr:last-child>*{border-bottom:0}
+.band{color:var(--muted);font-size:.8rem;margin-left:.25rem}
+tr.hl>*{background:var(--accent-soft)}
+tr.mkt>*{font-style:italic}
+.chart-block{padding-block:1.4rem .6rem;border-top:1px dashed var(--line)}
+.chart-block:first-of-type{border-top:0}
+.chart-block .read{color:var(--ink);font-size:.95rem;max-width:74ch}
+.pair{display:grid;gap:1.6rem}
+.legend{display:flex;flex-wrap:wrap;gap:.35rem 1.1rem;margin:.4rem 0 .2rem;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.legend i{display:inline-block;width:.8rem;height:.8rem;border-radius:2px}
+.legend i.l{height:3px;width:1.2rem;border-radius:2px}
+.chart{position:relative;min-height:300px;width:100%}
+.chart svg{display:block;overflow:visible}
+.chart .grid{stroke:var(--grid);stroke-width:1}
+.chart .zero{stroke:var(--muted);stroke-width:1}
+.chart .ax{fill:var(--muted);font-family:var(--font-data);font-size:10.5px}
+.chart .unit{fill:var(--muted);font-family:var(--font-body);font-size:11px;font-weight:600}
+.chart .lab{fill:var(--ink);font-family:var(--font-data);font-size:9.5px;paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+.chart .ptlab{fill:var(--muted);font-family:var(--font-data);font-size:10px;paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+.chart .ln{fill:none;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.chart .curve{fill:none;stroke:var(--c-curve);stroke-width:1.6;stroke-dasharray:5 4}
+.chart .pt{stroke:var(--surface);stroke-width:1.2}
+.chart .bar.proj{fill-opacity:.45}
+.chart .hover{fill:var(--ink);opacity:0}
+.chart .hover.on{opacity:.06}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:.4rem .55rem;font-size:.78rem;line-height:1.35;box-shadow:0 4px 14px rgba(0,0,0,.12);white-space:nowrap;z-index:2}
+.tip b{font-family:var(--font-data);font-weight:500}
+.tip .row{display:flex;align-items:center;gap:.4rem}
+.tip i{display:inline-block;width:.6rem;height:.6rem;border-radius:2px}
+.heat td.v{text-align:right;white-space:nowrap;font-family:var(--font-data);font-size:.76rem;padding:.34rem .45rem}
+.heat th.l{white-space:nowrap;font-weight:500}
+.heat td.d{color:var(--muted);font-size:.76rem;white-space:nowrap}
+.heat tr.sec th{background:var(--chip);font-family:var(--font-data);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.heat th.l.b{font-weight:650}
+.heat thead th.p{color:var(--accent)}
+.note{font-size:.84rem;color:var(--muted);max-width:74ch}
+.callout{border-left:3px solid var(--accent);padding:.2rem 0 .2rem 1rem;margin:1rem 0}
+.steps{list-style:none;counter-reset:s;padding:0;margin:.4rem 0 1rem;display:grid;gap:.7rem}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2rem 1fr;gap:.4rem;max-width:74ch}
+.steps li::before{content:counter(s);font-family:var(--font-data);font-size:.8rem;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:1.5rem;height:1.5rem;display:grid;place-items:center;margin-top:.1rem}
+.watch{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:.8rem 1.6rem;margin:.6rem 0 1rem}
+.watch div{min-width:0;border-top:1px solid var(--line);padding-top:.5rem}
+.watch b{display:block;font-family:var(--font-data);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:.15rem}
+.watch p{font-size:.9rem;margin:0}
+footer{padding-block:2rem 3rem;color:var(--muted);font-size:.82rem}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+section[id],article[id]{scroll-margin-top:3.2rem}
+</style>
+<style>.stack .chart-block{padding-block:.9rem .2rem}.stack .chart-block h3{font-size:1.05rem}.corr{font-family:var(--font-data);font-size:.85rem;color:var(--accent);margin-left:.4rem;white-space:nowrap}</style>
+<header class="top"><div class="wrap">
+<p class="eyebrow">Arabica · campagnes 2010/11 → 2026/27 · USDA PSD juillet 2026 · KC et stocks certifiés ICE via l'ICO</p>
+<h1>Arabica : production, stocks et KC</h1>
+<p class="dek">Trois graphiques alignés sur les mêmes années. Plus on se rapproche du stock que le marché peut livrer, plus le lien avec le prix est fort : production −0,14, stock-to-use USDA −0,48, stocks certifiés sur utilisation −0,67 (corrélation avec le logarithme du KC).</p>
+</div></header>
+<main class="wrap"><section class="stack">
+<article class="chart-block"><h3>1 · Production mondiale d'arabica et KC1 <span class="corr">r = −0,14</span></h3>
+<p class="read">Les grosses récoltes (2016/17, 2018/19, 2020/21, 2024/25) ont eu des KC de 105 à 333 c/lb : le volume produit ne fixe pas le prix.</p>
+<div class="legend" data-legend="a1"></div><div class="chart" data-chart="a1"></div></article>
+<article class="chart-block"><h3>2 · Stock-to-use arabica (stocks de fin USDA) et KC1 <span class="corr">r = −0,48</span></h3>
+<p class="read">Stocks de fin ÷ (consommation domestique + exportations), 47 pays producteurs pondérés par leur part d'arabica. Le ratio passe de 15,1 % (2013/14) à 6,3 % (2024/25), quand le KC fait son record.</p>
+<div class="legend" data-legend="a2"></div><div class="chart" data-chart="a2"></div></article>
+<article class="chart-block"><h3>3 · Stocks certifiés New York ÷ (conso domestique + exportations) et KC1 <span class="corr">r = −0,67</span></h3>
+<p class="read">Même dénominateur que le graphique 2 ; au numérateur, les stocks certifiés ICE arabica en fin de campagne (septembre ; août pour 2025/26). De 2,7 % en 2012/13 à 0,18 % en 2025/26. Les chutes de 2021/22 et 2025/26 coïncident avec les flambées du KC. Pas de données certifiées avant 2012/13 dans les rapports ICO.</p>
+<div class="legend" data-legend="a3"></div><div class="chart" data-chart="a3"></div></article>
+</section>
+<section id="consommateurs"><div class="sec-head"><h2>Et le STU des pays consommateurs ?</h2><p>Stocks de fin USDA ÷ consommation domestique, avec le KC1 et le DF1.</p></div>
+<p>Ta question : faut-il suivre le STU des États-Unis et de l'UE contre le prix ? Oui. C'est la mesure de stock qui colle le mieux au prix, avec les stocks certifiés : UE + États-Unis + Japon ensemble donnent −0,71 avec le KC et −0,77 avec le DF. Le lien tient après retrait de la tendance et existait déjà avant 2021. Il ne fonctionne pas en variations d'une année sur l'autre : c'est un indicateur de niveau (zone de prix), pas de timing.</p>
+<div class="tbl-wrap"><table><thead><tr><th>STU</th><th class="num">r niveau KC</th><th class="num">r niveau DF</th><th class="num">r KC sans tendance</th><th class="num">r KC 2010-2020</th><th class="num">r variations KC</th><th class="num">r variations DF</th></tr></thead><tbody><tr><th scope="row">Union européenne</th><td class="num">−0,65</td><td class="num">−0,76</td><td class="num">−0,60</td><td class="num">−0,45</td><td class="num">0,30</td><td class="num">0,15</td></tr><tr><th scope="row">États-Unis</th><td class="num">−0,70</td><td class="num">−0,45</td><td class="num">−0,72</td><td class="num">−0,69</td><td class="num">−0,15</td><td class="num">0,17</td></tr><tr><th scope="row">UE + États-Unis + Japon</th><td class="num">−0,71</td><td class="num">−0,77</td><td class="num">−0,68</td><td class="num">−0,57</td><td class="num">0,22</td><td class="num">0,17</td></tr></tbody></table></div>
+<p class="note">Attention aux données : l'USDA garde les stocks de fin des États-Unis à 5,7 M sacs chaque année de 2022/23 à 2026/27. Ce n'est pas une mesure, les variations récentes du STU américain ne viennent que de la consommation. La chute des stocks de l'UE en 2022 (14,0 → 9,3 M sacs) est cohérente avec ce que rapporte l'USDA (Coffee Annual Honduras, mai 2024) : les stocks de la Fédération européenne du café (ECF) et des entrepôts ICE aux États-Unis sont passés de 14,5 à 9,8 M sacs. L'USDA relie ce déstockage à des taux d'intérêt de 4,9&nbsp;% fin septembre 2023, qui renchérissent le coût de porter du stock. C'est une hypothèse à retenir : la hausse des taux a vidé les stocks des consommateurs, donc le coussin.</p>
+<article class="chart-block"><h3>STU de l'Union européenne, KC1 et DF1</h3><div class="legend" data-legend="b1"></div><div class="chart" data-chart="b1"></div></article>
+<article class="chart-block"><h3>STU des États-Unis et KC1</h3><div class="legend" data-legend="b2"></div><div class="chart" data-chart="b2"></div></article>
+<article class="chart-block"><h3>UE + États-Unis + Japon, KC1 et DF1</h3><div class="legend" data-legend="b3"></div><div class="chart" data-chart="b3"></div></article>
+</section>
+<section><div class="sec-head"><h2>Les chiffres</h2></div>
+<div class="tbl-wrap"><table><thead><tr><th>Campagne</th><th class="num">Production arabica (M sacs)</th><th class="num">Conso + export arabica (M sacs)</th><th class="num">STU stocks de fin (%)</th><th class="num">Certifiés NY (M sacs)</th><th class="num">Certifiés ÷ utilisation (%)</th><th class="num">KC1 (c/lb)</th></tr></thead><tbody><tr><th scope="row">2010/11</th><td class="num">87,9</td><td class="num">116,9</td><td class="num">8,0</td><td class="num">–</td><td class="num">–</td><td class="num">250</td></tr><tr><th scope="row">2011/12</th><td class="num">84,5</td><td class="num">114,1</td><td class="num">8,4</td><td class="num">–</td><td class="num">–</td><td class="num">198</td></tr><tr><th scope="row">2012/13</th><td class="num">92,9</td><td class="num">117,4</td><td class="num">12,8</td><td class="num">3,13</td><td class="num">2,67</td><td class="num">141</td></tr><tr><th scope="row">2013/14</th><td class="num">92,5</td><td class="num">120,7</td><td class="num">15,1</td><td class="num">2,68</td><td class="num">2,22</td><td class="num">161</td></tr><tr><th scope="row">2014/15</th><td class="num">86,7</td><td class="num">118,6</td><td class="num">13,4</td><td class="num">2,28</td><td class="num">1,92</td><td class="num">154</td></tr><tr><th scope="row">2015/16</th><td class="num">86,1</td><td class="num">123,9</td><td class="num">9,5</td><td class="num">1,42</td><td class="num">1,15</td><td class="num">132</td></tr><tr><th scope="row">2016/17</th><td class="num">101,1</td><td class="num">132,7</td><td class="num">10,3</td><td class="num">2,03</td><td class="num">1,53</td><td class="num">144</td></tr><tr><th scope="row">2017/18</th><td class="num">95,2</td><td class="num">128,8</td><td class="num">9,5</td><td class="num">2,70</td><td class="num">2,10</td><td class="num">121</td></tr><tr><th scope="row">2018/19</th><td class="num">104,9</td><td class="num">139,7</td><td class="num">9,7</td><td class="num">2,60</td><td class="num">1,86</td><td class="num">105</td></tr><tr><th scope="row">2019/20</th><td class="num">94,9</td><td class="num">129,9</td><td class="num">8,6</td><td class="num">1,26</td><td class="num">0,97</td><td class="num">113</td></tr><tr><th scope="row">2020/21</th><td class="num">102,2</td><td class="num">135,3</td><td class="num">9,5</td><td class="num">2,27</td><td class="num">1,68</td><td class="num">144</td></tr><tr><th scope="row">2021/22</th><td class="num">87,1</td><td class="num">127,8</td><td class="num">7,2</td><td class="num">0,45</td><td class="num">0,35</td><td class="num">224</td></tr><tr><th scope="row">2022/23</th><td class="num">87,9</td><td class="num">120,5</td><td class="num">9,0</td><td class="num">0,49</td><td class="num">0,41</td><td class="num">171</td></tr><tr><th scope="row">2023/24</th><td class="num">97,2</td><td class="num">133,0</td><td class="num">7,0</td><td class="num">0,87</td><td class="num">0,65</td><td class="num">204</td></tr><tr><th scope="row">2024/25</th><td class="num">102,3</td><td class="num">140,0</td><td class="num">6,3</td><td class="num">0,62</td><td class="num">0,44</td><td class="num">333</td></tr><tr><th scope="row">2025/26</th><td class="num">94,4</td><td class="num">130,9</td><td class="num">8,2</td><td class="num">0,24</td><td class="num">0,18</td><td class="num">312</td></tr><tr><th scope="row">2026/27</th><td class="num">105,9</td><td class="num">145,4</td><td class="num">7,8</td><td class="num">–</td><td class="num">–</td><td class="num">–</td></tr></tbody></table></div>
+<p class="note">Sources : USDA PSD Online (juillet 2026 ; 2026/27 = prévision), ICO Coffee Market Reports (prix ICE New York moyenne 2e-3e positions, proxy de KC1 ; stocks certifiés). Prix = moyenne octobre-septembre ; 2025/26 = octobre 2025 à août 2026. Corrélations sur 16 campagnes (14 pour les certifiés), niveaux : elles reflètent surtout la tendance 2021-2026 et ne disent pas qui cause quoi.</p>
+</section></main>
+<footer><div class="wrap">30 septembre 2026. Ce n'est pas un conseil d'investissement.</div></footer>
+<script>
+(function(){"use strict";
+const D={"labels":["2010/11","2011/12","2012/13","2013/14","2014/15","2015/16","2016/17","2017/18","2018/19","2019/20","2020/21","2021/22","2022/23","2023/24","2024/25","2025/26","2026/27"],"ara":[87.94,84.54,92.87,92.47,86.69,86.14,101.14,95.22,104.93,94.92,102.16,87.09,87.91,97.16,102.28,94.44,105.87],"stu":[0.07952,0.08403,0.1281,0.15133,0.13412,0.09504,0.10308,0.09509,0.09687,0.0856,0.0948,0.07217,0.09001,0.07034,0.06306,0.08244,0.07759],"cr":[null,null,0.026659,0.022207,0.019231,0.011463,0.015293,0.020969,0.018617,0.009699,0.016771,0.003522,0.004066,0.006539,0.004429,0.001834,null],"kc":[249.66,197.84,140.7,161.47,154.02,131.83,143.77,120.6,104.98,113.24,143.75,224.09,171.19,204.0,333.06,312.21,null]};
+const NB = " ";
+const fmt = {
+  pct: (v, d) => (v * 100).toFixed(d == null ? 1 : d).replace(".", ",").replace("-", "−") + NB + "%",
+  c: v => Math.round(v).toString(),
+  t: v => Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, NB),
+  m: v => v.toFixed(1).replace(".", ",")
+};
+const SVGNS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(SVGNS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function text(parent, x, y, s, cls, anchor) {
+  const t = el("text", {x: x, y: y, class: cls, "text-anchor": anchor || "middle"}, parent);
+  t.textContent = s;
+  return t;
+}
+function nice(lo, hi, n) {
+  const span = (hi - lo) || 1, raw = span / n, p = Math.pow(10, Math.floor(Math.log10(raw))), q = raw / p;
+  const step = (q <= 1 ? 1 : q <= 2 ? 2 : q <= 2.5 ? 2.5 : q <= 5 ? 5 : 10) * p;
+  const min = Math.floor(lo / step + 1e-9) * step, max = Math.ceil(hi / step - 1e-9) * step, ticks = [];
+  for (let v = min; v <= max + step / 2; v += step) ticks.push(+v.toFixed(10));
+  return {min: min, max: max, ticks: ticks, step: step};
+}
+const UNIT = {pct: "%", c: "US c/lb", t: "US$/t", m: "M sacs"};
+function legend(key, spec) {
+  const box = document.querySelector('[data-legend="' + key + '"]');
+  if (!box) return;
+  box.innerHTML = "";
+  (spec.bars || []).forEach(s => {
+    const sp = document.createElement("span");
+    sp.innerHTML = '<i style="background:var(' + s.c + ')"></i>' + s.n;
+    box.appendChild(sp);
+  });
+  (spec.lines || []).forEach(s => {
+    const sp = document.createElement("span");
+    sp.innerHTML = '<i class="l" style="background:var(' + s.c + ')"></i>' + s.n + " · axe droit";
+    box.appendChild(sp);
+  });
+}
+function tipBox(host) {
+  let t = host.querySelector(".tip");
+  if (!t) { t = document.createElement("div"); t.className = "tip"; t.hidden = true; host.appendChild(t); }
+  return t;
+}
+function combo(host, spec) {
+  host.querySelectorAll("svg").forEach(s => s.remove());
+  const Wd = Math.max(280, Math.floor(host.clientWidth));
+  const narrow = Wd < 620;
+  const H = narrow ? 290 : 350;
+  const M = {l: narrow ? 40 : 50, r: narrow ? 42 : 56, t: 22, b: 0};
+  const n = D.labels.length;
+  const band0 = (Wd - M.l - M.r) / n;
+  const rot = band0 < 50;
+  M.b = rot ? 46 : 26;
+  const pw = Wd - M.l - M.r, ph = H - M.t - M.b, band = pw / n;
+  const f1 = spec.y1 || "pct", f2 = spec.y2;
+  const bv = [].concat.apply([], spec.bars.map(s => s.v)).filter(v => v != null);
+  const lo = Math.min(0, Math.min.apply(null, bv)), hi = Math.max(0, Math.max.apply(null, bv));
+  const pad = (hi - lo) * 0.13;
+  const y1 = nice(lo < 0 ? lo - pad * 0.5 : 0, hi + pad, narrow ? 4 : 5);
+  const lv = [].concat.apply([], spec.lines.map(s => s.v)).filter(v => v != null);
+  const y2 = lv.length ? nice(0, Math.max.apply(null, lv) * 1.04, narrow ? 4 : 5) : null;
+  const Y1 = v => M.t + ph - (v - y1.min) / (y1.max - y1.min) * ph;
+  const Y2 = v => y2 ? M.t + ph - (v - y2.min) / (y2.max - y2.min) * ph : 0;
+  const X = i => M.l + band * (i + 0.5);
+  const svg = el("svg", {viewBox: "0 0 " + Wd + " " + H, width: Wd, height: H, role: "img", "aria-label": spec.aria}, null);
+  host.insertBefore(svg, host.firstChild);
+  const lab1 = v => f1 === "pct" ? fmt.pct(v, Math.abs(y1.step) < 0.02 ? 1 : 0) : fmt[f1](v);
+  y1.ticks.forEach(t => {
+    el("line", {x1: M.l, x2: M.l + pw, y1: Y1(t), y2: Y1(t), class: Math.abs(t) < 1e-12 ? "zero" : "grid"}, svg);
+    text(svg, M.l - 6, Y1(t) + 3.5, lab1(t), "ax", "end");
+  });
+  if (y2) y2.ticks.forEach(t => text(svg, M.l + pw + 6, Y2(t) + 3.5, fmt[f2](t), "ax", "start"));
+  text(svg, M.l - 6, 12, spec.u1 || UNIT[f1], "unit", "end");
+  if (y2) text(svg, Wd - 1, 12, UNIT[f2], "unit", "end");
+  const ns = spec.bars.length, gw = band * (ns > 1 ? 0.8 : 0.62), bw = gw / ns, labs = [];
+  spec.bars.forEach((s, k) => s.v.forEach((v, i) => {
+    if (v == null) return;
+    const x = X(i) - gw / 2 + k * bw, y0 = Y1(0), y = Y1(v);
+    el("rect", {x: (x + 0.5).toFixed(1), y: Math.min(y, y0).toFixed(1), width: Math.max(1, bw - 1).toFixed(1),
+      height: Math.max(0.6, Math.abs(y0 - y)).toFixed(1), style: "fill:var(" + s.c + ")", class: "bar" + (i === n - 1 ? " proj" : "")}, svg);
+    if (ns === 1 && band >= 34 && spec.labels !== false)
+      labs.push([X(i), v >= 0 ? y - 4 : y + 11, f1 === "pct" ? fmt.pct(v, 1) : fmt[f1](v)]);
+  }));
+  spec.lines.forEach(s => {
+    let d = "", pen = false;
+    s.v.forEach((v, i) => {
+      if (v == null) { pen = false; return; }
+      d += (pen ? "L" : "M") + X(i).toFixed(1) + " " + Y2(v).toFixed(1);
+      pen = true;
+    });
+    el("path", {d: d, class: "ln", style: "stroke:var(" + s.c + ")"}, svg);
+    s.v.forEach((v, i) => { if (v != null) el("circle", {cx: X(i).toFixed(1), cy: Y2(v).toFixed(1), r: narrow ? 2.6 : 3.3, class: "pt", style: "fill:var(" + s.c + ")"}, svg); });
+  });
+  labs.forEach(a => text(svg, a[0], a[1], a[2], "lab", "middle"));
+  D.labels.forEach((c, i) => {
+    const s = (narrow ? c.slice(2) : c) + (i === n - 1 ? " p" : "");
+    if (rot) {
+      const x = X(i) + 3, y = M.t + ph + 10;
+      const t = text(svg, x, y, s, "ax", "end");
+      t.setAttribute("transform", "rotate(-45 " + x.toFixed(1) + " " + y + ")");
+    } else text(svg, X(i), M.t + ph + 16, s, "ax", "middle");
+  });
+  const hover = el("rect", {x: 0, y: M.t, width: band, height: ph, class: "hover"}, svg);
+  const tip = tipBox(host);
+  function show(ev) {
+    const r = svg.getBoundingClientRect();
+    const px = (ev.clientX - r.left) * (Wd / r.width);
+    const i = Math.floor((px - M.l) / band);
+    if (i < 0 || i >= n) { hide(); return; }
+    hover.setAttribute("x", (M.l + band * i).toFixed(1));
+    hover.classList.add("on");
+    let h = "<div><b>" + D.labels[i] + (i === n - 1 ? " (prévision)" : "") + "</b></div>";
+    spec.bars.forEach(s => { if (s.v[i] != null) h += '<div class="row"><i style="background:var(' + s.c + ')"></i>' + s.n + " : <b>" + (f1 === "pct" ? fmt.pct(s.v[i], 1) : fmt[f1](s.v[i])) + "</b></div>"; });
+    spec.lines.forEach(s => { if (s.v[i] != null) h += '<div class="row"><i style="background:var(' + s.c + ')"></i>' + s.n + " : <b>" + fmt[f2](s.v[i]) + "</b></div>"; });
+    tip.innerHTML = h;
+    tip.hidden = false;
+    const hx = (M.l + band * (i + 0.5)) * (r.width / Wd);
+    const tw = tip.offsetWidth;
+    tip.style.left = Math.max(0, Math.min(r.width - tw, hx + 12 > r.width - tw ? hx - tw - 12 : hx + 12)) + "px";
+    tip.style.top = "8px";
+  }
+  function hide() { hover.classList.remove("on"); tip.hidden = true; }
+  svg.addEventListener("pointermove", show);
+  svg.addEventListener("pointerdown", show);
+  svg.addEventListener("pointerleave", hide);
+}
+function scatter(host, spec) {
+  host.querySelectorAll("svg").forEach(s => s.remove());
+  const Wd = Math.max(280, Math.floor(host.clientWidth));
+  const narrow = Wd < 480;
+  const H = narrow ? 280 : 320;
+  const M = {l: narrow ? 42 : 50, r: 14, t: 22, b: 34};
+  const pw = Wd - M.l - M.r, ph = H - M.t - M.b;
+  const xs = D.world.slice(0, 16), ys = spec.y.slice(0, 16);
+  const cf = x => Math.exp(spec.m.a + spec.m.b / x);
+  const x0 = 0.10, x1 = 0.30;
+  const ymax = Math.max(Math.max.apply(null, ys), cf(0.11), spec.last) * 1.06;
+  const yv = nice(0, ymax, narrow ? 4 : 5);
+  const X = v => M.l + (v - x0) / (x1 - x0) * pw, Y = v => M.t + ph - (v - yv.min) / (yv.max - yv.min) * ph;
+  const svg = el("svg", {viewBox: "0 0 " + Wd + " " + H, width: Wd, height: H, role: "img", "aria-label": spec.aria}, null);
+  host.insertBefore(svg, host.firstChild);
+  yv.ticks.forEach(t => { el("line", {x1: M.l, x2: M.l + pw, y1: Y(t), y2: Y(t), class: t === 0 ? "zero" : "grid"}, svg); text(svg, M.l - 6, Y(t) + 3.5, fmt[spec.f](t), "ax", "end"); });
+  for (let v = 0.10; v <= 0.3001; v += 0.05) { el("line", {x1: X(v), x2: X(v), y1: M.t, y2: M.t + ph, class: "grid"}, svg); text(svg, X(v), M.t + ph + 16, fmt.pct(v, 0), "ax", "middle"); }
+  text(svg, M.l - 6, 12, UNIT[spec.f], "unit", "end");
+  text(svg, M.l + pw, M.t + ph + 30, "STU mondial (stocks ÷ conso)", "unit", "end");
+  let d = "";
+  for (let k = 0; k <= 60; k++) { const x = 0.105 + k * (0.30 - 0.105) / 60; d += (k ? "L" : "M") + X(x).toFixed(1) + " " + Y(cf(x)).toFixed(1); }
+  el("path", {d: d, class: "curve"}, svg);
+  const placed = [];
+  const pts = xs.map((x, i) => ({x: X(x), y: Y(ys[i])}));
+  const hit = b => b.x1 < M.l || b.x2 > M.l + pw || b.y1 < M.t - 4 || b.y2 > M.t + ph ||
+    placed.some(o => !(b.x2 < o.x1 || b.x1 > o.x2 || b.y2 < o.y1 || b.y1 > o.y2));
+  function label(p, s, r) {
+    const w = s.length * 6.1, cands = [[p.x + r + 3, p.y + 3.5, "start"], [p.x - r - 3, p.y + 3.5, "end"], [p.x, p.y - r - 4, "middle"], [p.x, p.y + r + 11, "middle"]];
+    for (const c of cands) {
+      const x1 = c[2] === "start" ? c[0] : c[2] === "end" ? c[0] - w : c[0] - w / 2;
+      const b = {x1: x1, y1: c[1] - 9, x2: x1 + w, y2: c[1] + 2};
+      if (!hit(b)) { text(svg, c[0], c[1], s, "ptlab", c[2]); placed.push(b); return; }
+    }
+  }
+  pts.forEach(p => placed.push({x1: p.x - 4.5, y1: p.y - 4.5, x2: p.x + 4.5, y2: p.y + 4.5}));
+  const px = X(D.proj.stu), pc = {x: px, y: Y(cf(D.proj.stu))}, pm = {x: px, y: Y(spec.last)};
+  placed.push({x1: pc.x - 6, y1: pc.y - 6, x2: pc.x + 6, y2: pc.y + 6}, {x1: pm.x - 7, y1: pm.y - 7, x2: pm.x + 7, y2: pm.y + 7});
+  pts.forEach((p, i) => el("circle", {cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: 4.2, class: "pt", style: "fill:var(" + spec.c + ")"}, svg));
+  el("circle", {cx: pc.x.toFixed(1), cy: pc.y.toFixed(1), r: 5, style: "fill:var(--surface);stroke:var(" + spec.c + ");stroke-width:2"}, svg);
+  el("rect", {x: (pm.x - 4.5).toFixed(1), y: (pm.y - 4.5).toFixed(1), width: 9, height: 9, transform: "rotate(45 " + pm.x.toFixed(1) + " " + pm.y.toFixed(1) + ")", style: "fill:var(--c-kc)"}, svg);
+  label(pm, "août 2026", 7);
+  label(pc, "26/27 courbe", 6);
+  spec.labels.forEach(i => label(pts[i], D.labels[i].slice(2), 4.5));
+}
+function legendScatter(key, c) {
+  const box = document.querySelector('[data-legend="' + key + '"]');
+  box.innerHTML = '<span><i style="background:var(' + c + ');border-radius:50%"></i>campagnes 2010/11-2025/26</span>' +
+    '<span><i class="l" style="background:var(--c-curve)"></i>courbe ln(prix) = a + b ÷ STU</span>' +
+    '<span><i style="background:var(--c-kc);transform:rotate(45deg);width:.6rem;height:.6rem"></i>prix d’août 2026</span>';
+}
+
+function monthly(host, spec) {
+  host.querySelectorAll("svg").forEach(s => s.remove());
+  const Wd = Math.max(280, Math.floor(host.clientWidth));
+  const narrow = Wd < 620, H = narrow ? 260 : 320;
+  const M = {l: narrow ? 38 : 46, r: narrow ? 42 : 52, t: 22, b: 24};
+  const pw = Wd - M.l - M.r, ph = H - M.t - M.b, n = spec.m.length;
+  const y1 = nice(0, Math.max.apply(null, spec.a) * 1.05, 5), y2 = nice(0, Math.max.apply(null, spec.b) * 1.05, 5);
+  const X = i => M.l + pw * i / (n - 1), Y1 = v => M.t + ph - v / y1.max * ph, Y2 = v => M.t + ph - v / y2.max * ph;
+  const svg = el("svg", {viewBox: "0 0 " + Wd + " " + H, width: Wd, height: H, role: "img", "aria-label": spec.aria}, null);
+  host.insertBefore(svg, host.firstChild);
+  y1.ticks.forEach(t => { el("line", {x1: M.l, x2: M.l + pw, y1: Y1(t), y2: Y1(t), class: t === 0 ? "zero" : "grid"}, svg); text(svg, M.l - 6, Y1(t) + 3.5, fmt.m(t), "ax", "end"); });
+  y2.ticks.forEach(t => text(svg, M.l + pw + 6, Y2(t) + 3.5, fmt[spec.f2](t), "ax", "start"));
+  text(svg, M.l - 6, 12, "M sacs", "unit", "end");
+  text(svg, Wd - 1, 12, UNIT[spec.f2], "unit", "end");
+  spec.m.forEach((m, i) => { if (m.endsWith("-01") && (+m.slice(0, 4) % (narrow ? 2 : 1) === 0)) { el("line", {x1: X(i), x2: X(i), y1: M.t + ph, y2: M.t + ph + 4, class: "zero"}, svg); text(svg, X(i), M.t + ph + 16, narrow ? m.slice(2, 4) : m.slice(0, 4), "ax", "middle"); } });
+  const area = spec.a.map((v, i) => (i ? "L" : "M") + X(i).toFixed(1) + " " + Y1(v).toFixed(1)).join("") + "L" + X(n - 1).toFixed(1) + " " + Y1(0) + "L" + X(0) + " " + Y1(0) + "Z";
+  el("path", {d: area, style: "fill:var(" + spec.ca + ");fill-opacity:.28;stroke:var(" + spec.ca + ");stroke-width:1.4"}, svg);
+  el("path", {d: spec.b.map((v, i) => (i ? "L" : "M") + X(i).toFixed(1) + " " + Y2(v).toFixed(1)).join(""), class: "ln", style: "stroke:var(" + spec.cb + ")"}, svg);
+  const tip = tipBox(host), hl = el("line", {x1: 0, x2: 0, y1: M.t, y2: M.t + ph, class: "zero", style: "opacity:0"}, svg);
+  function show(ev) {
+    const r = svg.getBoundingClientRect(), px = (ev.clientX - r.left) * (Wd / r.width);
+    const i = Math.max(0, Math.min(n - 1, Math.round((px - M.l) / pw * (n - 1))));
+    hl.setAttribute("x1", X(i)); hl.setAttribute("x2", X(i)); hl.style.opacity = 1;
+    tip.innerHTML = "<div><b>" + spec.m[i] + "</b></div><div class='row'><i style='background:var(" + spec.ca + ")'></i>" + spec.na + " : <b>" + spec.a[i].toFixed(2).replace(".", ",") + " M</b></div><div class='row'><i style='background:var(" + spec.cb + ")'></i>" + spec.nb + " : <b>" + fmt[spec.f2](spec.b[i]) + "</b></div>";
+    tip.hidden = false;
+    const hx = X(i) * (r.width / Wd), tw = tip.offsetWidth;
+    tip.style.left = Math.max(0, Math.min(r.width - tw, hx + 12 > r.width - tw ? hx - tw - 12 : hx + 12)) + "px"; tip.style.top = "8px";
+  }
+  svg.addEventListener("pointermove", show); svg.addEventListener("pointerdown", show);
+  svg.addEventListener("pointerleave", () => { hl.style.opacity = 0; tip.hidden = true; });
+}
+function legendM(key, spec) {
+  const box = document.querySelector('[data-legend="' + key + '"]');
+  box.innerHTML = '<span><i style="background:var(' + spec.ca + ');opacity:.6"></i>' + spec.na + '</span><span><i class="l" style="background:var(' + spec.cb + ')"></i>' + spec.nb + ' · axe droit</span>';
+}
+
+const E2={"eu":[0.31197,0.22983,0.25061,0.29898,0.27866,0.27441,0.356,0.32093,0.34049,0.37348,0.33358,0.33421,0.2093,0.21776,0.19813,0.18042,0.21882],"us":[0.20462,0.22226,0.23668,0.25303,0.25955,0.24714,0.28183,0.25199,0.27067,0.24577,0.23235,0.2388,0.23149,0.24209,0.21801,0.22309,0.2115],"tri":[0.28255,0.23443,0.26094,0.29472,0.28808,0.28204,0.33525,0.29971,0.32276,0.32922,0.30159,0.30704,0.23064,0.23879,0.21835,0.20875,0.22659],"dfc":[100.66,91.38,88.48,85.87,83.91,74.07,95.12,78.29,67.53,59.22,69.9,97.53,100.56,158.95,213.27,171.84,null]};
+const kc={n:"KC1 arabica NY",v:D.kc,c:"--c-kc"};
+const dfc={n:"DF1 robusta Londres (c/lb)",v:E2.dfc,c:"--c-df"};
+const SPECS={
+a1:{bars:[{n:"Production arabica (M sacs)",v:D.ara,c:"--c-ara"}],lines:[kc],y1:"m",y2:"c",aria:"Production mondiale d'arabica et KC1"},
+a2:{bars:[{n:"Stock-to-use arabica (stocks de fin)",v:D.stu,c:"--c-stu"}],lines:[kc],y1:"pct",y2:"c",aria:"Stock-to-use arabica et KC1"},
+a3:{bars:[{n:"Certifiés NY ÷ (conso + export) arabica",v:D.cr,c:"--c-rob"}],lines:[kc],y1:"pct",y2:"c",aria:"Stocks certifiés sur utilisation et KC1"},
+b1:{bars:[{n:"STU Union européenne",v:E2.eu,c:"--c-stu"}],lines:[kc,dfc],y2:"c",aria:"STU UE et prix"},
+b2:{bars:[{n:"STU États-Unis",v:E2.us,c:"--c-imp"}],lines:[kc],y2:"c",aria:"STU États-Unis et KC1"},
+b3:{bars:[{n:"STU UE + États-Unis + Japon",v:E2.tri,c:"--c-stu"}],lines:[kc,dfc],y2:"c",aria:"STU pays consommateurs et prix"}
+};
+Object.keys(SPECS).forEach(k=>legend(k,SPECS[k]));
+function renderAll(){document.querySelectorAll("[data-chart]").forEach(h=>{const k=h.getAttribute("data-chart");if(SPECS[k])combo(h,SPECS[k]);});}
+renderAll();
+let raf=0,lastW=window.innerWidth;
+window.addEventListener("resize",()=>{if(window.innerWidth===lastW)return;lastW=window.innerWidth;cancelAnimationFrame(raf);raf=requestAnimationFrame(renderAll);});
+})();
+</script>
+</body>
+</html>
