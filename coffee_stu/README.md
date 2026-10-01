@@ -13,7 +13,7 @@ Both are in French. They complement the balance-sheet pair below.
   - Year-to-year STU swings come from crops, Brazil arabica first (44 % of the variance, first in 90 % of bootstrap draws). The other ranks are not robust.
   - The consumption trend (+2.37 M bags a year) exceeds the production trend (+2.03). The trend balance went from +1.8 M bags in 2010/11 to −2.3 M in 2025/26.
   - 2021-2025: world stocks fell four years in a row, but production was below consumption only in 2021/22 and 2022/23. The 2022/23 fall is mostly EU destocking; the 2023/24 and 2024/25 falls come from the export-import statistical gap.
-  - Robusta: since 2011/12, Brazil conilon drives growth (+0.75 M bags a year, against +0.22 for Vietnam) and 53 % of supply swings. Vietnam's 2010/11 figure is a series break and is excluded.
+  - Robusta: since 2011/12, Brazil conilon drives growth (+0.75 M bags a year, against +0.22 for Vietnam) and 53 % of supply swings. Vietnam stays the largest robusta producer by volume. The analysis starts in 2011/12 because Vietnam jumped from 19.4 to 26.0 M bags between 2010/11 and 2011/12, a one-off level shift rather than a crop swing.
   - KC and DF: monthly correlation 0.70 (0.78 since 2021). It does not come from synchronized crops but from substitution in blends and common factors. Neither market leads. The KC/DF ratio was 1.87 in August 2026 (mean 1.82).
 - **Checks:** two independent reviewers recomputed about 200 figures from the raw files (no numerical error) and challenged the conclusions. The report was rewritten to follow their findings, and the new figures were recomputed again from the raw USDA file.
 
