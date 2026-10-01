@@ -4,13 +4,15 @@
 
 This pair replaces the earlier files below. Both are in French.
 
-- **Excel:** 11 sheets, 11 native combo charts (STU or production as columns, KC1/DF1 as lines on a secondary axis), about 6,800 live formulas.
+- **Excel:** 12 sheets, 23 native combo charts (STU or production as columns, KC1/DF1 as lines on a secondary axis), about 7,250 live formulas.
   - 1_Monde: world production, STU = ending stocks ÷ (domestic consumption + exports), and certified-stock STU (ICE New York + London), with KC1 and DF1.
   - 2_Arabica / 3_Robusta: the same for each species, built country by country over the 42 origin countries.
   - 4_STU_pays: STU of each origin country, year by year, with size, shock and stock-cushion weights.
   - 5_Analyse and 6_Situations: price reactions, certified stocks vs price, the price/STU curve, regimes, robustness checks, and what the price did when USDA and certified stocks diverged.
+  - 8_Graphiques_pays: Brazil and Vietnam production, world STU (both definitions), Brazil and Vietnam STU, arabica origins (Brazil, Colombia, Ethiopia) and robusta origins (Vietnam, Brazil, India, Uganda, Indonesia) STU, certified-stock STU, and EU / US STU, each with its price (12 charts). EU and US also get the stocks ÷ consumption and stocks ÷ (consumption + imports) variants.
   - 7_Bresil_arabica: Brazil alone. Arabica production, Brazil STU and KC1. USDA publishes one Brazil stock figure for arabica and conilon together, so the arabica-share method gives an arabica STU equal to Brazil's total STU; an upper bound (all stocks arabica) is shown alongside.
   - Donnees_USDA, Prix_ICE, Stocks_certifies: all source data.
+- **`Graphiques_STU_pays_2010-2026.pdf`** and `graphiques/g01-g12.png`: the same 12 charts as images, two per page.
 - **Word:** the written report with 14 charts (including Brazil alone), tables, and a landscape annex of country STUs.
 - **Checks:** every figure was recomputed independently from the raw files (no mismatch on about 15,000 values). An adversarial review then tested each conclusion, and the text keeps only what the data support.
 
