@@ -1,6 +1,23 @@
 # Coffee stock-to-use vs KC/DF prices (2010/11 to 2026/27)
 
-## Latest deliverable: `Bilan_STU_Cafe_2010-2026.xlsx` + `Bilan_STU_Cafe_2010-2026.docx`
+## Research: what defines the coffee price? (`Recherche_STU_prix_cafe.docx` + `Recherche_STU_prix_cafe.xlsx`)
+
+Both are in French. They complement the balance-sheet pair below.
+
+- **Word:** the answer (what is solid, what is not demonstrated, what to watch), then nine sections: does the STU define the price; the world balance year by year; what moves the world STU; long-run supply and demand trends; the 2021-2025 crisis and the recovery; robusta (Brazil conilon vs Vietnam); arabica; why KC and DF move together; method and limits. 14 charts.
+- **Excel:** 9 sheets of computed values. 8_KC_DF holds the monthly KC/DF prices, with the ratio and the spread as live formulas, and a native chart.
+- **`graphiques_recherche/d01-d14.png`:** the report's charts as images.
+- **Main findings:**
+  - Price and world STU move in opposite directions over the 2010-2026 cycle (r = −0.63 for KC, −0.72 for DF). With one cycle and 16 campaigns, this cannot be demonstrated statistically: autocorrelation-adjusted p is 0.13 to 0.41, no STU measure predicts the price out of sample without 2023/24-2025/26, and annual changes show no link.
+  - The importers' STU fits the price level best, but it follows the price: it falls the year after a price rise (r = −0.75 with KC).
+  - Year-to-year STU swings come from crops, Brazil arabica first (44 % of the variance, first in 90 % of bootstrap draws). The other ranks are not robust.
+  - The consumption trend (+2.37 M bags a year) exceeds the production trend (+2.03). The trend balance went from +1.8 M bags in 2010/11 to −2.3 M in 2025/26.
+  - 2021-2025: world stocks fell four years in a row, but production was below consumption only in 2021/22 and 2022/23. The 2022/23 fall is mostly EU destocking; the 2023/24 and 2024/25 falls come from the export-import statistical gap.
+  - Robusta: since 2011/12, Brazil conilon drives growth (+0.75 M bags a year, against +0.22 for Vietnam) and 53 % of supply swings. Vietnam's 2010/11 figure is a series break and is excluded.
+  - KC and DF: monthly correlation 0.70 (0.78 since 2021). It does not come from synchronized crops but from substitution in blends and common factors. Neither market leads. The KC/DF ratio was 1.87 in August 2026 (mean 1.82).
+- **Checks:** two independent reviewers recomputed about 200 figures from the raw files (no numerical error) and challenged the conclusions. The report was rewritten to follow their findings, and the new figures were recomputed again from the raw USDA file.
+
+## Balance-sheet report: `Bilan_STU_Cafe_2010-2026.xlsx` + `Bilan_STU_Cafe_2010-2026.docx`
 
 This pair replaces the earlier files below. Both are in French.
 
