@@ -150,6 +150,10 @@ def build():
 
     # daily derived series
     out = defaultdict(list)
+    for k in ("date", "kc1", "kc2", "spread", "cert_bags", "cert_use", "stu", "share",
+              "fine_cup", "good_cup", "rio_minas", "low_grade", "conilon",
+              "fc_gc", "fc_rm", "fc_lg", "gc_rm", "gc_lg", "lg_con"):
+        out[k] = []
     for x in daily:
         a = ann.get(season_of(x["date"]), {})
         cons = a.get("consumption")

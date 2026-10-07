@@ -135,7 +135,7 @@
   <script>
   (function () {
     const M = window.MARKET || { annual: [], daily: { date: [] }, stats: {} };
-    const D = M.daily, A = M.annual;
+    const D = Object.assign({ date: [] }, M.daily), A = M.annual || [];
     const C = { navy: "#1f3d5c", orange: "#e67e22", area: "#b4c3cf", green: "#16876b", red: "#d1334a", purple: "#8e44ad", gold: "#e3a32b", grey: "#2b2b2b", blue: "#1565c0" };
     const ok = v => v !== null && v !== undefined;
     const lastOf = k => { const a = D[k] || []; for (let i = a.length - 1; i >= 0; i--) if (ok(a[i])) return [a[i], D.date[i]]; return [null, null]; };
